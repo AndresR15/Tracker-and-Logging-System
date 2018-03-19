@@ -1,0 +1,50 @@
+system tracker
+-- tracking system for a nuclear plant
+
+type CID = STRING -- container identifiers
+type PID = STRING -- phase identifiers
+
+type MATERIAL = {glass, metal, plastic, liquid}
+
+type CONTAINER = TUPLE[material: MATERIAL; radioactivity: VALUE]
+
+-- create a new tracking system
+new_tracker(
+	  max_phase_radiation: VALUE 
+	  	-- max radiation allowed for all containers in a phase
+	; max_container_radiation: VALUE 
+		-- max radation allowed in a container
+	)
+
+-- create a new phase
+new_phase(
+	  pid: PID            -- phase identifier
+	; phase_name: STRING 
+	; capacity: INT       -- number of containers phase handels
+	; expected_materials: ARRAY[MATERIAL]  -- subset of materials
+   )
+
+-- remove a phase with phase identifier pid
+remove_phase(pid: PID)
+
+-- create a new container and move it to a phase
+new_container (
+	  cid: CID  -- container identifier
+	; c: CONTAINER
+	; pid:PID
+	)
+
+-- remove a container with container identifier cid
+remove_container (cid: CID)
+
+-- move a container from source phase to target phase
+move_container (
+	  cid: CID   -- container identifier to be moved
+	; pid1: PID  -- source phase
+	; pid2: PID  -- target phase
+	)
+
+--undo/redo up to new_tracker
+undo
+
+redo

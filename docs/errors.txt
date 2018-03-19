@@ -1,0 +1,67 @@
+Status and Error Messages
+=========================
+Undo/redo messages are not included below.
+The system displays only one message in a priority order as shown below.
+However, these are only suggestions and the orcale's output is final.  
+
+new_tracker(
+      max_phase_radiation: VALUE 
+        -- max radiation allowed for all containers in a phase
+    ; max_container_radiation: VALUE 
+        -- max radation allowed in a container
+)
+
+    e1: current tracker is in use 
+    e2: max phase radiation must be non-negative value
+    e3: max container radiation must be non-negative value
+    e4: max container must not be more than max phase radiation 
+
+new_phase(
+      pid: PID            -- phase identifier
+    ; phase_name: STRING 
+    ; capacity: INT       -- number of containers phase handels
+    ; expected_materials: ARRAY[MATERIAL]  -- subset of materials
+)
+    e1: current tracker is in use
+    e5: identifiers/names must start with A-Z, a-z or 0..9
+    e6: phase identifier already exists
+    e5: identifiers/names must start with A-Z, a-z or 0..9
+    e7: phase capacity must be a positive integer
+    e8: there must be at least one expected material for this phase
+
+-- Comment: The first occurrence of e5 releates to pid, wile the second relates to phase_name
+
+new_container (
+      cid: CID  -- container identifier
+    ; c: CONTAINER
+    ; pid:PID
+)
+    e5: identifiers/names must start with A-Z, a-z or 0..9
+    e10: this container identifier already in tracker
+    e5: identifiers/names must start with A-Z, a-z or 0..9
+    e9: phase identifier not in the system
+    e18: this container radiation must not be negative
+    e11: this container will exceed phase capacity
+    e14: container radiation capacity exceeded
+    e12: this container will exceed phase safe radiation
+    e13: phase does not expect this container material
+
+move_container (
+      cid: CID   -- container identifier to be moved
+    ; pid1: PID  -- source phase
+    ; pid2: PID  -- target phase
+)
+    e15: this container identifier not in tracker
+    e16: source and target phase identifier must be different
+    e9: phase identifier not in the system
+    e17: this container identifier is not in the source phase
+    e11: this container will exceed phase capacity
+    e12: this container will exceed phase safe radiation
+    e13: phase does not expect this container material
+
+remove_container (cid: CID)
+    e15: this container identifier not in tracker 
+
+remove_phase(pid: PID)
+    e1: current tracker is in use
+    e9: phase identifier not in the system

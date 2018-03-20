@@ -1,8 +1,7 @@
 note
 	description: "A default business model."
-	author: "Jackie Wang"
-	date: "$Date$"
-	revision: "$Revision$"
+	author: "Andres Rojas and Victor Vavan"
+
 
 class
 	TRACKER

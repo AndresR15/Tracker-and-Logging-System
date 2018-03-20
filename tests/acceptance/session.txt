@@ -1,0 +1,6 @@
+new_tracker(50, 10)
+new_phase("001", "init", 10, <<liquid, glass>>)
+new_container("j42", [liquid, 0.5], "001")
+new_container("j42", [liquid, 0.5], "001")
+undo
+move_container("j42", "001", "001")

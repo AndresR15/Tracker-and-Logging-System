@@ -21,7 +21,7 @@ feature {NONE} -- Initialization
 	make
 		-- Initialization for `Current'.
 	local
-		m_access : ETF_MODEL_ACCESS
+		m_access : TRACKER_ACCESS
 	do
 		Precursor
 		-- may also override the string 'initial_state'
@@ -30,7 +30,7 @@ feature {NONE} -- Initialization
 
 feature -- Queries
 
-	model : ETF_MODEL
+	model : TRACKER
 
 	model_state : STRING
 			-- Return a string representation of current model state

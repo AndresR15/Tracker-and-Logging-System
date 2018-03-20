@@ -5,7 +5,7 @@ note
 	revision: "$Revision$"
 
 class
-	ETF_MODEL
+	TRACKER
 
 inherit
 	ANY
@@ -13,7 +13,7 @@ inherit
 			out
 		end
 
-create {ETF_MODEL_ACCESS}
+create {TRACKER_ACCESS}
 	make
 
 feature {NONE} -- Initialization

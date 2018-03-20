@@ -5,10 +5,10 @@ note
 	revision: "$Revision$"
 
 expanded class
-	ETF_MODEL_ACCESS
+	TRACKER_ACCESS
 
 feature
-	m: ETF_MODEL
+	m: TRACKER
 		once
 			create Result.make
 		end

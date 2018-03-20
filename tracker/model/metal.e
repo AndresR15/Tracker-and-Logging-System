@@ -4,7 +4,7 @@ note
 	date: "$Date$"
 	revision: "$Revision$"
 
-expanded class
+class
 	METAL
 
 inherit

@@ -19,7 +19,7 @@ feature {NONE} -- Initialization
 	make
 			-- Initialization for `Current'.
 		do
-
+			phases := <<>>
 		end
 
 feature -- model attributes

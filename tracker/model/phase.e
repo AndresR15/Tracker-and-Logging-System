@@ -33,22 +33,22 @@ feature {NONE} -- Attributes
 
 feature -- Queries
 
-	get_pid
+	get_pid: STRING
 		do
 			Result := pid
 		end
 
-	get_name
+	get_name: STRING
 		do
 			Result := name
 		end
 
-	get_capacity
+	get_capacity: INTEGER_64
 		do
 			Result := capacity
 		end
 
-	get_mats
+	get_mats: ARRAY [MATERIAL]
 		do
 			Result := expected_mats
 		end

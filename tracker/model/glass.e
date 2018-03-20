@@ -4,7 +4,7 @@ note
 	date: "$Date$"
 	revision: "$Revision$"
 
-expanded class
+class
 	GLASS
 
 inherit
@@ -18,10 +18,10 @@ feature -- Attributes
 
 	name: STRING
 
-feature {NONE}
+feature
 
 	make
-		do
+		once
 			name := "glass"
 		end
 

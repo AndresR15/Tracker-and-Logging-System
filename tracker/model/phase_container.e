@@ -54,11 +54,11 @@ feature -- Access
 		end
 
 feature -- Commands
-
-	move_container (new_phase_id: STRING)
+	move_container(new_phase_id: STRING)
 		require
 			not_current_phase: not (new_phase_id ~ cur_phase_id)
 		do
+			cur_phase_id := new_phase_id
 		end
 
 feature -- Removal
@@ -68,5 +68,6 @@ feature -- Miscellaneous
 feature -- Basic operations
 
 invariant
+
 
 end

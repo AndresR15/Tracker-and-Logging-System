@@ -16,7 +16,7 @@ inherit
 feature {NONE}
 	make(an_etf_cmd_name: STRING; etf_cmd_args: TUPLE; an_etf_cmd_container: ETF_ABSTRACT_UI_INTERFACE) 
 		local
-		  model_access: ETF_MODEL_ACCESS
+		  model_access: TRACKER_ACCESS
 		do
 			Precursor(an_etf_cmd_name, etf_cmd_args, an_etf_cmd_container) 
 			-- may set your own model state here ... 
@@ -25,5 +25,5 @@ feature {NONE}
 
 feature -- Attributes
 	-- may declare your own model state here
-	model : ETF_MODEL
+	model : TRACKER
 end

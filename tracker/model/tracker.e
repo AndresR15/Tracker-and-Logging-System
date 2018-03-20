@@ -1,11 +1,10 @@
 note
 	description: "A default business model."
-	author: "Jackie Wang"
-	date: "$Date$"
-	revision: "$Revision$"
+	author: "Andres Rojas and Victor Vavan"
+
 
 class
-	ETF_MODEL
+	TRACKER
 
 inherit
 	ANY
@@ -13,7 +12,7 @@ inherit
 			out
 		end
 
-create {ETF_MODEL_ACCESS}
+create {TRACKER_ACCESS}
 	make
 
 feature {NONE} -- Initialization

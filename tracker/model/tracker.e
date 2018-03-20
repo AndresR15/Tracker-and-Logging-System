@@ -38,25 +38,10 @@ feature -- model operations
 		require
 			invalid_mat: int > 0 and int < 5
 		local
-			g: GLASS
-			m: METAL
-			p: PLASTIC
-			l: LIQUID
+			m: MATERIAL
 		do
-			inspect int
-			when 1 then
-				create g.make
-				Result := g
-			when 2 then
-				create m.make
-				Result := m
-			when 3 then
-				create p.make
-				Result := p
-			when 4 then
-				create l.make
-				Result := l
-			end
+			create m.make (int)
+			Result := m
 		end
 
 	reset

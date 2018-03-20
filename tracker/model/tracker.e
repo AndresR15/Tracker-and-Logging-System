@@ -19,19 +19,17 @@ feature {NONE} -- Initialization
 	make
 			-- Initialization for `Current'.
 		do
-			create s.make_empty
-			i := 0
+
 		end
 
 feature -- model attributes
-	s : STRING
-	i : INTEGER
+
+	phases: ARRAY[PHASE]
 
 feature -- model operations
-	default_update
-			-- Perform update to the model state.
+
+	new_phase(pid: STRING ; phase_name: STRING ; capacity: INTEGER_64 ; expected_materials: ARRAY[INTEGER_64])
 		do
-			i := i + 1
 		end
 
 	reset
@@ -44,10 +42,6 @@ feature -- queries
 	out : STRING
 		do
 			create Result.make_from_string ("  ")
-			Result.append ("System State: default model state ")
-			Result.append ("(")
-			Result.append (i.out)
-			Result.append (")")
 		end
 
 end

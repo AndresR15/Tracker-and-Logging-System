@@ -6,18 +6,18 @@ note
 
 class
 	ETF_NEW_PHASE
-inherit 
+inherit
 	ETF_NEW_PHASE_INTERFACE
 		redefine new_phase end
 create
 	make
-feature -- command 
+feature -- command
 	new_phase(pid: STRING ; phase_name: STRING ; capacity: INTEGER_64 ; expected_materials: ARRAY[INTEGER_64])
-		require else 
+		require else
 			new_phase_precond(pid, phase_name, capacity, expected_materials)
     	do
 			-- perform some update on the model state
-			model.default_update
+			model.new_phase(pid, phase_name, capacity, expected_materials)
 			etf_cmd_container.on_change.notify ([Current])
     	end
 

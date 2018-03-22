@@ -22,13 +22,24 @@ feature {NONE} -- Initialization
 		local
 			ht: HASH_TABLE[STRING_8, PHASE]
 		do
+			active := FALSE
+			max_phase_rad := 0
+			max_cont_rad := 0
 			Create ht.make (5)
 			phases := ht
 		end
 
-feature {NONE} -- model attributes
+feature {TRACKER} -- model attributes
 
 	phases: HASH_TABLE[STRING_8, PHASE]
+
+	error: STRING
+
+	active: BOOLEAN
+
+	max_phase_rad: VALUE
+
+	max_cont_rad: VALUE
 
 feature -- model operations
 
@@ -40,7 +51,7 @@ feature -- model operations
 			-- convert INTEGER_64 to a MATERIAL
 		require
 			invalid_mat: int > 0 and int < 5
-		local
+		locals
 			m: MATERIAL
 		do
 			create m.make (int)
@@ -53,7 +64,33 @@ feature -- model operations
 			make
 		end
 
-feature -- commands
+feature -- Setters
+
+	set_error (new_error: STRING)
+		do
+			error := new_error
+		end
+
+feature -- Getters
+
+	get_max_phase: VALUE
+		do
+			Result := max_phase_rad
+		end
+
+	get_max_cont: VALUE
+		do
+			Result := max_cont_rad
+		end
+
+feature -- Command
+
+	new_tracker (max_phase: VALUE; max_cont: VALUE)
+		do
+			active := TRUE
+			max_phase_rad := max_phase
+			max_cont_rad := max_cont
+		end
 
 	remove_phase (phase_id: STRING)
 		require
@@ -62,7 +99,8 @@ feature -- commands
 			phases.prune (phase_id)
 		end
 
-feature -- error checks
+
+feature -- Error Checking
 
 	phase_exists (id: STRING): BOOLEAN
 		do

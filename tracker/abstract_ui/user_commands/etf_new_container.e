@@ -24,13 +24,13 @@ feature -- command
 						model.set_error (msg.cont_id_in_tracker)
 					elseif not model.valid_string (pid) then
 						model.set_error (msg.invalid_name_id)
-					elseif not model.phases.has (pid) then
+					elseif not model.get_phases.has (pid) then
 						model.set_error (msg.phase_id_non_existent)
-					elseif (radioactivity < 0.0) then
+					elseif (c.radioactivity < 0.0) then
 						model.set_error (msg.cont_rad_non_negative)
-					elseif not model.under_capacity then
+					elseif not model.under_capacity(pid) then
 						model.set_error (msg.cont_exceeds_cap)
-					elseif radioactivity > model.get_max_cont_rad then
+					elseif c.radioactivity > model.get_max_cont_rad then
 						model.set_error (msg.cont_exceeds_rad_cap)
 					end
 			model.new_container(cid, c, pid)

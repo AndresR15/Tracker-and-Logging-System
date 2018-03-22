@@ -97,7 +97,7 @@ feature -- getter
 		do
 			Result := active
 		end
-get_phases: STRING_TABLE [PHASE]
+	get_phases: STRING_TABLE [PHASE]
 		do
 			Result := phases
 		end
@@ -112,9 +112,13 @@ feature -- error checks
 	under_capacity (pid: STRING): BOOLEAN
 			-- can the phase handle another container?
 		require
-			phases.has (pid)
+			get_phases.has (pid)
 		do
-			phases.at (pid).get_containers.count < phases.at (pid).get_capacity
+			if attached get_phases.at (pid) as p and attached get_phases.at (pid) as gp then
+				Result := (p.get_containers.count) < (gp.get_capacity)
+			else
+			end
+
 		end
 
 --	phase_exists (id: STRING): BOOLEAN

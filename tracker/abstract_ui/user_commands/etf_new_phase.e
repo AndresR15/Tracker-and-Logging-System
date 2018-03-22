@@ -22,7 +22,7 @@ feature -- command
 				model.set_error (msg.in_use)
 			elseif not model.valid_string (pid) then
 				model.set_error (msg.invalid_name_id)
-			elseif model.phases.has (pid) then
+			elseif model.get_phases.has (pid) then
 				model.set_error (msg.phase_id_in_use)
 			elseif not model.valid_string (phase_name) then
 				model.set_error (msg.invalid_name_id)

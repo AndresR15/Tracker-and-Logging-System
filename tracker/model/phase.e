@@ -19,6 +19,7 @@ feature {NONE} -- Initialization
 			name := phase_name
 			capacity := cap
 			expected_mats := expected_materials
+			containers := <<>>
 		end
 
 feature {NONE} -- Attributes
@@ -30,6 +31,8 @@ feature {NONE} -- Attributes
 	capacity: INTEGER_64 -- number of containers PHASE handles
 
 	expected_mats: ARRAY [MATERIAL] -- subset of materials
+
+	containers: ARRAY [PHASE_CONTAINER]
 
 feature -- Queries
 
@@ -51,6 +54,24 @@ feature -- Queries
 	get_mats: ARRAY [MATERIAL]
 		do
 			Result := expected_mats
+		end
+
+	get_containers: ARRAY [PHASE_CONTAINER]
+		do
+			Result := containers
+		end
+
+	container_exists (cid: STRING): BOOLEAN
+			-- checks whether a container exists within a phase
+		do
+			Result := FALSE
+			across
+				get_containers as c
+			loop
+				if c.item.get_id ~ cid then
+					Result := TRUE
+				end
+			end
 		end
 
 feature -- Commands

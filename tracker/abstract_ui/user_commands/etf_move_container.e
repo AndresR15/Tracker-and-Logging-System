@@ -17,7 +17,7 @@ feature -- command
 			move_container_precond(cid, pid1, pid2)
     	do
 			-- perform some update on the model state
-
+			
 			etf_cmd_container.on_change.notify ([Current])
     	end
 

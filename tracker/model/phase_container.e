@@ -35,7 +35,7 @@ feature -- Access
 
 	get_id: STRING
 		do
-			Result := id_key
+			Result := id
 		end
 
 	get_material: MATERIAL
@@ -56,7 +56,7 @@ feature -- Access
 feature -- Commands
 	move_container(new_phase_id: STRING)
 		require
-			not_current_phase: not (new_phase_id ~ cur_phase_id)
+			not_current_phase: not (new_phase_id ~ get_cur_phase_id)
 		do
 			cur_phase_id := new_phase_id
 		end

@@ -56,6 +56,95 @@ feature -- model operations
 			max_cont_rad := max_c_rad
 		end
 
+	new_container(cid: STRING; cont_spec: TUPLE [m: INTEGER_64; rad: VALUE]; pid: STRING)
+		local
+			mat: MATERIAL
+			cont: PHASE_CONTAINER
+		do
+			create mat.make (cont_spec.m)
+			create cont.make (cid, mat, cont_spec.rad)
+			if attached phases[pid] as p then
+				p.add_container (cont)
+			else
+				-- do nothing
+			end
+
+		end
+
+	remove_phase (phase_id: STRING)
+		require
+			phase_exists: get_phases.has (phase_id)
+		do
+			phases.remove (phase_id)
+		end
+
+	remove_container (cid: STRING)
+		local
+			cont: PHASE_CONTAINER
+		do
+			cont := get_container(cid)
+
+		end
+
+feature -- setters
+	set_error(msg: STRING)
+		do
+			error := msg
+		end
+
+feature -- getter
+	is_active: BOOLEAN
+		do
+			Result := active
+		end
+
+	get_phases: STRING_TABLE [PHASE]
+		do
+			Result := phases
+		end
+
+	get_max_cont_rad: VALUE
+		do
+			Result := max_cont_rad
+		end
+
+	get_max_phase_rad: VALUE
+		do
+			Result := max_phase_rad
+		end
+
+feature -- error checks
+	cid_exists(cid: STRING): BOOLEAN
+		do
+			Result := False
+			across phases as p loop
+				Result := Result or else (p.item.get_containers.has (cid))
+			end
+		end
+
+feature -- queries
+	get_container(cid: STRING): detachable PHASE_CONTAINER
+		do
+			Result := void
+			across phases as cursor loop
+				if cursor.item.get_containers.has (cid) then
+					Result := cursor.item.get_containers.at(cid)
+				end
+			end
+		end
+
+	out: STRING
+		do
+			create Result.make_from_string ("  ")
+		end
+
+feature -- misc
+	reset
+			-- Reset model state.
+		do
+			make
+		end
+
 	int_to_mat (int: INTEGER_64): MATERIAL
 			-- convert INTEGER_64 to a MATERIAL
 		require
@@ -66,79 +155,4 @@ feature -- model operations
 			create m.make (int)
 			Result := m
 		end
-
-	reset
-			-- Reset model state.
-		do
-			make
-		end
-
-feature -- commands
-
-	remove_phase (phase_id: STRING)
-	
-		do
-		
-
-		end
-
-feature -- setters
-	set_error(msg: STRING)
-		do
-			error := msg
-		end
-feature -- getter
-	is_active: BOOLEAN
-		do
-			Result := active
-		end
-feature -- error checks
-
---	phase_exists (id: STRING): BOOLEAN
---		do
---			Result := False
---			across
---				phases as i
---			loop
---				if i.item.get_pid ~ id then
---					Result := True
---				end
---			end
---		end
-
---	has (p_id: STRING): BOOLEAN
---		local
---			i: INTEGER
---		do
---			from
---				Result := False
---				i := phases.lower
---			until
---				Result or else (i > phases.count)
---			loop
---				Result := (phases [i].get_pid ~ p_id)
---				i := i + 1
---			end
---		end
-
-feature -- queries
-
---	get_phase_by_pid (p_id: STRING): PHASE
---		do
---			from
---				Result := False
---				i := phases.lower
---			until
---				Result or else (i > phases.count)
---			loop
---				Result := (phases [i].get_pid ~ p_id)
---				i := i + 1
---			end
---		end
-
-	out: STRING
-		do
-			create Result.make_from_string ("  ")
-		end
-
 end

@@ -74,8 +74,11 @@ feature -- model operations
 		end
 
 feature -- commands
+
 	remove_phase (phase_id: STRING)
+	
 		do
+		
 
 		end
 

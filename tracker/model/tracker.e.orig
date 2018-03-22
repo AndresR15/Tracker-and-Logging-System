@@ -21,22 +21,24 @@ feature {NONE} -- Initialization
 			-- Initialization for `Current'.
 		local
 			list: STRING_TABLE [PHASE]
+			zero: VALUE
 		do
-<<<<<<< HEAD
+			Create zero.make_from_int (0)
 			Create list.make_equal_caseless (10)
 			phases := list
-=======
-			active := FALSE
-			max_phase_rad := 0
-			max_cont_rad := 0
-			Create ht.make (5)
-			phases := ht
->>>>>>> 38aff461d43194b7e813a07367bb8b6216fc190a
+			error := "ok"
+			active := False
+			max_phase_rad := zero
+			max_cont_rad := zero
 		end
 
 feature {TRACKER} -- model attributes
 
+<<<<<<< HEAD
 	phases: STRING_TABLE [PHASE]
+=======
+	phases: STRING_TABLE[PHASE]
+>>>>>>> 70de001b2d5bfc656ff790ab22f7a3c75b9bd013
 
 	error: STRING
 
@@ -52,11 +54,17 @@ feature -- model operations
 		do
 		end
 
+	new_tracker (max_p_rad, max_c_rad: VALUE)
+		do
+			max_phase_rad := max_p_rad
+			max_cont_rad := max_c_rad
+		end
+
 	int_to_mat (int: INTEGER_64): MATERIAL
 			-- convert INTEGER_64 to a MATERIAL
 		require
 			invalid_mat: int > 0 and int < 5
-		locals
+		local
 			m: MATERIAL
 		do
 			create m.make (int)
@@ -69,43 +77,31 @@ feature -- model operations
 			make
 		end
 
-feature -- Setters
-
-	set_error (new_error: STRING)
-		do
-			error := new_error
-		end
-
-feature -- Getters
-
-	get_max_phase: VALUE
-		do
-			Result := max_phase_rad
-		end
-
-	get_max_cont: VALUE
-		do
-			Result := max_cont_rad
-		end
-
-feature -- Command
-
-	new_tracker (max_phase: VALUE; max_cont: VALUE)
-		do
-			active := TRUE
-			max_phase_rad := max_phase
-			max_cont_rad := max_cont
-		end
-
+feature -- commands
 	remove_phase (phase_id: STRING)
-		require
-
 		do
 
 		end
 
+feature -- setters
+<<<<<<< HEAD
+=======
 
-feature -- Error Checking
+>>>>>>> 70de001b2d5bfc656ff790ab22f7a3c75b9bd013
+	set_error(msg: STRING)
+		do
+			error := msg
+		end
+<<<<<<< HEAD
+feature -- getter
+	is_active: BOOLEAN
+		do
+			Result := active
+		end
+=======
+
+>>>>>>> 70de001b2d5bfc656ff790ab22f7a3c75b9bd013
+feature -- error checks
 
 --	phase_exists (id: STRING): BOOLEAN
 --		do

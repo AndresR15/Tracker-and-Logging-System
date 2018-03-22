@@ -7,6 +7,13 @@ note
 class
 	PHASE
 
+inherit
+
+	COMPARABLE
+		redefine
+			is_equal
+		end
+
 create
 	make
 
@@ -22,7 +29,7 @@ feature {NONE} -- Initialization
 			containers := <<>>
 		end
 
-feature {NONE} -- Attributes
+feature {PHASE} -- Attributes
 
 	pid: STRING -- identifier
 
@@ -75,5 +82,32 @@ feature -- Queries
 		end
 
 feature -- Commands
+
+feature -- compare
+
+	is_less alias "<" (other: PHASE): BOOLEAN
+			-- Is current object less than `other'?
+		require else
+			distinct_pid: not (get_pid ~ other.get_pid)
+		do
+			if Current = other then
+				Result := False
+			elseif get_pid < other.get_pid then
+				Result := True
+			end
+		end
+
+	is_equal(other: PHASE): BOOLEAN
+			-- Is `other' attached to an object of the same type
+			-- as current object and identical to it?
+		do
+			if Current = other then
+				Result := True
+			else
+				Result := (pid = other.pid) and then (name ~ other.name)
+				and then (capacity = other.capacity) and then (expected_mats ~ other.expected_mats)
+				and then (containers ~ other.containers)
+			end
+		end
 
 end

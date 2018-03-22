@@ -1,6 +1,7 @@
-new_tracker(50, 10)
-new_phase("001", "init", 10, <<liquid, glass>>)
-new_container("j42", [liquid, 0.5], "001")
-new_container("j42", [liquid, 0.5], "001")
+new_tracker(1000, 1000)
+new_phase("A1", "App", 100, <<glass>>)
+new_phase("A2", "Bat", 100, <<glass>>)
+new_phase("A0", "cat", 100, <<glass>>)
+new_phase("A1", "qoop", 100, <<glass>>)
+
 undo
-move_container("j42", "001", "001")

@@ -20,15 +20,15 @@ feature {NONE} -- Initialization
 	make
 			-- Initialization for `Current'.
 		local
-			ht: HASH_TABLE[STRING_8, PHASE]
+			list: STRING_TABLE [PHASE]
 		do
-			Create ht.make (5)
-			phases := ht
+			Create list.make_equal_caseless (10)
+			phases := list
 		end
 
 feature {NONE} -- model attributes
 
-	phases: HASH_TABLE[STRING_8, PHASE]
+	phases: STRING_TABLE [PHASE]
 
 feature -- model operations
 
@@ -57,26 +57,54 @@ feature -- commands
 
 	remove_phase (phase_id: STRING)
 		require
-			phase_exists: phase_exists(phase_id)
+
 		do
-			phases.prune (phase_id)
+
 		end
 
 feature -- error checks
 
-	phase_exists (id: STRING): BOOLEAN
-		do
-			Result := False
-			across
-				phases as i
-			loop
-				if i.item.get_pid ~ id then
-					Result := True
-				end
-			end
-		end
+--	phase_exists (id: STRING): BOOLEAN
+--		do
+--			Result := False
+--			across
+--				phases as i
+--			loop
+--				if i.item.get_pid ~ id then
+--					Result := True
+--				end
+--			end
+--		end
+
+--	has (p_id: STRING): BOOLEAN
+--		local
+--			i: INTEGER
+--		do
+--			from
+--				Result := False
+--				i := phases.lower
+--			until
+--				Result or else (i > phases.count)
+--			loop
+--				Result := (phases [i].get_pid ~ p_id)
+--				i := i + 1
+--			end
+--		end
 
 feature -- queries
+
+--	get_phase_by_pid (p_id: STRING): PHASE
+--		do
+--			from
+--				Result := False
+--				i := phases.lower
+--			until
+--				Result or else (i > phases.count)
+--			loop
+--				Result := (phases [i].get_pid ~ p_id)
+--				i := i + 1
+--			end
+--		end
 
 	out: STRING
 		do

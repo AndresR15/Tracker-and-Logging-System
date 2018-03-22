@@ -23,11 +23,11 @@ feature -- command
 		do
 				-- perform some update on the model state
 			model.set_error (msg.ok)
-			if model.active then
+			if model.is_active then
 				model.set_error (msg.in_use)
-			elseif (max_phase_radiation < 0) then
+			elseif (max_phase_radiation < 0.0) then
 				model.set_error (msg.non_neg_phase_rad)
-			elseif (max_container_radiation < 0) then
+			elseif (max_container_radiation < 0.0) then
 				model.set_error (msg.non_neg_container_rad)
 			elseif (max_container_radiation > max_phase_radiation) then
 				model.set_error (msg.container_lt_phase)

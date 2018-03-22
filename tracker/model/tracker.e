@@ -28,7 +28,7 @@ feature {NONE} -- Initialization
 
 feature {TRACKER} -- model attributes
 
-	phases: HASH_TABLE[STRING_8, PHASE]
+	phases: STRING_TABLE[PHASE]
 
 	error: STRING
 
@@ -68,6 +68,13 @@ feature -- commands
 			phase_exists: phase_exists(phase_id)
 		do
 			phases.prune (phase_id)
+		end
+
+feature -- setters
+
+	set_error(msg: STRING)
+		do
+			error := msg
 		end
 
 feature -- error checks

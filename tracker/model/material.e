@@ -27,8 +27,6 @@ feature {NONE}
 				name := "plastic"
 			when 4 then
 				name := "liquid"
-			else
-				name := ""
 			end
 		end
 end

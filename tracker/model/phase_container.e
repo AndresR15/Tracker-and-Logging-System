@@ -61,13 +61,8 @@ feature -- Commands
 			cur_phase_id := new_phase_id
 		end
 
-feature -- Removal
-
 feature -- Miscellaneous
 
 feature -- Basic operations
-
-invariant
-
 
 end

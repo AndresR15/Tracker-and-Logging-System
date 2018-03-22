@@ -19,13 +19,16 @@ feature {NONE} -- Initialization
 
 	make
 			-- Initialization for `Current'.
+		local
+			ht: HASH_TABLE[STRING_8, PHASE]
 		do
-			phases := <<>>
+			Create ht.make (5)
+			phases := ht
 		end
 
-feature -- model attributes
+feature {NONE} -- model attributes
 
-	phases: ARRAY [PHASE]
+	phases: HASH_TABLE[STRING_8, PHASE]
 
 feature -- model operations
 
@@ -48,6 +51,29 @@ feature -- model operations
 			-- Reset model state.
 		do
 			make
+		end
+
+feature -- commands
+
+	remove_phase (phase_id: STRING)
+		require
+			phase_exists: phase_exists(phase_id)
+		do
+			phases.prune (phase_id)
+		end
+
+feature -- error checks
+
+	phase_exists (id: STRING): BOOLEAN
+		do
+			Result := False
+			across
+				phases as i
+			loop
+				if i.item.get_pid ~ id then
+					Result := True
+				end
+			end
 		end
 
 feature -- queries

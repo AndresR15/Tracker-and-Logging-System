@@ -22,13 +22,13 @@ feature {NONE} -- Initialization
 	make (init_pid: STRING; phase_name: STRING; cap: INTEGER_64; expected_materials: ARRAY [MATERIAL])
 			-- Initialization for `Current'.
 		local
-			c: ARRAYED_SET[PHASE_CONTAINER]
+			c: STRING_TABLE [PHASE_CONTAINER]
 		do
 			pid := init_pid
 			name := phase_name
 			capacity := cap
 			expected_mats := expected_materials
-			create c.make (10)
+			create c.make_equal_caseless (10)
 			containers := c
 		end
 
@@ -42,7 +42,7 @@ feature {PHASE} -- Attributes
 
 	expected_mats: ARRAY [MATERIAL] -- subset of materials
 
-	containers: ARRAYED_SET [PHASE_CONTAINER]
+	containers: STRING_TABLE [PHASE_CONTAINER]
 
 feature -- Queries
 
@@ -66,7 +66,7 @@ feature -- Queries
 			Result := expected_mats
 		end
 
-	get_containers: ARRAYED_LIST [PHASE_CONTAINER]
+	get_containers: STRING_TABLE [PHASE_CONTAINER]
 		do
 			Result := containers
 		end
@@ -87,9 +87,8 @@ feature -- Queries
 feature -- Commands
 	add_container (cont: PHASE_CONTAINER)
 		do
-			get_containers.force (cont)
+			get_containers.extend (cont, cont.get_id)
 		end
-
 
 feature -- compare
 

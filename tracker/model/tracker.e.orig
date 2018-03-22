@@ -34,11 +34,7 @@ feature {NONE} -- Initialization
 
 feature {TRACKER} -- model attributes
 
-<<<<<<< HEAD
 	phases: STRING_TABLE [PHASE]
-=======
-	phases: STRING_TABLE[PHASE]
->>>>>>> 70de001b2d5bfc656ff790ab22f7a3c75b9bd013
 
 	error: STRING
 
@@ -60,48 +56,71 @@ feature -- model operations
 			max_cont_rad := max_c_rad
 		end
 
-	int_to_mat (int: INTEGER_64): MATERIAL
-			-- convert INTEGER_64 to a MATERIAL
-		require
-			invalid_mat: int > 0 and int < 5
+	new_container(cid: STRING; cont_spec: TUPLE [m: INTEGER_64; rad: VALUE]; pid: STRING)
 		local
-			m: MATERIAL
+			mat: MATERIAL
+			cont: PHASE_CONTAINER
 		do
-			create m.make (int)
-			Result := m
+			create mat.make (cont_spec.m)
+			create cont.make (cid, mat, cont_spec.rad)
+			if attached phases[pid] as p then
+				p.add_container (cont)
+			else
+				-- do nothing
+			end
+
 		end
 
-	reset
-			-- Reset model state.
-		do
-			make
-		end
-
-feature -- commands
 	remove_phase (phase_id: STRING)
+		require
+			phase_exists: get_phases.has (phase_id)
 		do
+			phases.remove (phase_id)
+		end
+
+<<<<<<< HEAD
+feature -- commands
+
+	remove_phase (phase_id: STRING)
+
+		do
+
+=======
+	remove_container (cid: STRING)
+		local
+			cont: PHASE_CONTAINER
+		do
+			cont := get_container(cid)
+>>>>>>> 60d52d71bcedc34ee06fdbfa815861ce453ab76e
 
 		end
 
 feature -- setters
-<<<<<<< HEAD
-=======
-
->>>>>>> 70de001b2d5bfc656ff790ab22f7a3c75b9bd013
 	set_error(msg: STRING)
 		do
 			error := msg
 		end
-<<<<<<< HEAD
+
 feature -- getter
 	is_active: BOOLEAN
 		do
 			Result := active
 		end
-=======
 
->>>>>>> 70de001b2d5bfc656ff790ab22f7a3c75b9bd013
-feature -- error checks
+<<<<<<< HEAD
+	valid_string (s: STRING): BOOLEAN
+			-- does the string start with A-Z, a-z or 0-9?
+		do
+			Result := (not s.is_empty) and then (s [1].is_alpha_numeric)
+		end
+
+	under_capacity (pid: STRING): BOOLEAN
+			-- can the phase handle another container?
+		require
+			phases.has (pid)
+		do
+			phases.at (pid).get_containers.count < phases.at (pid).get_capacity
+		end
 
 --	phase_exists (id: STRING): BOOLEAN
 --		do
@@ -129,25 +148,63 @@ feature -- error checks
 --				i := i + 1
 --			end
 --		end
+=======
+	get_phases: STRING_TABLE [PHASE]
+		do
+			Result := phases
+		end
+>>>>>>> 60d52d71bcedc34ee06fdbfa815861ce453ab76e
+
+	get_max_cont_rad: VALUE
+		do
+			Result := max_cont_rad
+		end
+
+	get_max_phase_rad: VALUE
+		do
+			Result := max_phase_rad
+		end
+
+feature -- error checks
+	cid_exists(cid: STRING): BOOLEAN
+		do
+			Result := False
+			across phases as p loop
+				Result := Result or else (p.item.get_containers.has (cid))
+			end
+		end
 
 feature -- queries
-
---	get_phase_by_pid (p_id: STRING): PHASE
---		do
---			from
---				Result := False
---				i := phases.lower
---			until
---				Result or else (i > phases.count)
---			loop
---				Result := (phases [i].get_pid ~ p_id)
---				i := i + 1
---			end
---		end
+	get_container(cid: STRING): detachable PHASE_CONTAINER
+		do
+			Result := void
+			across phases as cursor loop
+				if cursor.item.get_containers.has (cid) then
+					Result := cursor.item.get_containers.at(cid)
+				end
+			end
+		end
 
 	out: STRING
 		do
 			create Result.make_from_string ("  ")
 		end
 
+feature -- misc
+	reset
+			-- Reset model state.
+		do
+			make
+		end
+
+	int_to_mat (int: INTEGER_64): MATERIAL
+			-- convert INTEGER_64 to a MATERIAL
+		require
+			invalid_mat: int > 0 and int < 5
+		local
+			m: MATERIAL
+		do
+			create m.make (int)
+			Result := m
+		end
 end

@@ -12,13 +12,12 @@ create
 
 feature {NONE} -- Initialization
 
-	make (init_id: STRING; init_material: MATERIAL; init_max_rad: REAL; init_phase_id: STRING)
+	make (init_id: STRING; init_material: MATERIAL; init_max_rad: VALUE)
 			-- Initialization for `Current'.
 		do
 			id := init_id
 			material := init_material
 			max_rad := init_max_rad
-			cur_phase_id := init_phase_id
 		end
 
 feature {NONE} -- Atributes
@@ -27,9 +26,7 @@ feature {NONE} -- Atributes
 
 	material: MATERIAL
 
-	max_rad: REAL
-
-	cur_phase_id: STRING
+	max_rad: VALUE
 
 feature -- Access
 
@@ -43,23 +40,12 @@ feature -- Access
 			Result := material
 		end
 
-	get_max_rad: REAL
+	get_max_rad: VALUE
 		do
 			Result := max_rad
 		end
 
-	get_cur_phase_id: STRING
-		do
-			Result := cur_phase_id
-		end
-
 feature -- Commands
-	move_container(new_phase_id: STRING)
-		require
-			not_current_phase: not (new_phase_id ~ get_cur_phase_id)
-		do
-			cur_phase_id := new_phase_id
-		end
 
 feature -- Miscellaneous
 

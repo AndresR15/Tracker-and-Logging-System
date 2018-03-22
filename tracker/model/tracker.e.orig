@@ -22,13 +22,21 @@ feature {NONE} -- Initialization
 		local
 			list: STRING_TABLE [PHASE]
 		do
+<<<<<<< HEAD
 			Create list.make_equal_caseless (10)
 			phases := list
+=======
+			active := FALSE
+			max_phase_rad := 0
+			max_cont_rad := 0
+			Create ht.make (5)
+			phases := ht
+>>>>>>> 38aff461d43194b7e813a07367bb8b6216fc190a
 		end
 
 feature {TRACKER} -- model attributes
 
-	phases: HASH_TABLE[STRING_8, PHASE]
+	phases: STRING_TABLE [PHASE]
 
 	error: STRING
 
@@ -48,7 +56,7 @@ feature -- model operations
 			-- convert INTEGER_64 to a MATERIAL
 		require
 			invalid_mat: int > 0 and int < 5
-		local
+		locals
 			m: MATERIAL
 		do
 			create m.make (int)
@@ -61,16 +69,43 @@ feature -- model operations
 			make
 		end
 
-feature -- commands
+feature -- Setters
+
+	set_error (new_error: STRING)
+		do
+			error := new_error
+		end
+
+feature -- Getters
+
+	get_max_phase: VALUE
+		do
+			Result := max_phase_rad
+		end
+
+	get_max_cont: VALUE
+		do
+			Result := max_cont_rad
+		end
+
+feature -- Command
+
+	new_tracker (max_phase: VALUE; max_cont: VALUE)
+		do
+			active := TRUE
+			max_phase_rad := max_phase
+			max_cont_rad := max_cont
+		end
 
 	remove_phase (phase_id: STRING)
 		require
-			phase_exists: phase_exists(phase_id)
+
 		do
-			phases.prune (phase_id)
+
 		end
 
-feature -- error checks
+
+feature -- Error Checking
 
 --	phase_exists (id: STRING): BOOLEAN
 --		do

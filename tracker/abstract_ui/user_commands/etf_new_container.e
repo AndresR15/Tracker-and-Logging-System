@@ -17,7 +17,23 @@ feature -- command
 			new_container_precond(cid, c, pid)
     	do
 			-- perform some update on the model state
-
+			model.set_error (msg.ok)
+					if not model.valid_string (cid) then
+						model.set_error (msg.invalid_name_id)
+					elseif model.cid_exists (cid) then
+						model.set_error (msg.cont_id_in_tracker)
+					elseif not model.valid_string (pid) then
+						model.set_error (msg.invalid_name_id)
+					elseif not model.phases.has (pid) then
+						model.set_error (msg.phase_id_non_existent)
+					elseif (radioactivity < 0.0) then
+						model.set_error (msg.cont_rad_non_negative)
+					elseif not model.under_capacity then
+						model.set_error (msg.cont_exceeds_cap)
+					elseif radioactivity > model.get_max_cont_rad then
+						model.set_error (msg.cont_exceeds_rad_cap)
+					end
+			model.new_container(cid, c, pid)
 			etf_cmd_container.on_change.notify ([Current])
     	end
 

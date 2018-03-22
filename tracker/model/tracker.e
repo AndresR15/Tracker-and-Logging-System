@@ -76,9 +76,9 @@ feature -- model operations
 feature -- commands
 
 	remove_phase (phase_id: STRING)
-	
+
 		do
-		
+
 
 		end
 
@@ -93,6 +93,20 @@ feature -- getter
 			Result := active
 		end
 feature -- error checks
+
+	valid_string (s: STRING): BOOLEAN
+			-- does the string start with A-Z, a-z or 0-9?
+		do
+			Result := (not s.is_empty) and then (s [1].is_alpha_numeric)
+		end
+
+	under_capacity (pid: STRING): BOOLEAN
+			-- can the phase handle another container?
+		require
+			phases.has (pid)
+		do
+			phases.at (pid).get_containers.count < phases.at (pid).get_capacity
+		end
 
 --	phase_exists (id: STRING): BOOLEAN
 --		do

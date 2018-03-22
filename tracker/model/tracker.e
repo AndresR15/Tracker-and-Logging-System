@@ -21,14 +21,20 @@ feature {NONE} -- Initialization
 			-- Initialization for `Current'.
 		local
 			list: STRING_TABLE [PHASE]
+			zero: VALUE
 		do
+			Create zero.make_from_int (0)
 			Create list.make_equal_caseless (10)
 			phases := list
+			error := "ok"
+			active := False
+			max_phase_rad := zero
+			max_cont_rad := zero
 		end
 
 feature {TRACKER} -- model attributes
 
-	phases: HASH_TABLE[STRING_8, PHASE]
+	phases: STRING_TABLE [PHASE]
 
 	error: STRING
 
@@ -42,6 +48,12 @@ feature -- model operations
 
 	new_phase (pid: STRING; phase_name: STRING; capacity: INTEGER_64; expected_materials: ARRAY [INTEGER_64])
 		do
+		end
+
+	new_tracker (max_p_rad, max_c_rad: VALUE)
+		do
+			max_phase_rad := max_p_rad
+			max_cont_rad := max_c_rad
 		end
 
 	int_to_mat (int: INTEGER_64): MATERIAL
@@ -62,14 +74,21 @@ feature -- model operations
 		end
 
 feature -- commands
-
 	remove_phase (phase_id: STRING)
-		require
-			phase_exists: phase_exists(phase_id)
 		do
-			phases.prune (phase_id)
+
 		end
 
+feature -- setters
+	set_error(msg: STRING)
+		do
+			error := msg
+		end
+feature -- getter
+	is_active: BOOLEAN
+		do
+			Result := active
+		end
 feature -- error checks
 
 --	phase_exists (id: STRING): BOOLEAN

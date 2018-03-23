@@ -52,6 +52,7 @@ feature -- model operations
 			valid_phase_name: valid_string (phase_name)
 			positive_capacity: capacity > 0.0
 			expected_materials_non_empty: expected_materials.count > 0
+
 		local
 			new_p: PHASE
 		do
@@ -70,30 +71,30 @@ feature -- model operations
 
 	new_container (cid: STRING; cont_spec: TUPLE [m: INTEGER_64; rad: VALUE]; pid: STRING)
 		local
-			mat: MATERIAL
+
 			cont: PHASE_CONTAINER
 		do
-			create mat.make (cont_spec.m)
-			create cont.make (cid, mat, cont_spec.rad)
-			if attached phases [pid] as p then
+			create cont.make (cid, cont_spec.m, cont_spec.rad)
+			if attached phases[pid] as p then
 				p.add_container (cont)
 			else
-					-- do nothing
+				-- do nothing
 			end
+
 		end
 
 	remove_phase (phase_id: STRING)
-			-- removes a phase from the tracker
+		-- removes a phase from the tracker
 		require
 			phase_exists: get_phases.has (phase_id)
 		do
 			phases.remove (phase_id)
 		ensure
-			phase_removed: not (phases.has_key (phase_id))
+			phase_removed: not(phases.has_key (phase_id))
 		end
 
 	remove_container (cid: STRING)
-			-- removes a container from the tracker
+		-- removes a container from the tracker
 		local
 			cur_phase: PHASE
 		do
@@ -101,13 +102,13 @@ feature -- model operations
 			if attached cur_phase as p then
 				p.remove_container (cid)
 			else
-					-- do nothing
+				-- do nothing
 			end
 		end
 
 feature -- setters
 
-	set_error (msg: STRING)
+set_error(msg: STRING)
 		do
 			error := msg
 		end
@@ -141,6 +142,7 @@ feature -- error checks
 				Result := (p.get_containers.count) < (gp.get_capacity)
 			else
 			end
+
 		end
 
 	cont_gt_max_phase_rad (rad: VALUE; pid: STRING): BOOLEAN
@@ -164,13 +166,11 @@ feature -- error checks
 			end
 		end
 
-	mats_not_in_phase (mat: MATERIAL; pid: STRING): BOOLEAN
+	mats_not_in_phase(mat: INTEGER_64; pid: STRING): BOOLEAN
 			-- does the phase expect this container material?
 		do
-			if attached phases [pid] as mats then
-				across
-					mats.get_mats as cm
-				loop
+			if attached phases[pid] as p then
+				across p.get_mats as cm loop
 					if cm.item ~ mat then
 						Result := FALSE
 					else
@@ -178,6 +178,7 @@ feature -- error checks
 					end
 				end
 			end
+
 		end
 
 	get_max_cont_rad: VALUE
@@ -195,9 +196,7 @@ feature -- error checks
 	cid_exists (cid: STRING): BOOLEAN
 		do
 			Result := False
-			across
-				phases as p
-			loop
+			across phases as p loop
 				Result := Result or else (p.item.get_containers.has (cid))
 			end
 		end
@@ -207,9 +206,7 @@ feature -- queries
 	get_phase_containing_cid (cid: STRING): detachable PHASE
 		do
 			Result := void
-			across
-				phases as cursor
-			loop
+			across phases as cursor loop
 				if cursor.item.get_containers.has (cid) then
 					Result := cursor.item
 				end
@@ -223,7 +220,7 @@ feature -- queries
 				phases as cursor
 			loop
 				if cursor.item.get_containers.has (cid) then
-					Result := cursor.item.get_containers [cid]
+					Result := cursor.item.get_containers[cid]
 				end
 			end
 		end

@@ -17,7 +17,7 @@ feature {NONE} -- Initialization
 		do
 			id := init_id
 			material := init_material
-			max_rad := init_max_rad
+			rad := init_max_rad
 		end
 
 feature {NONE} -- Atributes
@@ -26,7 +26,7 @@ feature {NONE} -- Atributes
 
 	material: MATERIAL
 
-	max_rad: VALUE
+	rad: VALUE
 
 feature -- Access
 
@@ -40,9 +40,9 @@ feature -- Access
 			Result := material
 		end
 
-	get_max_rad: VALUE
+	get_rad: VALUE
 		do
-			Result := max_rad
+			Result := rad
 		end
 
 feature -- Commands

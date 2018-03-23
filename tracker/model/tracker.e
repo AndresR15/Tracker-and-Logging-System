@@ -48,11 +48,10 @@ feature -- model operations
 
 	new_phase (pid: STRING; phase_name: STRING; capacity: INTEGER_64; expected_materials: ARRAY [INTEGER_64])
 		require
-			valid_pid: valid_string(pid)
-			valid_phase_name: valid_string(phase_name)
+			valid_pid: valid_string (pid)
+			valid_phase_name: valid_string (phase_name)
 			positive_capacity: capacity > 0.0
 			expected_materials_non_empty: expected_materials.count > 0
-
 		local
 			new_p: PHASE
 		do
@@ -69,33 +68,32 @@ feature -- model operations
 			max_cont_rad := max_c_rad
 		end
 
-	new_container(cid: STRING; cont_spec: TUPLE [m: INTEGER_64; rad: VALUE]; pid: STRING)
+	new_container (cid: STRING; cont_spec: TUPLE [m: INTEGER_64; rad: VALUE]; pid: STRING)
 		local
 			mat: MATERIAL
 			cont: PHASE_CONTAINER
 		do
 			create mat.make (cont_spec.m)
 			create cont.make (cid, mat, cont_spec.rad)
-			if attached phases[pid] as p then
+			if attached phases [pid] as p then
 				p.add_container (cont)
 			else
-				-- do nothing
+					-- do nothing
 			end
-
 		end
 
 	remove_phase (phase_id: STRING)
-		-- removes a phase from the tracker
+			-- removes a phase from the tracker
 		require
 			phase_exists: get_phases.has (phase_id)
 		do
 			phases.remove (phase_id)
 		ensure
-			phase_removed: not(phases.has_key (phase_id))
+			phase_removed: not (phases.has_key (phase_id))
 		end
 
 	remove_container (cid: STRING)
-		-- removes a container from the tracker
+			-- removes a container from the tracker
 		local
 			cur_phase: PHASE
 		do
@@ -103,13 +101,13 @@ feature -- model operations
 			if attached cur_phase as p then
 				p.remove_container (cid)
 			else
-				-- do nothing
+					-- do nothing
 			end
 		end
 
 feature -- setters
-	
-set_error(msg: STRING)
+
+	set_error (msg: STRING)
 		do
 			error := msg
 		end
@@ -143,38 +141,43 @@ feature -- error checks
 				Result := (p.get_containers.count) < (gp.get_capacity)
 			else
 			end
-
 		end
 
-	cont_gt_max_phase_rad(c: PHASE_CONTAINER; pid: STRING): BOOLEAN
+	cont_gt_max_phase_rad (rad: VALUE; pid: STRING): BOOLEAN
 			-- is the total container radiation greater than the maximum phase radiation?
 		local
 			sum: VALUE
 		do
 			create sum.make_from_int (0)
-				across phases[pid].get_containers as cc loop
-				 	sum := sum + cc.item.get_rad
+			if attached phases [pid] as conts then
+				across
+					conts.get_containers as cc
+				loop
+					sum := sum + cc.item.get_rad
 				end
-			end
-			sum := sum + c.get_rad
-			if sum > max_phase_rad then
-				Result := TRUE
-			else
-				Result := FALSE
+				sum := sum + rad
+				if sum > max_phase_rad then
+					Result := TRUE
+				else
+					Result := FALSE
+				end
 			end
 		end
 
-	mats_not_in_phase(mat: MATERIAL, pid: STRING): BOOLEAN
+	mats_not_in_phase (mat: MATERIAL; pid: STRING): BOOLEAN
 			-- does the phase expect this container material?
 		do
-			across phases[pid].get_mats as cm loop
-				if cm.item ~ mat then
-					Result := FALSE
-				else
-					Result := TRUE
+			if attached phases [pid] as mats then
+				across
+					mats.get_mats as cm
+				loop
+					if cm.item ~ mat then
+						Result := FALSE
+					else
+						Result := TRUE
+					end
 				end
 			end
-
 		end
 
 	get_max_cont_rad: VALUE
@@ -192,7 +195,9 @@ feature -- error checks
 	cid_exists (cid: STRING): BOOLEAN
 		do
 			Result := False
-			across phases as p loop
+			across
+				phases as p
+			loop
 				Result := Result or else (p.item.get_containers.has (cid))
 			end
 		end
@@ -202,7 +207,9 @@ feature -- queries
 	get_phase_containing_cid (cid: STRING): detachable PHASE
 		do
 			Result := void
-			across phases as cursor loop
+			across
+				phases as cursor
+			loop
 				if cursor.item.get_containers.has (cid) then
 					Result := cursor.item
 				end
@@ -216,7 +223,7 @@ feature -- queries
 				phases as cursor
 			loop
 				if cursor.item.get_containers.has (cid) then
-					Result := cursor.item.get_containers[cid]
+					Result := cursor.item.get_containers [cid]
 				end
 			end
 		end

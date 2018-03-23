@@ -28,6 +28,7 @@ feature {NONE} -- Initialization
 			phases := list
 			error := "ok"
 			active := False
+			state := 0
 			max_phase_rad := zero
 			max_cont_rad := zero
 		end
@@ -44,6 +45,8 @@ feature {TRACKER} -- model attributes
 
 	max_cont_rad: VALUE
 
+	state: INTEGER
+
 feature -- model operations
 
 	new_phase (pid: STRING; phase_name: STRING; capacity: INTEGER_64; expected_materials: ARRAY [INTEGER_64])
@@ -58,6 +61,7 @@ feature -- model operations
 		do
 			create new_p.make (pid, phase_name, capacity, expected_materials)
 			phases.extend (new_p, pid)
+
 		end
 
 	new_tracker (max_p_rad, max_c_rad: VALUE)
@@ -106,11 +110,32 @@ feature -- model operations
 			end
 		end
 
+	move_container (cid: STRING; pid1: STRING; pid2: STRING)
+		-- moves a container from a source phase to a target phase
+		local
+			temp_cont: PHASE_CONTAINER
+		do
+			if attached get_container (cid) as cont and then attached phases[pid1] as p1 and then attached phases[pid2] as p2 then
+				temp_cont := cont
+				p1.remove_container (cid)
+				p2.add_container (temp_cont)
+			end
+		ensure
+			container_exists: cid_exists (cid)
+			cid_in_phase_attached: attached get_phase_containing_cid (cid) as pc
+			cont_is_in_target_phase: pc.get_pid ~ pid2
+		end
+
 feature -- setters
 
-set_error(msg: STRING)
+	set_error(msg: STRING)
 		do
 			error := msg
+		end
+
+	set_state(new_state: INTEGER)
+		do
+			state := new_state
 		end
 
 feature -- getter

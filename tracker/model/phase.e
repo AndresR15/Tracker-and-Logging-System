@@ -19,7 +19,7 @@ create
 
 feature {NONE} -- Initialization
 
-	make (init_pid: STRING; phase_name: STRING; cap: INTEGER_64; expected_materials: ARRAY [MATERIAL])
+	make (init_pid: STRING; phase_name: STRING; cap: INTEGER_64; expected_materials: ARRAY [INTEGER_64])
 			-- Initialization for `Current'.
 		local
 			c: STRING_TABLE [PHASE_CONTAINER]
@@ -40,7 +40,7 @@ feature {PHASE} -- Attributes
 
 	capacity: INTEGER_64 -- number of containers PHASE handles
 
-	expected_mats: ARRAY [MATERIAL] -- subset of materials
+	expected_mats: ARRAY [INTEGER_64] -- subset of materials
 
 	containers: STRING_TABLE [PHASE_CONTAINER]
 
@@ -61,7 +61,7 @@ feature -- Queries
 			Result := capacity
 		end
 
-	get_mats: ARRAY [MATERIAL]
+	get_mats: ARRAY [INTEGER_64]
 		do
 			Result := expected_mats
 		end

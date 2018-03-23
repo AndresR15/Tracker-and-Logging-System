@@ -39,9 +39,9 @@ feature -- command
 				model.set_error (msg.cont_exceeds_cap)
 			elseif c.radioactivity > model.get_max_cont_rad then
 				model.set_error (msg.cont_exceeds_rad_cap)
-			elseif model.cont_gt_max_phase_rad (c, pid) then
+			elseif model.cont_gt_max_phase_rad (c.radioactivity, pid) then
 				model.set_error (msg.cont_exceeds_rad)
-			elseif model.mats_not_in_phase (material, pid) then
+			elseif model.mats_not_in_phase (c.material, pid) then
 				model.set_error (msg.material_unexpected)
 			end
 			model.new_container (cid, c, pid)

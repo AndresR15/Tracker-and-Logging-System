@@ -12,7 +12,7 @@ create
 
 feature {NONE} -- Initialization
 
-	make (init_id: STRING; init_material: MATERIAL; init_max_rad: VALUE)
+	make (init_id: STRING; init_material: INTEGER_64; init_max_rad: VALUE)
 			-- Initialization for `Current'.
 		do
 			id := init_id
@@ -24,7 +24,7 @@ feature {NONE} -- Atributes
 
 	id: STRING
 
-	material: MATERIAL
+	material: INTEGER_64
 
 	rad: VALUE
 
@@ -35,7 +35,7 @@ feature -- Access
 			Result := id
 		end
 
-	get_material: MATERIAL
+	get_material: INTEGER_64
 		do
 			Result := material
 		end

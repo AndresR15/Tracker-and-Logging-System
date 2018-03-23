@@ -71,11 +71,9 @@ feature -- model operations
 
 	new_container(cid: STRING; cont_spec: TUPLE [m: INTEGER_64; rad: VALUE]; pid: STRING)
 		local
-			mat: MATERIAL
 			cont: PHASE_CONTAINER
 		do
-			create mat.make (cont_spec.m)
-			create cont.make (cid, mat, cont_spec.rad)
+			create cont.make (cid, cont_spec.m, cont_spec.rad)
 			if attached phases[pid] as p then
 				p.add_container (cont)
 			else
@@ -108,7 +106,7 @@ feature -- model operations
 		end
 
 feature -- setters
-	
+
 set_error(msg: STRING)
 		do
 			error := msg
@@ -146,7 +144,7 @@ feature -- error checks
 
 		end
 
-	cont_gt_max_phase_rad(c: PHASE_CONTAINER; pid: STRING): BOOLEAN
+	cont_gt_max_phase_rad(rad: VALUE; pid: STRING): BOOLEAN
 			-- is the total container radiation greater than the maximum phase radiation?
 		local
 			sum: VALUE
@@ -155,8 +153,7 @@ feature -- error checks
 				across phases[pid].get_containers as cc loop
 				 	sum := sum + cc.item.get_rad
 				end
-			end
-			sum := sum + c.get_rad
+			sum := sum + rad
 			if sum > max_phase_rad then
 				Result := TRUE
 			else
@@ -164,17 +161,18 @@ feature -- error checks
 			end
 		end
 
-	mats_not_in_phase(mat: MATERIAL, pid: STRING): BOOLEAN
+	mats_not_in_phase(mat: INTEGER_64; pid: STRING): BOOLEAN
 			-- does the phase expect this container material?
 		do
-			across phases[pid].get_mats as cm loop
-				if cm.item ~ mat then
-					Result := FALSE
-				else
-					Result := TRUE
+			if attached phases[pid] as p then
+				across p.get_mats as cm loop
+					if cm.item ~ mat then
+						Result := FALSE
+					else
+						Result := TRUE
+					end
 				end
 			end
-
 		end
 
 	get_max_cont_rad: VALUE

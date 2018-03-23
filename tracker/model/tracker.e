@@ -121,17 +121,36 @@ feature -- error checks
 
 		end
 
---	phase_exists (id: STRING): BOOLEAN
---		do
---			Result := False
---			across
---				phases as i
---			loop
---				if i.item.get_pid ~ id then
---					Result := True
---				end
---			end
---		end
+	cont_gt_max_phase_rad(c: PHASE_CONTAINER; pid: STRING): BOOLEAN
+			-- is the total container radiation greater than the maximum phase radiation?
+		local
+			sum: VALUE
+		do
+			create sum.make_from_int (0)
+				across phases[pid].get_containers as cc loop
+				 	sum := sum + cc.item.get_rad
+				end
+			end
+			sum := sum + c.get_rad
+			if sum > max_phase_rad then
+				Result := TRUE
+			else
+				Result := FALSE
+			end
+		end
+
+	mats_not_in_phase(mat: MATERIAL, pid: STRING): BOOLEAN
+			-- does the phase expect this container material?
+		do
+			across phases[pid].get_mats as cm loop
+				if cm.item ~ mat then
+					Result := FALSE
+				else
+					Result := TRUE
+				end
+			end
+
+		end
 
 	get_max_cont_rad: VALUE
 		do

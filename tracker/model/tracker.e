@@ -114,7 +114,11 @@ feature -- error checks
 		require
 			get_phases.has (pid)
 		do
-			Result := phases.at (pid).get_containers.count < phases.at (pid).get_capacity
+			if attached get_phases.at (pid) as p and attached get_phases.at (pid) as gp then
+				Result := (p.get_containers.count) < (gp.get_capacity)
+			else
+			end
+
 		end
 
 --	phase_exists (id: STRING): BOOLEAN

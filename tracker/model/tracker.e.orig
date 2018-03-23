@@ -25,9 +25,11 @@ feature {NONE} -- Initialization
 		do
 			Create zero.make_from_int (0)
 			Create list.make_equal_caseless (10)
+			Create sorted_phases.make
 			phases := list
 			error := "ok"
 			active := False
+			state := 0
 			max_phase_rad := zero
 			max_cont_rad := zero
 		end
@@ -36,6 +38,8 @@ feature {TRACKER} -- model attributes
 
 	phases: STRING_TABLE [PHASE]
 
+	sorted_phases: SORTED_TWO_WAY_LIST[PHASE]
+
 	error: STRING
 
 	active: BOOLEAN
@@ -43,6 +47,8 @@ feature {TRACKER} -- model attributes
 	max_phase_rad: VALUE
 
 	max_cont_rad: VALUE
+
+	state: INTEGER
 
 feature -- model operations
 
@@ -57,6 +63,11 @@ feature -- model operations
 		do
 			create new_p.make (pid, phase_name, capacity, expected_materials)
 			phases.extend (new_p, pid)
+<<<<<<< HEAD
+			sorted_phases.extend(new_p)
+=======
+
+>>>>>>> 93fe94b95a20f2a246fcf5240aaf20c736058b64
 		end
 
 	new_tracker (max_p_rad, max_c_rad: VALUE)
@@ -72,14 +83,8 @@ feature -- model operations
 		local
 			cont: PHASE_CONTAINER
 		do
-<<<<<<< HEAD
-			create mat.make (cont_spec.m)
-			create cont.make (cid, mat, cont_spec.rad)
-			if attached phases [pid] as p then
-=======
 			create cont.make (cid, cont_spec.m, cont_spec.rad)
-			if attached phases[pid] as p then
->>>>>>> 334913ac6dc3cc32bf8ebbd4a979327127fb31f0
+			if attached phases [pid] as p then
 				p.add_container (cont)
 			else
 					-- do nothing
@@ -107,6 +112,25 @@ feature -- model operations
 			else
 					-- do nothing
 			end
+		ensure
+			phase_attached: attached get_phase_containing_cid (cid) as p
+			container_removed: not p.get_containers.has (cid)
+		end
+
+	move_container (cid: STRING; pid1: STRING; pid2: STRING)
+		-- moves a container from a source phase to a target phase
+		local
+			temp_cont: PHASE_CONTAINER
+		do
+			if attached get_container (cid) as cont and then attached phases[pid1] as p1 and then attached phases[pid2] as p2 then
+				temp_cont := cont
+				p1.remove_container (cid)
+				p2.add_container (temp_cont)
+			end
+		ensure
+			container_exists: cid_exists (cid)
+			cid_in_phase_attached: attached get_phase_containing_cid (cid) as pc
+			cont_is_in_target_phase: pc.get_pid ~ pid2
 		end
 
 feature -- setters
@@ -114,10 +138,15 @@ feature -- setters
 <<<<<<< HEAD
 	set_error (msg: STRING)
 =======
-set_error(msg: STRING)
->>>>>>> 334913ac6dc3cc32bf8ebbd4a979327127fb31f0
+	set_error(msg: STRING)
+>>>>>>> 93fe94b95a20f2a246fcf5240aaf20c736058b64
 		do
 			error := msg
+		end
+
+	set_state(new_state: INTEGER)
+		do
+			state := new_state
 		end
 
 feature -- getter
@@ -151,11 +180,7 @@ feature -- error checks
 			end
 		end
 
-<<<<<<< HEAD
 	cont_gt_max_phase_rad (rad: VALUE; pid: STRING): BOOLEAN
-=======
-	cont_gt_max_phase_rad(rad: VALUE; pid: STRING): BOOLEAN
->>>>>>> 334913ac6dc3cc32bf8ebbd4a979327127fb31f0
 			-- is the total container radiation greater than the maximum phase radiation?
 		local
 			sum: VALUE
@@ -173,32 +198,16 @@ feature -- error checks
 				else
 					Result := FALSE
 				end
-<<<<<<< HEAD
 			end
 		end
 
-	mats_not_in_phase (mat: MATERIAL; pid: STRING): BOOLEAN
+	mats_not_in_phase (mat: INTEGER_64; pid: STRING): BOOLEAN
 			-- does the phase expect this container material?
 		do
-			if attached phases [pid] as mats then
+			if attached phases [pid] as p then
 				across
-					mats.get_mats as cm
+					p.get_mats as cm
 				loop
-=======
-			sum := sum + rad
-			if sum > max_phase_rad then
-				Result := TRUE
-			else
-				Result := FALSE
-			end
-		end
-
-	mats_not_in_phase(mat: INTEGER_64; pid: STRING): BOOLEAN
-			-- does the phase expect this container material?
-		do
-			if attached phases[pid] as p then
-				across p.get_mats as cm loop
->>>>>>> 334913ac6dc3cc32bf8ebbd4a979327127fb31f0
 					if cm.item ~ mat then
 						Result := FALSE
 					else

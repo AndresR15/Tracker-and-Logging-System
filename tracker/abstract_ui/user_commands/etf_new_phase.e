@@ -6,17 +6,24 @@ note
 
 class
 	ETF_NEW_PHASE
+
 inherit
+
 	ETF_NEW_PHASE_INTERFACE
-		redefine new_phase end
+		redefine
+			new_phase
+		end
+
 create
 	make
+
 feature -- command
-	new_phase(pid: STRING ; phase_name: STRING ; capacity: INTEGER_64 ; expected_materials: ARRAY[INTEGER_64])
+
+	new_phase (pid: STRING; phase_name: STRING; capacity: INTEGER_64; expected_materials: ARRAY [INTEGER_64])
 		require else
-			new_phase_precond(pid, phase_name, capacity, expected_materials)
-    	do
-			-- perform some update on the model state
+			new_phase_precond (pid, phase_name, capacity, expected_materials)
+		do
+				-- perform some update on the model state
 			model.set_error (msg.ok)
 			if model.is_active then
 				model.set_error (msg.in_use)
@@ -31,8 +38,8 @@ feature -- command
 			elseif expected_materials.is_empty then
 				model.set_error (msg.material_missing)
 			end
-			model.new_phase(pid, phase_name, capacity, expected_materials)
+			model.new_phase (pid, phase_name, capacity, expected_materials)
 			etf_cmd_container.on_change.notify ([Current])
-    	end
+		end
 
 end

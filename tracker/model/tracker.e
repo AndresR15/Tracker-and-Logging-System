@@ -112,9 +112,9 @@ feature -- error checks
 	under_capacity (pid: STRING): BOOLEAN
 			-- can the phase handle another container?
 		require
-			phases.has (pid)
+			get_phases.has (pid)
 		do
-			phases.at (pid).get_containers.count < phases.at (pid).get_capacity
+			Result := phases.at (pid).get_containers.count < phases.at (pid).get_capacity
 		end
 
 --	phase_exists (id: STRING): BOOLEAN

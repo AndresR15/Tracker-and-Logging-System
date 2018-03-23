@@ -90,6 +90,15 @@ feature -- Commands
 			get_containers.extend (cont, cont.get_id)
 		end
 
+	remove_container (cid: STRING)
+		require
+			container_in_phase: get_containers.has_key (cid)
+		do
+			containers.remove (cid)
+		ensure
+			container_removed: not containers.has_key(cid)
+		end
+
 feature -- compare
 
 	is_less alias "<" (other: PHASE): BOOLEAN

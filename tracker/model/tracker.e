@@ -32,6 +32,7 @@ feature {NONE} -- Initialization
 			state := 0
 			max_phase_rad := zero
 			max_cont_rad := zero
+			create history.make
 		end
 
 feature {TRACKER} -- model attributes
@@ -50,6 +51,8 @@ feature {TRACKER} -- model attributes
 
 	state: INTEGER
 
+	history: HISTORY
+
 feature -- model operations
 
 	new_phase (pid: STRING; phase_name: STRING; capacity: INTEGER_64; expected_materials: ARRAY [INTEGER_64])
@@ -65,6 +68,7 @@ feature -- model operations
 			create new_p.make (pid, phase_name, capacity, expected_materials)
 			phases.extend (new_p, pid)
 			sorted_phases.extend(new_p)
+
 		end
 
 	new_tracker (max_p_rad, max_c_rad: VALUE)
@@ -74,6 +78,7 @@ feature -- model operations
 		do
 			max_phase_rad := max_p_rad
 			max_cont_rad := max_c_rad
+
 		end
 
 	new_container (cid: STRING; cont_spec: TUPLE [m: INTEGER_64; rad: VALUE]; pid: STRING)
@@ -151,6 +156,11 @@ feature -- getter
 	get_phases: STRING_TABLE [PHASE]
 		do
 			Result := phases
+		end
+
+	get_history: HISTORY
+		do
+			Result := history
 		end
 
 feature -- error checks

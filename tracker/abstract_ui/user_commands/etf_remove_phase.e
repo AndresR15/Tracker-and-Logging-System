@@ -32,7 +32,6 @@ feature -- command
 			else
 				model.remove_phase (pid)
 			end
-
 			etf_cmd_container.on_change.notify ([Current])
 		end
 

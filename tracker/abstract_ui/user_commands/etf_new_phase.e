@@ -40,7 +40,6 @@ feature -- command
 			else
 				model.new_phase (pid, phase_name, capacity, expected_materials)
 			end
-
 			etf_cmd_container.on_change.notify ([Current])
 		end
 

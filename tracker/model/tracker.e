@@ -53,10 +53,8 @@ feature {TRACKER} -- model attributes
 feature -- model operations
 
 	new_phase (pid: STRING; phase_name: STRING; capacity: INTEGER_64; expected_materials: ARRAY [INTEGER_64])
-		-- add a new phase to the tracker
 		require
 			valid_pid: valid_string (pid)
-			unused_pid: not get_phases.has_key (pid)
 			valid_phase_name: valid_string (phase_name)
 			positive_capacity: capacity > 0.0
 			expected_materials_non_empty: expected_materials.count > 0
@@ -67,13 +65,9 @@ feature -- model operations
 			create new_p.make (pid, phase_name, capacity, expected_materials)
 			phases.extend (new_p, pid)
 			sorted_phases.extend(new_p)
-		ensure
-		--	phase_added_to_table: phases.has_key (pid) and then (phases[pid] = new_p)
-		--	phase_added_to_sorted_list: sorted_phases.has (new_p)
 		end
 
 	new_tracker (max_p_rad, max_c_rad: VALUE)
-		-- create a new instance of tracker
 		require
 			positive_values: max_p_rad > 0.0 and then max_c_rad > 0.0
 			tracker_not_active: not is_active
@@ -83,7 +77,6 @@ feature -- model operations
 		end
 
 	new_container (cid: STRING; cont_spec: TUPLE [m: INTEGER_64; rad: VALUE]; pid: STRING)
-		-- create a new container and add it to the appropriate phase
 		local
 
 			cont: PHASE_CONTAINER
@@ -94,6 +87,7 @@ feature -- model operations
 			else
 				-- do nothing
 			end
+
 		end
 
 	remove_phase (phase_id: STRING)
@@ -159,16 +153,6 @@ feature -- getter
 			Result := phases
 		end
 
-	get_max_cont_rad: VALUE
-		do
-			Result := max_cont_rad
-		end
-
-	get_max_phase_rad: VALUE
-		do
-			Result := max_phase_rad
-		end
-
 feature -- error checks
 
 	valid_string (s: STRING): BOOLEAN
@@ -225,8 +209,19 @@ feature -- error checks
 
 		end
 
+	get_max_cont_rad: VALUE
+		do
+			Result := max_cont_rad
+		end
+
+	get_max_phase_rad: VALUE
+		do
+			Result := max_phase_rad
+		end
+
+feature -- error checks
+
 	cid_exists (cid: STRING): BOOLEAN
-		-- has the cid been used
 		do
 			Result := False
 			across phases as p loop
@@ -237,7 +232,6 @@ feature -- error checks
 feature -- queries
 
 	get_phase_containing_cid (cid: STRING): detachable PHASE
-		-- return the phase that contains the container with the appropriate cid
 		do
 			Result := void
 			across phases as cursor loop
@@ -248,7 +242,6 @@ feature -- queries
 		end
 
 	get_container (cid: STRING): detachable PHASE_CONTAINER
-		-- return the container with the appropriate cid
 		do
 			Result := void
 			across

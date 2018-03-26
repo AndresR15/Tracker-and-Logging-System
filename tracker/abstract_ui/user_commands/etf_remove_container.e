@@ -30,7 +30,6 @@ feature -- command
 			else
 				model.remove_container (cid)
 			end
-
 			etf_cmd_container.on_change.notify ([Current])
 		end
 

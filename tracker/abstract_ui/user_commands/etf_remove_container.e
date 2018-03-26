@@ -27,8 +27,10 @@ feature -- command
 			model.set_error (msg.ok)
 			if not model.cid_exists (cid) then
 				model.set_error (msg.cont_id_not_in_tracker)
+			else
+				model.remove_container (cid)
 			end
-			model.remove_container (cid)
+
 			etf_cmd_container.on_change.notify ([Current])
 		end
 

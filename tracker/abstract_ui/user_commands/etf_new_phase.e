@@ -37,8 +37,10 @@ feature -- command
 				model.set_error (msg.phase_cap_invalid)
 			elseif expected_materials.is_empty then
 				model.set_error (msg.material_missing)
+			else
+				model.new_phase (pid, phase_name, capacity, expected_materials)
 			end
-			model.new_phase (pid, phase_name, capacity, expected_materials)
+
 			etf_cmd_container.on_change.notify ([Current])
 		end
 

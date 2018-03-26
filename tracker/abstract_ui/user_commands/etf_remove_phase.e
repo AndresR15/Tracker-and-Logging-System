@@ -29,8 +29,10 @@ feature -- command
 				model.set_error (msg.in_use)
 			elseif not model.get_phases.has (pid) then
 				model.set_error (msg.phase_id_non_existent)
+			else
+				model.remove_phase (pid)
 			end
-			model.remove_phase (pid)
+
 			etf_cmd_container.on_change.notify ([Current])
 		end
 

@@ -31,8 +31,9 @@ feature -- command
 				model.set_error (msg.non_neg_container_rad)
 			elseif (max_container_radiation > max_phase_radiation) then
 				model.set_error (msg.container_lt_phase)
+			else
+				model.new_tracker (max_phase_radiation, max_container_radiation)
 			end
-			model.new_tracker (max_phase_radiation, max_container_radiation)
 			etf_cmd_container.on_change.notify ([Current])
 		end
 

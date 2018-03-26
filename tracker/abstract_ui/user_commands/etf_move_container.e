@@ -41,8 +41,9 @@ feature -- command
 					model.set_error (msg.cont_exceeds_rad)
 				elseif model.mats_not_in_phase (cont.get_material, pid2) then
 					model.set_error (msg.material_unexpected)
+				else
+					model.move_container (cid, pid1, pid2)
 				end
-				model.move_container (cid, pid1, pid2)
 				etf_cmd_container.on_change.notify ([Current])
 			else
 					-- do nothing

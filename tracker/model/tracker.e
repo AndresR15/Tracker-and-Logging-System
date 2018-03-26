@@ -32,6 +32,7 @@ feature {NONE} -- Initialization
 			state := 0
 			max_phase_rad := zero
 			max_cont_rad := zero
+			create history.make
 		end
 
 feature {TRACKER} -- model attributes
@@ -49,6 +50,8 @@ feature {TRACKER} -- model attributes
 	max_cont_rad: VALUE
 
 	state: INTEGER
+
+	history: HISTORY
 
 feature -- model operations
 
@@ -78,6 +81,7 @@ feature -- model operations
 		do
 			max_phase_rad := max_p_rad
 			max_cont_rad := max_c_rad
+
 		end
 
 	new_container (cid: STRING; cont_spec: TUPLE [m: INTEGER_64; rad: VALUE]; pid: STRING)
@@ -155,6 +159,11 @@ feature -- getter
 	get_phases: STRING_TABLE [PHASE]
 		do
 			Result := phases
+		end
+
+	get_history: HISTORY
+		do
+			Result := history
 		end
 
 feature -- error checks

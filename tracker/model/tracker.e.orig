@@ -32,6 +32,7 @@ feature {NONE} -- Initialization
 			state := 0
 			max_phase_rad := zero
 			max_cont_rad := zero
+			create history.make
 		end
 
 feature {TRACKER} -- model attributes
@@ -50,6 +51,8 @@ feature {TRACKER} -- model attributes
 
 	state: INTEGER
 
+	history: HISTORY
+
 feature -- model operations
 
 	new_phase (pid: STRING; phase_name: STRING; capacity: INTEGER_64; expected_materials: ARRAY [INTEGER_64])
@@ -58,17 +61,22 @@ feature -- model operations
 			valid_phase_name: valid_string (phase_name)
 			positive_capacity: capacity > 0.0
 			expected_materials_non_empty: expected_materials.count > 0
+
 		local
 			new_p: PHASE
+			command: NEW_PHASE
 		do
 			create new_p.make (pid, phase_name, capacity, expected_materials)
 			phases.extend (new_p, pid)
-<<<<<<< HEAD
 			sorted_phases.extend(new_p)
+<<<<<<< HEAD
+			create command.make (pid, phase_name, capacity, expected_materials)
+			history.add_to_record(command)
 =======
 
->>>>>>> 93fe94b95a20f2a246fcf5240aaf20c736058b64
+>>>>>>> 1c0c9a89026a5194f5054d4a83a29f1490a75afc
 		end
+
 
 	new_tracker (max_p_rad, max_c_rad: VALUE)
 		require
@@ -77,32 +85,35 @@ feature -- model operations
 		do
 			max_phase_rad := max_p_rad
 			max_cont_rad := max_c_rad
+
 		end
 
 	new_container (cid: STRING; cont_spec: TUPLE [m: INTEGER_64; rad: VALUE]; pid: STRING)
 		local
+
 			cont: PHASE_CONTAINER
 		do
 			create cont.make (cid, cont_spec.m, cont_spec.rad)
-			if attached phases [pid] as p then
+			if attached phases[pid] as p then
 				p.add_container (cont)
 			else
-					-- do nothing
+				-- do nothing
 			end
+
 		end
 
 	remove_phase (phase_id: STRING)
-			-- removes a phase from the tracker
+		-- removes a phase from the tracker
 		require
 			phase_exists: get_phases.has (phase_id)
 		do
 			phases.remove (phase_id)
 		ensure
-			phase_removed: not (phases.has_key (phase_id))
+			phase_removed: not(phases.has_key (phase_id))
 		end
 
 	remove_container (cid: STRING)
-			-- removes a container from the tracker
+		-- removes a container from the tracker
 		local
 			cur_phase: PHASE
 		do
@@ -110,11 +121,8 @@ feature -- model operations
 			if attached cur_phase as p then
 				p.remove_container (cid)
 			else
-					-- do nothing
+				-- do nothing
 			end
-		ensure
-			phase_attached: attached get_phase_containing_cid (cid) as p
-			container_removed: not p.get_containers.has (cid)
 		end
 
 	move_container (cid: STRING; pid1: STRING; pid2: STRING)
@@ -135,11 +143,7 @@ feature -- model operations
 
 feature -- setters
 
-<<<<<<< HEAD
 	set_error (msg: STRING)
-=======
-	set_error(msg: STRING)
->>>>>>> 93fe94b95a20f2a246fcf5240aaf20c736058b64
 		do
 			error := msg
 		end
@@ -161,6 +165,11 @@ feature -- getter
 			Result := phases
 		end
 
+	get_history: HISTORY
+		do
+			Result := history
+		end
+
 feature -- error checks
 
 	valid_string (s: STRING): BOOLEAN
@@ -178,6 +187,7 @@ feature -- error checks
 				Result := (p.get_containers.count) < (gp.get_capacity)
 			else
 			end
+
 		end
 
 	cont_gt_max_phase_rad (rad: VALUE; pid: STRING): BOOLEAN
@@ -201,13 +211,11 @@ feature -- error checks
 			end
 		end
 
-	mats_not_in_phase (mat: INTEGER_64; pid: STRING): BOOLEAN
+	mats_not_in_phase(mat: INTEGER_64; pid: STRING): BOOLEAN
 			-- does the phase expect this container material?
 		do
-			if attached phases [pid] as p then
-				across
-					p.get_mats as cm
-				loop
+			if attached phases[pid] as p then
+				across p.get_mats as cm loop
 					if cm.item ~ mat then
 						Result := FALSE
 					else
@@ -215,6 +223,7 @@ feature -- error checks
 					end
 				end
 			end
+
 		end
 
 	get_max_cont_rad: VALUE
@@ -232,9 +241,7 @@ feature -- error checks
 	cid_exists (cid: STRING): BOOLEAN
 		do
 			Result := False
-			across
-				phases as p
-			loop
+			across phases as p loop
 				Result := Result or else (p.item.get_containers.has (cid))
 			end
 		end
@@ -244,9 +251,7 @@ feature -- queries
 	get_phase_containing_cid (cid: STRING): detachable PHASE
 		do
 			Result := void
-			across
-				phases as cursor
-			loop
+			across phases as cursor loop
 				if cursor.item.get_containers.has (cid) then
 					Result := cursor.item
 				end
@@ -260,7 +265,7 @@ feature -- queries
 				phases as cursor
 			loop
 				if cursor.item.get_containers.has (cid) then
-					Result := cursor.item.get_containers [cid]
+					Result := cursor.item.get_containers[cid]
 				end
 			end
 		end

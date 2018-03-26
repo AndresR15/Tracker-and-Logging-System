@@ -78,23 +78,30 @@ feature -- model operations
 		require
 			positive_values: max_p_rad > 0.0 and then max_c_rad > 0.0
 			tracker_not_active: not is_active
+		local
+			command: NEW_TRACKER
 		do
 			max_phase_rad := max_p_rad
 			max_cont_rad := max_c_rad
-
+			create command.make
+			history.add_to_record (command)
 		end
 
 	new_container (cid: STRING; cont_spec: TUPLE [m: INTEGER_64; rad: VALUE]; pid: STRING)
 		local
 
 			cont: PHASE_CONTAINER
+		--	command: NEW_CONTAINER
 		do
 			create cont.make (cid, cont_spec.m, cont_spec.rad)
 			if attached phases[pid] as p then
 				p.add_container (cont)
+			--	create command.make (cid, cont_spec.m, cont_spec.rad)
+			--		history.add_to_record (command)
 			else
 				-- do nothing
 			end
+
 
 		end
 
@@ -102,8 +109,12 @@ feature -- model operations
 		-- removes a phase from the tracker
 		require
 			phase_exists: get_phases.has (phase_id)
+		local
+			command: REMOVE_PHASE
 		do
 			phases.remove (phase_id)
+			create command.make(phase_id)
+			history.add_to_record (command)
 		ensure
 			phase_removed: not(phases.has_key (phase_id))
 		end
@@ -112,25 +123,33 @@ feature -- model operations
 		-- removes a container from the tracker
 		local
 			cur_phase: PHASE
+		--	command: REMOVE_CONTAINER
 		do
 			cur_phase := get_phase_containing_cid (cid)
 			if attached cur_phase as p then
 				p.remove_container (cid)
+			--	create command.make (cid)
+			--	history.add_to_record (command)
 			else
 				-- do nothing
 			end
+
 		end
 
 	move_container (cid: STRING; pid1: STRING; pid2: STRING)
 		-- moves a container from a source phase to a target phase
 		local
 			temp_cont: PHASE_CONTAINER
+			--command: MOVE_CONTAINER
 		do
 			if attached get_container (cid) as cont and then attached phases[pid1] as p1 and then attached phases[pid2] as p2 then
 				temp_cont := cont
 				p1.remove_container (cid)
 				p2.add_container (temp_cont)
+			--	create command.make(cid, pid1, pid2)
+			--	history.add_to_record (command)
 			end
+
 		ensure
 			container_exists: cid_exists (cid)
 			cid_in_phase_attached: attached get_phase_containing_cid (cid) as pc

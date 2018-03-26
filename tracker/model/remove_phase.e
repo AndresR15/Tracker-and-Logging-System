@@ -32,7 +32,7 @@ feature
 
 	execute
 		do
-			track.remove_phase(pid)
+			track.remove_phase(p_id)
 		end
 
 	undo

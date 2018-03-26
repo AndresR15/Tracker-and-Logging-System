@@ -7,4 +7,24 @@ note
 class
 	NEW_TRACKER
 
+inherit
+	COMMAND
+
+feature
+
+	execute
+		do
+
+		end
+
+	undo
+		do
+
+		end
+
+	redo
+		do
+
+		end
+
 end

@@ -61,11 +61,15 @@ feature -- model operations
 
 		local
 			new_p: PHASE
+			command: NEW_PHASE
 		do
 			create new_p.make (pid, phase_name, capacity, expected_materials)
 			phases.extend (new_p, pid)
 			sorted_phases.extend(new_p)
+			create command.make (pid, phase_name, capacity, expected_materials)
+			history.add_to_record(command)
 		end
+
 
 	new_tracker (max_p_rad, max_c_rad: VALUE)
 		require

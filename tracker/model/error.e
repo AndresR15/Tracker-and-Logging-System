@@ -35,7 +35,6 @@ feature
 		do
 			track.get_history.get_record.back
 			track.set_error (track.get_history.get_record.item.msg)
-			track.get_history.get_record.forth
 		end
 
 	redo

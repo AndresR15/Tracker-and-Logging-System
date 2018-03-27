@@ -39,7 +39,7 @@ feature {TRACKER} -- model attributes
 
 	phases: STRING_TABLE [PHASE]
 
-	sorted_phases: SORTED_TWO_WAY_LIST[PHASE]
+	sorted_phases: SORTED_TWO_WAY_LIST [PHASE]
 
 	error: STRING
 
@@ -61,18 +61,16 @@ feature -- model operations
 			valid_phase_name: valid_string (phase_name)
 			positive_capacity: capacity > 0.0
 			expected_materials_non_empty: expected_materials.count > 0
-
 		local
 			new_p: PHASE
 			command: NEW_PHASE
 		do
 			create new_p.make (pid, phase_name, capacity, expected_materials)
 			phases.extend (new_p, pid)
-			sorted_phases.extend(new_p)
+			sorted_phases.extend (new_p)
 			create command.make (pid, phase_name, capacity, expected_materials)
-			history.add_to_record(command)
+			history.add_to_record (command)
 		end
-
 
 	new_tracker (max_p_rad, max_c_rad: VALUE)
 		require
@@ -89,71 +87,76 @@ feature -- model operations
 
 	new_container (cid: STRING; cont_spec: TUPLE [m: INTEGER_64; rad: VALUE]; pid: STRING)
 		local
-
 			cont: PHASE_CONTAINER
-		--	command: NEW_CONTAINER
+			command: NEW_CONTAINER
 		do
 			create cont.make (cid, cont_spec.m, cont_spec.rad)
-			if attached phases[pid] as p then
+			if attached phases [pid] as p then
 				p.add_container (cont)
-			--	create command.make (cid, cont_spec.m, cont_spec.rad)
-			--		history.add_to_record (command)
+				create command.make (cid, cont_spec, pid)
+				history.add_to_record (command)
 			else
-				-- do nothing
+					-- do nothing
 			end
-
-
 		end
 
 	remove_phase (phase_id: STRING)
-		-- removes a phase from the tracker
+			-- removes a phase from the tracker
 		require
 			phase_exists: get_phases.has (phase_id)
 		local
 			command: REMOVE_PHASE
 		do
 			phases.remove (phase_id)
-			create command.make(phase_id)
+			create command.make (phase_id)
 			history.add_to_record (command)
 		ensure
-			phase_removed: not(phases.has_key (phase_id))
+			phase_removed: not (phases.has_key (phase_id))
 		end
 
 	remove_container (cid: STRING)
-		-- removes a container from the tracker
+			-- removes a container from the tracker
 		local
 			cur_phase: PHASE
-		--	command: REMOVE_CONTAINER
+			--	command: REMOVE_CONTAINER
 		do
 			cur_phase := get_phase_containing_cid (cid)
 			if attached cur_phase as p then
 				p.remove_container (cid)
-			--	create command.make (cid)
-			--	history.add_to_record (command)
+					--	create command.make (cid)
+					--	history.add_to_record (command)
 			else
-				-- do nothing
+					-- do nothing
 			end
-
 		end
 
 	move_container (cid: STRING; pid1: STRING; pid2: STRING)
-		-- moves a container from a source phase to a target phase
+			-- moves a container from a source phase to a target phase
 		local
 			temp_cont: PHASE_CONTAINER
 			--command: MOVE_CONTAINER
 		do
-			if attached get_container (cid) as cont and then attached phases[pid1] as p1 and then attached phases[pid2] as p2 then
+			if attached get_container (cid) as cont and then attached phases [pid1] as p1 and then attached phases [pid2] as p2 then
 				temp_cont := cont
 				p1.remove_container (cid)
 				p2.add_container (temp_cont)
-			--	create command.make(cid, pid1, pid2)
-			--	history.add_to_record (command)
+					--	create command.make(cid, pid1, pid2)
+					--	history.add_to_record (command)
 			end
-
 		ensure
 			container_exists: cid_exists (cid)
 			cid_in_phase_attached: attached get_phase_containing_cid (cid) as pc
 			cont_is_in_target_phase: pc.get_pid ~ pid2
+		end
+
+	store_error (new_msg: STRING)
+			-- stores the state of error into history
+		local
+			e: ERROR
+		do
+			error := new_msg
+			create e.make (error)
+			history.remove_right_then_append (e)
 		end
 
 feature -- setters
@@ -163,7 +166,7 @@ feature -- setters
 			error := msg
 		end
 
-	set_state(new_state: INTEGER)
+	set_state (new_state: INTEGER)
 		do
 			state := new_state
 		end
@@ -202,7 +205,6 @@ feature -- error checks
 				Result := (p.get_containers.count) < (gp.get_capacity)
 			else
 			end
-
 		end
 
 	cont_gt_max_phase_rad (rad: VALUE; pid: STRING): BOOLEAN
@@ -226,11 +228,13 @@ feature -- error checks
 			end
 		end
 
-	mats_not_in_phase(mat: INTEGER_64; pid: STRING): BOOLEAN
+	mats_not_in_phase (mat: INTEGER_64; pid: STRING): BOOLEAN
 			-- does the phase expect this container material?
 		do
-			if attached phases[pid] as p then
-				across p.get_mats as cm loop
+			if attached phases [pid] as p then
+				across
+					p.get_mats as cm
+				loop
 					if cm.item ~ mat then
 						Result := FALSE
 					else
@@ -238,7 +242,6 @@ feature -- error checks
 					end
 				end
 			end
-
 		end
 
 	get_max_cont_rad: VALUE
@@ -256,7 +259,9 @@ feature -- error checks
 	cid_exists (cid: STRING): BOOLEAN
 		do
 			Result := False
-			across phases as p loop
+			across
+				phases as p
+			loop
 				Result := Result or else (p.item.get_containers.has (cid))
 			end
 		end
@@ -266,7 +271,9 @@ feature -- queries
 	get_phase_containing_cid (cid: STRING): detachable PHASE
 		do
 			Result := void
-			across phases as cursor loop
+			across
+				phases as cursor
+			loop
 				if cursor.item.get_containers.has (cid) then
 					Result := cursor.item
 				end
@@ -280,7 +287,7 @@ feature -- queries
 				phases as cursor
 			loop
 				if cursor.item.get_containers.has (cid) then
-					Result := cursor.item.get_containers[cid]
+					Result := cursor.item.get_containers [cid]
 				end
 			end
 		end

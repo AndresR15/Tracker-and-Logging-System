@@ -12,65 +12,84 @@ create
 
 feature {NONE} -- Initialization
 
-	make (init_id: STRING; init_material: MATERIAL; init_max_rad: REAL; init_phase_id: STRING)
+<<<<<<< HEAD
+	make (init_id: STRING; init_material: INTEGER_64; init_max_rad: VALUE; init_pid: STRING)
+=======
+	make (init_id: STRING; init_material: INTEGER_64; init_max_rad: VALUE; pid: STRING)
+>>>>>>> fb680ccd5a3bb827ebc95725b2e2c70c2fd0864f
 			-- Initialization for `Current'.
 		do
 			id := init_id
 			material := init_material
-			max_rad := init_max_rad
-			cur_phase_id := init_phase_id
+			rad := init_max_rad
+<<<<<<< HEAD
+			current_pid := init_pid
+=======
+			current_pid := pid
+>>>>>>> fb680ccd5a3bb827ebc95725b2e2c70c2fd0864f
 		end
 
 feature {NONE} -- Atributes
 
 	id: STRING
 
-	material: MATERIAL
+	material: INTEGER_64
 
-	max_rad: REAL
+	rad: VALUE
 
-	cur_phase_id: STRING
+	current_pid: STRING
 
 feature -- Access
 
 	get_id: STRING
 		do
-			Result := id_key
+			Result := id
 		end
 
-	get_material: MATERIAL
+	get_material: INTEGER_64
 		do
 			Result := material
 		end
 
-	get_max_rad: REAL
+	get_rad: VALUE
 		do
-			Result := max_rad
+			Result := rad
 		end
 
-	get_cur_phase_id: STRING
+	get_pid: STRING
 		do
-			Result := cur_phase_id
+			Result := current_pid
 		end
 
-feature -- Commands
+feature -- setters
 
-	move_container (new_phase_id: STRING)
-		require
-			not_current_phase: not (new_phase_id ~ cur_phase_id)
+	set_pid(n_pid: STRING)
 		do
-<<<<<<< HEAD
-=======
-			cur_phase_id := new_phase_id
->>>>>>> 3acdaa22a77d2503e84c2bf0d5292faccff45ab1
+			current_pid := n_pid
 		end
-
-feature -- Removal
 
 feature -- Miscellaneous
 
 feature -- Basic operations
 
-invariant
+<<<<<<< HEAD
+--	container_output: STRING
+--		-- returns a string representation of the container
+--		local
+--			m: MATERIAL
+--		do
+--			create Result.make_from_string ("")
+--			Result.append (id + "->" + current_pid)
+=======
+	container_output: STRING
+		-- returns a string representation of the container
+		local
+			m: MATERIAL
+		do
+			create Result.make_from_string ("")
+			Result.append (id + "->" + current_pid)
+>>>>>>> fb680ccd5a3bb827ebc95725b2e2c70c2fd0864f
+
+--		end
 
 end

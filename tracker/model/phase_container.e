@@ -64,14 +64,14 @@ feature -- Miscellaneous
 
 feature -- Basic operations
 
---	container_output: STRING
---		-- returns a string representation of the container
---		local
---			m: MATERIAL
---		do
---			create Result.make_from_string ("")
---			Result.append (id + "->" + current_pid)
+	container_output: STRING
+		-- returns a string representation of the container
+		local
+			m: MATERIAL
+		do
+			create Result.make_from_string ("")
+			Result.append (id + "->" + current_pid)
 
---		end
+		end
 
 end

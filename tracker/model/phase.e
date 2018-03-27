@@ -100,7 +100,7 @@ feature -- Queries
 			loop
 				Result.append (m.int_to_material_string (gm.item))
 				if (gm.item /~ get_mats.upper.item) then
-					Result.append_character (",")
+					Result.append_character (',')
 				end
 			end
 		end

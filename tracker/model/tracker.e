@@ -90,7 +90,7 @@ feature -- model operations
 			cont: PHASE_CONTAINER
 			command: NEW_CONTAINER
 		do
-			create cont.make (cid, cont_spec.m, cont_spec.rad)
+			create cont.make (cid, cont_spec.m, cont_spec.rad, pid)
 			if attached phases [pid] as p then
 				p.add_container (cont)
 				create command.make (cid, cont_spec, pid)
@@ -118,13 +118,13 @@ feature -- model operations
 			-- removes a container from the tracker
 		local
 			cur_phase: PHASE
-			--	command: REMOVE_CONTAINER
+				command: REMOVE_CONTAINER
 		do
 			cur_phase := get_phase_containing_cid (cid)
 			if attached cur_phase as p then
 				p.remove_container (cid)
-					--	create command.make (cid)
-					--	history.add_to_record (command)
+					create command.make (cid)
+					history.add_to_record (command)
 			else
 					-- do nothing
 			end
@@ -156,7 +156,7 @@ feature -- model operations
 		do
 			error := new_msg
 			create e.make (error)
-			history.remove_right_then_append (e)
+			history.add_to_record (e)
 		end
 
 feature -- setters
@@ -305,6 +305,6 @@ feature -- misc
 			make
 		end
 
-	
+
 
 end

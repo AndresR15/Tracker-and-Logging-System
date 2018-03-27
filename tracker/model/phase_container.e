@@ -12,12 +12,13 @@ create
 
 feature {NONE} -- Initialization
 
-	make (init_id: STRING; init_material: INTEGER_64; init_max_rad: VALUE)
+	make (init_id: STRING; init_material: INTEGER_64; init_max_rad: VALUE; init_pid: STRING)
 			-- Initialization for `Current'.
 		do
 			id := init_id
 			material := init_material
 			rad := init_max_rad
+			current_pid := init_pid
 		end
 
 feature {NONE} -- Atributes
@@ -49,28 +50,28 @@ feature -- Access
 
 	get_pid: STRING
 		do
-			Result := pid
+			Result := current_pid
 		end
 
 feature -- setters
 
 	set_pid(n_pid: STRING)
 		do
-			pid := n_pid
+			current_pid := n_pid
 		end
 
 feature -- Miscellaneous
 
 feature -- Basic operations
 
-	container_output: STRING
-		-- returns a string representation of the container
-		local
-			m: MATERIAL
-		do
-			create Result.make_from_string ("")
-			Result.append (id + "->" + pid)
+--	container_output: STRING
+--		-- returns a string representation of the container
+--		local
+--			m: MATERIAL
+--		do
+--			create Result.make_from_string ("")
+--			Result.append (id + "->" + current_pid)
 
-		end
+--		end
 
 end

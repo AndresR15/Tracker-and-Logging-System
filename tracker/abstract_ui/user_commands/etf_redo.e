@@ -15,7 +15,7 @@ feature -- command
 	redo
     	do
 			-- perform some update on the model state
-
+			model.get_history.get_record.item.redo
 			etf_cmd_container.on_change.notify ([Current])
     	end
 

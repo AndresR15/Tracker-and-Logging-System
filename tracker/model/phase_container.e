@@ -28,6 +28,8 @@ feature {NONE} -- Atributes
 
 	rad: VALUE
 
+	current_pid: STRING
+
 feature -- Access
 
 	get_id: STRING
@@ -45,10 +47,30 @@ feature -- Access
 			Result := rad
 		end
 
-feature -- Commands
+	get_pid: STRING
+		do
+			Result := pid
+		end
+
+feature -- setters
+
+	set_pid(n_pid: STRING)
+		do
+			pid := n_pid
+		end
 
 feature -- Miscellaneous
 
 feature -- Basic operations
+
+	container_output: STRING
+		-- returns a string representation of the container
+		local
+			m: MATERIAL
+		do
+			create Result.make_from_string ("")
+			Result.append (id + "->" + pid)
+
+		end
 
 end

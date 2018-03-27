@@ -91,13 +91,13 @@ feature -- model operations
 		local
 
 			cont: PHASE_CONTAINER
-		--	command: NEW_CONTAINER
+			command: NEW_CONTAINER
 		do
 			create cont.make (cid, cont_spec.m, cont_spec.rad)
 			if attached phases[pid] as p then
 				p.add_container (cont)
-			--	create command.make (cid, cont_spec.m, cont_spec.rad)
-			--		history.add_to_record (command)
+				create command.make (cid, cont_spec, pid)
+				history.add_to_record (command)
 			else
 				-- do nothing
 			end
@@ -298,23 +298,6 @@ feature -- misc
 			make
 		end
 
-	int_to_material_string (int: INTEGER_64): STRING
-			-- convert INTEGER_64 to a MATERIAL
-		require
-			valid_mat: int > 0 and int < 5
-		do
-			inspect int
-			when 1 then
-				Result := "glass"
-			when 2 then
-				Result := "metal"
-			when 3 then
-				Result := "plastic"
-			when 4 then
-				Result := "liquid"
-			else
-				Result := ""
-			end
-		end
+	
 
 end

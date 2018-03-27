@@ -23,15 +23,34 @@ feature {HISTORY} -- Attributes
 
 feature -- Deleation
 
-	reset_list
+	reset_record
 		do
 			record.wipe_out
 		end
 
+	remove_all_right
+            --remove all items to the right of the cursor
+        require
+            cursor_not_last: not get_record.islast
+        do
+            from
+            until
+                record.islast
+            loop
+                record.remove_right
+            end
+        end
+
+feature -- Traverse
+
+
 feature -- Setters
 
 	add_to_record (c: COMMAND)
+		-- add a COMMAND object to record
 		do
+			remove_all_right
+			record.forth
 			record.extend (c)
 		end
 

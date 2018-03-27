@@ -1,7 +1,29 @@
-new_tracker(1000, 1000)
-new_phase("A1", "App", 100, <<glass>>)
-new_phase("A2", "Bat", 100, <<glass>>)
-new_phase("A0", "cat", 100, <<glass>>)
-new_phase("A1", "qoop", 100, <<glass>>)
+new_tracker(200, 100)
+new_phase("A1", "ads", 10, <<glass>>)
 
+new_container("C1", [glass, 5], "A1")
 undo
+redo
+new_tracker(100, 30)
+remove_container("C1")
+new_tracker(100, 20)
+undo
+redo
+new_tracker(10, 1)
+undo
+new_container("C2", [glass, 1], "A1")
+undo
+redo
+redo
+undo
+redo
+undo
+redo
+redo
+undo
+undo
+redo
+redo
+undo
+redo
+new_container("C3", [glass, 1], "A1")

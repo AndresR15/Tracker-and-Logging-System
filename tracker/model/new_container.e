@@ -10,6 +10,8 @@ class
 inherit
 	COMMAND
 
+Create
+		make
 
 feature -- Initialization
 
@@ -37,7 +39,7 @@ feature
 
 	execute
 		do
-			track.new_container(cid, TUPLE[material, rad], pid)
+			track.new_container(cid, [material, rad], pid)
 		end
 
 	undo

@@ -188,6 +188,11 @@ feature -- getter
 			Result := history
 		end
 
+	get_state: INTEGER
+		do
+			Result := state
+		end
+
 feature -- error checks
 
 	valid_string (s: STRING): BOOLEAN
@@ -305,6 +310,6 @@ feature -- misc
 			make
 		end
 
-	
+
 
 end

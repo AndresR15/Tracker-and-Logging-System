@@ -22,6 +22,7 @@ feature -- Initialization
 		do
 			track := track_access.m
 			msg := error
+			state := track.get_state
 		end
 
 feature

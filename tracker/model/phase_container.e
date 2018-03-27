@@ -70,8 +70,7 @@ feature -- Basic operations
 			m: MATERIAL
 		do
 			create Result.make_from_string ("")
-			Result.append (id + "->" + current_pid)
-
+			Result.append (id + "->" + current_pid + "->" + m.int_to_material_string (material) + "," + rad.out)
 		end
 
 end

@@ -23,8 +23,6 @@ feature -- conversion
 				Result := "plastic"
 			when 4 then
 				Result := "liquid"
-			else
-				Result := ""
 			end
 		end
 

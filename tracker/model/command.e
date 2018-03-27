@@ -13,6 +13,8 @@ feature -- Attributes
 
 	msg: STRING
 
+	state: INTEGER
+
 feature
 
 	execute

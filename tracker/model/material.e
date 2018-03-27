@@ -27,5 +27,4 @@ feature -- conversion
 				Result := ""
 			end
 		end
-
 end

@@ -23,6 +23,7 @@ feature {NONE} -- Initialization
 			-- Initialization for `Current'.
 		local
 			c: STRING_TABLE [PHASE_CONTAINER]
+			z: VALUE
 		do
 			pid := init_pid
 			name := phase_name
@@ -30,6 +31,8 @@ feature {NONE} -- Initialization
 			expected_mats := expected_materials
 			create c.make_equal_caseless (10)
 			containers := c
+			create z.make_from_int (0)
+			current_rad := z
 		end
 
 feature {PHASE} -- Attributes
@@ -43,6 +46,8 @@ feature {PHASE} -- Attributes
 	expected_mats: ARRAY [INTEGER_64] -- subset of materials
 
 	containers: STRING_TABLE [PHASE_CONTAINER]
+
+	current_rad: VALUE
 
 feature -- Queries
 
@@ -84,10 +89,28 @@ feature -- Queries
 			end
 		end
 
+	materials_out: STRING
+			--outputs the expected materials array
+		local
+			m: MATERIAL
+		do
+			create Result.make_from_string ("")
+			across
+				get_mats as gm
+			loop
+				Result.append (m.int_to_material_string (gm.item))
+				if (gm.item /~ get_mats.upper.item) then
+					Result.append_character (",")
+				end
+			end
+		end
+
 feature -- Commands
+
 	add_container (cont: PHASE_CONTAINER)
 		do
 			get_containers.extend (cont, cont.get_id)
+			current_rad := current_rad + cont.get_rad
 		end
 
 	remove_container (cid: STRING)
@@ -95,8 +118,11 @@ feature -- Commands
 			container_in_phase: get_containers.has_key (cid)
 		do
 			containers.remove (cid)
+			if attached containers [cid] as c then
+				current_rad := current_rad - c.get_rad
+			end
 		ensure
-			container_removed: not containers.has_key(cid)
+			container_removed: not containers.has_key (cid)
 		end
 
 feature -- compare
@@ -113,17 +139,27 @@ feature -- compare
 			end
 		end
 
-	is_equal(other: PHASE): BOOLEAN
+	is_equal (other: PHASE): BOOLEAN
 			-- Is `other' attached to an object of the same type
 			-- as current object and identical to it?
 		do
 			if Current = other then
 				Result := True
 			else
-				Result := (pid = other.pid) and then (name ~ other.name)
-				and then (capacity = other.capacity) and then (expected_mats ~ other.expected_mats)
-				and then (containers ~ other.containers)
+				Result := (pid = other.pid) and then (name ~ other.name) and then (capacity = other.capacity) and then (expected_mats ~ other.expected_mats) and then (containers ~ other.containers)
 			end
+		end
+
+feature -- Output
+
+	phase_output: STRING
+		do
+			create Result.make_from_string ("")
+			Result.append (pid + "->" + name + ":" + capacity.out)
+			Result.append_character (',')
+			Result.append_integer (get_containers.count)
+			Result.append_character (',')
+			Result.append (current_rad.out + ",{" + materials_out + "}")
 		end
 
 end

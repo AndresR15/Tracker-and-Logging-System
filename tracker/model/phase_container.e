@@ -10,8 +10,16 @@ class
 inherit
 
 	COMPARABLE
+		undefine
+			out
 		redefine
 			is_equal
+		end
+	ANY
+		undefine
+			is_equal
+		redefine
+			out
 		end
 
 create
@@ -94,7 +102,7 @@ feature -- Comparable
 
 feature -- Basic operations
 
-	container_output: STRING
+	out: STRING
 		-- returns a string representation of the container
 		local
 			m: MATERIAL

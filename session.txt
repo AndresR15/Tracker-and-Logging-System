@@ -1,0 +1,4 @@
+new_tracker(20,10)
+new_phase("A1","clean",15,<<glass>>)
+new_container("C1", [glass, 1], "A1")
+new_phase("A2", "dirty", 20, <<glass, metal>>)

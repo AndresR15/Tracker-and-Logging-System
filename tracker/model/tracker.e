@@ -98,7 +98,7 @@ feature -- model operations
 			create cont.make (cid, cont_spec.m, cont_spec.rad, pid)
 			if attached phases [pid] as p then
 				p.add_container (cont)
-	
+
 				state := state + 1
 				sorted_conts.extend (cont)
 				create command.make (cid, cont_spec, pid)
@@ -209,7 +209,7 @@ feature -- error checks
 	is_active: BOOLEAN
 			-- are there any containers in the system
 		do
-			Result := sorted_conts.count = 0
+			Result := sorted_conts.count > 0
 
 		end
 
@@ -321,26 +321,30 @@ feature -- queries
 		local
 			stwl_c: STWL_OUT [PHASE_CONTAINER]
 			stwl_p: STWL_OUT [PHASE]
+			msg : MESSAGES_ACCESS
 		do
 			create Result.make_from_string ("  state ")
 			Result.append_integer (state)
-			Result.append (" " + error + "%N  max_phase_radiation: ")
-			Result.append (max_phase_rad.out)
-			Result.append (",%Nmax_container_radiation: ")
-			Result.append (max_cont_rad.out)
+			Result.append (" " + error)
+			if (error = msg.ok) then
+				Result.append("%N  max_phase_radiation: ")
+				Result.append (max_phase_rad.out)
+				Result.append (",%Nmax_container_radiation: ")
+				Result.append (max_cont_rad.out)
 
-			Result.append ("%N  phases: pid->name:capacity,count,radiation")
-			if not sorted_phases.is_empty then
-				Result.append ("%N")
-				create stwl_p.make(sorted_phases)
-				Result.append (stwl_p.out)
-			end
+				Result.append ("%N  phases: pid->name:capacity,count,radiation")
+				if not sorted_phases.is_empty then
+					Result.append ("%N")
+					create stwl_p.make(sorted_phases)
+					Result.append (stwl_p.out)
+				end
 
-			Result.append ("%N  containers: cid->pid->material,radioactivity")
-			if not sorted_conts.is_empty then
-				Result.append ("%N")
-				create stwl_c.make(sorted_conts)
-				Result.append (stwl_c.out)
+				Result.append ("  containers: cid->pid->material,radioactivity")
+				if not sorted_conts.is_empty then
+					Result.append ("%N")
+					create stwl_c.make(sorted_conts)
+					Result.append (stwl_c.out)
+				end
 			end
 		end
 

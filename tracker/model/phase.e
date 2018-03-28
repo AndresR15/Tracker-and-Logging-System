@@ -10,8 +10,16 @@ class
 inherit
 
 	COMPARABLE
+		undefine
+			out
 		redefine
 			is_equal
+		end
+	ANY
+		undefine
+			is_equal
+		redefine
+			out
 		end
 
 create
@@ -152,7 +160,7 @@ feature -- compare
 
 feature -- Output
 
-	phase_output: STRING
+	out: STRING
 		do
 			create Result.make_from_string ("")
 			Result.append (pid + "->" + name + ":" + capacity.out)

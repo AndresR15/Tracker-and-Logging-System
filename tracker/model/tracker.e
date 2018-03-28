@@ -98,8 +98,8 @@ feature -- model operations
 			create cont.make (cid, cont_spec.m, cont_spec.rad, pid)
 			if attached phases [pid] as p then
 				p.add_container (cont)
-				state := state + 1
 				sorted_conts.extend (cont)
+				state := state + 1
 				create command.make (cid, cont_spec, pid)
 				history.add_to_record (command)
 			else
@@ -126,12 +126,15 @@ feature -- model operations
 			-- removes a container from the tracker
 		local
 			cur_phase: PHASE
+			cur_cont: PHASE_CONTAINER
 			command: REMOVE_CONTAINER
 		do
 			cur_phase := get_phase_containing_cid (cid)
-			state := state + 1
-			if attached cur_phase as p then
+			cur_cont := get_container (cid)
+			if attached cur_phase as p and then attached cur_cont as c then
+				sorted_conts.prune_all (c)
 				p.remove_container (cid)
+				state := state + 1
 				create command.make (cid)
 				history.add_to_record (command)
 			else
@@ -184,11 +187,6 @@ feature -- setters
 
 feature -- getter
 
-	is_active: BOOLEAN
-		do
-			Result := active
-		end
-
 	get_phases: STRING_TABLE [PHASE]
 		do
 			Result := phases
@@ -209,7 +207,7 @@ feature -- error checks
 	is_active: BOOLEAN
 		-- are there any containers in the system
 		do
---			Result := sorted_conts.count = 0
+			Result := sorted_conts.count = 0
 
 		end
 

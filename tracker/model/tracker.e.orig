@@ -26,9 +26,9 @@ feature {NONE} -- Initialization
 			Create zero.make_from_int (0)
 			Create list.make_equal_caseless (10)
 			Create sorted_phases.make
+			Create sorted_conts.make
 			phases := list
 			error := "ok"
-			active := False
 			state := 0
 			max_phase_rad := zero
 			max_cont_rad := zero
@@ -41,9 +41,9 @@ feature {TRACKER} -- model attributes
 
 	sorted_phases: SORTED_TWO_WAY_LIST [PHASE]
 
-	error: STRING
+	sorted_conts: SORTED_TWO_WAY_LIST [PHASE_CONTAINER]
 
-	active: BOOLEAN
+	error: STRING
 
 	max_phase_rad: VALUE
 
@@ -68,6 +68,7 @@ feature -- model operations
 			create new_p.make (pid, phase_name, capacity, expected_materials)
 			phases.extend (new_p, pid)
 			sorted_phases.extend (new_p)
+			state := state + 1
 			create command.make (pid, phase_name, capacity, expected_materials)
 			history.add_to_record (command)
 		end
@@ -81,6 +82,7 @@ feature -- model operations
 		do
 			max_phase_rad := max_p_rad
 			max_cont_rad := max_c_rad
+			state := state + 1
 			create command.make
 			history.add_to_record (command)
 		end
@@ -93,6 +95,11 @@ feature -- model operations
 			create cont.make (cid, cont_spec.m, cont_spec.rad, pid)
 			if attached phases [pid] as p then
 				p.add_container (cont)
+<<<<<<< HEAD
+				state := state + 1
+=======
+				sorted_conts.extend (cont)
+>>>>>>> 764cd9f48e2a56af2d3a6cef94e475a360a2e8e3
 				create command.make (cid, cont_spec, pid)
 				history.add_to_record (command)
 			else
@@ -108,6 +115,7 @@ feature -- model operations
 			command: REMOVE_PHASE
 		do
 			phases.remove (phase_id)
+			state := state + 1
 			create command.make (phase_id)
 			history.add_to_record (command)
 		ensure
@@ -118,22 +126,14 @@ feature -- model operations
 			-- removes a container from the tracker
 		local
 			cur_phase: PHASE
-<<<<<<< HEAD
-				command: REMOVE_CONTAINER
-=======
 			command: REMOVE_CONTAINER
->>>>>>> fb680ccd5a3bb827ebc95725b2e2c70c2fd0864f
 		do
 			cur_phase := get_phase_containing_cid (cid)
+			state := state + 1
 			if attached cur_phase as p then
 				p.remove_container (cid)
-<<<<<<< HEAD
-					create command.make (cid)
-					history.add_to_record (command)
-=======
 				create command.make (cid)
 				history.add_to_record (command)
->>>>>>> fb680ccd5a3bb827ebc95725b2e2c70c2fd0864f
 			else
 					-- do nothing
 			end
@@ -149,6 +149,7 @@ feature -- model operations
 				temp_cont := cont
 				p1.remove_container (cid)
 				p2.add_container (temp_cont)
+				state := state + 1
 				create command.make (cid, pid1, pid2)
 				history.add_to_record (command)
 			end
@@ -164,6 +165,7 @@ feature -- model operations
 			e: ERROR
 		do
 			error := new_msg
+			state := state + 1
 			create e.make (error)
 			history.add_to_record (e)
 		end
@@ -175,17 +177,7 @@ feature -- setters
 			error := msg
 		end
 
-	set_state (new_state: INTEGER)
-		do
-			state := new_state
-		end
-
 feature -- getter
-
-	is_active: BOOLEAN
-		do
-			Result := active
-		end
 
 	get_phases: STRING_TABLE [PHASE]
 		do
@@ -197,7 +189,19 @@ feature -- getter
 			Result := history
 		end
 
+	get_state: INTEGER
+		do
+			Result := state
+		end
+
 feature -- error checks
+
+	is_active: BOOLEAN
+		-- are there any containers in the system
+		do
+--			Result := sorted_conts.count = 0
+
+		end
 
 	valid_string (s: STRING): BOOLEAN
 			-- does the string start with A-Z, a-z or 0-9?
@@ -304,6 +308,7 @@ feature -- queries
 	out: STRING
 		do
 			create Result.make_from_string ("  ")
+
 		end
 
 feature -- misc
@@ -314,9 +319,4 @@ feature -- misc
 			make
 		end
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> fb680ccd5a3bb827ebc95725b2e2c70c2fd0864f
 end

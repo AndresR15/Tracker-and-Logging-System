@@ -1,0 +1,40 @@
+new_tracker(10,15)
+new_tracker(15,10)
+undo
+redo
+new_phase("01", "blah", 11, <<liquid>>)
+undo
+remove_phase("01")
+undo
+redo
+new_phase("01", "blah", 11, <<liquid>>)
+remove_phase("01")
+undo
+undo
+redo
+redo
+redo
+undo
+new_container("001", [liquid, 1], "01")
+new_phase("02", "blah", 11, <<liquid>>)
+undo
+undo
+undo
+<<<<<<< HEAD
+redo
+new_container("C3", [glass, 1], "A1")
+undo
+redo
+undo
+undo
+undo
+new_container("02", [glass, 1], "A1")
+undo
+new_container("02", [glass, 1], "A1")
+=======
+undo
+new_phase("01", "blah", 11, <<liquid>>)
+new_phase("02", "blah", 11, <<liquid>>)
+new_container("001", [liquid, 1], "01")
+new_container("002", [liquid, 1], "01")
+>>>>>>> 764cd9f48e2a56af2d3a6cef94e475a360a2e8e3

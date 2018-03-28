@@ -44,4 +44,8 @@ feature -- Constant Messages
 	cont_id_not_in_source: STRING = "e17: this container identifier is not in the source phase"
 
 	cont_rad_non_negative: STRING = "e18: this container radiation must not be negative"
+
+	no_undo: STRING = "e19: there is no more to undo"
+
+	no_redo: STRING = "e20: there is no more to redo"
 end

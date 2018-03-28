@@ -107,7 +107,9 @@ feature -- Queries
 				get_mats as gm
 			loop
 				Result.append (m.int_to_material_string (gm.item))
-				if (gm.item /~ get_mats.upper.item) then
+				if (gm.cursor_index /~ get_mats.lower) and (gm.cursor_index /~ get_mats.upper) then
+					Result.append_character (',')
+				elseif (gm.cursor_index ~ get_mats.lower) and (get_mats.lower /~ get_mats.upper) then
 					Result.append_character (',')
 				end
 			end

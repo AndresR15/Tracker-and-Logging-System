@@ -25,6 +25,7 @@ feature -- command
 		do
 				-- perform some update on the model state
 			model.set_error (msg.ok)
+			model.set_state (model.get_state + 1)
 			if not model.cid_exists (cid) then
 				model.set_error (msg.cont_id_not_in_tracker)
 			else

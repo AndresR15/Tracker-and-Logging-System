@@ -11,4 +11,17 @@ new_phase("C","rojas", 1, <<metal>>)
 new_phase("E","rojas", 1, <<metal>>)
 new_phase("F","clear", 3, <<metal>>)
 new_container("A1", [metal, 2], "A")
+move_container("A1", "A", "C")
 move_container("A1", "A", "F")
+undo
+remove_container("A1")
+undo
+redo
+remove_phase("E")
+undo
+undo
+undo
+remove_phase("E")
+redo
+undo
+

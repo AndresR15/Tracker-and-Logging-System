@@ -71,7 +71,7 @@ feature -- model operations
 			create new_p.make (pid, phase_name, capacity, expected_materials)
 			phases.extend (new_p, pid)
 			sorted_phases.extend (new_p)
-			state := state + 1
+
 			create command.make (pid, phase_name, capacity, expected_materials)
 			history.add_to_record (command)
 		end
@@ -85,7 +85,6 @@ feature -- model operations
 		do
 			max_phase_rad := max_p_rad
 			max_cont_rad := max_c_rad
-			state := state + 1
 			create command.make
 			history.add_to_record (command)
 		end
@@ -98,8 +97,6 @@ feature -- model operations
 			create cont.make (cid, cont_spec.m, cont_spec.rad, pid)
 			if attached phases [pid] as p then
 				p.add_container (cont)
-
-				state := state + 1
 				sorted_conts.extend (cont)
 				create command.make (cid, cont_spec, pid)
 				history.add_to_record (command)
@@ -116,7 +113,6 @@ feature -- model operations
 			command: REMOVE_PHASE
 		do
 			phases.remove (phase_id)
-			state := state + 1
 			create command.make (phase_id)
 			history.add_to_record (command)
 		ensure
@@ -135,7 +131,6 @@ feature -- model operations
 			if attached cur_phase as p and then attached cur_cont as c then
 				sorted_conts.prune_all (c)
 				p.remove_container (cid)
-				state := state + 1
 				create command.make (cid)
 				history.add_to_record (command)
 			else
@@ -153,7 +148,6 @@ feature -- model operations
 				temp_cont := cont
 				p1.remove_container (cid)
 				p2.add_container (temp_cont)
-				state := state + 1
 				create command.make (cid, pid1, pid2)
 				history.add_to_record (command)
 			end
@@ -169,7 +163,6 @@ feature -- model operations
 			e: ERROR
 		do
 			error := new_msg
-			state := state + 1
 			create e.make (error)
 			history.add_to_record (e)
 		end
@@ -251,16 +244,15 @@ feature -- error checks
 			end
 		end
 
-	mats_not_in_phase (mat: INTEGER_64; pid: STRING): BOOLEAN
+	phase_expects_mat (mat: INTEGER_64; pid: STRING): BOOLEAN
 			-- does the phase expect this container material?
 		do
+			Result := FALSE
 			if attached phases [pid] as p then
 				across
 					p.get_mats as cm
 				loop
-					if cm.item ~ mat then
-						Result := FALSE
-					else
+					if cm.item = mat then
 						Result := TRUE
 					end
 				end
@@ -329,7 +321,7 @@ feature -- queries
 			if (error = msg.ok) then
 				Result.append("%N  max_phase_radiation: ")
 				Result.append (max_phase_rad.out)
-				Result.append (",%Nmax_container_radiation: ")
+				Result.append (", max_container_radiation: ")
 				Result.append (max_cont_rad.out)
 
 				Result.append ("%N  phases: pid->name:capacity,count,radiation")
@@ -339,7 +331,7 @@ feature -- queries
 					Result.append (stwl_p.out)
 				end
 
-				Result.append ("  containers: cid->pid->material,radioactivity")
+				Result.append ("%N  containers: cid->pid->material,radioactivity")
 				if not sorted_conts.is_empty then
 					Result.append ("%N")
 					create stwl_c.make(sorted_conts)

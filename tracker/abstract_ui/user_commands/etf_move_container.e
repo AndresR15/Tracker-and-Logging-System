@@ -27,6 +27,7 @@ feature -- command
 
 					-- perform some update on the model state
 				model.set_error (msg.ok)
+				model.set_state (model.get_state + 1)
 				if not model.cid_exists (cid) then
 					model.set_error (msg.cont_id_not_in_tracker)
 				elseif pid1 ~ pid2 then
@@ -39,7 +40,7 @@ feature -- command
 					model.set_error (msg.cont_exceeds_cap)
 				elseif model.cont_gt_max_phase_rad (cont.get_rad, pid2) then
 					model.set_error (msg.cont_exceeds_rad)
-				elseif model.mats_not_in_phase (cont.get_material, pid2) then
+				elseif not model.phase_expects_mat (cont.get_material, pid2) then
 					model.set_error (msg.material_unexpected)
 				else
 					model.move_container (cid, pid1, pid2)

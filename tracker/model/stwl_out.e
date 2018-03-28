@@ -34,7 +34,13 @@ feature -- Output
 			across
 				list as cursor
 			loop
-				Result.append ("   " + cursor.item.out + "%N")
+				if cursor.is_last then
+						--corrects oracle output inconsistency
+					Result.append ("    " + cursor.item.out)
+				else
+					Result.append ("    " + cursor.item.out + "%N")
+				end
+
 			end
 		end
 

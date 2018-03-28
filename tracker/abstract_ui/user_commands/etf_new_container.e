@@ -25,6 +25,7 @@ feature -- command
 		do
 				-- perform some update on the model state
 			model.set_error (msg.ok)
+			model.set_state (model.get_state + 1)
 			if not model.valid_string (cid) then
 				model.set_error (msg.invalid_name_id)
 			elseif model.cid_exists (cid) then
@@ -41,7 +42,7 @@ feature -- command
 				model.set_error (msg.cont_exceeds_rad_cap)
 			elseif model.cont_gt_max_phase_rad (c.radioactivity, pid) then
 				model.set_error (msg.cont_exceeds_rad)
-			elseif model.mats_not_in_phase (c.material, pid) then
+			elseif not model.phase_expects_mat (c.material, pid) then
 				model.set_error (msg.material_unexpected)
 			else
 				model.new_container (cid, c, pid)

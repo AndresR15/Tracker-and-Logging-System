@@ -29,6 +29,7 @@ feature {NONE} -- Initialization
 			Create sorted_conts.make
 			phases := list
 			error := "ok"
+			active := False
 			state := 0
 			max_phase_rad := zero
 			max_cont_rad := zero
@@ -44,6 +45,8 @@ feature {TRACKER} -- model attributes
 	sorted_conts: SORTED_TWO_WAY_LIST [PHASE_CONTAINER]
 
 	error: STRING
+
+	active: BOOLEAN
 
 	max_phase_rad: VALUE
 
@@ -95,11 +98,8 @@ feature -- model operations
 			create cont.make (cid, cont_spec.m, cont_spec.rad, pid)
 			if attached phases [pid] as p then
 				p.add_container (cont)
-<<<<<<< HEAD
-				state := state + 1
-=======
 				sorted_conts.extend (cont)
->>>>>>> 764cd9f48e2a56af2d3a6cef94e475a360a2e8e3
+				state := state + 1
 				create command.make (cid, cont_spec, pid)
 				history.add_to_record (command)
 			else
@@ -126,12 +126,15 @@ feature -- model operations
 			-- removes a container from the tracker
 		local
 			cur_phase: PHASE
+			cur_cont: PHASE_CONTAINER
 			command: REMOVE_CONTAINER
 		do
 			cur_phase := get_phase_containing_cid (cid)
-			state := state + 1
-			if attached cur_phase as p then
+			cur_cont := get_container (cid)
+			if attached cur_phase as p and then attached cur_cont as c then
+				sorted_conts.prune_all (c)
 				p.remove_container (cid)
+				state := state + 1
 				create command.make (cid)
 				history.add_to_record (command)
 			else
@@ -177,8 +180,17 @@ feature -- setters
 			error := msg
 		end
 
+	set_state (new_state: INTEGER)
+		do
+			state := new_state
+		end
+
 feature -- getter
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> f9f1bb9b1ddb98214b5c5bee05b6a975df3d21c2
 	get_phases: STRING_TABLE [PHASE]
 		do
 			Result := phases
@@ -199,7 +211,7 @@ feature -- error checks
 	is_active: BOOLEAN
 		-- are there any containers in the system
 		do
---			Result := sorted_conts.count = 0
+			Result := sorted_conts.count = 0
 
 		end
 
@@ -305,9 +317,42 @@ feature -- queries
 			end
 		end
 
+	output_sorted_phase (list: SORTED_TWO_WAY_LIST[PHASE]): STRING
+		do
+			create Result.make_from_string ("")
+			across
+				list as cursor
+			loop
+				Result.append (cursor.item.out)
+			end
+		end
+
+	output_sorted_cont (list: SORTED_TWO_WAY_LIST[PHASE_CONTAINER]): STRING
+			do
+				create Result.make_from_string ("")
+				across
+					list as cursor
+				loop
+					Result.append (cursor.item.out)
+				end
+			end
+
 	out: STRING
 		do
 			create Result.make_from_string ("  ")
+			Result.append("state ")
+			Result.append_integer(state)
+			Result.append(" " + error + "%N")
+			Result.append("  " + "max_phase_radiation: ")
+			Result.append(max_phase_rad.out)
+			Result.append(",%N")
+			Result.append("max_container_radiation: ")
+			Result.append(max_cont_rad.out)
+			Result.append("%N" + "  phases: pid->name:capacity,count,radiation%N")
+			Result.append(output_sorted_phase (sorted_phases))
+			Result.append("%N" + "  containers: cid->pid->material,radioactivity%N")
+			Result.append(output_sorted_cont (sorted_conts))
+
 
 		end
 
@@ -318,5 +363,7 @@ feature -- misc
 		do
 			make
 		end
+
+
 
 end

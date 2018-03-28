@@ -98,8 +98,9 @@ feature -- model operations
 			create cont.make (cid, cont_spec.m, cont_spec.rad, pid)
 			if attached phases [pid] as p then
 				p.add_container (cont)
-				sorted_conts.extend (cont)
+	
 				state := state + 1
+				sorted_conts.extend (cont)
 				create command.make (cid, cont_spec, pid)
 				history.add_to_record (command)
 			else
@@ -186,6 +187,7 @@ feature -- setters
 		end
 
 feature -- getter
+
 
 	get_phases: STRING_TABLE [PHASE]
 		do
@@ -313,9 +315,42 @@ feature -- queries
 			end
 		end
 
+	output_sorted_phase (list: SORTED_TWO_WAY_LIST[PHASE]): STRING
+		do
+			create Result.make_from_string ("")
+			across
+				list as cursor
+			loop
+				Result.append (cursor.item.out)
+			end
+		end
+
+	output_sorted_cont (list: SORTED_TWO_WAY_LIST[PHASE_CONTAINER]): STRING
+			do
+				create Result.make_from_string ("")
+				across
+					list as cursor
+				loop
+					Result.append (cursor.item.out)
+				end
+			end
+
 	out: STRING
 		do
 			create Result.make_from_string ("  ")
+			Result.append("state ")
+			Result.append_integer(state)
+			Result.append(" " + error + "%N")
+			Result.append("  " + "max_phase_radiation: ")
+			Result.append(max_phase_rad.out)
+			Result.append(",%N")
+			Result.append("max_container_radiation: ")
+			Result.append(max_cont_rad.out)
+			Result.append("%N" + "  phases: pid->name:capacity,count,radiation%N")
+			Result.append(output_sorted_phase (sorted_phases))
+			Result.append("%N" + "  containers: cid->pid->material,radioactivity%N")
+			Result.append(output_sorted_cont (sorted_conts))
+
 
 		end
 

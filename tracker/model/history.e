@@ -33,10 +33,12 @@ feature -- Deleation
         require
             cursor_not_last: not get_record.islast
         do
+
             from
             until
                 record.islast
             loop
+
                 record.remove_right
             end
         end
@@ -50,8 +52,8 @@ feature -- Setters
 		-- add a COMMAND object to record
 		do
 			remove_all_right
-			record.forth
 			record.extend (c)
+			record.forth
 		end
 
 feature -- Getters

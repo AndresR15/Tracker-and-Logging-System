@@ -98,7 +98,7 @@ feature -- model operations
 			create cont.make (cid, cont_spec.m, cont_spec.rad, pid)
 			if attached phases [pid] as p then
 				p.add_container (cont)
-	
+
 				state := state + 1
 				sorted_conts.extend (cont)
 				create command.make (cid, cont_spec, pid)
@@ -209,7 +209,7 @@ feature -- error checks
 	is_active: BOOLEAN
 			-- are there any containers in the system
 		do
-			Result := sorted_conts.count = 0
+			Result := sorted_conts.count > 0
 
 		end
 

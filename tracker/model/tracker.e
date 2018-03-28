@@ -98,7 +98,6 @@ feature -- model operations
 			create cont.make (cid, cont_spec.m, cont_spec.rad, pid)
 			if attached phases [pid] as p then
 				p.add_container (cont)
-	
 				state := state + 1
 				sorted_conts.extend (cont)
 				create command.make (cid, cont_spec, pid)
@@ -188,7 +187,6 @@ feature -- setters
 
 feature -- getter
 
-
 	get_phases: STRING_TABLE [PHASE]
 		do
 			Result := phases
@@ -207,10 +205,9 @@ feature -- getter
 feature -- error checks
 
 	is_active: BOOLEAN
-		-- are there any containers in the system
+			-- are there any containers in the system
 		do
 			Result := sorted_conts.count = 0
-
 		end
 
 	valid_string (s: STRING): BOOLEAN
@@ -305,7 +302,6 @@ feature -- queries
 
 	get_container (cid: STRING): detachable PHASE_CONTAINER
 		do
-			Result := void
 			across
 				phases as cursor
 			loop
@@ -315,43 +311,47 @@ feature -- queries
 			end
 		end
 
-	output_sorted_phase (list: SORTED_TWO_WAY_LIST[PHASE]): STRING
+	output_sorted_phase (list: SORTED_TWO_WAY_LIST [PHASE]): STRING
+		local
+			stwl_printer: STWL_OUT [PHASE]
 		do
-			create Result.make_from_string ("")
-			across
-				list as cursor
-			loop
-				Result.append (cursor.item.out)
-			end
+			create stwl_printer.make (list)
+			Result := stwl_printer.out
 		end
 
-	output_sorted_cont (list: SORTED_TWO_WAY_LIST[PHASE_CONTAINER]): STRING
-			do
-				create Result.make_from_string ("")
-				across
-					list as cursor
-				loop
-					Result.append (cursor.item.out)
-				end
-			end
+	output_sorted_cont (list: SORTED_TWO_WAY_LIST [PHASE_CONTAINER]): STRING
+		local
+			stwl_printer: STWL_OUT [PHASE_CONTAINER]
+		do
+			create stwl_printer.make (list)
+			Result := stwl_printer.out
+		end
 
 	out: STRING
+		local
+			stwl_c: STWL_OUT [PHASE_CONTAINER]
+			stwl_p: STWL_OUT [PHASE]
 		do
-			create Result.make_from_string ("  ")
-			Result.append("state ")
-			Result.append_integer(state)
-			Result.append(" " + error + "%N")
-			Result.append("  " + "max_phase_radiation: ")
-			Result.append(max_phase_rad.out)
-			Result.append(",%N")
-			Result.append("max_container_radiation: ")
-			Result.append(max_cont_rad.out)
-			Result.append("%N" + "  phases: pid->name:capacity,count,radiation%N")
-			Result.append(output_sorted_phase (sorted_phases))
-			Result.append("%N" + "  containers: cid->pid->material,radioactivity%N")
-			Result.append(output_sorted_cont (sorted_conts))
+			create Result.make_from_string ("  state ")
+			Result.append_integer (state)
+			Result.append (" " + error + "%N  max_phase_radiation: ")
+			Result.append (max_phase_rad.out)
+			Result.append (",%Nmax_container_radiation: ")
+			Result.append (max_cont_rad.out)
 
+			Result.append ("%N  phases: pid->name:capacity,count,radiation")
+			if not sorted_phases.is_empty then
+				Result.append ("%N")
+				create stwl_p.make(sorted_phases)
+				Result.append (stwl_p.out)
+			end
 
+			Result.append ("%N  containers: cid->pid->material,radioactivity")
+			if not sorted_conts.is_empty then
+				Result.append ("%N")
+				create stwl_c.make(sorted_conts)
+				Result.append (stwl_c.out)
+			end
 		end
 
 feature -- misc
@@ -361,7 +361,5 @@ feature -- misc
 		do
 			make
 		end
-
-
 
 end

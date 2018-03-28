@@ -7,6 +7,13 @@ note
 class
 	PHASE_CONTAINER
 
+inherit
+
+	COMPARABLE
+		redefine
+			is_equal
+		end
+
 create
 	make
 
@@ -60,7 +67,30 @@ feature -- setters
 			current_pid := n_pid
 		end
 
-feature -- Miscellaneous
+feature -- Comparable
+
+	is_less alias "<" (other: PHASE_CONTAINER): BOOLEAN
+			--Is current object less than `other'?
+		require else
+			distinct_id: not (get_id ~ other.get_id)
+		do
+			if Current = other then
+				Result := FALSE
+			elseif get_id < other.get_id then
+				Result := TRUE
+			end
+		end
+
+	is_equal (other: PHASE_CONTAINER): BOOLEAN
+			-- Is `other' attached to an object of the same type
+			-- as current object and identical to it?
+		do
+			if Current = other then
+				Result := TRUE
+			else
+				Result := (get_id = other.get_id) and then (get_rad ~ other.get_rad) and then (get_pid = other.get_pid) and then (get_material ~ other.get_material)
+			end
+		end
 
 feature -- Basic operations
 

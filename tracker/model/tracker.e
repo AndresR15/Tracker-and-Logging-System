@@ -26,8 +26,10 @@ feature {NONE} -- Initialization
 			Create zero.make_from_int (0)
 			Create list.make_equal_caseless (10)
 			Create sorted_phases.make
+			Create sorted_conts.make
 			phases := list
 			error := "ok"
+			active := False
 			state := 0
 			max_phase_rad := zero
 			max_cont_rad := zero
@@ -40,7 +42,11 @@ feature {TRACKER} -- model attributes
 
 	sorted_phases: SORTED_TWO_WAY_LIST [PHASE]
 
+	sorted_conts: SORTED_TWO_WAY_LIST [PHASE_CONTAINER]
+
 	error: STRING
+
+	active: BOOLEAN
 
 	max_phase_rad: VALUE
 
@@ -93,6 +99,7 @@ feature -- model operations
 			if attached phases [pid] as p then
 				p.add_container (cont)
 				state := state + 1
+				sorted_conts.extend (cont)
 				create command.make (cid, cont_spec, pid)
 				history.add_to_record (command)
 			else
@@ -170,7 +177,17 @@ feature -- setters
 			error := msg
 		end
 
+	set_state (new_state: INTEGER)
+		do
+			state := new_state
+		end
+
 feature -- getter
+
+	is_active: BOOLEAN
+		do
+			Result := active
+		end
 
 	get_phases: STRING_TABLE [PHASE]
 		do
@@ -301,6 +318,7 @@ feature -- queries
 	out: STRING
 		do
 			create Result.make_from_string ("  ")
+
 		end
 
 feature -- misc
@@ -310,5 +328,7 @@ feature -- misc
 		do
 			make
 		end
+
+
 
 end

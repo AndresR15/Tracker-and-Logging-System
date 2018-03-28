@@ -18,8 +18,8 @@ redo
 undo
 redo
 undo
-redo
-redo
+new_container("001", [liquid, 1], "01")
+new_phase("02", "blah", 11, <<liquid>>)
 undo
 undo
 redo

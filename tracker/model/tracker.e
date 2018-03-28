@@ -184,10 +184,6 @@ feature -- setters
 
 feature -- getter
 
-	is_active: BOOLEAN
-		do
-			Result := active
-		end
 
 	get_phases: STRING_TABLE [PHASE]
 		do
@@ -209,7 +205,7 @@ feature -- error checks
 	is_active: BOOLEAN
 		-- are there any containers in the system
 		do
---			Result := sorted_conts.count = 0
+			Result := sorted_conts.count = 0
 
 		end
 
@@ -315,9 +311,42 @@ feature -- queries
 			end
 		end
 
+	output_sorted_phase (list: SORTED_TWO_WAY_LIST[PHASE]): STRING
+		do
+			create Result.make_from_string ("")
+			across
+				list as cursor
+			loop
+				Result.append (cursor.item.out)
+			end
+		end
+
+	output_sorted_cont (list: SORTED_TWO_WAY_LIST[PHASE_CONTAINER]): STRING
+			do
+				create Result.make_from_string ("")
+				across
+					list as cursor
+				loop
+					Result.append (cursor.item.out)
+				end
+			end
+
 	out: STRING
 		do
 			create Result.make_from_string ("  ")
+			Result.append("state ")
+			Result.append_integer(state)
+			Result.append(" " + error + "%N")
+			Result.append("  " + "max_phase_radiation: ")
+			Result.append(max_phase_rad.out)
+			Result.append(",%N")
+			Result.append("max_container_radiation: ")
+			Result.append(max_cont_rad.out)
+			Result.append("%N" + "  phases: pid->name:capacity,count,radiation%N")
+			Result.append(output_sorted_phase (sorted_phases))
+			Result.append("%N" + "  containers: cid->pid->material,radioactivity%N")
+			Result.append(output_sorted_cont (sorted_conts))
+
 
 		end
 

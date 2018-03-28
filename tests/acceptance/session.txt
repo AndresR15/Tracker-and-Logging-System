@@ -1,29 +1,27 @@
-new_tracker(200, 100)
-new_phase("A1", "ads", 10, <<glass>>)
-
-new_container("C1", [glass, 5], "A1")
+new_tracker(10,15)
+new_tracker(15,10)
 undo
 redo
-new_tracker(100, 30)
-remove_container("C1")
-new_tracker(100, 20)
+new_phase("01", "blah", 11, <<liquid>>)
+undo
+remove_phase("01")
 undo
 redo
-new_tracker(10, 1)
-undo
-new_container("C2", [glass, 1], "A1")
-undo
-redo
-redo
-undo
-redo
-undo
-redo
-redo
+new_phase("01", "blah", 11, <<liquid>>)
+remove_phase("01")
 undo
 undo
 redo
 redo
-undo
 redo
-new_container("C3", [glass, 1], "A1")
+undo
+new_container("001", [liquid, 1], "01")
+new_phase("02", "blah", 11, <<liquid>>)
+undo
+undo
+undo
+undo
+new_phase("01", "blah", 11, <<liquid>>)
+new_phase("02", "blah", 11, <<liquid>>)
+new_container("001", [liquid, 1], "01")
+new_container("002", [liquid, 1], "01")

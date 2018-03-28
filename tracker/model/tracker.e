@@ -26,6 +26,7 @@ feature {NONE} -- Initialization
 			Create zero.make_from_int (0)
 			Create list.make_equal_caseless (10)
 			Create sorted_phases.make
+			Create sorted_conts.make
 			phases := list
 			error := "ok"
 			active := False
@@ -40,6 +41,8 @@ feature {TRACKER} -- model attributes
 	phases: STRING_TABLE [PHASE]
 
 	sorted_phases: SORTED_TWO_WAY_LIST [PHASE]
+
+	sorted_conts: SORTED_TWO_WAY_LIST [PHASE_CONTAINER]
 
 	error: STRING
 
@@ -93,6 +96,7 @@ feature -- model operations
 			create cont.make (cid, cont_spec.m, cont_spec.rad, pid)
 			if attached phases [pid] as p then
 				p.add_container (cont)
+				sorted_conts.extend (cont)
 				create command.make (cid, cont_spec, pid)
 				history.add_to_record (command)
 			else
@@ -300,6 +304,7 @@ feature -- queries
 	out: STRING
 		do
 			create Result.make_from_string ("  ")
+
 		end
 
 feature -- misc

@@ -28,7 +28,6 @@ feature {NONE} -- Initialization
 			Create sorted_phases.make
 			phases := list
 			error := "ok"
-			active := False
 			state := 0
 			max_phase_rad := zero
 			max_cont_rad := zero
@@ -42,8 +41,6 @@ feature {TRACKER} -- model attributes
 	sorted_phases: SORTED_TWO_WAY_LIST [PHASE]
 
 	error: STRING
-
-	active: BOOLEAN
 
 	max_phase_rad: VALUE
 
@@ -68,6 +65,7 @@ feature -- model operations
 			create new_p.make (pid, phase_name, capacity, expected_materials)
 			phases.extend (new_p, pid)
 			sorted_phases.extend (new_p)
+			state := state + 1
 			create command.make (pid, phase_name, capacity, expected_materials)
 			history.add_to_record (command)
 		end
@@ -81,6 +79,7 @@ feature -- model operations
 		do
 			max_phase_rad := max_p_rad
 			max_cont_rad := max_c_rad
+			state := state + 1
 			create command.make
 			history.add_to_record (command)
 		end
@@ -93,6 +92,7 @@ feature -- model operations
 			create cont.make (cid, cont_spec.m, cont_spec.rad, pid)
 			if attached phases [pid] as p then
 				p.add_container (cont)
+				state := state + 1
 				create command.make (cid, cont_spec, pid)
 				history.add_to_record (command)
 			else
@@ -108,6 +108,7 @@ feature -- model operations
 			command: REMOVE_PHASE
 		do
 			phases.remove (phase_id)
+			state := state + 1
 			create command.make (phase_id)
 			history.add_to_record (command)
 		ensure
@@ -121,6 +122,7 @@ feature -- model operations
 			command: REMOVE_CONTAINER
 		do
 			cur_phase := get_phase_containing_cid (cid)
+			state := state + 1
 			if attached cur_phase as p then
 				p.remove_container (cid)
 				create command.make (cid)
@@ -140,6 +142,7 @@ feature -- model operations
 				temp_cont := cont
 				p1.remove_container (cid)
 				p2.add_container (temp_cont)
+				state := state + 1
 				create command.make (cid, pid1, pid2)
 				history.add_to_record (command)
 			end
@@ -155,6 +158,7 @@ feature -- model operations
 			e: ERROR
 		do
 			error := new_msg
+			state := state + 1
 			create e.make (error)
 			history.add_to_record (e)
 		end
@@ -166,17 +170,7 @@ feature -- setters
 			error := msg
 		end
 
-	set_state (new_state: INTEGER)
-		do
-			state := new_state
-		end
-
 feature -- getter
-
-	is_active: BOOLEAN
-		do
-			Result := active
-		end
 
 	get_phases: STRING_TABLE [PHASE]
 		do
@@ -194,6 +188,13 @@ feature -- getter
 		end
 
 feature -- error checks
+
+	is_active: BOOLEAN
+		-- are there any containers in the system
+		do
+--			Result := sorted_conts.count = 0
+
+		end
 
 	valid_string (s: STRING): BOOLEAN
 			-- does the string start with A-Z, a-z or 0-9?
@@ -309,7 +310,5 @@ feature -- misc
 		do
 			make
 		end
-
-
 
 end

@@ -24,6 +24,7 @@ feature -- Initialization
 			cid := init_cid
 			pid1 := init_pid1
 			pid2 := init_pid2
+			state := track.get_state
 			msg := "ok"
 		end
 

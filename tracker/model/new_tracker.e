@@ -19,6 +19,7 @@ feature	{NONE}
 			tracker_access: TRACKER_ACCESS
 		do
 			track := tracker_access.m
+			state := track.get_state
 			msg := "ok"
 		end
 

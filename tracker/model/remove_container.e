@@ -21,6 +21,7 @@ feature -- Initialization
 		do
 			track := tracker_access.m
 			cid := init_cid
+			state := track.get_state
 			msg := "ok"
 		end
 

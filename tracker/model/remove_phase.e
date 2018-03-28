@@ -21,6 +21,7 @@ feature -- Initialization
 		do
 			track := tracker_access.m
 			p_id := pid
+			state := track.get_state
 			msg := "ok"
 		end
 

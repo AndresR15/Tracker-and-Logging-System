@@ -27,3 +27,11 @@ redo
 undo
 redo
 new_container("C3", [glass, 1], "A1")
+undo
+redo
+undo
+undo
+undo
+new_container("02", [glass, 1], "A1")
+undo
+new_container("02", [glass, 1], "A1")

@@ -24,6 +24,7 @@ feature -- Initialization
 			cid := init_cid
 			material := cont_spec.m
 			rad := cont_spec.rad
+			state := track.get_state
 			msg := "ok"
 		end
 

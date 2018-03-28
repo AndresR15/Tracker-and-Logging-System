@@ -24,6 +24,7 @@ feature -- Initialization
 			p_name := pname
 			capacity := cap
 			expected_mats := mats
+			state := track.get_state
 			msg := "ok"
 		end
 

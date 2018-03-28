@@ -98,7 +98,7 @@ feature -- model operations
 			create cont.make (cid, cont_spec.m, cont_spec.rad, pid)
 			if attached phases [pid] as p then
 				p.add_container (cont)
-	
+
 				state := state + 1
 				sorted_conts.extend (cont)
 				create command.make (cid, cont_spec, pid)
@@ -331,7 +331,7 @@ feature -- queries
 				across
 					list as cursor
 				loop
-					Result.append (cursor.item.out)
+					Result.append (cursor.item.out + "%N")
 				end
 			end
 
@@ -346,9 +346,9 @@ feature -- queries
 			Result.append(",%N")
 			Result.append("max_container_radiation: ")
 			Result.append(max_cont_rad.out)
-			Result.append("%N" + "  phases: pid->name:capacity,count,radiation%N")
+			Result.append("%N" + "  phases: pid->name:capacity,count,radiation")
 			Result.append(output_sorted_phase (sorted_phases))
-			Result.append("%N" + "  containers: cid->pid->material,radioactivity%N")
+			Result.append("%N  containers: cid->pid->material,radioactivity")
 			Result.append(output_sorted_cont (sorted_conts))
 
 

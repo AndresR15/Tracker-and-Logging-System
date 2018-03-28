@@ -7,9 +7,7 @@ note
 class
 	HISTORY
 
-<<<<<<< HEAD
-=======
-Create
+create
 	make
 
 feature {NONE} --Instantiation
@@ -25,16 +23,48 @@ feature {HISTORY} -- Attributes
 
 feature -- Deleation
 
-	reset_list
+	reset_record
 		do
 			record.wipe_out
 		end
 
+	remove_all_right
+            --remove all items to the right of the cursor
+        do
+
+            from
+            until
+                record.islast
+            loop
+<<<<<<< HEAD
+
+                record.remove_right
+=======
+            	if record.count /= record.index then
+            		record.remove_right
+            	end
+>>>>>>> 551f974468449924afdad63c260176fa2bf5b35e
+            end
+ 		end
+
+feature -- Traverse
+
+
 feature -- Setters
 
 	add_to_record (c: COMMAND)
+		-- add a COMMAND object to record
 		do
+<<<<<<< HEAD
+			remove_all_right
 			record.extend (c)
+			record.forth
+=======
+
+			record.extend (c)
+			record.forth
+			remove_all_right
+>>>>>>> 551f974468449924afdad63c260176fa2bf5b35e
 		end
 
 feature -- Getters
@@ -43,6 +73,5 @@ feature -- Getters
 		do
 			Result := record
 		end
->>>>>>> 1c0c9a89026a5194f5054d4a83a29f1490a75afc
 
 end

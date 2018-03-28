@@ -34,7 +34,7 @@ feature -- Output
 			across
 				list as cursor
 			loop
-				Result.append (cursor.item.out + "%N")
+				Result.append ("   " + cursor.item.out + "%N")
 			end
 		end
 

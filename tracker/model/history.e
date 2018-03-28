@@ -7,7 +7,7 @@ note
 class
 	HISTORY
 
-Create
+create
 	make
 
 feature {NONE} --Instantiation
@@ -30,18 +30,18 @@ feature -- Deleation
 
 	remove_all_right
             --remove all items to the right of the cursor
-        require
-            cursor_not_last: not get_record.islast
-        do
 
+
+        do
             from
             until
                 record.islast
             loop
-
-                record.remove_right
+            	if record.count /= record.index then
+            		record.remove_right
+            	end
             end
-        end
+ 		end
 
 feature -- Traverse
 
@@ -51,9 +51,11 @@ feature -- Setters
 	add_to_record (c: COMMAND)
 		-- add a COMMAND object to record
 		do
-			remove_all_right
+
 			record.extend (c)
 			record.forth
+			remove_all_right
+
 		end
 
 feature -- Getters

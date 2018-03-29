@@ -37,7 +37,7 @@ feature -- command
 				model.store_error (msg.container_lt_phase)
 			else
 				create command.make (max_phase_radiation, max_container_radiation)
-				model.get_history.add_to_record (command)
+				model.get_history.reset_record_and_append(command)
 				command.execute
 			end
 			etf_cmd_container.on_change.notify ([Current])

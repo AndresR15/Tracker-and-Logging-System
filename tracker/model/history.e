@@ -23,9 +23,11 @@ feature {HISTORY} -- Attributes
 
 feature -- Deleation
 
-	reset_record
+	reset_record_and_append (c: COMMAND)
 		do
 			record.wipe_out
+			record.extend (c)
+			record.finish
 		end
 
 	remove_all_right

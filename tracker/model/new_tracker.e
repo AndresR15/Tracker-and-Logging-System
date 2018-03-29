@@ -43,7 +43,7 @@ feature
 
 	redo
 		do
-			-- nothing
+			execute
 		end
 
 end

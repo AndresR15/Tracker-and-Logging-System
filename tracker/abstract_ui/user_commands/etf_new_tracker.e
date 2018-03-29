@@ -41,7 +41,7 @@ feature -- command
 
 			if error /~ msg.ok then
 				create e_command.make (error)
-				model.get_history.reset_record_and_append(e_command)
+				model.get_history.add_to_record(e_command)
 				e_command.execute
 			else
 				create command.make (max_phase_radiation, max_container_radiation)

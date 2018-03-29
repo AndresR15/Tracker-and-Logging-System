@@ -23,48 +23,49 @@ feature {HISTORY} -- Attributes
 
 feature -- Deleation
 
-	reset_record
+<<<<<<< HEAD
+	reset_record_and_append(c: COMMAND)
+=======
+	reset_record_and_append (c: COMMAND)
+>>>>>>> 40a0f882ebbad2f4f24f394cc5453674e46980db
 		do
 			record.wipe_out
+			record.extend (c)
+			record.finish
 		end
 
 	remove_all_right
             --remove all items to the right of the cursor
         do
-
             from
             until
                 record.islast
             loop
-<<<<<<< HEAD
-
-                record.remove_right
-=======
             	if record.count /= record.index then
             		record.remove_right
             	end
->>>>>>> 551f974468449924afdad63c260176fa2bf5b35e
             end
  		end
 
 feature -- Traverse
-
+--	move_right
+--		do
+--			if not record.after then
+--				record.forth
+--			
+--			end
+--		end
 
 feature -- Setters
 
 	add_to_record (c: COMMAND)
 		-- add a COMMAND object to record
 		do
-<<<<<<< HEAD
-			remove_all_right
-			record.extend (c)
-			record.forth
-=======
 
 			record.extend (c)
 			record.forth
 			remove_all_right
->>>>>>> 551f974468449924afdad63c260176fa2bf5b35e
+
 		end
 
 feature -- Getters

@@ -44,7 +44,7 @@ feature -- command
 				create e_command.make (error)
 			else
 				create command.make (max_phase_radiation, max_container_radiation)
-				model.get_history.reset_record_and_append (command)
+				model.get_history.reset_record_and_append(command)
 				command.execute
 			end
 			etf_cmd_container.on_change.notify ([Current])

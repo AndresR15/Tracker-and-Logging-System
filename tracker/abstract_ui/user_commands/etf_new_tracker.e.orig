@@ -6,21 +6,51 @@ note
 
 class
 	ETF_NEW_TRACKER
+
 inherit
+
 	ETF_NEW_TRACKER_INTERFACE
-		redefine new_tracker end
+		redefine
+			new_tracker
+		end
+
 create
 	make
+
 feature -- command
-	new_tracker(max_phase_radiation: VALUE ; max_container_radiation: VALUE)
-    	do
-			-- perform some update on the model state
+
+	new_tracker (max_phase_radiation: VALUE; max_container_radiation: VALUE)
+		local
+			e_command: ERROR
+			command: NEW_TRACKER
+			error_msg: STRING
+		do
+				-- perform some update on the model state
+			model.set_error (msg.ok)
+			model.set_state (model.get_state + 1)
+			if model.is_active then
+				model.store_error (msg.in_use)
+			elseif (max_phase_radiation < 0.0) then
+				model.store_error (msg.non_neg_phase_rad)
+			elseif (max_container_radiation < 0.0) then
+				model.store_error (msg.non_neg_container_rad)
+			elseif (max_container_radiation > max_phase_radiation) then
+				model.store_error (msg.container_lt_phase)
+			else
+				error := msg.ok
+			end
+
+			if error /~ msg.ok then
+				create e_command.make (error)
+			else
+				create command.make (max_phase_radiation, max_container_radiation)
 <<<<<<< HEAD
-
+				model.get_history.reset_record_and_append (command)
 =======
-			
->>>>>>> 3acdaa22a77d2503e84c2bf0d5292faccff45ab1
+				model.get_history.reset_record_and_append(command)
+>>>>>>> 40a0f882ebbad2f4f24f394cc5453674e46980db
+				command.execute
+			end
 			etf_cmd_container.on_change.notify ([Current])
-    	end
-
+		end
 end

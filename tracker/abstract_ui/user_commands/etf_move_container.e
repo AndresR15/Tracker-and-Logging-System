@@ -50,12 +50,12 @@ feature -- command
 
 				if error /~ msg.ok then
 					create e_command.make (error)
-					e_command.execute
 					model.get_history.add_to_record (e_command)
+					e_command.execute
 				else
 					create command.make (cid, pid1, pid2)
-					command.execute
 					model.get_history.add_to_record (command)
+					command.execute
 				end
 
 				etf_cmd_container.on_change.notify ([Current])

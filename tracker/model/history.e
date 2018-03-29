@@ -30,8 +30,6 @@ feature -- Deleation
 
 	remove_all_right
             --remove all items to the right of the cursor
-
-
         do
             from
             until
@@ -44,7 +42,13 @@ feature -- Deleation
  		end
 
 feature -- Traverse
-
+--	move_right
+--		do
+--			if not record.after then
+--				record.forth
+--			
+--			end
+--		end
 
 feature -- Setters
 

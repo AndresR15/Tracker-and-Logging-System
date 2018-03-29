@@ -19,6 +19,7 @@ feature -- command
 			if model.get_history.get_record.isfirst then
 				model.set_error (msg.no_redo)
 			else
+				model.get_history.get_record.forth
 				model.get_history.get_record.item.redo
 			end
 			etf_cmd_container.on_change.notify ([Current])

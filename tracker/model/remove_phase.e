@@ -22,12 +22,14 @@ feature -- Initialization
 			track := tracker_access.m
 			p_id := pid
 			state := track.get_state
+			prev_phase := track.get_phases.at (pid)
 			msg := "ok"
 		end
 
 feature -- Attributes
 
 	p_id: STRING
+	prev_phase: detachable PHASE
 
 feature
 
@@ -38,8 +40,9 @@ feature
 
 	undo
 		do
-			track.get_history.get_record.back
-			execute
+			if attached prev_phase as p_p then
+				track.new_phase (p_id, p_p.get_name, p_p.get_capacity, p_p.get_mats)
+			end
 		end
 
 	redo

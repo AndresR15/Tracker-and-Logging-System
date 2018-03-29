@@ -20,6 +20,8 @@ feature -- command
 						model.set_error (msg.no_undo)
 			else
 				model.get_history.get_record.item.undo
+				model.get_history.get_record.back
+				model.get_history.get_record.item.execute
 			end
 			etf_cmd_container.on_change.notify ([Current])
     	end

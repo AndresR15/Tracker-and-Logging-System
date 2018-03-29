@@ -41,8 +41,7 @@ feature
 
 	undo
 		do
-			track.get_history.get_record.back
-			execute
+			track.move_container (cid, pid2, pid1)
 		end
 
 	redo

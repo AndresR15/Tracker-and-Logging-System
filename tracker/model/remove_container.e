@@ -8,6 +8,7 @@ class
 	REMOVE_CONTAINER
 
 inherit
+
 	COMMAND
 
 create
@@ -22,6 +23,7 @@ feature -- Initialization
 			track := tracker_access.m
 			cid := init_cid
 			state := track.get_state
+			prev_container := tracker_access.m.get_container (cid)
 			msg := "ok"
 		end
 
@@ -29,18 +31,21 @@ feature -- Attributes
 
 	cid: STRING
 
+	prev_container: detachable PHASE_CONTAINER
 
 feature
 
 	execute
 		do
-			track.remove_container(cid)
+			track.remove_container (cid)
 		end
 
 	undo
 		do
-			track.get_history.get_record.back
-			execute
+			if attached prev_container as p_c then
+				track.new_container (cid, [p_c.get_material, p_c.get_rad], p_c.get_pid)
+			end
+
 		end
 
 	redo

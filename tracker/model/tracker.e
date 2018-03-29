@@ -177,6 +177,16 @@ feature -- getter
 			Result := state
 		end
 
+	get_max_cont_rad: VALUE
+		do
+			Result := max_cont_rad
+		end
+
+	get_max_phase_rad: VALUE
+		do
+			Result := max_phase_rad
+		end
+
 feature -- error checks
 
 	is_active: BOOLEAN
@@ -239,15 +249,7 @@ feature -- error checks
 			end
 		end
 
-	get_max_cont_rad: VALUE
-		do
-			Result := max_cont_rad
-		end
 
-	get_max_phase_rad: VALUE
-		do
-			Result := max_phase_rad
-		end
 
 feature -- error checks
 

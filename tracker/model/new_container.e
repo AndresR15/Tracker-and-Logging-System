@@ -45,9 +45,7 @@ feature
 
 	undo
 		do
-			track.get_history.get_record.back
-			-- change to inverse
-			execute
+			track.remove_container (cid)
 		end
 
 	redo

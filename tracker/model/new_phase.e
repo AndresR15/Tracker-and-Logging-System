@@ -45,8 +45,7 @@ feature
 
 	undo
 		do
-			track.get_history.get_record.back
-			execute
+			track.remove_phase(p_id)
 		end
 
 	redo

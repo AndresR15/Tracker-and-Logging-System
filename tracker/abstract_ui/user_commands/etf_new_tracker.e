@@ -23,7 +23,7 @@ feature -- command
 		local
 			e_command: ERROR
 			command: NEW_TRACKER
-			error_msg: STRING
+			error: STRING
 		do
 				-- perform some update on the model state
 			model.set_error (msg.ok)

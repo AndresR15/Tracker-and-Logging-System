@@ -21,6 +21,7 @@ feature -- command
 			else
 				model.get_history.get_record.forth
 				model.get_history.get_record.item.redo
+				model.get_history.get_record.item.set_state
 			end
 			etf_cmd_container.on_change.notify ([Current])
     	end

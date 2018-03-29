@@ -1,14 +1,3 @@
 new_tracker(20,10)
-new_phase("A","clean", 3, <<liquid,glass,metal,plastic>>)
-new_phase("B","dirty", 5, <<glass>>)
-new_phase("C","rojas", 1, <<metal>>)
-new_phase("E","rojas", 1, <<metal>>)
-new_phase("F","clear", 3, <<metal>>)
-new_container("A1", [metal, 2], "A")
-move_container("A1", "A", "C")
-undo
-undo
-undo
-undo
-undo
+new_phase("A", "clean", 3, <<metal>>)
 undo

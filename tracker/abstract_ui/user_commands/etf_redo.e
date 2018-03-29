@@ -16,7 +16,7 @@ feature -- command
     	do
 			-- perform some update on the model state
 			model.set_state (model.get_state + 1)
-			if model.get_history.get_record.isfirst then
+			if model.get_history.get_record.islast then
 				model.set_error (msg.no_redo)
 			else
 				model.get_history.get_record.forth

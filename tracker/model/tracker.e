@@ -52,7 +52,7 @@ feature {TRACKER} -- model attributes
 
 	max_cont_rad: VALUE
 
-	state: INTEGER
+	state, cursor_state: INTEGER
 
 	history: HISTORY
 
@@ -99,7 +99,13 @@ feature -- model operations
 		require
 			phase_exists: get_phases.has (phase_id)
 		do
+			if attached phases[phase_id] as p then
+				sorted_phases.prune_all (p)
+			end
+
 			phases.remove (phase_id)
+
+
 		ensure
 			phase_removed: not (phases.has_key (phase_id))
 		end
@@ -157,6 +163,13 @@ feature -- setters
 	set_state (new_state: INTEGER)
 		do
 			state := new_state
+		end
+
+	set_cursor_state(state: INTEGER)
+		require
+			cursor_state_not_over: cursor_state <= get_state
+		do
+			cursor_state := cur_state
 		end
 
 feature -- getter
@@ -299,6 +312,11 @@ feature -- queries
 		do
 			create Result.make_from_string ("  state ")
 			Result.append_integer (state)
+			if cursor_state < state then
+				Result.append ("(to")
+				Result.append_integer(cursor_state)
+				Result.append(") ")
+			end
 			Result.append (" " + error)
 			if (error = msg.ok) then
 				Result.append("%N  max_phase_radiation: ")

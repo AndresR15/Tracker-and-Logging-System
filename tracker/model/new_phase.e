@@ -41,7 +41,6 @@ feature
 	execute
 		do
 			track.new_phase(p_id, p_name, capacity, expected_mats)
-			track.set_cursor_state (state)
 		end
 
 	undo

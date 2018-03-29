@@ -90,7 +90,7 @@ feature -- model operations
 			if attached phases [pid] as p then
 				p.add_container (cont)
 				sorted_conts.extend (cont)
-	
+
 			end
 		end
 
@@ -310,10 +310,10 @@ feature -- queries
 		do
 			create Result.make_from_string ("  state ")
 			Result.append_integer (state)
-			if cursor_state < state then
-				Result.append ("(to")
+			if cursor_state /= state then
+				Result.append (" (to ")
 				Result.append_integer(cursor_state)
-				Result.append(") ")
+				Result.append(")")
 			end
 			Result.append (" " + error)
 			if (error = msg.ok) then

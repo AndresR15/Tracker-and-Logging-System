@@ -1,0 +1,113 @@
+new_phase("a","b",2,<<glass>>)
+new_phase("a","b",2,<<glass>>)
+
+--new_container("a","b",2,<<glass>>)
+new_phase("luca","zeni",2,<<liquid, metal, plastic, glass>>)
+new_phase("allison","cecilio", 2,<<liquid>>)
+undo
+undo
+undo
+redo
+redo
+redo
+redo
+new_container("t",[glass, 0.5], "a")
+undo
+undo
+redo
+redo
+new_tracker(50,100)
+undo
+redo
+new_tracker(50,20)
+new_container("t",[glass, 0.5], "a")
+move_container("t","a","luca")
+undo
+undo
+redo
+redo
+remove_container("t")
+undo
+redo
+remove_phase("allison")
+undo
+redo
+new_container("j",[glass, 21],"luca")
+undo
+undo
+redo
+redo
+new_container("j",[glass, 20], "a")
+new_container("y",[glass, 20], "a")
+new_container("r",[glass, 20], "luca")
+move_container("r","luca","a")
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+redo
+redo
+redo
+redo
+redo
+move_container("z","a","b")
+new_tracker(50,20)
+undo
+redo
+new_phase("weee","hoo",2,<<plastic>>)
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+new_phase("killme","now",2,<<metal,plastic,glass,liquid>>)
+new_phase("cherry","coke",2,<<plastic>>)
+new_phase("ihate","school",1,<<metal,plastic,glass>>)
+new_container("justkidding",[glass, 20], "killme")
+new_tracker(100,20)
+new_container("fortnite",[metal, 15], "ihate")
+remove_phase("ihate")
+undo
+redo
+remove_phase("killme")
+undo
+undo
+redo
+redo
+undo
+move_container("justkidding","killme","ihate")
+remove_container("justkidding")
+move_container("fortnite","ihate","cherry")
+undo
+redo
+redo
+undo
+undo
+undo
+undo
+undo
+redo
+redo
+redo
+redo
+redo
+
+
+
+

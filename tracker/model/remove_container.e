@@ -38,7 +38,6 @@ feature
 	execute
 		do
 			track.remove_container (cid)
-			track.set_cursor_state (state)
 		end
 
 	undo

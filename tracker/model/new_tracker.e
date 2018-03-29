@@ -34,7 +34,6 @@ feature
 	execute
 		do
 			track.new_tracker(max_phase_rad, max_cont_rad)
-			track.set_cursor_state (state)
 		end
 
 	undo

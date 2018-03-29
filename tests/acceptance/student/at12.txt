@@ -1,0 +1,96 @@
+undo
+undo
+redo
+redo
+new_container("a",[glass, 0], "a")
+new_tracker(10,5)
+undo
+redo
+undo
+redo
+undo
+undo
+redo
+new_phase("1","a",1,<<glass>>)
+undo
+redo
+undo
+redo
+new_phase("2","b",5,<<glass,metal,plastic,glass>>)
+new_phase("3","c",2,<<glass,liquid>>)
+new_phase("4","d",5,<<metal>>)
+new_container("",[glass, 6],"1")
+undo
+undo
+undo
+redo
+redo
+redo
+new_container("a",[glass, 6],"")
+new_container("69",[glass, 6],"1")
+new_container("69",[glass, 5],"1")
+new_container("69.999",[glass, 5],"1")
+undo
+redo
+new_container("69.999",[glass, 5],"")
+new_container("69.999",[glass, 5]," ")
+new_container("69.999",[metal, 5],"3")
+new_container("69.999",[glass, -5.7876],"3")
+new_container("69",[glass, 5],"2")
+undo
+undo
+undo
+undo
+redo
+redo
+redo
+redo
+remove_phase("1")
+undo
+undo
+redo
+redo
+remove_container("420blazeit")
+undo
+undo
+redo
+redo
+remove_container("69")
+undo
+undo
+redo
+redo
+remove_phase("lucazeni")
+undo
+undo
+undo
+redo
+redo
+redo
+remove_phase("1")
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+redo
+redo
+redo
+redo
+redo
+redo
+redo
+redo
+redo
+redo
+
+
+
+
+
+
+
+

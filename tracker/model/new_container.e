@@ -41,7 +41,6 @@ feature
 	execute
 		do
 			track.new_container(cid, [material, rad], pid)
-			track.set_cursor_state (state)
 		end
 
 	undo

@@ -1,0 +1,80 @@
+undo
+undo
+move_container ("cid5", "pid2", "pid1")
+undo
+redo
+redo
+redo
+undo
+undo
+undo
+new_tracker(50.0, 10.0)
+undo
+undo
+undo
+redo
+redo
+redo
+undo
+undo
+undo
+new_phase("pid2", "Compacting", 3, <<glass, metal, liquid>>)
+undo
+undo
+undo
+redo
+redo
+redo
+undo
+undo
+undo
+new_phase("pid1", "Compacting", 2, <<glass, metal, plastic>>)
+undo
+undo
+undo
+redo
+redo
+redo
+undo
+undo
+undo
+new_container("cid4", [metal,   3.0], "pid2")
+undo
+undo
+undo
+redo
+redo
+redo
+undo
+undo
+undo
+new_container("cid5", [metal,   2.0], "pid2")
+undo
+undo
+undo
+redo
+redo
+redo
+undo
+undo
+undo
+move_container ("cid4", "pid2", "pid1")
+undo
+undo
+undo
+redo
+redo
+redo
+undo
+undo
+undo
+move_container ("cid5", "pid2", "pid1")
+undo
+undo
+undo
+redo
+redo
+redo
+undo
+undo
+undo

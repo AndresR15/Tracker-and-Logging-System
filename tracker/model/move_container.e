@@ -37,7 +37,6 @@ feature
 	execute
 		do
 			track.move_container (cid, pid1, pid2)
-			track.set_cursor_state (state)
 		end
 
 	undo

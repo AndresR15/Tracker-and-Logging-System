@@ -29,4 +29,9 @@ feature
 		deferred
 		end
 
+	set_state
+		do
+			track.set_cursor_state (state)
+		end
+
 end

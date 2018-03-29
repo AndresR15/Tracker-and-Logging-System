@@ -1,0 +1,35 @@
+undo
+undo
+redo
+redo
+new_phase("gg","nore",1000000000,<<glass,plastic,plastic,plastic,glass,metal,plastic>>)
+undo
+undo
+redo
+redo
+new_phase("","",0,<<>>)
+undo
+undo
+redo
+redo
+
+new_phase("1.924","1215.6",1,<<glass>>)
+new_phase("2","",0,<<>>)
+new_phase(" ","",0,<<>>)
+new_phase("apple","",0,<<>>)
+new_phase("gg","2",0,<<>>)
+undo
+undo
+redo
+redo
+undo
+new_phase("apple","3",0,<<>>)
+new_phase("apple","2",1,<<>>)
+new_phase("apple","7",1,<<metal,metal,metal,glass,glass,glass,plastic>>)
+new_phase("apple"," ",0,<<>>)
+new_phase("apple","banana",0,<<>>)
+undo
+undo
+redo
+redo
+

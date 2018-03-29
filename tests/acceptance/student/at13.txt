@@ -1,0 +1,72 @@
+move_container("a","b","b")
+undo
+undo
+redo
+redo
+new_tracker(1000,400.0000000001)
+new_phase("1.5","3.14159",5,<<metal, glass, liquid, plastic>>)
+new_phase("billy","jean",1,<<metal>>)
+new_phase("ytv","thezone",1,<<metal>>)
+new_tracker(50,26)
+new_container("a",[glass, 0], "1.5")
+move_container("a","z","z")
+undo
+undo
+redo
+redo
+move_container("a","0.15","800085")
+redo
+redo
+undo
+undo
+undo
+redo
+redo
+redo
+move_container("a","billy","1.5")
+redo
+undo
+new_tracker(50,26)
+undo
+redo
+redo
+new_container("t-rex",[metal, 26], "1.5")
+new_container("rhino",[metal, 26], "billy")
+move_container("t-rex","1.5","billy")
+undo
+undo
+redo
+redo
+move_container("rhino","billy","1.5")
+undo
+undo
+undo
+redo
+redo
+redo
+new_container("c1",[liquid, 0], "1.5")
+move_container("c1","1.5", "ytv")
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+redo
+redo
+redo
+undo
+redo
+redo
+redo
+redo
+redo
+redo
+redo
+redo
+new_container("g",[metal, 1000], "ytv")
+

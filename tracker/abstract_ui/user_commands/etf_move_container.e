@@ -59,8 +59,6 @@ feature -- command
 				end
 
 				etf_cmd_container.on_change.notify ([Current])
-			else
-					-- do nothing
 			end
 		end
 

@@ -26,22 +26,23 @@ feature -- command
 			error: STRING
 		do
 				-- perform some update on the model state
-			model.set_error (msg.ok)
 			model.set_state (model.get_state + 1)
 			if model.is_active then
-				model.store_error (msg.in_use)
+				error := (msg.in_use)
 			elseif (max_phase_radiation < 0.0) then
-				model.store_error (msg.non_neg_phase_rad)
+				error := (msg.non_neg_phase_rad)
 			elseif (max_container_radiation < 0.0) then
-				model.store_error (msg.non_neg_container_rad)
+				error := (msg.non_neg_container_rad)
 			elseif (max_container_radiation > max_phase_radiation) then
-				model.store_error (msg.container_lt_phase)
+				error := (msg.container_lt_phase)
 			else
 				error := msg.ok
 			end
 
 			if error /~ msg.ok then
 				create e_command.make (error)
+				model.get_history.reset_record_and_append(e_command)
+				e_command.execute
 			else
 				create command.make (max_phase_radiation, max_container_radiation)
 				model.get_history.reset_record_and_append(command)

@@ -66,40 +66,29 @@ feature -- model operations
 			expected_materials_non_empty: expected_materials.count > 0
 		local
 			new_p: PHASE
-			command: NEW_PHASE
 		do
 			create new_p.make (pid, phase_name, capacity, expected_materials)
 			phases.extend (new_p, pid)
 			sorted_phases.extend (new_p)
-
-			create command.make (pid, phase_name, capacity, expected_materials)
-			history.add_to_record (command)
 		end
 
 	new_tracker (max_p_rad, max_c_rad: VALUE)
 		require
 			positive_values: max_p_rad > 0.0 and then max_c_rad > 0.0
 			tracker_not_active: not is_active
-		local
-			command: NEW_TRACKER
 		do
 			max_phase_rad := max_p_rad
 			max_cont_rad := max_c_rad
-			create command.make
-			history.add_to_record (command)
 		end
 
 	new_container (cid: STRING; cont_spec: TUPLE [m: INTEGER_64; rad: VALUE]; pid: STRING)
 		local
 			cont: PHASE_CONTAINER
-			command: NEW_CONTAINER
 		do
 			create cont.make (cid, cont_spec.m, cont_spec.rad, pid)
 			if attached phases [pid] as p then
 				p.add_container (cont)
 				sorted_conts.extend (cont)
-				create command.make (cid, cont_spec, pid)
-				history.add_to_record (command)
 			else
 					-- do nothing
 			end

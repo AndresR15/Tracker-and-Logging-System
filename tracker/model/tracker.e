@@ -159,8 +159,10 @@ feature -- setters
 		end
 
 	set_state (new_state: INTEGER)
+		-- sets both the state and the cursor state to state
 		do
 			state := new_state
+			set_cursor_state(state)
 		end
 
 	set_cursor_state(cur_state: INTEGER)

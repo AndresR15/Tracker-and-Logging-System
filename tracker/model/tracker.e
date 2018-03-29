@@ -22,13 +22,14 @@ feature {NONE} -- Initialization
 		local
 			list: STRING_TABLE [PHASE]
 			zero: VALUE
+			msg: MESSAGES_ACCESS
 		do
 			Create zero.make_from_int (0)
 			Create list.make_equal_caseless (10)
 			Create sorted_phases.make
 			Create sorted_conts.make
 			phases := list
-			error := "ok"
+			error := msg.ok
 			active := False
 			state := 0
 			cursor_state := 0

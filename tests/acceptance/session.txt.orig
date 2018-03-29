@@ -1,18 +1,4 @@
 <<<<<<< HEAD
-new_phase("A", "a'", -1, <<metal>>)
-new_phase("A", "", 2, <<metal>>)
-new_phase("A", "a'", 1, <<>>)
-undo
-undo
-redo
-redo
-undo
-undo
-redo
-redo
-redo
-new_tracker(-10, 20)
-undo
 =======
 new_tracker(20,10)
 new_phase("A","clean", 3, <<liquid,glass,metal,plastic>>)
@@ -23,4 +9,9 @@ new_phase("F","clear", 3, <<metal>>)
 new_container("A1", [metal, 2], "A")
 move_container("A1", "A", "C")
 undo
->>>>>>> bea7330ca1ba1bd2c401cd29954230d08136ae30
+>>>>>>> 1bb4cae2a4372705c6c2409d8f6fdcf6cdab539f
+undo
+undo
+undo
+undo
+undo

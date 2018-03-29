@@ -31,6 +31,7 @@ feature {NONE} -- Initialization
 			error := "ok"
 			active := False
 			state := 0
+			cursor_state := 0
 			max_phase_rad := zero
 			max_cont_rad := zero
 			create history.make
@@ -52,7 +53,7 @@ feature {TRACKER} -- model attributes
 
 	max_cont_rad: VALUE
 
-	state: INTEGER
+	state, cursor_state: INTEGER
 
 	history: HISTORY
 
@@ -66,48 +67,29 @@ feature -- model operations
 			expected_materials_non_empty: expected_materials.count > 0
 		local
 			new_p: PHASE
-			command: NEW_PHASE
 		do
 			create new_p.make (pid, phase_name, capacity, expected_materials)
 			phases.extend (new_p, pid)
 			sorted_phases.extend (new_p)
-			state := state + 1
-			create command.make (pid, phase_name, capacity, expected_materials)
-			history.add_to_record (command)
 		end
 
 	new_tracker (max_p_rad, max_c_rad: VALUE)
 		require
 			positive_values: max_p_rad > 0.0 and then max_c_rad > 0.0
 			tracker_not_active: not is_active
-		local
-			command: NEW_TRACKER
 		do
 			max_phase_rad := max_p_rad
 			max_cont_rad := max_c_rad
-			state := state + 1
-			create command.make
-			history.add_to_record (command)
 		end
 
 	new_container (cid: STRING; cont_spec: TUPLE [m: INTEGER_64; rad: VALUE]; pid: STRING)
 		local
 			cont: PHASE_CONTAINER
-			command: NEW_CONTAINER
 		do
 			create cont.make (cid, cont_spec.m, cont_spec.rad, pid)
 			if attached phases [pid] as p then
 				p.add_container (cont)
-<<<<<<< HEAD
-
-=======
->>>>>>> 797057ef2db5ed4d124c23df415c2afefacecf65
-				state := state + 1
 				sorted_conts.extend (cont)
-				create command.make (cid, cont_spec, pid)
-				history.add_to_record (command)
-			else
-					-- do nothing
 			end
 		end
 
@@ -115,13 +97,17 @@ feature -- model operations
 			-- removes a phase from the tracker
 		require
 			phase_exists: get_phases.has (phase_id)
-		local
-			command: REMOVE_PHASE
 		do
+			if attached phases[phase_id] as p then
+				sorted_phases.prune_all (p)
+			end
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1bb4cae2a4372705c6c2409d8f6fdcf6cdab539f
 			phases.remove (phase_id)
-			state := state + 1
-			create command.make (phase_id)
-			history.add_to_record (command)
+
+
 		ensure
 			phase_removed: not (phases.has_key (phase_id))
 		end
@@ -131,18 +117,12 @@ feature -- model operations
 		local
 			cur_phase: PHASE
 			cur_cont: PHASE_CONTAINER
-			command: REMOVE_CONTAINER
 		do
 			cur_phase := get_phase_containing_cid (cid)
 			cur_cont := get_container (cid)
 			if attached cur_phase as p and then attached cur_cont as c then
 				sorted_conts.prune_all (c)
 				p.remove_container (cid)
-				state := state + 1
-				create command.make (cid)
-				history.add_to_record (command)
-			else
-					-- do nothing
 			end
 		end
 
@@ -150,15 +130,12 @@ feature -- model operations
 			-- moves a container from a source phase to a target phase
 		local
 			temp_cont: PHASE_CONTAINER
-			command: MOVE_CONTAINER
 		do
 			if attached get_container (cid) as cont and then attached phases [pid1] as p1 and then attached phases [pid2] as p2 then
 				temp_cont := cont
 				p1.remove_container (cid)
 				p2.add_container (temp_cont)
-				state := state + 1
-				create command.make (cid, pid1, pid2)
-				history.add_to_record (command)
+				cont.set_pid(pid2)
 			end
 		ensure
 			container_exists: cid_exists (cid)
@@ -172,7 +149,6 @@ feature -- model operations
 			e: ERROR
 		do
 			error := new_msg
-			state := state + 1
 			create e.make (error)
 			history.add_to_record (e)
 		end
@@ -188,6 +164,24 @@ feature -- setters
 		do
 			state := new_state
 		end
+
+<<<<<<< HEAD
+	set_cursor_state(cur_state: INTEGER)
+		require
+			cursor_state_not_over: cur_state <= get_state
+		do
+			cursor_state := cur_state
+		end
+=======
+	set_cursor_state(state: INTEGER)
+		require
+			cursor_state_not_over: cursor_state <= get_state
+		do
+			cursor_state := cur_state
+		end
+
+feature -- getter
+>>>>>>> 1bb4cae2a4372705c6c2409d8f6fdcf6cdab539f
 
 feature -- getter
 
@@ -206,12 +200,23 @@ feature -- getter
 			Result := state
 		end
 
+	get_max_cont_rad: VALUE
+		do
+			Result := max_cont_rad
+		end
+
+	get_max_phase_rad: VALUE
+		do
+			Result := max_phase_rad
+		end
+
 feature -- error checks
 
 	is_active: BOOLEAN
 			-- are there any containers in the system
 		do
-			Result := sorted_conts.count = 0
+			Result := sorted_conts.count > 0
+
 		end
 
 	valid_string (s: STRING): BOOLEAN
@@ -252,30 +257,19 @@ feature -- error checks
 			end
 		end
 
-	mats_not_in_phase (mat: INTEGER_64; pid: STRING): BOOLEAN
+	phase_expects_mat (mat: INTEGER_64; pid: STRING): BOOLEAN
 			-- does the phase expect this container material?
 		do
+			Result := FALSE
 			if attached phases [pid] as p then
 				across
 					p.get_mats as cm
 				loop
-					if cm.item ~ mat then
-						Result := FALSE
-					else
+					if cm.item = mat then
 						Result := TRUE
 					end
 				end
 			end
-		end
-
-	get_max_cont_rad: VALUE
-		do
-			Result := max_cont_rad
-		end
-
-	get_max_phase_rad: VALUE
-		do
-			Result := max_phase_rad
 		end
 
 feature -- error checks
@@ -306,6 +300,7 @@ feature -- queries
 
 	get_container (cid: STRING): detachable PHASE_CONTAINER
 		do
+
 			across
 				phases as cursor
 			loop
@@ -315,75 +310,41 @@ feature -- queries
 			end
 		end
 
-	output_sorted_phase (list: SORTED_TWO_WAY_LIST [PHASE]): STRING
-		local
-			stwl_printer: STWL_OUT [PHASE]
-		do
-			create stwl_printer.make (list)
-			Result := stwl_printer.out
-		end
 
-<<<<<<< HEAD
-	output_sorted_cont (list: SORTED_TWO_WAY_LIST[PHASE_CONTAINER]): STRING
-			do
-				create Result.make_from_string ("")
-				across
-					list as cursor
-				loop
-					Result.append (cursor.item.out + "%N")
-				end
-			end
-=======
-	output_sorted_cont (list: SORTED_TWO_WAY_LIST [PHASE_CONTAINER]): STRING
-		local
-			stwl_printer: STWL_OUT [PHASE_CONTAINER]
-		do
-			create stwl_printer.make (list)
-			Result := stwl_printer.out
-		end
->>>>>>> 797057ef2db5ed4d124c23df415c2afefacecf65
 
 	out: STRING
 		local
 			stwl_c: STWL_OUT [PHASE_CONTAINER]
 			stwl_p: STWL_OUT [PHASE]
+			msg : MESSAGES_ACCESS
 		do
-<<<<<<< HEAD
-			create Result.make_from_string ("  ")
-			Result.append("state ")
-			Result.append_integer(state)
-			Result.append(" " + error + "%N")
-			Result.append("  " + "max_phase_radiation: ")
-			Result.append(max_phase_rad.out)
-			Result.append(",%N")
-			Result.append("max_container_radiation: ")
-			Result.append(max_cont_rad.out)
-			Result.append("%N" + "  phases: pid->name:capacity,count,radiation")
-			Result.append(output_sorted_phase (sorted_phases))
-			Result.append("%N  containers: cid->pid->material,radioactivity")
-			Result.append(output_sorted_cont (sorted_conts))
-
-=======
 			create Result.make_from_string ("  state ")
 			Result.append_integer (state)
-			Result.append (" " + error + "%N  max_phase_radiation: ")
-			Result.append (max_phase_rad.out)
-			Result.append (",%Nmax_container_radiation: ")
-			Result.append (max_cont_rad.out)
-
-			Result.append ("%N  phases: pid->name:capacity,count,radiation")
-			if not sorted_phases.is_empty then
-				Result.append ("%N")
-				create stwl_p.make(sorted_phases)
-				Result.append (stwl_p.out)
+			if cursor_state < state then
+				Result.append ("(to")
+				Result.append_integer(cursor_state)
+				Result.append(") ")
 			end
->>>>>>> 797057ef2db5ed4d124c23df415c2afefacecf65
+			Result.append (" " + error)
+			if (error = msg.ok) then
+				Result.append("%N  max_phase_radiation: ")
+				Result.append (max_phase_rad.out)
+				Result.append (", max_container_radiation: ")
+				Result.append (max_cont_rad.out)
 
-			Result.append ("%N  containers: cid->pid->material,radioactivity")
-			if not sorted_conts.is_empty then
-				Result.append ("%N")
-				create stwl_c.make(sorted_conts)
-				Result.append (stwl_c.out)
+				Result.append ("%N  phases: pid->name:capacity,count,radiation")
+				if not sorted_phases.is_empty then
+					Result.append ("%N")
+					create stwl_p.make(sorted_phases)
+					Result.append (stwl_p.out)
+				end
+
+				Result.append ("%N  containers: cid->pid->material,radioactivity")
+				if not sorted_conts.is_empty then
+					Result.append ("%N")
+					create stwl_c.make(sorted_conts)
+					Result.append (stwl_c.out)
+				end
 			end
 		end
 
@@ -394,5 +355,7 @@ feature -- misc
 		do
 			make
 		end
+
+
 
 end

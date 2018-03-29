@@ -90,6 +90,7 @@ feature -- model operations
 			if attached phases [pid] as p then
 				p.add_container (cont)
 				sorted_conts.extend (cont)
+	
 			end
 		end
 
@@ -101,7 +102,10 @@ feature -- model operations
 			if attached phases[phase_id] as p then
 				sorted_phases.prune_all (p)
 			end
+
 			phases.remove (phase_id)
+
+
 		ensure
 			phase_removed: not (phases.has_key (phase_id))
 		end
@@ -167,6 +171,7 @@ feature -- setters
 		end
 
 feature -- getter
+
 
 	get_phases: STRING_TABLE [PHASE]
 		do
@@ -255,6 +260,8 @@ feature -- error checks
 			end
 		end
 
+
+
 feature -- error checks
 
 	cid_exists (cid: STRING): BOOLEAN
@@ -303,6 +310,11 @@ feature -- queries
 		do
 			create Result.make_from_string ("  state ")
 			Result.append_integer (state)
+			if cursor_state < state then
+				Result.append ("(to")
+				Result.append_integer(cursor_state)
+				Result.append(") ")
+			end
 			Result.append (" " + error)
 			if (error = msg.ok) then
 				Result.append("%N  max_phase_radiation: ")

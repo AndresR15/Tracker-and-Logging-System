@@ -21,6 +21,7 @@ feature -- command
 
 	new_tracker (max_phase_radiation: VALUE; max_container_radiation: VALUE)
 		local
+			e_command: ERROR
 			command: NEW_TRACKER
 			error_msg: STRING
 		do
@@ -36,8 +37,14 @@ feature -- command
 			elseif (max_container_radiation > max_phase_radiation) then
 				model.store_error (msg.container_lt_phase)
 			else
+				error := msg.ok
+			end
+
+			if error /~ msg.ok then
+				create e_command.make (error)
+			else
 				create command.make (max_phase_radiation, max_container_radiation)
-				model.get_history.add_to_record (command)
+				model.get_history.reset_record_and_append (command)
 				command.execute
 			end
 			etf_cmd_container.on_change.notify ([Current])

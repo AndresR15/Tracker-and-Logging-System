@@ -22,6 +22,8 @@ feature -- command
 	new_phase (pid: STRING; phase_name: STRING; capacity: INTEGER_64; expected_materials: ARRAY [INTEGER_64])
 		require else
 			new_phase_precond (pid, phase_name, capacity, expected_materials)
+		local
+			command: NEW_PHASE
 		do
 				-- perform some update on the model state
 			model.set_error (msg.ok)
@@ -39,7 +41,9 @@ feature -- command
 			elseif expected_materials.is_empty then
 				model.store_error (msg.material_missing)
 			else
-				model.new_phase (pid, phase_name, capacity, expected_materials)
+				create command.make (pid, phase_name, capacity, expected_materials)
+				model.get_history.add_to_record (command)
+				command.execute
 			end
 			etf_cmd_container.on_change.notify ([Current])
 		end

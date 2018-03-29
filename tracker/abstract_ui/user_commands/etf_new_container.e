@@ -22,6 +22,8 @@ feature -- command
 	new_container (cid: STRING; c: TUPLE [material: INTEGER_64; radioactivity: VALUE]; pid: STRING)
 		require else
 			new_container_precond (cid, c, pid)
+		local
+			command: NEW_CONTAINER
 		do
 				-- perform some update on the model state
 			model.set_error (msg.ok)
@@ -45,7 +47,9 @@ feature -- command
 			elseif not model.phase_expects_mat (c.material, pid) then
 				model.store_error (msg.material_unexpected)
 			else
-				model.new_container (cid, c, pid)
+				create command.make (cid, c, pid)
+				model.get_history.add_to_record (command)
+				command.execute
 			end
 
 			etf_cmd_container.on_change.notify ([Current])

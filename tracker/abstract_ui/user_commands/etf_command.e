@@ -27,4 +27,5 @@ feature -- Attributes
 	-- may declare your own model state here
 	model : TRACKER
 	msg: MESSAGES_ACCESS
+	error_flag: BOOLEAN
 end

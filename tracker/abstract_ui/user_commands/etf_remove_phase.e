@@ -22,14 +22,18 @@ feature -- command
 	remove_phase (pid: STRING)
 		require else
 			remove_phase_precond (pid)
+		local
+			command: REMOVE_PHASE
 		do
 				-- perform some update on the model state
 			model.set_error (msg.ok)
 			model.set_state (model.get_state + 1)
 			if model.is_active then
-				model.set_error (msg.in_use)
+				model.store_error (msg.in_use)
 			elseif not model.get_phases.has (pid) then
-				model.set_error (msg.phase_id_non_existent)
+				create command.make (pid)
+				command.execute
+				model.get_history.add_to_record (command)
 			else
 				model.remove_phase (pid)
 			end

@@ -109,12 +109,8 @@ feature -- model operations
 			-- removes a phase from the tracker
 		require
 			phase_exists: get_phases.has (phase_id)
-		local
-			command: REMOVE_PHASE
 		do
 			phases.remove (phase_id)
-			create command.make (phase_id)
-			history.add_to_record (command)
 		ensure
 			phase_removed: not (phases.has_key (phase_id))
 		end
@@ -124,15 +120,12 @@ feature -- model operations
 		local
 			cur_phase: PHASE
 			cur_cont: PHASE_CONTAINER
-			command: REMOVE_CONTAINER
 		do
 			cur_phase := get_phase_containing_cid (cid)
 			cur_cont := get_container (cid)
 			if attached cur_phase as p and then attached cur_cont as c then
 				sorted_conts.prune_all (c)
 				p.remove_container (cid)
-				create command.make (cid)
-				history.add_to_record (command)
 			else
 					-- do nothing
 			end
@@ -142,14 +135,12 @@ feature -- model operations
 			-- moves a container from a source phase to a target phase
 		local
 			temp_cont: PHASE_CONTAINER
-			command: MOVE_CONTAINER
 		do
 			if attached get_container (cid) as cont and then attached phases [pid1] as p1 and then attached phases [pid2] as p2 then
 				temp_cont := cont
 				p1.remove_container (cid)
 				p2.add_container (temp_cont)
-				create command.make (cid, pid1, pid2)
-				history.add_to_record (command)
+				cont.set_pid(pid2)
 			end
 		ensure
 			container_exists: cid_exists (cid)

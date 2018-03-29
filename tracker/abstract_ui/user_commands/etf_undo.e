@@ -18,8 +18,9 @@ feature -- command
 			model.set_state (model.get_state + 1)
 			if model.get_history.get_record.isfirst then
 						model.set_error (msg.no_undo)
-					end
-			model.get_history.get_record.item.redo
+			else
+				model.get_history.get_record.item.undo
+			end
 			etf_cmd_container.on_change.notify ([Current])
     	end
 

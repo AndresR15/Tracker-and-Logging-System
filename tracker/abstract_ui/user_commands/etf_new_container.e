@@ -27,23 +27,23 @@ feature -- command
 			model.set_error (msg.ok)
 			model.set_state (model.get_state + 1)
 			if not model.valid_string (cid) then
-				model.set_error (msg.invalid_name_id)
+				model.store_error (msg.invalid_name_id)
 			elseif model.cid_exists (cid) then
-				model.set_error (msg.cont_id_in_tracker)
+				model.store_error (msg.cont_id_in_tracker)
 			elseif not model.valid_string (pid) then
-				model.set_error (msg.invalid_name_id)
+				model.store_error (msg.invalid_name_id)
 			elseif not model.get_phases.has (pid) then
-				model.set_error (msg.phase_id_non_existent)
+				model.store_error (msg.phase_id_non_existent)
 			elseif (c.radioactivity < 0.0) then
-				model.set_error (msg.cont_rad_non_negative)
+				model.store_error (msg.cont_rad_non_negative)
 			elseif not model.under_capacity (pid) then
-				model.set_error (msg.cont_exceeds_cap)
+				model.store_error (msg.cont_exceeds_cap)
 			elseif c.radioactivity > model.get_max_cont_rad then
-				model.set_error (msg.cont_exceeds_rad_cap)
+				model.store_error (msg.cont_exceeds_rad_cap)
 			elseif model.cont_gt_max_phase_rad (c.radioactivity, pid) then
-				model.set_error (msg.cont_exceeds_rad)
+				model.store_error (msg.cont_exceeds_rad)
 			elseif not model.phase_expects_mat (c.material, pid) then
-				model.set_error (msg.material_unexpected)
+				model.store_error (msg.material_unexpected)
 			else
 				model.new_container (cid, c, pid)
 			end

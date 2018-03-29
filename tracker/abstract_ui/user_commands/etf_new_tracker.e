@@ -25,13 +25,13 @@ feature -- command
 			model.set_error (msg.ok)
 			model.set_state (model.get_state + 1)
 			if model.is_active then
-				model.set_error (msg.in_use)
+				model.store_error (msg.in_use)
 			elseif (max_phase_radiation < 0.0) then
-				model.set_error (msg.non_neg_phase_rad)
+				model.store_error (msg.non_neg_phase_rad)
 			elseif (max_container_radiation < 0.0) then
-				model.set_error (msg.non_neg_container_rad)
+				model.store_error (msg.non_neg_container_rad)
 			elseif (max_container_radiation > max_phase_radiation) then
-				model.set_error (msg.container_lt_phase)
+				model.store_error (msg.container_lt_phase)
 			else
 
 				model.new_tracker (max_phase_radiation, max_container_radiation)

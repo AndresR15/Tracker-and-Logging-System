@@ -13,6 +13,7 @@ new_phase("F","clear", 3, <<metal>>)
 new_container("A1", [metal, 2], "A")
 move_container("A1", "A", "C")
 move_container("A1", "A", "F")
+new_container("A2", [metal, 2], "C")
 undo
 remove_container("A1")
 undo

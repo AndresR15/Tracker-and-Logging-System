@@ -30,6 +30,7 @@ feature
 	execute
 		do
 			track.set_error (msg)
+			track.set_cursor_state (state)
 		end
 
 	undo

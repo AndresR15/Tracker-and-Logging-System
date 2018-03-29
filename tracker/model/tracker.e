@@ -31,6 +31,7 @@ feature {NONE} -- Initialization
 			error := "ok"
 			active := False
 			state := 0
+			cursor_state := 0
 			max_phase_rad := zero
 			max_cont_rad := zero
 			create history.make
@@ -52,7 +53,7 @@ feature {TRACKER} -- model attributes
 
 	max_cont_rad: VALUE
 
-	state: INTEGER
+	state, cursor_state: INTEGER
 
 	history: HISTORY
 
@@ -89,8 +90,6 @@ feature -- model operations
 			if attached phases [pid] as p then
 				p.add_container (cont)
 				sorted_conts.extend (cont)
-			else
-					-- do nothing
 			end
 		end
 
@@ -99,6 +98,9 @@ feature -- model operations
 		require
 			phase_exists: get_phases.has (phase_id)
 		do
+			if attached phases[phase_id] as p then
+				sorted_phases.prune_all (p)
+			end
 			phases.remove (phase_id)
 		ensure
 			phase_removed: not (phases.has_key (phase_id))
@@ -115,8 +117,6 @@ feature -- model operations
 			if attached cur_phase as p and then attached cur_cont as c then
 				sorted_conts.prune_all (c)
 				p.remove_container (cid)
-			else
-					-- do nothing
 			end
 		end
 
@@ -159,8 +159,14 @@ feature -- setters
 			state := new_state
 		end
 
-feature -- getter
+	set_cursor_state(cur_state: INTEGER)
+		require
+			cursor_state_not_over: cur_state <= get_state
+		do
+			cursor_state := cur_state
+		end
 
+feature -- getter
 
 	get_phases: STRING_TABLE [PHASE]
 		do
@@ -248,8 +254,6 @@ feature -- error checks
 				end
 			end
 		end
-
-
 
 feature -- error checks
 

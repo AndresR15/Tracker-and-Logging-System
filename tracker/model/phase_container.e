@@ -83,9 +83,9 @@ feature -- Comparable
 			distinct_id: not (get_id ~ other.get_id)
 		do
 			if Current = other then
-				Result := FALSE
-			elseif get_id < other.get_id then
-				Result := TRUE
+				Result := False
+			else
+				Result := get_id < other.get_id
 			end
 		end
 

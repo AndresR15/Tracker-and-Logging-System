@@ -22,14 +22,14 @@ feature {NONE} -- Initialization
 		local
 			list: STRING_TABLE [PHASE]
 			zero: VALUE
-			msg: MESSAGES_ACCESS
+			init_msg: MESSAGES_ACCESS
 		do
 			Create zero.make_from_int (0)
 			Create list.make_equal_caseless (10)
 			Create sorted_phases.make
 			Create sorted_conts.make
 			phases := list
-			error := msg.ok
+			error := init_msg.ok
 			active := False
 			state := 0
 			cursor_state := 0
@@ -119,6 +119,8 @@ feature -- model operations
 
 	remove_container (cid: STRING)
 			-- removes a container from the tracker
+		require
+			container_exists:
 		local
 			cur_phase: PHASE
 			cur_cont: PHASE_CONTAINER
@@ -162,9 +164,9 @@ feature -- model operations
 
 feature -- setters
 
-	set_error (msg: STRING)
+	set_error (init_msg: STRING)
 		do
-			error := msg
+			error := init_msg
 		end
 
 	set_state (new_state: INTEGER)
@@ -271,10 +273,6 @@ feature -- error checks
 			end
 		end
 
-
-
-feature -- error checks
-
 	cid_exists (cid: STRING): BOOLEAN
 		do
 			Result := False
@@ -317,7 +315,7 @@ feature -- queries
 		local
 			stwl_c: STWL_OUT [PHASE_CONTAINER]
 			stwl_p: STWL_OUT [PHASE]
-			msg : MESSAGES_ACCESS
+			er_msg : MESSAGES_ACCESS
 		do
 			create Result.make_from_string ("  state ")
 			Result.append_integer (state)

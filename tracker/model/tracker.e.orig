@@ -22,13 +22,17 @@ feature {NONE} -- Initialization
 		local
 			list: STRING_TABLE [PHASE]
 			zero: VALUE
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4c36af634c866292ae5d068617633047e0a1037f
 		do
 			Create zero.make_from_int (0)
 			Create list.make_equal_caseless (10)
 			Create sorted_phases.make
 			Create sorted_conts.make
 			phases := list
-			error := "ok"
+			error := msg.ok
 			active := False
 			state := 0
 			cursor_state := 0
@@ -57,6 +61,8 @@ feature {TRACKER} -- model attributes
 
 	history: HISTORY
 
+	msg: MESSAGES_ACCESS
+
 feature -- model operations
 
 	new_phase (pid: STRING; phase_name: STRING; capacity: INTEGER_64; expected_materials: ARRAY [INTEGER_64])
@@ -71,6 +77,8 @@ feature -- model operations
 			create new_p.make (pid, phase_name, capacity, expected_materials)
 			phases.extend (new_p, pid)
 			sorted_phases.extend (new_p)
+			set_error(msg.ok)
+
 		end
 
 	new_tracker (max_p_rad, max_c_rad: VALUE)
@@ -78,8 +86,10 @@ feature -- model operations
 			positive_values: max_p_rad > 0.0 and then max_c_rad > 0.0
 			tracker_not_active: not is_active
 		do
+			set_error(msg.ok)
 			max_phase_rad := max_p_rad
 			max_cont_rad := max_c_rad
+			set_error(msg.ok)
 		end
 
 	new_container (cid: STRING; cont_spec: TUPLE [m: INTEGER_64; rad: VALUE]; pid: STRING)
@@ -90,6 +100,7 @@ feature -- model operations
 			if attached phases [pid] as p then
 				p.add_container (cont)
 				sorted_conts.extend (cont)
+				set_error(msg.ok)
 			end
 		end
 
@@ -101,13 +112,8 @@ feature -- model operations
 			if attached phases[phase_id] as p then
 				sorted_phases.prune_all (p)
 			end
-<<<<<<< HEAD
-=======
-
->>>>>>> 1bb4cae2a4372705c6c2409d8f6fdcf6cdab539f
+			set_error(msg.ok)
 			phases.remove (phase_id)
-
-
 		ensure
 			phase_removed: not (phases.has_key (phase_id))
 		end
@@ -124,6 +130,7 @@ feature -- model operations
 				sorted_conts.prune_all (c)
 				p.remove_container (cid)
 			end
+			set_error(msg.ok)
 		end
 
 	move_container (cid: STRING; pid1: STRING; pid2: STRING)
@@ -137,53 +144,36 @@ feature -- model operations
 				p2.add_container (temp_cont)
 				cont.set_pid(pid2)
 			end
+			set_error(msg.ok)
 		ensure
 			container_exists: cid_exists (cid)
 			cid_in_phase_attached: attached get_phase_containing_cid (cid) as pc
 			cont_is_in_target_phase: pc.get_pid ~ pid2
 		end
 
-	store_error (new_msg: STRING)
-			-- stores the state of error into history
-		local
-			e: ERROR
-		do
-			error := new_msg
-			create e.make (error)
-			history.add_to_record (e)
-		end
-
 feature -- setters
 
-	set_error (msg: STRING)
+	set_error (string: STRING)
 		do
-			error := msg
+			error := string
 		end
 
 	set_state (new_state: INTEGER)
+		-- sets both the state and the cursor state to state
 		do
 			state := new_state
+			set_cursor_state(state)
 		end
 
-<<<<<<< HEAD
 	set_cursor_state(cur_state: INTEGER)
 		require
 			cursor_state_not_over: cur_state <= get_state
 		do
 			cursor_state := cur_state
 		end
-=======
-	set_cursor_state(state: INTEGER)
-		require
-			cursor_state_not_over: cursor_state <= get_state
-		do
-			cursor_state := cur_state
-		end
 
 feature -- getter
->>>>>>> 1bb4cae2a4372705c6c2409d8f6fdcf6cdab539f
 
-feature -- getter
 
 	get_phases: STRING_TABLE [PHASE]
 		do
@@ -316,14 +306,13 @@ feature -- queries
 		local
 			stwl_c: STWL_OUT [PHASE_CONTAINER]
 			stwl_p: STWL_OUT [PHASE]
-			msg : MESSAGES_ACCESS
 		do
 			create Result.make_from_string ("  state ")
 			Result.append_integer (state)
-			if cursor_state < state then
-				Result.append ("(to")
+			if cursor_state /= state then
+				Result.append (" (to ")
 				Result.append_integer(cursor_state)
-				Result.append(") ")
+				Result.append(")")
 			end
 			Result.append (" " + error)
 			if (error = msg.ok) then

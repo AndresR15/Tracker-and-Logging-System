@@ -22,6 +22,7 @@ feature {NONE} -- Initialization
 		local
 			list: STRING_TABLE [PHASE]
 			zero: VALUE
+			msg: MESSAGES_ACCESS
 		do
 			Create zero.make_from_int (0)
 			Create list.make_equal_caseless (10)
@@ -82,6 +83,7 @@ feature -- model operations
 			positive_values: max_p_rad > 0.0 and then max_c_rad > 0.0
 			tracker_not_active: not is_active
 		do
+			set_error(msg.ok)
 			max_phase_rad := max_p_rad
 			max_cont_rad := max_c_rad
 			set_error(msg.ok)
@@ -109,6 +111,8 @@ feature -- model operations
 			end
 			set_error(msg.ok)
 			phases.remove (phase_id)
+
+
 		ensure
 			phase_removed: not (phases.has_key (phase_id))
 		end
@@ -146,11 +150,21 @@ feature -- model operations
 			cont_is_in_target_phase: pc.get_pid ~ pid2
 		end
 
+	store_error (new_msg: STRING)
+			-- stores the state of error into history
+		local
+			e: ERROR
+		do
+			error := new_msg
+			create e.make (error)
+			history.add_to_record (e)
+		end
+
 feature -- setters
 
-	set_error (string: STRING)
+	set_error (msg: STRING)
 		do
-			error := string
+			error := msg
 		end
 
 	set_state (new_state: INTEGER)
@@ -257,6 +271,8 @@ feature -- error checks
 			end
 		end
 
+
+
 feature -- error checks
 
 	cid_exists (cid: STRING): BOOLEAN
@@ -301,6 +317,7 @@ feature -- queries
 		local
 			stwl_c: STWL_OUT [PHASE_CONTAINER]
 			stwl_p: STWL_OUT [PHASE]
+			msg : MESSAGES_ACCESS
 		do
 			create Result.make_from_string ("  state ")
 			Result.append_integer (state)

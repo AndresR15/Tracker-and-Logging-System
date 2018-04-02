@@ -22,7 +22,7 @@ feature {NONE} -- Initialization
 		local
 			list: STRING_TABLE [PHASE]
 			zero: VALUE
-			msg: MESSAGES_ACCESS
+
 		do
 			Create zero.make_from_int (0)
 			Create list.make_equal_caseless (10)
@@ -58,6 +58,8 @@ feature {TRACKER} -- model attributes
 
 	history: HISTORY
 
+	msg: MESSAGES_ACCESS
+
 feature -- model operations
 
 	new_phase (pid: STRING; phase_name: STRING; capacity: INTEGER_64; expected_materials: ARRAY [INTEGER_64])
@@ -79,6 +81,7 @@ feature -- model operations
 			positive_values: max_p_rad > 0.0 and then max_c_rad > 0.0
 			tracker_not_active: not is_active
 		do
+			set_error(msg.ok)
 			max_phase_rad := max_p_rad
 			max_cont_rad := max_c_rad
 		end
@@ -154,9 +157,9 @@ feature -- model operations
 
 feature -- setters
 
-	set_error (msg: STRING)
+	set_error (string: STRING)
 		do
-			error := msg
+			error := string
 		end
 
 	set_state (new_state: INTEGER)
@@ -309,7 +312,6 @@ feature -- queries
 		local
 			stwl_c: STWL_OUT [PHASE_CONTAINER]
 			stwl_p: STWL_OUT [PHASE]
-			msg : MESSAGES_ACCESS
 		do
 			create Result.make_from_string ("  state ")
 			Result.append_integer (state)

@@ -22,7 +22,6 @@ feature {NONE} -- Initialization
 		local
 			list: STRING_TABLE [PHASE]
 			zero: VALUE
-			msg: MESSAGES_ACCESS
 		do
 			Create zero.make_from_int (0)
 			Create list.make_equal_caseless (10)
@@ -58,6 +57,8 @@ feature {TRACKER} -- model attributes
 
 	history: HISTORY
 
+	msg: MESSAGES_ACCESS
+
 feature -- model operations
 
 	new_phase (pid: STRING; phase_name: STRING; capacity: INTEGER_64; expected_materials: ARRAY [INTEGER_64])
@@ -72,6 +73,8 @@ feature -- model operations
 			create new_p.make (pid, phase_name, capacity, expected_materials)
 			phases.extend (new_p, pid)
 			sorted_phases.extend (new_p)
+			set_error(msg.ok)
+
 		end
 
 	new_tracker (max_p_rad, max_c_rad: VALUE)
@@ -81,6 +84,7 @@ feature -- model operations
 		do
 			max_phase_rad := max_p_rad
 			max_cont_rad := max_c_rad
+			set_error(msg.ok)
 		end
 
 	new_container (cid: STRING; cont_spec: TUPLE [m: INTEGER_64; rad: VALUE]; pid: STRING)
@@ -91,7 +95,7 @@ feature -- model operations
 			if attached phases [pid] as p then
 				p.add_container (cont)
 				sorted_conts.extend (cont)
-
+				set_error(msg.ok)
 			end
 		end
 
@@ -103,10 +107,8 @@ feature -- model operations
 			if attached phases[phase_id] as p then
 				sorted_phases.prune_all (p)
 			end
-
+			set_error(msg.ok)
 			phases.remove (phase_id)
-
-
 		ensure
 			phase_removed: not (phases.has_key (phase_id))
 		end
@@ -123,6 +125,7 @@ feature -- model operations
 				sorted_conts.prune_all (c)
 				p.remove_container (cid)
 			end
+			set_error(msg.ok)
 		end
 
 	move_container (cid: STRING; pid1: STRING; pid2: STRING)
@@ -136,27 +139,18 @@ feature -- model operations
 				p2.add_container (temp_cont)
 				cont.set_pid(pid2)
 			end
+			set_error(msg.ok)
 		ensure
 			container_exists: cid_exists (cid)
 			cid_in_phase_attached: attached get_phase_containing_cid (cid) as pc
 			cont_is_in_target_phase: pc.get_pid ~ pid2
 		end
 
-	store_error (new_msg: STRING)
-			-- stores the state of error into history
-		local
-			e: ERROR
-		do
-			error := new_msg
-			create e.make (error)
-			history.add_to_record (e)
-		end
-
 feature -- setters
 
-	set_error (msg: STRING)
+	set_error (string: STRING)
 		do
-			error := msg
+			error := string
 		end
 
 	set_state (new_state: INTEGER)
@@ -263,8 +257,6 @@ feature -- error checks
 			end
 		end
 
-
-
 feature -- error checks
 
 	cid_exists (cid: STRING): BOOLEAN
@@ -309,7 +301,6 @@ feature -- queries
 		local
 			stwl_c: STWL_OUT [PHASE_CONTAINER]
 			stwl_p: STWL_OUT [PHASE]
-			msg : MESSAGES_ACCESS
 		do
 			create Result.make_from_string ("  state ")
 			Result.append_integer (state)

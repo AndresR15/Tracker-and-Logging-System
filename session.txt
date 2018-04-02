@@ -1,0 +1,5 @@
+new_tracker(50.0, 10.0)
+undo
+redo
+redo
+new_tracker(30.0, 20.0)

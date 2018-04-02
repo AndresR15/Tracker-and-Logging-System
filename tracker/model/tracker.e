@@ -39,7 +39,6 @@ feature {NONE} -- Initialization
 			create history.make
 			create nt.make_init (max_phase_rad, max_cont_rad)
 			history.add_to_record (nt)
-
 		end
 
 feature {TRACKER} -- model attributes
@@ -183,8 +182,8 @@ feature -- setters
 		end
 
 	set_cursor_state(cur_state: INTEGER)
-		require
-			cursor_state_not_over: cur_state <= get_state
+--		require
+--			cursor_state_not_over: cur_state <= get_state
 		do
 			cursor_state := cur_state
 		end

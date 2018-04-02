@@ -13,8 +13,6 @@ feature -- Attributes
 
 	msg: STRING
 
-	m_a: MESSAGES_ACCESS
-
 	state: INTEGER
 
 	m_a: MESSAGES_ACCESS
@@ -34,8 +32,15 @@ feature
 		end
 
 	set_state
+		local
+			tracker_access: TRACKER_ACCESS
 		do
-			track.set_cursor_state (state)
+			if attached track as t then
+				t.set_cursor_state (state)
+			else
+				track := tracker_access.m
+				track.set_cursor_state (0)
+			end
 		end
 
 end

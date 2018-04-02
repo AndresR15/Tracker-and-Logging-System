@@ -42,6 +42,7 @@ feature -- Attributes
 			-- Running mode of ETF application.
 		do
 			Result := 4
+
 		end
 
 feature -- Tests

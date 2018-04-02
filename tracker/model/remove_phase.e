@@ -23,7 +23,7 @@ feature -- Initialization
 			p_id := pid
 			state := track.get_state
 			prev_phase := track.get_phases.at (pid)
-			msg := "ok"
+			msg := m_a.ok
 		end
 
 feature -- Attributes

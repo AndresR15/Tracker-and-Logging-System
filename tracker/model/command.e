@@ -13,6 +13,8 @@ feature -- Attributes
 
 	msg: STRING
 
+	m_a: MESSAGES_ACCESS
+
 	state: INTEGER
 
 feature

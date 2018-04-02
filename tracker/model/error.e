@@ -34,8 +34,7 @@ feature
 
 	undo
 		do
-			track.get_history.get_record.back
-			track.set_error (track.get_history.get_record.item.msg)
+			-- empty
 		end
 
 	redo

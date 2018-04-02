@@ -25,7 +25,7 @@ feature -- Initialization
 			material := cont_spec.m
 			rad := cont_spec.rad
 			state := track.get_state
-			msg := "ok"
+			msg := m_a.ok
 		end
 
 feature -- Attributes

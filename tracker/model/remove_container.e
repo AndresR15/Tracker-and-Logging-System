@@ -24,7 +24,7 @@ feature -- Initialization
 			cid := init_cid
 			state := track.get_state
 			prev_container := tracker_access.m.get_container (cid)
-			msg := "ok"
+			msg := m_a.ok
 		end
 
 feature -- Attributes

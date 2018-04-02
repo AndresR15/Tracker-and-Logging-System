@@ -15,6 +15,8 @@ feature -- Attributes
 
 	state: INTEGER
 
+	m_a: MESSAGES_ACCESS
+
 feature
 
 	execute

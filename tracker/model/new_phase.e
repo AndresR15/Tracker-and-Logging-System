@@ -25,7 +25,7 @@ feature -- Initialization
 			capacity := cap
 			expected_mats := mats
 			state := track.get_state
-			msg := "ok"
+			msg := m_a.ok
 		end
 
 feature -- Attributes

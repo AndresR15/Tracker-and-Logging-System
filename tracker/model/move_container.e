@@ -25,7 +25,7 @@ feature -- Initialization
 			pid1 := init_pid1
 			pid2 := init_pid2
 			state := track.get_state
-			msg := "ok"
+			msg := m_a.ok
 		end
 
 feature -- Attributes

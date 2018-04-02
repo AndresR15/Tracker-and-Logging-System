@@ -11,7 +11,7 @@ inherit
 	COMMAND
 
 Create
-	make
+	make, make_init
 
 feature	{NONE}
 	make(max_phase_radiation: VALUE; max_container_radiation: VALUE)
@@ -20,11 +20,21 @@ feature	{NONE}
 		do
 			track := tracker_access.m
 			state := track.get_state
-			msg := "ok"
+			msg := m_a.ok
 			max_cont_rad := max_container_radiation
 			max_phase_rad := max_phase_radiation
 		end
 
+	make_init(max_phase_radiation: VALUE; max_container_radiation: VALUE)
+		local
+				tracker_access: TRACKER_ACCESS
+			do
+				track := tracker_access.m
+				state := 0
+				msg := m_a.ok
+				max_cont_rad := max_container_radiation
+				max_phase_rad := max_phase_radiation
+			end
 feature -- Attributes
 
 	max_cont_rad, max_phase_rad: VALUE

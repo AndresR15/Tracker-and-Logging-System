@@ -23,6 +23,7 @@ feature {NONE} -- Initialization
 			list: STRING_TABLE [PHASE]
 			zero: VALUE
 			er_msg: MESSAGES_ACCESS
+			nt: NEW_TRACKER
 		do
 			Create zero.make_from_int (0)
 			Create list.make_equal_caseless (10)
@@ -36,6 +37,9 @@ feature {NONE} -- Initialization
 			max_phase_rad := zero
 			max_cont_rad := zero
 			create history.make
+			create nt.make_init (max_phase_rad, max_cont_rad)
+			history.add_to_record (nt)
+
 		end
 
 feature {TRACKER} -- model attributes
@@ -105,8 +109,8 @@ feature -- model operations
 
 	remove_phase (phase_id: STRING)
 			-- removes a phase from the tracker
-		require
-			phase_exists: get_phases.has (phase_id)
+	--	require
+	--		phase_exists: get_phases.has (phase_id)
 		do
 			if attached phases[phase_id] as p then
 				sorted_phases.prune_all (p)

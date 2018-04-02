@@ -23,16 +23,21 @@ feature {NONE} -- Initialization
 			list: STRING_TABLE [PHASE]
 			zero: VALUE
 <<<<<<< HEAD
+			er_msg: MESSAGES_ACCESS
 =======
-
->>>>>>> 4c36af634c866292ae5d068617633047e0a1037f
+			init_msg: MESSAGES_ACCESS
+>>>>>>> a2ec87d6e7bf0d65d1886042bcc6ebbca7b7b35f
 		do
 			Create zero.make_from_int (0)
 			Create list.make_equal_caseless (10)
 			Create sorted_phases.make
 			Create sorted_conts.make
 			phases := list
-			error := msg.ok
+<<<<<<< HEAD
+			error := er_msg.ok
+=======
+			error := init_msg.ok
+>>>>>>> a2ec87d6e7bf0d65d1886042bcc6ebbca7b7b35f
 			active := False
 			state := 0
 			cursor_state := 0
@@ -93,6 +98,8 @@ feature -- model operations
 		end
 
 	new_container (cid: STRING; cont_spec: TUPLE [m: INTEGER_64; rad: VALUE]; pid: STRING)
+		require
+			cont_not_in_use: not cid_exists (cid)
 		local
 			cont: PHASE_CONTAINER
 		do
@@ -114,12 +121,16 @@ feature -- model operations
 			end
 			set_error(msg.ok)
 			phases.remove (phase_id)
+
+
 		ensure
 			phase_removed: not (phases.has_key (phase_id))
 		end
 
 	remove_container (cid: STRING)
 			-- removes a container from the tracker
+		require
+			container_exists:
 		local
 			cur_phase: PHASE
 			cur_cont: PHASE_CONTAINER
@@ -151,11 +162,21 @@ feature -- model operations
 			cont_is_in_target_phase: pc.get_pid ~ pid2
 		end
 
+	store_error (new_msg: STRING)
+			-- stores the state of error into history
+		local
+			e: ERROR
+		do
+			error := new_msg
+			create e.make (error)
+			history.add_to_record (e)
+		end
+
 feature -- setters
 
-	set_error (string: STRING)
+	set_error (init_msg: STRING)
 		do
-			error := string
+			error := init_msg
 		end
 
 	set_state (new_state: INTEGER)
@@ -262,8 +283,6 @@ feature -- error checks
 			end
 		end
 
-feature -- error checks
-
 	cid_exists (cid: STRING): BOOLEAN
 		do
 			Result := False
@@ -306,6 +325,7 @@ feature -- queries
 		local
 			stwl_c: STWL_OUT [PHASE_CONTAINER]
 			stwl_p: STWL_OUT [PHASE]
+			er_msg : MESSAGES_ACCESS
 		do
 			create Result.make_from_string ("  state ")
 			Result.append_integer (state)
@@ -315,7 +335,7 @@ feature -- queries
 				Result.append(")")
 			end
 			Result.append (" " + error)
-			if (error = msg.ok) then
+			if (error = er_msg.ok) then
 				Result.append("%N  max_phase_radiation: ")
 				Result.append (max_phase_rad.out)
 				Result.append (", max_container_radiation: ")

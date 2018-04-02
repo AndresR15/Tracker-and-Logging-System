@@ -7,26 +7,33 @@ note
 class
 	PHASE_CONTAINER
 
+inherit
+
+	COMPARABLE
+		undefine
+			out
+		redefine
+			is_equal
+		end
+	ANY
+		undefine
+			is_equal
+		redefine
+			out
+		end
+
 create
 	make
 
 feature {NONE} -- Initialization
 
-<<<<<<< HEAD
 	make (init_id: STRING; init_material: INTEGER_64; init_max_rad: VALUE; init_pid: STRING)
-=======
-	make (init_id: STRING; init_material: INTEGER_64; init_max_rad: VALUE; pid: STRING)
->>>>>>> fb680ccd5a3bb827ebc95725b2e2c70c2fd0864f
 			-- Initialization for `Current'.
 		do
 			id := init_id
 			material := init_material
 			rad := init_max_rad
-<<<<<<< HEAD
 			current_pid := init_pid
-=======
-			current_pid := pid
->>>>>>> fb680ccd5a3bb827ebc95725b2e2c70c2fd0864f
 		end
 
 feature {NONE} -- Atributes
@@ -68,28 +75,44 @@ feature -- setters
 			current_pid := n_pid
 		end
 
-feature -- Miscellaneous
+feature -- Comparable
+
+	is_less alias "<" (other: PHASE_CONTAINER): BOOLEAN
+			--Is current object less than `other'?
+		require else
+			distinct_id: not (get_id ~ other.get_id)
+		do
+			if Current = other then
+<<<<<<< HEAD
+				Result := FALSE
+=======
+				Result := False
+>>>>>>> a2ec87d6e7bf0d65d1886042bcc6ebbca7b7b35f
+			else
+				Result := get_id < other.get_id
+			end
+		end
+
+	is_equal (other: PHASE_CONTAINER): BOOLEAN
+			-- Is `other' attached to an object of the same type
+			-- as current object and identical to it?
+		do
+			if Current = other then
+				Result := TRUE
+			else
+				Result := (get_id ~ other.get_id) and then (get_rad ~ other.get_rad) and then (get_pid ~ other.get_pid) and then (get_material ~ other.get_material)
+			end
+		end
 
 feature -- Basic operations
 
-<<<<<<< HEAD
---	container_output: STRING
---		-- returns a string representation of the container
---		local
---			m: MATERIAL
---		do
---			create Result.make_from_string ("")
---			Result.append (id + "->" + current_pid)
-=======
-	container_output: STRING
+	out: STRING
 		-- returns a string representation of the container
 		local
 			m: MATERIAL
 		do
 			create Result.make_from_string ("")
-			Result.append (id + "->" + current_pid)
->>>>>>> fb680ccd5a3bb827ebc95725b2e2c70c2fd0864f
-
---		end
+			Result.append (id + "->" + current_pid + "->" + m.int_to_material_string (material) + "," + rad.out)
+		end
 
 end

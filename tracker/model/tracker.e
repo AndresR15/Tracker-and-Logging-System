@@ -121,6 +121,8 @@ feature -- model operations
 
 	remove_container (cid: STRING)
 			-- removes a container from the tracker
+		require
+			container_exists:
 		local
 			cur_phase: PHASE
 			cur_cont: PHASE_CONTAINER

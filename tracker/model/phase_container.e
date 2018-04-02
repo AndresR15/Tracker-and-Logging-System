@@ -84,8 +84,8 @@ feature -- Comparable
 		do
 			if Current = other then
 				Result := FALSE
-			elseif get_id < other.get_id then
-				Result := TRUE
+			else
+				Result := get_id < other.get_id
 			end
 		end
 
@@ -96,7 +96,7 @@ feature -- Comparable
 			if Current = other then
 				Result := TRUE
 			else
-				Result := (get_id = other.get_id) and then (get_rad ~ other.get_rad) and then (get_pid = other.get_pid) and then (get_material ~ other.get_material)
+				Result := (get_id ~ other.get_id) and then (get_rad ~ other.get_rad) and then (get_pid ~ other.get_pid) and then (get_material ~ other.get_material)
 			end
 		end
 

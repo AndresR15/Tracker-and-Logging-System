@@ -127,10 +127,11 @@ feature -- Commands
 		require
 			container_in_phase: get_containers.has_key (cid)
 		do
-			containers.remove (cid)
 			if attached containers [cid] as c then
 				current_rad := current_rad - c.get_rad
 			end
+			containers.remove (cid)
+
 		ensure
 			container_removed: not containers.has_key (cid)
 		end

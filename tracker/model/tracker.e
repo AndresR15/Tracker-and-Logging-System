@@ -22,14 +22,14 @@ feature {NONE} -- Initialization
 		local
 			list: STRING_TABLE [PHASE]
 			zero: VALUE
-			msg: MESSAGES_ACCESS
+			er_msg: MESSAGES_ACCESS
 		do
 			Create zero.make_from_int (0)
 			Create list.make_equal_caseless (10)
 			Create sorted_phases.make
 			Create sorted_conts.make
 			phases := list
-			error := msg.ok
+			error := er_msg.ok
 			active := False
 			state := 0
 			cursor_state := 0
@@ -90,6 +90,8 @@ feature -- model operations
 		end
 
 	new_container (cid: STRING; cont_spec: TUPLE [m: INTEGER_64; rad: VALUE]; pid: STRING)
+		require
+			cont_not_in_use: not cid_exists (cid)
 		local
 			cont: PHASE_CONTAINER
 		do
@@ -162,9 +164,9 @@ feature -- model operations
 
 feature -- setters
 
-	set_error (msg: STRING)
+	set_error (init_msg: STRING)
 		do
-			error := msg
+			error := init_msg
 		end
 
 	set_state (new_state: INTEGER)
@@ -317,7 +319,7 @@ feature -- queries
 		local
 			stwl_c: STWL_OUT [PHASE_CONTAINER]
 			stwl_p: STWL_OUT [PHASE]
-			msg : MESSAGES_ACCESS
+			er_msg : MESSAGES_ACCESS
 		do
 			create Result.make_from_string ("  state ")
 			Result.append_integer (state)
@@ -327,7 +329,7 @@ feature -- queries
 				Result.append(")")
 			end
 			Result.append (" " + error)
-			if (error = msg.ok) then
+			if (error = er_msg.ok) then
 				Result.append("%N  max_phase_radiation: ")
 				Result.append (max_phase_rad.out)
 				Result.append (", max_container_radiation: ")

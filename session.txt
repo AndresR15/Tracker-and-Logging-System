@@ -1,0 +1,5 @@
+new_phase("pid2", "compacting", 2, <<glass, metal, plastic>>)
+undo
+undo
+undo
+undo

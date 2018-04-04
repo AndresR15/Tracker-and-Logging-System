@@ -22,14 +22,24 @@ feature -- Initialization
 			track := tracker_access.m
 			p_id := pid
 			state := track.get_state
-			prev_phase := track.get_phases.at (pid)
+			if attached track.get_phases.at (pid) as p_p then
+				prev_name := p_p.get_name
+				prev_cap := p_p.get_capacity
+				prev_mats := p_p.get_mats
+			else
+				prev_name := ""
+				prev_cap := 0
+				prev_mats := <<>>
+			end
 			msg := m_a.ok
 		end
 
 feature -- Attributes
 
 	p_id: STRING
-	prev_phase: detachable PHASE
+	prev_name: STRING
+	prev_cap: INTEGER_64
+	prev_mats: ARRAY[INTEGER_64]
 
 feature
 
@@ -40,9 +50,7 @@ feature
 
 	undo
 		do
-			if attached prev_phase as p_p then
-				track.new_phase (p_id, p_p.get_name, p_p.get_capacity, p_p.get_mats)
-			end
+				track.new_phase (p_id, prev_name, prev_cap, prev_mats)
 		end
 
 	redo

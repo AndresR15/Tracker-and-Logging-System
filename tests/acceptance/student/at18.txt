@@ -1,0 +1,100 @@
+--throwing whatever crap I can think of at it
+undo
+undo
+undo
+undo
+redo
+redo
+redo
+redo
+redo
+new_phase("pid1", "p1", 2, <<glass, metal, plastic>>)
+undo
+remove_phase("pid1")
+redo
+new_phase("pid1", "p1", 2, <<glass, metal, plastic>>)
+remove_phase("pid1")
+undo
+redo
+undo
+new_container("cid1", [glass,   1], "pid1")
+undo
+new_container("cid1", [glass,   0], "pid1")
+new_tracker(50, 10)
+undo
+undo
+new_phase("pid2", "p1", 2, <<glass, metal, plastic>>)
+new_tracker(50, 10)
+undo
+undo
+undo
+redo
+redo
+redo
+redo
+undo
+undo
+new_container("cid2", [glass,   1], "pid1")
+new_container("cid1", [glass,   1], "pid1")
+move_container("cid1", "pid1", "pid2")
+undo
+redo
+undo
+redo
+new_container("cid1", [glass,   1], "pid1")
+new_container("cid3", [glass,   1], "pid1")
+remove_container("cid2")
+new_container("cid4", [glass,   1], "pid1")
+new_container("cid2", [glass,   1], "pid2")
+remove_phase("pid1")
+remove_phase("pid2")
+remove_container("cid1")
+remove_container("cid2")
+remove_container("cid3")
+remove_container("cid4")
+remove_phase("pid1")
+remove_phase("pid2")
+undo
+undo
+undo
+undo
+redo
+redo
+new_tracker(0, 0)
+new_container("cid1", [glass,   1], "pid1")
+new_tracker(10, 0)
+new_container("cid1", [glass,   1], "pid1")
+new_tracker(10, 5)
+new_container("cid1", [glass,   1], "pid1")
+undo
+undo
+redo
+redo
+undo
+new_phase("pid1", "p1", 2, <<liquid, glass, glass, metal, glass, metal, glass, plastic, glass, glass, plastic, liquid>>)
+new_phase("pid3", "p1", 0, <<liquid, glass, glass, metal, glass, metal, glass, plastic, glass, glass, plastic, liquid>>)
+new_phase("pid3", "p1", 4, <<liquid, glass, glass, metal, glass, metal, glass, plastic, glass, glass, plastic, liquid>>)
+undo
+undo
+redo
+redo
+redo
+undo
+redo
+new_tracker(0, 0)
+undo
+new_container("cid1", [glass,   0], "pid3")
+new_container("cid2", [plastic,   0], "pid3")
+new_container("cid3", [liquid,   0], "pid3")
+new_container("cid4", [metal,   0], "pid3")
+move_container("cid3", "pid3", "pid1")
+undo
+redo
+new_tracker(10, 1)
+undo
+redo
+redo
+
+
+
+

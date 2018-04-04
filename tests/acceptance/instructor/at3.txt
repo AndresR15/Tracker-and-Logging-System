@@ -1,0 +1,57 @@
+-- Basic test of undo/redo
+-- Similar to at1.txt
+
+-- Phases are sorted by pid
+-- Containers are sorted by cid
+-- Sorting follows normal lexicographic string rules,
+-- so that pid11 is before pid4; use pid04 if you want pid4 earlier. 
+
+-- create a new tracker
+-- max. radiation in a phase is 50.0
+-- max. radiation in a container is 10.0
+new_tracker(50.0, 10.0)
+
+-- add 2 phases each having a container handling capacity of 2:
+new_phase("pid2", "compacting", 2, <<glass, metal, plastic>>)
+new_phase("pid1", "unpacking", 2, <<glass, metal, plastic, liquid>>)
+
+-- type CONTAINER = TUPLE[material: MATERIAL; radioactivity: VALUE]
+-- add some containers
+new_container("cid4", [metal,   3.0], "pid1")
+new_container("cid1", [glass,   5.5], "pid1")
+new_container("cid2", [liquid,  0.5], "pid1") -- e11
+
+-- move some containers
+move_container ("cid1", "pid1", "pid2")
+move_container ("cid4", "pid1", "pid2")
+
+-- type CONTAINER = TUPLE[material: MATERIAL; radioactivity: VALUE]
+-- add some containers
+new_container("cid4", [metal,   3.0], "pid1")  -- e10
+new_container("cid1", [glass,   5.5], "pid1")  -- e10
+new_container("cid2", [liquid,  0.5], "pid1")  -- ok
+
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+redo
+redo
+redo
+redo
+redo
+redo
+redo
+redo
+redo
+redo
+redo
+redo

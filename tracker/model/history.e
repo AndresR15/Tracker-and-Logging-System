@@ -35,7 +35,7 @@ feature -- Deleation
         do
             from
             until
-                record.islast
+                record.islast or else record.is_empty
             loop
             	if record.count /= record.index then
             		record.remove_right
@@ -43,24 +43,14 @@ feature -- Deleation
             end
  		end
 
-feature -- Traverse
---	move_right
---		do
---			if not record.after then
---				record.forth
---			
---			end
---		end
-
 feature -- Setters
 
 	add_to_record (c: COMMAND)
 		-- add a COMMAND object to record
 		do
-
+			remove_all_right
 			record.extend (c)
 			record.forth
-			remove_all_right
 
 		end
 

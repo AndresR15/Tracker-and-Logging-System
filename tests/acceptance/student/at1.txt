@@ -50,14 +50,8 @@ redo
 undo
 undo
 undo
--- type CONTAINER = TUPLE[material: MATERIAL; radioactivity: VALUE]
--- add some containers
-
 new_container("cid4", [metal,   3.0], "pid1")
 new_container("cid1", [glass,   5.5], "pid1")
-new_container("cid2", [liquid,  0.5], "pid1") -- e11
-
--- move some containers
-
+new_container("cid2", [liquid,  0.5], "pid1")
 move_container ("cid1", "pid1", "pid2")
 move_container ("cid4", "pid1", "pid2")

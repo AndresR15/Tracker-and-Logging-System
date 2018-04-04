@@ -1,0 +1,62 @@
+--error checking priority
+new_tracker(-10, -5)
+undo
+redo
+new_tracker(-5, -10)
+undo
+redo
+new_tracker(-5, 10)
+undo
+redo
+new_tracker(2, 2)
+undo
+redo
+new_phase("", "", 2, <<glass, metal, plastic>>)
+new_phase("", "p1", 0, <<glass, metal, plastic>>)
+new_phase("pid1", "", 0, <<glass, metal, plastic>>)
+new_phase("pid1", "p1", 2, <<glass, metal, plastic>>)
+new_phase("pid1", "", 2, <<glass, metal, plastic>>)
+new_phase("pid1", "p1", 0, <<glass, metal, plastic>>)
+new_phase("", "p1", 2, <<>>)
+new_phase("pid1", "", 2, <<>>)
+new_phase("pid1", "p1", 0, <<>>)
+new_phase("pid1", "", 0, <<>>)
+new_phase("", "", 0, <<>>)
+new_phase("pid2", "p1", 1, <<glass, metal, plastic>>)
+new_container("cid1", [glass,   5.5], "pid2")
+new_phase("", "", 0, <<>>)
+new_container("cid1", [glass,   -5], "pid2")
+new_container("cid2", [glass,   -5], "pid2")
+new_container("cid1", [glass,   -5], "pid1")
+new_container("cid1", [glass,   1], "pid1")
+new_container("cid2", [glass,   1], "pid2")
+new_container("cid1", [plastic,   -5], "pid2")
+new_container("cid2", [plastic,   -5], "pid2")
+new_container("cid1", [plastic,   -5], "pid1")
+new_container("cid1", [plastic,   1], "pid1")
+new_container("cid2", [plastic,   1], "pid2")
+new_container("cid1", [plastic,   2], "pid1")
+new_container("cid2", [plastic,   2], "pid2")
+new_container("cid1", [glass,   2], "pid1")
+new_container("cid2", [glass,   2], "pid2")
+new_container("", [plastic,   2], "")
+new_container("", [plastic,   -5], "")
+new_container("cid1", [plastic,   2], "")
+new_container("", [plastic,   -5], "pid1")
+new_container("", [plastic,   2], "pid1")
+new_container("cid1", [plastic,   -5], "")
+remove_phase("pid90")
+new_tracker(-10, -5)
+new_tracker(-5, -10)
+new_tracker(-5, 10)
+move_container("", "", "")
+move_container("cid1", "pid1", "pid1")
+move_container("cid1", "pid2", "pid2")
+move_container("cid3", "pid1", "pid1")
+move_container("cid3", "pid1", "pid2")
+
+
+
+
+
+

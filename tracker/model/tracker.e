@@ -111,11 +111,13 @@ feature -- model operations
 	--	require
 	--		phase_exists: get_phases.has (phase_id)
 		do
+
 			if attached phases[phase_id] as p then
 				sorted_phases.prune_all (p)
 			end
-			set_error(msg.ok)
 			phases.remove (phase_id)
+			set_error(msg.ok)
+
 
 		ensure
 			phase_removed_from_table: not (phases.has_key (phase_id))
@@ -203,6 +205,10 @@ feature -- getter
 	get_state: INTEGER
 		do
 			Result := state
+		end
+	get_cursor_state: INTEGER
+		do
+			Result := cursor_state
 		end
 
 	get_max_cont_rad: VALUE

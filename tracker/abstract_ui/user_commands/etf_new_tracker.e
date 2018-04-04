@@ -29,9 +29,9 @@ feature -- command
 			model.set_state (model.get_state + 1)
 			if model.is_active then
 				error := (msg.in_use)
-			elseif (max_phase_radiation < 0.0) then
+			elseif (max_phase_radiation <= 0.0) then
 				error := (msg.non_neg_phase_rad)
-			elseif (max_container_radiation < 0.0) then
+			elseif (max_container_radiation <= 0.0) then
 				error := (msg.non_neg_container_rad)
 			elseif (max_container_radiation > max_phase_radiation) then
 				error := (msg.container_lt_phase)

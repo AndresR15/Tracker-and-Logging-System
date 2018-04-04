@@ -1,0 +1,38 @@
+--testing basic functions (no errors)
+new_tracker(50, 20)
+new_phase("pid1", "p1", 2, <<glass, metal, plastic>>)
+new_phase("pid2", "p2", 2, <<plastic, liquid>>)
+undo
+redo
+remove_phase("pid2")
+undo
+redo
+undo
+new_container("cid1", [metal, 5.0], "pid1")
+new_container("cid2", [plastic, 5.0], "pid2")
+undo
+redo
+remove_container("cid1")
+undo
+redo
+undo
+remove_container("cid1")
+undo
+move_container("cid2", "pid2", "pid1")
+remove_container("cid2")
+undo
+move_container("cid2", "pid1", "pid2")
+undo
+redo
+remove_container("cid1")
+remove_container("cid2")
+new_tracker(70, 20)
+remove_phase("pid1")
+remove_phase("pid2")
+undo
+undo
+undo
+redo
+redo
+redo
+

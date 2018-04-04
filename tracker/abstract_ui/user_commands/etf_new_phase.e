@@ -37,7 +37,7 @@ feature -- command
 				error := (msg.phase_id_in_use)
 			elseif not model.valid_string (phase_name) then
 				error := (msg.invalid_name_id)
-			elseif capacity < 0 then
+			elseif capacity <= 0 then
 				error := (msg.phase_cap_invalid)
 			elseif expected_materials.is_empty then
 				error := (msg.material_missing)

@@ -23,15 +23,24 @@ feature -- Initialization
 			track := tracker_access.m
 			cid := init_cid
 			state := track.get_state
-			prev_container := tracker_access.m.get_container (cid)
+			if attached tracker_access.m.get_container (cid) as prev_cont then
+				material := prev_cont.get_material
+				rad := prev_cont.get_rad
+				current_pid := prev_cont.get_pid
+			else
+				material := 0
+				create rad.make_from_int (0)
+				current_pid := ""
+			end
 			msg := m_a.ok
 		end
 
 feature -- Attributes
 
 	cid: STRING
-
-	prev_container: detachable PHASE_CONTAINER
+	material: INTEGER_64
+	rad: VALUE
+	current_pid: STRING
 
 feature
 
@@ -42,10 +51,7 @@ feature
 
 	undo
 		do
-			if attached prev_container as p_c then
-				track.new_container (cid, [p_c.get_material, p_c.get_rad], p_c.get_pid)
-			end
-
+			track.new_container (cid, [material, rad], current_pid)
 		end
 
 	redo

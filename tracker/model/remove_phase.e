@@ -8,6 +8,7 @@ class
 	REMOVE_PHASE
 
 inherit
+
 	COMMAND
 
 create
@@ -22,35 +23,28 @@ feature -- Initialization
 			track := tracker_access.m
 			p_id := pid
 			state := track.get_state
-			if attached track.get_phases.at (pid) as p_p then
-				prev_name := p_p.get_name
-				prev_cap := p_p.get_capacity
-				prev_mats := p_p.get_mats
-			else
-				prev_name := ""
-				prev_cap := 0
-				prev_mats := <<>>
-			end
+			prev_phase := track.get_phases.at (pid)
 			msg := m_a.ok
 		end
 
 feature -- Attributes
 
 	p_id: STRING
-	prev_name: STRING
-	prev_cap: INTEGER_64
-	prev_mats: ARRAY[INTEGER_64]
+
+	prev_phase: detachable PHASE
 
 feature
 
 	execute
 		do
-			track.remove_phase(p_id)
+			track.remove_phase (p_id)
 		end
 
 	undo
 		do
-				track.new_phase (p_id, prev_name, prev_cap, prev_mats)
+			if attached prev_phase as p_p then
+				track.new_phase (p_id, p_p.get_name, p_p.get_capacity, p_p.get_mats)
+			end
 		end
 
 	redo

@@ -8,13 +8,15 @@ class
 	NEW_TRACKER
 
 inherit
+
 	COMMAND
 
 Create
 	make, make_init
 
-feature	{NONE}
-	make(max_phase_radiation: VALUE; max_container_radiation: VALUE)
+feature {NONE}
+
+	make (max_phase_radiation: VALUE; max_container_radiation: VALUE)
 		local
 			tracker_access: TRACKER_ACCESS
 		do
@@ -25,7 +27,7 @@ feature	{NONE}
 			max_phase_rad := max_phase_radiation
 		end
 
-	make_init(max_phase_radiation: VALUE; max_container_radiation: VALUE)
+	make_init (max_phase_radiation: VALUE; max_container_radiation: VALUE)
 		local
 			tracker_access: TRACKER_ACCESS
 		do
@@ -44,12 +46,12 @@ feature
 
 	execute
 		do
-			track.new_tracker(max_phase_rad, max_cont_rad)
+			track.new_tracker (max_phase_rad, max_cont_rad)
 		end
 
 	undo
 		do
-			-- nothing
+				-- nothing
 		end
 
 	redo

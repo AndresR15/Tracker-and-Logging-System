@@ -45,7 +45,6 @@ feature
 			if attached prev_container as p_c then
 				track.new_container (cid, [p_c.get_material, p_c.get_rad], p_c.get_pid)
 			end
-
 		end
 
 	redo

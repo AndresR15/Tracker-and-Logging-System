@@ -15,6 +15,7 @@ inherit
 		redefine
 			is_equal
 		end
+
 	ANY
 		undefine
 			is_equal
@@ -37,7 +38,7 @@ feature {NONE} -- Initialization
 			name := phase_name
 			capacity := cap
 			expected_mats := expected_materials
-			material_set := material_array_to_set
+			materials_set := material_array_to_set
 			create c.make_equal_caseless (10)
 			containers := c
 			create z.make_from_int (0)
@@ -54,7 +55,7 @@ feature {PHASE} -- Attributes
 
 	expected_mats: ARRAY [INTEGER_64] -- subset of materials
 
-	material_set: ARRAYED_SET [INTEGER_64]
+	materials_set: ARRAYED_SET [INTEGER_64] -- set of materials
 
 	containers: STRING_TABLE [PHASE_CONTAINER]
 
@@ -82,6 +83,11 @@ feature -- Queries
 			Result := expected_mats
 		end
 
+	get_set_mats: ARRAYED_SET [INTEGER_64]
+		do
+			Result := materials_set
+		end
+
 	get_containers: STRING_TABLE [PHASE_CONTAINER]
 		do
 			Result := containers
@@ -107,7 +113,7 @@ feature -- Queries
 		do
 			create Result.make_from_string ("")
 			across
-				material_set as set
+				get_set_mats as set
 			loop
 				Result.append (m.int_to_material_string (set.item))
 				if (not set.is_last) then
@@ -132,15 +138,15 @@ feature -- Commands
 				current_rad := current_rad - c.get_rad
 			end
 			containers.remove (cid)
-
 		ensure
 			container_removed: not containers.has_key (cid)
 		end
 
-	material_array_to_set: ARRAYED_SET[INTEGER_64]
+	material_array_to_set: ARRAYED_SET [INTEGER_64]
 		do
 			Create Result.make (4)
-			across expected_mats as cursor
+			across
+				expected_mats as cursor
 			loop
 				Result.extend (cursor.item)
 			end

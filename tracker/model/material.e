@@ -25,4 +25,5 @@ feature -- conversion
 				Result := "liquid"
 			end
 		end
+
 end

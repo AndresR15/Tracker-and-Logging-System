@@ -77,19 +77,18 @@ feature -- model operations
 			create new_p.make (pid, phase_name, capacity, expected_materials)
 			phases.extend (new_p, pid)
 			sorted_phases.extend (new_p)
-			set_error(msg.ok)
-
+			set_error (msg.ok)
 		end
 
 	new_tracker (max_p_rad, max_c_rad: VALUE)
 		require
-			positive_values: max_p_rad > 0.0 and then max_c_rad > 0.0
+			positive_values: max_p_rad >= 0.0 and then max_c_rad >= 0.0
 			tracker_not_active: not is_active
 		do
-			set_error(msg.ok)
+			set_error (msg.ok)
 			max_phase_rad := max_p_rad
 			max_cont_rad := max_c_rad
-			set_error(msg.ok)
+			set_error (msg.ok)
 		end
 
 	new_container (cid: STRING; cont_spec: TUPLE [m: INTEGER_64; rad: VALUE]; pid: STRING)
@@ -102,25 +101,22 @@ feature -- model operations
 			if attached phases [pid] as p then
 				p.add_container (cont)
 				sorted_conts.extend (cont)
-				set_error(msg.ok)
+				set_error (msg.ok)
 			end
 		end
 
 	remove_phase (phase_id: STRING)
 			-- removes a phase from the tracker
-	--	require
-	--		phase_exists: get_phases.has (phase_id)
+			--	require
+			--		phase_exists: get_phases.has (phase_id)
 		do
-
-			if attached phases[phase_id] as p then
+			if attached phases [phase_id] as p then
 				sorted_phases.prune_all (p)
 			end
 			phases.remove (phase_id)
-			set_error(msg.ok)
-
-
+			set_error (msg.ok)
 		ensure
-			phase_removed_from_table: not (phases.has_key (phase_id))
+			phase_removed: not (phases.has_key (phase_id))
 		end
 
 	remove_container (cid: STRING)
@@ -137,7 +133,7 @@ feature -- model operations
 				sorted_conts.prune_all (c)
 				p.remove_container (cid)
 			end
-			set_error(msg.ok)
+			set_error (msg.ok)
 		end
 
 	move_container (cid: STRING; pid1: STRING; pid2: STRING)
@@ -149,9 +145,9 @@ feature -- model operations
 				temp_cont := cont
 				p1.remove_container (cid)
 				p2.add_container (temp_cont)
-				cont.set_pid(pid2)
+				cont.set_pid (pid2)
 			end
-			set_error(msg.ok)
+			set_error (msg.ok)
 		ensure
 			container_exists: cid_exists (cid)
 			cid_in_phase_attached: attached get_phase_containing_cid (cid) as pc
@@ -176,21 +172,20 @@ feature -- setters
 		end
 
 	set_state (new_state: INTEGER)
-		-- sets both the state and the cursor state to state
+			-- sets both the state and the cursor state to state
 		do
 			state := new_state
-			set_cursor_state(state)
+			set_cursor_state (state)
 		end
 
-	set_cursor_state(cur_state: INTEGER)
---		require
---			cursor_state_not_over: cur_state <= get_state
+	set_cursor_state (cur_state: INTEGER)
+			--		require
+			--			cursor_state_not_over: cur_state <= get_state
 		do
 			cursor_state := cur_state
 		end
 
 feature -- getter
-
 
 	get_phases: STRING_TABLE [PHASE]
 		do
@@ -206,6 +201,7 @@ feature -- getter
 		do
 			Result := state
 		end
+
 	get_cursor_state: INTEGER
 		do
 			Result := cursor_state
@@ -227,7 +223,6 @@ feature -- error checks
 			-- are there any containers in the system
 		do
 			Result := sorted_conts.count > 0
-
 		end
 
 	valid_string (s: STRING): BOOLEAN
@@ -283,8 +278,6 @@ feature -- error checks
 			end
 		end
 
-
-
 feature -- error checks
 
 	cid_exists (cid: STRING): BOOLEAN
@@ -301,7 +294,7 @@ feature -- queries
 
 	get_phase_containing_cid (cid: STRING): detachable PHASE
 		do
-
+			Result := void
 			across
 				phases as cursor
 			loop
@@ -313,7 +306,6 @@ feature -- queries
 
 	get_container (cid: STRING): detachable PHASE_CONTAINER
 		do
-
 			across
 				phases as cursor
 			loop
@@ -323,39 +315,35 @@ feature -- queries
 			end
 		end
 
-
-
 	out: STRING
 		local
 			stwl_c: STWL_OUT [PHASE_CONTAINER]
 			stwl_p: STWL_OUT [PHASE]
-			er_msg : MESSAGES_ACCESS
+			er_msg: MESSAGES_ACCESS
 		do
 			create Result.make_from_string ("  state ")
 			Result.append_integer (state)
 			if cursor_state /= state then
 				Result.append (" (to ")
-				Result.append_integer(cursor_state)
-				Result.append(")")
+				Result.append_integer (cursor_state)
+				Result.append (")")
 			end
 			Result.append (" " + error)
 			if (error = er_msg.ok) then
-				Result.append("%N  max_phase_radiation: ")
+				Result.append ("%N  max_phase_radiation: ")
 				Result.append (max_phase_rad.out)
 				Result.append (", max_container_radiation: ")
 				Result.append (max_cont_rad.out)
-
 				Result.append ("%N  phases: pid->name:capacity,count,radiation")
 				if not sorted_phases.is_empty then
 					Result.append ("%N")
-					create stwl_p.make(sorted_phases)
+					create stwl_p.make (sorted_phases)
 					Result.append (stwl_p.out)
 				end
-
 				Result.append ("%N  containers: cid->pid->material,radioactivity")
 				if not sorted_conts.is_empty then
 					Result.append ("%N")
-					create stwl_c.make(sorted_conts)
+					create stwl_c.make (sorted_conts)
 					Result.append (stwl_c.out)
 				end
 			end
@@ -368,7 +356,5 @@ feature -- misc
 		do
 			make
 		end
-
-
 
 end

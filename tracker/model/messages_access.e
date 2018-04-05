@@ -48,4 +48,5 @@ feature -- Constant Messages
 	no_undo: STRING = "e19: there is no more to undo"
 
 	no_redo: STRING = "e20: there is no more to redo"
+
 end

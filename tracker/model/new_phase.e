@@ -8,6 +8,7 @@ class
 	NEW_PHASE
 
 inherit
+
 	COMMAND
 
 create
@@ -40,12 +41,12 @@ feature
 
 	execute
 		do
-			track.new_phase(p_id, p_name, capacity, expected_mats)
+			track.new_phase (p_id, p_name, capacity, expected_mats)
 		end
 
 	undo
 		do
-			track.remove_phase(p_id)
+			track.remove_phase (p_id)
 		end
 
 	redo

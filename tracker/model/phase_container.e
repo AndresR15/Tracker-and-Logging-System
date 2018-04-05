@@ -15,6 +15,7 @@ inherit
 		redefine
 			is_equal
 		end
+
 	ANY
 		undefine
 			is_equal
@@ -70,7 +71,7 @@ feature -- Access
 
 feature -- setters
 
-	set_pid(n_pid: STRING)
+	set_pid (n_pid: STRING)
 		do
 			current_pid := n_pid
 		end
@@ -103,7 +104,7 @@ feature -- Comparable
 feature -- Basic operations
 
 	out: STRING
-		-- returns a string representation of the container
+			-- returns a string representation of the container
 		local
 			m: MATERIAL
 		do

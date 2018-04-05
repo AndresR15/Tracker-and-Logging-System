@@ -6,6 +6,7 @@ expanded class
 	TRACKER_ACCESS
 
 feature
+
 	m: TRACKER
 		once
 			create Result.make
@@ -13,8 +14,5 @@ feature
 
 invariant
 	m = m
+
 end
-
-
-
-

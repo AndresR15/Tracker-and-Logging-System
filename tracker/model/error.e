@@ -34,7 +34,7 @@ feature
 
 	undo
 		do
-			-- empty
+				-- empty
 		end
 
 	redo

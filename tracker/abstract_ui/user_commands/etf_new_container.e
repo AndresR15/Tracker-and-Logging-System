@@ -59,7 +59,6 @@ feature -- command
 				model.get_history.add_to_record (command)
 				command.execute
 			end
-
 			etf_cmd_container.on_change.notify ([Current])
 		end
 

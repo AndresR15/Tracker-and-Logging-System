@@ -8,10 +8,11 @@ class
 	NEW_CONTAINER
 
 inherit
+
 	COMMAND
 
 Create
-		make
+	make
 
 feature -- Initialization
 
@@ -40,7 +41,7 @@ feature
 
 	execute
 		do
-			track.new_container(cid, [material, rad], pid)
+			track.new_container (cid, [material, rad], pid)
 		end
 
 	undo

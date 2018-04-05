@@ -8,6 +8,7 @@ class
 	REMOVE_PHASE
 
 inherit
+
 	COMMAND
 
 create

@@ -40,7 +40,6 @@ feature -- Output
 				else
 					Result.append ("    " + cursor.item.out + "%N")
 				end
-
 			end
 		end
 

@@ -23,7 +23,7 @@ feature {HISTORY} -- Attributes
 
 feature -- Deleation
 
-	reset_record_and_append(c: COMMAND)
+	reset_record_and_append (c: COMMAND)
 		do
 			record.wipe_out
 			record.extend (c)
@@ -31,28 +31,26 @@ feature -- Deleation
 		end
 
 	remove_all_right
-            --remove all items to the right of the cursor
-        do
-            from
-            until
-                record.islast
-            loop
-            	if record.count /= record.index then
-            		record.remove_right
-            	end
-            end
- 		end
+			--remove all items to the right of the cursor
+		do
+			from
+			until
+				record.islast or else record.is_empty
+			loop
+				if record.count /= record.index then
+					record.remove_right
+				end
+			end
+		end
 
 feature -- Setters
 
 	add_to_record (c: COMMAND)
-		-- add a COMMAND object to record
+			-- add a COMMAND object to record
 		do
-
+			remove_all_right
 			record.extend (c)
 			record.forth
-			remove_all_right
-
 		end
 
 feature -- Getters

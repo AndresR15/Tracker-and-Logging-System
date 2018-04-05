@@ -119,9 +119,8 @@ feature -- model operations
 			set_error(msg.ok)
 
 
-
 		ensure
-			phase_removed: not (phases.has_key (phase_id))
+			phase_removed_from_table: not (phases.has_key (phase_id))
 		end
 
 	remove_container (cid: STRING)
@@ -302,7 +301,7 @@ feature -- queries
 
 	get_phase_containing_cid (cid: STRING): detachable PHASE
 		do
-			Result := void
+
 			across
 				phases as cursor
 			loop

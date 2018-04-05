@@ -37,6 +37,7 @@ feature {NONE} -- Initialization
 			name := phase_name
 			capacity := cap
 			expected_mats := expected_materials
+			material_set := material_array_to_set
 			create c.make_equal_caseless (10)
 			containers := c
 			create z.make_from_int (0)
@@ -52,6 +53,8 @@ feature {PHASE} -- Attributes
 	capacity: INTEGER_64 -- number of containers PHASE handles
 
 	expected_mats: ARRAY [INTEGER_64] -- subset of materials
+
+	material_set: ARRAYED_SET [INTEGER_64]
 
 	containers: STRING_TABLE [PHASE_CONTAINER]
 
@@ -104,12 +107,10 @@ feature -- Queries
 		do
 			create Result.make_from_string ("")
 			across
-				get_mats as gm
+				material_set as set
 			loop
-				Result.append (m.int_to_material_string (gm.item))
-				if (gm.cursor_index /~ get_mats.lower) and (gm.cursor_index /~ get_mats.upper) then
-					Result.append_character (',')
-				elseif (gm.cursor_index ~ get_mats.lower) and (get_mats.lower /~ get_mats.upper) then
+				Result.append (m.int_to_material_string (set.item))
+				if (not set.is_last) then
 					Result.append_character (',')
 				end
 			end
@@ -134,6 +135,15 @@ feature -- Commands
 
 		ensure
 			container_removed: not containers.has_key (cid)
+		end
+
+	material_array_to_set: ARRAYED_SET[INTEGER_64]
+		do
+			Create Result.make (4)
+			across expected_mats as cursor
+			loop
+				Result.extend (cursor.item)
+			end
 		end
 
 feature -- compare

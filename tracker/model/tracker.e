@@ -15,7 +15,7 @@ inherit
 create {TRACKER_ACCESS}
 	make
 
-feature {NONE} -- Initialization
+feature {ES_TEST} -- Initialization
 
 	make
 			-- Initialization for `Current'.

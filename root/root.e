@@ -41,7 +41,7 @@ feature -- Attributes
 	switch: INTEGER
 			-- Running mode of ETF application.
 		do
-			Result := 4
+			Result := 1
 
 		end
 
@@ -52,9 +52,9 @@ feature -- Tests
 		require
 			switch = unit_test
 		do
-				-- add your tests here
-				-- add cluster for tests
-				-- add_test (create {MY_TEST}.make)
+			add_test (create {STUDENT_TESTS}.make)
+			show_browser
+			run_espec
 		end
 
 feature -- Constructor

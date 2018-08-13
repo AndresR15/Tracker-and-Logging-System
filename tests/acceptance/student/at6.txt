@@ -1,3 +1,12 @@
+redo
+undo
+undo
+undo
+redo
+redo
+redo
+undo
+undo
 new_tracker(50.0, 10.0)
 undo
 redo
@@ -17,9 +26,6 @@ redo
 undo
 undo
 undo
-
--- add 2 phases each having a container handling capacity of 2:
-
 new_phase("pid2", "compacting", 2, <<glass, metal, plastic>>)
 new_phase("pid1", "unpacking", 2, <<glass, metal, plastic, liquid>>)
 undo
@@ -34,15 +40,9 @@ redo
 undo
 undo
 undo
--- type CONTAINER = TUPLE[material: MATERIAL; radioactivity: VALUE]
--- add some containers
-
 new_container("cid4", [metal,   3.0], "pid1")
 new_container("cid1", [glass,   5.5], "pid1")
 new_container("cid2", [liquid,  0.5], "pid1") -- e11
-
--- move some containers
-
 move_container ("cid1", "pid1", "pid2")
 move_container ("cid4", "pid1", "pid2")
 undo
@@ -57,7 +57,6 @@ redo
 undo
 undo
 undo
--- Remove some containers
 remove_container("cid1")
 undo
 undo
@@ -97,3 +96,119 @@ redo
 undo
 undo
 undo
+new_tracker(-10.0, -10.0)
+undo
+undo
+new_tracker(9.99999, 9.99999)
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+undo
+new_tracker(20, 10)
+new_phase("&*^$%", "packing", 2, <<glass, metal, plastic, liquid>>)
+undo
+redo
+redo
+undo
+new_phase("pid1", "packing", 2, <<ketchup, metal, plastic, liquid>>)
+undo
+redo
+redo
+undo
+new_phase("pid2", "packing", -2, <<glass, metal, plastic, liquid>>)
+undo
+redo
+redo
+undo
+new_phase("pid3", "packing", 0, <<glass, metal, plastic, liquid>>)
+undo
+redo
+redo
+undo
+new_phase("pid4", "packing", 3, <<glass, metal, plastic, liquid>>)
+undo
+redo
+redo
+undo
+new_phase("pid5", "unpacking", 3, <<glass, metal, plastic, liquid>>)
+undo
+redo
+redo
+undo
+new_phase("pid6", "ununpacking", 1, <<glass, metal, plastic, liquid>>)
+undo
+redo
+redo
+undo
+new_container("cid1", [metal, 11], "pid4")
+undo
+redo
+redo
+undo
+new_container("cid2", [metal, 10], "pid4")
+undo
+redo
+redo
+undo
+new_container("cid3", [metal, 10], "pid4")
+undo
+redo
+redo
+undo
+new_container("cid4", [metal, 10], "pid4")
+undo
+redo
+redo
+undo
+move_container("cid3", "pid1", "pid2")
+undo
+redo
+redo
+undo
+move_container("cid2", "pid2", "pid1")
+undo
+redo
+redo
+undo
+remove_container ("cid1")
+undo
+redo
+redo
+undo
+remove_phase("pid1")
+undo
+redo
+redo
+undo
+new_container("cid4", [metal, 10], "pid4")
+undo
+redo
+redo
+undo
+new_container("cid5", [metal, -10], "pid5")
+undo
+redo
+redo
+undo
+new_container("&*^%", [metal, -10], "pid5")
+undo
+redo
+redo
+undo
+new_container("cid6", [metal, 8], "pid6")
+undo
+redo
+redo
+undo
+new_container("cid7", [metal, 8], "pid6")

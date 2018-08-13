@@ -1,0 +1,15 @@
+<system>
+<keyword>deferred</keyword> <keyword>class</keyword>
+	<class><location>../interface/ev_help_engine_links.xml</location>EV_HELP_ENGINE</class>
+
+<keyword>Ancestors</keyword>
+	<class><include>False</include>ANY</class>
+
+<keyword>Descendants</keyword>
+	<class><location>../interface/ev_simple_help_engine_links.xml</location>EV_SIMPLE_HELP_ENGINE</class>
+
+<keyword>Clients</keyword>
+	<class><location>../interface/ev_application_links.xml</location>EV_APPLICATION</class>
+	<class><location>../implementation_interface/ev_application_i_links.xml</location>EV_APPLICATION_I</class><char>*</char>
+
+</system>

@@ -1,0 +1,172 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "List of default colors used by the system. Gtk implementation."{\line}
+{\tab}{\cf1 legal}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 status}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2012-06-25 13:27:30 -0700 (Mon, 25 Jun 2012) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 88996 $"{\line}
+{\line}
+{\b\cf6 class} {\line}
+{\tab}{\cf4 EV_STOCK_COLORS_IMP}{\line}
+{\line}
+{\b\cf6 create} {\line}
+{\tab}{\cf5 default_create}{\line}
+{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 color_read_write}{\cf1 :} {\cf4 EV_COLOR}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Color used for read write.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_widget}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_widget} {\cf1 :=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_entry_new}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 color_from_state}{\cf1  }{\cf1 (}{\cf5 l_widget}{\cf1 ,} {\cf5 Base_style}{\cf1 ,} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_state_normal_enum}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_widget_destroy} {\cf1 (}{\cf5 l_widget}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 color_read_only}{\cf1 :} {\cf4 EV_COLOR}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Color used for read only.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_widget}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_widget} {\cf1 :=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_entry_new}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 color_from_state}{\cf1  }{\cf1 (}{\cf5 l_widget}{\cf1 ,} {\cf5 Base_style}{\cf1 ,} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_state_insensitive_enum}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_widget_destroy} {\cf1 (}{\cf5 l_widget}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 default_background_color}{\cf1 :} {\cf4 EV_COLOR}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Color used for the background of dialogs}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 EV_STOCK_COLORS_IMP}{\cf3  as synonym of }{\cf5 color_dialog}{\cf3  and }{\cf5 color_3d_face}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_widget}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_widget} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_dialog_new}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 color_from_state}{\cf1  }{\cf1 (}{\cf5 l_widget}{\cf1 ,} {\cf5 Bg_style}{\cf1 ,} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_state_normal_enum}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_widget_destroy} {\cf1 (}{\cf5 l_widget}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 color_dialog}{\cf1 :} {\cf4 EV_COLOR}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Color used for the background of dialogs}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 EV_STOCK_COLORS_IMP}{\cf3  as synonym of }{\cf5 default_background_color}{\cf3  and }{\cf5 color_3d_face}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_widget}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_widget} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_dialog_new}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 color_from_state}{\cf1  }{\cf1 (}{\cf5 l_widget}{\cf1 ,} {\cf5 Bg_style}{\cf1 ,} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_state_normal_enum}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_widget_destroy} {\cf1 (}{\cf5 l_widget}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 color_3d_face}{\cf1 :} {\cf4 EV_COLOR}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Color used for the background of dialogs}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 EV_STOCK_COLORS_IMP}{\cf3  as synonym of }{\cf5 default_background_color}{\cf3  and }{\cf5 color_dialog}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_widget}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_widget} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_dialog_new}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 color_from_state}{\cf1  }{\cf1 (}{\cf5 l_widget}{\cf1 ,} {\cf5 Bg_style}{\cf1 ,} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_state_normal_enum}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_widget_destroy} {\cf1 (}{\cf5 l_widget}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 default_foreground_color}{\cf1 :} {\cf4 EV_COLOR}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Color used for the foreground of dialogs.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 EV_STOCK_COLORS_IMP}{\cf3  as synonym of }{\cf5 color_dialog_fg}{\cf3 , }{\cf5 color_3d_highlight}{\cf3  and }{\cf5 color_3d_shadow}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_widget}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_widget} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_dialog_new}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 color_from_state}{\cf1  }{\cf1 (}{\cf5 l_widget}{\cf1 ,} {\cf5 Fg_style}{\cf1 ,} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_state_normal_enum}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_widget_destroy} {\cf1 (}{\cf5 l_widget}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 color_dialog_fg}{\cf1 :} {\cf4 EV_COLOR}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Color used for the foreground of dialogs.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 EV_STOCK_COLORS_IMP}{\cf3  as synonym of }{\cf5 default_foreground_color}{\cf3 , }{\cf5 color_3d_highlight}{\cf3  and }{\cf5 color_3d_shadow}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_widget}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_widget} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_dialog_new}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 color_from_state}{\cf1  }{\cf1 (}{\cf5 l_widget}{\cf1 ,} {\cf5 Fg_style}{\cf1 ,} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_state_normal_enum}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_widget_destroy} {\cf1 (}{\cf5 l_widget}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 color_3d_highlight}{\cf1 :} {\cf4 EV_COLOR}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Color used for the foreground of dialogs.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 EV_STOCK_COLORS_IMP}{\cf3  as synonym of }{\cf5 default_foreground_color}{\cf3 , }{\cf5 color_dialog_fg}{\cf3  and }{\cf5 color_3d_shadow}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_widget}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_widget} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_dialog_new}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 color_from_state}{\cf1  }{\cf1 (}{\cf5 l_widget}{\cf1 ,} {\cf5 Fg_style}{\cf1 ,} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_state_normal_enum}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_widget_destroy} {\cf1 (}{\cf5 l_widget}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 color_3d_shadow}{\cf1 :} {\cf4 EV_COLOR}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Color used for the foreground of dialogs.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 EV_STOCK_COLORS_IMP}{\cf3  as synonym of }{\cf5 default_foreground_color}{\cf3 , }{\cf5 color_dialog_fg}{\cf3  and }{\cf5 color_3d_highlight}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_widget}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_widget} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_dialog_new}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 color_from_state}{\cf1  }{\cf1 (}{\cf5 l_widget}{\cf1 ,} {\cf5 Fg_style}{\cf1 ,} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_state_normal_enum}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_widget_destroy} {\cf1 (}{\cf5 l_widget}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_ANY_HANDLER}{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 color_from_state} {\cf1 (}{\cf5 a_widget}{\cf1 :} {\cf4 POINTER}{\cf1 ;} {\cf5 style_type}{\cf1 ,} {\cf5 a_state}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 EV_COLOR}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Return color of either fg or bg representing }{\cf5 a_state}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_state_valid}{\cf1 :} {\cf5 a_state} {\cf1 >=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_state_normal_enum} {\b\cf6 and} {\cf5 a_state} {\cf1 <=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_state_insensitive_enum}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_style}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_gdk_color}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_r}{\cf1 ,} {\cf5 a_g}{\cf1 ,} {\cf5 a_b}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_style} {\cf1 :=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_rc_get_style} {\cf1 (}{\cf5 a_widget}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 inspect} {\cf5 style_type}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 when} {\cf5 Text_style} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 a_gdk_color} {\cf1 :=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_style_struct_text} {\cf1 (}{\cf5 a_style}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 when} {\cf5 Base_style} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 a_gdk_color} {\cf1 :=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_style_struct_base} {\cf1 (}{\cf5 a_style}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 when} {\cf5 Bg_style} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 a_gdk_color} {\cf1 :=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_style_struct_bg} {\cf1 (}{\cf5 a_style}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 when} {\cf5 Fg_style} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 a_gdk_color} {\cf1 :=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_style_struct_fg} {\cf1 (}{\cf5 a_style}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_gdk_color} {\cf1 :=} {\cf5 a_gdk_color} {\cf1 +} {\cf1 (}{\cf5 a_state} {\cf1 *} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 c_gdk_color_struct_size}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_r} {\cf1 :=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_color_struct_red} {\cf1 (}{\cf5 a_gdk_color}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_g} {\cf1 :=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_color_struct_green} {\cf1 (}{\cf5 a_gdk_color}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_b} {\cf1 :=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_color_struct_blue} {\cf1 (}{\cf5 a_gdk_color}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 set_rgb_with_16_bit}{\cf1  }{\cf1 (}{\cf5 a_r}{\cf1 ,} {\cf5 a_g}{\cf1 ,} {\cf5 a_b}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Text_style}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 1}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Base_style}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 2}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Fg_style}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 3}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Bg_style}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 4}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Different coloring styles used in gtk.}{\line}
+{\tab}{\line}
+{\b\cf6 note}{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 1984-2012, Eiffel Software and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"{\line}
+{\tab}{\cf1 source}{\cf1 :} "[{\line}
+{\tab}{\tab}Eiffel Software{\line}
+{\tab}{\tab}5949 Hollister Ave., Goleta, CA 93117 USA{\line}
+{\tab}{\tab}Telephone 805-685-1006, Fax 805-685-6869{\line}
+{\tab}{\tab}Website http://www.eiffel.com{\line}
+{\tab}{\tab}Customer support http://support.eiffel.com{\line}
+{\tab}]"{\line}
+{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 EV_STOCK_COLORS_IMP}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

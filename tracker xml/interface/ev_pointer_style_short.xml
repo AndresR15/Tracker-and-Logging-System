@@ -1,0 +1,101 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Apearance of a screen pointer cursor, typically moved by a mouse.</string>
+		
+		<string>EV_POINTER_STYLE works better than EV_CURSOR on Windows platforms. </string>
+		<string>It support high-depth color cursor (such as when using remote desktop),</string>
+		<string>but EV_CURSOR can't. For Unix platforms, they are almost the same.</string>
+	<string>]</string><string>&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;mouse, pointer, cursor, arrow&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2017-05-03 08:56:14 -0700 (Wed, 03 May 2017) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 100317 $&quot;</string>
+
+<keyword>class</keyword> <keyword>interface</keyword>
+	<class><location>../interface/ev_pointer_style_short.xml</location>EV_POINTER_STYLE</class>
+
+<keyword>create</keyword> 
+	<feature><location>../interface/ev_any_short.xml#f_default_create</location>default_create</feature><symbol>,</symbol>
+	<feature><location>../interface/ev_pointer_style_short.xml#f_make_predefined</location>make_predefined</feature><symbol>,</symbol>
+	<feature><location>../interface/ev_pointer_style_short.xml#f_make_with_pixel_buffer</location>make_with_pixel_buffer</feature><symbol>,</symbol>
+	<feature><location>../interface/ev_pointer_style_short.xml#f_make_with_pixmap</location>make_with_pixmap</feature><symbol>,</symbol>
+	<feature><location>../interface/ev_pointer_style_short.xml#f_make_with_cursor</location>make_with_cursor</feature>
+
+<keyword>convert</keyword>
+	<feature><location>../interface/ev_pointer_style_short.xml#f_make_with_cursor</location>make_with_cursor</feature> <symbol>(</symbol><symbol>{</symbol><class><location>../interface/ev_cursor_short.xml</location>EV_CURSOR</class><symbol>}</symbol><symbol>)</symbol>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Command</comment>
+
+	<anchor>f_set_x_hotspot</anchor><feature><location>../interface/ev_pointer_style_short.xml#f_set_x_hotspot</location>set_x_hotspot</feature> <symbol>(</symbol><local>a_x</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><feature><location>../interface/ev_pointer_style_short.xml#f_x_hotspot</location>x_hotspot</feature><comment> to </comment><quoted>a_x</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>valid</tag><symbol>:</symbol> <number>0</number> <symbol>&lt;=</symbol> <local>a_x</local> <keyword>and</keyword> <local>a_x</local> <symbol>&lt;=</symbol> <feature><location>../interface/ev_pointer_style_short.xml#f_width</location>width</feature>
+		<keyword>ensure</keyword>
+			<tag>set</tag><symbol>:</symbol> <feature><location>../interface/ev_pointer_style_short.xml#f_x_hotspot</location>x_hotspot</feature> <symbol>=</symbol> <local>a_x</local>
+
+	<anchor>f_set_y_hotspot</anchor><feature><location>../interface/ev_pointer_style_short.xml#f_set_y_hotspot</location>set_y_hotspot</feature> <symbol>(</symbol><local>a_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><feature><location>../interface/ev_pointer_style_short.xml#f_y_hotspot</location>y_hotspot</feature><comment> to </comment><quoted>a_y</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destoryed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>valid</tag><symbol>:</symbol> <number>0</number> <symbol>&lt;=</symbol> <local>a_y</local> <keyword>and</keyword> <local>a_y</local> <symbol>&lt;=</symbol> <feature><location>../interface/ev_pointer_style_short.xml#f_height</location>height</feature>
+		<keyword>ensure</keyword>
+			<tag>set</tag><symbol>:</symbol> <feature><location>../interface/ev_pointer_style_short.xml#f_y_hotspot</location>y_hotspot</feature> <symbol>=</symbol> <local>a_y</local>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Query</comment>
+
+	<anchor>f_x_hotspot</anchor><feature><location>../interface/ev_pointer_style_short.xml#f_x_hotspot</location>x_hotspot</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Specifies the x-coordinate of a cursor's hot spot.</comment>
+		<keyword>ensure</keyword>
+			<tag>valid</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>&lt;=</symbol> <feature><location>../interface/ev_pointer_style_short.xml#f_width</location>width</feature>
+
+	<anchor>f_y_hotspot</anchor><feature><location>../interface/ev_pointer_style_short.xml#f_y_hotspot</location>y_hotspot</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Specifies he y-coordinate of a cursor's hot spot.</comment>
+		<keyword>ensure</keyword>
+			<tag>valid</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>&lt;=</symbol> <feature><location>../interface/ev_pointer_style_short.xml#f_height</location>height</feature>
+
+	<anchor>f_width</anchor><feature><location>../interface/ev_pointer_style_short.xml#f_width</location>width</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Width</comment>
+
+	<anchor>f_height</anchor><feature><location>../interface/ev_pointer_style_short.xml#f_height</location>height</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Height</comment>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Duplication</comment>
+
+	<anchor>f_copy</anchor><feature><location>../interface/ev_pointer_style_short.xml#f_copy</location>copy</feature> <symbol>(</symbol><local>other</local><symbol>:</symbol> <keyword>like</keyword> <keyword>Current</keyword><symbol>)</symbol>
+			<comment>--</comment><comment> Update </comment><quoted>Current</quoted><comment> to have same appearence as </comment><quoted>other</quoted><comment>.</comment>
+			<comment>--</comment><comment> (So as to satisfy </comment><feature><location>../interface/ev_pointer_style_short.xml#f_is_equal</location>is_equal</feature><comment>.)</comment>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Comparison</comment>
+
+	<anchor>f_is_equal</anchor><feature><location>../interface/ev_pointer_style_short.xml#f_is_equal</location>is_equal</feature> <symbol>(</symbol><local>other</local><symbol>:</symbol> <keyword>like</keyword> <keyword>Current</keyword><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Does </comment><quoted>other</quoted><comment> have the same appearance as </comment><quoted>Current</quoted><comment>.</comment>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_create_interface_objects</anchor><feature><location>../interface/ev_pointer_style_short.xml#f_create_interface_objects</location>create_interface_objects</feature>
+			<comment>--</comment><comment> Create objects to be used by </comment><quoted>Current</quoted><comment> in </comment><feature><location>../interface/ev_any_short.xml#f_initialize</location>initialize</feature>
+			<comment>--</comment><comment> Implemented by descendants to create attached objects</comment>
+			<comment>--</comment><comment> in order to adhere to void-safety due to the implementation bridge pattern.</comment>
+
+	<anchor>f_create_implementation</anchor><feature><location>../interface/ev_pointer_style_short.xml#f_create_implementation</location>create_implementation</feature>
+			<comment>--</comment><comment> Create </comment><feature><location>../interface/ev_pointer_style_short.xml#f_implementation</location>implementation</feature><comment>.</comment>
+
+	<anchor>f_implementation</anchor><feature><location>../interface/ev_pointer_style_short.xml#f_implementation</location>implementation</feature><symbol>:</symbol> <class><location>../implementation_interface/ev_pointer_style_i_short.xml</location>EV_POINTER_STYLE_I</class>
+			<comment>--</comment><comment> Implementation.</comment>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2017, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../interface/ev_pointer_style_short.xml</location>EV_POINTER_STYLE</class></system>
+

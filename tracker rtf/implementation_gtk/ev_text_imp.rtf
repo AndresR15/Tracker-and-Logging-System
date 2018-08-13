@@ -1,0 +1,641 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "EiffelVision text area, gtk implementation."{\line}
+{\tab}{\cf1 legal}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 status}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 id}{\cf1 :} "$Id: ev_text_imp.e 100058 2017-03-27 20:31:29Z jfiat $"{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2017-03-27 13:31:29 -0700 (Mon, 27 Mar 2017) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 100058 $"{\line}
+{\line}
+{\b\cf6 class} {\line}
+{\tab}{\cf4 EV_TEXT_IMP}{\line}
+{\line}
+{\b\cf6 inherit}{\line}
+{\tab}{\cf4 EV_TEXT_I}{\line}
+{\tab}{\tab}{\b\cf6 redefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 interface}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 text_length}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 selected_text}{\line}
+{\tab}{\tab}{\b\cf6 end}{\line}
+{\line}
+{\tab}{\cf4 EV_TEXT_COMPONENT_IMP}{\line}
+{\tab}{\tab}{\b\cf6 redefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 interface}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 insert_text}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 make}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 dispose}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 text_length}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 visual_widget}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 selected_text}{\line}
+{\tab}{\tab}{\b\cf6 end}{\line}
+{\line}
+{\tab}{\cf4 EV_FONTABLE_IMP}{\line}
+{\tab}{\tab}{\b\cf6 redefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 interface}{\line}
+{\tab}{\tab}{\b\cf6 end}{\line}
+{\line}
+{\b\cf6 create} {\line}
+{\tab}{\cf5 make}{\line}
+{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Initialization}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 old_make} {\cf1 (}{\cf5 an_interface}{\cf1 :} {\b\cf6 attached} {\b\cf6 like} {\cf5 interface}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create a gtk text view.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 assign_interface}{\cf1  }{\cf1 (}{\cf5 an_interface}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create and initialize }{\cf5 Current}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_c_object}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_event_box_new}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 scrolled_window} {\cf1 :=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_scrolled_window_new} {\cf1 (}{\cf5 null}{\cf1 ,} {\cf5 null}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_scrolled_window_set_shadow_type} {\cf1 (}{\cf5 scrolled_window}{\cf1 ,} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_shadow_in_enum}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_widget_show} {\cf1 (}{\cf5 scrolled_window}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_container_add} {\cf1 (}{\cf5 c_object}{\cf1 ,} {\cf5 scrolled_window}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 text_view} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_view_new}{\line}
+{\tab}{\tab}{\tab}{\cf5 text_buffer} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_view_get_buffer} {\cf1 (}{\cf5 text_view}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_widget_show} {\cf1 (}{\cf5 text_view}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_container_add} {\cf1 (}{\cf5 scrolled_window}{\cf1 ,} {\cf5 text_view}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_widget_set_usize} {\cf1 (}{\cf5 text_view}{\cf1 ,} 1{\cf1 ,} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 enable_word_wrapping}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_editable}{\cf1  }{\cf1 (}{\b\cf6 True}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_background_color}{\cf1  }{\cf1 (}{\cf1 (}{\b\cf6 create}{\cf1  }{\cf1 \{}{\cf4 EV_STOCK_COLORS}{\cf1 \}}{\cf1 )}{\b\cf1 .}{\cf5 White}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 initialize_buffer_events}{\line}
+{\tab}{\tab}{\tab}{\cf1 Precursor} {\cf1 \{}{\cf4 EV_TEXT_COMPONENT_IMP}{\cf1 \}}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 initialize_buffer_events}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Initialize events for }{\cf5 Current}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 real_signal_connect}{\cf1  }{\cf1 (}{\cf5 text_buffer}{\cf1 ,} "changed"{\cf1 ,} {\b\cf6 agent} {\cf5 App_implementation}{\b\cf1 .}{\cf5 gtk_marshal}{\b\cf1 .}{\cf5 text_component_change_intermediary}{\cf1  }{\cf1 (}{\cf5 c_object}{\cf1 )}{\cf1 ,} {\b\cf6 Void}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 clipboard_content}{\cf1 :} {\cf4 STRING_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 Result}{\cf3  is current clipboard content.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 App_implementation}{\b\cf1 .}{\cf5 clipboard}{\b\cf1 .}{\cf5 text}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status report}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 line_number_from_position} {\cf1 (}{\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Line containing caret position }{\cf5 i}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_text_iter}{\cf1 :} {\cf4 EV_GTK_TEXT_ITER_STRUCT}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_text_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_iter_at_offset} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_text_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 i} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 not} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_view_backward_display_line} {\cf1 (}{\cf5 text_view}{\cf1 ,} {\cf5 a_text_iter}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Result} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Result}{\b\cf1 .}{\cf5 max}{\cf1  }{\cf1 (}1{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 first_visible_line}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  First visible line current being displayed.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_buffer_x}{\cf1 ,} {\cf5 l_buffer_y}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_iter}{\cf1 :} {\cf4 EV_GTK_TEXT_ITER_STRUCT}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_view_window_to_buffer_coords} {\cf1 (}{\cf5 text_view}{\cf1 ,} 1{\cf1 ,} 0{\cf1 ,} 0{\cf1 ,} {\cf1 $}{\cf5 l_buffer_x}{\cf1 ,} {\cf1 $}{\cf5 l_buffer_y}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 l_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_view_get_iter_at_location} {\cf1 (}{\cf5 text_view}{\cf1 ,} {\cf5 l_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 l_buffer_x}{\cf1 ,} {\cf5 l_buffer_y}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 not} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_view_backward_display_line} {\cf1 (}{\cf5 text_view}{\cf1 ,} {\cf5 l_iter}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Result} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_editable}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is the text editable by the user?}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 has_selection}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does }{\cf5 Current}{\cf3  have a selection?}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_selection_bounds} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 null}{\cf1 ,} {\cf5 null}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 start_selection}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Caret position of the start of selected text if any,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  otherwise }{\cf5 caret_position}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_start_iter}{\cf1 ,} {\cf5 a_end_iter}{\cf1 :} {\cf4 EV_GTK_TEXT_ITER_STRUCT}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_selected}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_start_offset}{\cf1 ,} {\cf5 a_end_offset}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_start_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_end_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_selected} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_selection_bounds} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_start_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 a_end_iter}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a_selected} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 a_start_offset} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_iter_get_offset} {\cf1 (}{\cf5 a_start_iter}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 a_end_offset} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_iter_get_offset} {\cf1 (}{\cf5 a_end_iter}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 a_start_offset}{\b\cf1 .}{\cf5 min}{\cf1  }{\cf1 (}{\cf5 a_end_offset}{\cf1 )} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_iter_get_offset} {\cf1 (}{\cf5 a_start_iter}{\b\cf1 .}{\cf5 item}{\cf1 )} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 end_selection}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Caret position of the end of selected text if any,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  otherwise }{\cf5 caret_position}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_start_iter}{\cf1 ,} {\cf5 a_end_iter}{\cf1 :} {\cf4 EV_GTK_TEXT_ITER_STRUCT}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_selected}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_start_offset}{\cf1 ,} {\cf5 a_end_offset}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_start_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_end_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_selected} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_selection_bounds} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_start_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 a_end_iter}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a_selected} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 a_start_offset} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_iter_get_offset} {\cf1 (}{\cf5 a_start_iter}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 a_end_offset} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_iter_get_offset} {\cf1 (}{\cf5 a_end_iter}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 a_start_offset}{\b\cf1 .}{\cf5 max}{\cf1  }{\cf1 (}{\cf5 a_end_offset}{\cf1 )} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_iter_get_offset} {\cf1 (}{\cf5 a_start_iter}{\b\cf1 .}{\cf5 item}{\cf1 )} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 selected_text}{\cf1 :} {\cf4 STRING_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Text currently selected in }{\cf5 Current}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_start_iter}{\cf1 ,} {\cf5 a_end_iter}{\cf1 :} {\cf4 EV_GTK_TEXT_ITER_STRUCT}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_selected}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_char}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_str}{\cf1 :} {\cf4 EV_GTK_C_STRING}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_start_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_end_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_selected} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_selection_bounds} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_start_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 a_end_iter}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a_selected} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_char} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_iter_get_text} {\cf1 (}{\cf5 a_start_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 a_end_iter}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_char} {\cf1 /=} {\cf5 default_pointer} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 l_str}{\b\cf1 .}{\cf5 share_from_pointer}{\cf1  }{\cf1 (}{\cf5 l_char}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 l_str}{\b\cf1 .}{\cf5 string}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make_empty}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make_empty}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status setting}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_editable} {\cf1 (}{\cf5 flag}{\cf1 :} {\cf4 BOOLEAN}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  if }{\cf5 flag}{\cf3  then make the component read-write.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  if not }{\cf5 flag}{\cf3  then make the component read-only.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 is_editable} {\cf1 :=} {\cf5 flag}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_view_set_editable} {\cf1 (}{\cf5 text_view}{\cf1 ,} {\cf5 flag}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_caret_position} {\cf1 (}{\cf5 pos}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  set current insertion position}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 internal_set_caret_position}{\cf1  }{\cf1 (}{\cf5 pos}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Basic operation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 select_region} {\cf1 (}{\cf5 start_pos}{\cf1 ,} {\cf5 end_pos}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Select (highlight) the characters between character positions }{\cf5 start_pos}{\cf3  and }{\cf5 end_pos}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_start_iter}{\cf1 ,} {\cf5 a_end_iter}{\cf1 :} {\cf4 EV_GTK_TEXT_ITER_STRUCT}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_start_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_end_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_iter_at_offset} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_start_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 start_pos} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_iter_at_offset} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_end_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 end_pos}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_move_mark} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_selection_bound} {\cf1 (}{\cf5 text_buffer}{\cf1 )}{\cf1 ,} {\cf5 a_start_iter}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_move_mark} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_insert} {\cf1 (}{\cf5 text_buffer}{\cf1 )}{\cf1 ,} {\cf5 a_end_iter}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_selection} {\cf1 (}{\cf5 start_pos}{\cf1 ,} {\cf5 end_pos}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Select (highlight) the characters between valid caret positions }{\cf5 a_start_pos}{\cf3  and }{\cf5 a_end_pos}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_start_iter}{\cf1 ,} {\cf5 a_end_iter}{\cf1 :} {\cf4 EV_GTK_TEXT_ITER_STRUCT}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_start_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_end_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_iter_at_offset} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_start_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 start_pos} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_iter_at_offset} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_end_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 end_pos} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_move_mark} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_selection_bound} {\cf1 (}{\cf5 text_buffer}{\cf1 )}{\cf1 ,} {\cf5 a_start_iter}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_move_mark} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_insert} {\cf1 (}{\cf5 text_buffer}{\cf1 )}{\cf1 ,} {\cf5 a_end_iter}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 deselect_all}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Unselect the current selection.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_iter}{\cf1 :} {\cf4 EV_GTK_TEXT_ITER_STRUCT}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_iter_at_mark} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_insert} {\cf1 (}{\cf5 text_buffer}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_move_mark} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_selection_bound} {\cf1 (}{\cf5 text_buffer}{\cf1 )}{\cf1 ,} {\cf5 a_iter}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 delete_selection}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Delete the current selection.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_delete_selection} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\b\cf6 True}{\cf1 ,} {\b\cf6 True}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 cut_selection}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Cut }{\cf5 selected_region}{\cf3  by erasing it from}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the text and putting it in the Clipboard to paste it later.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  If }{\cf5 selectd_region}{\cf3  is empty, it does nothing.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 clip_imp}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_CLIPBOARD_IMP}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 has_selection} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 clip_imp} {\cf1 ?=} {\cf5 App_implementation}{\b\cf1 .}{\cf5 clipboard}{\b\cf1 .}{\cf5 implementation}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 clip_imp} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_cut_clipboard} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 clip_imp}{\b\cf1 .}{\cf5 clipboard}{\cf1 ,} {\b\cf6 True}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 copy_selection}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Copy }{\cf5 selected_region}{\cf3  into the Clipboard.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  If the }{\cf5 selected_region}{\cf3  is empty, it does nothing.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 clip_imp}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_CLIPBOARD_IMP}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 has_selection} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 clip_imp} {\cf1 ?=} {\cf5 App_implementation}{\b\cf1 .}{\cf5 clipboard}{\b\cf1 .}{\cf5 implementation}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 clip_imp} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_copy_clipboard} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 clip_imp}{\b\cf1 .}{\cf5 clipboard}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 paste} {\cf1 (}{\cf5 index}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Insert the contents of the clipboard}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  at }{\cf5 index}{\cf3  postion of }{\cf5 text}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  If the Clipboard is empty, it does nothing.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 clip_imp}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_CLIPBOARD_IMP}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_iter}{\cf1 :} {\cf4 EV_GTK_TEXT_ITER_STRUCT}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_text}{\cf1 :} {\cf4 EV_GTK_C_STRING}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 clip_imp} {\cf1 ?=} {\cf5 App_implementation}{\b\cf1 .}{\cf5 clipboard}{\b\cf1 .}{\cf5 implementation}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 clip_imp} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_text} {\cf1 :=} {\b\cf6 create} {\cf1 \{}{\b\cf6 attached} {\cf4 EV_GTK_C_STRING}{\cf1 \}}{\b\cf1 .}{\cf5 set_with_eiffel_string}{\cf1  }{\cf1 (}{\cf5 clip_imp}{\b\cf1 .}{\cf5 text}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_iter_at_offset} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 index} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_insert} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 a_text}{\b\cf1 .}{\cf5 item}{\cf1 ,} -1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_text}{\b\cf1 .}{\cf5 set_with_eiffel_string}{\cf1  }{\cf1 (}{\b\cf6 once} ""{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 text}{\cf1 :} {\cf4 STRING_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Text displayed in label.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_start_iter}{\cf1 ,} {\cf5 a_end_iter}{\cf1 :} {\cf4 EV_GTK_TEXT_ITER_STRUCT}{\line}
+{\tab}{\tab}{\tab}{\cf5 temp_text}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_cs}{\cf1 :} {\cf4 EV_GTK_C_STRING}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_start_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_end_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_bounds} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_start_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 a_end_iter}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 temp_text} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_text} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_start_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 a_end_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\b\cf6 False}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_cs}{\b\cf1 .}{\cf5 make_from_pointer}{\cf1  }{\cf1 (}{\cf5 temp_text}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 a_cs}{\b\cf1 .}{\cf5 string}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_cs}{\b\cf1 .}{\cf5 set_with_eiffel_string}{\cf1  }{\cf1 (}{\b\cf6 once} ""{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 line} {\cf1 (}{\cf5 a_line}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 STRING_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Returns the content of line }{\cf5 a_line}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 first_pos}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 start_iter}{\cf1 ,} {\cf5 end_iter}{\cf1 :} {\cf4 EV_GTK_TEXT_ITER_STRUCT}{\line}
+{\tab}{\tab}{\tab}{\cf5 text_ptr}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_cs}{\cf1 :} {\cf4 EV_GTK_C_STRING}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_success}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 first_pos} {\cf1 :=} {\cf5 first_position_from_line_number}{\cf1  }{\cf1 (}{\cf5 a_line}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 start_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 end_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_iter_at_offset} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 start_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 first_pos} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_iter_at_offset} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 end_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 first_pos} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_success} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_view_forward_display_line} {\cf1 (}{\cf5 text_view}{\cf1 ,} {\cf5 end_iter}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 text_ptr} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_text} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 start_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 end_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\b\cf6 False}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_cs}{\b\cf1 .}{\cf5 make_from_pointer}{\cf1  }{\cf1 (}{\cf5 text_ptr}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 a_cs}{\b\cf1 .}{\cf5 string}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_cs}{\b\cf1 .}{\cf5 set_with_eiffel_string}{\cf1  }{\cf1 (}{\b\cf6 once} ""{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 first_position_from_line_number} {\cf1 (}{\cf5 a_line}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Position of the first character on line }{\cf5 a_line}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_iter}{\cf1 :} {\cf4 EV_GTK_TEXT_ITER_STRUCT}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_success}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_start_iter} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_iter}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 =} {\cf5 a_line}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 a_success} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_view_forward_display_line} {\cf1 (}{\cf5 text_view}{\cf1 ,} {\cf5 a_iter}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 i} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_iter_get_offset} {\cf1 (}{\cf5 a_iter}{\b\cf1 .}{\cf5 item}{\cf1 )} {\cf1 +} 1{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 last_position_from_line_number} {\cf1 (}{\cf5 a_line}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Position of the last character on line }{\cf5 a_line}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_iter}{\cf1 :} {\cf4 EV_GTK_TEXT_ITER_STRUCT}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_success}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_start_iter} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_iter}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 >} {\cf5 a_line}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 a_success} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_view_forward_display_line} {\cf1 (}{\cf5 text_view}{\cf1 ,} {\cf5 a_iter}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 i} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_iter_get_offset} {\cf1 (}{\cf5 a_iter}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status report}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 text_length}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of characters in }{\cf5 Current}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_char_count} {\cf1 (}{\cf5 text_buffer}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 line_count}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of display lines present in widget.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_iter}{\cf1 :} {\cf4 EV_GTK_TEXT_ITER_STRUCT}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 has_word_wrapping} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_start_iter} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_iter}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 not} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_view_forward_display_line} {\cf1 (}{\cf5 text_view}{\cf1 ,} {\cf5 a_iter}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Result} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_line_count} {\cf1 (}{\cf5 text_buffer}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 current_line_number}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Returns the number of the display line the cursor currently}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  is on.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_iter}{\cf1 :} {\cf4 EV_GTK_TEXT_ITER_STRUCT}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_iter_at_mark} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_insert} {\cf1 (}{\cf5 text_buffer}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 not} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_view_backward_display_line} {\cf1 (}{\cf5 text_view}{\cf1 ,} {\cf5 a_iter}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Result} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Result}{\b\cf1 .}{\cf5 max}{\cf1  }{\cf1 (}1{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 caret_position}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Current position of the caret.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_iter}{\cf1 :} {\cf4 EV_GTK_TEXT_ITER_STRUCT}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_iter_at_mark} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_insert} {\cf1 (}{\cf5 text_buffer}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_iter_get_offset} {\cf1 (}{\cf5 a_iter}{\b\cf1 .}{\cf5 item}{\cf1 )} {\cf1 +} 1{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 has_word_wrapping}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does }{\cf5 Current}{\cf3  have word wrapping enabled?}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status setting}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 insert_text} {\cf1 (}{\cf5 a_text}{\cf1 :} {\cf4 READABLE_STRING_GENERAL}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Insert }{\cf5 a_text}{\cf3  at the current caret position.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_cs}{\cf1 :} {\cf4 EV_GTK_C_STRING}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_iter}{\cf1 :} {\cf4 EV_GTK_TEXT_ITER_STRUCT}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_cs} {\cf1 :=} {\b\cf6 create} {\cf1 \{}{\b\cf6 attached} {\cf4 EV_GTK_C_STRING}{\cf1 \}}{\b\cf1 .}{\cf5 set_with_eiffel_string}{\cf1  }{\cf1 (}{\cf5 a_text}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_iter_at_mark} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_insert} {\cf1 (}{\cf5 text_buffer}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_insert} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 a_cs}{\b\cf1 .}{\cf5 item}{\cf1 ,} -1{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_text} {\cf1 (}{\cf5 a_text}{\cf1 :} {\cf4 READABLE_STRING_GENERAL}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 text}{\cf3  to }{\cf5 a_text}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_cs}{\cf1 :} {\cf4 EV_GTK_C_STRING}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_cs} {\cf1 :=} {\b\cf6 create} {\cf1 \{}{\b\cf6 attached} {\cf4 EV_GTK_C_STRING}{\cf1 \}}{\b\cf1 .}{\cf5 set_with_eiffel_string}{\cf1  }{\cf1 (}{\cf5 a_text}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_set_text} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_cs}{\b\cf1 .}{\cf5 item}{\cf1 ,} -1{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 append_text} {\cf1 (}{\cf5 a_text}{\cf1 :} {\cf4 READABLE_STRING_GENERAL}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Append }{\cf5 a_text}{\cf3  to }{\cf5 text}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 append_text_internal}{\cf1  }{\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_text}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 prepend_text} {\cf1 (}{\cf5 a_text}{\cf1 :} {\cf4 READABLE_STRING_GENERAL}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Prepend 'txt' to }{\cf5 text}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_cs}{\cf1 :} {\cf4 EV_GTK_C_STRING}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_iter}{\cf1 :} {\cf4 EV_GTK_TEXT_ITER_STRUCT}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_cs} {\cf1 :=} {\b\cf6 create} {\cf1 \{}{\b\cf6 attached} {\cf4 EV_GTK_C_STRING}{\cf1 \}}{\b\cf1 .}{\cf5 set_with_eiffel_string}{\cf1  }{\cf1 (}{\cf5 a_text}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_start_iter} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_iter}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_insert} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 a_cs}{\b\cf1 .}{\cf5 item}{\cf1 ,} -1{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 delete_text} {\cf1 (}{\cf5 start}{\cf1 ,} {\cf5 finish}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Delete the text between }{\cf5 start}{\cf3  and }{\cf5 finish}{\cf3  index}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  both sides include.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_start_iter}{\cf1 ,} {\cf5 a_end_iter}{\cf1 :} {\cf4 EV_GTK_TEXT_ITER_STRUCT}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_start_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_end_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_iter_at_offset} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_start_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 start} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_iter_at_offset} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_end_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 finish} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_delete} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_start_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 a_end_iter}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Basic operation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 scroll_to_line} {\cf1 (}{\cf5 a_line}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Scroll }{\cf5 Current}{\cf3  to line number }{\cf5 a_line}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_iter}{\cf1 :} {\cf4 EV_GTK_TEXT_ITER_STRUCT}{\line}
+{\tab}{\tab}{\tab}{\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_success}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_mark_name}{\cf1 :} {\cf4 EV_GTK_C_STRING}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_mark}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 has_word_wrapping} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_start_iter} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_iter}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 =} {\cf5 a_line}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_success} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_view_forward_display_line} {\cf1 (}{\cf5 text_view}{\cf1 ,} {\cf5 a_iter}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 i} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_iter_at_line} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 a_line} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_mark_name} {\cf1 :=} {\b\cf6 create} {\cf1 \{}{\b\cf6 attached} {\cf4 EV_GTK_C_STRING}{\cf1 \}}{\b\cf1 .}{\cf5 set_with_eiffel_string}{\cf1  }{\cf1 (}"scroll_to_line"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_mark} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_create_mark} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_mark_name}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 a_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\b\cf6 True}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_view_scroll_to_mark} {\cf1 (}{\cf5 text_view}{\cf1 ,} {\cf5 a_mark}{\cf1 ,} 0.0{\cf1 ,} {\b\cf6 True}{\cf1 ,} 0.0{\cf1 ,} 0.0{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_delete_mark} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_mark}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 scroll_to_end}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Scroll to the last line position of }{\cf5 Current}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_iter}{\cf1 :} {\cf4 EV_GTK_TEXT_ITER_STRUCT}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_mark_name}{\cf1 :} {\cf4 EV_GTK_C_STRING}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_mark}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_end_iter} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_iter}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_mark_name} {\cf1 :=} {\b\cf6 create} {\cf1 \{}{\b\cf6 attached} {\cf4 EV_GTK_C_STRING}{\cf1 \}}{\b\cf1 .}{\cf5 set_with_eiffel_string}{\cf1  }{\cf1 (}"scroll_to_end"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_mark} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_create_mark} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_mark_name}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 a_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\b\cf6 True}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_view_scroll_to_mark} {\cf1 (}{\cf5 text_view}{\cf1 ,} {\cf5 a_mark}{\cf1 ,} 0.0{\cf1 ,} {\b\cf6 True}{\cf1 ,} 0.0{\cf1 ,} 1.0{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_delete_mark} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_mark}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 enable_word_wrapping}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Enable word wrapping for }{\cf5 Current}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_scrolled_window_set_policy} {\cf1 (}{\cf5 scrolled_window}{\cf1 ,} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_policy_automatic_enum}{\cf1 ,} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_policy_always_enum}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_view_set_wrap_mode} {\cf1 (}{\cf5 text_view}{\cf1 ,} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_wrap_word_enum}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 has_word_wrapping} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 disable_word_wrapping}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Disable word wrapping for }{\cf5 Current}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_scrolled_window_set_policy} {\cf1 (}{\cf5 scrolled_window}{\cf1 ,} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_policy_always_enum}{\cf1 ,} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_policy_always_enum}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_view_set_wrap_mode} {\cf1 (}{\cf5 text_view}{\cf1 ,} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_wrap_none_enum}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 has_word_wrapping} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 visual_widget}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Pointer to the GtkWidget representing }{\cf5 Current}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 text_view}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 dispose}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Clean up }{\cf5 Current}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf1 Precursor} {\cf1 \{}{\cf4 EV_TEXT_COMPONENT_IMP}{\cf1 \}}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 on_change_actions}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  The text within the widget has changed.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 change_actions_internal} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 change_actions_internal}{\b\cf1 .}{\cf5 call}{\cf1  }{\cf1 (}{\b\cf6 Void}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 append_text_internal} {\cf1 (}{\cf5 a_text_buffer}{\cf1 :} {\cf4 POINTER}{\cf1 ;} {\cf5 a_text}{\cf1 :} {\cf4 READABLE_STRING_GENERAL}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Append }{\cf5 txt}{\cf3  to }{\cf5 text}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_cs}{\cf1 :} {\cf4 EV_GTK_C_STRING}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_iter}{\cf1 :} {\cf4 EV_GTK_TEXT_ITER_STRUCT}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_car_pos}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_car_pos} {\cf1 :=} {\cf5 caret_position}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_cs} {\cf1 :=} {\b\cf6 create} {\cf1 \{}{\b\cf6 attached} {\cf4 EV_GTK_C_STRING}{\cf1 \}}{\b\cf1 .}{\cf5 set_with_eiffel_string}{\cf1  }{\cf1 (}{\cf5 a_text}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_end_iter} {\cf1 (}{\cf5 a_text_buffer}{\cf1 ,} {\cf5 a_iter}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_insert} {\cf1 (}{\cf5 a_text_buffer}{\cf1 ,} {\cf5 a_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 a_cs}{\b\cf1 .}{\cf5 item}{\cf1 ,} -1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 internal_set_caret_position}{\cf1  }{\cf1 (}{\cf5 a_car_pos}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 internal_set_caret_position} {\cf1 (}{\cf5 pos}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  set current insertion position}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_iter}{\cf1 :} {\cf4 EV_GTK_TEXT_ITER_STRUCT}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_iter_at_offset} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 pos} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_place_cursor} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_iter}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 text_view}{\cf1 :} {\cf4 POINTER}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Pointer to the GtkTextView widget}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 scrolled_window}{\cf1 :} {\cf4 POINTER}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Pointer to the GtkScrolledWindow}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 text_buffer}{\cf1 :} {\cf4 POINTER}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Pointer to the GtkTextBuffer.}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_ANY}{\cf1 ,} {\cf4 EV_ANY_I}{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 interface}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_TEXT}{\line}
+{\tab}{\tab}{\b\cf6 note}{\line}
+{\tab}{\tab}{\tab}option: stable{\line}
+{\tab}{\tab}{\b\cf6 attribute}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 note}{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 1984-2017, Eiffel Software and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"{\line}
+{\tab}{\cf1 source}{\cf1 :} "[{\line}
+{\tab}{\tab}Eiffel Software{\line}
+{\tab}{\tab}5949 Hollister Ave., Goleta, CA 93117 USA{\line}
+{\tab}{\tab}Telephone 805-685-1006, Fax 805-685-6869{\line}
+{\tab}{\tab}Website http://www.eiffel.com{\line}
+{\tab}{\tab}Customer support http://support.eiffel.com{\line}
+{\tab}]"{\line}
+{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 EV_TEXT_IMP}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

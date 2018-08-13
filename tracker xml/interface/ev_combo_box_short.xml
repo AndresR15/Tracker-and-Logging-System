@@ -1,0 +1,96 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>A text field with a button. When the button is pressed, a list of</string>
+		<string>text strings is displayed. Selecting one causes it to be copied into</string>
+		<string>the text field.</string>
+	<string>]</string><string>&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>appearance</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>+-----------+-+</string>
+		<string>|  text     |V|</string>
+		<string>+-----------+-+</string>
+		<string> | first      |</string>
+		<string> | ...        |</string>
+		<string> | last       |</string>
+		<string> +------------+</string>
+	<string>]</string><string>&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;combo, box, button, option, menu&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2016-09-27 08:50:48 -0700 (Tue, 27 Sep 2016) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 99192 $&quot;</string>
+
+<keyword>class</keyword> <keyword>interface</keyword>
+	<class><location>../interface/ev_combo_box_short.xml</location>EV_COMBO_BOX</class>
+
+<keyword>create</keyword> 
+	<feature><location>../interface/ev_any_short.xml#f_default_create</location>default_create</feature><symbol>,</symbol>
+	<feature><location>../interface/ev_list_item_list_short.xml#f_make_with_strings</location>make_with_strings</feature><symbol>,</symbol>
+	<feature><location>../interface/ev_textable_short.xml#f_make_with_text</location>make_with_text</feature>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Status report</comment>
+
+	<anchor>f_is_list_shown</anchor><feature><location>../interface/ev_combo_box_short.xml#f_is_list_shown</location>is_list_shown</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is drop down list currently shown?</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_list_height_hint</anchor><feature><location>../interface/ev_combo_box_short.xml#f_list_height_hint</location>list_height_hint</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Suggested height of list in pixels which may or may not be used by the underlying platform.</comment>
+			<comment>--</comment><comment> By default it is -1 and the actual height is dependent on the underlying platform.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>ensure</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_combo_box_short.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_combo_box_i_short.xml#f_list_height_hint</location>list_height_hint</feature>
+
+	<anchor>f_list_width_hint</anchor><feature><location>../interface/ev_combo_box_short.xml#f_list_width_hint</location>list_width_hint</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Suggested width of list in pixels which may or may not be used by the underlying platform.</comment>
+			<comment>--</comment><comment> By default it is -1 and the actual width is dependent on the underlying platform.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>ensure</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_combo_box_short.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_combo_box_i_short.xml#f_list_height_hint</location>list_height_hint</feature>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Settings</comment>
+
+	<anchor>f_set_list_height_hint</anchor><feature><location>../interface/ev_combo_box_short.xml#f_set_list_height_hint</location>set_list_height_hint</feature> <symbol>(</symbol><local>v</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../interface/ev_combo_box_short.xml#f_list_height_hint</location>list_height_hint</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><feature><location>../interface/ev_combo_box_short.xml#f_list_height_hint</location>list_height_hint</feature><comment> with </comment><quoted>v</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>ensure</keyword>
+			<tag>list_height_hint_set</tag><symbol>:</symbol> <feature><location>../interface/ev_combo_box_short.xml#f_list_height_hint</location>list_height_hint</feature> <symbol>=</symbol> <local>v</local>
+
+	<anchor>f_set_list_width_hint</anchor><feature><location>../interface/ev_combo_box_short.xml#f_set_list_width_hint</location>set_list_width_hint</feature> <symbol>(</symbol><local>v</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../interface/ev_combo_box_short.xml#f_list_width_hint</location>list_width_hint</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><feature><location>../interface/ev_combo_box_short.xml#f_list_width_hint</location>list_width_hint</feature><comment> with </comment><quoted>v</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>ensure</keyword>
+			<tag>list_width_hint_set</tag><symbol>:</symbol> <feature><location>../interface/ev_combo_box_short.xml#f_list_width_hint</location>list_width_hint</feature> <symbol>=</symbol> <local>v</local>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Element change</comment>
+
+	<anchor>f_set_text</anchor><feature><location>../interface/ev_combo_box_short.xml#f_set_text</location>set_text</feature> <symbol>(</symbol><local>a_text</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>a_text</quoted><comment> to </comment><feature><location>../interface/ev_textable_short.xml#f_text</location>text</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>text_not_void</tag><symbol>:</symbol> <local>a_text</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>no_carriage_returns</tag><symbol>:</symbol> <keyword>not</keyword> <local>a_text</local><dot>.</dot><feature><include>False</include>has_code</feature><symbol> </symbol><symbol>(</symbol><symbol>(</symbol><char>'%R'</char><symbol>)</symbol><dot>.</dot><feature><include>False</include>natural_32_code</feature><symbol>)</symbol>
+			<tag>valid_text</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_text_component_short.xml#f_is_editable</location>is_editable</feature> <keyword>implies</keyword> <feature><location>../interface/ev_list_item_list_short.xml#f_strings</location>strings</feature><dot>.</dot><feature><include>False</include>has</feature><symbol> </symbol><symbol>(</symbol><local>a_text</local><dot>.</dot><feature><include>False</include>as_string_32</feature><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>text_set</tag><symbol>:</symbol> <feature><location>../interface/ev_text_component_short.xml#f_check_text_modification</location>check_text_modification</feature><symbol> </symbol><symbol>(</symbol><symbol>{</symbol><class><include>False</include>STRING_32</class><symbol>}</symbol>&quot;&quot;<symbol>,</symbol> <local>a_text</local><dot>.</dot><feature><include>False</include>as_string_32</feature><symbol>)</symbol>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2014, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../interface/ev_combo_box_short.xml</location>EV_COMBO_BOX</class></system>
+

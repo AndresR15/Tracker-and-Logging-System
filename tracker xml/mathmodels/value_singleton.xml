@@ -1,0 +1,39 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Summary description for </string><string>{</string><string>VALUE2_SINGLETON</string><string>}</string><string>.&quot;</string>
+	<indexing_tag>author</indexing_tag><symbol>:</symbol> <string>&quot;&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2010-12-13 16:07:07 -0500 (Mon, 13 Dec 2010) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision$&quot;</string>
+
+<keyword>class</keyword> 
+	<class><location>../mathmodels/value_singleton.xml</location>VALUE_SINGLETON</class>
+
+<keyword>inherit</keyword>
+	<class><include>False</include>ANY</class>
+		<keyword>redefine</keyword>
+			<feature><location>../mathmodels/value_singleton.xml#f_default_create</location>default_create</feature>
+		<keyword>end</keyword>
+
+<keyword>create</keyword> 
+	<feature><location>../mathmodels/value_singleton.xml#f_default_create</location>default_create</feature>
+
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> 
+
+	<anchor>f_default_create</anchor><feature><location>../mathmodels/value_singleton.xml#f_default_create</location>default_create</feature>
+			<comment>--</comment><comment> Process instances of classes with no creation clause.</comment>
+			<comment>--</comment><comment> (Default: do nothing.)</comment>
+		<keyword>do</keyword>
+			<feature><location>../mathmodels/value_singleton.xml#f_epsilon</location>epsilon</feature> <symbol>:=</symbol> <keyword>create</keyword> <symbol>{</symbol><class><location>../mathmodels/value.xml</location>VALUE</class><symbol>}</symbol><dot>.</dot><feature><location>../mathmodels/value.xml#f_make_from_string</location>make_from_string</feature><symbol> </symbol><symbol>(</symbol>&quot;0.0&quot;<symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> 
+
+	<anchor>f_epsilon</anchor><feature><location>../mathmodels/value_singleton.xml#f_epsilon</location>epsilon</feature><symbol>:</symbol> <class><location>../mathmodels/value.xml</location>VALUE</class>
+
+	<anchor>f_set_epsilon</anchor><feature><location>../mathmodels/value_singleton.xml#f_set_epsilon</location>set_epsilon</feature> <symbol>(</symbol><local>v</local><symbol>:</symbol> <class><include>False</include>STRING_8</class><symbol>)</symbol>
+		<keyword>do</keyword>
+			<feature><location>../mathmodels/value_singleton.xml#f_epsilon</location>epsilon</feature> <symbol>:=</symbol> <keyword>create</keyword> <symbol>{</symbol><class><location>../mathmodels/value.xml</location>VALUE</class><symbol>}</symbol><dot>.</dot><feature><location>../mathmodels/value.xml#f_make_from_string</location>make_from_string</feature><symbol> </symbol><symbol>(</symbol><local>v</local><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../mathmodels/value_singleton.xml</location>VALUE_SINGLETON</class></system>
+

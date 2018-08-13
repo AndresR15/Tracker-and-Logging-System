@@ -1,0 +1,219 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Vision gauge. GTK+ implementation.&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2017-03-27 13:31:29 -0700 (Mon, 27 Mar 2017) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 100058 $&quot;</string>
+
+<keyword>deferred</keyword> <keyword>class</keyword> 
+	<class><location>../implementation_gtk/ev_gauge_imp.xml</location>EV_GAUGE_IMP</class>
+
+<keyword>inherit</keyword>
+	<class><location>../implementation_interface/ev_gauge_i.xml</location>EV_GAUGE_I</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_gtk/ev_gauge_imp.xml#f_interface</location>interface</feature>
+		<keyword>end</keyword>
+
+	<class><location>../implementation_gtk/ev_primitive_imp.xml</location>EV_PRIMITIVE_IMP</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_gtk/ev_gauge_imp.xml#f_interface</location>interface</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_gauge_imp.xml#f_make</location>make</feature>
+		<keyword>end</keyword>
+
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Initialization</comment>
+
+	<anchor>f_old_make</anchor><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_old_make</location>old_make</feature> <symbol>(</symbol><local>an_interface</local><symbol>:</symbol> <keyword>attached</keyword> <keyword>like</keyword> <feature><location>../implementation_gtk/ev_gauge_imp.xml#f_interface</location>interface</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Create the horizontal scroll bar.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_interface/ev_any_i.xml#f_assign_interface</location>assign_interface</feature><symbol> </symbol><symbol>(</symbol><local>an_interface</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_make</anchor><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_make</location>make</feature>
+			<comment>--</comment><comment> Creation routine and initialization for </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword><location>../implementation_gtk/ev_primitive_imp.xml#f_make</location>Precursor</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_primitive_imp.xml</location>EV_PRIMITIVE_IMP</class><symbol>}</symbol>
+			<feature><location>../implementation_gtk/ev_gauge_imp.xml#f_ev_gauge_imp_initialize</location>ev_gauge_imp_initialize</feature>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_widget_set_redraw_on_allocate</location>gtk_widget_set_redraw_on_allocate</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>,</symbol> <keyword>True</keyword><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_ev_gauge_imp_initialize</anchor><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_ev_gauge_imp_initialize</location>ev_gauge_imp_initialize</feature>
+			<comment>--</comment><comment> Initialize without calling precursor.</comment>
+		<keyword>do</keyword>
+			<keyword>create</keyword> <feature><location>../implementation_interface/ev_gauge_i.xml#f_value_range</location>value_range</feature><dot>.</dot><feature><include>False</include>make</feature><symbol> </symbol><symbol>(</symbol><number>0</number><symbol>,</symbol> <number>100</number><symbol>)</symbol>
+			<feature><location>../implementation_interface/ev_gauge_i.xml#f_value_range</location>value_range</feature><dot>.</dot><feature><include>False</include>change_actions</feature><dot>.</dot><feature><include>False</include>extend</feature><symbol> </symbol><symbol>(</symbol><keyword>agent</keyword> <feature><location>../implementation_gtk/ev_gauge_imp.xml#f_set_range</location>set_range</feature><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_any_imp.xml#f_real_signal_connect</location>real_signal_connect</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_adjustment</location>adjustment</feature><symbol>,</symbol> <keyword>once</keyword> &quot;value-changed&quot;<symbol>,</symbol> <keyword>agent</keyword> <feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_gtk_marshal</location>gtk_marshal</feature><dot>.</dot><feature><location>../implementation_gtk/ev_intermediary_routines.xml#f_on_gauge_value_changed_intermediary</location>on_gauge_value_changed_intermediary</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>)</symbol><symbol>,</symbol> <keyword>Void</keyword><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_gauge_imp.xml#f_set_range</location>set_range</feature>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_value</anchor><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_value</location>value</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Current value of the gauge.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_adjustment_struct_value</location>gtk_adjustment_struct_value</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_adjustment</location>adjustment</feature><symbol>)</symbol><dot>.</dot><feature><include>False</include>rounded</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_step</anchor><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_step</location>step</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Value by which </comment><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_value</location>value</feature><comment> is increased after </comment><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_step_forward</location>step_forward</feature><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_adjustment_struct_step_increment</location>gtk_adjustment_struct_step_increment</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_adjustment</location>adjustment</feature><symbol>)</symbol><dot>.</dot><feature><include>False</include>rounded</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_leap</anchor><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_leap</location>leap</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Value by which </comment><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_value</location>value</feature><comment> is increased after </comment><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_leap_forward</location>leap_forward</feature><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_adjustment_struct_page_increment</location>gtk_adjustment_struct_page_increment</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_adjustment</location>adjustment</feature><symbol>)</symbol><dot>.</dot><feature><include>False</include>rounded</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_page_size</anchor><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_page_size</location>page_size</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Size of slider.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_adjustment_struct_page_size</location>gtk_adjustment_struct_page_size</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_adjustment</location>adjustment</feature><symbol>)</symbol><dot>.</dot><feature><include>False</include>rounded</feature>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status setting</comment>
+
+	<anchor>f_step_forward</anchor><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_step_forward</location>step_forward</feature>
+			<comment>--</comment><comment> Increment </comment><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_value</location>value</feature><comment> by </comment><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_step</location>step</feature><comment> if possible.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_gauge_imp.xml#f_set_value</location>set_value</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_interface/ev_gauge_i.xml#f_value_range</location>value_range</feature><dot>.</dot><feature><include>False</include>upper</feature><dot>.</dot><feature><include>False</include>min</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_value</location>value</feature> <symbol>+</symbol> <feature><location>../implementation_gtk/ev_gauge_imp.xml#f_step</location>step</feature><symbol>)</symbol><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_step_backward</anchor><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_step_backward</location>step_backward</feature>
+			<comment>--</comment><comment> Decrement </comment><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_value</location>value</feature><comment> by </comment><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_step</location>step</feature><comment> if possible.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_gauge_imp.xml#f_set_value</location>set_value</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_interface/ev_gauge_i.xml#f_value_range</location>value_range</feature><dot>.</dot><feature><include>False</include>lower</feature><dot>.</dot><feature><include>False</include>max</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_value</location>value</feature> <symbol>-</symbol> <feature><location>../implementation_gtk/ev_gauge_imp.xml#f_step</location>step</feature><symbol>)</symbol><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_leap_forward</anchor><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_leap_forward</location>leap_forward</feature>
+			<comment>--</comment><comment> Increment </comment><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_value</location>value</feature><comment> by </comment><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_leap</location>leap</feature><comment> if possible.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_gauge_imp.xml#f_set_value</location>set_value</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_interface/ev_gauge_i.xml#f_value_range</location>value_range</feature><dot>.</dot><feature><include>False</include>upper</feature><dot>.</dot><feature><include>False</include>min</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_value</location>value</feature> <symbol>+</symbol> <feature><location>../implementation_gtk/ev_gauge_imp.xml#f_leap</location>leap</feature><symbol>)</symbol><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_leap_backward</anchor><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_leap_backward</location>leap_backward</feature>
+			<comment>--</comment><comment> Decrement </comment><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_value</location>value</feature><comment> by </comment><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_leap</location>leap</feature><comment> if possible.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_gauge_imp.xml#f_set_value</location>set_value</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_interface/ev_gauge_i.xml#f_value_range</location>value_range</feature><dot>.</dot><feature><include>False</include>lower</feature><dot>.</dot><feature><include>False</include>max</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_value</location>value</feature> <symbol>-</symbol> <feature><location>../implementation_gtk/ev_gauge_imp.xml#f_leap</location>leap</feature><symbol>)</symbol><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Element change</comment>
+
+	<anchor>f_set_value</anchor><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_set_value</location>set_value</feature> <symbol>(</symbol><local>a_value</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_value</location>value</feature><comment> to </comment><quoted>a_value</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_gauge_imp.xml#f_internal_set_value</location>internal_set_value</feature><symbol> </symbol><symbol>(</symbol><local>a_value</local><symbol>)</symbol>
+		<keyword>ensure then</keyword>
+			<tag>step_same</tag><symbol>:</symbol> <feature><location>../implementation_gtk/ev_gauge_imp.xml#f_step</location>step</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../implementation_gtk/ev_gauge_imp.xml#f_step</location>step</feature>
+			<tag>leap_same</tag><symbol>:</symbol> <feature><location>../implementation_gtk/ev_gauge_imp.xml#f_leap</location>leap</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../implementation_gtk/ev_gauge_imp.xml#f_leap</location>leap</feature>
+			<tag>range_same</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_gauge_i.xml#f_value_range</location>value_range</feature><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><keyword>old</keyword> <feature><location>../implementation_interface/ev_gauge_i.xml#f_value_range</location>value_range</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_set_step</anchor><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_set_step</location>set_step</feature> <symbol>(</symbol><local>a_step</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_step</location>step</feature><comment> to </comment><quoted>a_step</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_gauge_imp.xml#f_step</location>step</feature> <symbol>/=</symbol> <local>a_step</local> <keyword>then</keyword>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_set_gtk_adjustment_struct_step_increment</location>set_gtk_adjustment_struct_step_increment</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_adjustment</location>adjustment</feature><symbol>,</symbol> <local>a_step</local><dot>.</dot><feature><include>False</include>to_real</feature><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_adjustment_changed</location>gtk_adjustment_changed</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_adjustment</location>adjustment</feature><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>ensure then</keyword>
+			<tag>value_same</tag><symbol>:</symbol> <feature><location>../implementation_gtk/ev_gauge_imp.xml#f_value</location>value</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../implementation_gtk/ev_gauge_imp.xml#f_value</location>value</feature>
+			<tag>leap_same</tag><symbol>:</symbol> <feature><location>../implementation_gtk/ev_gauge_imp.xml#f_leap</location>leap</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../implementation_gtk/ev_gauge_imp.xml#f_leap</location>leap</feature>
+			<tag>range_same</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_gauge_i.xml#f_value_range</location>value_range</feature><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><keyword>old</keyword> <feature><location>../implementation_interface/ev_gauge_i.xml#f_value_range</location>value_range</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_set_leap</anchor><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_set_leap</location>set_leap</feature> <symbol>(</symbol><local>a_leap</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_leap</location>leap</feature><comment> to </comment><quoted>a_leap</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_gauge_imp.xml#f_leap</location>leap</feature> <symbol>/=</symbol> <local>a_leap</local> <keyword>then</keyword>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_set_gtk_adjustment_struct_upper</location>set_gtk_adjustment_struct_upper</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_adjustment</location>adjustment</feature><symbol>,</symbol> <feature><location>../implementation_interface/ev_gauge_i.xml#f_value_range</location>value_range</feature><dot>.</dot><feature><include>False</include>upper</feature><dot>.</dot><feature><include>False</include>to_real</feature><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_set_gtk_adjustment_struct_page_increment</location>set_gtk_adjustment_struct_page_increment</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_adjustment</location>adjustment</feature><symbol>,</symbol> <local>a_leap</local><dot>.</dot><feature><include>False</include>to_real</feature><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_adjustment_changed</location>gtk_adjustment_changed</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_adjustment</location>adjustment</feature><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_set_range</anchor><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_set_range</location>set_range</feature>
+			<comment>--</comment><comment> Update widget range from </comment><feature><location>../implementation_interface/ev_gauge_i.xml#f_value_range</location>value_range</feature>
+		<keyword>local</keyword>
+			<local>temp_value</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+		<keyword>do</keyword>
+			<local>temp_value</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_gauge_imp.xml#f_value</location>value</feature>
+			<keyword>if</keyword> <local>temp_value</local> <symbol>&gt;</symbol> <feature><location>../implementation_interface/ev_gauge_i.xml#f_value_range</location>value_range</feature><dot>.</dot><feature><include>False</include>upper</feature> <keyword>then</keyword>
+				<local>temp_value</local> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_gauge_i.xml#f_value_range</location>value_range</feature><dot>.</dot><feature><include>False</include>upper</feature>
+			<keyword>elseif</keyword> <local>temp_value</local> <symbol>&lt;</symbol> <feature><location>../implementation_interface/ev_gauge_i.xml#f_value_range</location>value_range</feature><dot>.</dot><feature><include>False</include>lower</feature> <keyword>then</keyword>
+				<local>temp_value</local> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_gauge_i.xml#f_value_range</location>value_range</feature><dot>.</dot><feature><include>False</include>lower</feature>
+			<keyword>end</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_set_gtk_adjustment_struct_lower</location>set_gtk_adjustment_struct_lower</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_adjustment</location>adjustment</feature><symbol>,</symbol> <feature><location>../implementation_interface/ev_gauge_i.xml#f_value_range</location>value_range</feature><dot>.</dot><feature><include>False</include>lower</feature><dot>.</dot><feature><include>False</include>to_real</feature><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_gauge_imp.xml#f_internal_set_upper</location>internal_set_upper</feature>
+			<feature><location>../implementation_gtk/ev_gauge_imp.xml#f_internal_set_value</location>internal_set_value</feature><symbol> </symbol><symbol>(</symbol><local>temp_value</local><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_adjustment_changed</location>gtk_adjustment_changed</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_adjustment</location>adjustment</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_any.xml</location>EV_ANY</class><symbol>,</symbol> <class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_interface</anchor><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_interface</location>interface</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_gauge.xml</location>EV_GAUGE</class>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_internal_set_upper</anchor><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_internal_set_upper</location>internal_set_upper</feature>
+			<comment>--</comment><comment> Set the upper value of the adjustment struct</comment>
+		<keyword>do</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_set_gtk_adjustment_struct_upper</location>set_gtk_adjustment_struct_upper</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_adjustment</location>adjustment</feature><symbol>,</symbol> <feature><location>../implementation_interface/ev_gauge_i.xml#f_value_range</location>value_range</feature><dot>.</dot><feature><include>False</include>upper</feature><dot>.</dot><feature><include>False</include>to_real</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_adjustment</anchor><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_adjustment</location>adjustment</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Pointer to GtkAdjustment of gauge.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_gauge_imp.xml#f_adjustment_internal</location>adjustment_internal</feature> <symbol>=</symbol> <feature><include>False</include>default_pointer</feature> <keyword>then</keyword>
+				<feature><location>../implementation_gtk/ev_gauge_imp.xml#f_adjustment_internal</location>adjustment_internal</feature> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_adjustment_new</location>gtk_adjustment_new</feature> <symbol>(</symbol><symbol>{</symbol><class><include>False</include>REAL_32</class><symbol>}</symbol> <number>0.0</number><symbol>,</symbol> <symbol>{</symbol><class><include>False</include>REAL_32</class><symbol>}</symbol> <number>0.0</number><symbol>,</symbol> <symbol>{</symbol><class><include>False</include>REAL_32</class><symbol>}</symbol> <number>100.0</number><symbol>,</symbol> <symbol>{</symbol><class><include>False</include>REAL_32</class><symbol>}</symbol> <number>1.0</number><symbol>,</symbol> <symbol>{</symbol><class><include>False</include>REAL_32</class><symbol>}</symbol> <number>10.0</number><symbol>,</symbol> <symbol>{</symbol><class><include>False</include>REAL_32</class><symbol>}</symbol> <number>0.0</number><symbol>)</symbol>
+			<keyword>end</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_gauge_imp.xml#f_adjustment_internal</location>adjustment_internal</feature>
+		<keyword>ensure</keyword>
+			<tag>adjustment_set</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <feature><include>False</include>default_pointer</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_adjustment_internal</anchor><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_adjustment_internal</location>adjustment_internal</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Once per object store for </comment><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_adjustment</location>adjustment</feature><comment>.</comment>
+
+	<anchor>f_old_value</anchor><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_old_value</location>old_value</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Value of </comment><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_value</location>value</feature><comment> when last &quot;value-changed&quot; signal occurred.</comment>
+
+	<anchor>f_internal_set_value</anchor><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_internal_set_value</location>internal_set_value</feature> <symbol>(</symbol><local>a_value</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_value</location>value</feature><comment> to </comment><quoted>a_value</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_gauge_imp.xml#f_value</location>value</feature> <symbol>/=</symbol> <local>a_value</local> <keyword>then</keyword>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_adjustment_set_value</location>gtk_adjustment_set_value</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_adjustment</location>adjustment</feature><symbol>,</symbol> <local>a_value</local><dot>.</dot><feature><include>False</include>to_real</feature><symbol>)</symbol>
+				<keyword>if</keyword> <feature><location>../implementation_gtk/ev_gtk_widget_imp.xml#f_is_displayed</location>is_displayed</feature> <keyword>then</keyword>
+					<feature><location>../implementation_gtk/ev_widget_imp.xml#f_refresh_now</location>refresh_now</feature>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_intermediary_routines.xml</location>EV_INTERMEDIARY_ROUTINES</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_value_changed_handler</anchor><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_value_changed_handler</location>value_changed_handler</feature>
+			<comment>--</comment><comment> Called when </comment><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_value</location>value</feature><comment> changes.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_interface/ev_gauge_action_sequences_i.xml#f_change_actions_internal</location>change_actions_internal</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<feature><location>../implementation_interface/ev_gauge_action_sequences_i.xml#f_change_actions_internal</location>change_actions_internal</feature><dot>.</dot><feature><location>../interface/ev_lite_action_sequence.xml#f_call</location>call</feature><symbol> </symbol><symbol>(</symbol><symbol>[</symbol><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_value</location>value</feature><symbol>]</symbol><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2017, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_gtk/ev_gauge_imp.xml</location>EV_GAUGE_IMP</class></system>
+

@@ -1,0 +1,27 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../implementation_gtk/ev_multi_column_list_row_imp_links.xml</location>EV_MULTI_COLUMN_LIST_ROW_IMP</class>
+
+<keyword>Ancestors</keyword>
+	<class><location>../implementation_interface/ev_multi_column_list_row_i_links.xml</location>EV_MULTI_COLUMN_LIST_ROW_I</class><char>*</char>
+	<class><location>../implementation_gtk/ev_pnd_deferred_item_links.xml</location>EV_PND_DEFERRED_ITEM</class><char>*</char>
+
+<keyword>Clients</keyword>
+	<class><location>../implementation_gtk/ev_multi_column_list_imp_links.xml</location>EV_MULTI_COLUMN_LIST_IMP</class>
+	<class><location>../interface/ev_multi_column_list_row_links.xml</location>EV_MULTI_COLUMN_LIST_ROW</class>
+	<class><location>../implementation_gtk/ev_multi_column_list_row_imp_links.xml</location>EV_MULTI_COLUMN_LIST_ROW_IMP</class>
+
+<keyword>Suppliers</keyword>
+	<class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><generic>G</generic><symbol>]</symbol>
+	<class><include>False</include>BOOLEAN</class>
+	<class><location>../interface/ev_multi_column_list_links.xml</location>EV_MULTI_COLUMN_LIST</class>
+	<class><location>../implementation_gtk/ev_multi_column_list_imp_links.xml</location>EV_MULTI_COLUMN_LIST_IMP</class>
+	<class><location>../implementation_gtk/ev_multi_column_list_row_imp_links.xml</location>EV_MULTI_COLUMN_LIST_ROW_IMP</class>
+	<class><location>../interface/ev_pixmap_links.xml</location>EV_PIXMAP</class>
+	<class><location>../implementation_gtk/gtk_links.xml</location>GTK</class>
+	<class><include>False</include>INTEGER_32</class>
+	<class><include>False</include>READABLE_STRING_GENERAL</class><char>*</char>
+	<class><include>False</include>REAL_32</class>
+	<class><include>False</include>STRING_32</class>
+
+</system>

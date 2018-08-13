@@ -1,0 +1,283 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Intermediary routines between gtk and eiffel.&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2016-09-27 08:50:48 -0700 (Tue, 27 Sep 2016) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 99192 $&quot;</string>
+
+<keyword>class</keyword> 
+	<class><location>../implementation_gtk/ev_intermediary_routines.xml</location>EV_INTERMEDIARY_ROUTINES</class>
+
+<keyword>inherit</keyword>
+	<class><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines.xml</location>EV_GTK_DEPENDENT_INTERMEDIARY_ROUTINES</class>
+
+	<class><location>../interface/ev_any_handler.xml</location>EV_ANY_HANDLER</class>
+
+<keyword>create</keyword> 
+	<feature><include>False</include>default_create</feature>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Timeout intermediary agent routine</comment>
+
+	<anchor>f_on_timeout_intermediary</anchor><feature><location>../implementation_gtk/ev_intermediary_routines.xml#f_on_timeout_intermediary</location>on_timeout_intermediary</feature> <symbol>(</symbol><local>a_object_id</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Timeout has occurred.</comment>
+		<keyword>local</keyword>
+			<local>a_timeout_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_timeout_imp.xml</location>EV_TIMEOUT_IMP</class>
+		<keyword>do</keyword>
+			<local>a_timeout_imp</local> <symbol>?=</symbol> <feature><include>False</include>eif_id_object</feature><symbol> </symbol><symbol>(</symbol><local>a_object_id</local><symbol>)</symbol>
+			<keyword>if</keyword> <local>a_timeout_imp</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<local>a_timeout_imp</local><dot>.</dot><feature><location>../implementation_interface/ev_timeout_i.xml#f_on_timeout</location>on_timeout</feature>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_any_imp.xml</location>EV_ANY_IMP</class><symbol>}</symbol> <comment>--</comment><comment> Notebook intermediary agent routines</comment>
+
+	<anchor>f_on_notebook_page_switch_intermediary</anchor><feature><location>../implementation_gtk/ev_intermediary_routines.xml#f_on_notebook_page_switch_intermediary</location>on_notebook_page_switch_intermediary</feature> <symbol>(</symbol><local>a_c_object</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>;</symbol> <local>a_page</local><symbol>:</symbol> <class><include>False</include>NATURAL_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Notebook page is switched</comment>
+		<keyword>local</keyword>
+			<local>a_notebook_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_notebook_imp.xml</location>EV_NOTEBOOK_IMP</class>
+		<keyword>do</keyword>
+			<local>a_notebook_imp</local> <symbol>?=</symbol> <feature><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines.xml#f_c_get_eif_reference_from_object_id</location>c_get_eif_reference_from_object_id</feature><symbol> </symbol><symbol>(</symbol><local>a_c_object</local><symbol>)</symbol>
+			<keyword>check</keyword>
+					<local>a_notebook_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<local>a_notebook_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_notebook_imp.xml#f_page_switch</location>page_switch</feature><symbol> </symbol><symbol>(</symbol><local>a_page</local><dot>.</dot><feature><include>False</include>to_integer_32</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Expose actions intermediary agent routines</comment>
+
+	<anchor>f_create_expose_actions_intermediary</anchor><feature><location>../implementation_gtk/ev_intermediary_routines.xml#f_create_expose_actions_intermediary</location>create_expose_actions_intermediary</feature> <symbol>(</symbol><local>a_c_object</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>;</symbol> <local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Area needs to be redrawn</comment>
+		<keyword>local</keyword>
+			<local>l_drawing_area_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_drawing_area_imp.xml</location>EV_DRAWING_AREA_IMP</class>
+			<local>l_pixmap_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_pixmap_imp.xml</location>EV_PIXMAP_IMP</class>
+		<keyword>do</keyword>
+			<local>l_drawing_area_imp</local> <symbol>?=</symbol> <feature><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines.xml#f_c_get_eif_reference_from_object_id</location>c_get_eif_reference_from_object_id</feature><symbol> </symbol><symbol>(</symbol><local>a_c_object</local><symbol>)</symbol>
+			<keyword>if</keyword> <local>l_drawing_area_imp</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<local>l_drawing_area_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_call_expose_actions</location>call_expose_actions</feature><symbol> </symbol><symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>)</symbol>
+			<keyword>else</keyword>
+				<local>l_pixmap_imp</local> <symbol>?=</symbol> <feature><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines.xml#f_c_get_eif_reference_from_object_id</location>c_get_eif_reference_from_object_id</feature><symbol> </symbol><symbol>(</symbol><local>a_c_object</local><symbol>)</symbol>
+				<keyword>if</keyword> <local>l_pixmap_imp</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+					<local>l_pixmap_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_call_expose_actions</location>call_expose_actions</feature><symbol> </symbol><symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>)</symbol>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_any_imp.xml</location>EV_ANY_IMP</class><symbol>}</symbol> <comment>--</comment><comment> Gauge intermediary agent routines</comment>
+
+	<anchor>f_on_gauge_value_changed_intermediary</anchor><feature><location>../implementation_gtk/ev_intermediary_routines.xml#f_on_gauge_value_changed_intermediary</location>on_gauge_value_changed_intermediary</feature> <symbol>(</symbol><local>a_c_object</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>)</symbol>
+			<comment>--</comment><comment> Gauge value changed</comment>
+		<keyword>local</keyword>
+			<local>a_gauge_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_gauge_imp.xml</location>EV_GAUGE_IMP</class>
+		<keyword>do</keyword>
+			<local>a_gauge_imp</local> <symbol>?=</symbol> <feature><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines.xml#f_c_get_eif_reference_from_object_id</location>c_get_eif_reference_from_object_id</feature><symbol> </symbol><symbol>(</symbol><local>a_c_object</local><symbol>)</symbol>
+			<keyword>check</keyword>
+					<local>a_gauge_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<local>a_gauge_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_gauge_imp.xml#f_value_changed_handler</location>value_changed_handler</feature>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Widget intermediary agent routines</comment>
+
+	<anchor>f_on_size_allocate_intermediate</anchor><feature><location>../implementation_gtk/ev_intermediary_routines.xml#f_on_size_allocate_intermediate</location>on_size_allocate_intermediate</feature> <symbol>(</symbol><local>a_object_id</local><symbol>,</symbol> <local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Size allocate happened on widget.</comment>
+		<keyword>local</keyword>
+			<local>a_widget</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_widget_imp.xml</location>EV_WIDGET_IMP</class>
+		<keyword>do</keyword>
+			<local>a_widget</local> <symbol>?=</symbol> <feature><include>False</include>eif_id_object</feature><symbol> </symbol><symbol>(</symbol><local>a_object_id</local><symbol>)</symbol>
+			<keyword>if</keyword> <local>a_widget</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>and then</keyword> <keyword>not</keyword> <local>a_widget</local><dot>.</dot><feature><location>../implementation_interface/ev_any_i.xml#f_is_destroyed</location>is_destroyed</feature> <keyword>then</keyword>
+				<local>a_widget</local><dot>.</dot><feature><location>../implementation_gtk/ev_widget_imp.xml#f_on_size_allocate</location>on_size_allocate</feature><symbol> </symbol><symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_on_set_focus_event_intermediary</anchor><feature><location>../implementation_gtk/ev_intermediary_routines.xml#f_on_set_focus_event_intermediary</location>on_set_focus_event_intermediary</feature> <symbol>(</symbol><local>a_object_id</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_widget_ptr</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set Focus handling intermediary.</comment>
+		<keyword>local</keyword>
+			<local>a_window</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_window_imp.xml</location>EV_WINDOW_IMP</class>
+		<keyword>do</keyword>
+			<local>a_window</local> <symbol>?=</symbol> <feature><include>False</include>eif_id_object</feature><symbol> </symbol><symbol>(</symbol><local>a_object_id</local><symbol>)</symbol>
+			<keyword>if</keyword> <local>a_window</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>and then</keyword> <keyword>not</keyword> <local>a_window</local><dot>.</dot><feature><location>../implementation_interface/ev_any_i.xml#f_is_destroyed</location>is_destroyed</feature> <keyword>then</keyword>
+				<local>a_window</local><dot>.</dot><feature><location>../implementation_gtk/ev_window_imp.xml#f_on_set_focus_event</location>on_set_focus_event</feature><symbol> </symbol><symbol>(</symbol><local>a_widget_ptr</local><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_any_imp.xml</location>EV_ANY_IMP</class><symbol>}</symbol> <comment>--</comment><comment> Text component intermediary agent routines</comment>
+
+	<anchor>f_text_component_change_intermediary</anchor><feature><location>../implementation_gtk/ev_intermediary_routines.xml#f_text_component_change_intermediary</location>text_component_change_intermediary</feature> <symbol>(</symbol><local>a_c_object</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>)</symbol>
+			<comment>--</comment><comment> Changed</comment>
+		<keyword>local</keyword>
+			<local>a_text_component_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_text_component_imp.xml</location>EV_TEXT_COMPONENT_IMP</class>
+		<keyword>do</keyword>
+			<local>a_text_component_imp</local> <symbol>?=</symbol> <feature><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines.xml#f_c_get_eif_reference_from_object_id</location>c_get_eif_reference_from_object_id</feature><symbol> </symbol><symbol>(</symbol><local>a_c_object</local><symbol>)</symbol>
+			<keyword>check</keyword>
+					<local>a_text_component_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<local>a_text_component_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_text_component_imp.xml#f_on_change_actions</location>on_change_actions</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_text_field_return_intermediary</anchor><feature><location>../implementation_gtk/ev_intermediary_routines.xml#f_text_field_return_intermediary</location>text_field_return_intermediary</feature> <symbol>(</symbol><local>a_c_object</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>)</symbol>
+			<comment>--</comment><comment> Return</comment>
+		<keyword>local</keyword>
+			<local>l_text_field_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_text_field_imp.xml</location>EV_TEXT_FIELD_IMP</class>
+		<keyword>do</keyword>
+			<local>l_text_field_imp</local> <symbol>?=</symbol> <feature><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines.xml#f_c_get_eif_reference_from_object_id</location>c_get_eif_reference_from_object_id</feature><symbol> </symbol><symbol>(</symbol><local>a_c_object</local><symbol>)</symbol>
+			<keyword>check</keyword>
+					<local>l_text_field_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<keyword>if</keyword> <keyword>attached</keyword> <local>l_text_field_imp</local><dot>.</dot><feature><location>../implementation_interface/ev_text_field_action_sequences_i.xml#f_return_actions_internal</location>return_actions_internal</feature> <keyword>as</keyword> l_text_field_return_actions <keyword>then</keyword>
+				<local>l_text_field_return_actions</local><dot>.</dot><feature><location>../interface/ev_lite_action_sequence.xml#f_call</location>call</feature><symbol> </symbol><symbol>(</symbol><keyword>Void</keyword><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Button intermediary agent routines	</comment>
+
+	<anchor>f_button_select_intermediary</anchor><feature><location>../implementation_gtk/ev_intermediary_routines.xml#f_button_select_intermediary</location>button_select_intermediary</feature> <symbol>(</symbol><local>a_c_object</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>)</symbol>
+			<comment>--</comment><comment> Selected</comment>
+		<keyword>local</keyword>
+			<local>l_button_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_button_imp.xml</location>EV_BUTTON_IMP</class>
+			<local>l_rad_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_radio_button_imp.xml</location>EV_RADIO_BUTTON_IMP</class>
+		<keyword>do</keyword>
+			<local>l_button_imp</local> <symbol>?=</symbol> <feature><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines.xml#f_c_get_eif_reference_from_object_id</location>c_get_eif_reference_from_object_id</feature><symbol> </symbol><symbol>(</symbol><local>a_c_object</local><symbol>)</symbol>
+			<local>l_rad_imp</local> <symbol>?=</symbol> <local>l_button_imp</local>
+			<keyword>if</keyword> <local>l_rad_imp</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>and then</keyword> <keyword>not</keyword> <local>l_rad_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_radio_button_imp.xml#f_is_selected</location>is_selected</feature> <keyword>then</keyword>
+			<keyword>elseif</keyword> <local>l_button_imp</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>and then</keyword> <keyword>attached</keyword> <local>l_button_imp</local><dot>.</dot><feature><location>../implementation_interface/ev_button_action_sequences_i.xml#f_select_actions_internal</location>select_actions_internal</feature> <keyword>as</keyword> l_button_imp_select_actions <keyword>and then</keyword> <local>l_button_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_widget_imp.xml#f_parent_imp</location>parent_imp</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<local>l_button_imp_select_actions</local><dot>.</dot><feature><location>../interface/ev_lite_action_sequence.xml#f_call</location>call</feature><symbol> </symbol><symbol>(</symbol><keyword>Void</keyword><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_any_imp.xml</location>EV_ANY_IMP</class><symbol>}</symbol> <comment>--</comment><comment> Menu intermediary agent routines</comment>
+
+	<anchor>f_menu_item_activate_intermediary</anchor><feature><location>../implementation_gtk/ev_intermediary_routines.xml#f_menu_item_activate_intermediary</location>menu_item_activate_intermediary</feature> <symbol>(</symbol><local>a_c_object</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>)</symbol>
+			<comment>--</comment><comment> Item activated</comment>
+		<keyword>local</keyword>
+			<local>a_menu_item_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_menu_item_imp.xml</location>EV_MENU_ITEM_IMP</class>
+		<keyword>do</keyword>
+			<local>a_menu_item_imp</local> <symbol>?=</symbol> <feature><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines.xml#f_c_get_eif_reference_from_object_id</location>c_get_eif_reference_from_object_id</feature><symbol> </symbol><symbol>(</symbol><local>a_c_object</local><symbol>)</symbol>
+			<keyword>if</keyword> <local>a_menu_item_imp</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>and then</keyword> <local>a_menu_item_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_menu_item_imp.xml#f_allow_on_activate</location>allow_on_activate</feature> <keyword>then</keyword>
+				<local>a_menu_item_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_application_i.xml#f_do_once_on_idle</location>do_once_on_idle</feature><symbol> </symbol><symbol>(</symbol><keyword>agent</keyword> <local>a_menu_item_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_menu_item_imp.xml#f_on_activate</location>on_activate</feature><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_any_imp.xml</location>EV_ANY_IMP</class><symbol>}</symbol> <comment>--</comment><comment> Dialog intermediary agent routines			</comment>
+
+	<anchor>f_color_dialog_on_ok_intermediary</anchor><feature><location>../implementation_gtk/ev_intermediary_routines.xml#f_color_dialog_on_ok_intermediary</location>color_dialog_on_ok_intermediary</feature> <symbol>(</symbol><local>a_c_object</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>)</symbol>
+			<comment>--</comment><comment> Color dialog ok</comment>
+		<keyword>local</keyword>
+			<local>a_color_dialog_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_color_dialog_imp.xml</location>EV_COLOR_DIALOG_IMP</class>
+		<keyword>do</keyword>
+			<local>a_color_dialog_imp</local> <symbol>?=</symbol> <feature><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines.xml#f_c_get_eif_reference_from_object_id</location>c_get_eif_reference_from_object_id</feature><symbol> </symbol><symbol>(</symbol><local>a_c_object</local><symbol>)</symbol>
+			<keyword>check</keyword>
+					<local>a_color_dialog_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<local>a_color_dialog_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_standard_dialog_imp.xml#f_on_ok</location>on_ok</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_color_dialog_on_cancel_intermediary</anchor><feature><location>../implementation_gtk/ev_intermediary_routines.xml#f_color_dialog_on_cancel_intermediary</location>color_dialog_on_cancel_intermediary</feature> <symbol>(</symbol><local>a_c_object</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>)</symbol>
+			<comment>--</comment><comment> Color dialog cancel</comment>
+		<keyword>local</keyword>
+			<local>a_color_dialog_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_color_dialog_imp.xml</location>EV_COLOR_DIALOG_IMP</class>
+		<keyword>do</keyword>
+			<local>a_color_dialog_imp</local> <symbol>?=</symbol> <feature><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines.xml#f_c_get_eif_reference_from_object_id</location>c_get_eif_reference_from_object_id</feature><symbol> </symbol><symbol>(</symbol><local>a_c_object</local><symbol>)</symbol>
+			<keyword>check</keyword>
+					<local>a_color_dialog_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<local>a_color_dialog_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_standard_dialog_imp.xml#f_on_cancel</location>on_cancel</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_directory_dialog_on_ok_intermediary</anchor><feature><location>../implementation_gtk/ev_intermediary_routines.xml#f_directory_dialog_on_ok_intermediary</location>directory_dialog_on_ok_intermediary</feature> <symbol>(</symbol><local>a_c_object</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>)</symbol>
+			<comment>--</comment><comment> Directory dialog ok</comment>
+		<keyword>local</keyword>
+			<local>a_directory_dialog_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_directory_dialog_imp.xml</location>EV_DIRECTORY_DIALOG_IMP</class>
+		<keyword>do</keyword>
+			<local>a_directory_dialog_imp</local> <symbol>?=</symbol> <feature><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines.xml#f_c_get_eif_reference_from_object_id</location>c_get_eif_reference_from_object_id</feature><symbol> </symbol><symbol>(</symbol><local>a_c_object</local><symbol>)</symbol>
+			<keyword>check</keyword>
+					<local>a_directory_dialog_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<local>a_directory_dialog_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_standard_dialog_imp.xml#f_on_ok</location>on_ok</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_directory_dialog_on_cancel_intermediary</anchor><feature><location>../implementation_gtk/ev_intermediary_routines.xml#f_directory_dialog_on_cancel_intermediary</location>directory_dialog_on_cancel_intermediary</feature> <symbol>(</symbol><local>a_c_object</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>)</symbol>
+			<comment>--</comment><comment> Directory dialog cancel</comment>
+		<keyword>local</keyword>
+			<local>a_directory_dialog_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_directory_dialog_imp.xml</location>EV_DIRECTORY_DIALOG_IMP</class>
+		<keyword>do</keyword>
+			<local>a_directory_dialog_imp</local> <symbol>?=</symbol> <feature><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines.xml#f_c_get_eif_reference_from_object_id</location>c_get_eif_reference_from_object_id</feature><symbol> </symbol><symbol>(</symbol><local>a_c_object</local><symbol>)</symbol>
+			<keyword>check</keyword>
+					<local>a_directory_dialog_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<local>a_directory_dialog_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_standard_dialog_imp.xml#f_on_cancel</location>on_cancel</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_file_dialog_on_ok_intermediary</anchor><feature><location>../implementation_gtk/ev_intermediary_routines.xml#f_file_dialog_on_ok_intermediary</location>file_dialog_on_ok_intermediary</feature> <symbol>(</symbol><local>a_c_object</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>)</symbol>
+			<comment>--</comment><comment> File dialog ok</comment>
+		<keyword>local</keyword>
+			<local>a_file_dialog_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_file_dialog_imp.xml</location>EV_FILE_DIALOG_IMP</class>
+		<keyword>do</keyword>
+			<local>a_file_dialog_imp</local> <symbol>?=</symbol> <feature><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines.xml#f_c_get_eif_reference_from_object_id</location>c_get_eif_reference_from_object_id</feature><symbol> </symbol><symbol>(</symbol><local>a_c_object</local><symbol>)</symbol>
+			<keyword>check</keyword>
+					<local>a_file_dialog_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<local>a_file_dialog_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_file_dialog_imp.xml#f_on_ok</location>on_ok</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_file_dialog_on_cancel_intermediary</anchor><feature><location>../implementation_gtk/ev_intermediary_routines.xml#f_file_dialog_on_cancel_intermediary</location>file_dialog_on_cancel_intermediary</feature> <symbol>(</symbol><local>a_c_object</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>)</symbol>
+			<comment>--</comment><comment> File dialog cancel</comment>
+		<keyword>local</keyword>
+			<local>a_file_dialog_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_file_dialog_imp.xml</location>EV_FILE_DIALOG_IMP</class>
+		<keyword>do</keyword>
+			<local>a_file_dialog_imp</local> <symbol>?=</symbol> <feature><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines.xml#f_c_get_eif_reference_from_object_id</location>c_get_eif_reference_from_object_id</feature><symbol> </symbol><symbol>(</symbol><local>a_c_object</local><symbol>)</symbol>
+			<keyword>check</keyword>
+					<local>a_file_dialog_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<local>a_file_dialog_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_standard_dialog_imp.xml#f_on_cancel</location>on_cancel</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_font_dialog_on_ok_intermediary</anchor><feature><location>../implementation_gtk/ev_intermediary_routines.xml#f_font_dialog_on_ok_intermediary</location>font_dialog_on_ok_intermediary</feature> <symbol>(</symbol><local>a_c_object</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>)</symbol>
+			<comment>--</comment><comment> Font dialog ok</comment>
+		<keyword>local</keyword>
+			<local>a_font_dialog_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_font_dialog_imp.xml</location>EV_FONT_DIALOG_IMP</class>
+		<keyword>do</keyword>
+			<local>a_font_dialog_imp</local> <symbol>?=</symbol> <feature><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines.xml#f_c_get_eif_reference_from_object_id</location>c_get_eif_reference_from_object_id</feature><symbol> </symbol><symbol>(</symbol><local>a_c_object</local><symbol>)</symbol>
+			<keyword>check</keyword>
+					<local>a_font_dialog_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<local>a_font_dialog_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_standard_dialog_imp.xml#f_on_ok</location>on_ok</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_font_dialog_on_cancel_intermediary</anchor><feature><location>../implementation_gtk/ev_intermediary_routines.xml#f_font_dialog_on_cancel_intermediary</location>font_dialog_on_cancel_intermediary</feature> <symbol>(</symbol><local>a_c_object</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>)</symbol>
+			<comment>--</comment><comment> Font dialog cancel</comment>
+		<keyword>local</keyword>
+			<local>a_font_dialog_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_font_dialog_imp.xml</location>EV_FONT_DIALOG_IMP</class>
+		<keyword>do</keyword>
+			<local>a_font_dialog_imp</local> <symbol>?=</symbol> <feature><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines.xml#f_c_get_eif_reference_from_object_id</location>c_get_eif_reference_from_object_id</feature><symbol> </symbol><symbol>(</symbol><local>a_c_object</local><symbol>)</symbol>
+			<keyword>check</keyword>
+					<local>a_font_dialog_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<local>a_font_dialog_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_standard_dialog_imp.xml#f_on_cancel</location>on_cancel</feature>
+		<keyword>end</keyword>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2014, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_gtk/ev_intermediary_routines.xml</location>EV_INTERMEDIARY_ROUTINES</class></system>
+

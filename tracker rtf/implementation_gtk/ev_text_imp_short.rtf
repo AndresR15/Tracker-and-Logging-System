@@ -1,0 +1,166 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "EiffelVision text area, gtk implementation."{\line}
+{\tab}{\cf1 legal}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 status}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 id}{\cf1 :} "$Id: ev_text_imp.e 100058 2017-03-27 20:31:29Z jfiat $"{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2017-03-27 13:31:29 -0700 (Mon, 27 Mar 2017) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 100058 $"{\line}
+{\line}
+{\b\cf6 class} {\b\cf6 interface}{\line}
+{\tab}{\cf4 EV_TEXT_IMP}{\line}
+{\line}
+{\b\cf6 create} {\line}
+{\tab}{\cf5 make}{\line}
+{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 clipboard_content}{\cf1 :} {\cf4 STRING_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 Result}{\cf3  is current clipboard content.}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status report}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 line_number_from_position} {\cf1 (}{\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Line containing caret position }{\cf5 i}{\cf3 .}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 first_visible_line}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  First visible line current being displayed.}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_editable}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is the text editable by the user?}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 has_selection}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does }{\cf5 Current}{\cf3  have a selection?}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 start_selection}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Caret position of the start of selected text if any,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  otherwise }{\cf5 caret_position}{\cf3 .}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 end_selection}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Caret position of the end of selected text if any,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  otherwise }{\cf5 caret_position}{\cf3 .}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 selected_text}{\cf1 :} {\cf4 STRING_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Text currently selected in }{\cf5 Current}{\cf3 .}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status setting}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_editable} {\cf1 (}{\cf5 flag}{\cf1 :} {\cf4 BOOLEAN}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  if }{\cf5 flag}{\cf3  then make the component read-write.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  if not }{\cf5 flag}{\cf3  then make the component read-only.}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 set_caret_position} {\cf1 (}{\cf5 pos}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  set current insertion position}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Basic operation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 select_region} {\cf1 (}{\cf5 start_pos}{\cf1 ,} {\cf5 end_pos}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Select (highlight) the characters between character positions }{\cf5 start_pos}{\cf3  and }{\cf5 end_pos}{\cf3 .}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 set_selection} {\cf1 (}{\cf5 start_pos}{\cf1 ,} {\cf5 end_pos}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Select (highlight) the characters between valid caret positions }{\cf5 a_start_pos}{\cf3  and }{\cf5 a_end_pos}{\cf3 .}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 deselect_all}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Unselect the current selection.}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 delete_selection}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Delete the current selection.}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 cut_selection}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Cut }{\cf5 selected_region}{\cf3  by erasing it from}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the text and putting it in the Clipboard to paste it later.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  If }{\cf5 selectd_region}{\cf3  is empty, it does nothing.}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 copy_selection}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Copy }{\cf5 selected_region}{\cf3  into the Clipboard.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  If the }{\cf5 selected_region}{\cf3  is empty, it does nothing.}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 paste} {\cf1 (}{\cf5 index}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Insert the contents of the clipboard}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  at }{\cf5 index}{\cf3  postion of }{\cf5 text}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  If the Clipboard is empty, it does nothing.}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 text}{\cf1 :} {\cf4 STRING_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Text displayed in label.}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 line} {\cf1 (}{\cf5 a_line}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 STRING_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Returns the content of line }{\cf5 a_line}{\cf3 .}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 first_position_from_line_number} {\cf1 (}{\cf5 a_line}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Position of the first character on line }{\cf5 a_line}{\cf3 .}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 last_position_from_line_number} {\cf1 (}{\cf5 a_line}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Position of the last character on line }{\cf5 a_line}{\cf3 .}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status report}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 text_length}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of characters in }{\cf5 Current}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 line_count}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of display lines present in widget.}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 current_line_number}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Returns the number of the display line the cursor currently}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  is on.}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 caret_position}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Current position of the caret.}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 has_word_wrapping}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does }{\cf5 Current}{\cf3  have word wrapping enabled?}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status setting}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 insert_text} {\cf1 (}{\cf5 a_text}{\cf1 :} {\cf4 READABLE_STRING_GENERAL}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Insert }{\cf5 a_text}{\cf3  at the current caret position.}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 set_text} {\cf1 (}{\cf5 a_text}{\cf1 :} {\cf4 READABLE_STRING_GENERAL}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 text}{\cf3  to }{\cf5 a_text}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 append_text} {\cf1 (}{\cf5 a_text}{\cf1 :} {\cf4 READABLE_STRING_GENERAL}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Append }{\cf5 a_text}{\cf3  to }{\cf5 text}{\cf3 .}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 prepend_text} {\cf1 (}{\cf5 a_text}{\cf1 :} {\cf4 READABLE_STRING_GENERAL}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Prepend 'txt' to }{\cf5 text}{\cf3 .}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 delete_text} {\cf1 (}{\cf5 start}{\cf1 ,} {\cf5 finish}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Delete the text between }{\cf5 start}{\cf3  and }{\cf5 finish}{\cf3  index}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  both sides include.}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Basic operation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 scroll_to_line} {\cf1 (}{\cf5 a_line}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Scroll }{\cf5 Current}{\cf3  to line number }{\cf5 a_line}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 scroll_to_end}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Scroll to the last line position of }{\cf5 Current}{\cf3 .}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 enable_word_wrapping}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Enable word wrapping for }{\cf5 Current}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 disable_word_wrapping}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Disable word wrapping for }{\cf5 Current}{\line}
+}{\tab}{\line}
+{\b\cf6 note}{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 1984-2017, Eiffel Software and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"{\line}
+{\tab}{\cf1 source}{\cf1 :} "[{\line}
+{\tab}{\tab}Eiffel Software{\line}
+{\tab}{\tab}5949 Hollister Ave., Goleta, CA 93117 USA{\line}
+{\tab}{\tab}Telephone 805-685-1006, Fax 805-685-6869{\line}
+{\tab}{\tab}Website http://www.eiffel.com{\line}
+{\tab}{\tab}Customer support http://support.eiffel.com{\line}
+{\tab}]"{\line}
+{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 EV_TEXT_IMP}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

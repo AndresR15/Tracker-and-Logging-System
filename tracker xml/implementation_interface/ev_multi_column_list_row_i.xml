@@ -1,0 +1,149 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Vision multi column list row. Implementation interface.&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2013-05-30 14:33:11 -0700 (Thu, 30 May 2013) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 92653 $&quot;</string>
+
+<keyword>deferred</keyword> <keyword>class</keyword> 
+	<class><location>../implementation_interface/ev_multi_column_list_row_i.xml</location>EV_MULTI_COLUMN_LIST_ROW_I</class>
+
+<keyword>inherit</keyword>
+	<class><location>../implementation_interface/ev_item_i.xml</location>EV_ITEM_I</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_interface/ev_multi_column_list_row_i.xml#f_interface</location>interface</feature><symbol>,</symbol>
+			<feature><location>../implementation_interface/ev_multi_column_list_row_i.xml#f_parent_imp</location>parent_imp</feature><symbol>,</symbol>
+			<feature><location>../implementation_interface/ev_multi_column_list_row_i.xml#f_pixmap_equal_to</location>pixmap_equal_to</feature>
+		<keyword>end</keyword>
+
+	<class><location>../implementation_interface/ev_pick_and_dropable_i.xml</location>EV_PICK_AND_DROPABLE_I</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_interface/ev_multi_column_list_row_i.xml#f_interface</location>interface</feature>
+		<keyword>end</keyword>
+
+	<class><location>../implementation_interface/ev_pixmapable_i.xml</location>EV_PIXMAPABLE_I</class>
+		<keyword>undefine</keyword>
+			<feature><location>../implementation_interface/ev_multi_column_list_row_i.xml#f_pixmap_equal_to</location>pixmap_equal_to</feature>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_interface/ev_multi_column_list_row_i.xml#f_interface</location>interface</feature><symbol>,</symbol>
+			<feature><location>../implementation_interface/ev_multi_column_list_row_i.xml#f_pixmap_equal_to</location>pixmap_equal_to</feature>
+		<keyword>end</keyword>
+
+	<class><location>../implementation_interface/ev_deselectable_i.xml</location>EV_DESELECTABLE_I</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_interface/ev_multi_column_list_row_i.xml#f_interface</location>interface</feature><symbol>,</symbol>
+			<feature><location>../implementation_interface/ev_multi_column_list_row_i.xml#f_is_selectable</location>is_selectable</feature>
+		<keyword>end</keyword>
+
+	<class><location>../implementation_interface/ev_multi_column_list_row_action_sequences_i.xml</location>EV_MULTI_COLUMN_LIST_ROW_ACTION_SEQUENCES_I</class>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Status report</comment>
+
+	<anchor>f_is_selectable</anchor><feature><location>../implementation_interface/ev_multi_column_list_row_i.xml#f_is_selectable</location>is_selectable</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> May the tree item be selected.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_item_i.xml#f_parent</location>parent</feature> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Element Change</comment>
+
+	<anchor>f_pixmap</anchor><feature><location>../implementation_interface/ev_multi_column_list_row_i.xml#f_pixmap</location>pixmap</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_pixmap.xml</location>EV_PIXMAP</class>
+			<comment>--</comment><comment> </comment><quoted>Result</quoted><comment> is pixmap displayed in </comment><quoted>Current</quoted><comment>.</comment>
+			<comment>--</comment><comment> We do not simply return </comment><feature><location>../implementation_interface/ev_multi_column_list_row_i.xml#f_internal_pixmap</location>internal_pixmap</feature><comment> as</comment>
+			<comment>--</comment><comment> the image must be stretched to fit the size allocated</comment>
+			<comment>--</comment><comment> by </comment><feature><location>../implementation_interface/ev_item_i.xml#f_parent</location>parent</feature><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../implementation_interface/ev_multi_column_list_row_i.xml#f_internal_pixmap</location>internal_pixmap</feature> <keyword>as</keyword> l_internal_pixmap <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>l_internal_pixmap</local><dot>.</dot><feature><include>False</include>twin</feature>
+				<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../implementation_interface/ev_multi_column_list_row_i.xml#f_parent_imp</location>parent_imp</feature> <keyword>as</keyword> l_parent_imp <keyword>and then</keyword> <local>l_internal_pixmap</local><dot>.</dot><feature><location>../interface/ev_positioned.xml#f_width</location>width</feature> <symbol>/=</symbol> <local>l_parent_imp</local><dot>.</dot><feature><location>../implementation_interface/ev_item_pixmap_scaler_i.xml#f_pixmaps_width</location>pixmaps_width</feature> <keyword>and then</keyword> <local>l_internal_pixmap</local><dot>.</dot><feature><location>../interface/ev_positioned.xml#f_height</location>height</feature> <symbol>/=</symbol> <local>l_parent_imp</local><dot>.</dot><feature><location>../implementation_interface/ev_item_pixmap_scaler_i.xml#f_pixmaps_height</location>pixmaps_height</feature> <keyword>then</keyword>
+					<keyword>Result</keyword><dot>.</dot><feature><location>../interface/ev_pixmap.xml#f_stretch</location>stretch</feature><symbol> </symbol><symbol>(</symbol><local>l_parent_imp</local><dot>.</dot><feature><location>../implementation_interface/ev_item_pixmap_scaler_i.xml#f_pixmaps_width</location>pixmaps_width</feature><symbol>,</symbol> <local>l_parent_imp</local><dot>.</dot><feature><location>../implementation_interface/ev_item_pixmap_scaler_i.xml#f_pixmaps_height</location>pixmaps_height</feature><symbol>)</symbol>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_internal_pixmap</anchor><feature><location>../implementation_interface/ev_multi_column_list_row_i.xml#f_internal_pixmap</location>internal_pixmap</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_pixmap.xml</location>EV_PIXMAP</class>
+			<comment>--</comment><comment> Pixmap used at the start of the row.</comment>
+
+	<anchor>f_parent_imp</anchor><feature><location>../implementation_interface/ev_multi_column_list_row_i.xml#f_parent_imp</location>parent_imp</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_multi_column_list_imp.xml</location>EV_MULTI_COLUMN_LIST_IMP</class>
+			<comment>--</comment><comment> Parent implementation of </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_tooltip</anchor><feature><location>../implementation_interface/ev_multi_column_list_row_i.xml#f_tooltip</location>tooltip</feature><symbol>:</symbol> <class><include>False</include>STRING_32</class>
+			<comment>--</comment><comment> Tooltip displayed on </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Element change</comment>
+
+	<anchor>f_set_tooltip</anchor><feature><location>../implementation_interface/ev_multi_column_list_row_i.xml#f_set_tooltip</location>set_tooltip</feature> <symbol>(</symbol><local>a_tooltip</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>a_tooltip</quoted><comment> to </comment><feature><location>../implementation_interface/ev_multi_column_list_row_i.xml#f_tooltip</location>tooltip</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>a_tooltip_not_void</tag><symbol>:</symbol> <local>a_tooltip</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_remove_tooltip</anchor><feature><location>../implementation_interface/ev_multi_column_list_row_i.xml#f_remove_tooltip</location>remove_tooltip</feature>
+			<comment>--</comment><comment> Make </comment><feature><location>../implementation_interface/ev_multi_column_list_row_i.xml#f_tooltip</location>tooltip</feature><comment> empty.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_interface/ev_multi_column_list_row_i.xml#f_set_tooltip</location>set_tooltip</feature><symbol> </symbol><symbol>(</symbol>&quot;&quot;<symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>tooltip_removed</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_multi_column_list_row_i.xml#f_tooltip</location>tooltip</feature><dot>.</dot><feature><include>False</include>is_empty</feature>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Contract support</comment>
+
+	<anchor>f_pixmap_equal_to</anchor><feature><location>../implementation_interface/ev_multi_column_list_row_i.xml#f_pixmap_equal_to</location>pixmap_equal_to</feature> <symbol>(</symbol><local>a_pixmap</local><symbol>:</symbol> <class><location>../interface/ev_pixmap.xml</location>EV_PIXMAP</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is </comment><quoted>a_pixmap</quoted><comment> equal to </comment><feature><location>../implementation_interface/ev_multi_column_list_row_i.xml#f_pixmap</location>pixmap</feature><comment>?</comment>
+		<keyword>local</keyword>
+			<local>scaled_pixmap</local><symbol>:</symbol> <class><location>../interface/ev_pixmap.xml</location>EV_PIXMAP</class>
+			<local>multi_column_list</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_multi_column_list.xml</location>EV_MULTI_COLUMN_LIST</class>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_interface/ev_item_i.xml#f_parent</location>parent</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<local>scaled_pixmap</local> <symbol>:=</symbol> <local>a_pixmap</local><dot>.</dot><feature><include>False</include>twin</feature>
+				<local>multi_column_list</local> <symbol>?=</symbol> <feature><location>../implementation_interface/ev_item_i.xml#f_parent</location>parent</feature>
+				<keyword>check</keyword>
+						<local>multi_column_list</local> <symbol>/=</symbol> <keyword>Void</keyword>
+				<keyword>then</keyword>
+				<keyword>end</keyword>
+				<local>scaled_pixmap</local><dot>.</dot><feature><location>../interface/ev_pixmap.xml#f_stretch</location>stretch</feature><symbol> </symbol><symbol>(</symbol><local>multi_column_list</local><dot>.</dot><feature><location>../interface/ev_item_pixmap_scaler.xml#f_pixmaps_width</location>pixmaps_width</feature><symbol>,</symbol> <local>multi_column_list</local><dot>.</dot><feature><location>../interface/ev_item_pixmap_scaler.xml#f_pixmaps_height</location>pixmaps_height</feature><symbol>)</symbol>
+			<keyword>else</keyword>
+				<local>scaled_pixmap</local> <symbol>:=</symbol> <local>a_pixmap</local>
+			<keyword>end</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <keyword>attached</keyword> <feature><location>../implementation_interface/ev_multi_column_list_row_i.xml#f_pixmap</location>pixmap</feature> <keyword>as</keyword> l_pixmap <keyword>and then</keyword> <local>scaled_pixmap</local><dot>.</dot><feature><location>../interface/ev_pixmap.xml#f_is_equal</location>is_equal</feature><symbol> </symbol><symbol>(</symbol><local>l_pixmap</local><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_multi_column_list_row.xml</location>EV_MULTI_COLUMN_LIST_ROW</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_on_item_added_at</anchor><feature><location>../implementation_interface/ev_multi_column_list_row_i.xml#f_on_item_added_at</location>on_item_added_at</feature> <symbol>(</symbol><local>an_item</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>;</symbol> <local>item_index</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> </comment><quoted>an_item</quoted><comment> has been added to index </comment><quoted>item_index</quoted><comment>.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_on_item_removed_at</anchor><feature><location>../implementation_interface/ev_multi_column_list_row_i.xml#f_on_item_removed_at</location>on_item_removed_at</feature> <symbol>(</symbol><local>an_item</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>;</symbol> <local>item_index</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> </comment><quoted>an_item</quoted><comment> has been removed from index </comment><quoted>item_index</quoted><comment>.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_any.xml</location>EV_ANY</class><symbol>,</symbol> <class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_interface</anchor><feature><location>../implementation_interface/ev_multi_column_list_row_i.xml#f_interface</location>interface</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_multi_column_list_row.xml</location>EV_MULTI_COLUMN_LIST_ROW</class>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2013, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_interface/ev_multi_column_list_row_i.xml</location>EV_MULTI_COLUMN_LIST_ROW_I</class></system>
+

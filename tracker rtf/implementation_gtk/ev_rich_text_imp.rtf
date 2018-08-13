@@ -1,0 +1,949 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "Objects that ..."{\line}
+{\tab}{\cf1 legal}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 status}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 author}{\cf1 :} ""{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2016-09-27 08:50:48 -0700 (Tue, 27 Sep 2016) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 99192 $"{\line}
+{\line}
+{\b\cf6 class} {\line}
+{\tab}{\cf4 EV_RICH_TEXT_IMP}{\line}
+{\line}
+{\b\cf6 inherit}{\line}
+{\tab}{\cf4 EV_RICH_TEXT_I}{\line}
+{\tab}{\tab}{\b\cf6 undefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 text_length}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 selected_text}{\line}
+{\tab}{\tab}{\b\cf6 redefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 interface}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 next_change_of_character}{\line}
+{\tab}{\tab}{\b\cf6 end}{\line}
+{\line}
+{\tab}{\cf4 EV_TEXT_IMP}{\line}
+{\tab}{\tab}{\b\cf6 redefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 interface}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 make}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 on_key_event}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 initialize_buffer_events}{\line}
+{\tab}{\tab}{\b\cf6 end}{\line}
+{\line}
+{\b\cf6 create} {\line}
+{\tab}{\cf5 make}{\line}
+{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Initialization}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set up }{\cf5 Current}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 temp_start_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 temp_end_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 tab_positions}{\line}
+{\tab}{\tab}{\tab}{\cf1 Precursor} {\cf1 \{}{\cf4 EV_TEXT_IMP}{\cf1 \}}{\line}
+{\tab}{\tab}{\tab}{\cf5 tab_positions}{\b\cf1 .}{\cf5 internal_add_actions}{\b\cf1 .}{\cf5 extend}{\cf1  }{\cf1 (}{\b\cf6 agent} {\cf5 update_tab_positions}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 tab_positions}{\b\cf1 .}{\cf5 internal_remove_actions}{\b\cf1 .}{\cf5 extend}{\cf1  }{\cf1 (}{\b\cf6 agent} {\cf5 update_tab_positions}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 pango_tab_array} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 pango_tab_array_new} {\cf1 (}1{\cf1 ,} {\b\cf6 True}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_view_set_tabs} {\cf1 (}{\cf5 text_view}{\cf1 ,} {\cf5 pango_tab_array}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_tab_width}{\cf1  }{\cf1 (}96 {\cf1 //} 2{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 initialize_buffer_events}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Initialize }{\cf5 text_buffer}{\cf3  events}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf1 Precursor} {\cf1 \{}{\cf4 EV_TEXT_IMP}{\cf1 \}}{\line}
+{\tab}{\tab}{\tab}{\cf5 real_signal_connect}{\cf1  }{\cf1 (}{\cf5 text_buffer}{\cf1 ,} "mark_set"{\cf1 ,} {\b\cf6 agent} {\cf5 App_implementation}{\b\cf1 .}{\cf5 gtk_marshal}{\b\cf1 .}{\cf5 text_buffer_mark_set_intermediary}{\cf1  }{\cf1 (}{\cf5 object_id}{\cf1 ,} {\cf1 ?}{\cf1 ,} {\cf1 ?}{\cf1 )}{\cf1 ,} {\b\cf6 Void}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 next_change_of_character} {\cf1 (}{\cf5 current_pos}{\cf1 :} {\cf4 INTEGER_32}{\cf1 ;} {\cf5 a_text_length}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 Result}{\cf3  is caret position at next change of character from }{\cf5 current_pos}{\cf3 ,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  checking maximum caret position }{\cf5 maximum_caret_pos}{\cf3 . By passing }{\cf5 maximum_caret_pos}{\cf3  as}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  an argument, it prevents querying from the rich text constantly as it can be}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  precomputed instead.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 character_change}{\cf1 :} {\cf4 INTEGER_32_REF}{\line}
+{\tab}{\tab}{\tab}{\cf5 range_info}{\cf1 :} {\cf4 EV_CHARACTER_FORMAT_RANGE_INFORMATION}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 character_change} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\cf5 range_info} {\cf1 :=} {\cf5 internal_character_format_range_information}{\cf1  }{\cf1 (}{\cf5 current_pos}{\cf1 ,} {\cf5 a_text_length} {\cf1 +} 1{\cf1 ,} {\b\cf6 True}{\cf1 ,} {\cf5 character_change}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 create} {\cf1 \{}{\cf4 INTEGER_32}{\cf1 \}}{\b\cf1 .}{\cf5 make_from_reference}{\cf1  }{\cf1 (}{\cf5 character_change}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 initialize_for_saving}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Initialize }{\cf5 Current}{\cf3  for save operations, by performing}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  optimizations that prevent the control from slowing down due to}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  unecessary optimizations.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 complete_saving}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Restore }{\cf5 Current}{\cf3  back to its default state before last call}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to }{\cf5 initialize_for_saving}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 initialize_for_loading}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Initialize }{\cf5 Current}{\cf3  for load operations, by performing}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  optimizations that prevent the control from slowing down due to}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  unecessary optimizations.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 complete_loading}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Restore }{\cf5 Current}{\cf3  back to its default state before last call}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to }{\cf5 initialize_for_loading}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 font_char_set} {\cf1 (}{\cf5 a_font}{\cf1 :} {\cf4 EV_FONT}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 Result}{\cf3  is char set of font }{\cf5 a_font}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status Report}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 format_paragraph} {\cf1 (}{\cf5 start_line}{\cf1 ,} {\cf5 end_line}{\cf1 :} {\cf4 INTEGER_32}{\cf1 ;} {\cf5 format}{\cf1 :} {\cf4 EV_PARAGRAPH_FORMAT}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3   Apply paragraph formatting }{\cf5 format}{\cf3  to lines }{\cf5 start_line}{\cf3 , }{\cf5 end_line}{\cf3  inclusive.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 format_imp}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_PARAGRAPH_FORMAT_IMP}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 format_imp} {\cf1 ?=} {\cf5 format}{\b\cf1 .}{\cf5 implementation}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 format_imp} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 modify_paragraph_internal}{\cf1  }{\cf1 (}{\cf5 start_line}{\cf1 ,} {\cf5 end_line}{\cf1 ,} {\cf5 format_imp}{\cf1 ,} {\cf5 format_imp}{\b\cf1 .}{\cf5 dummy_paragraph_format_range_information}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 character_format_range_information} {\cf1 (}{\cf5 start_index}{\cf1 ,} {\cf5 end_index}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 EV_CHARACTER_FORMAT_RANGE_INFORMATION}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Formatting range information from caret position }{\cf5 start_index}{\cf3  to }{\cf5 end_index}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  All attributes in }{\cf5 Result}{\cf3  are set to }{\cf5 True}{\cf3  if they remain consitent from }{\cf5 start_index}{\cf3  to}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf5 end_index}{\cf3  and }{\cf5 False}{\cf3  otherwise.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 Result}{\cf3  is a snapshot of }{\cf5 Current}{\cf3 , and does not remain consistent as the contents}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  are subsequently changed.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 internal_character_format_range_information}{\cf1  }{\cf1 (}{\cf5 start_index}{\cf1 ,} {\cf5 end_index}{\cf1 ,} {\b\cf6 False}{\cf1 ,} {\b\cf6 Void}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 internal_character_format_range_information} {\cf1 (}{\cf5 start_index}{\cf1 ,} {\cf5 end_index}{\cf1 :} {\cf4 INTEGER_32}{\cf1 ;} {\cf5 abort_on_change}{\cf1 :} {\cf4 BOOLEAN}{\cf1 ;} {\cf5 change_index}{\cf1 :} {\b\cf6 detachable} {\cf4 INTEGER_32_REF}{\cf1 )}{\cf1 :} {\cf4 EV_CHARACTER_FORMAT_RANGE_INFORMATION}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Formatting range information from caret position }{\cf5 start_index}{\cf3  to }{\cf5 end_index}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  All attributes in }{\cf5 Result}{\cf3  are set to }{\cf5 True}{\cf3  if they remain consistent from }{\cf5 start_index}{\cf3  to}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf5 end_index}{\cf3  and }{\cf5 False}{\cf3  otherwise.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 Result}{\cf3  is a snapshot of }{\cf5 Current}{\cf3 , and does not remain consistent as the contents}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  are subsequently changed.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_character_index}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_text_iter}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_text_attributes}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf5 previous_text_attributes}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf5 previous_font_family}{\cf1 ,} {\cf5 font_family}{\cf1 :} {\cf4 STRING_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 non_contiguous_range_information}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 font_family_contiguous}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_change}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf5 exit_loop}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 font_family_contiguous} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 a_character_index} {\cf1 :=} {\cf5 start_index} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 a_text_iter} {\cf1 :=} {\cf5 a_text_iter}{\b\cf1 .}{\cf5 memory_alloc}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 EV_GTK_TEXT_ITER_STRUCT}{\cf1 \}}{\b\cf1 .}{\cf5 structure_size}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_iter_at_offset} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_text_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 start_index} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 previous_text_attributes} {\cf1 :=} {\cf5 gtk_text_view_get_default_attributes}{\cf1  }{\cf1 (}{\cf5 text_view}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 a_change} {\cf1 :=} {\cf5 gtk_text_iter_get_attributes}{\cf1  }{\cf1 (}{\cf5 a_text_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 previous_text_attributes}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 a_text_attributes} {\cf1 :=} {\cf5 gtk_text_view_get_default_attributes}{\cf1  }{\cf1 (}{\cf5 text_view}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 previous_font_family}{\b\cf1 .}{\cf5 make_from_c}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 pango_font_description_get_family} {\cf1 (}{\cf5 gtk_text_attributes_struct_font_description}{\cf1  }{\cf1 (}{\cf5 previous_text_attributes}{\cf1 )}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 exit_loop} {\b\cf6 or else} {\cf5 a_character_index} {\cf1 =} {\cf5 end_index}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_iter_at_offset} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_text_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 a_character_index} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 a_text_attributes} {\cf1 :=} {\cf5 gtk_text_attributes_copy}{\cf1  }{\cf1 (}{\cf5 previous_text_attributes}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 a_change} {\cf1 :=} {\cf5 gtk_text_iter_get_attributes}{\cf1  }{\cf1 (}{\cf5 a_text_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 a_text_attributes}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 font_family_contiguous} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 font_family}{\b\cf1 .}{\cf5 make_from_c}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 pango_font_description_get_family} {\cf1 (}{\cf5 gtk_text_attributes_struct_font_description}{\cf1  }{\cf1 (}{\cf5 a_text_attributes}{\cf1 )}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 font_family}{\b\cf1 .}{\cf5 hash_code} {\cf1 /=} {\cf5 previous_font_family}{\b\cf1 .}{\cf5 hash_code} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 non_contiguous_range_information} {\cf1 :=} {\cf5 non_contiguous_range_information}{\b\cf1 .}{\cf5 bit_or}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 EV_CHARACTER_FORMAT_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 font_family}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 font_family_contiguous} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 previous_font_family} {\cf1 :=} {\cf5 font_family}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 pango_font_description_get_style} {\cf1 (}{\cf5 gtk_text_attributes_struct_font_description}{\cf1  }{\cf1 (}{\cf5 a_text_attributes}{\cf1 )}{\cf1 )} {\cf1 /=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 pango_font_description_get_style} {\cf1 (}{\cf5 gtk_text_attributes_struct_font_description}{\cf1  }{\cf1 (}{\cf5 previous_text_attributes}{\cf1 )}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 non_contiguous_range_information} {\cf1 :=} {\cf5 non_contiguous_range_information}{\b\cf1 .}{\cf5 bit_or}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 EV_CHARACTER_FORMAT_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 font_shape}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 pango_font_description_get_weight} {\cf1 (}{\cf5 gtk_text_attributes_struct_font_description}{\cf1  }{\cf1 (}{\cf5 a_text_attributes}{\cf1 )}{\cf1 )} {\cf1 /=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 pango_font_description_get_weight} {\cf1 (}{\cf5 gtk_text_attributes_struct_font_description}{\cf1  }{\cf1 (}{\cf5 previous_text_attributes}{\cf1 )}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 non_contiguous_range_information} {\cf1 :=} {\cf5 non_contiguous_range_information}{\b\cf1 .}{\cf5 bit_or}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 EV_CHARACTER_FORMAT_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 font_weight}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 pango_font_description_get_size} {\cf1 (}{\cf5 gtk_text_attributes_struct_font_description}{\cf1  }{\cf1 (}{\cf5 a_text_attributes}{\cf1 )}{\cf1 )} {\cf1 /=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 pango_font_description_get_size} {\cf1 (}{\cf5 gtk_text_attributes_struct_font_description}{\cf1  }{\cf1 (}{\cf5 previous_text_attributes}{\cf1 )}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 non_contiguous_range_information} {\cf1 :=} {\cf5 non_contiguous_range_information}{\b\cf1 .}{\cf5 bit_or}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 EV_CHARACTER_FORMAT_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 font_height}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_color_struct_red} {\cf1 (}{\cf5 gtk_text_appearance_struct_fg_color}{\cf1  }{\cf1 (}{\cf5 gtk_text_attributes_struct_text_appearance}{\cf1  }{\cf1 (}{\cf5 a_text_attributes}{\cf1 )}{\cf1 )}{\cf1 )} {\cf1 /=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_color_struct_red} {\cf1 (}{\cf5 gtk_text_appearance_struct_fg_color}{\cf1  }{\cf1 (}{\cf5 gtk_text_attributes_struct_text_appearance}{\cf1  }{\cf1 (}{\cf5 previous_text_attributes}{\cf1 )}{\cf1 )}{\cf1 )} {\b\cf6 or else} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_color_struct_green} {\cf1 (}{\cf5 gtk_text_appearance_struct_fg_color}{\cf1  }{\cf1 (}{\cf5 gtk_text_attributes_struct_text_appearance}{\cf1  }{\cf1 (}{\cf5 a_text_attributes}{\cf1 )}{\cf1 )}{\cf1 )} {\cf1 /=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_color_struct_green} {\cf1 (}{\cf5 gtk_text_appearance_struct_fg_color}{\cf1  }{\cf1 (}{\cf5 gtk_text_attributes_struct_text_appearance}{\cf1  }{\cf1 (}{\cf5 previous_text_attributes}{\cf1 )}{\cf1 )}{\cf1 )} {\b\cf6 or else} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_color_struct_blue} {\cf1 (}{\cf5 gtk_text_appearance_struct_fg_color}{\cf1  }{\cf1 (}{\cf5 gtk_text_attributes_struct_text_appearance}{\cf1  }{\cf1 (}{\cf5 a_text_attributes}{\cf1 )}{\cf1 )}{\cf1 )} {\cf1 /=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_color_struct_blue} {\cf1 (}{\cf5 gtk_text_appearance_struct_fg_color}{\cf1  }{\cf1 (}{\cf5 gtk_text_attributes_struct_text_appearance}{\cf1  }{\cf1 (}{\cf5 previous_text_attributes}{\cf1 )}{\cf1 )}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 non_contiguous_range_information} {\cf1 :=} {\cf5 non_contiguous_range_information}{\b\cf1 .}{\cf5 bit_or}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 EV_CHARACTER_FORMAT_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 color}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_color_struct_red} {\cf1 (}{\cf5 gtk_text_appearance_struct_bg_color}{\cf1  }{\cf1 (}{\cf5 gtk_text_attributes_struct_text_appearance}{\cf1  }{\cf1 (}{\cf5 a_text_attributes}{\cf1 )}{\cf1 )}{\cf1 )} {\cf1 /=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_color_struct_red} {\cf1 (}{\cf5 gtk_text_appearance_struct_bg_color}{\cf1  }{\cf1 (}{\cf5 gtk_text_attributes_struct_text_appearance}{\cf1  }{\cf1 (}{\cf5 previous_text_attributes}{\cf1 )}{\cf1 )}{\cf1 )} {\b\cf6 or else} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_color_struct_green} {\cf1 (}{\cf5 gtk_text_appearance_struct_bg_color}{\cf1  }{\cf1 (}{\cf5 gtk_text_attributes_struct_text_appearance}{\cf1  }{\cf1 (}{\cf5 a_text_attributes}{\cf1 )}{\cf1 )}{\cf1 )} {\cf1 /=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_color_struct_green} {\cf1 (}{\cf5 gtk_text_appearance_struct_bg_color}{\cf1  }{\cf1 (}{\cf5 gtk_text_attributes_struct_text_appearance}{\cf1  }{\cf1 (}{\cf5 previous_text_attributes}{\cf1 )}{\cf1 )}{\cf1 )} {\b\cf6 or else} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_color_struct_blue} {\cf1 (}{\cf5 gtk_text_appearance_struct_bg_color}{\cf1  }{\cf1 (}{\cf5 gtk_text_attributes_struct_text_appearance}{\cf1  }{\cf1 (}{\cf5 a_text_attributes}{\cf1 )}{\cf1 )}{\cf1 )} {\cf1 /=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_color_struct_blue} {\cf1 (}{\cf5 gtk_text_appearance_struct_bg_color}{\cf1  }{\cf1 (}{\cf5 gtk_text_attributes_struct_text_appearance}{\cf1  }{\cf1 (}{\cf5 previous_text_attributes}{\cf1 )}{\cf1 )}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 non_contiguous_range_information} {\cf1 :=} {\cf5 non_contiguous_range_information}{\b\cf1 .}{\cf5 bit_or}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 EV_CHARACTER_FORMAT_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 background_color}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 gtk_text_appearance_struct_strikethrough}{\cf1  }{\cf1 (}{\cf5 gtk_text_attributes_struct_text_appearance}{\cf1  }{\cf1 (}{\cf5 a_text_attributes}{\cf1 )}{\cf1 )} {\cf1 /=} {\cf5 gtk_text_appearance_struct_strikethrough}{\cf1  }{\cf1 (}{\cf5 gtk_text_attributes_struct_text_appearance}{\cf1  }{\cf1 (}{\cf5 previous_text_attributes}{\cf1 )}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 non_contiguous_range_information} {\cf1 :=} {\cf5 non_contiguous_range_information}{\b\cf1 .}{\cf5 bit_or}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 EV_CHARACTER_FORMAT_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 effects_striked_out}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 gtk_text_appearance_struct_underline}{\cf1  }{\cf1 (}{\cf5 gtk_text_attributes_struct_text_appearance}{\cf1  }{\cf1 (}{\cf5 a_text_attributes}{\cf1 )}{\cf1 )} {\cf1 /=} {\cf5 gtk_text_appearance_struct_underline}{\cf1  }{\cf1 (}{\cf5 gtk_text_attributes_struct_text_appearance}{\cf1  }{\cf1 (}{\cf5 previous_text_attributes}{\cf1 )}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 non_contiguous_range_information} {\cf1 :=} {\cf5 non_contiguous_range_information}{\b\cf1 .}{\cf5 bit_or}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 EV_CHARACTER_FORMAT_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 effects_underlined}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 gtk_text_appearance_struct_rise}{\cf1  }{\cf1 (}{\cf5 gtk_text_attributes_struct_text_appearance}{\cf1  }{\cf1 (}{\cf5 a_text_attributes}{\cf1 )}{\cf1 )} {\cf1 /=} {\cf5 gtk_text_appearance_struct_rise}{\cf1  }{\cf1 (}{\cf5 gtk_text_attributes_struct_text_appearance}{\cf1  }{\cf1 (}{\cf5 a_text_attributes}{\cf1 )}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 non_contiguous_range_information} {\cf1 :=} {\cf5 non_contiguous_range_information}{\b\cf1 .}{\cf5 bit_or}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 EV_CHARACTER_FORMAT_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 effects_vertical_offset}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 gtk_text_attributes_free}{\cf1  }{\cf1 (}{\cf5 previous_text_attributes}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 previous_text_attributes} {\cf1 :=} {\cf5 a_text_attributes}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 a_character_index} {\cf1 :=} {\cf5 a_character_index} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 abort_on_change} {\b\cf6 and then} {\cf5 non_contiguous_range_information} {\cf1 >} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 non_contiguous_range_information} {\cf1 :=} {\cf5 non_contiguous_range_information}{\b\cf1 .}{\cf5 bit_or}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 EV_CHARACTER_FORMAT_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 font_family}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 exit_loop} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 gtk_text_attributes_free}{\cf1  }{\cf1 (}{\cf5 previous_text_attributes}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_text_iter}{\b\cf1 .}{\cf5 memory_free}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make_with_flags}{\cf1  }{\cf1 (}{\cf1 (}511{\cf1 )}{\b\cf1 .}{\cf5 bit_xor}{\cf1  }{\cf1 (}{\cf5 non_contiguous_range_information}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 change_index} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 change_index}{\b\cf1 .}{\cf5 set_item}{\cf1  }{\cf1 (}{\cf5 a_character_index} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 paragraph_format_range_information} {\cf1 (}{\cf5 start_index}{\cf1 ,} {\cf5 end_index}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 EV_PARAGRAPH_FORMAT_RANGE_INFORMATION}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Formatting range information from caret position }{\cf5 start_index}{\cf3  to }{\cf5 end_index}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  All attributes in }{\cf5 Result}{\cf3  are set to }{\cf5 True}{\cf3  if they remain consitent from }{\cf5 start_index}{\cf3  to}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf5 end_index}{\cf3  and }{\cf5 False}{\cf3  otherwise.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 Result}{\cf3  is a snapshot of }{\cf5 Current}{\cf3 , and does not remain consistent as the contents}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  are subsequently changed.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_character_index}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_text_iter}{\cf1 :} {\cf4 EV_GTK_TEXT_ITER_STRUCT}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_text_attributes}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf5 previous_text_attributes}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf5 non_contiguous_range_information}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 font_family_contiguous}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_change}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 font_family_contiguous} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 a_character_index} {\cf1 :=} {\cf5 start_index} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_text_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_iter_at_offset} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_text_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 start_index} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 previous_text_attributes} {\cf1 :=} {\cf5 gtk_text_view_get_default_attributes}{\cf1  }{\cf1 (}{\cf5 text_view}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 a_change} {\cf1 :=} {\cf5 gtk_text_iter_get_attributes}{\cf1  }{\cf1 (}{\cf5 a_text_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 previous_text_attributes}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 a_character_index} {\cf1 >} {\cf5 end_index}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_text_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_iter_at_offset} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_text_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 a_character_index} {\cf1 -} 2{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 a_text_attributes} {\cf1 :=} {\cf5 gtk_text_view_get_default_attributes}{\cf1  }{\cf1 (}{\cf5 text_view}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 a_change} {\cf1 :=} {\cf5 gtk_text_iter_get_attributes}{\cf1  }{\cf1 (}{\cf5 a_text_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 a_text_attributes}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 gtk_text_attributes_struct_justification}{\cf1  }{\cf1 (}{\cf5 a_text_attributes}{\cf1 )} {\cf1 /=} {\cf5 gtk_text_attributes_struct_justification}{\cf1  }{\cf1 (}{\cf5 previous_text_attributes}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 non_contiguous_range_information} {\cf1 :=} {\cf5 non_contiguous_range_information}{\b\cf1 .}{\cf5 bit_or}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 EV_PARAGRAPH_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 alignment}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 gtk_text_attributes_struct_left_margin}{\cf1  }{\cf1 (}{\cf5 a_text_attributes}{\cf1 )} {\cf1 /=} {\cf5 gtk_text_attributes_struct_left_margin}{\cf1  }{\cf1 (}{\cf5 previous_text_attributes}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 non_contiguous_range_information} {\cf1 :=} {\cf5 non_contiguous_range_information}{\b\cf1 .}{\cf5 bit_or}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 EV_PARAGRAPH_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 left_margin}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 gtk_text_attributes_struct_right_margin}{\cf1  }{\cf1 (}{\cf5 a_text_attributes}{\cf1 )} {\cf1 /=} {\cf5 gtk_text_attributes_struct_right_margin}{\cf1  }{\cf1 (}{\cf5 previous_text_attributes}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 non_contiguous_range_information} {\cf1 :=} {\cf5 non_contiguous_range_information}{\b\cf1 .}{\cf5 bit_or}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 EV_PARAGRAPH_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 right_margin}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 gtk_text_attributes_struct_pixels_above_lines}{\cf1  }{\cf1 (}{\cf5 a_text_attributes}{\cf1 )} {\cf1 /=} {\cf5 gtk_text_attributes_struct_pixels_above_lines}{\cf1  }{\cf1 (}{\cf5 previous_text_attributes}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 non_contiguous_range_information} {\cf1 :=} {\cf5 non_contiguous_range_information}{\b\cf1 .}{\cf5 bit_or}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 EV_PARAGRAPH_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 top_spacing}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 gtk_text_attributes_struct_pixels_below_lines}{\cf1  }{\cf1 (}{\cf5 a_text_attributes}{\cf1 )} {\cf1 /=} {\cf5 gtk_text_attributes_struct_pixels_below_lines}{\cf1  }{\cf1 (}{\cf5 previous_text_attributes}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 non_contiguous_range_information} {\cf1 :=} {\cf5 non_contiguous_range_information}{\b\cf1 .}{\cf5 bit_or}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 EV_PARAGRAPH_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 bottom_spacing}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 gtk_text_attributes_free}{\cf1  }{\cf1 (}{\cf5 previous_text_attributes}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 previous_text_attributes} {\cf1 :=} {\cf5 a_text_attributes}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 a_character_index} {\cf1 :=} {\cf5 a_character_index} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 gtk_text_attributes_free}{\cf1  }{\cf1 (}{\cf5 previous_text_attributes}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make_with_flags}{\cf1  }{\cf1 (}{\cf1 (}31{\cf1 )}{\b\cf1 .}{\cf5 bit_xor}{\cf1  }{\cf1 (}{\cf5 non_contiguous_range_information}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 paragraph_format_contiguous} {\cf1 (}{\cf5 start_position}{\cf1 ,} {\cf5 end_position}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is paragraph formatting from line }{\cf5 start_position}{\cf3  to }{\cf5 end_position}{\cf3  contiguous?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 EV_RICH_TEXT_IMP}{\cf3  as synonym of }{\cf5 internal_paragraph_format_contiguous}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 range_info}{\cf1 :} {\cf4 EV_PARAGRAPH_FORMAT_RANGE_INFORMATION}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 range_info} {\cf1 :=} {\cf5 paragraph_format_range_information}{\cf1  }{\cf1 (}{\cf5 start_position}{\cf1 ,} {\cf5 end_position}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 range_info}{\b\cf1 .}{\cf5 alignment} {\b\cf6 and then} {\cf5 range_info}{\b\cf1 .}{\cf5 left_margin} {\b\cf6 and then} {\cf5 range_info}{\b\cf1 .}{\cf5 right_margin} {\b\cf6 and then} {\cf5 range_info}{\b\cf1 .}{\cf5 top_spacing} {\b\cf6 and then} {\cf5 range_info}{\b\cf1 .}{\cf5 bottom_spacing}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 internal_paragraph_format_contiguous} {\cf1 (}{\cf5 start_position}{\cf1 ,} {\cf5 end_position}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is paragraph formatting from line }{\cf5 start_position}{\cf3  to }{\cf5 end_position}{\cf3  contiguous?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 EV_RICH_TEXT_IMP}{\cf3  as synonym of }{\cf5 paragraph_format_contiguous}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 range_info}{\cf1 :} {\cf4 EV_PARAGRAPH_FORMAT_RANGE_INFORMATION}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 range_info} {\cf1 :=} {\cf5 paragraph_format_range_information}{\cf1  }{\cf1 (}{\cf5 start_position}{\cf1 ,} {\cf5 end_position}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 range_info}{\b\cf1 .}{\cf5 alignment} {\b\cf6 and then} {\cf5 range_info}{\b\cf1 .}{\cf5 left_margin} {\b\cf6 and then} {\cf5 range_info}{\b\cf1 .}{\cf5 right_margin} {\b\cf6 and then} {\cf5 range_info}{\b\cf1 .}{\cf5 top_spacing} {\b\cf6 and then} {\cf5 range_info}{\b\cf1 .}{\cf5 bottom_spacing}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 character_format_contiguous} {\cf1 (}{\cf5 start_index}{\cf1 ,} {\cf5 end_index}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is formatting from caret position }{\cf5 start_index}{\cf3  to }{\cf5 end_index}{\cf3  contiguous?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Internal version which permits optimizations as caret position and selection}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  does not need to be restored.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 internal_character_format_contiguous}{\cf1  }{\cf1 (}{\cf5 start_index}{\cf1 ,} {\cf5 end_index}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 internal_character_format_contiguous} {\cf1 (}{\cf5 start_index}{\cf1 ,} {\cf5 end_index}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is formatting from caret position }{\cf5 start_index}{\cf3  to }{\cf5 end_index}{\cf3  contiguous?}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_range_info}{\cf1 :} {\cf4 EV_CHARACTER_FORMAT_RANGE_INFORMATION}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_range_info} {\cf1 :=} {\cf5 internal_character_format_range_information}{\cf1  }{\cf1 (}{\cf5 start_index}{\cf1 ,} {\cf5 end_index}{\cf1 ,} {\b\cf6 True}{\cf1 ,} {\b\cf6 Void}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 a_range_info}{\b\cf1 .}{\cf5 font_family}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 selected_paragraph_format}{\cf1 :} {\cf4 EV_PARAGRAPH_FORMAT}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 Result}{\cf3  is paragraph format of current selection.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  If more than one format is contained in the selection, }{\cf5 Result}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  is the first of these formats.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 paragraph_format}{\cf1  }{\cf1 (}{\cf5 start_selection}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 modify_region} {\cf1 (}{\cf5 start_position}{\cf1 ,} {\cf5 end_position}{\cf1 :} {\cf4 INTEGER_32}{\cf1 ;} {\cf5 format}{\cf1 :} {\cf4 EV_CHARACTER_FORMAT}{\cf1 ;} {\cf5 applicable_attributes}{\cf1 :} {\cf4 EV_CHARACTER_FORMAT_RANGE_INFORMATION}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Modify formatting from }{\cf5 start_position}{\cf3  to }{\cf5 end_position}{\cf3  applying all attributes of }{\cf5 format}{\cf3  that are set to}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 True}{\cf3  within }{\cf5 applicable_attributes}{\cf3 , ignoring others.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_format_imp}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_CHARACTER_FORMAT_IMP}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_format_imp} {\cf1 ?=} {\cf5 format}{\b\cf1 .}{\cf5 implementation}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 a_format_imp} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 modify_region_internal}{\cf1  }{\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 start_position}{\cf1 ,} {\cf5 end_position}{\cf1 ,} {\cf5 a_format_imp}{\cf1 ,} {\cf5 applicable_attributes}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 modify_paragraph} {\cf1 (}{\cf5 start_position}{\cf1 ,} {\cf5 end_position}{\cf1 :} {\cf4 INTEGER_32}{\cf1 ;} {\cf5 format}{\cf1 :} {\cf4 EV_PARAGRAPH_FORMAT}{\cf1 ;} {\cf5 applicable_attributes}{\cf1 :} {\cf4 EV_PARAGRAPH_FORMAT_RANGE_INFORMATION}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Modify paragraph formatting from caret positions }{\cf5 start_position}{\cf3  to }{\cf5 end_position}{\cf3  applying all attributes of }{\cf5 format}{\cf3  that are set to}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 True}{\cf3  within }{\cf5 applicable_attributes}{\cf3 , ignoring others.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 format_imp}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_PARAGRAPH_FORMAT_IMP}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 format_imp} {\cf1 ?=} {\cf5 format}{\b\cf1 .}{\cf5 implementation}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 format_imp} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 modify_paragraph_internal}{\cf1  }{\cf1 (}{\cf5 start_position}{\cf1 ,} {\cf5 end_position}{\cf1 ,} {\cf5 format_imp}{\cf1 ,} {\cf5 applicable_attributes}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 paragraph_format} {\cf1 (}{\cf5 caret_index}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 EV_PARAGRAPH_FORMAT}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 Result}{\cf3  is paragraph_format at caret position }{\cf5 caret_index}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 EV_RICH_TEXT_IMP}{\cf3  as synonym of }{\cf5 internal_paragraph_format}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_text_iter}{\cf1 :} {\cf4 EV_GTK_TEXT_ITER_STRUCT}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_text_attributes}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_justification}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_change}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_text_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_iter_at_offset} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_text_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 caret_index} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_text_attributes} {\cf1 :=} {\cf5 gtk_text_view_get_default_attributes}{\cf1  }{\cf1 (}{\cf5 text_view}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_change} {\cf1 :=} {\cf5 gtk_text_iter_get_attributes}{\cf1  }{\cf1 (}{\cf5 a_text_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 a_text_attributes}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 set_bottom_spacing}{\cf1  }{\cf1 (}{\cf5 gtk_text_attributes_struct_pixels_below_lines}{\cf1  }{\cf1 (}{\cf5 a_text_attributes}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 set_top_spacing}{\cf1  }{\cf1 (}{\cf5 gtk_text_attributes_struct_pixels_above_lines}{\cf1  }{\cf1 (}{\cf5 a_text_attributes}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 set_left_margin}{\cf1  }{\cf1 (}{\cf5 gtk_text_attributes_struct_left_margin}{\cf1  }{\cf1 (}{\cf5 a_text_attributes}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 set_right_margin}{\cf1  }{\cf1 (}{\cf5 gtk_text_attributes_struct_right_margin}{\cf1  }{\cf1 (}{\cf5 a_text_attributes}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_justification} {\cf1 :=} {\cf5 gtk_text_attributes_struct_justification}{\cf1  }{\cf1 (}{\cf5 a_text_attributes}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a_justification} {\cf1 =} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_justify_left_enum} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 enable_left_alignment}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 a_justification} {\cf1 =} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_justify_center_enum} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 enable_center_alignment}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 a_justification} {\cf1 =} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_justify_right_enum} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 enable_right_alignment}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 a_justification} {\cf1 =} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_justify_fill_enum} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 enable_justification}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 gtk_text_attributes_free}{\cf1  }{\cf1 (}{\cf5 a_text_attributes}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 internal_paragraph_format} {\cf1 (}{\cf5 caret_index}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 EV_PARAGRAPH_FORMAT}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 Result}{\cf3  is paragraph_format at caret position }{\cf5 caret_index}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 EV_RICH_TEXT_IMP}{\cf3  as synonym of }{\cf5 paragraph_format}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_text_iter}{\cf1 :} {\cf4 EV_GTK_TEXT_ITER_STRUCT}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_text_attributes}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_justification}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_change}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_text_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_iter_at_offset} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_text_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 caret_index} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_text_attributes} {\cf1 :=} {\cf5 gtk_text_view_get_default_attributes}{\cf1  }{\cf1 (}{\cf5 text_view}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_change} {\cf1 :=} {\cf5 gtk_text_iter_get_attributes}{\cf1  }{\cf1 (}{\cf5 a_text_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 a_text_attributes}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 set_bottom_spacing}{\cf1  }{\cf1 (}{\cf5 gtk_text_attributes_struct_pixels_below_lines}{\cf1  }{\cf1 (}{\cf5 a_text_attributes}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 set_top_spacing}{\cf1  }{\cf1 (}{\cf5 gtk_text_attributes_struct_pixels_above_lines}{\cf1  }{\cf1 (}{\cf5 a_text_attributes}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 set_left_margin}{\cf1  }{\cf1 (}{\cf5 gtk_text_attributes_struct_left_margin}{\cf1  }{\cf1 (}{\cf5 a_text_attributes}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 set_right_margin}{\cf1  }{\cf1 (}{\cf5 gtk_text_attributes_struct_right_margin}{\cf1  }{\cf1 (}{\cf5 a_text_attributes}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_justification} {\cf1 :=} {\cf5 gtk_text_attributes_struct_justification}{\cf1  }{\cf1 (}{\cf5 a_text_attributes}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a_justification} {\cf1 =} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_justify_left_enum} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 enable_left_alignment}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 a_justification} {\cf1 =} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_justify_center_enum} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 enable_center_alignment}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 a_justification} {\cf1 =} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_justify_right_enum} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 enable_right_alignment}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 a_justification} {\cf1 =} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_justify_fill_enum} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 enable_justification}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 gtk_text_attributes_free}{\cf1  }{\cf1 (}{\cf5 a_text_attributes}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 selected_character_format}{\cf1 :} {\cf4 EV_CHARACTER_FORMAT}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Format of the character which starts the selection}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 character_format}{\cf1  }{\cf1 (}{\cf5 start_selection}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 index_from_position} {\cf1 (}{\cf5 an_x_position}{\cf1 ,} {\cf5 a_y_position}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Index of character closest to position }{\cf5 x_position}{\cf3 , }{\cf5 y_position}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_buf_x}{\cf1 ,} {\cf5 a_buf_y}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_text_iter}{\cf1 :} {\cf4 EV_GTK_TEXT_ITER_STRUCT}{\line}
+{\tab}{\tab}{\tab}{\cf5 text_count}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 gtk_text_view_window_to_buffer_coords}{\cf1  }{\cf1 (}{\cf5 text_view}{\cf1 ,} {\cf5 an_x_position}{\cf1 ,} {\cf5 a_y_position}{\cf1 ,} {\cf1 $}{\cf5 a_buf_x}{\b\cf1 .}{\cf5 to_pointer}{\cf1 ,} {\cf1 $}{\cf5 a_buf_y}{\b\cf1 .}{\cf5 to_pointer}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_text_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\cf5 gtk_text_view_get_iter_at_location}{\cf1  }{\cf1 (}{\cf5 text_view}{\cf1 ,} {\cf5 a_text_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 a_buf_x}{\cf1 ,} {\cf5 a_buf_y}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 text_count} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_char_count} {\cf1 (}{\cf5 text_buffer}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_iter_get_offset} {\cf1 (}{\cf5 a_text_iter}{\b\cf1 .}{\cf5 item}{\cf1 )} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Result}{\b\cf1 .}{\cf5 min}{\cf1  }{\cf1 (}{\cf5 text_count}{\cf1 )}{\b\cf1 .}{\cf5 max}{\cf1  }{\cf1 (}1{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 position_from_index} {\cf1 (}{\cf5 an_index}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 EV_COORDINATE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Position of character at index }{\cf5 an_index}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_text_iter}{\cf1 :} {\cf4 EV_GTK_TEXT_ITER_STRUCT}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_x}{\cf1 ,} {\cf5 a_y}{\cf1 ,} {\cf5 a_x2}{\cf1 ,} {\cf5 a_y2}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_rectangle}{\cf1 :} {\cf4 MANAGED_POINTER}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_text_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_rectangle}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 c_gdk_rectangle_struct_size}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_iter_at_offset} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_text_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 an_index} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_view_get_iter_location} {\cf1 (}{\cf5 text_view}{\cf1 ,} {\cf5 a_text_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 a_rectangle}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_x} {\cf1 :=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_rectangle_struct_x} {\cf1 (}{\cf5 a_rectangle}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_y} {\cf1 :=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_rectangle_struct_y} {\cf1 (}{\cf5 a_rectangle}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 gtk_text_view_buffer_to_window_coords}{\cf1  }{\cf1 (}{\cf5 text_view}{\cf1 ,} {\cf5 a_x}{\cf1 ,} {\cf5 a_y}{\cf1 ,} {\cf1 $}{\cf5 a_x2}{\b\cf1 .}{\cf5 to_pointer}{\cf1 ,} {\cf1 $}{\cf5 a_y2}{\b\cf1 .}{\cf5 to_pointer}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 set}{\cf1  }{\cf1 (}{\cf5 a_x2}{\cf1 ,} {\cf5 a_y2}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 character_displayed} {\cf1 (}{\cf5 an_index}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is character }{\cf5 an_index}{\cf3  currently visible in }{\cf5 Current}{\cf3 ?}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_text_iter}{\cf1 :} {\cf4 EV_GTK_TEXT_ITER_STRUCT}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_x}{\cf1 ,} {\cf5 a_y}{\cf1 ,} {\cf5 a_char_x}{\cf1 ,} {\cf5 a_char_y}{\cf1 ,} {\cf5 a_char_width}{\cf1 ,} {\cf5 a_char_height}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_rectangle}{\cf1 :} {\cf4 MANAGED_POINTER}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_text_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_rectangle}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 c_gdk_rectangle_struct_size}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_iter_at_offset} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_text_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 an_index} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_view_get_iter_location} {\cf1 (}{\cf5 text_view}{\cf1 ,} {\cf5 a_text_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 a_rectangle}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_x} {\cf1 :=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_rectangle_struct_x} {\cf1 (}{\cf5 a_rectangle}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_y} {\cf1 :=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_rectangle_struct_y} {\cf1 (}{\cf5 a_rectangle}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_char_width} {\cf1 :=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_rectangle_struct_width} {\cf1 (}{\cf5 a_rectangle}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_char_height} {\cf1 :=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_rectangle_struct_height} {\cf1 (}{\cf5 a_rectangle}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 gtk_text_view_buffer_to_window_coords}{\cf1  }{\cf1 (}{\cf5 text_view}{\cf1 ,} {\cf5 a_x}{\cf1 ,} {\cf5 a_y}{\cf1 ,} {\cf1 $}{\cf5 a_char_x}{\b\cf1 .}{\cf5 to_pointer}{\cf1 ,} {\cf1 $}{\cf5 a_char_y}{\b\cf1 .}{\cf5 to_pointer}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 a_char_x} {\cf1 >=} 0 {\b\cf6 and} {\cf5 a_char_x} {\cf1 <} {\cf5 width}{\cf1 )} {\b\cf6 and then} {\cf1 (}{\cf5 a_char_y} {\cf1 >=} 0 {\b\cf6 and} {\cf5 a_char_y} {\cf1 <} {\cf5 height}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status report}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 character_format} {\cf1 (}{\cf5 pos}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 EV_CHARACTER_FORMAT}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 Result}{\cf3  is character format at position }{\cf5 pos}{\cf3 . On some platforms}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  this may be optimized to take the selected character format and therefore}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  should only be used by }{\cf5 next_change_of_character}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 internal_character_format}{\cf1  }{\cf1 (}{\cf5 pos}{\cf1 )}{\b\cf1 .}{\cf5 attached_interface}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 internal_character_format} {\cf1 (}{\cf5 character_index}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 EV_CHARACTER_FORMAT_IMP}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 Result}{\cf3  is character format of character }{\cf5 character_index}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_text_iter}{\cf1 :} {\cf4 EV_GTK_TEXT_ITER_STRUCT}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_text_attributes}{\cf1 ,} {\cf5 a_text_appearance}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_font_description}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_color}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf5 font_size}{\cf1 ,} {\cf5 font_weight}{\cf1 ,} {\cf5 font_style}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_family}{\cf1 :} {\cf4 EV_GTK_C_STRING}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_change}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_result}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_CHARACTER_FORMAT_IMP}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_result} {\cf1 ?=} {\cf1 (}{\b\cf6 create}{\cf1  }{\cf1 \{}{\cf4 EV_CHARACTER_FORMAT}{\cf1 \}}{\cf1 )}{\b\cf1 .}{\cf5 implementation}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_text_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_iter_at_offset} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_text_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 character_index} {\cf1 -} 2{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_text_attributes} {\cf1 :=} {\cf5 gtk_text_view_get_default_attributes}{\cf1  }{\cf1 (}{\cf5 text_view}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_change} {\cf1 :=} {\cf5 gtk_text_iter_get_attributes}{\cf1  }{\cf1 (}{\cf5 a_text_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 a_text_attributes}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_text_appearance} {\cf1 :=} {\cf5 gtk_text_attributes_struct_text_appearance}{\cf1  }{\cf1 (}{\cf5 a_text_attributes}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_font_description} {\cf1 :=} {\cf5 gtk_text_attributes_struct_font_description}{\cf1  }{\cf1 (}{\cf5 a_text_attributes}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_family}{\b\cf1 .}{\cf5 share_from_pointer}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 pango_font_description_get_family} {\cf1 (}{\cf5 a_font_description}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 font_style} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 pango_font_description_get_style} {\cf1 (}{\cf5 a_font_description}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 font_weight} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 pango_font_description_get_weight} {\cf1 (}{\cf5 a_font_description}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 font_weight} {\cf1 <=} {\cf1 \{}{\cf4 EV_FONT_IMP}{\cf1 \}}{\b\cf1 .}{\cf5 pango_weight_ultra_light} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 font_weight} {\cf1 :=} {\cf1 \{}{\cf4 EV_FONT_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 weight_thin}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 font_weight} {\cf1 <=} {\cf1 \{}{\cf4 EV_FONT_IMP}{\cf1 \}}{\b\cf1 .}{\cf5 pango_weight_normal} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 font_weight} {\cf1 :=} {\cf1 \{}{\cf4 EV_FONT_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 weight_regular}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 font_weight} {\cf1 <=} {\cf1 \{}{\cf4 EV_FONT_IMP}{\cf1 \}}{\b\cf1 .}{\cf5 pango_weight_bold} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 font_weight} {\cf1 :=} {\cf1 \{}{\cf4 EV_FONT_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 weight_bold}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 font_weight} {\cf1 :=} {\cf1 \{}{\cf4 EV_FONT_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 weight_black}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 font_size} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 pango_font_description_get_size} {\cf1 (}{\cf5 a_font_description}{\cf1 )} {\cf1 //} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 pango_scale}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 pango_font_description_get_style} {\cf1 (}{\cf5 a_font_description}{\cf1 )} {\cf1 >} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 font_style} {\cf1 :=} {\cf1 \{}{\cf4 EV_FONT_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 shape_italic}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 font_style} {\cf1 :=} {\cf1 \{}{\cf4 EV_FONT_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 shape_regular}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_result}{\b\cf1 .}{\cf5 set_font_attributes}{\cf1  }{\cf1 (}{\cf5 a_family}{\b\cf1 .}{\cf5 string}{\cf1 ,} {\cf1 \{}{\cf4 EV_FONT_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 family_sans}{\cf1 ,} {\cf5 font_size}{\cf1 ,} {\cf5 font_weight}{\cf1 ,} {\cf5 font_style}{\cf1 ,} 0{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_color} {\cf1 :=} {\cf5 gtk_text_appearance_struct_fg_color}{\cf1  }{\cf1 (}{\cf5 a_text_appearance}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_result}{\b\cf1 .}{\cf5 set_fcolor}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_color_struct_red} {\cf1 (}{\cf5 a_color}{\cf1 )} {\cf1 //} 256{\cf1 ,} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_color_struct_green} {\cf1 (}{\cf5 a_color}{\cf1 )} {\cf1 //} 256{\cf1 ,} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_color_struct_blue} {\cf1 (}{\cf5 a_color}{\cf1 )} {\cf1 //} 256{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_color} {\cf1 :=} {\cf5 gtk_text_appearance_struct_bg_color}{\cf1  }{\cf1 (}{\cf5 a_text_appearance}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_result}{\b\cf1 .}{\cf5 set_bcolor}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_color_struct_red} {\cf1 (}{\cf5 a_color}{\cf1 )} {\cf1 //} 256{\cf1 ,} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_color_struct_green} {\cf1 (}{\cf5 a_color}{\cf1 )} {\cf1 //} 256{\cf1 ,} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_color_struct_blue} {\cf1 (}{\cf5 a_color}{\cf1 )} {\cf1 //} 256{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_result}{\b\cf1 .}{\cf5 set_effects_internal}{\cf1  }{\cf1 (}{\cf5 gtk_text_appearance_struct_underline}{\cf1  }{\cf1 (}{\cf5 a_text_appearance}{\cf1 )}{\b\cf1 .}{\cf5 to_boolean}{\cf1 ,} {\cf5 gtk_text_appearance_struct_strikethrough}{\cf1  }{\cf1 (}{\cf5 a_text_appearance}{\cf1 )}{\b\cf1 .}{\cf5 to_boolean}{\cf1 ,} {\cf5 gtk_text_appearance_struct_rise}{\cf1  }{\cf1 (}{\cf5 a_text_appearance}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 gtk_text_attributes_free}{\cf1  }{\cf1 (}{\cf5 a_text_attributes}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 l_result}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status setting}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_current_format} {\cf1 (}{\cf5 format}{\cf1 :} {\cf4 EV_CHARACTER_FORMAT}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  apply }{\cf5 format}{\cf3  to current caret position, applicable}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to next typed characters.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 current_format} {\cf1 :=} {\cf5 format}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 current_format}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_CHARACTER_FORMAT}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Format to be applied to next typed characters}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 format_region} {\cf1 (}{\cf5 start_position}{\cf1 ,} {\cf5 end_position}{\cf1 :} {\cf4 INTEGER_32}{\cf1 ;} {\cf5 format}{\cf1 :} {\cf4 EV_CHARACTER_FORMAT}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Apply }{\cf5 format}{\cf3  to all characters between the caret positions }{\cf5 start_position}{\cf3  and }{\cf5 end_position}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Formatting is applied immediately. May or may not change the cursor position.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_format_imp}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_CHARACTER_FORMAT_IMP}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 is_destroyed} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 a_format_imp} {\cf1 ?=} {\cf5 format}{\b\cf1 .}{\cf5 implementation}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 a_format_imp} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 modify_region_internal}{\cf1  }{\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 start_position}{\cf1 ,} {\cf5 end_position}{\cf1 ,} {\cf5 a_format_imp}{\cf1 ,} {\cf5 a_format_imp}{\b\cf1 .}{\cf5 Dummy_character_format_range_information}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 buffered_format} {\cf1 (}{\cf5 start_position}{\cf1 ,} {\cf5 end_position}{\cf1 :} {\cf4 INTEGER_32}{\cf1 ;} {\cf5 format}{\cf1 :} {\cf4 EV_CHARACTER_FORMAT}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Apply a character format }{\cf5 format}{\cf3  from caret positions }{\cf5 start_position}{\cf3  to }{\cf5 end_position}{\cf3  to}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  format buffer. Call }{\cf5 flush_format_buffer}{\cf3  to apply buffered contents to }{\cf5 Current}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_format_imp}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_CHARACTER_FORMAT_IMP}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 buffer_locked_in_format_mode} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 buffer_locked_in_format_mode} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 append_buffer} {\cf1 :=} {\cf5 text_buffer}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 object_ref} {\cf1 (}{\cf5 append_buffer}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_view_set_buffer} {\cf1 (}{\cf5 text_view}{\cf1 ,} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_new} {\cf1 (}{\cf5 default_pointer}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_format_imp} {\cf1 ?=} {\cf5 format}{\b\cf1 .}{\cf5 implementation}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 a_format_imp} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 modify_region_internal}{\cf1  }{\cf1 (}{\cf5 append_buffer}{\cf1 ,} {\cf5 start_position}{\cf1 ,} {\cf5 end_position}{\cf1 ,} {\cf5 a_format_imp}{\cf1 ,} {\cf5 a_format_imp}{\b\cf1 .}{\cf5 Dummy_character_format_range_information}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 buffered_append} {\cf1 (}{\cf5 a_text}{\cf1 :} {\cf4 READABLE_STRING_GENERAL}{\cf1 ;} {\cf5 format}{\cf1 :} {\cf4 EV_CHARACTER_FORMAT}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Apply }{\cf5 a_text}{\cf3  with format }{\cf5 format}{\cf3  to append buffer.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  To apply buffer contents to }{\cf5 Current}{\cf3 , call }{\cf5 flush_append_buffer}{\cf3  or}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 flush_append_buffer_to}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 text_tag_table}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf5 buffer_length}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_format_imp}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_CHARACTER_FORMAT_IMP}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_count}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_char_code}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_count} {\cf1 :=} {\cf5 a_text}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_count} {\cf1 >=} 1 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 buffer_locked_in_append_mode} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 text_tag_table} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_tag_table} {\cf1 (}{\cf5 text_buffer}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 append_buffer} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_new} {\cf1 (}{\cf5 text_tag_table}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 buffer_locked_in_append_mode} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_char_code} {\cf1 :=} {\cf5 a_text}{\b\cf1 .}{\cf5 code}{\cf1  }{\cf1 (}1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_count} {\cf1 =} 1 {\b\cf6 and} {\cf1 (}{\cf5 l_char_code} {\cf1 =} {\cf1 (}'%N'{\cf1 )}{\b\cf1 .}{\cf5 natural_32_code} {\b\cf6 or} {\cf5 l_char_code} {\cf1 =} {\cf1 (}'%T'{\cf1 )}{\b\cf1 .}{\cf5 natural_32_code}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 append_text_internal}{\cf1  }{\cf1 (}{\cf5 append_buffer}{\cf1 ,} {\cf5 a_text}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 buffer_length} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_char_count} {\cf1 (}{\cf5 append_buffer}{\cf1 )} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 append_text_internal}{\cf1  }{\cf1 (}{\cf5 append_buffer}{\cf1 ,} {\cf5 a_text}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 a_format_imp} {\cf1 ?=} {\cf5 format}{\b\cf1 .}{\cf5 implementation}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 a_format_imp} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_iter_at_offset} {\cf1 (}{\cf5 append_buffer}{\cf1 ,} {\cf5 temp_start_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 buffer_length} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_iter_at_offset} {\cf1 (}{\cf5 append_buffer}{\cf1 ,} {\cf5 temp_end_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_char_count} {\cf1 (}{\cf5 append_buffer}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 a_format_imp}{\b\cf1 .}{\cf5 apply_character_format_to_text_buffer}{\cf1  }{\cf1 (}{\cf5 a_format_imp}{\b\cf1 .}{\cf5 Dummy_character_format_range_information}{\cf1 ,} {\cf5 append_buffer}{\cf1 ,} {\cf5 temp_start_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 temp_end_iter}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 temp_start_iter}{\cf1 :} {\cf4 EV_GTK_TEXT_ITER_STRUCT}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Reusable GtkTextIter objects}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 temp_end_iter}{\cf1 :} {\cf4 EV_GTK_TEXT_ITER_STRUCT}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Reusable GtkTextIter objects}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 flush_buffer}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Flush contents of buffer.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  If }{\cf5 buffer_locked_for_append}{\cf3  then replace contents of }{\cf5 Current}{\cf3  with buffer contents.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  If }{\cf5 buffer_locked_for_format}{\cf3  then apply buffered formatting to contents of }{\cf5 Current}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 buffer_locked_in_format_mode} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_view_set_buffer} {\cf1 (}{\cf5 text_view}{\cf1 ,} {\cf5 append_buffer}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 text_buffer} {\cf1 :=} {\cf5 append_buffer}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 initialize_buffer_events}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 object_unref} {\cf1 (}{\cf5 append_buffer}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 append_buffer} {\cf1 :=} {\cf5 null}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 buffer_locked_in_format_mode} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 buffer_locked_in_append_mode} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_view_set_buffer} {\cf1 (}{\cf5 text_view}{\cf1 ,} {\cf5 append_buffer}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 text_buffer} {\cf1 :=} {\cf5 append_buffer}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 initialize_buffer_events}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 object_unref} {\cf1 (}{\cf5 append_buffer}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 append_buffer} {\cf1 :=} {\cf5 null}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 buffer_locked_in_append_mode} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 flush_buffer_to} {\cf1 (}{\cf5 start_position}{\cf1 ,} {\cf5 end_position}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Replace contents of current from caret position }{\cf5 start_position}{\cf3  to }{\cf5 end_position}{\cf3  with}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  contents of buffer, since it was last flushed. If }{\cf5 start_position}{\cf3  and }{\cf5 end_position}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  are equal, insert the contents of the buffer at caret position }{\cf5 start_position}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 text_buffer_start_iter}{\cf1 ,} {\cf5 text_buffer_end_iter}{\cf1 ,} {\cf5 append_buffer_start_iter}{\cf1 ,} {\cf5 append_buffer_end_iter}{\cf1 :} {\cf4 EV_GTK_TEXT_ITER_STRUCT}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_caret_pos}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_caret_pos} {\cf1 :=} {\cf5 caret_position}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 text_buffer_start_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 text_buffer_end_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 append_buffer_start_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 append_buffer_end_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_iter_at_offset} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 text_buffer_start_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 start_position} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_iter_at_offset} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 text_buffer_end_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 end_position} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_start_iter} {\cf1 (}{\cf5 append_buffer}{\cf1 ,} {\cf5 append_buffer_start_iter}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_end_iter} {\cf1 (}{\cf5 append_buffer}{\cf1 ,} {\cf5 append_buffer_end_iter}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_delete} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 text_buffer_start_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 text_buffer_end_iter}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_insert_range} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 text_buffer_start_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 append_buffer_start_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 append_buffer_end_iter}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_caret_position}{\cf1  }{\cf1 (}{\cf5 a_caret_pos}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 dispose_append_buffer}{\line}
+{\tab}{\tab}{\tab}{\cf5 buffer_locked_in_append_mode} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_tab_width} {\cf1 (}{\cf5 a_width}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Assign }{\cf5 a_width}{\cf3  to }{\cf5 tab_width}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 tab_width} {\cf1 :=} {\cf5 a_width}{\line}
+{\tab}{\tab}{\tab}{\cf5 update_tab_positions}{\cf1  }{\cf1 (}1{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 pango_tab_array}{\cf1 :} {\cf4 POINTER}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Array of pango tabs used for }{\cf5 Current}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 tab_width}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Default width in pixels of each tab in }{\cf5 Current}{\cf3 .}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_GTK_DEPENDENT_INTERMEDIARY_ROUTINES}{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 on_key_event} {\cf1 (}{\cf5 a_key}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_KEY}{\cf1 ;} {\cf5 a_key_string}{\cf1 :} {\b\cf6 detachable} {\cf4 STRING_32}{\cf1 ;} {\cf5 a_key_press}{\cf1 :} {\cf4 BOOLEAN}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Used for key event actions sequences.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_current_format}{\cf1 :} {\b\cf6 like} {\cf5 current_format}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf1 Precursor} {\cf1 \{}{\cf4 EV_TEXT_IMP}{\cf1 \}}{\cf1  }{\cf1 (}{\cf5 a_key}{\cf1 ,} {\cf5 a_key_string}{\cf1 ,} {\cf5 a_key_press}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_current_format} {\cf1 :=} {\cf5 current_format}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_current_format} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\cf5 a_key_press} {\b\cf6 and then} {\cf5 a_key} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf1 (}{\cf5 a_key}{\b\cf1 .}{\cf5 code} {\cf1 =} {\cf1 \{}{\cf4 EV_KEY_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 key_delete} {\b\cf6 or} {\cf5 a_key}{\b\cf1 .}{\cf5 is_arrow} {\b\cf6 or} {\cf5 a_key}{\b\cf1 .}{\cf5 code} {\cf1 =} {\cf1 \{}{\cf4 EV_KEY_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 key_back_space}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 current_format} {\cf1 :=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 App_implementation}{\b\cf1 .}{\cf5 do_once_on_idle}{\cf1  }{\cf1 (}{\b\cf6 agent} {\cf5 format_region}{\cf1  }{\cf1 (}{\cf5 caret_position}{\cf1 ,} {\cf5 caret_position} {\cf1 +} 1{\cf1 ,} {\cf5 l_current_format}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 on_text_mark_changed} {\cf1 (}{\cf5 a_text_iter}{\cf1 ,} {\cf5 a_text_mark}{\cf1 :} {\cf4 POINTER}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Called when a text mark within }{\cf5 text_buffer}{\cf3  has been set.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_caret_position}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_selection_start}{\cf1 ,} {\cf5 a_selection_end}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 is_displayed} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf1 (}{\cf5 a_text_mark} {\cf1 =} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_insert} {\cf1 (}{\cf5 text_buffer}{\cf1 )}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 a_selection_start} {\cf1 :=} {\cf5 start_selection}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 a_selection_end} {\cf1 :=} {\cf5 end_selection}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 selection_change_actions_internal} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\cf1 (}{\cf5 previous_selection_start} {\cf1 /=} {\cf5 a_selection_start} {\b\cf6 or else} {\cf5 previous_selection_end} {\cf1 /=} {\cf5 a_selection_end}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 selection_change_actions_internal}{\b\cf1 .}{\cf5 call}{\cf1  }{\cf1 (}{\b\cf6 Void}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 previous_selection_start} {\cf1 :=} {\cf5 a_selection_start}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 previous_selection_end} {\cf1 :=} {\cf5 a_selection_end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 a_caret_position} {\cf1 :=} {\cf5 caret_position}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a_caret_position} {\cf1 /=} {\cf5 previous_caret_position} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 caret_move_actions_internal} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 caret_move_actions_internal}{\b\cf1 .}{\cf5 call}{\cf1  }{\cf1 (}{\cf1 [}{\cf5 a_caret_position}{\cf1 ]}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 current_format} {\cf1 :=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 previous_caret_position} {\cf1 :=} {\cf5 a_caret_position}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 previous_caret_position}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Values used for determining whether either the selection or caret_position has changed inorder to fire appropriate event}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 previous_selection_start}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Values used for determining whether either the selection or caret_position has changed inorder to fire appropriate event}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 previous_selection_end}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Values used for determining whether either the selection or caret_position has changed inorder to fire appropriate event}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 gtk_text_view_set_tabs} {\cf1 (}{\cf5 a_text_view}{\cf1 ,} {\cf5 a_pango_tab_array}{\cf1 :} {\cf4 POINTER}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C signature (GtkTextView*, PangoTabArray*) use <ev_gtk.h>"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 pango_tab_array_new} {\cf1 (}{\cf5 initial_size}{\cf1 :} {\cf4 INTEGER_32}{\cf1 ;} {\cf5 dimension_in_pixels}{\cf1 :} {\cf4 BOOLEAN}{\cf1 )}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C inline use <ev_gtk.h>"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"pango_tab_array_new ((gint) $initial_size, (gboolean) $dimension_in_pixels)"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 gtk_text_attributes_struct_font_description} {\cf1 (}{\cf5 a_text_attributes}{\cf1 :} {\cf4 POINTER}{\cf1 )}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C struct GtkTextAttributes access font use <ev_gtk.h>"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 gtk_text_attributes_struct_text_appearance} {\cf1 (}{\cf5 a_text_attributes}{\cf1 :} {\cf4 POINTER}{\cf1 )}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C struct GtkTextAttributes access &appearance use <ev_gtk.h>"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 gtk_text_attributes_struct_justification} {\cf1 (}{\cf5 a_text_attributes}{\cf1 :} {\cf4 POINTER}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C struct GtkTextAttributes access justification use <ev_gtk.h>"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 gtk_text_attributes_struct_left_margin} {\cf1 (}{\cf5 a_text_attributes}{\cf1 :} {\cf4 POINTER}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C struct GtkTextAttributes access left_margin use <ev_gtk.h>"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 gtk_text_attributes_struct_right_margin} {\cf1 (}{\cf5 a_text_attributes}{\cf1 :} {\cf4 POINTER}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C struct GtkTextAttributes access right_margin use <ev_gtk.h>"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 gtk_text_attributes_struct_pixels_above_lines} {\cf1 (}{\cf5 a_text_attributes}{\cf1 :} {\cf4 POINTER}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C struct GtkTextAttributes access pixels_above_lines use <ev_gtk.h>"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 gtk_text_attributes_struct_pixels_below_lines} {\cf1 (}{\cf5 a_text_attributes}{\cf1 :} {\cf4 POINTER}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C struct GtkTextAttributes access pixels_below_lines use <ev_gtk.h>"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 gtk_text_appearance_struct_rise} {\cf1 (}{\cf5 a_text_appearance}{\cf1 :} {\cf4 POINTER}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C struct GtkTextAppearance access rise use <ev_gtk.h>"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 gtk_text_appearance_struct_bg_color} {\cf1 (}{\cf5 a_text_appearance}{\cf1 :} {\cf4 POINTER}{\cf1 )}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C struct GtkTextAppearance access &bg_color use <ev_gtk.h>"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 gtk_text_appearance_struct_underline} {\cf1 (}{\cf5 a_text_appearance}{\cf1 :} {\cf4 POINTER}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C struct GtkTextAppearance access underline use <ev_gtk.h>"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 gtk_text_appearance_struct_strikethrough} {\cf1 (}{\cf5 a_text_appearance}{\cf1 :} {\cf4 POINTER}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C struct GtkTextAppearance access strikethrough use <ev_gtk.h>"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 gtk_text_appearance_struct_fg_color} {\cf1 (}{\cf5 a_text_appearance}{\cf1 :} {\cf4 POINTER}{\cf1 )}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C struct GtkTextAppearance access &fg_color use <ev_gtk.h>"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 gtk_text_iter_get_attributes} {\cf1 (}{\cf5 a_text_iter}{\cf1 :} {\cf4 POINTER}{\cf1 ;} {\cf5 a_text_values}{\cf1 :} {\cf4 POINTER}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C inline use <ev_gtk.h>"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"gtk_text_iter_get_attributes ((GtkTextIter*) $a_text_iter, (GtkTextAttributes*) $a_text_values )"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 gtk_text_view_get_default_attributes} {\cf1 (}{\cf5 a_text_view}{\cf1 :} {\cf4 POINTER}{\cf1 )}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C inline use <ev_gtk.h>"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"gtk_text_view_get_default_attributes ((GtkTextView*) $a_text_view)"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 gtk_text_attributes_free} {\cf1 (}{\cf5 a_text_attributes}{\cf1 :} {\cf4 POINTER}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C inline use <ev_gtk.h>"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"free ((GtkTextAttributes*) $a_text_attributes)"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 gtk_text_attributes_copy_values} {\cf1 (}{\cf5 a_text_attributes_src}{\cf1 ,} {\cf5 a_text_attributes_dest}{\cf1 :} {\cf4 POINTER}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C inline use <ev_gtk.h>"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"gtk_text_attributes_copy_values ((GtkTextAttributes*) $a_text_attributes_src, (GtkTextAttributes*) $a_text_attributes_dest)"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 gtk_text_attributes_copy} {\cf1 (}{\cf5 a_text_attributes_src}{\cf1 :} {\cf4 POINTER}{\cf1 )}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C inline use <ev_gtk.h>"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"gtk_text_attributes_copy ((GtkTextAttributes*) $a_text_attributes_src)"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 gtk_text_view_get_iter_at_location} {\cf1 (}{\cf5 a_text_view}{\cf1 ,} {\cf5 a_text_iter}{\cf1 :} {\cf4 POINTER}{\cf1 ;} {\cf5 buffer_x}{\cf1 ,} {\cf5 buffer_y}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C inline use <ev_gtk.h>"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"gtk_text_view_get_iter_at_location ((GtkTextView*) $a_text_view, (GtkTextIter*) $a_text_iter, (gint) $buffer_x, (gint) $buffer_y)"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 gtk_text_view_window_to_buffer_coords} {\cf1 (}{\cf5 a_text_view}{\cf1 :} {\cf4 POINTER}{\cf1 ;} {\cf5 window_x}{\cf1 ,} {\cf5 window_y}{\cf1 :} {\cf4 INTEGER_32}{\cf1 ;} {\cf5 buffer_x}{\cf1 ,} {\cf5 buffer_y}{\cf1 :} {\cf4 POINTER}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C inline use <ev_gtk.h>"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"gtk_text_view_window_to_buffer_coords ((GtkTextView*) $a_text_view, GTK_TEXT_WINDOW_TEXT, (gint) $window_x, (gint) $window_y, (gint *) $buffer_x, (gint *) $buffer_y)"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 gtk_text_view_buffer_to_window_coords} {\cf1 (}{\cf5 a_text_view}{\cf1 :} {\cf4 POINTER}{\cf1 ;} {\cf5 buffer_x}{\cf1 ,} {\cf5 buffer_y}{\cf1 :} {\cf4 INTEGER_32}{\cf1 ;} {\cf5 window_x}{\cf1 ,} {\cf5 window_y}{\cf1 :} {\cf4 POINTER}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C inline use <ev_gtk.h>"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"gtk_text_view_buffer_to_window_coords ((GtkTextView*) $a_text_view, GTK_TEXT_WINDOW_TEXT, (gint) $buffer_x, (gint) $buffer_y, (gint *) $window_x, (gint *) $window_y)"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 modify_region_internal} {\cf1 (}{\cf5 a_text_buffer}{\cf1 :} {\cf4 POINTER}{\cf1 ;} {\cf5 start_position}{\cf1 ,} {\cf5 end_position}{\cf1 :} {\cf4 INTEGER_32}{\cf1 ;} {\cf5 format_imp}{\cf1 :} {\cf4 EV_CHARACTER_FORMAT_IMP}{\cf1 ;} {\cf5 applicable_attributes}{\cf1 :} {\cf4 EV_CHARACTER_FORMAT_RANGE_INFORMATION}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Apply }{\cf5 format}{\cf3  to all characters between the caret positions }{\cf5 start_position}{\cf3  and }{\cf5 end_position}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Formatting is applied immediately. May or may not change the cursor position.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_start_iter}{\cf1 ,} {\cf5 a_end_iter}{\cf1 :} {\cf4 EV_GTK_TEXT_ITER_STRUCT}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_tag_table}{\cf1 ,} {\cf5 text_tag}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_start_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_end_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_iter_at_offset} {\cf1 (}{\cf5 a_text_buffer}{\cf1 ,} {\cf5 a_start_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 start_position} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_iter_at_offset} {\cf1 (}{\cf5 a_text_buffer}{\cf1 ,} {\cf5 a_end_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 end_position} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 text_tag} {\cf1 :=} {\cf5 format_imp}{\b\cf1 .}{\cf5 new_text_tag_from_applicable_attributes}{\cf1  }{\cf1 (}{\cf5 applicable_attributes}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_tag_table} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_tag_table} {\cf1 (}{\cf5 a_text_buffer}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_tag_table_add} {\cf1 (}{\cf5 a_tag_table}{\cf1 ,} {\cf5 text_tag}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_apply_tag} {\cf1 (}{\cf5 a_text_buffer}{\cf1 ,} {\cf5 text_tag}{\cf1 ,} {\cf5 a_start_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 a_end_iter}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 modify_paragraph_internal} {\cf1 (}{\cf5 start_position}{\cf1 ,} {\cf5 end_position}{\cf1 :} {\cf4 INTEGER_32}{\cf1 ;} {\cf5 format_imp}{\cf1 :} {\cf4 EV_PARAGRAPH_FORMAT_IMP}{\cf1 ;} {\cf5 applicable_attributes}{\cf1 :} {\cf4 EV_PARAGRAPH_FORMAT_RANGE_INFORMATION}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Apply paragraph formatting }{\cf5 format}{\cf3  from position }{\cf5 start_position}{\cf3  to }{\cf5 end_position}{\cf3  based on }{\cf5 applicable_attributes}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_start_position}{\cf1 ,} {\cf5 a_end_position}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_start_iter}{\cf1 ,} {\cf5 a_end_iter}{\cf1 :} {\cf4 EV_GTK_TEXT_ITER_STRUCT}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_tag_table}{\cf1 ,} {\cf5 text_tag}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_start_line}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_start_position} {\cf1 :=} {\cf5 start_position}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_end_position} {\cf1 :=} {\cf5 end_position}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_start_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_end_iter}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_iter_at_offset} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_start_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 a_start_position} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_iter_at_offset} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 a_end_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 a_end_position} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_start_line} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_iter_get_line} {\cf1 (}{\cf5 a_start_iter}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_iter_set_line} {\cf1 (}{\cf5 a_start_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 a_start_line}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_iter_forward_to_line_end} {\cf1 (}{\cf5 a_end_iter}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_iter_forward_char} {\cf1 (}{\cf5 a_end_iter}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 text_tag} {\cf1 :=} {\cf5 format_imp}{\b\cf1 .}{\cf5 new_paragraph_tag_from_applicable_attributes}{\cf1  }{\cf1 (}{\cf5 applicable_attributes}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_tag_table} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_get_tag_table} {\cf1 (}{\cf5 text_buffer}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_tag_table_add} {\cf1 (}{\cf5 a_tag_table}{\cf1 ,} {\cf5 text_tag}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_buffer_apply_tag} {\cf1 (}{\cf5 text_buffer}{\cf1 ,} {\cf5 text_tag}{\cf1 ,} {\cf5 a_start_iter}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 a_end_iter}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 update_tab_positions} {\cf1 (}{\cf5 value}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Update tab widths based on contents of }{\cf5 tab_positions}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 current_tab_position}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 pango_tab_array_resize} {\cf1 (}{\cf5 pango_tab_array}{\cf1 ,} {\cf5 tab_positions}{\b\cf1 .}{\cf5 count} {\cf1 +} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 >} {\cf5 tab_positions}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 current_tab_position} {\cf1 :=} {\cf5 current_tab_position} {\cf1 +} {\cf5 tab_positions}{\b\cf1 .}{\cf5 i_th}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 pango_tab_array_set_tab} {\cf1 (}{\cf5 pango_tab_array}{\cf1 ,} {\cf5 i} {\cf1 -} 1{\cf1 ,} 0{\cf1 ,} {\cf5 current_tab_position}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 i} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 pango_tab_array_set_tab} {\cf1 (}{\cf5 pango_tab_array}{\cf1 ,} {\cf5 i} {\cf1 -} 1{\cf1 ,} 0{\cf1 ,} {\cf5 current_tab_position} {\cf1 +} {\cf5 tab_width}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_view_set_tabs} {\cf1 (}{\cf5 text_view}{\cf1 ,} {\cf5 pango_tab_array}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 dispose_append_buffer}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Clean up }{\cf5 append_buffer}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 object_unref} {\cf1 (}{\cf5 append_buffer}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 append_buffer} {\cf1 :=} {\cf5 default_pointer}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 append_buffer}{\cf1 :} {\cf4 POINTER}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Pointer to the GtkTextBuffer used for append buffering.	}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_ANY}{\cf1 ,} {\cf4 EV_ANY_I}{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 interface}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_RICH_TEXT}{\line}
+{\tab}{\tab}{\b\cf6 note}{\line}
+{\tab}{\tab}{\tab}option: stable{\line}
+{\tab}{\tab}{\b\cf6 attribute}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 note}{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 1984-2014, Eiffel Software and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"{\line}
+{\tab}{\cf1 source}{\cf1 :} "[{\line}
+{\tab}{\tab}Eiffel Software{\line}
+{\tab}{\tab}5949 Hollister Ave., Goleta, CA 93117 USA{\line}
+{\tab}{\tab}Telephone 805-685-1006, Fax 805-685-6869{\line}
+{\tab}{\tab}Website http://www.eiffel.com{\line}
+{\tab}{\tab}Customer support http://support.eiffel.com{\line}
+{\tab}]"{\line}
+{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 EV_RICH_TEXT_IMP}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

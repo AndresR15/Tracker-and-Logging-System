@@ -1,0 +1,452 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Implementation interface for pick and drop.%NSee ev_pick_and_dropable.e&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;pick and drop, drag and drop, source, PND, DND&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2015-12-17 05:34:17 -0800 (Thu, 17 Dec 2015) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 98279 $&quot;</string>
+
+<keyword>deferred</keyword> <keyword>class</keyword> 
+	<class><location>../implementation_interface/ev_pick_and_dropable_i.xml</location>EV_PICK_AND_DROPABLE_I</class>
+
+<keyword>inherit</keyword>
+	<class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_interface</location>interface</feature>
+		<keyword>end</keyword>
+
+	<class><location>../implementation_interface/ev_positioned_i.xml</location>EV_POSITIONED_I</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_interface</location>interface</feature>
+		<keyword>end</keyword>
+
+	<class><location>../implementation_interface/ev_shared_transport_i.xml</location>EV_SHARED_TRANSPORT_I</class>
+
+	<class><location>../implementation_interface/ev_pick_and_dropable_action_sequences_i.xml</location>EV_PICK_AND_DROPABLE_ACTION_SEQUENCES_I</class>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_pebble</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble</location>pebble</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>ANY</class>
+			<comment>--</comment><comment> Data to be transported by pick and drop mechanism.</comment>
+
+	<anchor>f_pebble_function</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble_function</location>pebble_function</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>FUNCTION</class> <symbol>[</symbol><keyword>detachable</keyword> <class><include>False</include>ANY</class><symbol>]</symbol>
+			<comment>--</comment><comment> Returns data to be transported by pick and drop mechanism.</comment>
+
+	<anchor>f_pebble_positioning_enabled</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble_positioning_enabled</location>pebble_positioning_enabled</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> If </comment><quoted>True</quoted><comment> then pick and drop start coordinates are</comment>
+			<comment>--</comment><comment> </comment><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble_x_position</location>pebble_x_position</feature><comment>, </comment><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble_y_position</location>pebble_y_position</feature><comment>.</comment>
+			<comment>--</comment><comment> If </comment><quoted>False</quoted><comment> then pick and drop start coordinates are</comment>
+			<comment>--</comment><comment> the pointer coordinates.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_internal_pebble_positioning_enabled</location>internal_pebble_positioning_enabled</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_configurable_target_menu_handler</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_configurable_target_menu_handler</location>configurable_target_menu_handler</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>PROCEDURE</class> <symbol>[</symbol><class><location>../interface/ev_menu.xml</location>EV_MENU</class><symbol>,</symbol> <class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><class><location>../interface/ev_pnd_target_data.xml</location>EV_PND_TARGET_DATA</class><symbol>]</symbol><symbol>,</symbol> <class><location>../interface/ev_pick_and_dropable.xml</location>EV_PICK_AND_DROPABLE</class><symbol>,</symbol> <keyword>detachable</keyword> <class><include>False</include>ANY</class><symbol>]</symbol>
+
+	<anchor>f_accept_cursor</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_accept_cursor</location>accept_cursor</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_pointer_style.xml</location>EV_POINTER_STYLE</class>
+			<comment>--</comment><comment> Accept cursor set by user.</comment>
+			<comment>--</comment><comment> To be displayed when the screen pointer is over a target that accepts</comment>
+			<comment>--</comment><comment> </comment><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble</location>pebble</feature><comment> during pick and drop.</comment>
+
+	<anchor>f_deny_cursor</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_deny_cursor</location>deny_cursor</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_pointer_style.xml</location>EV_POINTER_STYLE</class>
+			<comment>--</comment><comment> Deny cursor set by user.</comment>
+			<comment>--</comment><comment> To be displayed when the screen pointer is not over a valid target.</comment>
+
+	<anchor>f_pebble_x_position</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble_x_position</location>pebble_x_position</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Initial x position for pick and drop relative to </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pick_x</location>pick_x</feature><dot>.</dot><feature><include>False</include>to_integer_32</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_pebble_y_position</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble_y_position</location>pebble_y_position</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Initial y position for pick and drop relative to </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pick_y</location>pick_y</feature><dot>.</dot><feature><include>False</include>to_integer_32</feature>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status setting</comment>
+
+	<anchor>f_show_configurable_target_menu</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_show_configurable_target_menu</location>show_configurable_target_menu</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Show the configurable target menu at position </comment><quoted>a_x</quoted><comment>, </comment><quoted>a_y</quoted><comment> relative to </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_application_implementation</location>application_implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_application_i.xml#f_pick_and_drop_source</location>pick_and_drop_source</feature> <symbol>=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_start_transport</location>start_transport</feature><symbol> </symbol><symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <number>3</number><symbol>,</symbol> <keyword>False</keyword><symbol>,</symbol> <number>0</number><dot>.</dot><feature><include>False</include>to_double</feature><symbol>,</symbol> <number>0</number><dot>.</dot><feature><include>False</include>to_double</feature><symbol>,</symbol> <number>0</number><dot>.</dot><feature><include>False</include>to_double</feature><symbol>,</symbol> <feature><location>../implementation_interface/ev_positioned_i.xml#f_screen_x</location>screen_x</feature> <symbol>+</symbol> <local>a_x</local><symbol>,</symbol> <feature><location>../implementation_interface/ev_positioned_i.xml#f_screen_y</location>screen_y</feature> <symbol>+</symbol> <local>a_y</local><symbol>,</symbol> <keyword>True</keyword><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_set_pebble_position</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_set_pebble_position</location>set_pebble_position</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set the initial position for pick and drop relative to </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pick_x</location>pick_x</feature> <symbol>:=</symbol> <local>a_x</local><dot>.</dot><feature><include>False</include>to_integer_16</feature>
+			<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pick_y</location>pick_y</feature> <symbol>:=</symbol> <local>a_y</local><dot>.</dot><feature><include>False</include>to_integer_16</feature>
+		<keyword>ensure</keyword>
+			<tag>pick_x_assigned</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pick_x</location>pick_x</feature><dot>.</dot><feature><include>False</include>to_integer_32</feature> <symbol>=</symbol> <local>a_x</local>
+			<tag>pick_y_assigned</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pick_y</location>pick_y</feature><dot>.</dot><feature><include>False</include>to_integer_32</feature> <symbol>=</symbol> <local>a_y</local>
+		<keyword>end</keyword>
+
+	<anchor>f_set_pebble</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_set_pebble</location>set_pebble</feature> <symbol>(</symbol><local>a_pebble</local><symbol>:</symbol> <class><include>False</include>ANY</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>a_pebble</quoted><comment> to </comment><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble</location>pebble</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>a_pebble_not_void</tag><symbol>:</symbol> <local>a_pebble</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>do</keyword>
+			<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble_function</location>pebble_function</feature> <symbol>:=</symbol> <keyword>Void</keyword>
+			<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble</location>pebble</feature> <symbol>:=</symbol> <local>a_pebble</local>
+			<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_enable_transport</location>enable_transport</feature>
+		<keyword>ensure</keyword>
+			<tag>pebble_assigned</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble</location>pebble</feature> <symbol>=</symbol> <local>a_pebble</local>
+			<tag>is_transport_enabled</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_is_transport_enabled</location>is_transport_enabled</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_set_pebble_function</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_set_pebble_function</location>set_pebble_function</feature> <symbol>(</symbol><local>a_function</local><symbol>:</symbol> <class><include>False</include>FUNCTION</class> <symbol>[</symbol><keyword>detachable</keyword> <class><include>False</include>ANY</class><symbol>]</symbol><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>a_function</quoted><comment> to </comment><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble_function</location>pebble_function</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>a_function_not_void</tag><symbol>:</symbol> <local>a_function</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>do</keyword>
+			<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble</location>pebble</feature> <symbol>:=</symbol> <keyword>Void</keyword>
+			<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble_function</location>pebble_function</feature> <symbol>:=</symbol> <local>a_function</local>
+			<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_enable_transport</location>enable_transport</feature>
+		<keyword>ensure</keyword>
+			<tag>pebble_function_assigned</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble_function</location>pebble_function</feature> <symbol>=</symbol> <local>a_function</local>
+			<tag>is_transport_enabled</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_is_transport_enabled</location>is_transport_enabled</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_remove_pebble</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_remove_pebble</location>remove_pebble</feature>
+			<comment>--</comment><comment> Remove </comment><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble</location>pebble</feature><comment>.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble</location>pebble</feature> <symbol>:=</symbol> <keyword>Void</keyword>
+			<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble_function</location>pebble_function</feature> <symbol>:=</symbol> <keyword>Void</keyword>
+			<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_disable_transport</location>disable_transport</feature>
+		<keyword>ensure</keyword>
+			<tag>pebble_removed</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble</location>pebble</feature> <symbol>=</symbol> <keyword>Void</keyword> <keyword>and</keyword> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble_function</location>pebble_function</feature> <symbol>=</symbol> <keyword>Void</keyword>
+			<tag>is_transport_disabled</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_is_transport_enabled</location>is_transport_enabled</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_reset_pebble_function</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_reset_pebble_function</location>reset_pebble_function</feature>
+			<comment>--</comment><comment> Reset any values created by calling </comment><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble_function</location>pebble_function</feature><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble_function</location>pebble_function</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble</location>pebble</feature> <symbol>:=</symbol> <keyword>Void</keyword>
+			<keyword>end</keyword>
+		<keyword>ensure</keyword>
+			<tag>pebble_function_preserved</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble_function</location>pebble_function</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble_function</location>pebble_function</feature>
+			<tag>pebble_without_function</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble_function</location>pebble_function</feature> <symbol>=</symbol> <keyword>Void</keyword> <keyword>implies</keyword> <symbol>(</symbol><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble</location>pebble</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble</location>pebble</feature><symbol>)</symbol>
+			<tag>pebble_with_function</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble_function</location>pebble_function</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>implies</keyword> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble</location>pebble</feature> <symbol>=</symbol> <keyword>Void</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_enable_transport</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_enable_transport</location>enable_transport</feature>
+			<comment>--</comment><comment> Activate pick/drag and drop mechanism.</comment>
+		<keyword>require</keyword>
+			<tag>pebble_not_void</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble</location>pebble</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>or</keyword> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble_function</location>pebble_function</feature> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>is_transport_enabled</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_is_transport_enabled</location>is_transport_enabled</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_disable_transport</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_disable_transport</location>disable_transport</feature>
+			<comment>--</comment><comment> Deactivate pick/drag and drop mechanism.</comment>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>is_transport_disabled</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_is_transport_enabled</location>is_transport_enabled</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_set_pick_and_drop_mode</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_set_pick_and_drop_mode</location>set_pick_and_drop_mode</feature>
+			<comment>--</comment><comment> Set transport mechanism to pick and drop,</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_user_interface_mode</location>user_interface_mode</feature> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pick_and_drop_mode</location>Pick_and_drop_mode</feature>
+		<keyword>ensure</keyword>
+			<tag>mode_is_pick_and_drop</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_mode_is_pick_and_drop</location>mode_is_pick_and_drop</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_set_drag_and_drop_mode</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_set_drag_and_drop_mode</location>set_drag_and_drop_mode</feature>
+			<comment>--</comment><comment> Set transport mechanism to drag and drop,</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_user_interface_mode</location>user_interface_mode</feature> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_drag_and_drop_mode</location>Drag_and_drop_mode</feature>
+		<keyword>ensure</keyword>
+			<tag>mode_is_drag_and_drop</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_mode_is_drag_and_drop</location>mode_is_drag_and_drop</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_set_target_menu_mode</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_set_target_menu_mode</location>set_target_menu_mode</feature>
+			<comment>--</comment><comment> Set transport mechanism to a target_menu.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_user_interface_mode</location>user_interface_mode</feature> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_target_menu_mode</location>Target_menu_mode</feature>
+		<keyword>ensure</keyword>
+			<tag>mode_is_target_menu</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_mode_is_target_menu</location>mode_is_target_menu</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_set_configurable_target_menu_mode</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_set_configurable_target_menu_mode</location>set_configurable_target_menu_mode</feature>
+			<comment>--</comment><comment> Set transport mechanism to a configurable target_menu.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_user_interface_mode</location>user_interface_mode</feature> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_configurable_target_menu_mode</location>Configurable_target_menu_mode</feature>
+		<keyword>ensure</keyword>
+			<tag>mode_is_target_menu</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_mode_is_configurable_target_menu</location>mode_is_configurable_target_menu</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_set_configurable_target_menu_handler</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_set_configurable_target_menu_handler</location>set_configurable_target_menu_handler</feature> <symbol>(</symbol><local>a_handler</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_configurable_target_menu_handler</location>configurable_target_menu_handler</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Set Configurable Target Menu Handler to </comment><quoted>a_handler</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_configurable_target_menu_handler</location>configurable_target_menu_handler</feature> <symbol>:=</symbol> <local>a_handler</local>
+		<keyword>end</keyword>
+
+	<anchor>f_set_accept_cursor</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_set_accept_cursor</location>set_accept_cursor</feature> <symbol>(</symbol><local>a_cursor</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_accept_cursor</location>accept_cursor</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><quoted>a_cursor</quoted><comment> to be displayed when the screen pointer is over a</comment>
+			<comment>--</comment><comment> target that accepts </comment><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble</location>pebble</feature><comment> during pick and drop.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_accept_cursor</location>accept_cursor</feature> <symbol>:=</symbol> <local>a_cursor</local>
+		<keyword>end</keyword>
+
+	<anchor>f_set_deny_cursor</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_set_deny_cursor</location>set_deny_cursor</feature> <symbol>(</symbol><local>a_cursor</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_deny_cursor</location>deny_cursor</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><quoted>a_cursor</quoted><comment> to be displayed when the screen pointer is over a</comment>
+			<comment>--</comment><comment> target that doesn't accept </comment><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble</location>pebble</feature><comment> during pick and drop.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_deny_cursor</location>deny_cursor</feature> <symbol>:=</symbol> <local>a_cursor</local>
+		<keyword>end</keyword>
+
+	<anchor>f_enable_pebble_positioning</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_enable_pebble_positioning</location>enable_pebble_positioning</feature>
+			<comment>--</comment><comment> Assign </comment><quoted>True</quoted><comment> to </comment><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble_positioning_enabled</location>pebble_positioning_enabled</feature><comment>.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_internal_pebble_positioning_enabled</location>internal_pebble_positioning_enabled</feature> <symbol>:=</symbol> <keyword>True</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_disable_pebble_positioning</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_disable_pebble_positioning</location>disable_pebble_positioning</feature>
+			<comment>--</comment><comment> Assign </comment><quoted>False</quoted><comment> to </comment><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble_positioning_enabled</location>pebble_positioning_enabled</feature><comment>.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_internal_pebble_positioning_enabled</location>internal_pebble_positioning_enabled</feature> <symbol>:=</symbol> <keyword>False</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status report</comment>
+
+	<anchor>f_is_transport_enabled</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_is_transport_enabled</location>is_transport_enabled</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is the transport mechanism enabled?</comment>
+
+	<anchor>f_mode_is_pick_and_drop</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_mode_is_pick_and_drop</location>mode_is_pick_and_drop</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is the transport mechanism pick and drop?</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_user_interface_mode</location>user_interface_mode</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pick_and_drop_mode</location>Pick_and_drop_mode</feature> <keyword>or else</keyword> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_user_interface_mode</location>user_interface_mode</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_configurable_target_menu_mode</location>Configurable_target_menu_mode</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_mode_is_drag_and_drop</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_mode_is_drag_and_drop</location>mode_is_drag_and_drop</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is the transport mechanism drag and drop?</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_user_interface_mode</location>user_interface_mode</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_drag_and_drop_mode</location>Drag_and_drop_mode</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_mode_is_target_menu</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_mode_is_target_menu</location>mode_is_target_menu</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is the transport mechanism a target menu?</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_user_interface_mode</location>user_interface_mode</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_target_menu_mode</location>Target_menu_mode</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_mode_is_configurable_target_menu</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_mode_is_configurable_target_menu</location>mode_is_configurable_target_menu</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is the transport mechanism a configurable target menu?</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_user_interface_mode</location>user_interface_mode</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_configurable_target_menu_mode</location>Configurable_target_menu_mode</feature>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_pick_x</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pick_x</location>pick_x</feature><symbol>:</symbol> <class><include>False</include>INTEGER_16</class>
+			<comment>--</comment><comment> Initial point for the pick and drop.</comment>
+
+	<anchor>f_pick_y</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pick_y</location>pick_y</feature><symbol>:</symbol> <class><include>False</include>INTEGER_16</class>
+			<comment>--</comment><comment> Initial point for the pick and drop.</comment>
+
+	<anchor>f_internal_pebble_positioning_enabled</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_internal_pebble_positioning_enabled</location>internal_pebble_positioning_enabled</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is </comment><quoted>pebble_positining_enabled</quoted><comment> ?</comment>
+
+	<anchor>f_user_interface_mode</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_user_interface_mode</location>user_interface_mode</feature><symbol>:</symbol> <class><include>False</include>INTEGER_8</class>
+			<comment>--</comment><comment> Transport user interface mode.</comment>
+
+	<anchor>f_pick_and_drop_mode</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pick_and_drop_mode</location>Pick_and_drop_mode</feature><symbol>:</symbol> <class><include>False</include>INTEGER_8</class> <symbol>=</symbol> <number>0</number>
+
+	<anchor>f_drag_and_drop_mode</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_drag_and_drop_mode</location>Drag_and_drop_mode</feature><symbol>:</symbol> <class><include>False</include>INTEGER_8</class> <symbol>=</symbol> <number>1</number>
+
+	<anchor>f_target_menu_mode</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_target_menu_mode</location>Target_menu_mode</feature><symbol>:</symbol> <class><include>False</include>INTEGER_8</class> <symbol>=</symbol> <number>2</number>
+
+	<anchor>f_configurable_target_menu_mode</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_configurable_target_menu_mode</location>Configurable_target_menu_mode</feature><symbol>:</symbol> <class><include>False</include>INTEGER_8</class> <symbol>=</symbol> <number>3</number>
+
+	<anchor>f_start_transport</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_start_transport</location>start_transport</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>a_button</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_press</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class><symbol>;</symbol> <local>a_x_tilt</local><symbol>,</symbol> <local>a_y_tilt</local><symbol>,</symbol> <local>a_pressure</local><symbol>:</symbol> <class><include>False</include>REAL_64</class><symbol>;</symbol> <local>a_screen_x</local><symbol>,</symbol> <local>a_screen_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_menu_only</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class><symbol>)</symbol>
+			<comment>--</comment><comment> Start a pick and drop transport.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_end_transport</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_end_transport</location>end_transport</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>a_button</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_x_tilt</local><symbol>,</symbol> <local>a_y_tilt</local><symbol>,</symbol> <local>a_pressure</local><symbol>:</symbol> <class><include>False</include>REAL_64</class><symbol>;</symbol> <local>a_screen_x</local><symbol>,</symbol> <local>a_screen_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Terminate the pick and drop mechanism.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_execute</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_execute</location>execute</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_x_tilt</local><symbol>,</symbol> <local>a_y_tilt</local><symbol>,</symbol> <local>a_pressure</local><symbol>:</symbol> <class><include>False</include>REAL_64</class><symbol>;</symbol> <local>a_screen_x</local><symbol>,</symbol> <local>a_screen_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Executed when </comment><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble</location>pebble</feature><comment> is being moved.</comment>
+			<comment>--</comment><comment> Draw a rubber band from pick position to pointer position.</comment>
+		<keyword>local</keyword>
+			<local>target</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_abstract_pick_and_dropable.xml</location>EV_ABSTRACT_PICK_AND_DROPABLE</class>
+			<local>real_target</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_pick_and_dropable.xml</location>EV_PICK_AND_DROPABLE</class>
+			<local>application</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_application_imp.xml</location>EV_APPLICATION_IMP</class>
+		<keyword>do</keyword>
+			<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_erase_rubber_band</location>erase_rubber_band</feature>
+			<feature><location>../implementation_interface/ev_shared_transport_i.xml#f_pointer_x</location>pointer_x</feature> <symbol>:=</symbol> <local>a_screen_x</local><dot>.</dot><feature><include>False</include>to_integer_16</feature>
+			<feature><location>../implementation_interface/ev_shared_transport_i.xml#f_pointer_y</location>pointer_y</feature> <symbol>:=</symbol> <local>a_screen_y</local><dot>.</dot><feature><include>False</include>to_integer_16</feature>
+			<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_application_implementation</location>application_implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_application_i.xml#f_set_pnd_pointer_coords</location>set_pnd_pointer_coords</feature><symbol> </symbol><symbol>(</symbol><local>a_screen_x</local><symbol>,</symbol> <local>a_screen_y</local><symbol>)</symbol>
+			<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_draw_rubber_band</location>draw_rubber_band</feature>
+			<local>target</local> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pointed_target</location>pointed_target</feature>
+			<local>real_target</local> <symbol>?=</symbol> <local>target</local>
+			<local>application</local> <symbol>?=</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_environment</location>Environment</feature><dot>.</dot><feature><location>../interface/ev_environment.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_environment_i.xml#f_application_i</location>application_i</feature>
+			<keyword>check</keyword>
+					<local>application</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<keyword>if</keyword> <local>application</local><dot>.</dot><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_pnd_motion_actions_internal</location>pnd_motion_actions_internal</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<local>application</local><dot>.</dot><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_pnd_motion_actions</location>pnd_motion_actions</feature><dot>.</dot><feature><location>../interface/ev_lite_action_sequence.xml#f_call</location>call</feature><symbol> </symbol><symbol>(</symbol><symbol>[</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>real_target</local><symbol>]</symbol><symbol>)</symbol>
+			<keyword>end</keyword>
+			<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_update_pointer_style</location>update_pointer_style</feature><symbol> </symbol><symbol>(</symbol><local>target</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_update_pointer_style</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_update_pointer_style</location>update_pointer_style</feature> <symbol>(</symbol><local>target</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_abstract_pick_and_dropable.xml</location>EV_ABSTRACT_PICK_AND_DROPABLE</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign correct cursor for transport to </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <local>target</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>and then</keyword> <keyword>attached</keyword> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble</location>pebble</feature> <keyword>as</keyword> l_pebble <keyword>and then</keyword> <symbol>(</symbol><local>target</local><dot>.</dot><feature><location>../interface/ev_abstract_pick_and_dropable.xml#f_drop_actions</location>drop_actions</feature><dot>.</dot><feature><location>../interface/ev_pnd_action_sequence.xml#f_accepts_pebble</location>accepts_pebble</feature><symbol> </symbol><symbol>(</symbol><local>l_pebble</local><symbol>)</symbol><symbol>)</symbol> <keyword>then</keyword>
+				<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_accept_cursor</location>accept_cursor</feature> <keyword>as</keyword> l_accept_cursor <keyword>then</keyword>
+					<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_internal_set_pointer_style</location>internal_set_pointer_style</feature><symbol> </symbol><symbol>(</symbol><local>l_accept_cursor</local><symbol>)</symbol>
+				<keyword>else</keyword>
+					<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_internal_set_pointer_style</location>internal_set_pointer_style</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_interface/ev_shared_transport_i.xml#f_default_accept_cursor</location>Default_accept_cursor</feature><symbol>)</symbol>
+				<keyword>end</keyword>
+			<keyword>else</keyword>
+				<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_deny_cursor</location>deny_cursor</feature> <keyword>as</keyword> l_deny_cursor <keyword>then</keyword>
+					<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_internal_set_pointer_style</location>internal_set_pointer_style</feature><symbol> </symbol><symbol>(</symbol><local>l_deny_cursor</local><symbol>)</symbol>
+				<keyword>else</keyword>
+					<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_internal_set_pointer_style</location>internal_set_pointer_style</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_interface/ev_shared_transport_i.xml#f_default_deny_cursor</location>Default_deny_cursor</feature><symbol>)</symbol>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_pointed_target</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pointed_target</location>pointed_target</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_abstract_pick_and_dropable.xml</location>EV_ABSTRACT_PICK_AND_DROPABLE</class>
+			<comment>--</comment><comment> Target at mouse position.</comment>
+		<keyword>local</keyword>
+			<local>rpt</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_real_pointed_target</location>real_pointed_target</feature>
+			<local>widget_target</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_widget.xml</location>EV_WIDGET</class>
+			<local>a</local><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>FUNCTION</class> <symbol>[</symbol><class><include>False</include>INTEGER_32</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>,</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_abstract_pick_and_dropable.xml</location>EV_ABSTRACT_PICK_AND_DROPABLE</class><symbol>]</symbol>
+			<local>widget_x</local><symbol>,</symbol> <local>widget_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+		<keyword>do</keyword>
+			<local>rpt</local> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_real_pointed_target</location>real_pointed_target</feature>
+			<keyword>Result</keyword> <symbol>:=</symbol> <local>rpt</local>
+			<local>widget_target</local> <symbol>?=</symbol> <local>rpt</local>
+			<keyword>if</keyword> <local>widget_target</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<local>a</local> <symbol>:=</symbol> <local>widget_target</local><dot>.</dot><feature><location>../interface/ev_widget.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_widget_i.xml#f_actual_drop_target_agent</location>actual_drop_target_agent</feature>
+				<keyword>if</keyword> <local>a</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+					<local>widget_x</local> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_shared_transport_i.xml#f_pointer_x</location>pointer_x</feature><dot>.</dot><feature><include>False</include>to_integer_32</feature> <symbol>-</symbol> <local>widget_target</local><dot>.</dot><feature><location>../interface/ev_positioned.xml#f_screen_x</location>screen_x</feature>
+					<local>widget_y</local> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_shared_transport_i.xml#f_pointer_y</location>pointer_y</feature><dot>.</dot><feature><include>False</include>to_integer_32</feature> <symbol>-</symbol> <local>widget_target</local><dot>.</dot><feature><location>../interface/ev_positioned.xml#f_screen_y</location>screen_y</feature>
+					<keyword>Result</keyword> <symbol>:=</symbol> <local>a</local><dot>.</dot><feature><include>False</include>item</feature><symbol> </symbol><symbol>(</symbol><symbol>[</symbol><local>widget_x</local><symbol>,</symbol> <local>widget_y</local><symbol>]</symbol><symbol>)</symbol>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_real_pointed_target</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_real_pointed_target</location>real_pointed_target</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_pick_and_dropable.xml</location>EV_PICK_AND_DROPABLE</class>
+			<comment>--</comment><comment> Default target at mouse position.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_draw_rubber_band</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_draw_rubber_band</location>draw_rubber_band</feature>
+			<comment>--</comment><comment> Erase previously drawn rubber band.</comment>
+			<comment>--</comment><comment> Draw a rubber band between initial pick point and cursor.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_erase_rubber_band</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_erase_rubber_band</location>erase_rubber_band</feature>
+			<comment>--</comment><comment> Erase previously drawn rubber band.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_call_pebble_function</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_call_pebble_function</location>call_pebble_function</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>a_screen_x</local><symbol>,</symbol> <local>a_screen_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble</location>pebble</feature><comment> using </comment><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble_function</location>pebble_function</feature><comment> if present.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble_function</location>pebble_function</feature> <keyword>as</keyword> l_pebble_function <keyword>then</keyword>
+				<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble</location>pebble</feature> <symbol>:=</symbol> <local>l_pebble_function</local><dot>.</dot><feature><include>False</include>item</feature><symbol> </symbol><symbol>(</symbol><symbol>[</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>]</symbol><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_modify_widget_appearance</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_modify_widget_appearance</location>modify_widget_appearance</feature> <symbol>(</symbol><local>starting</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class><symbol>)</symbol>
+			<comment>--</comment><comment> Modify the appearence of widgets to reflect current</comment>
+			<comment>--</comment><comment> state of pick and drop and dropable targets.</comment>
+			<comment>--</comment><comment> If </comment><quoted>starting</quoted><comment> then the pick and drop is starting,</comment>
+			<comment>--</comment><comment> else it is ending.</comment>
+		<keyword>local</keyword>
+			<local>window_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_window_imp.xml</location>EV_WINDOW_IMP</class>
+			<local>windows</local><symbol>:</symbol> <class><include>False</include>LINEAR</class> <symbol>[</symbol><class><location>../interface/ev_window.xml</location>EV_WINDOW</class><symbol>]</symbol>
+		<keyword>do</keyword>
+			<local>windows</local> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_application_implementation</location>application_implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_application_i.xml#f_windows</location>windows</feature>
+			<keyword>from</keyword>
+				<local>windows</local><dot>.</dot><feature><include>False</include>start</feature>
+			<keyword>until</keyword>
+				<local>windows</local><dot>.</dot><feature><include>False</include>off</feature>
+			<keyword>loop</keyword>
+				<local>window_imp</local> <symbol>?=</symbol> <local>windows</local><dot>.</dot><feature><include>False</include>item</feature><dot>.</dot><feature><location>../interface/ev_window.xml#f_implementation</location>implementation</feature>
+				<keyword>check</keyword>
+					<tag>window_implementation_not_void</tag><symbol>:</symbol> <local>window_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+				<keyword>then</keyword>
+				<keyword>end</keyword>
+				<local>window_imp</local><dot>.</dot><feature><location>../implementation_interface/ev_window_i.xml#f_update_for_pick_and_drop</location>update_for_pick_and_drop</feature><symbol> </symbol><symbol>(</symbol><local>starting</local><symbol>)</symbol>
+				<local>windows</local><dot>.</dot><feature><include>False</include>forth</feature>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_widget.xml</location>EV_WIDGET</class><symbol>,</symbol> <class><location>../implementation_interface/ev_widget_i.xml</location>EV_WIDGET_I</class><symbol>}</symbol> 
+
+	<anchor>f_set_pointer_style</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_set_pointer_style</location>set_pointer_style</feature> <symbol>(</symbol><local>c</local><symbol>:</symbol> <class><location>../interface/ev_pointer_style.xml</location>EV_POINTER_STYLE</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>c</quoted><comment> to </comment><quoted>pointer_style</quoted>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_internal_set_pointer_style</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_internal_set_pointer_style</location>internal_set_pointer_style</feature> <symbol>(</symbol><local>c</local><symbol>:</symbol> <class><location>../interface/ev_pointer_style.xml</location>EV_POINTER_STYLE</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>c</quoted><comment> to </comment><quoted>pointer_style</quoted>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_enable_capture</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_enable_capture</location>enable_capture</feature>
+			<comment>--</comment><comment> Grab the user input.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_disable_capture</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_disable_capture</location>disable_capture</feature>
+			<comment>--</comment><comment> Ungrab the user input.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_application_implementation</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_application_implementation</location>application_implementation</feature><symbol>:</symbol> <class><location>../implementation_interface/ev_application_i.xml</location>EV_APPLICATION_I</class>
+			<comment>--</comment><comment> Application implementation object.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_environment</location>Environment</feature><dot>.</dot><feature><location>../interface/ev_environment.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_environment_i.xml#f_application_i</location>application_i</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_environment</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_environment</location>Environment</feature><symbol>:</symbol> <class><location>../interface/ev_environment.xml</location>EV_ENVIRONMENT</class>
+			<comment>--</comment><comment> Environment object.</comment>
+		<keyword>once</keyword>
+			<keyword>create</keyword> <keyword>Result</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_any.xml</location>EV_ANY</class><symbol>,</symbol> <class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_interface</anchor><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_interface</location>interface</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_pick_and_dropable.xml</location>EV_PICK_AND_DROPABLE</class>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>invariant</keyword>
+	<tag>user_interface_modes_mutually_exclusive</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_mode_is_pick_and_drop</location>mode_is_pick_and_drop</feature><dot>.</dot><feature><include>False</include>to_integer</feature> <symbol>+</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_mode_is_drag_and_drop</location>mode_is_drag_and_drop</feature><dot>.</dot><feature><include>False</include>to_integer</feature> <symbol>+</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_mode_is_target_menu</location>mode_is_target_menu</feature><dot>.</dot><feature><include>False</include>to_integer</feature> <symbol>=</symbol> <number>1</number>
+	<tag>pebble_function_takes_two_integer_open_operands</tag><symbol>:</symbol> <keyword>attached</keyword> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble_function</location>pebble_function</feature> <keyword>as</keyword> l_pebble_function <keyword>implies</keyword> <local>l_pebble_function</local><dot>.</dot><feature><include>False</include>valid_operands</feature><symbol> </symbol><symbol>(</symbol><symbol>[</symbol><number>1</number><symbol>,</symbol> <number>1</number><symbol>]</symbol><symbol>)</symbol>
+
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2015, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_interface/ev_pick_and_dropable_i.xml</location>EV_PICK_AND_DROPABLE_I</class></system>
+

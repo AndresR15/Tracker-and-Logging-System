@@ -1,0 +1,39 @@
+<system>
+<keyword>deferred</keyword> <keyword>class</keyword>
+	<class><location>../implementation_gtk/ev_container_imp_links.xml</location>EV_CONTAINER_IMP</class>
+
+<keyword>Ancestors</keyword>
+	<class><location>../implementation_interface/ev_container_i_links.xml</location>EV_CONTAINER_I</class><char>*</char>
+	<class><location>../implementation_gtk/ev_widget_imp_links.xml</location>EV_WIDGET_IMP</class><char>*</char>
+	<class><include>False</include>PLATFORM</class>
+
+<keyword>Descendants</keyword>
+	<class><location>../implementation_gtk/ev_cell_imp_links.xml</location>EV_CELL_IMP</class>
+	<class><location>../implementation_gtk/ev_widget_list_imp_links.xml</location>EV_WIDGET_LIST_IMP</class><char>*</char>
+
+<keyword>Clients</keyword>
+	<class><location>../implementation_gtk/ev_cell_imp_links.xml</location>EV_CELL_IMP</class>
+	<class><location>../implementation_gtk/ev_container_imp_links.xml</location>EV_CONTAINER_IMP</class><char>*</char>
+	<class><location>../implementation_interface/ev_dockable_source_i_links.xml</location>EV_DOCKABLE_SOURCE_I</class><char>*</char>
+	<class><location>../implementation_gtk/ev_widget_imp_links.xml</location>EV_WIDGET_IMP</class><char>*</char>
+	<class><location>../implementation_gtk/ev_widget_list_imp_links.xml</location>EV_WIDGET_LIST_IMP</class><char>*</char>
+
+<keyword>Suppliers</keyword>
+	<class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><generic>G</generic><symbol>]</symbol>
+	<class><include>False</include>BOOLEAN</class>
+	<class><location>../interface/ev_container_links.xml</location>EV_CONTAINER</class><char>*</char>
+	<class><location>../implementation_interface/ev_container_i_links.xml</location>EV_CONTAINER_I</class><char>*</char>
+	<class><location>../implementation_gtk/ev_container_imp_links.xml</location>EV_CONTAINER_IMP</class><char>*</char>
+	<class><location>../interface/ev_pixmap_links.xml</location>EV_PIXMAP</class>
+	<class><location>../implementation_gtk/ev_pixmap_imp_links.xml</location>EV_PIXMAP_IMP</class>
+	<class><location>../implementation_gtk/ev_radio_button_imp_links.xml</location>EV_RADIO_BUTTON_IMP</class>
+	<class><location>../interface/ev_stock_colors_links.xml</location>EV_STOCK_COLORS</class>
+	<class><location>../interface/ev_widget_links.xml</location>EV_WIDGET</class><char>*</char>
+	<class><location>../implementation_gtk/ev_widget_imp_links.xml</location>EV_WIDGET_IMP</class><char>*</char>
+	<class><location>../implementation_gtk/gtk_links.xml</location>GTK</class>
+	<class><include>False</include>INTEGER_32</class>
+	<class><include>False</include>POINTER</class>
+	<class><include>False</include>POINTER_REF</class>
+	<class><include>False</include>TYPED_POINTER</class> <symbol>[</symbol><generic>G</generic><symbol>]</symbol>
+
+</system>

@@ -1,0 +1,537 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;EiffelVision message dialog. Dialogs that always consist of %Na pixmap, a text and one or more buttons.&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;dialog, standard, pixmap, text, button, modal&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2015-12-17 05:34:17 -0800 (Thu, 17 Dec 2015) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 98279 $&quot;</string>
+
+<keyword>class</keyword> 
+	<class><location>../interface/ev_message_dialog.xml</location>EV_MESSAGE_DIALOG</class>
+
+<keyword>inherit</keyword>
+	<class><location>../interface/ev_dialog.xml</location>EV_DIALOG</class>
+		<keyword>redefine</keyword>
+			<feature><location>../interface/ev_message_dialog.xml#f_initialize</location>initialize</feature><symbol>,</symbol>
+			<feature><location>../interface/ev_message_dialog.xml#f_create_interface_objects</location>create_interface_objects</feature><symbol>,</symbol>
+			<feature><location>../interface/ev_message_dialog.xml#f_set_background_color</location>set_background_color</feature><symbol>,</symbol>
+			<feature><location>../interface/ev_message_dialog.xml#f_set_foreground_color</location>set_foreground_color</feature><symbol>,</symbol>
+			<feature><location>../interface/ev_message_dialog.xml#f_foreground_color</location>foreground_color</feature><symbol>,</symbol>
+			<feature><location>../interface/ev_message_dialog.xml#f_background_color</location>background_color</feature><symbol>,</symbol>
+			<feature><location>../interface/ev_message_dialog.xml#f_default_identifier_name</location>default_identifier_name</feature><symbol>,</symbol>
+			<feature><location>../interface/ev_message_dialog.xml#f_user_can_resize_default_state</location>User_can_resize_default_state</feature>
+		<keyword>end</keyword>
+
+	<class><location>../interface/ev_dialog_constants.xml</location>EV_DIALOG_CONSTANTS</class>
+		<keyword>export</keyword>
+			<symbol>{</symbol>NONE<symbol>}</symbol> <keyword>all</keyword>
+		<keyword>undefine</keyword>
+			<feature><location>../interface/ev_any.xml#f_default_create</location>default_create</feature><symbol>,</symbol>
+			<feature><location>../interface/ev_any.xml#f_copy</location>copy</feature>
+		<keyword>end</keyword>
+
+<keyword>create</keyword> 
+	<feature><location>../interface/ev_any.xml#f_default_create</location>default_create</feature><symbol>,</symbol>
+	<feature><location>../interface/ev_message_dialog.xml#f_make_with_text</location>make_with_text</feature><symbol>,</symbol>
+	<feature><location>../interface/ev_message_dialog.xml#f_make_with_text_and_actions</location>make_with_text_and_actions</feature>
+
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Initialization</comment>
+
+	<anchor>f_make_with_text</anchor><feature><location>../interface/ev_message_dialog.xml#f_make_with_text</location>make_with_text</feature> <symbol>(</symbol><local>a_text</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol>
+			<comment>--</comment><comment> Create </comment><quoted>Current</quoted><comment> and assign </comment><quoted>a_text</quoted><comment> to </comment><feature><location>../interface/ev_message_dialog.xml#f_text</location>text</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>a_text_not_void</tag><symbol>:</symbol> <local>a_text</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_any.xml#f_default_create</location>default_create</feature>
+			<feature><location>../interface/ev_message_dialog.xml#f_set_text</location>set_text</feature><symbol> </symbol><symbol>(</symbol><local>a_text</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_make_with_text_and_actions</anchor><feature><location>../interface/ev_message_dialog.xml#f_make_with_text_and_actions</location>make_with_text_and_actions</feature> <symbol>(</symbol><local>a_text</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>;</symbol> <local>actions</local><symbol>:</symbol> <class><include>False</include>ARRAY</class> <symbol>[</symbol><class><include>False</include>PROCEDURE</class><symbol>]</symbol><symbol>)</symbol>
+			<comment>--</comment><comment> Create </comment><quoted>Current</quoted><comment>, assign </comment><quoted>a_text</quoted><comment> to </comment><feature><location>../interface/ev_message_dialog.xml#f_text</location>text</feature><comment> and </comment><quoted>actions</quoted><comment> to </comment><quoted>select_actions</quoted>
+			<comment>--</comment><comment> of </comment><feature><location>../interface/ev_message_dialog.xml#f_buttons</location>buttons</feature><comment>.</comment>
+			<comment>--</comment><comment> (</comment><quoted>actions</quoted><comment> are added to </comment><feature><location>../interface/ev_message_dialog.xml#f_buttons</location>buttons</feature><comment> in order.)</comment>
+		<keyword>require</keyword>
+			<tag>a_text_not_void</tag><symbol>:</symbol> <local>a_text</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>actions_not_void</tag><symbol>:</symbol> <local>actions</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>actions_not_empty</tag><symbol>:</symbol> <local>actions</local><dot>.</dot><feature><include>False</include>count</feature> <symbol>&gt;</symbol> <number>0</number>
+		<keyword>local</keyword>
+			<local>i</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<local>c</local><symbol>:</symbol> <class><include>False</include>CURSOR</class>
+			<local>b</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_button.xml</location>EV_BUTTON</class>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_any.xml#f_default_create</location>default_create</feature>
+			<feature><location>../interface/ev_message_dialog.xml#f_set_text</location>set_text</feature><symbol> </symbol><symbol>(</symbol><local>a_text</local><symbol>)</symbol>
+			<local>c</local> <symbol>:=</symbol> <feature><location>../interface/ev_message_dialog.xml#f_button_box</location>button_box</feature><dot>.</dot><feature><location>../interface/ev_dynamic_list.xml#f_cursor</location>cursor</feature>
+			<keyword>from</keyword>
+				<feature><location>../interface/ev_message_dialog.xml#f_button_box</location>button_box</feature><dot>.</dot><feature><location>../interface/ev_dynamic_list.xml#f_start</location>start</feature>
+				<local>i</local> <symbol>:=</symbol> <number>1</number>
+			<keyword>until</keyword>
+				<local>i</local> <symbol>&gt;</symbol> <local>actions</local><dot>.</dot><feature><include>False</include>count</feature> <keyword>or</keyword> <feature><location>../interface/ev_message_dialog.xml#f_button_box</location>button_box</feature><dot>.</dot><feature><include>False</include>after</feature>
+			<keyword>loop</keyword>
+				<local>b</local> <symbol>?=</symbol> <feature><location>../interface/ev_message_dialog.xml#f_button_box</location>button_box</feature><dot>.</dot><feature><location>../interface/ev_dynamic_list.xml#f_item</location>item</feature>
+				<keyword>check</keyword>
+					<tag>button_box_contains_only_buttons</tag><symbol>:</symbol> <local>b</local> <symbol>/=</symbol> <keyword>Void</keyword>
+				<keyword>then</keyword>
+				<keyword>end</keyword>
+				<local>b</local><dot>.</dot><feature><location>../interface/ev_button_action_sequences.xml#f_select_actions</location>select_actions</feature><dot>.</dot><feature><include>False</include>extend</feature><symbol> </symbol><symbol>(</symbol><local>actions</local> <symbol>@</symbol> <local>i</local><symbol>)</symbol>
+				<feature><location>../interface/ev_message_dialog.xml#f_button_box</location>button_box</feature><dot>.</dot><feature><location>../interface/ev_dynamic_list.xml#f_forth</location>forth</feature>
+				<local>i</local> <symbol>:=</symbol> <local>i</local> <symbol>+</symbol> <number>1</number>
+			<keyword>end</keyword>
+			<feature><location>../interface/ev_message_dialog.xml#f_button_box</location>button_box</feature><dot>.</dot><feature><location>../interface/ev_dynamic_list.xml#f_go_to</location>go_to</feature><symbol> </symbol><symbol>(</symbol><local>c</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_create_interface_objects</anchor><feature><location>../interface/ev_message_dialog.xml#f_create_interface_objects</location>create_interface_objects</feature>
+			<comment>--</comment><comment> Create objects to be used by </comment><quoted>Current</quoted><comment> in </comment><feature><location>../interface/ev_message_dialog.xml#f_initialize</location>initialize</feature>
+			<comment>--</comment><comment> Implemented by descendants to create attached objects</comment>
+			<comment>--</comment><comment> in order to adhere to void-safety due to the implementation bridge pattern.</comment>
+		<keyword>local</keyword>
+			<local>l_stock_colors</local><symbol>:</symbol> <class><location>../interface/ev_stock_colors.xml</location>EV_STOCK_COLORS</class>
+		<keyword>do</keyword>
+			<keyword>create</keyword> <feature><location>../interface/ev_message_dialog.xml#f_buttons</location>buttons</feature><dot>.</dot><feature><include>False</include>make</feature><symbol> </symbol><symbol>(</symbol><number>5</number><symbol>)</symbol>
+			<keyword>create</keyword> <feature><location>../interface/ev_message_dialog.xml#f_button_box</location>button_box</feature>
+			<keyword>create</keyword> <feature><location>../interface/ev_message_dialog.xml#f_pixmap_box</location>pixmap_box</feature>
+			<keyword>create</keyword> <feature><location>../interface/ev_message_dialog.xml#f_scrollable_area</location>scrollable_area</feature>
+			<keyword>create</keyword> <feature><location>../interface/ev_message_dialog.xml#f_label</location>label</feature>
+			<keyword>create</keyword> <local>l_stock_colors</local>
+			<feature><location>../interface/ev_message_dialog.xml#f_foreground_color</location>foreground_color</feature> <symbol>:=</symbol> <local>l_stock_colors</local><dot>.</dot><feature><location>../interface/ev_stock_colors.xml#f_default_foreground_color</location>default_foreground_color</feature>
+			<feature><location>../interface/ev_message_dialog.xml#f_background_color</location>background_color</feature> <symbol>:=</symbol> <local>l_stock_colors</local><dot>.</dot><feature><location>../interface/ev_stock_colors.xml#f_default_background_color</location>default_background_color</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_initialize</anchor><feature><location>../interface/ev_message_dialog.xml#f_initialize</location>initialize</feature>
+			<comment>--</comment><comment> Initialize </comment><quoted>Current</quoted><comment> to default state.</comment>
+		<keyword>local</keyword>
+			<local>hb</local><symbol>:</symbol> <class><location>../interface/ev_horizontal_box.xml</location>EV_HORIZONTAL_BOX</class>
+			<local>vb</local><symbol>:</symbol> <class><location>../interface/ev_vertical_box.xml</location>EV_VERTICAL_BOX</class>
+			<local>hb2</local><symbol>:</symbol> <class><location>../interface/ev_horizontal_box.xml</location>EV_HORIZONTAL_BOX</class>
+			<local>vb2</local><symbol>:</symbol> <class><location>../interface/ev_vertical_box.xml</location>EV_VERTICAL_BOX</class>
+			<local>l_screen</local><symbol>:</symbol> <class><location>../interface/ev_screen.xml</location>EV_SCREEN</class>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_message_dialog.xml#f_foreground_color</location>foreground_color</feature> <symbol>:=</symbol> <feature><location>../interface/ev_dialog.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_colorizable_i.xml#f_foreground_color</location>foreground_color</feature>
+			<feature><location>../interface/ev_message_dialog.xml#f_background_color</location>background_color</feature> <symbol>:=</symbol> <feature><location>../interface/ev_dialog.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_colorizable_i.xml#f_background_color</location>background_color</feature>
+			<keyword>create</keyword> <local>hb</local>
+			<keyword>create</keyword> <local>vb</local>
+			<keyword>create</keyword> <local>hb2</local>
+			<keyword>create</keyword> <local>vb2</local>
+			<keyword><location>../interface/ev_dialog.xml#f_initialize</location>Precursor</keyword>
+			<keyword>create</keyword> <local>l_screen</local>
+			<feature><location>../interface/ev_message_dialog.xml#f_maximum_label_width</location>maximum_label_width</feature> <symbol>:=</symbol> <local>l_screen</local><dot>.</dot><feature><location>../interface/ev_screen.xml#f_width</location>width</feature> <symbol>-</symbol> <number>200</number>
+			<feature><location>../interface/ev_message_dialog.xml#f_maximum_label_height</location>maximum_label_height</feature> <symbol>:=</symbol> <local>l_screen</local><dot>.</dot><feature><location>../interface/ev_screen.xml#f_height</location>height</feature> <symbol>-</symbol> <number>200</number>
+			<local>vb2</local><dot>.</dot><feature><location>../interface/ev_dynamic_list.xml#f_extend</location>extend</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_message_dialog.xml#f_pixmap_box</location>pixmap_box</feature><symbol>)</symbol>
+			<local>vb2</local><dot>.</dot><feature><location>../interface/ev_box.xml#f_disable_item_expand</location>disable_item_expand</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_message_dialog.xml#f_pixmap_box</location>pixmap_box</feature><symbol>)</symbol>
+			<local>vb2</local><dot>.</dot><feature><location>../interface/ev_dynamic_list.xml#f_extend</location>extend</feature><symbol> </symbol><symbol>(</symbol><keyword>create</keyword><symbol> </symbol><symbol>{</symbol><class><location>../interface/ev_cell.xml</location>EV_CELL</class><symbol>}</symbol><symbol>)</symbol>
+			<local>hb</local><dot>.</dot><feature><location>../interface/ev_dynamic_list.xml#f_extend</location>extend</feature><symbol> </symbol><symbol>(</symbol><local>vb2</local><symbol>)</symbol>
+			<local>hb</local><dot>.</dot><feature><location>../interface/ev_dynamic_list.xml#f_extend</location>extend</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_message_dialog.xml#f_label</location>label</feature><symbol>)</symbol>
+			<local>hb</local><dot>.</dot><feature><location>../interface/ev_box.xml#f_set_padding</location>set_padding</feature><symbol> </symbol><symbol>(</symbol><number>10</number><symbol>)</symbol>
+			<local>hb2</local><dot>.</dot><feature><location>../interface/ev_dynamic_list.xml#f_extend</location>extend</feature><symbol> </symbol><symbol>(</symbol><keyword>create</keyword><symbol> </symbol><symbol>{</symbol><class><location>../interface/ev_cell.xml</location>EV_CELL</class><symbol>}</symbol><symbol>)</symbol>
+			<local>hb2</local><dot>.</dot><feature><location>../interface/ev_dynamic_list.xml#f_extend</location>extend</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_message_dialog.xml#f_button_box</location>button_box</feature><symbol>)</symbol>
+			<local>hb2</local><dot>.</dot><feature><location>../interface/ev_box.xml#f_disable_item_expand</location>disable_item_expand</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_message_dialog.xml#f_button_box</location>button_box</feature><symbol>)</symbol>
+			<local>hb2</local><dot>.</dot><feature><location>../interface/ev_dynamic_list.xml#f_extend</location>extend</feature><symbol> </symbol><symbol>(</symbol><keyword>create</keyword><symbol> </symbol><symbol>{</symbol><class><location>../interface/ev_cell.xml</location>EV_CELL</class><symbol>}</symbol><symbol>)</symbol>
+			<local>vb</local><dot>.</dot><feature><location>../interface/ev_dynamic_list.xml#f_extend</location>extend</feature><symbol> </symbol><symbol>(</symbol><local>hb</local><symbol>)</symbol>
+			<local>vb</local><dot>.</dot><feature><location>../interface/ev_dynamic_list.xml#f_extend</location>extend</feature><symbol> </symbol><symbol>(</symbol><local>hb2</local><symbol>)</symbol>
+			<local>vb</local><dot>.</dot><feature><location>../interface/ev_box.xml#f_disable_item_expand</location>disable_item_expand</feature><symbol> </symbol><symbol>(</symbol><local>hb2</local><symbol>)</symbol>
+			<local>vb</local><dot>.</dot><feature><location>../interface/ev_box.xml#f_set_padding</location>set_padding</feature><symbol> </symbol><symbol>(</symbol><number>14</number><symbol>)</symbol>
+			<local>vb</local><dot>.</dot><feature><location>../interface/ev_box.xml#f_set_border_width</location>set_border_width</feature><symbol> </symbol><symbol>(</symbol><number>10</number><symbol>)</symbol>
+			<feature><location>../interface/ev_message_dialog.xml#f_label</location>label</feature><dot>.</dot><feature><location>../interface/ev_text_alignable.xml#f_align_text_left</location>align_text_left</feature>
+			<feature><location>../interface/ev_message_dialog.xml#f_button_box</location>button_box</feature><dot>.</dot><feature><location>../interface/ev_box.xml#f_set_padding</location>set_padding</feature><symbol> </symbol><symbol>(</symbol><number>10</number><symbol>)</symbol>
+			<feature><location>../interface/ev_container.xml#f_extend</location>extend</feature><symbol> </symbol><symbol>(</symbol><local>vb</local><symbol>)</symbol>
+			<feature><location>../interface/ev_message_dialog.xml#f_set_text</location>set_text</feature><symbol> </symbol><symbol>(</symbol>&quot;Use `set_text' to modify this message.&quot;<symbol>)</symbol>
+			<feature><location>../interface/ev_widget_action_sequences.xml#f_key_press_actions</location>key_press_actions</feature><dot>.</dot><feature><include>False</include>extend</feature><symbol> </symbol><symbol>(</symbol><keyword>agent</keyword> <feature><location>../interface/ev_message_dialog.xml#f_on_key_press</location>on_key_press</feature><symbol>)</symbol>
+			<feature><location>../interface/ev_window.xml#f_disable_user_resize</location>disable_user_resize</feature>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_pixmap</anchor><feature><location>../interface/ev_message_dialog.xml#f_pixmap</location>pixmap</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_pixmap.xml</location>EV_PIXMAP</class>
+			<comment>--</comment><comment> Icon displayed by </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../interface/ev_message_dialog.xml#f_pixmap_box</location>pixmap_box</feature><dot>.</dot><feature><location>../interface/ev_cell.xml#f_readable</location>readable</feature> <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>?=</symbol> <feature><location>../interface/ev_message_dialog.xml#f_pixmap_box</location>pixmap_box</feature><dot>.</dot><feature><location>../interface/ev_container.xml#f_item</location>item</feature>
+				<keyword>check</keyword>
+					<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_text</anchor><feature><location>../interface/ev_message_dialog.xml#f_text</location>text</feature><symbol>:</symbol> <class><include>False</include>STRING_32</class>
+			<comment>--</comment><comment> Message displayed by </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_message_dialog.xml#f_label</location>label</feature><dot>.</dot><feature><location>../interface/ev_textable.xml#f_text</location>text</feature>
+		<keyword>ensure</keyword>
+			<tag>not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_foreground_color</anchor><feature><location>../interface/ev_message_dialog.xml#f_foreground_color</location>foreground_color</feature><symbol>:</symbol> <class><location>../interface/ev_color.xml</location>EV_COLOR</class>
+			<comment>--</comment><comment> Foreground color of </comment><quoted>Current</quoted><comment>.</comment>
+
+	<anchor>f_background_color</anchor><feature><location>../interface/ev_message_dialog.xml#f_background_color</location>background_color</feature><symbol>:</symbol> <class><location>../interface/ev_color.xml</location>EV_COLOR</class>
+			<comment>--</comment><comment> Background color of </comment><quoted>Current</quoted><comment>.</comment>
+
+	<anchor>f_default_identifier_name</anchor><feature><location>../interface/ev_message_dialog.xml#f_default_identifier_name</location>default_identifier_name</feature><symbol>:</symbol> <class><include>False</include>STRING_32</class>
+			<comment>--</comment><comment> Default identifier name if no specific name is set.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../interface/ev_window.xml#f_title</location>title</feature><dot>.</dot><feature><include>False</include>is_empty</feature> <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <keyword><location>../interface/ev_identifiable.xml#f_default_identifier_name</location>Precursor</keyword> <symbol>{</symbol><class><location>../interface/ev_dialog.xml</location>EV_DIALOG</class><symbol>}</symbol>
+			<keyword>else</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_window.xml#f_title</location>title</feature><dot>.</dot><feature><include>False</include>as_lower</feature>
+				<keyword>Result</keyword><dot>.</dot><feature><include>False</include>prune_all</feature><symbol> </symbol><symbol>(</symbol><char>'.'</char><dot>.</dot><feature><include>False</include>to_character_32</feature><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status setting</comment>
+
+	<anchor>f_set_background_color</anchor><feature><location>../interface/ev_message_dialog.xml#f_set_background_color</location>set_background_color</feature> <symbol>(</symbol><local>a_color</local><symbol>:</symbol> <class><location>../interface/ev_color.xml</location>EV_COLOR</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>a_color</quoted><comment> to </comment><feature><location>../interface/ev_message_dialog.xml#f_background_color</location>background_color</feature><comment>.</comment>
+		<keyword>local</keyword>
+			<local>dialog_box</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_container.xml</location>EV_CONTAINER</class>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_container.xml#f_item</location>item</feature><dot>.</dot><feature><location>../interface/ev_colorizable.xml#f_set_background_color</location>set_background_color</feature><symbol> </symbol><symbol>(</symbol><local>a_color</local><symbol>)</symbol>
+			<local>dialog_box</local> <symbol>?=</symbol> <feature><location>../interface/ev_container.xml#f_item</location>item</feature>
+			<keyword>if</keyword> <local>dialog_box</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<local>dialog_box</local><dot>.</dot><feature><location>../interface/ev_container.xml#f_propagate_background_color</location>propagate_background_color</feature>
+			<keyword>end</keyword>
+			<feature><location>../interface/ev_message_dialog.xml#f_background_color</location>background_color</feature><dot>.</dot><feature><location>../interface/ev_color.xml#f_copy</location>copy</feature><symbol> </symbol><symbol>(</symbol><local>a_color</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_set_foreground_color</anchor><feature><location>../interface/ev_message_dialog.xml#f_set_foreground_color</location>set_foreground_color</feature> <symbol>(</symbol><local>a_color</local><symbol>:</symbol> <class><location>../interface/ev_color.xml</location>EV_COLOR</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>a_color</quoted><comment> to </comment><feature><location>../interface/ev_message_dialog.xml#f_foreground_color</location>foreground_color</feature><comment>.</comment>
+		<keyword>local</keyword>
+			<local>dialog_box</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_container.xml</location>EV_CONTAINER</class>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_container.xml#f_item</location>item</feature><dot>.</dot><feature><location>../interface/ev_colorizable.xml#f_set_foreground_color</location>set_foreground_color</feature><symbol> </symbol><symbol>(</symbol><local>a_color</local><symbol>)</symbol>
+			<local>dialog_box</local> <symbol>?=</symbol> <feature><location>../interface/ev_container.xml#f_item</location>item</feature>
+			<keyword>if</keyword> <local>dialog_box</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<local>dialog_box</local><dot>.</dot><feature><location>../interface/ev_container.xml#f_propagate_foreground_color</location>propagate_foreground_color</feature>
+			<keyword>end</keyword>
+			<feature><location>../interface/ev_message_dialog.xml#f_foreground_color</location>foreground_color</feature><dot>.</dot><feature><location>../interface/ev_color.xml#f_copy</location>copy</feature><symbol> </symbol><symbol>(</symbol><local>a_color</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_set_pixmap</anchor><feature><location>../interface/ev_message_dialog.xml#f_set_pixmap</location>set_pixmap</feature> <symbol>(</symbol><local>a_pixmap</local><symbol>:</symbol> <class><location>../interface/ev_pixmap.xml</location>EV_PIXMAP</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>a_pixmap</quoted><comment> to </comment><feature><location>../interface/ev_message_dialog.xml#f_pixmap</location>pixmap</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>a_pixmap_not_void</tag><symbol>:</symbol> <local>a_pixmap</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>local</keyword>
+			<local>pixmap_clone</local><symbol>:</symbol> <class><location>../interface/ev_pixmap.xml</location>EV_PIXMAP</class>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../interface/ev_message_dialog.xml#f_pixmap</location>pixmap</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<feature><location>../interface/ev_message_dialog.xml#f_remove_pixmap</location>remove_pixmap</feature>
+			<keyword>end</keyword>
+			<keyword>create</keyword> <local>pixmap_clone</local>
+			<local>pixmap_clone</local><dot>.</dot><feature><location>../interface/ev_pixmap.xml#f_copy</location>copy</feature><symbol> </symbol><symbol>(</symbol><local>a_pixmap</local><symbol>)</symbol>
+			<feature><location>../interface/ev_message_dialog.xml#f_pixmap_box</location>pixmap_box</feature><dot>.</dot><feature><location>../interface/ev_container.xml#f_extend</location>extend</feature><symbol> </symbol><symbol>(</symbol><local>pixmap_clone</local><symbol>)</symbol>
+			<feature><location>../interface/ev_message_dialog.xml#f_pixmap_box</location>pixmap_box</feature><dot>.</dot><feature><location>../interface/ev_widget.xml#f_set_minimum_size</location>set_minimum_size</feature><symbol> </symbol><symbol>(</symbol><local>pixmap_clone</local><dot>.</dot><feature><location>../interface/ev_positioned.xml#f_width</location>width</feature><symbol>,</symbol> <local>pixmap_clone</local><dot>.</dot><feature><location>../interface/ev_positioned.xml#f_height</location>height</feature><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>pixmap_assigned</tag><symbol>:</symbol> <keyword>attached</keyword> <feature><location>../interface/ev_message_dialog.xml#f_pixmap</location>pixmap</feature> <keyword>as</keyword> l_pixmap <keyword>and then</keyword> <local>l_pixmap</local><dot>.</dot><feature><location>../interface/ev_pixmap.xml#f_is_equal</location>is_equal</feature><symbol> </symbol><symbol>(</symbol><local>a_pixmap</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_remove_pixmap</anchor><feature><location>../interface/ev_message_dialog.xml#f_remove_pixmap</location>remove_pixmap</feature>
+			<comment>--</comment><comment> Assign </comment><quoted>Void</quoted><comment> to </comment><feature><location>../interface/ev_message_dialog.xml#f_pixmap</location>pixmap</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_message_dialog.xml#f_pixmap_box</location>pixmap_box</feature><dot>.</dot><feature><location>../interface/ev_cell.xml#f_wipe_out</location>wipe_out</feature>
+		<keyword>ensure</keyword>
+			<tag>pixmap_void</tag><symbol>:</symbol> <feature><location>../interface/ev_message_dialog.xml#f_pixmap</location>pixmap</feature> <symbol>=</symbol> <keyword>Void</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_set_text</anchor><feature><location>../interface/ev_message_dialog.xml#f_set_text</location>set_text</feature> <symbol>(</symbol><local>a_text</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>a_text</quoted><comment> to </comment><feature><location>../interface/ev_message_dialog.xml#f_text</location>text</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>a_text_not_void</tag><symbol>:</symbol> <local>a_text</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>local</keyword>
+			<local>l_label_width</local><symbol>,</symbol> <local>l_label_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<local>l_scrollbar_needed</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<local>l_dialog_parent</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_container.xml</location>EV_CONTAINER</class>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../interface/ev_message_dialog.xml#f_scrollable_area</location>scrollable_area</feature><dot>.</dot><feature><location>../interface/ev_widget.xml#f_parent</location>parent</feature> <keyword>as</keyword> l_scroll_parent <keyword>then</keyword>
+				<local>l_scroll_parent</local><dot>.</dot><feature><location>../interface/ev_container.xml#f_prune</location>prune</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_message_dialog.xml#f_scrollable_area</location>scrollable_area</feature><symbol>)</symbol>
+				<feature><location>../interface/ev_message_dialog.xml#f_scrollable_area</location>scrollable_area</feature><dot>.</dot><feature><location>../interface/ev_cell.xml#f_prune</location>prune</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_message_dialog.xml#f_label</location>label</feature><symbol>)</symbol>
+				<local>l_dialog_parent</local> <symbol>:=</symbol> <local>l_scroll_parent</local>
+			<keyword>elseif</keyword> <keyword>attached</keyword> <feature><location>../interface/ev_message_dialog.xml#f_label</location>label</feature><dot>.</dot><feature><location>../interface/ev_widget.xml#f_parent</location>parent</feature> <keyword>as</keyword> l_label_parent <keyword>then</keyword>
+				<local>l_label_parent</local><dot>.</dot><feature><location>../interface/ev_container.xml#f_prune</location>prune</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_message_dialog.xml#f_label</location>label</feature><symbol>)</symbol>
+				<local>l_dialog_parent</local> <symbol>:=</symbol> <local>l_label_parent</local>
+			<keyword>end</keyword>
+			<feature><location>../interface/ev_message_dialog.xml#f_label</location>label</feature><dot>.</dot><feature><location>../interface/ev_textable.xml#f_set_text</location>set_text</feature><symbol> </symbol><symbol>(</symbol><local>a_text</local><symbol>)</symbol>
+			<local>l_label_width</local> <symbol>:=</symbol> <feature><location>../interface/ev_message_dialog.xml#f_label</location>label</feature><dot>.</dot><feature><location>../interface/ev_positioned.xml#f_width</location>width</feature>
+			<local>l_label_height</local> <symbol>:=</symbol> <feature><location>../interface/ev_message_dialog.xml#f_label</location>label</feature><dot>.</dot><feature><location>../interface/ev_positioned.xml#f_height</location>height</feature>
+			<keyword>if</keyword> <local>l_label_width</local> <symbol>&gt;</symbol> <feature><location>../interface/ev_message_dialog.xml#f_maximum_label_width</location>maximum_label_width</feature> <keyword>then</keyword>
+				<local>l_scrollbar_needed</local> <symbol>:=</symbol> <keyword>True</keyword>
+				<feature><location>../interface/ev_message_dialog.xml#f_scrollable_area</location>scrollable_area</feature><dot>.</dot><feature><location>../interface/ev_scrollable_area.xml#f_show_horizontal_scroll_bar</location>show_horizontal_scroll_bar</feature>
+				<local>l_label_width</local> <symbol>:=</symbol> <feature><location>../interface/ev_message_dialog.xml#f_maximum_label_width</location>maximum_label_width</feature>
+			<keyword>else</keyword>
+				<feature><location>../interface/ev_message_dialog.xml#f_scrollable_area</location>scrollable_area</feature><dot>.</dot><feature><location>../interface/ev_scrollable_area.xml#f_hide_vertical_scroll_bar</location>hide_vertical_scroll_bar</feature>
+			<keyword>end</keyword>
+			<keyword>if</keyword> <local>l_label_height</local> <symbol>&gt;</symbol> <feature><location>../interface/ev_message_dialog.xml#f_maximum_label_height</location>maximum_label_height</feature> <keyword>then</keyword>
+				<local>l_scrollbar_needed</local> <symbol>:=</symbol> <keyword>True</keyword>
+				<feature><location>../interface/ev_message_dialog.xml#f_scrollable_area</location>scrollable_area</feature><dot>.</dot><feature><location>../interface/ev_scrollable_area.xml#f_show_vertical_scroll_bar</location>show_vertical_scroll_bar</feature>
+				<local>l_label_height</local> <symbol>:=</symbol> <feature><location>../interface/ev_message_dialog.xml#f_maximum_label_height</location>maximum_label_height</feature>
+			<keyword>else</keyword>
+				<feature><location>../interface/ev_message_dialog.xml#f_scrollable_area</location>scrollable_area</feature><dot>.</dot><feature><location>../interface/ev_scrollable_area.xml#f_hide_vertical_scroll_bar</location>hide_vertical_scroll_bar</feature>
+			<keyword>end</keyword>
+			<feature><location>../interface/ev_message_dialog.xml#f_scrollable_area</location>scrollable_area</feature><dot>.</dot><feature><location>../interface/ev_widget.xml#f_set_minimum_width</location>set_minimum_width</feature><symbol> </symbol><symbol>(</symbol><local>l_label_width</local><symbol>)</symbol>
+			<feature><location>../interface/ev_message_dialog.xml#f_scrollable_area</location>scrollable_area</feature><dot>.</dot><feature><location>../interface/ev_widget.xml#f_set_minimum_height</location>set_minimum_height</feature><symbol> </symbol><symbol>(</symbol><local>l_label_height</local><symbol>)</symbol>
+			<keyword>if</keyword> <local>l_scrollbar_needed</local> <keyword>then</keyword>
+				<feature><location>../interface/ev_message_dialog.xml#f_scrollable_area</location>scrollable_area</feature><dot>.</dot><feature><location>../interface/ev_container.xml#f_extend</location>extend</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_message_dialog.xml#f_label</location>label</feature><symbol>)</symbol>
+				<keyword>if</keyword> <local>l_dialog_parent</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+					<local>l_dialog_parent</local><dot>.</dot><feature><location>../interface/ev_container.xml#f_extend</location>extend</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_message_dialog.xml#f_scrollable_area</location>scrollable_area</feature><symbol>)</symbol>
+				<keyword>end</keyword>
+			<keyword>else</keyword>
+				<keyword>if</keyword> <local>l_dialog_parent</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+					<local>l_dialog_parent</local><dot>.</dot><feature><location>../interface/ev_container.xml#f_extend</location>extend</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_message_dialog.xml#f_label</location>label</feature><symbol>)</symbol>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+		<keyword>ensure</keyword>
+			<tag>assigned</tag><symbol>:</symbol> <feature><location>../interface/ev_message_dialog.xml#f_text</location>text</feature><dot>.</dot><feature><include>False</include>same_string_general</feature><symbol> </symbol><symbol>(</symbol><local>a_text</local><symbol>)</symbol>
+			<tag>cloned</tag><symbol>:</symbol> <feature><location>../interface/ev_message_dialog.xml#f_text</location>text</feature> <symbol>/=</symbol> <local>a_text</local>
+		<keyword>end</keyword>
+
+	<anchor>f_remove_text</anchor><feature><location>../interface/ev_message_dialog.xml#f_remove_text</location>remove_text</feature>
+			<comment>--</comment><comment> Make </comment><feature><location>../interface/ev_message_dialog.xml#f_text</location>text</feature><comment> empty.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_message_dialog.xml#f_set_text</location>set_text</feature><symbol> </symbol><symbol>(</symbol>&quot;&quot;<symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>text_not_void</tag><symbol>:</symbol> <feature><location>../interface/ev_message_dialog.xml#f_text</location>text</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>and</keyword> <feature><location>../interface/ev_message_dialog.xml#f_text</location>text</feature><dot>.</dot><feature><include>False</include>is_empty</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_set_buttons</anchor><feature><location>../interface/ev_message_dialog.xml#f_set_buttons</location>set_buttons</feature> <symbol>(</symbol><local>button_labels</local><symbol>:</symbol> <class><include>False</include>ARRAY</class> <symbol>[</symbol><class><include>False</include>READABLE_STRING_GENERAL</class><symbol>]</symbol><symbol>)</symbol>
+			<comment>--</comment><comment> Assign new buttons with </comment><quoted>button_labels</quoted><comment> to </comment><feature><location>../interface/ev_message_dialog.xml#f_buttons</location>buttons</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>button_labels_not_void</tag><symbol>:</symbol> <local>button_labels</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>local</keyword>
+			<local>i</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_message_dialog.xml#f_clean_buttons</location>clean_buttons</feature>
+			<keyword>from</keyword>
+				<local>i</local> <symbol>:=</symbol> <number>1</number>
+			<keyword>until</keyword>
+				<local>i</local> <symbol>&gt;</symbol> <local>button_labels</local><dot>.</dot><feature><include>False</include>count</feature>
+			<keyword>loop</keyword>
+				<feature><location>../interface/ev_message_dialog.xml#f_add_button</location>add_button</feature><symbol> </symbol><symbol>(</symbol><local>button_labels</local> <symbol>@</symbol> <local>i</local><symbol>)</symbol>
+				<local>i</local> <symbol>:=</symbol> <local>i</local> <symbol>+</symbol> <number>1</number>
+			<keyword>end</keyword>
+			<feature><location>../interface/ev_message_dialog.xml#f_button_box</location>button_box</feature><dot>.</dot><feature><location>../interface/ev_box.xml#f_enable_homogeneous</location>enable_homogeneous</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_set_buttons_and_actions</anchor><feature><location>../interface/ev_message_dialog.xml#f_set_buttons_and_actions</location>set_buttons_and_actions</feature> <symbol>(</symbol><local>button_labels</local><symbol>:</symbol> <class><include>False</include>ARRAY</class> <symbol>[</symbol><class><include>False</include>READABLE_STRING_GENERAL</class><symbol>]</symbol><symbol>;</symbol> <local>actions</local><symbol>:</symbol> <class><include>False</include>ARRAY</class> <symbol>[</symbol><keyword>detachable</keyword> <class><include>False</include>PROCEDURE</class><symbol>]</symbol><symbol>)</symbol>
+			<comment>--</comment><comment> Assign new buttons with </comment><quoted>button_labels</quoted><comment> and </comment><quoted>actions</quoted><comment> to </comment><feature><location>../interface/ev_message_dialog.xml#f_buttons</location>buttons</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>button_labels_not_void</tag><symbol>:</symbol> <local>button_labels</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>actions_not_void</tag><symbol>:</symbol> <local>actions</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>enough_actions_for_labels</tag><symbol>:</symbol> <local>actions</local><dot>.</dot><feature><include>False</include>count</feature> <symbol>&gt;=</symbol> <local>button_labels</local><dot>.</dot><feature><include>False</include>count</feature>
+		<keyword>local</keyword>
+			<local>i</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_message_dialog.xml#f_clean_buttons</location>clean_buttons</feature>
+			<keyword>from</keyword>
+				<local>i</local> <symbol>:=</symbol> <number>1</number>
+			<keyword>until</keyword>
+				<local>i</local> <symbol>&gt;</symbol> <local>button_labels</local><dot>.</dot><feature><include>False</include>count</feature>
+			<keyword>loop</keyword>
+				<keyword>if</keyword> <keyword>attached</keyword> <local>actions</local> <symbol>[</symbol><local>i</local><symbol>]</symbol> <keyword>as</keyword> l_action <keyword>then</keyword>
+					<feature><location>../interface/ev_message_dialog.xml#f_add_button_with_action</location>add_button_with_action</feature><symbol> </symbol><symbol>(</symbol><local>button_labels</local> <symbol>[</symbol><local>i</local><symbol>]</symbol><symbol>,</symbol> <local>l_action</local><symbol>)</symbol>
+				<keyword>else</keyword>
+					<feature><location>../interface/ev_message_dialog.xml#f_add_button</location>add_button</feature><symbol> </symbol><symbol>(</symbol><local>button_labels</local> <symbol>[</symbol><local>i</local><symbol>]</symbol><symbol>)</symbol>
+				<keyword>end</keyword>
+				<local>i</local> <symbol>:=</symbol> <local>i</local> <symbol>+</symbol> <number>1</number>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status report</comment>
+
+	<anchor>f_has_button</anchor><feature><location>../interface/ev_message_dialog.xml#f_has_button</location>has_button</feature> <symbol>(</symbol><local>a_text</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Does </comment><quoted>Current</quoted><comment> contain a button with </comment><feature><location>../interface/ev_message_dialog.xml#f_text</location>text</feature><comment> </comment><quoted>a_text</quoted><comment>?</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>a_text_not_void</tag><symbol>:</symbol> <local>a_text</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_message_dialog.xml#f_buttons</location>buttons</feature><dot>.</dot><feature><include>False</include>has</feature><symbol> </symbol><symbol>(</symbol><local>a_text</local><dot>.</dot><feature><include>False</include>as_string_32</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_button</anchor><feature><location>../interface/ev_message_dialog.xml#f_button</location>button</feature> <symbol>(</symbol><local>a_text</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol><symbol>:</symbol> <class><location>../interface/ev_button.xml</location>EV_BUTTON</class>
+			<comment>--</comment><comment> Button that has </comment><quoted>a_text</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>a_text_not_void</tag><symbol>:</symbol> <local>a_text</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>has_button_with_a_text</tag><symbol>:</symbol> <feature><location>../interface/ev_message_dialog.xml#f_has_button</location>has_button</feature><symbol> </symbol><symbol>(</symbol><local>a_text</local><symbol>)</symbol>
+		<keyword>local</keyword>
+			<local>l_result</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_button.xml</location>EV_BUTTON</class>
+		<keyword>do</keyword>
+			<local>l_result</local> <symbol>:=</symbol> <feature><location>../interface/ev_message_dialog.xml#f_buttons</location>buttons</feature><dot>.</dot><feature><include>False</include>item</feature><symbol> </symbol><symbol>(</symbol><local>a_text</local><dot>.</dot><feature><include>False</include>as_string_32</feature><symbol>)</symbol>
+			<keyword>check</keyword>
+					<local>l_result</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <local>l_result</local>
+		<keyword>ensure</keyword>
+			<tag>not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_selected_button</anchor><feature><location>../interface/ev_message_dialog.xml#f_selected_button</location>selected_button</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>STRING_32</class>
+			<comment>--</comment><comment> Label of last clicked button.</comment>
+	
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_maximum_label_width</anchor><feature><location>../interface/ev_message_dialog.xml#f_maximum_label_width</location>maximum_label_width</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Maximum width the label can be before scrollbar is enabled.</comment>
+
+	<anchor>f_maximum_label_height</anchor><feature><location>../interface/ev_message_dialog.xml#f_maximum_label_height</location>maximum_label_height</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Maximum height the label can be before scrollbar is enabled.</comment>
+
+	<anchor>f_user_can_resize_default_state</anchor><feature><location>../interface/ev_message_dialog.xml#f_user_can_resize_default_state</location>User_can_resize_default_state</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class> <symbol>=</symbol> <keyword>False</keyword>
+			<comment>--</comment><comment> Is the default state of </comment><quoted>Current</quoted><comment> </comment><feature><location>../interface/ev_window.xml#f_user_can_resize</location>user_can_resize</feature><comment>?</comment>
+
+	<anchor>f_button_box</anchor><feature><location>../interface/ev_message_dialog.xml#f_button_box</location>button_box</feature><symbol>:</symbol> <class><location>../interface/ev_horizontal_box.xml</location>EV_HORIZONTAL_BOX</class>
+			<comment>--</comment><comment> Bar with all buttons of the dialog.</comment>
+
+	<anchor>f_scrollable_area</anchor><feature><location>../interface/ev_message_dialog.xml#f_scrollable_area</location>scrollable_area</feature><symbol>:</symbol> <class><location>../interface/ev_scrollable_area.xml</location>EV_SCROLLABLE_AREA</class>
+			<comment>--</comment><comment> Scrollable area in which </comment><feature><location>../interface/ev_message_dialog.xml#f_label</location>label</feature><comment> resides.</comment>
+
+	<anchor>f_label</anchor><feature><location>../interface/ev_message_dialog.xml#f_label</location>label</feature><symbol>:</symbol> <class><location>../interface/ev_label.xml</location>EV_LABEL</class>
+			<comment>--</comment><comment> Text label where </comment><feature><location>../interface/ev_message_dialog.xml#f_text</location>text</feature><comment> is displayed.</comment>
+
+	<anchor>f_pixmap_box</anchor><feature><location>../interface/ev_message_dialog.xml#f_pixmap_box</location>pixmap_box</feature><symbol>:</symbol> <class><location>../interface/ev_cell.xml</location>EV_CELL</class>
+			<comment>--</comment><comment> Container to display pixmap in.</comment>
+
+	<anchor>f_buttons</anchor><feature><location>../interface/ev_message_dialog.xml#f_buttons</location>buttons</feature><symbol>:</symbol> <class><include>False</include>HASH_TABLE</class> <symbol>[</symbol><class><location>../interface/ev_button.xml</location>EV_BUTTON</class><symbol>,</symbol> <class><include>False</include>STRING_32</class><symbol>]</symbol>
+			<comment>--</comment><comment> Lookup-table for the buttons in </comment><quoted>Current</quoted><comment> based on</comment>
+			<comment>--</comment><comment> their captions.</comment>
+
+	<anchor>f_clean_buttons</anchor><feature><location>../interface/ev_message_dialog.xml#f_clean_buttons</location>clean_buttons</feature>
+			<comment>--</comment><comment> Remove all buttons from </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../interface/ev_dialog.xml#f_default_push_button</location>default_push_button</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<feature><location>../interface/ev_dialog.xml#f_remove_default_push_button</location>remove_default_push_button</feature>
+			<keyword>end</keyword>
+			<keyword>if</keyword> <feature><location>../interface/ev_dialog.xml#f_default_cancel_button</location>default_cancel_button</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<feature><location>../interface/ev_dialog.xml#f_remove_default_cancel_button</location>remove_default_cancel_button</feature>
+			<keyword>end</keyword>
+			<feature><location>../interface/ev_message_dialog.xml#f_button_box</location>button_box</feature><dot>.</dot><feature><location>../interface/ev_dynamic_list.xml#f_wipe_out</location>wipe_out</feature>
+			<feature><location>../interface/ev_message_dialog.xml#f_buttons</location>buttons</feature><dot>.</dot><feature><include>False</include>wipe_out</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_add_button</anchor><feature><location>../interface/ev_message_dialog.xml#f_add_button</location>add_button</feature> <symbol>(</symbol><local>a_text</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol>
+			<comment>--</comment><comment> An item has been added to </comment><feature><location>../interface/ev_message_dialog.xml#f_buttons</location>buttons</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>a_text_not_void</tag><symbol>:</symbol> <local>a_text</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>local</keyword>
+			<local>new_button</local><symbol>:</symbol> <class><location>../interface/ev_button.xml</location>EV_BUTTON</class>
+			<local>l_default_button</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+		<keyword>do</keyword>
+			<keyword>create</keyword> <local>new_button</local><dot>.</dot><feature><location>../interface/ev_textable.xml#f_make_with_text</location>make_with_text</feature><symbol> </symbol><symbol>(</symbol><local>a_text</local><symbol>)</symbol>
+			<feature><location>../interface/ev_message_dialog.xml#f_buttons</location>buttons</feature><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><local>new_button</local><symbol>,</symbol> <local>a_text</local><dot>.</dot><feature><include>False</include>as_string_32</feature><symbol>)</symbol>
+			<local>l_default_button</local> <symbol>:=</symbol> <feature><location>../interface/ev_message_dialog.xml#f_button_box</location>button_box</feature><dot>.</dot><feature><include>False</include>is_empty</feature>
+			<local>new_button</local><dot>.</dot><feature><location>../interface/ev_button_action_sequences.xml#f_select_actions</location>select_actions</feature><dot>.</dot><feature><include>False</include>extend</feature><symbol> </symbol><symbol>(</symbol><keyword>agent</keyword> <feature><location>../interface/ev_message_dialog.xml#f_on_button_press</location>on_button_press</feature><symbol> </symbol><symbol>(</symbol><local>a_text</local><symbol>)</symbol><symbol>)</symbol>
+			<feature><location>../interface/ev_message_dialog.xml#f_button_box</location>button_box</feature><dot>.</dot><feature><location>../interface/ev_dynamic_list.xml#f_extend</location>extend</feature><symbol> </symbol><symbol>(</symbol><local>new_button</local><symbol>)</symbol>
+			<feature><location>../interface/ev_message_dialog.xml#f_button_box</location>button_box</feature><dot>.</dot><feature><location>../interface/ev_box.xml#f_disable_item_expand</location>disable_item_expand</feature><symbol> </symbol><symbol>(</symbol><local>new_button</local><symbol>)</symbol>
+			<local>new_button</local><dot>.</dot><feature><location>../interface/ev_widget.xml#f_set_minimum_width</location>set_minimum_width</feature><symbol> </symbol><symbol>(</symbol><local>new_button</local><dot>.</dot><feature><location>../interface/ev_positioned.xml#f_minimum_width</location>minimum_width</feature><dot>.</dot><feature><include>False</include>max</feature><symbol> </symbol><symbol>(</symbol><number>75</number><symbol>)</symbol><symbol>)</symbol>
+			<local>new_button</local><dot>.</dot><feature><location>../interface/ev_text_alignable.xml#f_align_text_center</location>align_text_center</feature>
+			<keyword>if</keyword> <local>l_default_button</local> <keyword>then</keyword>
+				<feature><location>../interface/ev_dialog.xml#f_set_default_push_button</location>set_default_push_button</feature><symbol> </symbol><symbol>(</symbol><local>new_button</local><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_add_button_with_action</anchor><feature><location>../interface/ev_message_dialog.xml#f_add_button_with_action</location>add_button_with_action</feature> <symbol>(</symbol><local>a_text</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>;</symbol> <local>a_action</local><symbol>:</symbol> <class><include>False</include>PROCEDURE</class><symbol>)</symbol>
+			<comment>--</comment><comment> An item has been added to </comment><feature><location>../interface/ev_message_dialog.xml#f_buttons</location>buttons</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>a_text_not_void</tag><symbol>:</symbol> <local>a_text</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>a_action_not_void</tag><symbol>:</symbol> <local>a_action</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_message_dialog.xml#f_add_button</location>add_button</feature><symbol> </symbol><symbol>(</symbol><local>a_text</local><symbol>)</symbol>
+			<feature><location>../interface/ev_message_dialog.xml#f_button</location>button</feature><symbol> </symbol><symbol>(</symbol><local>a_text</local><symbol>)</symbol><dot>.</dot><feature><location>../interface/ev_button_action_sequences.xml#f_select_actions</location>select_actions</feature><dot>.</dot><feature><include>False</include>extend</feature><symbol> </symbol><symbol>(</symbol><local>a_action</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_on_button_press</anchor><feature><location>../interface/ev_message_dialog.xml#f_on_button_press</location>on_button_press</feature> <symbol>(</symbol><local>a_button_text</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol>
+			<comment>--</comment><comment> A button with text </comment><quoted>a_button_text</quoted><comment> has been pressed.</comment>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_message_dialog.xml#f_selected_button</location>selected_button</feature> <symbol>:=</symbol> <local>a_button_text</local><dot>.</dot><feature><include>False</include>as_string_32</feature>
+			<keyword>if</keyword> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature> <keyword>then</keyword>
+				<feature><location>../interface/ev_window.xml#f_destroy</location>destroy</feature>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_on_key_press</anchor><feature><location>../interface/ev_message_dialog.xml#f_on_key_press</location>on_key_press</feature> <symbol>(</symbol><local>a_key</local><symbol>:</symbol> <class><location>../interface/ev_key.xml</location>EV_KEY</class><symbol>)</symbol>
+			<comment>--</comment><comment> Called when user presses a key on the dialog.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <local>a_key</local><dot>.</dot><feature><location>../interface/ev_key.xml#f_code</location>code</feature> <symbol>=</symbol> <symbol>{</symbol><class><location>../interface/ev_key_constants.xml</location>EV_KEY_CONSTANTS</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_key_constants.xml#f_key_left</location>key_left</feature> <keyword>then</keyword>
+				<feature><location>../interface/ev_message_dialog.xml#f_move_to_next_button</location>move_to_next_button</feature><symbol> </symbol><symbol>(</symbol><number>-1</number><symbol>)</symbol>
+			<keyword>elseif</keyword> <local>a_key</local><dot>.</dot><feature><location>../interface/ev_key.xml#f_code</location>code</feature> <symbol>=</symbol> <symbol>{</symbol><class><location>../interface/ev_key_constants.xml</location>EV_KEY_CONSTANTS</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_key_constants.xml#f_key_right</location>key_right</feature> <keyword>then</keyword>
+				<feature><location>../interface/ev_message_dialog.xml#f_move_to_next_button</location>move_to_next_button</feature><symbol> </symbol><symbol>(</symbol><number>1</number><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_move_to_next_button</anchor><feature><location>../interface/ev_message_dialog.xml#f_move_to_next_button</location>move_to_next_button</feature> <symbol>(</symbol><local>a_delta</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Moves focus to next or previous button based on </comment><quoted>a_delta</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>valid_delta</tag><symbol>:</symbol> <local>a_delta</local> <symbol>=</symbol> <number>-1</number> <keyword>or</keyword> <local>a_delta</local> <symbol>=</symbol> <number>1</number>
+		<keyword>local</keyword>
+			<local>l_buttons</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../interface/ev_message_dialog.xml#f_button_box</location>button_box</feature>
+			<local>l_cursor</local><symbol>:</symbol> <class><include>False</include>CURSOR</class>
+			<local>l_focused_widget</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_widget.xml</location>EV_WIDGET</class>
+			<local>l_focused</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+		<keyword>do</keyword>
+			<local>l_buttons</local> <symbol>:=</symbol> <feature><location>../interface/ev_message_dialog.xml#f_button_box</location>button_box</feature>
+			<keyword>if</keyword> <local>l_buttons</local><dot>.</dot><feature><location>../interface/ev_dynamic_list.xml#f_count</location>count</feature> <symbol>&gt;</symbol> <number>1</number> <keyword>then</keyword>
+				<local>l_cursor</local> <symbol>:=</symbol> <local>l_buttons</local><dot>.</dot><feature><location>../interface/ev_dynamic_list.xml#f_cursor</location>cursor</feature>
+				<keyword>from</keyword>
+					<local>l_buttons</local><dot>.</dot><feature><location>../interface/ev_dynamic_list.xml#f_start</location>start</feature>
+				<keyword>until</keyword>
+					<local>l_buttons</local><dot>.</dot><feature><include>False</include>after</feature> <keyword>or</keyword> <local>l_focused</local>
+				<keyword>loop</keyword>
+					<local>l_focused_widget</local> <symbol>:=</symbol> <local>l_buttons</local><dot>.</dot><feature><location>../interface/ev_dynamic_list.xml#f_item</location>item</feature>
+					<local>l_focused</local> <symbol>:=</symbol> <local>l_focused_widget</local><dot>.</dot><feature><location>../interface/ev_widget.xml#f_has_focus</location>has_focus</feature>
+					<keyword>if</keyword> <keyword>not</keyword> <local>l_focused</local> <keyword>then</keyword>
+						<local>l_buttons</local><dot>.</dot><feature><location>../interface/ev_dynamic_list.xml#f_forth</location>forth</feature>
+					<keyword>end</keyword>
+				<keyword>end</keyword>
+				<keyword>if</keyword> <local>l_focused</local> <keyword>then</keyword>
+					<keyword>if</keyword> <local>l_focused_widget</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+						<keyword>if</keyword> <local>a_delta</local> <symbol>=</symbol> <number>-1</number> <keyword>then</keyword>
+							<keyword>if</keyword> <local>l_buttons</local><dot>.</dot><feature><include>False</include>first</feature> <symbol>=</symbol> <local>l_focused_widget</local> <keyword>then</keyword>
+								<local>l_buttons</local><dot>.</dot><feature><include>False</include>last</feature><dot>.</dot><feature><location>../interface/ev_widget.xml#f_set_focus</location>set_focus</feature>
+							<keyword>else</keyword>
+								<local>l_buttons</local><dot>.</dot><feature><location>../interface/ev_dynamic_list.xml#f_back</location>back</feature>
+								<local>l_buttons</local><dot>.</dot><feature><location>../interface/ev_dynamic_list.xml#f_item</location>item</feature><dot>.</dot><feature><location>../interface/ev_widget.xml#f_set_focus</location>set_focus</feature>
+							<keyword>end</keyword>
+						<keyword>else</keyword>
+							<keyword>if</keyword> <local>l_buttons</local><dot>.</dot><feature><include>False</include>last</feature> <symbol>=</symbol> <local>l_focused_widget</local> <keyword>then</keyword>
+								<local>l_buttons</local><dot>.</dot><feature><include>False</include>first</feature><dot>.</dot><feature><location>../interface/ev_widget.xml#f_set_focus</location>set_focus</feature>
+							<keyword>else</keyword>
+								<local>l_buttons</local><dot>.</dot><feature><location>../interface/ev_dynamic_list.xml#f_forth</location>forth</feature>
+								<local>l_buttons</local><dot>.</dot><feature><location>../interface/ev_dynamic_list.xml#f_item</location>item</feature><dot>.</dot><feature><location>../interface/ev_widget.xml#f_set_focus</location>set_focus</feature>
+							<keyword>end</keyword>
+						<keyword>end</keyword>
+					<keyword>end</keyword>
+				<keyword>else</keyword>
+					<local>l_buttons</local><dot>.</dot><feature><include>False</include>first</feature><dot>.</dot><feature><location>../interface/ev_widget.xml#f_set_focus</location>set_focus</feature>
+				<keyword>end</keyword>
+				<local>l_buttons</local><dot>.</dot><feature><location>../interface/ev_dynamic_list.xml#f_go_to</location>go_to</feature><symbol> </symbol><symbol>(</symbol><local>l_cursor</local><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2013, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../interface/ev_message_dialog.xml</location>EV_MESSAGE_DIALOG</class></system>
+

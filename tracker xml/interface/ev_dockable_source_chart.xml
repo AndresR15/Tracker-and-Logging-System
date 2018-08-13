@@ -1,0 +1,50 @@
+<system>
+<keyword>deferred</keyword> <keyword>class</keyword>
+	<class><location>../interface/ev_dockable_source_chart.xml</location>EV_DOCKABLE_SOURCE</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>interface</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> 
+		<string>&quot;Objects that represent source of a dockable transport. The dockable</string>
+		<string>mechanism allows a component to be dragged by a user to an EV_DOCKABLE_TARGET</string>
+		<string>that has been enabled to receive transport.</string>
+		
+		<string>drop_started_actions</string><string> are fired immediately after a transport begins from </string><string>Current</string><string>.</string>
+		<string>It is not possible to override the transport from within these actions.&quot;</string>
+
+<keyword>Ancestors</keyword>
+	<class><location>../interface/ev_any_chart.xml</location>EV_ANY</class><char>*</char>
+	<class><location>../interface/ev_dockable_source_action_sequences_chart.xml</location>EV_DOCKABLE_SOURCE_ACTION_SEQUENCES</class><char>*</char>
+
+<keyword>Action sequences</keyword>
+	<feature><location>../interface/ev_dockable_source_action_sequences.xml#f_dock_ended_actions</location>dock_ended_actions</feature><symbol>:</symbol> <class><location>../interface/ev_notify_action_sequence_chart.xml</location>EV_NOTIFY_ACTION_SEQUENCE</class>
+	<feature><location>../interface/ev_dockable_source_action_sequences.xml#f_dock_started_actions</location>dock_started_actions</feature><symbol>:</symbol> <class><location>../interface/ev_notify_action_sequence_chart.xml</location>EV_NOTIFY_ACTION_SEQUENCE</class>
+
+<keyword>Queries</keyword>
+	<feature><location>../interface/ev_any.xml#f_data</location>data</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>ANY</class>
+	<feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_dockable_source.xml#f_is_dockable</location>is_dockable</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_dockable_source.xml#f_is_external_docking_enabled</location>is_external_docking_enabled</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_dockable_source.xml#f_is_external_docking_relative</location>is_external_docking_relative</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_dockable_source.xml#f_is_in_default_state</location>is_in_default_state</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_dockable_source.xml#f_parent_of_source_allows_docking</location>parent_of_source_allows_docking</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_dockable_source.xml#f_real_source</location>real_source</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_dockable_source_chart.xml</location>EV_DOCKABLE_SOURCE</class>
+	<feature><location>../interface/ev_dockable_source.xml#f_source_has_current_recursive</location>source_has_current_recursive</feature> <symbol>(</symbol><local>source</local><symbol>:</symbol> <class><location>../interface/ev_dockable_source_chart.xml</location>EV_DOCKABLE_SOURCE</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+
+<keyword>Commands</keyword>
+	<feature><location>../interface/ev_any.xml#f_copy</location>copy</feature> <symbol>(</symbol><local>other</local><symbol>:</symbol> <symbol>[</symbol><keyword>attached</keyword> <keyword>like</keyword> <keyword>Current</keyword><symbol>]</symbol> <keyword>attached</keyword> <class><location>../interface/ev_dockable_source_chart.xml</location>EV_DOCKABLE_SOURCE</class><symbol>)</symbol>
+	<feature><location>../interface/ev_any.xml#f_destroy</location>destroy</feature>
+	<feature><location>../interface/ev_dockable_source.xml#f_disable_dockable</location>disable_dockable</feature>
+	<feature><location>../interface/ev_dockable_source.xml#f_disable_external_docking</location>disable_external_docking</feature>
+	<feature><location>../interface/ev_dockable_source.xml#f_disable_external_docking_relative</location>disable_external_docking_relative</feature>
+	<feature><location>../interface/ev_dockable_source.xml#f_enable_dockable</location>enable_dockable</feature>
+	<feature><location>../interface/ev_dockable_source.xml#f_enable_external_docking</location>enable_external_docking</feature>
+	<feature><location>../interface/ev_dockable_source.xml#f_enable_external_docking_relative</location>enable_external_docking_relative</feature>
+	<feature><location>../interface/ev_dockable_source.xml#f_remove_real_source</location>remove_real_source</feature>
+	<feature><location>../interface/ev_any.xml#f_set_data</location>set_data</feature> <symbol>(</symbol><local>some_data</local><symbol>:</symbol> <symbol>[</symbol><keyword>like</keyword> <feature><location>../interface/ev_any.xml#f_data</location>data</feature><symbol>]</symbol> <keyword>detachable</keyword> <class><include>False</include>ANY</class><symbol>)</symbol>
+	<feature><location>../interface/ev_dockable_source.xml#f_set_real_source</location>set_real_source</feature> <symbol>(</symbol><local>dockable_source</local><symbol>:</symbol> <class><location>../interface/ev_dockable_source_chart.xml</location>EV_DOCKABLE_SOURCE</class><symbol>)</symbol>
+
+<keyword>Constraints</keyword>
+	<tag>parent permits docking</tag>
+
+</system>

@@ -1,0 +1,249 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Vision button. GTK implementation.&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;press, push, label, pixmap&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2017-03-27 13:31:29 -0700 (Mon, 27 Mar 2017) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 100058 $&quot;</string>
+
+<keyword>class</keyword> 
+	<class><location>../implementation_gtk/ev_button_imp.xml</location>EV_BUTTON_IMP</class>
+
+<keyword>inherit</keyword>
+	<class><location>../implementation_interface/ev_button_i.xml</location>EV_BUTTON_I</class>
+		<keyword>export</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/ev_intermediary_routines.xml</location>EV_INTERMEDIARY_ROUTINES</class><symbol>}</symbol> <feature><location>../implementation_interface/ev_button_action_sequences_i.xml#f_select_actions_internal</location>select_actions_internal</feature>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_gtk/ev_button_imp.xml#f_interface</location>interface</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_button_imp.xml#f_init_select_actions</location>init_select_actions</feature>
+		<keyword>end</keyword>
+
+	<class><location>../implementation_gtk/ev_primitive_imp.xml</location>EV_PRIMITIVE_IMP</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_gtk/ev_button_imp.xml#f_interface</location>interface</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_button_imp.xml#f_make</location>make</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_button_imp.xml#f_old_make</location>old_make</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_button_imp.xml#f_set_foreground_color</location>set_foreground_color</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_button_imp.xml#f_foreground_color_pointer</location>foreground_color_pointer</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_button_imp.xml#f_on_focus_changed</location>on_focus_changed</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_button_imp.xml#f_needs_event_box</location>needs_event_box</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_button_imp.xml#f_event_widget</location>event_widget</feature>
+		<keyword>end</keyword>
+
+	<class><location>../implementation_gtk/ev_pixmapable_imp.xml</location>EV_PIXMAPABLE_IMP</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_gtk/ev_button_imp.xml#f_interface</location>interface</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_button_imp.xml#f_make</location>make</feature>
+		<keyword>end</keyword>
+
+	<class><location>../implementation_gtk/ev_textable_imp.xml</location>EV_TEXTABLE_IMP</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_gtk/ev_button_imp.xml#f_interface</location>interface</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_button_imp.xml#f_make</location>make</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_button_imp.xml#f_align_text_left</location>align_text_left</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_button_imp.xml#f_align_text_center</location>align_text_center</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_button_imp.xml#f_align_text_right</location>align_text_right</feature>
+		<keyword>end</keyword>
+
+	<class><location>../implementation_gtk/ev_fontable_imp.xml</location>EV_FONTABLE_IMP</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_gtk/ev_button_imp.xml#f_interface</location>interface</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_button_imp.xml#f_make</location>make</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_button_imp.xml#f_fontable_widget</location>fontable_widget</feature>
+		<keyword>end</keyword>
+
+<keyword>create</keyword> 
+	<feature><location>../implementation_gtk/ev_button_imp.xml#f_make</location>make</feature>
+
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Initialization</comment>
+
+	<anchor>f_old_make</anchor><feature><location>../implementation_gtk/ev_button_imp.xml#f_old_make</location>old_make</feature> <symbol>(</symbol><local>an_interface</local><symbol>:</symbol> <keyword>attached</keyword> <keyword>like</keyword> <feature><location>../implementation_gtk/ev_button_imp.xml#f_interface</location>interface</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Connect interface and initialize </comment><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><comment>.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_interface/ev_any_i.xml#f_assign_interface</location>assign_interface</feature><symbol> </symbol><symbol>(</symbol><local>an_interface</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_new_gtk_button</anchor><feature><location>../implementation_gtk/ev_button_imp.xml#f_new_gtk_button</location>new_gtk_button</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_button_new</location>gtk_button_new</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_make</anchor><feature><location>../implementation_gtk/ev_button_imp.xml#f_make</location>make</feature>
+			<comment>--</comment><comment> </comment><quoted>Precursor</quoted><comment> initialization,</comment>
+			<comment>--</comment><comment> create button box to hold label and pixmap.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_any_imp.xml#f_set_c_object</location>set_c_object</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_button_imp.xml#f_new_gtk_button</location>new_gtk_button</feature><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_pixmapable_imp.xml#f_pixmapable_imp_initialize</location>pixmapable_imp_initialize</feature>
+			<feature><location>../implementation_gtk/ev_textable_imp.xml#f_textable_imp_initialize</location>textable_imp_initialize</feature>
+			<feature><location>../implementation_gtk/ev_button_imp.xml#f_initialize_button_box</location>initialize_button_box</feature>
+			<feature><location>../implementation_gtk/ev_button_imp.xml#f_align_text_center</location>align_text_center</feature>
+			<keyword><location>../implementation_gtk/ev_primitive_imp.xml#f_make</location>Precursor</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_primitive_imp.xml</location>EV_PRIMITIVE_IMP</class><symbol>}</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_initialize_button_box</anchor><feature><location>../implementation_gtk/ev_button_imp.xml#f_initialize_button_box</location>initialize_button_box</feature>
+			<comment>--</comment><comment> Create and initialize button box.</comment>
+		<keyword>local</keyword>
+			<local>box</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>hbox</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>do</keyword>
+			<local>box</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_alignment_new</location>gtk_alignment_new</feature> <symbol>(</symbol><number>0</number><dot>.</dot><feature><include>False</include>to_real</feature><symbol>,</symbol> <number>0</number><dot>.</dot><feature><include>False</include>to_real</feature><symbol>,</symbol> <number>0</number><dot>.</dot><feature><include>False</include>to_real</feature><symbol>,</symbol> <number>0</number><dot>.</dot><feature><include>False</include>to_real</feature><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_container_add</location>gtk_container_add</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_visual_widget</location>visual_widget</feature><symbol>,</symbol> <local>box</local><symbol>)</symbol>
+			<local>hbox</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_hbox_new</location>gtk_hbox_new</feature> <symbol>(</symbol><keyword>False</keyword><symbol>,</symbol> <number>0</number><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_widget_show</location>gtk_widget_show</feature> <symbol>(</symbol><local>hbox</local><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_container_add</location>gtk_container_add</feature> <symbol>(</symbol><local>box</local><symbol>,</symbol> <local>hbox</local><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_container_add</location>gtk_container_add</feature> <symbol>(</symbol><local>hbox</local><symbol>,</symbol> <feature><location>../implementation_gtk/ev_pixmapable_imp.xml#f_pixmap_box</location>pixmap_box</feature><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_misc_set_padding</location>gtk_misc_set_padding</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_textable_imp.xml#f_text_label</location>text_label</feature><symbol>,</symbol> <number>4</number><symbol>,</symbol> <number>0</number><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_container_add</location>gtk_container_add</feature> <symbol>(</symbol><local>hbox</local><symbol>,</symbol> <feature><location>../implementation_gtk/ev_textable_imp.xml#f_text_label</location>text_label</feature><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_widget_show</location>gtk_widget_show</feature> <symbol>(</symbol><local>box</local><symbol>)</symbol>
+		<keyword>ensure</keyword>
+				<feature><location>../implementation_gtk/ev_button_imp.xml#f_button_box</location>button_box</feature> <symbol>/=</symbol> <feature><include>False</include>default_pointer</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_fontable_widget</anchor><feature><location>../implementation_gtk/ev_button_imp.xml#f_fontable_widget</location>fontable_widget</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Pointer to the widget that may have fonts set.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_textable_imp.xml#f_text_label</location>text_label</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_event_widget</anchor><feature><location>../implementation_gtk/ev_button_imp.xml#f_event_widget</location>event_widget</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Widget that handles the events.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_visual_widget</location>visual_widget</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_needs_event_box</anchor><feature><location>../implementation_gtk/ev_button_imp.xml#f_needs_event_box</location>needs_event_box</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Does </comment><quoted>a_widget</quoted><comment> need an event box?</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <keyword>True</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_is_default_push_button</anchor><feature><location>../implementation_gtk/ev_button_imp.xml#f_is_default_push_button</location>is_default_push_button</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is this button currently a default push button</comment>
+			<comment>--</comment><comment> for a particular container?</comment>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status Setting</comment>
+
+	<anchor>f_align_text_center</anchor><feature><location>../implementation_gtk/ev_button_imp.xml#f_align_text_center</location>align_text_center</feature>
+			<comment>--</comment><comment> Display </comment><feature><location>../implementation_gtk/ev_textable_imp.xml#f_text</location>text</feature><comment> centered.</comment>
+		<keyword>do</keyword>
+			<keyword><location>../implementation_gtk/ev_textable_imp.xml#f_align_text_center</location>Precursor</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_textable_imp.xml</location>EV_TEXTABLE_IMP</class><symbol>}</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_alignment_set</location>gtk_alignment_set</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_button_imp.xml#f_button_box</location>button_box</feature><symbol>,</symbol> <symbol>{</symbol><class><include>False</include>REAL_32</class><symbol>}</symbol> <number>0.5</number><symbol>,</symbol> <symbol>{</symbol><class><include>False</include>REAL_32</class><symbol>}</symbol> <number>0.5</number><symbol>,</symbol> <number>0</number><dot>.</dot><feature><include>False</include>to_real</feature><symbol>,</symbol> <number>0</number><dot>.</dot><feature><include>False</include>to_real</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_align_text_left</anchor><feature><location>../implementation_gtk/ev_button_imp.xml#f_align_text_left</location>align_text_left</feature>
+			<comment>--</comment><comment> Display </comment><feature><location>../implementation_gtk/ev_textable_imp.xml#f_text</location>text</feature><comment> left aligned.</comment>
+		<keyword>do</keyword>
+			<keyword><location>../implementation_gtk/ev_textable_imp.xml#f_align_text_left</location>Precursor</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_textable_imp.xml</location>EV_TEXTABLE_IMP</class><symbol>}</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_alignment_set</location>gtk_alignment_set</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_button_imp.xml#f_button_box</location>button_box</feature><symbol>,</symbol> <symbol>{</symbol><class><include>False</include>REAL_32</class><symbol>}</symbol> <number>0.0</number><symbol>,</symbol> <symbol>{</symbol><class><include>False</include>REAL_32</class><symbol>}</symbol> <number>0.5</number><symbol>,</symbol> <number>0</number><dot>.</dot><feature><include>False</include>to_real</feature><symbol>,</symbol> <number>0</number><dot>.</dot><feature><include>False</include>to_real</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_align_text_right</anchor><feature><location>../implementation_gtk/ev_button_imp.xml#f_align_text_right</location>align_text_right</feature>
+			<comment>--</comment><comment> Display </comment><feature><location>../implementation_gtk/ev_textable_imp.xml#f_text</location>text</feature><comment> right aligned.</comment>
+		<keyword>do</keyword>
+			<keyword><location>../implementation_gtk/ev_textable_imp.xml#f_align_text_right</location>Precursor</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_textable_imp.xml</location>EV_TEXTABLE_IMP</class><symbol>}</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_alignment_set</location>gtk_alignment_set</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_button_imp.xml#f_button_box</location>button_box</feature><symbol>,</symbol> <symbol>{</symbol><class><include>False</include>REAL_32</class><symbol>}</symbol> <number>1.0</number><symbol>,</symbol> <symbol>{</symbol><class><include>False</include>REAL_32</class><symbol>}</symbol> <number>0.5</number><symbol>,</symbol> <number>0</number><dot>.</dot><feature><include>False</include>to_real</feature><symbol>,</symbol> <number>0</number><dot>.</dot><feature><include>False</include>to_real</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_enable_default_push_button</anchor><feature><location>../implementation_gtk/ev_button_imp.xml#f_enable_default_push_button</location>enable_default_push_button</feature>
+			<comment>--</comment><comment> Set the style of the button corresponding</comment>
+			<comment>--</comment><comment> to the default push button.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_button_imp.xml#f_enable_can_default</location>enable_can_default</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_disable_default_push_button</anchor><feature><location>../implementation_gtk/ev_button_imp.xml#f_disable_default_push_button</location>disable_default_push_button</feature>
+			<comment>--</comment><comment> Remove the style of the button corresponding</comment>
+			<comment>--</comment><comment> to the default push button.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_button_imp.xml#f_is_default_push_button</location>is_default_push_button</feature> <symbol>:=</symbol> <keyword>False</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_widget_unset_flags</location>gtk_widget_unset_flags</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_visual_widget</location>visual_widget</feature><symbol>,</symbol> <symbol>{</symbol><class><location>../implementation_gtk/ev_gtk_enums.xml</location>EV_GTK_ENUMS</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_enums.xml#f_gtk_has_default_enum</location>gtk_has_default_enum</feature><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_widget_queue_draw</location>gtk_widget_queue_draw</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_visual_widget</location>visual_widget</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_enable_can_default</anchor><feature><location>../implementation_gtk/ev_button_imp.xml#f_enable_can_default</location>enable_can_default</feature>
+			<comment>--</comment><comment> Allow the style of the button to be the default push button.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_button_imp.xml#f_is_default_push_button</location>is_default_push_button</feature> <symbol>:=</symbol> <keyword>True</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_widget_set_flags</location>gtk_widget_set_flags</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_visual_widget</location>visual_widget</feature><symbol>,</symbol> <symbol>{</symbol><class><location>../implementation_gtk/ev_gtk_enums.xml</location>EV_GTK_ENUMS</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_enums.xml#f_gtk_has_default_enum</location>gtk_has_default_enum</feature><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_widget_queue_draw</location>gtk_widget_queue_draw</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_visual_widget</location>visual_widget</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_set_foreground_color</anchor><feature><location>../implementation_gtk/ev_button_imp.xml#f_set_foreground_color</location>set_foreground_color</feature> <symbol>(</symbol><local>a_color</local><symbol>:</symbol> <class><location>../interface/ev_color.xml</location>EV_COLOR</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>a_color</quoted><comment> to </comment><feature><location>../implementation_interface/ev_colorizable_i.xml#f_foreground_color</location>foreground_color</feature><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword><location>../implementation_gtk/ev_colorizable_imp.xml#f_set_foreground_color</location>Precursor</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_primitive_imp.xml</location>EV_PRIMITIVE_IMP</class><symbol>}</symbol><symbol> </symbol><symbol>(</symbol><local>a_color</local><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_colorizable_imp.xml#f_real_set_foreground_color</location>real_set_foreground_color</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_textable_imp.xml#f_text_label</location>text_label</feature><symbol>,</symbol> <local>a_color</local><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> implementation</comment>
+
+	<anchor>f_on_focus_changed</anchor><feature><location>../implementation_gtk/ev_button_imp.xml#f_on_focus_changed</location>on_focus_changed</feature> <symbol>(</symbol><local>a_has_focus</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class><symbol>)</symbol>
+			<comment>--</comment><comment> Called from focus intermediary agents when focus for </comment><quoted>Current</quoted><comment> has changed.</comment>
+			<comment>--</comment><comment> if </comment><quoted>a_has_focus</quoted><comment> then </comment><quoted>Current</quoted><comment> has just received focus.</comment>
+		<keyword>local</keyword>
+			<local>top_level_dialog_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_dialog_imp.xml</location>EV_DIALOG_IMP</class>
+			<local>rad_but</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_radio_button_imp.xml</location>EV_RADIO_BUTTON_IMP</class>
+		<keyword>do</keyword>
+			<keyword><location>../implementation_gtk/ev_widget_imp.xml#f_on_focus_changed</location>Precursor</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_primitive_imp.xml</location>EV_PRIMITIVE_IMP</class><symbol>}</symbol><symbol> </symbol><symbol>(</symbol><local>a_has_focus</local><symbol>)</symbol>
+			<local>top_level_dialog_imp</local> <symbol>?=</symbol> <feature><location>../implementation_gtk/ev_gtk_widget_imp.xml#f_top_level_window_imp</location>top_level_window_imp</feature>
+			<keyword>if</keyword> <local>top_level_dialog_imp</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<keyword>if</keyword> <local>a_has_focus</local> <keyword>then</keyword>
+					<local>rad_but</local> <symbol>?=</symbol> <keyword>Current</keyword>
+					<keyword>if</keyword> <local>rad_but</local> <symbol>=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+						<local>top_level_dialog_imp</local><dot>.</dot><feature><location>../implementation_interface/ev_dialog_i.xml#f_set_current_push_button</location>set_current_push_button</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_button_imp.xml#f_interface</location>interface</feature><symbol>)</symbol>
+					<keyword>end</keyword>
+				<keyword>elseif</keyword> <local>top_level_dialog_imp</local><dot>.</dot><feature><location>../implementation_interface/ev_dialog_i.xml#f_internal_current_push_button</location>internal_current_push_button</feature> <symbol>=</symbol> <feature><location>../implementation_gtk/ev_button_imp.xml#f_interface</location>interface</feature> <keyword>then</keyword>
+					<local>top_level_dialog_imp</local><dot>.</dot><feature><location>../implementation_interface/ev_dialog_i.xml#f_set_current_push_button</location>set_current_push_button</feature><symbol> </symbol><symbol>(</symbol><keyword>Void</keyword><symbol>)</symbol>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_foreground_color_pointer</anchor><feature><location>../implementation_gtk/ev_button_imp.xml#f_foreground_color_pointer</location>foreground_color_pointer</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Pointer to fg color for </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_style_struct_text</location>gtk_style_struct_text</feature> <symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_rc_get_style</location>gtk_rc_get_style</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_textable_imp.xml#f_text_label</location>text_label</feature><symbol>)</symbol><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_button_box</anchor><feature><location>../implementation_gtk/ev_button_imp.xml#f_button_box</location>button_box</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> GtkHBox in button.</comment>
+			<comment>--</comment><comment> Holds label and pixmap.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_bin_struct_child</location>gtk_bin_struct_child</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_visual_widget</location>visual_widget</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_init_select_actions</anchor><feature><location>../implementation_gtk/ev_button_imp.xml#f_init_select_actions</location>init_select_actions</feature> <symbol>(</symbol><local>a_select_actions</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../implementation_interface/ev_button_action_sequences_i.xml#f_select_actions</location>select_actions</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Initialize </comment><quoted>a_select_actions</quoted><comment> accordingly to the current widget.</comment>
+		<keyword>local</keyword>
+			<local>l_app_imp</local><symbol>:</symbol> <class><location>../implementation_gtk/ev_application_imp.xml</location>EV_APPLICATION_IMP</class>
+		<keyword>do</keyword>
+			<local>l_app_imp</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature>
+			<local>l_app_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_gtk_marshal</location>gtk_marshal</feature><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_callback_marshal.xml#f_signal_connect</location>signal_connect</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_visual_widget</location>visual_widget</feature><symbol>,</symbol> <local>l_app_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_event_strings.xml#f_clicked_event_string</location>Clicked_event_string</feature><symbol>,</symbol> <keyword>agent</keyword> <local>l_app_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_gtk_marshal</location>gtk_marshal</feature><dot>.</dot><feature><location>../implementation_gtk/ev_intermediary_routines.xml#f_button_select_intermediary</location>button_select_intermediary</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>)</symbol><symbol>,</symbol> <keyword>Void</keyword><symbol>,</symbol> <keyword>False</keyword><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_any.xml</location>EV_ANY</class><symbol>,</symbol> <class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> implementation</comment>
+
+	<anchor>f_interface</anchor><feature><location>../implementation_gtk/ev_button_imp.xml#f_interface</location>interface</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_button.xml</location>EV_BUTTON</class>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>invariant</keyword>
+	<tag>button_box_not_null</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_any_i.xml#f_is_usable</location>is_usable</feature> <keyword>implies</keyword> <feature><location>../implementation_gtk/ev_button_imp.xml#f_button_box</location>button_box</feature> <symbol>/=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature>
+
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2017, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_gtk/ev_button_imp.xml</location>EV_BUTTON_IMP</class></system>
+

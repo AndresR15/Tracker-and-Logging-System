@@ -1,0 +1,2198 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "Base class for widgets that contain EV_ITEMs"{\line}
+{\tab}{\cf1 legal}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 status}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 keywords}{\cf1 :} "item, list"{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2017-05-03 08:56:14 -0700 (Wed, 03 May 2017) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 100317 $"{\line}
+{\line}
+{\b\cf6 deferred} {\b\cf6 class} {\line}
+{\tab}{\cf4 EV_ITEM_LIST} {\cf1 [}G {\cf1 ->} {\cf4 EV_ITEM}{\cf1 ]}{\line}
+{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_ANY_HANDLER}{\cf1 \}}{\cf1 \{}{\cf4 EV_ANY_HANDLER}{\cf1 \}}{\cf1 \{}{\cf4 EV_ANY_HANDLER}{\cf1 \}} {\cf3 --}{\cf3  Initialization}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 default_create}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Standard creation procedure.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from } {\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 True}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 create_interface_objects}{\line}
+{\tab}{\tab}{\tab}{\cf5 create_implementation}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 not_already_called}{\cf1 :} {\b\cf6 not} {\cf5 implementation}{\b\cf1 .}{\cf5 get_state_flag}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 EV_ANY_I}{\cf1 \}}{\b\cf1 .}{\cf5 interface_default_create_called_flag}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 set_state_flag}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 EV_ANY_I}{\cf1 \}}{\b\cf1 .}{\cf5 interface_default_create_called_flag}{\cf1 ,} {\b\cf6 True}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 assign_interface}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 initialize}{\line}
+{\tab}{\tab}{\b\cf6 ensure then} {\cf3 --} {\cf3 from }{\cf4 EV_ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_coupled}{\cf1 :} {\cf5 implementation} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_initialized}{\cf1 :} {\cf5 is_initialized}{\line}
+{\tab}{\tab}{\tab}{\cf1 default_create_called}{\cf1 :} {\cf5 default_create_called}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_in_default_state}{\cf1 :} {\cf5 is_in_default_state}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 at} {\b\cf6 alias} {\cf1 "}{\cf1 @}{\cf1 "} {\cf1 (}{\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\b\cf6 like} {\cf5 item} {\b\cf6 assign} {\cf5 dl_put_i_th}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Item at }{\cf5 i}{\cf3 -th position}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 CHAIN}{\cf3  as synonym of }{\cf5 i_th}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 CHAIN}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 TABLE}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_key}{\cf1 :} {\cf5 valid_index}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 pos}{\cf1 :} {\cf4 CURSOR}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 pos} {\cf1 :=} {\cf5 cursor}{\line}
+{\tab}{\tab}{\tab}{\cf5 go_i_th}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 item}{\line}
+{\tab}{\tab}{\tab}{\cf5 go_to}{\cf1  }{\cf1 (}{\cf5 pos}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 cursor}{\cf1 :} {\cf4 EV_DYNAMIC_LIST_CURSOR} {\cf1 [}G{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Current cursor position.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_DYNAMIC_LIST}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from } {\cf4 CURSOR_STRUCTURE}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 True}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 implementation}{\b\cf1 .}{\cf5 cursor}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 CURSOR_STRUCTURE}{\line}
+{\tab}{\tab}{\tab}{\cf1 cursor_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure then} {\cf3 --} {\cf3 from }{\cf4 EV_DYNAMIC_LIST}{\line}
+{\tab}{\tab}{\tab}{\cf1 bridge_ok}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 implementation}{\b\cf1 .}{\cf5 cursor}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 data}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Arbitrary user data may be stored here.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_ANY}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 default_identifier_name}{\cf1 :} {\cf4 STRING_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Default name if no other name is set.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_IDENTIFIABLE}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 \{}{\cf4 STRING_32}{\cf1 \}}"\{" {\cf1 +} {\cf5 generating_type}{\b\cf1 .}{\cf5 name_32} {\cf1 +} "\}"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 EV_IDENTIFIABLE}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_not_empty}{\cf1 :} {\b\cf6 not} {\b\cf6 Result}{\b\cf1 .}{\cf5 is_empty}{\line}
+{\tab}{\tab}{\tab}{\cf1 no_period_in_result}{\cf1 :} {\b\cf6 not} {\b\cf6 Result}{\b\cf1 .}{\cf5 has}{\cf1  }{\cf1 (}'.'{\b\cf1 .}{\cf5 to_character_32}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 first}{\cf1 :} {\b\cf6 like} {\cf5 item}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Item at first position}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 CHAIN}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 CHAIN}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_empty}{\cf1 :} {\b\cf6 not} {\cf5 is_empty}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 pos}{\cf1 :} {\cf4 CURSOR}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 pos} {\cf1 :=} {\cf5 cursor}{\line}
+{\tab}{\tab}{\tab}{\cf5 start}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 item}{\line}
+{\tab}{\tab}{\tab}{\cf5 go_to}{\cf1  }{\cf1 (}{\cf5 pos}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 full_identifier_path}{\cf1 :} {\cf4 STRING_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Full name of object by prepending path of parent}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Uses '.' as a separator.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_IDENTIFIABLE}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 parent} {\b\cf6 as} l_parent {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 l_parent}{\b\cf1 .}{\cf5 full_identifier_path}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append_character}{\cf1  }{\cf1 (}{\cf5 l_parent}{\b\cf1 .}{\cf5 Identifier_path_separator}{\b\cf1 .}{\cf5 to_character_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append_string}{\cf1  }{\cf1 (}{\cf5 identifier_name}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 identifier_name}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 EV_IDENTIFIABLE}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_correct}{\cf1 :} {\cf5 parent} {\cf1 =} {\b\cf6 Void} {\b\cf6 implies} {\b\cf6 Result}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 identifier_name}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_correct}{\cf1 :} {\b\cf6 attached} {\cf5 parent} {\b\cf6 as} l_parent {\b\cf6 implies} {\b\cf6 Result}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 l_parent}{\b\cf1 .}{\cf5 full_identifier_path} {\cf1 +} "." {\cf1 +} {\cf5 identifier_name}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 generating_type}{\cf1 :} {\cf4 TYPE} {\cf1 [}{\b\cf6 detachable} {\cf4 EV_ITEM_LIST} {\cf1 [}G{\cf1 ]}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Type of current object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (type of which it is a direct instance)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 generating_type_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 generator}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Name of current object's generating class}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (base class of the type of which it is a direct instance)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 generator_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 generator_not_empty}{\cf1 :} {\b\cf6 not} {\b\cf6 Result}{\b\cf1 .}{\cf5 is_empty}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 has} {\cf1 (}{\cf5 v}{\cf1 :} {\b\cf6 like} {\cf5 item}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does chain include }{\cf5 v}{\cf3 ?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Reference or object equality,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  based on }{\cf5 object_comparison}{\cf3 .)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 CHAIN}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from } {\cf4 CONTAINER}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 True}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 pos}{\cf1 :} {\cf4 CURSOR}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 pos} {\cf1 :=} {\cf5 cursor}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 sequential_has}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 go_to}{\cf1  }{\cf1 (}{\cf5 pos}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 CONTAINER}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_found_in_empty}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\b\cf6 not} {\cf5 is_empty}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 i_th} {\b\cf6 alias} {\cf1 "}{\cf1 []}{\cf1 "} {\cf1 (}{\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\b\cf6 like} {\cf5 item}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Item at }{\cf5 i}{\cf3 -th position.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_DYNAMIC_LIST}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 TABLE}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_key}{\cf1 :} {\cf5 valid_index}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 READABLE_INDEXABLE}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_index}{\cf1 :} {\cf5 valid_index}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 implementation}{\b\cf1 .}{\cf5 i_th}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure then} {\cf3 --} {\cf3 from }{\cf4 EV_DYNAMIC_LIST}{\line}
+{\tab}{\tab}{\tab}{\cf1 bridge_ok}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 implementation}{\b\cf1 .}{\cf5 i_th}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 identifier_name}{\cf1 :} {\cf4 STRING_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Name of object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  If no specific name is set, }{\cf5 default_identifier_name}{\cf3  is used.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_IDENTIFIABLE}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 internal_name} {\b\cf6 as} l_internal_name {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 l_internal_name}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 default_identifier_name}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 EV_IDENTIFIABLE}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_not_empty}{\cf1 :} {\b\cf6 not} {\b\cf6 Result}{\b\cf1 .}{\cf5 is_empty}{\line}
+{\tab}{\tab}{\tab}{\cf1 no_period_in_result}{\cf1 :} {\b\cf6 not} {\b\cf6 Result}{\b\cf1 .}{\cf5 has}{\cf1  }{\cf1 (}'.'{\b\cf1 .}{\cf5 to_character_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 default_name_available}{\cf1 :} {\b\cf6 not} {\cf5 has_identifier_name_set} {\b\cf6 implies} {\b\cf6 Result}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 default_identifier_name}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 index}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Current position.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_DYNAMIC_LIST}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from } {\cf4 LINEAR}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 True}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 implementation}{\b\cf1 .}{\cf5 index}{\line}
+{\tab}{\tab}{\b\cf6 ensure then} {\cf3 --} {\cf3 from }{\cf4 EV_DYNAMIC_LIST}{\line}
+{\tab}{\tab}{\tab}{\cf1 bridge_ok}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf5 implementation}{\b\cf1 .}{\cf5 index}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 index_of} {\cf1 (}{\cf5 v}{\cf1 :} {\b\cf6 like} {\cf5 item}{\cf1 ;} {\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Index of }{\cf5 i}{\cf3 th occurrence of }{\cf5 v}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_DYNAMIC_LIST}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 LINEAR}{\line}
+{\tab}{\tab}{\tab}{\cf1 positive_occurrences}{\cf1 :} {\cf5 i} {\cf1 >} 0{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 implementation}{\b\cf1 .}{\cf5 index_of}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 ,} {\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 LINEAR}{\line}
+{\tab}{\tab}{\tab}{\cf1 non_negative_result}{\cf1 :} {\b\cf6 Result} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\b\cf6 ensure then} {\cf3 --} {\cf3 from }{\cf4 EV_DYNAMIC_LIST}{\line}
+{\tab}{\tab}{\tab}{\cf1 bridge_ok}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf5 implementation}{\b\cf1 .}{\cf5 index_of}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 ,} {\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 item}{\cf1 :} G{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Item at current position.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_DYNAMIC_LIST}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 TRAVERSABLE}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_off}{\cf1 :} {\b\cf6 not} {\cf5 off}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ACTIVE}{\line}
+{\tab}{\tab}{\tab}{\cf1 readable}{\cf1 :} {\cf5 readable}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 implementation}{\b\cf1 .}{\cf5 item}{\line}
+{\tab}{\tab}{\b\cf6 ensure then} {\cf3 --} {\cf3 from }{\cf4 EV_DYNAMIC_LIST}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 bridge_ok}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 implementation}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 item_by_data} {\cf1 (}{\cf5 some_data}{\cf1 :} {\cf4 ANY}{\cf1 )}{\cf1 :} {\b\cf6 detachable} {\b\cf6 like} {\cf5 item}{\line}
+{\tab}{\tab}{\b\cf6 obsolete} "Use `retrieve_item_by_data (some_data, True)' instead. [2017-05-31]"{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  First item with }{\cf5 some_data}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\tab}{\cf1 data_not_void}{\cf1 :} {\cf5 some_data} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 implementation}{\b\cf1 .}{\cf5 item_by_data}{\cf1  }{\cf1 (}{\cf5 some_data}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 bridge_ok}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf5 implementation}{\b\cf1 .}{\cf5 item_by_data}{\cf1  }{\cf1 (}{\cf5 some_data}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 item_for_iteration}{\cf1 :} G{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Item at current position}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 LINEAR}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 LINEAR}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_off}{\cf1 :} {\b\cf6 not} {\cf5 off}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 item}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 last}{\cf1 :} {\b\cf6 like} {\cf5 item}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Item at last position}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 CHAIN}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 CHAIN}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_empty}{\cf1 :} {\b\cf6 not} {\cf5 is_empty}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 pos}{\cf1 :} {\cf4 CURSOR}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 pos} {\cf1 :=} {\cf5 cursor}{\line}
+{\tab}{\tab}{\tab}{\cf5 finish}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 item}{\line}
+{\tab}{\tab}{\tab}{\cf5 go_to}{\cf1  }{\cf1 (}{\cf5 pos}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 new_cursor}{\cf1 :} {\cf4 INDEXABLE_ITERATION_CURSOR} {\cf1 [}G{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Fresh cursor associated with current structure}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 READABLE_INDEXABLE}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf1 \{}{\cf4 READABLE_INDEXABLE_ITERATION_CURSOR} {\cf1 [}G{\cf1 ]}{\cf1 \}} {\b\cf6 Result}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 start}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ITERABLE}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_attached}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 retrieve_item_by_data} {\cf1 (}{\cf5 some_data}{\cf1 :} {\cf4 ANY}{\cf1 ;} {\cf5 should_compare_objects}{\cf1 :} {\cf4 BOOLEAN}{\cf1 )}{\cf1 :} {\b\cf6 detachable} G{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 Result}{\cf3  is first item in }{\cf5 Current}{\cf3  with data}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  matching }{\cf5 some_data}{\cf3 . Compare objects if}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 should_compare_objects}{\cf3  otherwise compare references.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_DYNAMIC_LIST}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 implementation}{\b\cf1 .}{\cf5 retrieve_item_by_data}{\cf1  }{\cf1 (}{\cf5 some_data}{\cf1 ,} {\cf5 should_compare_objects}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 EV_DYNAMIC_LIST}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_found_in_empty}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void} {\b\cf6 implies} {\b\cf6 not} {\cf5 is_empty}{\line}
+{\tab}{\tab}{\tab}{\cf1 index_not_changed}{\cf1 :} {\b\cf6 old} {\cf5 index} {\cf1 =} {\cf5 index}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 retrieve_items_by_data} {\cf1 (}{\cf5 some_data}{\cf1 :} {\cf4 ANY}{\cf1 ;} {\cf5 should_compare_objects}{\cf1 :} {\cf4 BOOLEAN}{\cf1 )}{\cf1 :} {\cf4 ARRAYED_LIST} {\cf1 [}G{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 Result}{\cf3  is all items in }{\cf5 Current}{\cf3  with data}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  matching }{\cf5 some_data}{\cf3 . Compare objects if}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 should_compare_objects}{\cf3  otherwise compare references.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_DYNAMIC_LIST}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 implementation}{\b\cf1 .}{\cf5 retrieve_items_by_data}{\cf1  }{\cf1 (}{\cf5 some_data}{\cf1 ,} {\cf5 should_compare_objects}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 EV_DYNAMIC_LIST}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_found_in_empty}{\cf1 :} {\b\cf6 not} {\b\cf6 Result}{\b\cf1 .}{\cf5 is_empty} {\b\cf6 implies} {\b\cf6 not} {\cf5 is_empty}{\line}
+{\tab}{\tab}{\tab}{\cf1 index_not_changed}{\cf1 :} {\b\cf6 old} {\cf5 index} {\cf1 =} {\cf5 index}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 sequential_has} {\cf1 (}{\cf5 v}{\cf1 :} {\b\cf6 like} {\cf5 item}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does structure include an occurrence of }{\cf5 v}{\cf3 ?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Reference or object equality,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  based on }{\cf5 object_comparison}{\cf3 .)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 LINEAR}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from } {\cf4 CONTAINER}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 True}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 start}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 off} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 search}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 not} {\cf5 exhausted}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 CONTAINER}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_found_in_empty}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\b\cf6 not} {\cf5 is_empty}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 sequential_occurrences} {\cf1 (}{\cf5 v}{\cf1 :} {\b\cf6 like} {\cf5 item}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of times }{\cf5 v}{\cf3  appears.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Reference or object equality,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  based on }{\cf5 object_comparison}{\cf3 .)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 LINEAR}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from } {\cf4 BAG}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 True}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 start}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 search}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 exhausted}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Result} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 forth}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 search}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 BAG}{\line}
+{\tab}{\tab}{\tab}{\cf1 non_negative_occurrences}{\cf1 :} {\b\cf6 Result} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 sequential_search} {\cf1 (}{\cf5 v}{\cf1 :} {\b\cf6 like} {\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Move to first position (at or after current}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  position) where }{\cf5 item}{\cf3  and }{\cf5 v}{\cf3  are equal.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Reference or object equality,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  based on }{\cf5 object_comparison}{\cf3 .)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  If no such position ensure that }{\cf5 exhausted}{\cf3  will be true.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 LINEAR}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 object_comparison} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 exhausted} {\b\cf6 or else} {\cf5 v} {\cf1 ~} {\cf5 item}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 forth}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 exhausted} {\b\cf6 or else} {\cf5 v} {\cf1 =} {\cf5 item}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 forth}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 LINEAR}{\line}
+{\tab}{\tab}{\tab}{\cf1 object_found}{\cf1 :} {\cf1 (}{\b\cf6 not} {\cf5 exhausted} {\b\cf6 and} {\cf5 object_comparison}{\cf1 )} {\b\cf6 implies} {\cf5 v} {\cf1 ~} {\cf5 item}{\line}
+{\tab}{\tab}{\tab}{\cf1 item_found}{\cf1 :} {\cf1 (}{\b\cf6 not} {\cf5 exhausted} {\b\cf6 and} {\b\cf6 not} {\cf5 object_comparison}{\cf1 )} {\b\cf6 implies} {\cf5 v} {\cf1 =} {\cf5 item}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_DYNAMIC_LIST_I}{\cf1 \}} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 sequential_index_of} {\cf1 (}{\cf5 v}{\cf1 :} {\b\cf6 like} {\cf5 item}{\cf1 ;} {\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Index of }{\cf5 i}{\cf3 -th occurrence of }{\cf5 v}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  0 if none.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Reference or object equality,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  based on }{\cf5 object_comparison}{\cf3 .)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 LINEAR}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 LINEAR}{\line}
+{\tab}{\tab}{\tab}{\cf1 positive_occurrences}{\cf1 :} {\cf5 i} {\cf1 >} 0{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 occur}{\cf1 ,} {\cf5 pos}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 object_comparison} {\b\cf6 and} {\cf5 v} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 start}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 pos} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 exhausted} {\b\cf6 or} {\cf1 (}{\cf5 occur} {\cf1 =} {\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 item} {\cf1 ~} {\cf5 v} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 occur} {\cf1 :=} {\cf5 occur} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 forth}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 pos} {\cf1 :=} {\cf5 pos} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 start}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 pos} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 exhausted} {\b\cf6 or} {\cf1 (}{\cf5 occur} {\cf1 =} {\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 item} {\cf1 =} {\cf5 v} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 occur} {\cf1 :=} {\cf5 occur} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 forth}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 pos} {\cf1 :=} {\cf5 pos} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 occur} {\cf1 =} {\cf5 i} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 pos} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 LINEAR}{\line}
+{\tab}{\tab}{\tab}{\cf1 non_negative_result}{\cf1 :} {\b\cf6 Result} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Measurement}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 count}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of items.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_DYNAMIC_LIST}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from } {\cf4 FINITE}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 True}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from } {\cf4 READABLE_INDEXABLE}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 True}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 implementation}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 FINITE}{\line}
+{\tab}{\tab}{\tab}{\cf1 count_non_negative}{\cf1 :} {\b\cf6 Result} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\b\cf6 ensure then} {\cf3 --} {\cf3 from }{\cf4 EV_DYNAMIC_LIST}{\line}
+{\tab}{\tab}{\tab}{\cf1 bridge_ok}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf5 implementation}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 index_set}{\cf1 :} {\cf4 INTEGER_INTERVAL}{\line}
+{\tab}{\tab}{\b\cf6 obsolete} "Use `lower' and `upper' instead. [2017-05-31]"{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Range of acceptable indexes.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 READABLE_INDEXABLE}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 Lower}{\cf1 ,} {\cf5 count}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 READABLE_INDEXABLE}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 empty_if_not_in_order}{\cf1 :} {\cf1 (}{\cf5 Lower} {\cf1 >} {\cf5 count}{\cf1 )} {\b\cf6 implies} {\b\cf6 Result}{\b\cf1 .}{\cf5 is_empty}{\line}
+{\tab}{\tab}{\tab}{\cf1 same_lower_if_not_empty}{\cf1 :} {\cf1 (}{\cf5 Lower} {\cf1 <=} {\cf5 count}{\cf1 )} {\b\cf6 implies} {\b\cf6 Result}{\b\cf1 .}{\cf5 lower} {\cf1 =} {\cf5 Lower}{\line}
+{\tab}{\tab}{\tab}{\cf1 same_upper_if_not_empty}{\cf1 :} {\cf1 (}{\cf5 Lower} {\cf1 <=} {\cf5 count}{\cf1 )} {\b\cf6 implies} {\b\cf6 Result}{\b\cf1 .}{\cf5 upper} {\cf1 =} {\cf5 count}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Lower}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 1}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Minimum index.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 CHAIN}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 occurrences} {\cf1 (}{\cf5 v}{\cf1 :} {\b\cf6 like} {\cf5 item}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of times }{\cf5 v}{\cf3  appears.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Reference or object equality,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  based on }{\cf5 object_comparison}{\cf3 .)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 CHAIN}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from } {\cf4 BAG}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 True}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from } {\cf4 LINEAR}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 True}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 pos}{\cf1 :} {\cf4 CURSOR}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 pos} {\cf1 :=} {\cf5 cursor}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 sequential_occurrences}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 go_to}{\cf1  }{\cf1 (}{\cf5 pos}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 BAG}{\line}
+{\tab}{\tab}{\tab}{\cf1 non_negative_occurrences}{\cf1 :} {\b\cf6 Result} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Comparison}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 deep_equal} {\cf1 (}{\cf5 a}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 ;} {\cf5 b}{\cf1 :} {\b\cf6 like} arg #1{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are }{\cf5 a}{\cf3  and }{\cf5 b}{\cf3  either both void}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  or attached to isomorphic object structures?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a} {\cf1 =} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 =} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 is_deep_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 shallow_implies_deep}{\cf1 :} {\cf5 standard_equal}{\cf1  }{\cf1 (}{\cf5 a}{\cf1 ,} {\cf5 b}{\cf1 )} {\b\cf6 implies} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\cf1 both_or_none_void}{\cf1 :} {\cf1 (}{\cf5 a} {\cf1 =} {\b\cf6 Void}{\cf1 )} {\b\cf6 implies} {\cf1 (}{\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf5 b} {\cf1 =} {\b\cf6 Void}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 same_type}{\cf1 :} {\cf1 (}{\b\cf6 Result} {\b\cf6 and} {\cf1 (}{\cf5 a} {\cf1 /=} {\b\cf6 Void}{\cf1 )}{\cf1 )} {\b\cf6 implies} {\cf1 (}{\cf5 b} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 same_type}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 symmetric}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 deep_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 ,} {\cf5 a}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 equal} {\cf1 (}{\cf5 a}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 ;} {\cf5 b}{\cf1 :} {\b\cf6 like} arg #1{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are }{\cf5 a}{\cf3  and }{\cf5 b}{\cf3  either both void or attached}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to objects considered equal?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a} {\cf1 =} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 =} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf5 a} {\cf1 =} {\b\cf6 Void} {\b\cf6 and} {\cf5 b} {\cf1 =} {\b\cf6 Void}{\cf1 )} {\b\cf6 or else} {\cf1 (}{\cf1 (}{\cf5 a} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and} {\cf5 b} {\cf1 /=} {\b\cf6 Void}{\cf1 )} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 is_deep_equal} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 EV_ITEM_LIST} {\cf1 [}G{\cf1 ]}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are }{\cf5 Current}{\cf3  and }{\cf5 other}{\cf3  attached to isomorphic object structures?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 shallow_implies_deep}{\cf1 :} {\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )} {\b\cf6 implies} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\cf1 same_type}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 same_type}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 symmetric}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 other}{\b\cf1 .}{\cf5 is_deep_equal}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_equal} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 EV_ITEM_LIST} {\cf1 [}G{\cf1 ]}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does }{\cf5 other}{\cf3  contain the same elements?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 LIST}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 Current} {\cf1 =} {\cf5 other} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 is_empty} {\cf1 =} {\cf5 other}{\b\cf1 .}{\cf5 is_empty}{\cf1 )} {\b\cf6 and} {\cf1 (}{\cf5 object_comparison} {\cf1 =} {\cf5 other}{\b\cf1 .}{\cf5 object_comparison}{\cf1 )} {\b\cf6 and} {\cf1 (}{\cf5 count} {\cf1 =} {\cf5 other}{\b\cf1 .}{\cf5 count}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 Result} {\b\cf6 and} {\b\cf6 not} {\cf5 is_empty} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 cursor} {\b\cf6 as} c1 {\b\cf6 and then} {\b\cf6 attached} {\cf5 other}{\b\cf1 .}{\cf5 cursor} {\b\cf6 as} c2 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 start}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 other}{\b\cf1 .}{\cf5 start}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 after} {\b\cf6 or} {\b\cf6 not} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 object_comparison} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 item} {\cf1 ~} {\cf5 other}{\b\cf1 .}{\cf5 item}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 item} {\cf1 =} {\cf5 other}{\b\cf1 .}{\cf5 item}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 forth}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 other}{\b\cf1 .}{\cf5 forth}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 go_to}{\cf1  }{\cf1 (}{\cf5 c1}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 other}{\b\cf1 .}{\cf5 go_to}{\cf1  }{\cf1 (}{\cf5 c2}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf1 cursors_exist}{\cf1 :} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 is_empty} {\b\cf6 and} {\cf5 other}{\b\cf1 .}{\cf5 is_empty} {\b\cf6 and} {\cf5 object_comparison} {\cf1 =} {\cf5 other}{\b\cf1 .}{\cf5 object_comparison} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 symmetric}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 other} {\cf1 ~} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\tab}{\cf1 consistent}{\cf1 :} {\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )} {\b\cf6 implies} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\b\cf6 ensure then} {\cf3 --} {\cf3 from }{\cf4 LIST}{\line}
+{\tab}{\tab}{\tab}{\cf1 indices_unchanged}{\cf1 :} {\cf5 index} {\cf1 =} {\b\cf6 old} {\cf5 index} {\b\cf6 and} {\cf5 other}{\b\cf1 .}{\cf5 index} {\cf1 =} {\b\cf6 old} {\cf5 other}{\b\cf1 .}{\cf5 index}{\line}
+{\tab}{\tab}{\tab}{\cf1 true_implies_same_size}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 count} {\cf1 =} {\cf5 other}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 standard_equal} {\cf1 (}{\cf5 a}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 ;} {\cf5 b}{\cf1 :} {\b\cf6 like} arg #1{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are }{\cf5 a}{\cf3  and }{\cf5 b}{\cf3  either both void or attached to}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  field-by-field identical objects of the same type?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Always uses default object comparison criterion.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a} {\cf1 =} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 =} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf5 a} {\cf1 =} {\b\cf6 Void} {\b\cf6 and} {\cf5 b} {\cf1 =} {\b\cf6 Void}{\cf1 )} {\b\cf6 or else} {\cf1 (}{\cf1 (}{\cf5 a} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and} {\cf5 b} {\cf1 /=} {\b\cf6 Void}{\cf1 )} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 standard_is_equal} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 EV_ITEM_LIST} {\cf1 [}G{\cf1 ]}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 other}{\cf3  attached to an object of the same type}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  as current object, and field-by-field identical to it?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 same_type}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 same_type}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 symmetric}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 other}{\b\cf1 .}{\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status report}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 after}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is there no valid cursor position to the right of cursor?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 LIST}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from } {\cf4 LINEAR}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 True}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 index} {\cf1 =} {\cf5 count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 before}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is there no valid cursor position to the left of cursor?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 LIST}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from } {\cf4 BILINEAR}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 True}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 index} {\cf1 =} 0{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 conforms_to} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 ANY}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does type of current object conform to type}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of }{\cf5 other}{\cf3  (as per Eiffel: The Language, chapter 13)?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 empty}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\b\cf6 obsolete} "ELKS 2000: Use `is_empty' instead. [2017-05-31]"{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is there no element?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 CONTAINER}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 is_empty}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 exhausted}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Has structure been completely explored?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 LINEAR}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 off}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 LINEAR}{\line}
+{\tab}{\tab}{\tab}{\cf1 exhausted_when_off}{\cf1 :} {\cf5 off} {\b\cf6 implies} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 extendible}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  May new items be added? (Answer: yes.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 DYNAMIC_CHAIN}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from } {\cf4 COLLECTION}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 True}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Full}{\cf1 :} {\cf4 BOOLEAN} {\cf1 =} {\b\cf6 False}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is structured filled to capacity? (Answer: no.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_DYNAMIC_LIST}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 has_identifier_name_set}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is a specific identifier name set?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_IDENTIFIABLE}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 internal_name} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 has_parent}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does identifiable has a parent?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_IDENTIFIABLE}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 not} {\cf5 is_destroyed} {\b\cf6 and then} {\cf5 parent} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_empty}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is structure empty?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 FINITE}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from } {\cf4 CONTAINER}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 True}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 count} {\cf1 =} 0{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_inserted} {\cf1 (}{\cf5 v}{\cf1 :} G{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Has }{\cf5 v}{\cf3  been inserted by the most recent insertion?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (By default, the value returned is equivalent to calling }{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 has (v)}{\cf3 . However, descendants might be able to provide more}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  efficient implementations.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 COLLECTION}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 has}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 isfirst}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is cursor at first position?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 CHAIN}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 not} {\cf5 is_empty} {\b\cf6 and} {\cf1 (}{\cf5 index} {\cf1 =} 1{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 CHAIN}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_position}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\b\cf6 not} {\cf5 is_empty}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 islast}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is cursor at last position?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 CHAIN}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 not} {\cf5 is_empty} {\b\cf6 and} {\cf1 (}{\cf5 index} {\cf1 =} {\cf5 count}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 CHAIN}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_position}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\b\cf6 not} {\cf5 is_empty}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 object_comparison}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Must search operations use }{\cf5 equal}{\cf3  rather than }{\cf5 =}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  for comparing references? (Default: no, use }{\cf5 =}{\cf3 .)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 CONTAINER}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 off}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is there no current item?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 CHAIN}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from } {\cf4 TRAVERSABLE}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 True}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 index} {\cf1 =} 0{\cf1 )} {\b\cf6 or} {\cf1 (}{\cf5 index} {\cf1 =} {\cf5 count} {\cf1 +} 1{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 parent}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_CONTAINABLE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  The parent that }{\cf5 Current}{\cf3  is contained within, if any.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_CONTAINABLE}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 EV_IDENTIFIABLE}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 EV_IDENTIFIABLE}{\line}
+{\tab}{\tab}{\tab}{\cf1 correct}{\cf1 :} {\cf5 has_parent} {\b\cf6 implies} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 correct}{\cf1 :} {\b\cf6 not} {\cf5 has_parent} {\b\cf6 implies} {\b\cf6 Result} {\cf1 =} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 prunable}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  May items be removed? (Answer: yes.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 DYNAMIC_CHAIN}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from } {\cf4 COLLECTION}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 True}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 readable}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is there a current item that may be read?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 SEQUENCE}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from } {\cf4 ACTIVE}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 True}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 not} {\cf5 off}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 replaceable}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Can current item be replaced?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ACTIVE}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 same_type} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 ANY}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is type of current object identical to type of }{\cf5 other}{\cf3 ?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf5 conforms_to}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )} {\b\cf6 and} {\cf5 other}{\b\cf1 .}{\cf5 conforms_to}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 valid_cursor} {\cf1 (}{\cf5 p}{\cf1 :} {\cf4 CURSOR}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Can the cursor be moved to position }{\cf5 p}{\cf3 ?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  This is True if }{\cf5 p}{\cf3  conforms to EV_DYNAMIC_LIST_CURSOR and}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  if it points to an item, }{\cf5 Current}{\cf3  must have it.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_DYNAMIC_LIST}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from } {\cf4 CURSOR_STRUCTURE}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 True}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 implementation}{\b\cf1 .}{\cf5 valid_cursor}{\cf1  }{\cf1 (}{\cf5 p}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure then} {\cf3 --} {\cf3 from }{\cf4 EV_DYNAMIC_LIST}{\line}
+{\tab}{\tab}{\tab}{\cf1 bridge_ok}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf5 implementation}{\b\cf1 .}{\cf5 valid_cursor}{\cf1  }{\cf1 (}{\cf5 p}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 valid_cursor_index} {\cf1 (}{\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 i}{\cf3  correctly bounded for cursor movement?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 CHAIN}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 i} {\cf1 >=} 0{\cf1 )} {\b\cf6 and} {\cf1 (}{\cf5 i} {\cf1 <=} {\cf5 count} {\cf1 +} 1{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 CHAIN}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_cursor_index_definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf1 (}{\cf5 i} {\cf1 >=} 0{\cf1 )} {\b\cf6 and} {\cf1 (}{\cf5 i} {\cf1 <=} {\cf5 count} {\cf1 +} 1{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 valid_index} {\cf1 (}{\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 i}{\cf3  within allowable bounds?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 CHAIN}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from } {\cf4 READABLE_INDEXABLE}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 True}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from } {\cf4 TABLE}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 True}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 i} {\cf1 >=} 1{\cf1 )} {\b\cf6 and} {\cf1 (}{\cf5 i} {\cf1 <=} {\cf5 count}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 READABLE_INDEXABLE}{\line}
+{\tab}{\tab}{\tab}{\cf1 only_if_in_index_set}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf1 (}{\cf5 Lower} {\cf1 <=} {\cf5 i} {\b\cf6 and} {\cf5 i} {\cf1 <=} {\cf5 count}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure then} {\cf3 --} {\cf3 from }{\cf4 CHAIN}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_index_definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf1 (}{\cf5 i} {\cf1 >=} 1{\cf1 )} {\b\cf6 and} {\cf1 (}{\cf5 i} {\cf1 <=} {\cf5 count}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 writable}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is there a current item that may be modified?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 SEQUENCE}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from } {\cf4 ACTIVE}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 True}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 not} {\cf5 off}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status setting}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 compare_objects}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Ensure that future search operations will use }{\cf5 equal}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  rather than }{\cf5 =}{\cf3  for comparing references.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 CONTAINER}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 CONTAINER}{\line}
+{\tab}{\tab}{\tab}{\cf1 changeable_comparison_criterion}{\cf1 :} {\cf5 Changeable_comparison_criterion}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 object_comparison} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 CONTAINER}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 object_comparison}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 compare_references}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Ensure that future search operations will use }{\cf5 =}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  rather than }{\cf5 equal}{\cf3  for comparing references.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 CONTAINER}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 CONTAINER}{\line}
+{\tab}{\tab}{\tab}{\cf1 changeable_comparison_criterion}{\cf1 :} {\cf5 Changeable_comparison_criterion}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 object_comparison} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 CONTAINER}{\line}
+{\tab}{\tab}{\tab}{\cf1 reference_comparison}{\cf1 :} {\b\cf6 not} {\cf5 object_comparison}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Cursor movement}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 back}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Move to previous position.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_DYNAMIC_LIST}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 BILINEAR}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_before}{\cf1 :} {\b\cf6 not} {\cf5 before}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 back}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 finish}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Move cursor to last position.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (No effect if empty)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 CHAIN}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from } {\cf4 LINEAR}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 True}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 is_empty} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 go_i_th}{\cf1  }{\cf1 (}{\cf5 count}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure then} {\cf3 --} {\cf3 from }{\cf4 CHAIN}{\line}
+{\tab}{\tab}{\tab}{\cf1 at_last}{\cf1 :} {\b\cf6 not} {\cf5 is_empty} {\b\cf6 implies} {\cf5 islast}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 forth}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Move cursor to next position.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_DYNAMIC_LIST}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 LINEAR}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_after}{\cf1 :} {\b\cf6 not} {\cf5 after}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 forth}{\line}
+{\tab}{\tab}{\b\cf6 ensure then} {\cf3 --} {\cf3 from }{\cf4 LIST}{\line}
+{\tab}{\tab}{\tab}{\cf1 moved_forth}{\cf1 :} {\cf5 index} {\cf1 =} {\b\cf6 old} {\cf5 index} {\cf1 +} 1{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 go_i_th} {\cf1 (}{\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Move cursor to }{\cf5 i}{\cf3 -th position.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_DYNAMIC_LIST}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 CHAIN}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_cursor_index}{\cf1 :} {\cf5 valid_cursor_index}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 go_i_th}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 CHAIN}{\line}
+{\tab}{\tab}{\tab}{\cf1 position_expected}{\cf1 :} {\cf5 index} {\cf1 =} {\cf5 i}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 go_to} {\cf1 (}{\cf5 p}{\cf1 :} {\cf4 CURSOR}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Move cursor to position }{\cf5 p}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_DYNAMIC_LIST}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 CURSOR_STRUCTURE}{\line}
+{\tab}{\tab}{\tab}{\cf1 cursor_position_valid}{\cf1 :} {\cf5 valid_cursor}{\cf1  }{\cf1 (}{\cf5 p}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 go_to}{\cf1  }{\cf1 (}{\cf5 p}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 move} {\cf1 (}{\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Move cursor }{\cf5 i}{\cf3  positions.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_DYNAMIC_LIST}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 move}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 CHAIN}{\line}
+{\tab}{\tab}{\tab}{\cf1 too_far_right}{\cf1 :} {\cf1 (}{\b\cf6 old} {\cf5 index} {\cf1 +} {\cf5 i} {\cf1 >} {\cf5 count}{\cf1 )} {\b\cf6 implies} {\cf5 exhausted}{\line}
+{\tab}{\tab}{\tab}{\cf1 too_far_left}{\cf1 :} {\cf1 (}{\b\cf6 old} {\cf5 index} {\cf1 +} {\cf5 i} {\cf1 <} 1{\cf1 )} {\b\cf6 implies} {\cf5 exhausted}{\line}
+{\tab}{\tab}{\tab}{\cf1 expected_index}{\cf1 :} {\cf1 (}{\b\cf6 not} {\cf5 exhausted}{\cf1 )} {\b\cf6 implies} {\cf1 (}{\cf5 index} {\cf1 =} {\b\cf6 old} {\cf5 index} {\cf1 +} {\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 search} {\cf1 (}{\cf5 v}{\cf1 :} {\b\cf6 like} {\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Move to first position (at or after current}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  position) where }{\cf5 item}{\cf3  and }{\cf5 v}{\cf3  are equal.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  If structure does not include }{\cf5 v}{\cf3  ensure that}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 exhausted}{\cf3  will be true.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Reference or object equality,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  based on }{\cf5 object_comparison}{\cf3 .)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 BILINEAR}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 before} {\b\cf6 and} {\b\cf6 not} {\cf5 is_empty} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 forth}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 sequential_search}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 LINEAR}{\line}
+{\tab}{\tab}{\tab}{\cf1 object_found}{\cf1 :} {\cf1 (}{\b\cf6 not} {\cf5 exhausted} {\b\cf6 and} {\cf5 object_comparison}{\cf1 )} {\b\cf6 implies} {\cf5 v} {\cf1 ~} {\cf5 item}{\line}
+{\tab}{\tab}{\tab}{\cf1 item_found}{\cf1 :} {\cf1 (}{\b\cf6 not} {\cf5 exhausted} {\b\cf6 and} {\b\cf6 not} {\cf5 object_comparison}{\cf1 )} {\b\cf6 implies} {\cf5 v} {\cf1 =} {\cf5 item}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 start}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Move cursor to first position.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_DYNAMIC_LIST}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from } {\cf4 TRAVERSABLE}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 True}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 start}{\line}
+{\tab}{\tab}{\b\cf6 ensure then} {\cf3 --} {\cf3 from }{\cf4 CHAIN}{\line}
+{\tab}{\tab}{\tab}{\cf1 at_first}{\cf1 :} {\b\cf6 not} {\cf5 is_empty} {\b\cf6 implies} {\cf5 isfirst}{\line}
+{\tab}{\tab}{\b\cf6 ensure then} {\cf3 --} {\cf3 from }{\cf4 EV_DYNAMIC_LIST}{\line}
+{\tab}{\tab}{\tab}{\cf1 empty_implies_after}{\cf1 :} {\cf5 is_empty} {\b\cf6 implies} {\cf5 after}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Element change}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 append} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 SEQUENCE} {\cf1 [}{\b\cf6 like} {\cf5 item}{\cf1 ]}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Append a copy of }{\cf5 s}{\cf3 . Do not move cursor.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_DYNAMIC_LIST}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 EV_DYNAMIC_LIST}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\tab}{\cf1 extendible}{\cf1 :} {\cf5 extendible}{\line}
+{\tab}{\tab}{\tab}{\cf1 sequence_not_void}{\cf1 :} {\cf5 s} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 sequence_not_current}{\cf1 :} {\cf5 s} {\cf1 /=} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_parented}{\cf1 :} {\b\cf6 not} {\cf5 s}{\b\cf1 .}{\cf5 there_exists}{\cf1  }{\cf1 (}{\b\cf6 agent} {\cf1 (}{\cf5 v}{\cf1 :} {\b\cf6 like} {\cf5 item}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 v} {\cf1 /=} {\b\cf6 Void} and then {\cf5 v}{\b\cf1 .}{\cf5 parent} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 EV_DYNAMIC_LIST}{\line}
+{\tab}{\tab}{\tab}{\cf1 count_increased}{\cf1 :} {\b\cf6 old} {\cf5 count} {\cf1 +} {\cf5 s}{\b\cf1 .}{\cf5 count} {\cf1 =} {\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\cf1 cursor_not_moved}{\cf1 :} {\cf1 (}{\cf5 index} {\cf1 =} {\b\cf6 old} {\cf5 index}{\cf1 )} {\b\cf6 or} {\cf1 (}{\cf5 after} {\b\cf6 and} {\b\cf6 old} {\cf5 after}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 extend} {\cf1 (}{\cf5 v}{\cf1 :} {\b\cf6 like} {\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Add }{\cf5 v}{\cf3  to end. Do not move cursor.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 EV_DYNAMIC_LIST}{\cf3  as synonym of }{\cf5 force}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_DYNAMIC_LIST}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 EV_DYNAMIC_LIST}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\tab}{\cf1 extendible}{\cf1 :} {\cf5 extendible}{\line}
+{\tab}{\tab}{\tab}{\cf1 v_not_void}{\cf1 :} {\cf5 v} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 v_parent_void}{\cf1 :} {\cf5 v}{\b\cf1 .}{\cf5 parent} {\cf1 =} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 v_not_current}{\cf1 :} {\b\cf6 not} {\cf5 same}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 v_not_parent_of_current}{\cf1 :} {\b\cf6 not} {\cf5 is_parent_recursive}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 extend}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 EV_DYNAMIC_LIST}{\line}
+{\tab}{\tab}{\tab}{\cf1 parent_is_current}{\cf1 :} {\cf5 v}{\b\cf1 .}{\cf5 parent} {\cf1 =} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\tab}{\cf1 v_is_last}{\cf1 :} {\cf5 v} {\cf1 =} {\cf5 last}{\line}
+{\tab}{\tab}{\tab}{\cf1 count_increased}{\cf1 :} {\cf5 count} {\cf1 =} {\b\cf6 old} {\cf5 count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 cursor_not_moved}{\cf1 :} {\cf1 (}{\cf5 index} {\cf1 =} {\b\cf6 old} {\cf5 index}{\cf1 )} {\b\cf6 or} {\cf1 (}{\cf5 after} {\b\cf6 and} {\b\cf6 old} {\cf5 after}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 fill} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 CONTAINER} {\cf1 [}G{\cf1 ]}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Fill with as many items of }{\cf5 other}{\cf3  as possible.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  The representations of }{\cf5 other}{\cf3  and current structure}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  need not be the same.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 CHAIN}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 COLLECTION}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 extendible}{\cf1 :} {\cf5 extendible}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 lin_rep}{\cf1 :} {\cf4 LINEAR} {\cf1 [}G{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_cursor}{\cf1 :} {\cf4 CURSOR}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 lin_rep} {\cf1 :=} {\cf5 other}{\b\cf1 .}{\cf5 linear_representation}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_cursor} {\cf1 :=} {\cf5 cursor}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 lin_rep}{\b\cf1 .}{\cf5 start}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 not} {\cf5 extendible} {\b\cf6 or else} {\cf5 lin_rep}{\b\cf1 .}{\cf5 off}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 dl_extend}{\cf1  }{\cf1 (}{\cf5 lin_rep}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 finish}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 lin_rep}{\b\cf1 .}{\cf5 forth}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 go_to}{\cf1  }{\cf1 (}{\cf5 l_cursor}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 force} {\cf1 (}{\cf5 v}{\cf1 :} {\b\cf6 like} {\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Add }{\cf5 v}{\cf3  to end. Do not move cursor.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 EV_DYNAMIC_LIST}{\cf3  as synonym of }{\cf5 extend}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_DYNAMIC_LIST}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 EV_DYNAMIC_LIST}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\tab}{\cf1 extendible}{\cf1 :} {\cf5 extendible}{\line}
+{\tab}{\tab}{\tab}{\cf1 v_not_void}{\cf1 :} {\cf5 v} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 v_parent_void}{\cf1 :} {\cf5 v}{\b\cf1 .}{\cf5 parent} {\cf1 =} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 v_not_current}{\cf1 :} {\b\cf6 not} {\cf5 same}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 v_not_parent_of_current}{\cf1 :} {\b\cf6 not} {\cf5 is_parent_recursive}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 extend}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 EV_DYNAMIC_LIST}{\line}
+{\tab}{\tab}{\tab}{\cf1 parent_is_current}{\cf1 :} {\cf5 v}{\b\cf1 .}{\cf5 parent} {\cf1 =} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\tab}{\cf1 v_is_last}{\cf1 :} {\cf5 v} {\cf1 =} {\cf5 last}{\line}
+{\tab}{\tab}{\tab}{\cf1 count_increased}{\cf1 :} {\cf5 count} {\cf1 =} {\b\cf6 old} {\cf5 count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 cursor_not_moved}{\cf1 :} {\cf1 (}{\cf5 index} {\cf1 =} {\b\cf6 old} {\cf5 index}{\cf1 )} {\b\cf6 or} {\cf1 (}{\cf5 after} {\b\cf6 and} {\b\cf6 old} {\cf5 after}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 dl_force} {\cf1 (}{\cf5 v}{\cf1 :} {\b\cf6 like} {\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Add }{\cf5 v}{\cf3  to end.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 SEQUENCE}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 SEQUENCE}{\line}
+{\tab}{\tab}{\tab}{\cf1 extendible}{\cf1 :} {\cf5 extendible}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 dl_extend}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure then} {\cf3 --} {\cf3 from }{\cf4 SEQUENCE}{\line}
+{\tab}{\tab}{\tab}{\cf1 new_count}{\cf1 :} {\cf5 count} {\cf1 =} {\b\cf6 old} {\cf5 count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 item_inserted}{\cf1 :} {\cf5 has}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 merge_left} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 EV_ITEM_LIST} {\cf1 [}G{\cf1 ]}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Merge }{\cf5 other}{\cf3  into current structure before cursor}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  position. Do not move cursor. Empty }{\cf5 other}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_DYNAMIC_LIST}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 DYNAMIC_CHAIN}{\line}
+{\tab}{\tab}{\tab}{\cf1 extendible}{\cf1 :} {\cf5 extendible}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_before}{\cf1 :} {\b\cf6 not} {\cf5 before}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_exists}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_current}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 merge_left}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 DYNAMIC_CHAIN}{\line}
+{\tab}{\tab}{\tab}{\cf1 new_count}{\cf1 :} {\cf5 count} {\cf1 =} {\b\cf6 old} {\cf5 count} {\cf1 +} {\b\cf6 old} {\cf5 other}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\cf1 new_index}{\cf1 :} {\cf5 index} {\cf1 =} {\b\cf6 old} {\cf5 index} {\cf1 +} {\b\cf6 old} {\cf5 other}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_is_empty}{\cf1 :} {\cf5 other}{\b\cf1 .}{\cf5 is_empty}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 merge_right} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 EV_ITEM_LIST} {\cf1 [}G{\cf1 ]}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Merge }{\cf5 other}{\cf3  into current structure after cursor}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  position. Do not move cursor. Empty }{\cf5 other}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_DYNAMIC_LIST}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 DYNAMIC_CHAIN}{\line}
+{\tab}{\tab}{\tab}{\cf1 extendible}{\cf1 :} {\cf5 extendible}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_after}{\cf1 :} {\b\cf6 not} {\cf5 after}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_exists}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_current}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 merge_right}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 DYNAMIC_CHAIN}{\line}
+{\tab}{\tab}{\tab}{\cf1 new_count}{\cf1 :} {\cf5 count} {\cf1 =} {\b\cf6 old} {\cf5 count} {\cf1 +} {\b\cf6 old} {\cf5 other}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\cf1 same_index}{\cf1 :} {\cf5 index} {\cf1 =} {\b\cf6 old} {\cf5 index}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_is_empty}{\cf1 :} {\cf5 other}{\b\cf1 .}{\cf5 is_empty}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 put} {\cf1 (}{\cf5 v}{\cf1 :} {\b\cf6 like} {\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Replace current item by }{\cf5 v}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Synonym for }{\cf5 replace}{\cf3 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 CHAIN}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 CHAIN}{\line}
+{\tab}{\tab}{\tab}{\cf1 writeable}{\cf1 :} {\cf5 writable}{\line}
+{\tab}{\tab}{\tab}{\cf1 replaceable}{\cf1 :} {\cf5 replaceable}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 dl_replace}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 CHAIN}{\line}
+{\tab}{\tab}{\tab}{\cf1 same_count}{\cf1 :} {\cf5 count} {\cf1 =} {\b\cf6 old} {\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_inserted}{\cf1 :} {\cf5 is_inserted}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 sequence_put} {\cf1 (}{\cf5 v}{\cf1 :} {\b\cf6 like} {\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Add }{\cf5 v}{\cf3  to end.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 SEQUENCE}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 COLLECTION}{\line}
+{\tab}{\tab}{\tab}{\cf1 extendible}{\cf1 :} {\cf5 extendible}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 dl_extend}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 COLLECTION}{\line}
+{\tab}{\tab}{\tab}{\cf1 item_inserted}{\cf1 :} {\cf5 is_inserted}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure then} {\cf3 --} {\cf3 from }{\cf4 SEQUENCE}{\line}
+{\tab}{\tab}{\tab}{\cf1 new_count}{\cf1 :} {\cf5 count} {\cf1 =} {\b\cf6 old} {\cf5 count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 put_front} {\cf1 (}{\cf5 v}{\cf1 :} {\b\cf6 like} {\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Add }{\cf5 v}{\cf3  at beginning. Do not move cursor.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_DYNAMIC_LIST}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 EV_DYNAMIC_LIST}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\tab}{\cf1 extendible}{\cf1 :} {\cf5 extendible}{\line}
+{\tab}{\tab}{\tab}{\cf1 v_not_void}{\cf1 :} {\cf5 v} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 v_parent_void}{\cf1 :} {\cf5 v}{\b\cf1 .}{\cf5 parent} {\cf1 =} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 v_not_current}{\cf1 :} {\b\cf6 not} {\cf5 same}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 v_not_parent_of_current}{\cf1 :} {\b\cf6 not} {\cf5 is_parent_recursive}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 put_front}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 EV_DYNAMIC_LIST}{\line}
+{\tab}{\tab}{\tab}{\cf1 parent_is_current}{\cf1 :} {\cf5 v}{\b\cf1 .}{\cf5 parent} {\cf1 =} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\tab}{\cf1 v_is_first}{\cf1 :} {\cf5 v} {\cf1 =} {\cf5 first}{\line}
+{\tab}{\tab}{\tab}{\cf1 count_increased}{\cf1 :} {\cf5 count} {\cf1 =} {\b\cf6 old} {\cf5 count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 cursor_not_moved}{\cf1 :} {\cf1 (}{\cf5 index} {\cf1 =} {\b\cf6 old} {\cf5 index} {\cf1 +} 1{\cf1 )} {\b\cf6 or} {\cf1 (}{\cf5 before} {\b\cf6 and} {\b\cf6 old} {\cf5 before}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 put_i_th} {\cf1 (}{\cf5 v}{\cf1 :} {\b\cf6 like} {\cf5 item}{\cf1 ;} {\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Replace item at }{\cf5 i}{\cf3 -th position by }{\cf5 v}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_DYNAMIC_LIST}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 EV_DYNAMIC_LIST}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_index}{\cf1 :} {\cf5 i} {\cf1 >} 0 {\b\cf6 and} {\cf5 i} {\cf1 <=} {\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\cf1 v_not_void}{\cf1 :} {\cf5 v} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 v_parent_void}{\cf1 :} {\cf5 v}{\b\cf1 .}{\cf5 parent} {\cf1 =} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 v_not_current}{\cf1 :} {\b\cf6 not} {\cf5 same}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 v_not_parent_of_current}{\cf1 :} {\b\cf6 not} {\cf5 is_parent_recursive}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 put_i_th}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 ,} {\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 EV_DYNAMIC_LIST}{\line}
+{\tab}{\tab}{\tab}{\cf1 parent_is_current}{\cf1 :} {\cf5 v}{\b\cf1 .}{\cf5 parent} {\cf1 =} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\tab}{\cf1 item_replaced}{\cf1 :} {\cf5 v} {\cf1 =} {\cf5 i_th}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_has_old_item}{\cf1 :} {\b\cf6 not} {\cf5 has}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 i_th}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 old_item_parent_void}{\cf1 :} {\cf1 (}{\b\cf6 old} {\cf5 i_th}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\cf1 )}{\b\cf1 .}{\cf5 parent} {\cf1 =} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 count_same}{\cf1 :} {\cf5 count} {\cf1 =} {\b\cf6 old} {\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\cf1 cursor_not_moved}{\cf1 :} {\cf5 index} {\cf1 =} {\b\cf6 old} {\cf5 index}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 put_left} {\cf1 (}{\cf5 v}{\cf1 :} {\b\cf6 like} {\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Add }{\cf5 v}{\cf3  to the left of cursor position. Do not move cursor.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_DYNAMIC_LIST}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 EV_DYNAMIC_LIST}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\tab}{\cf1 extendible}{\cf1 :} {\cf5 extendible}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_before}{\cf1 :} {\b\cf6 not} {\cf5 before}{\line}
+{\tab}{\tab}{\tab}{\cf1 v_not_void}{\cf1 :} {\cf5 v} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 v_parent_void}{\cf1 :} {\cf5 v}{\b\cf1 .}{\cf5 parent} {\cf1 =} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 v_not_current}{\cf1 :} {\b\cf6 not} {\cf5 same}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 v_not_parent_of_current}{\cf1 :} {\b\cf6 not} {\cf5 is_parent_recursive}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 put_left}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 EV_DYNAMIC_LIST}{\line}
+{\tab}{\tab}{\tab}{\cf1 parent_is_current}{\cf1 :} {\cf5 v}{\b\cf1 .}{\cf5 parent} {\cf1 =} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\tab}{\cf1 v_at_index_plus_one}{\cf1 :} {\cf5 v} {\cf1 =} {\cf5 i_th}{\cf1  }{\cf1 (}{\cf5 index} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 count_increased}{\cf1 :} {\cf5 count} {\cf1 =} {\b\cf6 old} {\cf5 count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 cursor_not_moved}{\cf1 :} {\cf5 index} {\cf1 =} {\b\cf6 old} {\cf5 index} {\cf1 +} 1{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 put_right} {\cf1 (}{\cf5 v}{\cf1 :} {\b\cf6 like} {\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Add }{\cf5 v}{\cf3  to right of cursor position. Do not move cursor.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_DYNAMIC_LIST}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 EV_DYNAMIC_LIST}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\tab}{\cf1 extendible}{\cf1 :} {\cf5 extendible}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_after}{\cf1 :} {\b\cf6 not} {\cf5 after}{\line}
+{\tab}{\tab}{\tab}{\cf1 v_not_void}{\cf1 :} {\cf5 v} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 v_parent_void}{\cf1 :} {\cf5 v}{\b\cf1 .}{\cf5 parent} {\cf1 =} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 v_not_current}{\cf1 :} {\b\cf6 not} {\cf5 same}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 v_not_parent_of_current}{\cf1 :} {\b\cf6 not} {\cf5 is_parent_recursive}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 put_right}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 EV_DYNAMIC_LIST}{\line}
+{\tab}{\tab}{\tab}{\cf1 parent_is_current}{\cf1 :} {\cf5 v}{\b\cf1 .}{\cf5 parent} {\cf1 =} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\tab}{\cf1 v_at_index_plus_one}{\cf1 :} {\cf5 v} {\cf1 =} {\cf5 i_th}{\cf1  }{\cf1 (}{\cf5 index} {\cf1 +} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 count_increased}{\cf1 :} {\cf5 count} {\cf1 =} {\b\cf6 old} {\cf5 count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 cursor_not_moved}{\cf1 :} {\cf5 index} {\cf1 =} {\b\cf6 old} {\cf5 index}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 replace} {\cf1 (}{\cf5 v}{\cf1 :} {\b\cf6 like} {\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Replace current item by }{\cf5 v}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_DYNAMIC_LIST}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 EV_DYNAMIC_LIST}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\tab}{\cf1 writable}{\cf1 :} {\cf5 writable}{\line}
+{\tab}{\tab}{\tab}{\cf1 v_not_void}{\cf1 :} {\cf5 v} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 v_parent_void}{\cf1 :} {\cf5 v}{\b\cf1 .}{\cf5 parent} {\cf1 =} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 v_not_current}{\cf1 :} {\b\cf6 not} {\cf5 same}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 v_not_parent_of_current}{\cf1 :} {\b\cf6 not} {\cf5 is_parent_recursive}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 replace}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 EV_DYNAMIC_LIST}{\line}
+{\tab}{\tab}{\tab}{\cf1 parent_is_current}{\cf1 :} {\cf5 v}{\b\cf1 .}{\cf5 parent} {\cf1 =} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\tab}{\cf1 item_replaced}{\cf1 :} {\cf5 v} {\cf1 =} {\cf5 item}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_has_old_item}{\cf1 :} {\b\cf6 not} {\cf5 has}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 old_item_parent_void}{\cf1 :} {\cf1 (}{\b\cf6 old} {\cf5 item}{\cf1 )}{\b\cf1 .}{\cf5 parent} {\cf1 =} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 count_same}{\cf1 :} {\cf5 count} {\cf1 =} {\b\cf6 old} {\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\cf1 cursor_not_moved}{\cf1 :} {\cf5 index} {\cf1 =} {\b\cf6 old} {\cf5 index}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_data} {\cf1 (}{\cf5 some_data}{\cf1 :} {\b\cf6 like} {\cf5 data}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Assign }{\cf5 some_data}{\cf3  to }{\cf5 data}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 EV_ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 data} {\cf1 :=} {\cf5 some_data}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 EV_ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 data_assigned}{\cf1 :} {\cf5 data} {\cf1 =} {\cf5 some_data}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_identifier_name} {\cf1 (}{\cf5 a_name}{\cf1 :} {\cf4 READABLE_STRING_GENERAL}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 identifier_name}{\cf3  to }{\cf5 a_name}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_IDENTIFIABLE}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 EV_IDENTIFIABLE}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_name_not_void}{\cf1 :} {\cf5 a_name} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_name_not_empty}{\cf1 :} {\b\cf6 not} {\cf5 a_name}{\b\cf1 .}{\cf5 is_empty}{\line}
+{\tab}{\tab}{\tab}{\cf1 no_period_in_name}{\cf1 :} {\b\cf6 not} {\cf5 a_name}{\b\cf1 .}{\cf5 has}{\cf1  }{\cf1 (}'.'{\b\cf1 .}{\cf5 to_character_32}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 internal_name}{\b\cf1 .}{\cf5 make_from_string_general}{\cf1  }{\cf1 (}{\cf5 a_name}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 EV_IDENTIFIABLE}{\line}
+{\tab}{\tab}{\tab}{\cf1 identifier_name_set}{\cf1 :} {\cf5 identifier_name}{\b\cf1 .}{\cf5 same_string_general}{\cf1  }{\cf1 (}{\cf5 a_name}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 swap} {\cf1 (}{\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Exchange_item at }{\cf5 i}{\cf3 -th position with item}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  at cursor position.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_DYNAMIC_LIST}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 CHAIN}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_off}{\cf1 :} {\b\cf6 not} {\cf5 off}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_index}{\cf1 :} {\cf5 valid_index}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 old_item}{\cf1 ,} {\cf5 new_item}{\cf1 :} {\b\cf6 like} {\cf5 item}{\line}
+{\tab}{\tab}{\tab}{\cf5 old_index}{\cf1 ,} {\cf5 old_index_adjustment}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 i} {\cf1 <} {\cf5 index} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 old_index_adjustment} {\cf1 :=} -1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 old_index} {\cf1 :=} {\cf5 index}{\line}
+{\tab}{\tab}{\tab}{\cf5 go_i_th}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 new_item} {\cf1 :=} {\cf5 item}{\line}
+{\tab}{\tab}{\tab}{\cf5 remove}{\line}
+{\tab}{\tab}{\tab}{\cf5 go_i_th}{\cf1  }{\cf1 (}{\cf5 old_index} {\cf1 +} {\cf5 old_index_adjustment}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 old_item} {\cf1 :=} {\cf5 item}{\line}
+{\tab}{\tab}{\tab}{\cf5 remove}{\line}
+{\tab}{\tab}{\tab}{\cf5 put_left}{\cf1  }{\cf1 (}{\cf5 new_item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 go_i_th}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 put_left}{\cf1  }{\cf1 (}{\cf5 old_item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 go_i_th}{\cf1  }{\cf1 (}{\cf5 old_index}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 CHAIN}{\line}
+{\tab}{\tab}{\tab}{\cf1 swapped_to_item}{\cf1 :} {\cf5 item} {\cf1 =} {\b\cf6 old} {\cf5 i_th}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 swapped_from_item}{\cf1 :} {\cf5 i_th}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )} {\cf1 =} {\b\cf6 old} {\cf5 item}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Removal}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 prune} {\cf1 (}{\cf5 v}{\cf1 :} {\b\cf6 like} {\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Remove }{\cf5 v}{\cf3  if present. Do not move cursor, except if}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  cursor was on }{\cf5 v}{\cf3 , move to right neighbor.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_DYNAMIC_LIST}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 prune}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure then} {\cf3 --} {\cf3 from }{\cf4 EV_DYNAMIC_LIST}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_has_v}{\cf1 :} {\b\cf6 not} {\cf5 has}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 had_item_implies_parent_void}{\cf1 :} {\b\cf6 old} {\cf5 has}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )} {\b\cf6 implies} {\cf1 (}{\cf5 v} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\cf5 v}{\b\cf1 .}{\cf5 parent} {\cf1 =} {\b\cf6 Void}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 had_item_implies_count_decreased}{\cf1 :} {\b\cf6 old} {\cf5 has}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )} {\b\cf6 implies} {\cf5 count} {\cf1 =} {\b\cf6 old} {\cf5 count} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 had_item_and_was_after_implies_index_decreased}{\cf1 :} {\cf1 (}{\b\cf6 old} {\cf5 after} {\b\cf6 and} {\b\cf6 old} {\cf5 has}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\cf1 )} {\b\cf6 implies} {\cf5 index} {\cf1 =} {\b\cf6 old} {\cf5 index} {\cf1 -} 1{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 prune_all} {\cf1 (}{\cf5 v}{\cf1 :} {\b\cf6 like} {\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Remove all occurrences of }{\cf5 v}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Reference or object equality,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  based on }{\cf5 object_comparison}{\cf3 .)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Leave structure }{\cf5 exhausted}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 DYNAMIC_CHAIN}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 COLLECTION}{\line}
+{\tab}{\tab}{\tab}{\cf1 prunable}{\cf1 :} {\cf5 prunable}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 start}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 search}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 exhausted}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 remove}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 search}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 COLLECTION}{\line}
+{\tab}{\tab}{\tab}{\cf1 no_more_occurrences}{\cf1 :} {\b\cf6 not} {\cf5 has}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure then} {\cf3 --} {\cf3 from }{\cf4 DYNAMIC_CHAIN}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_exhausted}{\cf1 :} {\cf5 exhausted}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 remove}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Remove current item. Move cursor to right neighbor.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (or }{\cf5 after}{\cf3  if no right neighbor).}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_DYNAMIC_LIST}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ACTIVE}{\line}
+{\tab}{\tab}{\tab}{\cf1 prunable}{\cf1 :} {\cf5 prunable}{\line}
+{\tab}{\tab}{\tab}{\cf1 writable}{\cf1 :} {\cf5 writable}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 remove}{\line}
+{\tab}{\tab}{\b\cf6 ensure then} {\cf3 --} {\cf3 from }{\cf4 DYNAMIC_LIST}{\line}
+{\tab}{\tab}{\tab}{\cf1 after_when_empty}{\cf1 :} {\cf5 is_empty} {\b\cf6 implies} {\cf5 after}{\line}
+{\tab}{\tab}{\b\cf6 ensure then} {\cf3 --} {\cf3 from }{\cf4 EV_DYNAMIC_LIST}{\line}
+{\tab}{\tab}{\tab}{\cf1 v_removed}{\cf1 :} {\b\cf6 not} {\cf5 has}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 parent_void}{\cf1 :} {\cf1 (}{\b\cf6 old} {\cf5 item}{\cf1 )}{\b\cf1 .}{\cf5 parent} {\cf1 =} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 count_decreased}{\cf1 :} {\cf5 count} {\cf1 =} {\b\cf6 old} {\cf5 count} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 index_same}{\cf1 :} {\cf5 index} {\cf1 =} {\b\cf6 old} {\cf5 index}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 remove_left}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Remove item to left of cursor position.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do not move cursor.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_DYNAMIC_LIST}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 DYNAMIC_CHAIN}{\line}
+{\tab}{\tab}{\tab}{\cf1 left_exists}{\cf1 :} {\cf5 index} {\cf1 >} 1{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 remove_left}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 DYNAMIC_CHAIN}{\line}
+{\tab}{\tab}{\tab}{\cf1 new_count}{\cf1 :} {\cf5 count} {\cf1 =} {\b\cf6 old} {\cf5 count} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 new_index}{\cf1 :} {\cf5 index} {\cf1 =} {\b\cf6 old} {\cf5 index} {\cf1 -} 1{\line}
+{\tab}{\tab}{\b\cf6 ensure then} {\cf3 --} {\cf3 from }{\cf4 EV_DYNAMIC_LIST}{\line}
+{\tab}{\tab}{\tab}{\cf1 left_neighbor_removed}{\cf1 :} {\b\cf6 not} {\cf5 has}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 i_th}{\cf1  }{\cf1 (}{\cf5 index} {\cf1 -} 1{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 parent_void}{\cf1 :} {\cf1 (}{\b\cf6 old} {\cf5 i_th}{\cf1  }{\cf1 (}{\cf5 index} {\cf1 -} 1{\cf1 )}{\cf1 )}{\b\cf1 .}{\cf5 parent} {\cf1 =} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 index_decreased}{\cf1 :} {\cf5 index} {\cf1 =} {\b\cf6 old} {\cf5 index} {\cf1 -} 1{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 remove_right}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Remove item to right of cursor position.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do not move cursor.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_DYNAMIC_LIST}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 DYNAMIC_CHAIN}{\line}
+{\tab}{\tab}{\tab}{\cf1 right_exists}{\cf1 :} {\cf5 index} {\cf1 <} {\cf5 count}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 remove_right}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 DYNAMIC_CHAIN}{\line}
+{\tab}{\tab}{\tab}{\cf1 new_count}{\cf1 :} {\cf5 count} {\cf1 =} {\b\cf6 old} {\cf5 count} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 same_index}{\cf1 :} {\cf5 index} {\cf1 =} {\b\cf6 old} {\cf5 index}{\line}
+{\tab}{\tab}{\b\cf6 ensure then} {\cf3 --} {\cf3 from }{\cf4 EV_DYNAMIC_LIST}{\line}
+{\tab}{\tab}{\tab}{\cf1 right_neighbor_removed}{\cf1 :} {\b\cf6 not} {\cf5 has}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 i_th}{\cf1  }{\cf1 (}{\cf5 index} {\cf1 +} 1{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 parent_void}{\cf1 :} {\cf1 (}{\b\cf6 old} {\cf5 i_th}{\cf1  }{\cf1 (}{\cf5 index} {\cf1 +} 1{\cf1 )}{\cf1 )}{\b\cf1 .}{\cf5 parent} {\cf1 =} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 index_same}{\cf1 :} {\cf5 index} {\cf1 =} {\b\cf6 old} {\cf5 index}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 wipe_out}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Remove all items.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_DYNAMIC_LIST}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 COLLECTION}{\line}
+{\tab}{\tab}{\tab}{\cf1 prunable}{\cf1 :} {\cf5 prunable}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 wipe_out}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 COLLECTION}{\line}
+{\tab}{\tab}{\tab}{\cf1 wiped_out}{\cf1 :} {\cf5 is_empty}{\line}
+{\tab}{\tab}{\b\cf6 ensure then} {\cf3 --} {\cf3 from }{\cf4 DYNAMIC_LIST}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_before}{\cf1 :} {\cf5 before}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Removal}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 dl_prune} {\cf1 (}{\cf5 v}{\cf1 :} {\b\cf6 like} {\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Remove first occurrence of }{\cf5 v}{\cf3 , if any,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  after cursor position.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  If found, move cursor to right neighbor;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  if not, make structure }{\cf5 exhausted}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 DYNAMIC_CHAIN}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 COLLECTION}{\line}
+{\tab}{\tab}{\tab}{\cf1 prunable}{\cf1 :} {\cf5 prunable}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 search}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 exhausted} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 remove}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 chain_wipe_out}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Remove all items.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 DYNAMIC_CHAIN}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 COLLECTION}{\line}
+{\tab}{\tab}{\tab}{\cf1 prunable}{\cf1 :} {\cf5 prunable}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 start}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 is_empty}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 remove}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 COLLECTION}{\line}
+{\tab}{\tab}{\tab}{\cf1 wiped_out}{\cf1 :} {\cf5 is_empty}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Conversion}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 linear_representation}{\cf1 :} {\cf4 LINEAR} {\cf1 [}G{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Representation as a linear structure}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 LINEAR}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from } {\cf4 CONTAINER}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 True}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Duplication}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 clone} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 )}{\cf1 :} {\b\cf6 like} {\cf5 other}{\line}
+{\tab}{\tab}{\b\cf6 obsolete} "Use `twin' instead. [2017-05-31]"{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Void if }{\cf5 other}{\cf3  is void; otherwise new object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  equal to }{\cf5 other}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  For non-void }{\cf5 other}{\cf3 , }{\cf5 clone}{\cf3  calls }{\cf5 copy}{\cf3 ;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to change copying/cloning semantics, redefine }{\cf5 copy}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 other} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 other}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 equal}{\cf1 :} {\b\cf6 Result} {\cf1 ~} {\cf5 other}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 copy} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 EV_ITEM_LIST} {\cf1 [}G{\cf1 ]}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Update current object using fields of object attached}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to }{\cf5 other}{\cf3 , so as to yield equal objects.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 type_identity}{\cf1 :} {\cf5 same_type}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 cannot_copy_this_vision2_class}{\cf1 :} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_equal}{\cf1 :} {\b\cf6 Current} {\cf1 ~} {\cf5 other}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 deep_clone} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 )}{\cf1 :} {\b\cf6 like} {\cf5 other}{\line}
+{\tab}{\tab}{\b\cf6 obsolete} "Use `deep_twin' instead. [2017-05-31]"{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Void if }{\cf5 other}{\cf3  is void: otherwise, new object structure}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  recursively duplicated from the one attached to }{\cf5 other}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 other} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 other}{\b\cf1 .}{\cf5 deep_twin}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 deep_equal}{\cf1 :} {\cf5 deep_equal}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 ,} {\b\cf6 Result}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 deep_copy} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 EV_ITEM_LIST} {\cf1 [}G{\cf1 ]}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Effect equivalent to that of:}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3 		}{\cf5 copy}{\cf3  (}{\cf5 other}{\cf3  . }{\cf5 deep_twin}{\cf3 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 copy}{\cf1  }{\cf1 (}{\cf5 other}{\b\cf1 .}{\cf5 deep_twin}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 deep_equal}{\cf1 :} {\cf5 deep_equal}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 ,} {\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 deep_twin}{\cf1 :} {\b\cf6 attached} {\cf4 EV_ITEM_LIST} {\cf1 [}G{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New object structure recursively duplicated from Current.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 deep_twin_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 deep_equal}{\cf1 :} {\cf5 deep_equal}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 ,} {\b\cf6 Result}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 standard_clone} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 )}{\cf1 :} {\b\cf6 like} {\cf5 other}{\line}
+{\tab}{\tab}{\b\cf6 obsolete} "Use `standard_twin' instead. [2017-05-31]"{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Void if }{\cf5 other}{\cf3  is void; otherwise new object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  field-by-field identical to }{\cf5 other}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Always uses default copying semantics.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 other} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 other}{\b\cf1 .}{\cf5 standard_twin}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 equal}{\cf1 :} {\cf5 standard_equal}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 ,} {\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 standard_copy} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 EV_ITEM_LIST} {\cf1 [}G{\cf1 ]}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Copy every field of }{\cf5 other}{\cf3  onto corresponding field}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of current object.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 type_identity}{\cf1 :} {\cf5 same_type}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_standard_equal}{\cf1 :} {\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 standard_twin}{\cf1 :} {\b\cf6 attached} {\cf4 EV_ITEM_LIST} {\cf1 [}G{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New object field-by-field identical to }{\cf5 other}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Always uses default copying semantics.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 standard_twin_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 equal}{\cf1 :} {\cf5 standard_equal}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 ,} {\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 twin}{\cf1 :} {\b\cf6 attached} {\cf4 EV_ITEM_LIST} {\cf1 [}G{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New object equal to }{\cf5 Current}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 twin}{\cf3  calls }{\cf5 copy}{\cf3 ; to change copying/twinning semantics, redefine }{\cf5 copy}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 twin_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_equal}{\cf1 :} {\b\cf6 Result} {\cf1 ~} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Duplication}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 duplicate} {\cf1 (}{\cf5 n}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\b\cf6 attached} {\cf4 EV_ITEM_LIST} {\cf1 [}G{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Copy of sub-chain beginning at current position}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  and having min (}{\cf5 n}{\cf3 , }{\cf5 from_here}{\cf3 ) items,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  where }{\cf5 from_here}{\cf3  is the number of items}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  at or to the right of current position.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 DYNAMIC_CHAIN}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 CHAIN}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_off_unless_after}{\cf1 :} {\cf5 off} {\b\cf6 implies} {\cf5 after}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_subchain}{\cf1 :} {\cf5 n} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 pos}{\cf1 :} {\cf4 CURSOR}{\line}
+{\tab}{\tab}{\tab}{\cf5 counter}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 new_chain}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 object_comparison} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 compare_objects}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 pos} {\cf1 :=} {\cf5 cursor}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 (}{\cf5 counter} {\cf1 =} {\cf5 n}{\cf1 )} {\b\cf6 or else} {\cf5 exhausted}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 dl_extend}{\cf1  }{\cf1 (}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 forth}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 counter} {\cf1 :=} {\cf5 counter} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 go_to}{\cf1  }{\cf1 (}{\cf5 pos}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Basic operations}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 as_attached}{\cf1 :} {\b\cf6 attached} {\cf4 EV_ITEM_LIST} {\cf1 [}G{\cf1 ]}{\line}
+{\tab}{\tab}{\b\cf6 obsolete} "Remove calls to this feature. [2017-05-31]"{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Attached version of Current.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Can be used during transitional period to convert}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  non-void-safe classes to void-safe ones.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 default}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_ITEM_LIST} {\cf1 [}G{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Default value of object's type}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 default_pointer}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Default value of type }{\cf5 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Avoid the need to write }{\cf5 p}{\cf3 .}{\cf5 default}{\cf3  for}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  some }{\cf5 p}{\cf3  of type }{\cf5 POINTER}{\cf3 .)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 default_rescue}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Process exception for routines with no Rescue clause.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Default: do nothing.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 do_nothing}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Execute a null action.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_DYNAMIC_LIST}{\cf1 \}} {\cf3 --}{\cf3  Inapplicable}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 dl_append} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 SEQUENCE} {\cf1 [}G{\cf1 ]}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Append a copy of }{\cf5 s}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_DYNAMIC_LIST}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 SEQUENCE}{\line}
+{\tab}{\tab}{\tab}{\cf1 argument_not_void}{\cf1 :} {\cf5 s} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 SEQUENCE}{\line}
+{\tab}{\tab}{\tab}{\cf1 new_count}{\cf1 :} {\cf5 count} {\cf1 >=} {\b\cf6 old} {\cf5 count}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 dl_extend} {\cf1 (}{\cf5 v}{\cf1 :} {\b\cf6 like} {\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Add a new occurrence of }{\cf5 v}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_DYNAMIC_LIST}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 COLLECTION}{\line}
+{\tab}{\tab}{\tab}{\cf1 extendible}{\cf1 :} {\cf5 extendible}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 extend}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 COLLECTION}{\line}
+{\tab}{\tab}{\tab}{\cf1 item_inserted}{\cf1 :} {\cf5 is_inserted}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 dl_put_front} {\cf1 (}{\cf5 v}{\cf1 :} {\b\cf6 like} {\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Add }{\cf5 v}{\cf3  at beginning.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do not move cursor.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_DYNAMIC_LIST}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 DYNAMIC_CHAIN}{\line}
+{\tab}{\tab}{\tab}{\cf1 extendible}{\cf1 :} {\cf5 extendible}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 put_front}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 DYNAMIC_CHAIN}{\line}
+{\tab}{\tab}{\tab}{\cf1 new_count}{\cf1 :} {\cf5 count} {\cf1 =} {\b\cf6 old} {\cf5 count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 item_inserted}{\cf1 :} {\cf5 first} {\cf1 =} {\cf5 v}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 dl_put_i_th} {\cf1 (}{\cf5 v}{\cf1 :} {\b\cf6 like} {\cf5 item}{\cf1 ;} {\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Put }{\cf5 v}{\cf3  at }{\cf5 i}{\cf3 -th position.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_DYNAMIC_LIST}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 TABLE}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_key}{\cf1 :} {\cf5 valid_index}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 TABLE}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_key}{\cf1 :} {\cf5 valid_index}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 put_i_th}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 ,} {\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 TABLE}{\line}
+{\tab}{\tab}{\tab}{\cf1 inserted}{\cf1 :} {\cf5 i_th}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )} {\cf1 =} {\cf5 v}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 dl_put_left} {\cf1 (}{\cf5 v}{\cf1 :} {\b\cf6 like} {\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Add }{\cf5 v}{\cf3  to the left of cursor position.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do not move cursor.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_DYNAMIC_LIST}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 DYNAMIC_CHAIN}{\line}
+{\tab}{\tab}{\tab}{\cf1 extendible}{\cf1 :} {\cf5 extendible}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_before}{\cf1 :} {\b\cf6 not} {\cf5 before}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 put_left}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 DYNAMIC_CHAIN}{\line}
+{\tab}{\tab}{\tab}{\cf1 new_count}{\cf1 :} {\cf5 count} {\cf1 =} {\b\cf6 old} {\cf5 count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 new_index}{\cf1 :} {\cf5 index} {\cf1 =} {\b\cf6 old} {\cf5 index} {\cf1 +} 1{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 dl_put_right} {\cf1 (}{\cf5 v}{\cf1 :} {\b\cf6 like} {\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Add }{\cf5 v}{\cf3  to the right of cursor position.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do not move cursor.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_DYNAMIC_LIST}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 DYNAMIC_CHAIN}{\line}
+{\tab}{\tab}{\tab}{\cf1 extendible}{\cf1 :} {\cf5 extendible}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_after}{\cf1 :} {\b\cf6 not} {\cf5 after}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 put_right}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 DYNAMIC_CHAIN}{\line}
+{\tab}{\tab}{\tab}{\cf1 new_count}{\cf1 :} {\cf5 count} {\cf1 =} {\b\cf6 old} {\cf5 count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 same_index}{\cf1 :} {\cf5 index} {\cf1 =} {\b\cf6 old} {\cf5 index}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 dl_replace} {\cf1 (}{\cf5 v}{\cf1 :} {\b\cf6 like} {\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Replace current item by }{\cf5 v}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_DYNAMIC_LIST}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ACTIVE}{\line}
+{\tab}{\tab}{\tab}{\cf1 writable}{\cf1 :} {\cf5 writable}{\line}
+{\tab}{\tab}{\tab}{\cf1 replaceable}{\cf1 :} {\cf5 replaceable}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 replace}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ACTIVE}{\line}
+{\tab}{\tab}{\tab}{\cf1 item_replaced}{\cf1 :} {\cf5 item} {\cf1 =} {\cf5 v}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 new_chain}{\cf1 :} {\b\cf6 attached} {\cf4 EV_ITEM_LIST} {\cf1 [}G{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  A newly created instance of the same type.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  This feature may be redefined in descendants so as to}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  produce an adequately allocated and initialized object.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_DYNAMIC_LIST}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 applicable}{\cf1 :} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 DYNAMIC_CHAIN}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_exists}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_extend} {\cf1 (}{\cf5 v}{\cf1 :} {\b\cf6 like} {\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_DYNAMIC_LIST}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 extend}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Changeable_comparison_criterion}{\cf1 :} {\cf4 BOOLEAN} {\cf1 =} {\b\cf6 False}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  May }{\cf5 object_comparison}{\cf3  be changed?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Answer: no by default.}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_ANY}{\cf1 ,} {\cf4 EV_ANY_I}{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 implementation}{\cf1 :} {\cf4 EV_ITEM_LIST_I} {\cf1 [}G{\cf1 ]}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Responsible for interaction with native graphics}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  toolkit.}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_ANY}{\cf1 ,} {\cf4 EV_ANY_I}{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 replace_implementation} {\cf1 (}{\cf5 new_implementation}{\cf1 :} {\b\cf6 like} {\cf5 implementation}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Replace }{\cf5 implementation}{\cf3  with }{\cf5 new_implementation}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  The caller has complete responsibility for releasing any}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  resources held by the old }{\cf5 implementation}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 EV_ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 implementation_not_void}{\cf1 :} {\cf5 implementation} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 new_implementation_not_void}{\cf1 :} {\cf5 new_implementation} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 temp}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 temp} {\cf1 :=} {\cf1 \{}{\cf4 ISE_RUNTIME}{\cf1 \}}{\b\cf1 .}{\cf5 check_assert} {\cf1 (}{\b\cf6 False}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 disable_initialized}{\line}
+{\tab}{\tab}{\tab}{\cf5 new_implementation}{\b\cf1 .}{\cf5 set_interface}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation} {\cf1 :=} {\cf5 new_implementation}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 enable_initialized}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 set_state_flag}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 EV_ANY_I}{\cf1 \}}{\b\cf1 .}{\cf5 interface_default_create_called_flag}{\cf1 ,} {\b\cf6 True}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 set_state_flag}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 EV_ANY_I}{\cf1 \}}{\b\cf1 .}{\cf5 interface_is_initialized_flag}{\cf1 ,} {\b\cf6 True}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 temp} {\cf1 :=} {\cf1 \{}{\cf4 ISE_RUNTIME}{\cf1 \}}{\b\cf1 .}{\cf5 check_assert} {\cf1 (}{\cf5 temp}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_ANY}{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 create_implementation}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create }{\cf5 implementation}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Must be defined in each descendant to create the}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  appropriate }{\cf5 implementation}{\cf3  object.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3 		require}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3 			implementation_not_already_created: implementation = Void}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 EV_ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 implementation_created}{\cf1 :} {\b\cf6 attached} {\cf5 implementation}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 create_interface_objects}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create objects to be used by }{\cf5 Current}{\cf3  in }{\cf5 initialize}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Implemented by descendants to create attached objects}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  in order to adhere to void-safety due to the implementation bridge pattern.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 initialize}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Mark }{\cf5 Current}{\cf3  as initialized.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  This must be called during the creation procedure}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to satisfy the }{\cf5 is_initialized}{\cf3  invariant.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Descendants may redefine initialize to perform}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  additional setup tasks.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 EV_ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_already_initialized}{\cf1 :} {\b\cf6 not} {\cf5 is_initialized}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 set_state_flag}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 EV_ANY_I}{\cf1 \}}{\b\cf1 .}{\cf5 interface_is_initialized_flag}{\cf1 ,} {\b\cf6 True}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 EV_ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_initialized}{\cf1 :} {\cf5 is_initialized}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Environment_i}{\cf1 :} {\cf4 EV_ENVIRONMENT_I}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Once access to Environment Implementation Object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf1 \{}{\cf4 EV_ENVIRONMENT_IMP}{\cf1 \}} {\b\cf6 Result}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 internal_name}{\cf1 :} {\b\cf6 detachable} {\cf4 STRING_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Internal name set by }{\cf5 set_identifier_name}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_IDENTIFIABLE}{\cf3 )}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_IDENTIFIABLE}{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Identifier_path_separator}{\cf1 :} {\cf4 CHARACTER_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Character used to separate path to children}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_IDENTIFIABLE}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} '.'{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Command}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 destroy}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Destroy underlying native toolkit object.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Render }{\cf5 Current}{\cf3  unusable.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 safe_destroy}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 EV_ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_destroyed}{\cf1 :} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Contract support}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_in_default_state}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 Current}{\cf3  in its default state?}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from } {\cf4 EV_ANY}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 True}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 Precursor} {\cf1 \{}{\cf4 EV_DYNAMIC_LIST}{\cf1 \}}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 items_unique}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are all items unique?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (ie Are there no duplicates?)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 c}{\cf1 :} {\cf4 CURSOR}{\line}
+{\tab}{\tab}{\tab}{\cf5 l}{\cf1 :} {\cf4 ARRAYED_LIST} {\cf1 [}G{\cf1 ]}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 l}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 count}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\cf5 c} {\cf1 :=} {\cf5 cursor}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 start}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 after} {\b\cf6 or} {\b\cf6 not} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l}{\b\cf1 .}{\cf5 has}{\cf1  }{\cf1 (}{\cf5 item}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l}{\b\cf1 .}{\cf5 extend}{\cf1  }{\cf1 (}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 forth}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 go_to}{\cf1  }{\cf1 (}{\cf5 c}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 lists_equal} {\cf1 (}{\cf5 list1}{\cf1 ,} {\cf5 list2}{\cf1 :} {\cf4 DYNAMIC_LIST} {\cf1 [}G{\cf1 ]}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are elements in }{\cf5 list1}{\cf3  equal to those in }{\cf5 list2}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\tab}{\cf1 list1_not_void}{\cf1 :} {\cf5 list1} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 list2_not_void}{\cf1 :} {\cf5 list2} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 cur1}{\cf1 ,} {\cf5 cur2}{\cf1 :} {\cf4 CURSOR}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 list1} {\cf1 =} {\cf5 list2} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 list1}{\b\cf1 .}{\cf5 count} {\cf1 =} {\cf5 list2}{\b\cf1 .}{\cf5 count} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 cur1} {\cf1 :=} {\cf5 list1}{\b\cf1 .}{\cf5 cursor}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 cur2} {\cf1 :=} {\cf5 list2}{\b\cf1 .}{\cf5 cursor}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 list1}{\b\cf1 .}{\cf5 start}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 list2}{\b\cf1 .}{\cf5 start}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 list1}{\b\cf1 .}{\cf5 after} {\b\cf6 or else} {\b\cf6 Result} {\cf1 =} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 list1}{\b\cf1 .}{\cf5 item} {\cf1 =} {\cf5 list2}{\b\cf1 .}{\cf5 item}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 list1}{\b\cf1 .}{\cf5 forth}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 list2}{\b\cf1 .}{\cf5 forth}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 list1}{\b\cf1 .}{\cf5 go_to}{\cf1  }{\cf1 (}{\cf5 cur1}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 list2}{\b\cf1 .}{\cf5 go_to}{\cf1  }{\cf1 (}{\cf5 cur2}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 parent_of_items_is_current}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do all items have parent }{\cf5 Current}{\cf3 ?}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 c}{\cf1 :} {\cf4 CURSOR}{\line}
+{\tab}{\tab}{\tab}{\cf5 item_par}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_ITEM_LIST} {\cf1 [}G{\cf1 ]}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\cf5 c} {\cf1 :=} {\cf5 cursor}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 start}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 after} {\b\cf6 or} {\b\cf6 Result} {\cf1 =} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 item} {\b\cf6 as} l_item {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 item_par} {\cf1 ?=} {\cf5 l_item}{\b\cf1 .}{\cf5 parent}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 item_par} {\cf1 /=} {\b\cf6 Current} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 forth}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 go_to}{\cf1  }{\cf1 (}{\cf5 c}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_ANY}{\cf1 \}} {\cf3 --}{\cf3  Contract support}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 action_sequence_call_counter}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Call counter for }{\cf5 \{EV_LITE_ACTION_SEQUENCE\}.call}{\cf3 , used to determine}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  if calls have been made as a result of a routine executing.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 Environment_i}{\b\cf1 .}{\cf5 application_i}{\b\cf1 .}{\cf5 action_sequence_call_counter}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 default_create_called}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Has }{\cf5 default_create}{\cf3  been called on }{\cf5 Current}{\cf3 ?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 implementation}{\b\cf1 .}{\cf5 get_state_flag}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 EV_ANY_I}{\cf1 \}}{\b\cf1 .}{\cf5 interface_default_create_called_flag}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_initialized}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Has }{\cf5 Current}{\cf3  been initialized properly?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 implementation}{\b\cf1 .}{\cf5 get_state_flag}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 EV_ANY_I}{\cf1 \}}{\b\cf1 .}{\cf5 interface_is_initialized_flag}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_usable}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 Current}{\cf3  usable?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 default_create_called} {\b\cf6 and then} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Contract support}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_parent_recursive} {\cf1 (}{\cf5 a_list}{\cf1 :} {\b\cf6 like} {\cf5 item}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 a_list}{\cf3  a parent of }{\cf5 Current}{\cf3 ?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_DYNAMIC_LIST}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 EV_DYNAMIC_LIST}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_list_not_void}{\cf1 :} {\cf5 a_list} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 same} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 EV_ANY}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 other}{\cf3  }{\cf5 Current}{\cf3 ?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_DYNAMIC_LIST}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Current} {\cf1 =} {\cf5 other}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Iteration}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 do_all} {\cf1 (}{\cf5 action}{\cf1 :} {\cf4 PROCEDURE} {\cf1 [}G{\cf1 ]}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Apply }{\cf5 action}{\cf3  to every item.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Semantics not guaranteed if }{\cf5 action}{\cf3  changes the structure;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  in such a case, apply iterator to clone of structure instead.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 LINEAR}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 TRAVERSABLE}{\line}
+{\tab}{\tab}{\tab}{\cf1 action_exists}{\cf1 :} {\cf5 action} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 c}{\cf1 :} {\b\cf6 detachable} {\cf4 CURSOR}{\line}
+{\tab}{\tab}{\tab}{\cf5 cs}{\cf1 :} {\b\cf6 detachable} {\cf4 CURSOR_STRUCTURE} {\cf1 [}G{\cf1 ]}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf1 \{}{\cf4 CURSOR_STRUCTURE} {\cf1 [}G{\cf1 ]}{\cf1 \}} {\b\cf6 Current} {\b\cf6 as} acs {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 cs} {\cf1 :=} {\cf5 acs}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 c} {\cf1 :=} {\cf5 acs}{\b\cf1 .}{\cf5 cursor}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 start}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 after}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 action}{\b\cf1 .}{\cf5 call}{\cf1  }{\cf1 (}{\cf1 [}{\cf5 item}{\cf1 ]}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 forth}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 cs} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and} {\cf5 c} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 cs}{\b\cf1 .}{\cf5 go_to}{\cf1  }{\cf1 (}{\cf5 c}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 do_if} {\cf1 (}{\cf5 action}{\cf1 :} {\cf4 PROCEDURE} {\cf1 [}G{\cf1 ]}{\cf1 ;} {\cf5 test}{\cf1 :} {\cf4 FUNCTION} {\cf1 [}G{\cf1 ,} {\cf4 BOOLEAN}{\cf1 ]}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Apply }{\cf5 action}{\cf3  to every item that satisfies }{\cf5 test}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Semantics not guaranteed if }{\cf5 action}{\cf3  or }{\cf5 test}{\cf3  changes the structure;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  in such a case, apply iterator to clone of structure instead.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 LINEAR}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 TRAVERSABLE}{\line}
+{\tab}{\tab}{\tab}{\cf1 action_exists}{\cf1 :} {\cf5 action} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 test_exists}{\cf1 :} {\cf5 test} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 c}{\cf1 :} {\b\cf6 detachable} {\cf4 CURSOR}{\line}
+{\tab}{\tab}{\tab}{\cf5 cs}{\cf1 :} {\b\cf6 detachable} {\cf4 CURSOR_STRUCTURE} {\cf1 [}G{\cf1 ]}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf1 \{}{\cf4 CURSOR_STRUCTURE} {\cf1 [}G{\cf1 ]}{\cf1 \}} {\b\cf6 Current} {\b\cf6 as} acs {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 cs} {\cf1 :=} {\cf5 acs}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 c} {\cf1 :=} {\cf5 acs}{\b\cf1 .}{\cf5 cursor}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 start}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 after}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 test}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf1 [}{\cf5 item}{\cf1 ]}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 action}{\b\cf1 .}{\cf5 call}{\cf1  }{\cf1 (}{\cf1 [}{\cf5 item}{\cf1 ]}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 forth}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 cs} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and} {\cf5 c} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 cs}{\b\cf1 .}{\cf5 go_to}{\cf1  }{\cf1 (}{\cf5 c}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 for_all} {\cf1 (}{\cf5 test}{\cf1 :} {\cf4 FUNCTION} {\cf1 [}G{\cf1 ,} {\cf4 BOOLEAN}{\cf1 ]}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 test}{\cf3  true for all items?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Semantics not guaranteed if }{\cf5 test}{\cf3  changes the structure;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  in such a case, apply iterator to clone of structure instead.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 LINEAR}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 TRAVERSABLE}{\line}
+{\tab}{\tab}{\tab}{\cf1 test_exists}{\cf1 :} {\cf5 test} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 c}{\cf1 :} {\b\cf6 detachable} {\cf4 CURSOR}{\line}
+{\tab}{\tab}{\tab}{\cf5 cs}{\cf1 :} {\b\cf6 detachable} {\cf4 CURSOR_STRUCTURE} {\cf1 [}G{\cf1 ]}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf1 \{}{\cf4 CURSOR_STRUCTURE} {\cf1 [}G{\cf1 ]}{\cf1 \}} {\b\cf6 Current} {\b\cf6 as} acs {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 cs} {\cf1 :=} {\cf5 acs}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 c} {\cf1 :=} {\cf5 acs}{\b\cf1 .}{\cf5 cursor}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 start}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 after} {\b\cf6 or} {\b\cf6 not} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 test}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf1 [}{\cf5 item}{\cf1 ]}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 forth}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 cs} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and} {\cf5 c} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 cs}{\b\cf1 .}{\cf5 go_to}{\cf1  }{\cf1 (}{\cf5 c}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure then} {\cf3 --} {\cf3 from }{\cf4 LINEAR}{\line}
+{\tab}{\tab}{\tab}{\cf1 empty}{\cf1 :} {\cf5 is_empty} {\b\cf6 implies} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 there_exists} {\cf1 (}{\cf5 test}{\cf1 :} {\cf4 FUNCTION} {\cf1 [}G{\cf1 ,} {\cf4 BOOLEAN}{\cf1 ]}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 test}{\cf3  true for at least one item?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Semantics not guaranteed if }{\cf5 test}{\cf3  changes the structure;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  in such a case, apply iterator to clone of structure instead.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 LINEAR}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 TRAVERSABLE}{\line}
+{\tab}{\tab}{\tab}{\cf1 test_exists}{\cf1 :} {\cf5 test} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 c}{\cf1 :} {\b\cf6 detachable} {\cf4 CURSOR}{\line}
+{\tab}{\tab}{\tab}{\cf5 cs}{\cf1 :} {\b\cf6 detachable} {\cf4 CURSOR_STRUCTURE} {\cf1 [}G{\cf1 ]}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf1 \{}{\cf4 CURSOR_STRUCTURE} {\cf1 [}G{\cf1 ]}{\cf1 \}} {\b\cf6 Current} {\b\cf6 as} acs {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 cs} {\cf1 :=} {\cf5 acs}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 c} {\cf1 :=} {\cf5 acs}{\b\cf1 .}{\cf5 cursor}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 start}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 after} {\b\cf6 or} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 test}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf1 [}{\cf5 item}{\cf1 ]}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 forth}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 cs} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and} {\cf5 c} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 cs}{\b\cf1 .}{\cf5 go_to}{\cf1  }{\cf1 (}{\cf5 c}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Output}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Io}{\cf1 :} {\cf4 STD_FILES}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Handle to standard file setup}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 set_output_default}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 io_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 out}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New string containing terse printable representation}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of current object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 tagged_out}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 out_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 print} {\cf1 (}{\cf5 o}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Write terse external representation of }{\cf5 o}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  on standard output.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 o} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 Io}{\b\cf1 .}{\cf5 put_string}{\cf1  }{\cf1 (}{\cf5 o}{\b\cf1 .}{\cf5 out}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 tagged_out}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New string containing terse printable representation}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of current object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 tagged_out_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Platform}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Operating_environment}{\cf1 :} {\cf4 OPERATING_ENVIRONMENT}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Objects available from the operating system}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 operating_environment_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Retrieval}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 internal_correct_mismatch}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Called from runtime to perform a proper dynamic dispatch on }{\cf5 correct_mismatch}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  from MISMATCH_CORRECTOR.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_msg}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_exc}{\cf1 :} {\cf4 EXCEPTIONS}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf1 \{}{\cf4 MISMATCH_CORRECTOR}{\cf1 \}} {\b\cf6 Current} {\b\cf6 as} l_corrector {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_corrector}{\b\cf1 .}{\cf5 correct_mismatch}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 l_msg}{\b\cf1 .}{\cf5 make_from_string}{\cf1  }{\cf1 (}"Mismatch: "{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 l_exc}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_msg}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 generating_type}{\b\cf1 .}{\cf5 name}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_exc}{\b\cf1 .}{\cf5 raise_retrieval_exception}{\cf1  }{\cf1 (}{\cf5 l_msg}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status Report}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_destroyed}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 Current}{\cf3  no longer usable?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 implementation}{\b\cf1 .}{\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 EV_ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 bridge_ok}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf5 implementation}{\b\cf1 .}{\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 invariant}{\line}
+{\tab}{\cf1 parent_of_items_is_current}{\cf1 :} {\cf5 is_usable} {\b\cf6 and then} {\b\cf6 not} {\cf5 is_empty} {\b\cf6 implies} {\cf5 parent_of_items_is_current}{\line}
+{\tab}{\cf1 items_unique}{\cf1 :} {\cf5 is_usable} {\b\cf6 and} {\b\cf6 not} {\cf5 is_empty} {\b\cf6 implies} {\cf5 items_unique}{\line}
+{\line}
+{\tab}{\tab}{\cf3 --} {\cf3 from }{\cf4 EV_ANY}{\line}
+{\tab}{\cf1 is_initialized}{\cf1 :} {\cf5 is_initialized}{\line}
+{\tab}{\cf1 default_create_called}{\cf1 :} {\cf5 default_create_called}{\line}
+{\tab}{\cf1 is_coupled}{\cf1 :} {\cf5 default_create_called} {\b\cf6 implies} {\cf1 (}{\cf5 implementation}{\b\cf1 .}{\cf5 interface} {\cf1 =} {\b\cf6 Current} {\b\cf6 or} {\cf1 (}{\b\cf6 attached} {\cf1 \{}{\cf4 EV_ENVIRONMENT}{\cf1 \}} {\b\cf6 Current} {\b\cf6 and then} {\b\cf6 attached} {\cf5 implementation}{\b\cf1 .}{\cf5 interface}{\cf1 )}{\cf1 )}{\line}
+{\line}
+{\tab}{\tab}{\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\cf1 reflexive_equality}{\cf1 :} {\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\cf1 reflexive_conformance}{\cf1 :} {\cf5 conforms_to}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\line}
+{\line}
+{\tab}{\tab}{\cf3 --} {\cf3 from }{\cf4 LIST}{\line}
+{\tab}{\cf1 before_definition}{\cf1 :} {\cf5 before} {\cf1 =} {\cf1 (}{\cf5 index} {\cf1 =} 0{\cf1 )}{\line}
+{\tab}{\cf1 after_definition}{\cf1 :} {\cf5 after} {\cf1 =} {\cf1 (}{\cf5 index} {\cf1 =} {\cf5 count} {\cf1 +} 1{\cf1 )}{\line}
+{\line}
+{\tab}{\tab}{\cf3 --} {\cf3 from }{\cf4 CHAIN}{\line}
+{\tab}{\cf1 non_negative_index}{\cf1 :} {\cf5 index} {\cf1 >=} 0{\line}
+{\tab}{\cf1 index_small_enough}{\cf1 :} {\cf5 index} {\cf1 <=} {\cf5 count} {\cf1 +} 1{\line}
+{\tab}{\cf1 off_definition}{\cf1 :} {\cf5 off} {\cf1 =} {\cf1 (}{\cf1 (}{\cf5 index} {\cf1 =} 0{\cf1 )} {\b\cf6 or} {\cf1 (}{\cf5 index} {\cf1 =} {\cf5 count} {\cf1 +} 1{\cf1 )}{\cf1 )}{\line}
+{\tab}{\cf1 isfirst_definition}{\cf1 :} {\cf5 isfirst} {\cf1 =} {\cf1 (}{\cf1 (}{\b\cf6 not} {\cf5 is_empty}{\cf1 )} {\b\cf6 and} {\cf1 (}{\cf5 index} {\cf1 =} 1{\cf1 )}{\cf1 )}{\line}
+{\tab}{\cf1 islast_definition}{\cf1 :} {\cf5 islast} {\cf1 =} {\cf1 (}{\cf1 (}{\b\cf6 not} {\cf5 is_empty}{\cf1 )} {\b\cf6 and} {\cf1 (}{\cf5 index} {\cf1 =} {\cf5 count}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\cf1 item_corresponds_to_index}{\cf1 :} {\cf1 (}{\b\cf6 not} {\cf5 off}{\cf1 )} {\b\cf6 implies} {\cf1 (}{\cf5 item} {\cf1 =} {\cf5 i_th}{\cf1  }{\cf1 (}{\cf5 index}{\cf1 )}{\cf1 )}{\line}
+{\line}
+{\tab}{\tab}{\cf3 --} {\cf3 from }{\cf4 ACTIVE}{\line}
+{\tab}{\cf1 writable_constraint}{\cf1 :} {\cf5 writable} {\b\cf6 implies} {\cf5 readable}{\line}
+{\tab}{\cf1 empty_constraint}{\cf1 :} {\cf5 is_empty} {\b\cf6 implies} {\cf1 (}{\b\cf6 not} {\cf5 readable}{\cf1 )} {\b\cf6 and} {\cf1 (}{\b\cf6 not} {\cf5 writable}{\cf1 )}{\line}
+{\line}
+{\tab}{\tab}{\cf3 --} {\cf3 from }{\cf4 READABLE_INDEXABLE}{\line}
+{\tab}{\cf1 consistent_boundaries}{\cf1 :} {\cf5 Lower} {\cf1 <=} {\cf5 count} {\b\cf6 or else} {\cf5 Lower} {\cf1 =} {\cf5 count} {\cf1 +} 1{\line}
+{\line}
+{\tab}{\tab}{\cf3 --} {\cf3 from }{\cf4 BILINEAR}{\line}
+{\tab}{\cf1 not_both}{\cf1 :} {\b\cf6 not} {\cf1 (}{\cf5 after} {\b\cf6 and} {\cf5 before}{\cf1 )}{\line}
+{\tab}{\cf1 before_constraint}{\cf1 :} {\cf5 before} {\b\cf6 implies} {\cf5 off}{\line}
+{\line}
+{\tab}{\tab}{\cf3 --} {\cf3 from }{\cf4 LINEAR}{\line}
+{\tab}{\cf1 after_constraint}{\cf1 :} {\cf5 after} {\b\cf6 implies} {\cf5 off}{\line}
+{\line}
+{\tab}{\tab}{\cf3 --} {\cf3 from }{\cf4 TRAVERSABLE}{\line}
+{\tab}{\cf1 empty_constraint}{\cf1 :} {\cf5 is_empty} {\b\cf6 implies} {\cf5 off}{\line}
+{\line}
+{\tab}{\tab}{\cf3 --} {\cf3 from }{\cf4 FINITE}{\line}
+{\tab}{\cf1 empty_definition}{\cf1 :} {\cf5 is_empty} {\cf1 =} {\cf1 (}{\cf5 count} {\cf1 =} 0{\cf1 )}{\line}
+{\line}
+{\b\cf6 note}{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 1984-2017, Eiffel Software and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"{\line}
+{\tab}{\cf1 source}{\cf1 :} "[{\line}
+{\tab}{\tab}Eiffel Software{\line}
+{\tab}{\tab}5949 Hollister Ave., Goleta, CA 93117 USA{\line}
+{\tab}{\tab}Telephone 805-685-1006, Fax 805-685-6869{\line}
+{\tab}{\tab}Website http://www.eiffel.com{\line}
+{\tab}{\tab}Customer support http://support.eiffel.com{\line}
+{\tab}]"{\line}
+{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 EV_ITEM_LIST}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

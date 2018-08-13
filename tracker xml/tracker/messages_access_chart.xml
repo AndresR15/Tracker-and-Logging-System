@@ -1,0 +1,35 @@
+<system>
+<keyword>expanded</keyword> <keyword>class</keyword>
+	<class><location>../tracker/messages_access_chart.xml</location>MESSAGES_ACCESS</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>tracker</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Summary description for </string><symbol>{</symbol><class><location>../tracker/messages_access_chart.xml</location>MESSAGES_ACCESS</class><symbol>}</symbol><string>.&quot;</string>
+
+<keyword>Ancestors</keyword>
+	<class><include>False</include>ANY</class>
+
+<keyword>Queries</keyword>
+	<feature><location>../tracker/messages_access.xml#f_cont_exceeds_cap</location>Cont_exceeds_cap</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+	<feature><location>../tracker/messages_access.xml#f_cont_exceeds_rad</location>Cont_exceeds_rad</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+	<feature><location>../tracker/messages_access.xml#f_cont_exceeds_rad_cap</location>Cont_exceeds_rad_cap</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+	<feature><location>../tracker/messages_access.xml#f_cont_id_in_tracker</location>Cont_id_in_tracker</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+	<feature><location>../tracker/messages_access.xml#f_cont_id_not_in_source</location>Cont_id_not_in_source</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+	<feature><location>../tracker/messages_access.xml#f_cont_id_not_in_tracker</location>Cont_id_not_in_tracker</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+	<feature><location>../tracker/messages_access.xml#f_cont_rad_non_negative</location>Cont_rad_non_negative</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+	<feature><location>../tracker/messages_access.xml#f_container_lt_phase</location>Container_lt_phase</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+	<feature><location>../tracker/messages_access.xml#f_diff_phase_id</location>Diff_phase_id</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+	<feature><location>../tracker/messages_access.xml#f_in_use</location>In_use</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+	<feature><location>../tracker/messages_access.xml#f_invalid_name_id</location>Invalid_name_id</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+	<feature><location>../tracker/messages_access.xml#f_material_missing</location>Material_missing</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+	<feature><location>../tracker/messages_access.xml#f_material_unexpected</location>Material_unexpected</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+	<feature><location>../tracker/messages_access.xml#f_no_redo</location>No_redo</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+	<feature><location>../tracker/messages_access.xml#f_no_undo</location>No_undo</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+	<feature><location>../tracker/messages_access.xml#f_non_neg_container_rad</location>Non_neg_container_rad</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+	<feature><location>../tracker/messages_access.xml#f_non_neg_phase_rad</location>Non_neg_phase_rad</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+	<feature><location>../tracker/messages_access.xml#f_ok</location>Ok</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+	<feature><location>../tracker/messages_access.xml#f_phase_cap_invalid</location>Phase_cap_invalid</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+	<feature><location>../tracker/messages_access.xml#f_phase_id_in_use</location>Phase_id_in_use</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+	<feature><location>../tracker/messages_access.xml#f_phase_id_non_existent</location>Phase_id_non_existent</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+
+</system>

@@ -1,0 +1,12 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../implementation_gtk/ev_gtk_text_iter_struct_links.xml</location>EV_GTK_TEXT_ITER_STRUCT</class>
+
+<keyword>Ancestors</keyword>
+	<class><include>False</include>MEMORY_STRUCTURE</class><char>*</char>
+
+<keyword>Clients</keyword>
+	<class><location>../implementation_gtk/ev_rich_text_imp_links.xml</location>EV_RICH_TEXT_IMP</class>
+	<class><location>../implementation_gtk/ev_text_imp_links.xml</location>EV_TEXT_IMP</class>
+
+</system>

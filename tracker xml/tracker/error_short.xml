@@ -1,0 +1,27 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Summary description for </string><symbol>{</symbol><class><location>../tracker/error_short.xml</location>ERROR</class><symbol>}</symbol><string>.&quot;</string>
+	<indexing_tag>author</indexing_tag><symbol>:</symbol> <string>&quot;&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date$&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision$&quot;</string>
+
+<keyword>class</keyword> <keyword>interface</keyword>
+	<class><location>../tracker/error_short.xml</location>ERROR</class>
+
+<keyword>create</keyword> 
+	<feature><location>../tracker/error_short.xml#f_make</location>make</feature>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Initialization</comment>
+
+	<anchor>f_make</anchor><feature><location>../tracker/error_short.xml#f_make</location>make</feature> <symbol>(</symbol><local>error</local><symbol>:</symbol> <class><include>False</include>STRING_8</class><symbol>)</symbol>
+	
+<keyword>feature</keyword> 
+
+	<anchor>f_execute</anchor><feature><location>../tracker/error_short.xml#f_execute</location>execute</feature>
+
+	<anchor>f_undo</anchor><feature><location>../tracker/error_short.xml#f_undo</location>undo</feature>
+
+	<anchor>f_redo</anchor><feature><location>../tracker/error_short.xml#f_redo</location>redo</feature>
+	
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../tracker/error_short.xml</location>ERROR</class></system>
+

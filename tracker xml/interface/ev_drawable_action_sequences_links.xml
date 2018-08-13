@@ -1,0 +1,19 @@
+<system>
+<keyword>deferred</keyword> <keyword>class</keyword>
+	<class><location>../interface/ev_drawable_action_sequences_links.xml</location>EV_DRAWABLE_ACTION_SEQUENCES</class>
+
+<keyword>Ancestors</keyword>
+	<class><location>../interface/ev_action_sequences_links.xml</location>EV_ACTION_SEQUENCES</class><char>*</char>
+
+<keyword>Descendants</keyword>
+	<class><location>../interface/ev_drawing_area_links.xml</location>EV_DRAWING_AREA</class>
+	<class><location>../interface/ev_pixmap_links.xml</location>EV_PIXMAP</class>
+
+<keyword>Clients</keyword>
+	<class><location>../interface/ev_drawable_action_sequences_links.xml</location>EV_DRAWABLE_ACTION_SEQUENCES</class><char>*</char>
+
+<keyword>Suppliers</keyword>
+	<class><location>../interface/ev_drawable_action_sequences_links.xml</location>EV_DRAWABLE_ACTION_SEQUENCES</class><char>*</char>
+	<class><location>../implementation_interface/ev_drawable_action_sequences_i_links.xml</location>EV_DRAWABLE_ACTION_SEQUENCES_I</class><char>*</char>
+
+</system>

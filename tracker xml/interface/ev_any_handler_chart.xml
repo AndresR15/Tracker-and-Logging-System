@@ -1,0 +1,12 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../interface/ev_any_handler_chart.xml</location>EV_ANY_HANDLER</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>interface</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Objects that may call </string><feature><include>False</include>default_create</feature><string>from EV_ANY.&quot;</string>
+
+<keyword>Ancestors</keyword>
+	<class><include>False</include>ANY</class>
+
+</system>

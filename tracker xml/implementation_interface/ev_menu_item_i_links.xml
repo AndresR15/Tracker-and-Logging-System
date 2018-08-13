@@ -1,0 +1,18 @@
+<system>
+<keyword>deferred</keyword> <keyword>class</keyword>
+	<class><location>../implementation_interface/ev_menu_item_i_links.xml</location>EV_MENU_ITEM_I</class>
+
+<keyword>Ancestors</keyword>
+	<class><location>../implementation_interface/ev_item_i_links.xml</location>EV_ITEM_I</class><char>*</char>
+	<class><location>../implementation_interface/ev_menu_item_action_sequences_i_links.xml</location>EV_MENU_ITEM_ACTION_SEQUENCES_I</class><char>*</char>
+	<class><location>../implementation_interface/ev_sensitive_i_links.xml</location>EV_SENSITIVE_I</class><char>*</char>
+	<class><location>../implementation_interface/ev_textable_i_links.xml</location>EV_TEXTABLE_I</class><char>*</char>
+
+<keyword>Descendants</keyword>
+	<class><location>../implementation_interface/ev_check_menu_item_i_links.xml</location>EV_CHECK_MENU_ITEM_I</class><char>*</char>
+	<class><location>../implementation_interface/ev_menu_i_links.xml</location>EV_MENU_I</class><char>*</char>
+	<class><location>../implementation_gtk/ev_menu_item_imp_links.xml</location>EV_MENU_ITEM_IMP</class>
+	<class><location>../implementation_interface/ev_menu_separator_i_links.xml</location>EV_MENU_SEPARATOR_I</class><char>*</char>
+	<class><location>../implementation_interface/ev_radio_menu_item_i_links.xml</location>EV_RADIO_MENU_ITEM_I</class><char>*</char>
+
+</system>

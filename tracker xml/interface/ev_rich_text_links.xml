@@ -1,0 +1,25 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../interface/ev_rich_text_links.xml</location>EV_RICH_TEXT</class>
+
+<keyword>Ancestors</keyword>
+	<class><location>../interface/ev_rich_text_action_sequences_links.xml</location>EV_RICH_TEXT_ACTION_SEQUENCES</class><char>*</char>
+	<class><location>../interface/ev_text_links.xml</location>EV_TEXT</class>
+
+<keyword>Clients</keyword>
+	<class><include>False</include>ETF_GUI_ROOT_INTERFACE</class><char>*</char>
+	<class><location>../tracker/etf_main_window_links.xml</location>ETF_MAIN_WINDOW</class>
+	<class><location>../tracker/etf_main_window_imp_links.xml</location>ETF_MAIN_WINDOW_IMP</class><char>*</char>
+	<class><location>../interface/ev_rich_text_links.xml</location>EV_RICH_TEXT</class>
+
+<keyword>Suppliers</keyword>
+	<class><include>False</include>BOOLEAN</class>
+	<class><location>../interface/ev_coordinate_links.xml</location>EV_COORDINATE</class>
+	<class><location>../interface/ev_rich_text_links.xml</location>EV_RICH_TEXT</class>
+	<class><location>../implementation_interface/ev_rich_text_i_links.xml</location>EV_RICH_TEXT_I</class><char>*</char>
+	<class><location>../implementation_gtk/ev_rich_text_imp_links.xml</location>EV_RICH_TEXT_IMP</class>
+	<class><include>False</include>INTEGER_32</class>
+	<class><include>False</include>PATH</class>
+	<class><include>False</include>STRING_32</class>
+
+</system>

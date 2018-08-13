@@ -1,0 +1,193 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "Objects that ..."{\line}
+{\tab}{\cf1 author}{\cf1 :} ""{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2017-03-27 13:31:29 -0700 (Mon, 27 Mar 2017) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 100058 $"{\line}
+{\line}
+{\b\cf6 class} {\line}
+{\tab}{\cf4 EV_BITMAP_IMP}{\line}
+{\line}
+{\b\cf6 inherit}{\line}
+{\tab}{\cf4 EV_BITMAP_I}{\line}
+{\tab}{\tab}{\b\cf6 redefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 interface}{\line}
+{\tab}{\tab}{\b\cf6 end}{\line}
+{\line}
+{\tab}{\cf4 EV_DRAWABLE_IMP}{\line}
+{\tab}{\tab}{\b\cf6 redefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 interface}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 clear_rectangle}{\line}
+{\tab}{\tab}{\b\cf6 end}{\line}
+{\line}
+{\b\cf6 create} {\line}
+{\tab}{\cf5 make}{\line}
+{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Initialization}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 old_make} {\cf1 (}{\cf5 an_interface}{\cf1 :} {\b\cf6 attached} {\b\cf6 like} {\cf5 interface}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create an empty drawing area.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 assign_interface}{\cf1  }{\cf1 (}{\cf5 an_interface}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set up action sequence connections and create graphics context.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 drawable} {\cf1 :=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_pixmap_new} {\cf1 (}{\cf5 default_pointer}{\cf1 ,} 1{\cf1 ,} 1{\cf1 ,} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 gc} {\cf1 :=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_gc_new} {\cf1 (}{\cf5 drawable}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_default_colors}{\line}
+{\tab}{\tab}{\tab}{\cf5 init_default_values}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_is_initialized}{\cf1  }{\cf1 (}{\b\cf6 True}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status Setting}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_size} {\cf1 (}{\cf5 a_width}{\cf1 ,} {\cf5 a_height}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set the size of the pixmap to }{\cf5 a_width}{\cf3  by }{\cf5 a_height}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 oldpix}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_width}{\cf1 ,} {\cf5 l_height}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 drawable} {\cf1 /=} {\cf5 default_pointer} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 oldpix} {\cf1 :=} {\cf5 drawable}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_width} {\cf1 :=} {\cf5 width}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_height} {\cf1 :=} {\cf5 height}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 drawable} {\cf1 :=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_pixmap_new} {\cf1 (}{\cf5 default_pointer}{\cf1 ,} {\cf5 a_width}{\cf1 ,} {\cf5 a_height}{\cf1 ,} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 clear_rectangle}{\cf1  }{\cf1 (}0{\cf1 ,} 0{\cf1 ,} {\cf5 a_width}{\cf1 ,} {\cf5 a_height}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 oldpix} {\cf1 /=} {\cf5 default_pointer} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_draw_pixmap} {\cf1 (}{\cf5 drawable}{\cf1 ,} {\cf5 gc}{\cf1 ,} {\cf5 oldpix}{\cf1 ,} 0{\cf1 ,} 0{\cf1 ,} 0{\cf1 ,} 0{\cf1 ,} {\cf5 l_width}{\cf1 ,} {\cf5 l_height}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_bitmap_unref} {\cf1 (}{\cf5 oldpix}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 clear_rectangle} {\cf1 (}{\cf5 a_x}{\cf1 ,} {\cf5 a_y}{\cf1 ,} {\cf5 a_width}{\cf1 ,} {\cf5 a_height}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Erase rectangle specified with }{\cf5 background_color}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_gc_set_foreground} {\cf1 (}{\cf5 gc}{\cf1 ,} {\cf5 Fg_color}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_gc_set_background} {\cf1 (}{\cf5 gc}{\cf1 ,} {\cf5 Bg_color}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_draw_rectangle} {\cf1 (}{\cf5 drawable}{\cf1 ,} {\cf5 gc}{\cf1 ,} 1{\cf1 ,} {\cf5 a_x}{\cf1 ,} {\cf5 a_y}{\cf1 ,} {\cf5 a_width}{\cf1 ,} {\cf5 a_height}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_default_colors}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 width}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Width in pixels of mask bitmap.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_y}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 drawable} {\cf1 /=} {\cf5 default_pointer} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_window_get_size} {\cf1 (}{\cf5 drawable}{\cf1 ,} {\cf1 $}{\b\cf6 Result}{\b\cf1 .}{\cf5 to_pointer}{\cf1 ,} {\cf1 $}{\cf5 a_y}{\b\cf1 .}{\cf5 to_pointer}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 height}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Width in pixels of mask bitmap.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_x}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 drawable} {\cf1 /=} {\cf5 default_pointer} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_window_get_size} {\cf1 (}{\cf5 drawable}{\cf1 ,} {\cf1 $}{\cf5 a_x}{\b\cf1 .}{\cf5 to_pointer}{\cf1 ,} {\cf1 $}{\b\cf6 Result}{\b\cf1 .}{\cf5 to_pointer}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_PIXMAP_IMP}{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 drawable}{\cf1 :} {\cf4 POINTER}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Pointer to the GdkPixmap objects used for }{\cf5 Current}{\cf3 .}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 App_implementation}{\cf1 :} {\cf4 EV_APPLICATION_IMP}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Access to application object implementation.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 env}{\cf1 :} {\cf4 EV_ENVIRONMENT}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_result}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_APPLICATION_IMP}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 env}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_result} {\cf1 ?=} {\cf5 env}{\b\cf1 .}{\cf5 implementation}{\b\cf1 .}{\cf5 application_i}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 l_result}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 redraw}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Redraw the entire area.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_default_colors}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set foreground and background color to their default values.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_gc_set_foreground} {\cf1 (}{\cf5 gc}{\cf1 ,} {\cf5 Bg_color}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_gc_set_background} {\cf1 (}{\cf5 gc}{\cf1 ,} {\cf5 Fg_color}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 destroy}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Destroy underlying native toolkit objects.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Render }{\cf5 Current}{\cf3  unusable.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Any feature calls after a call to destroy are}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  invalid.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 drawable} {\cf1 /=} {\cf5 default_pointer} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_bitmap_unref} {\cf1 (}{\cf5 drawable}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 drawable} {\cf1 :=} {\cf5 default_pointer}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_is_destroyed}{\cf1  }{\cf1 (}{\b\cf6 True}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 dispose}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Cleanup}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 drawable} {\cf1 /=} {\cf5 default_pointer} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_bitmap_unref} {\cf1 (}{\cf5 drawable}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 flush}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Force all queued draw to be called.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 update_if_needed}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Update }{\cf5 Current}{\cf3  if needed.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 mask}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Pointer to the mask used by }{\cf5 Current}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_ANY}{\cf1 ,} {\cf4 EV_ANY_I}{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 interface}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_BITMAP}{\line}
+{\tab}{\tab}{\b\cf6 note}{\line}
+{\tab}{\tab}{\tab}option: stable{\line}
+{\tab}{\tab}{\b\cf6 attribute}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 note}{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 1984-2017, Eiffel Software and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"{\line}
+{\tab}{\cf1 source}{\cf1 :} "[{\line}
+{\tab}{\tab}Eiffel Software{\line}
+{\tab}{\tab}5949 Hollister Ave., Goleta, CA 93117 USA{\line}
+{\tab}{\tab}Telephone 805-685-1006, Fax 805-685-6869{\line}
+{\tab}{\tab}Website http://www.eiffel.com{\line}
+{\tab}{\tab}Customer support http://support.eiffel.com{\line}
+{\tab}]"{\line}
+{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 EV_BITMAP_IMP}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

@@ -1,0 +1,74 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Objects that provide information for a range of characters in an EV_RICH_TEXT.</string>
+		<string>Depending on the query applied to </string><string>Current</string><string>, the values of all attributes are used in different</string>
+		<string>fashions, sometimes to indicate which fields of an EV_CHARACTER_FORMAT are valid, or have a particular</string>
+		<string>property. The applicable features in EV_RICH_TEXT which use </string><string>Current</string><string> provide full descriptions.</string>
+	<string>]</string><string>&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2008-12-29 12:27:11 -0800 (Mon, 29 Dec 2008) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 76420 $&quot;</string>
+
+<keyword>class</keyword> <keyword>interface</keyword>
+	<class><location>../interface/ev_character_format_range_information_short.xml</location>EV_CHARACTER_FORMAT_RANGE_INFORMATION</class>
+
+<keyword>create</keyword> 
+	<feature><location>../interface/ev_character_format_range_information_short.xml#f_make_with_flags</location>make_with_flags</feature>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Creation</comment>
+
+	<anchor>f_make_with_flags</anchor><feature><location>../interface/ev_character_format_range_information_short.xml#f_make_with_flags</location>make_with_flags</feature> <symbol>(</symbol><local>flags</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Create </comment><quoted>Current</quoted><comment> and apply </comment><quoted>flags</quoted><comment> to set attributes.</comment>
+			<comment>--</comment><comment> Valid flags are the corresponding flags from EV_CHARACTER_FORMAT_CONSTANTS.</comment>
+			<comment>--</comment><comment> Combine these in </comment><quoted>flags</quoted><comment> to set multiple attrbutes, e.g. to set the</comment>
+			<comment>--</comment><comment> font height and font color as applicable perform:</comment>
+			<comment>--</comment><comment> &quot;make_with_flags (feature </comment><symbol>{</symbol><class><location>../interface/ev_character_format_constants_short.xml</location>EV_CHARACTER_FORMAT_CONSTANTS</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_character_format_constants_short.xml#f_font_height</location>font_height</feature><comment> | feature </comment><symbol>{</symbol><class><location>../interface/ev_character_format_constants_short.xml</location>EV_CHARACTER_FORMAT_CONSTANTS</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_character_format_constants_short.xml#f_color</location>color</feature><comment>)&quot;</comment>
+		<keyword>require</keyword>
+			<tag>valid_flags</tag><symbol>:</symbol> <feature><location>../interface/ev_character_format_constants_short.xml#f_valid_character_format_flag</location>valid_character_format_flag</feature><symbol> </symbol><symbol>(</symbol><local>flags</local><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>attributes_set</tag><symbol>:</symbol> <feature><location>../interface/ev_character_format_range_information_short.xml#f_font_family</location>font_family</feature> <symbol>=</symbol> <symbol>(</symbol><local>flags</local> <symbol>|</symbol> <symbol>{</symbol><class><location>../interface/ev_character_format_constants_short.xml</location>EV_CHARACTER_FORMAT_CONSTANTS</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_character_format_constants_short.xml#f_font_family</location>font_family</feature> <symbol>=</symbol> <local>flags</local><symbol>)</symbol> <keyword>and</keyword> <feature><location>../interface/ev_character_format_range_information_short.xml#f_font_weight</location>font_weight</feature> <symbol>=</symbol> <symbol>(</symbol><local>flags</local> <symbol>|</symbol> <symbol>{</symbol><class><location>../interface/ev_character_format_constants_short.xml</location>EV_CHARACTER_FORMAT_CONSTANTS</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_character_format_constants_short.xml#f_font_weight</location>font_weight</feature> <symbol>=</symbol> <local>flags</local><symbol>)</symbol> <keyword>and</keyword> <feature><location>../interface/ev_character_format_range_information_short.xml#f_font_shape</location>font_shape</feature> <symbol>=</symbol> <symbol>(</symbol><local>flags</local> <symbol>|</symbol> <symbol>{</symbol><class><location>../interface/ev_character_format_constants_short.xml</location>EV_CHARACTER_FORMAT_CONSTANTS</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_character_format_constants_short.xml#f_font_shape</location>font_shape</feature> <symbol>=</symbol> <local>flags</local><symbol>)</symbol> <keyword>and</keyword> <feature><location>../interface/ev_character_format_range_information_short.xml#f_font_height</location>font_height</feature> <symbol>=</symbol> <symbol>(</symbol><local>flags</local> <symbol>|</symbol> <symbol>{</symbol><class><location>../interface/ev_character_format_constants_short.xml</location>EV_CHARACTER_FORMAT_CONSTANTS</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_character_format_constants_short.xml#f_font_height</location>font_height</feature> <symbol>=</symbol> <local>flags</local><symbol>)</symbol> <keyword>and</keyword> <feature><location>../interface/ev_character_format_range_information_short.xml#f_color</location>color</feature> <symbol>=</symbol> <symbol>(</symbol><local>flags</local> <symbol>|</symbol> <symbol>{</symbol><class><location>../interface/ev_character_format_constants_short.xml</location>EV_CHARACTER_FORMAT_CONSTANTS</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_character_format_constants_short.xml#f_color</location>color</feature> <symbol>=</symbol> <local>flags</local><symbol>)</symbol> <keyword>and</keyword> <feature><location>../interface/ev_character_format_range_information_short.xml#f_background_color</location>background_color</feature> <symbol>=</symbol> <symbol>(</symbol><local>flags</local> <symbol>|</symbol> <symbol>{</symbol><class><location>../interface/ev_character_format_constants_short.xml</location>EV_CHARACTER_FORMAT_CONSTANTS</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_character_format_constants_short.xml#f_background_color</location>background_color</feature> <symbol>=</symbol> <local>flags</local><symbol>)</symbol> <keyword>and</keyword> <feature><location>../interface/ev_character_format_range_information_short.xml#f_effects_striked_out</location>effects_striked_out</feature> <symbol>=</symbol> <symbol>(</symbol><local>flags</local> <symbol>|</symbol> <symbol>{</symbol><class><location>../interface/ev_character_format_constants_short.xml</location>EV_CHARACTER_FORMAT_CONSTANTS</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_character_format_constants_short.xml#f_effects_striked_out</location>effects_striked_out</feature> <symbol>=</symbol> <local>flags</local><symbol>)</symbol> <keyword>and</keyword> <feature><location>../interface/ev_character_format_range_information_short.xml#f_effects_underlined</location>effects_underlined</feature> <symbol>=</symbol> <symbol>(</symbol><local>flags</local> <symbol>|</symbol> <symbol>{</symbol><class><location>../interface/ev_character_format_constants_short.xml</location>EV_CHARACTER_FORMAT_CONSTANTS</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_character_format_constants_short.xml#f_effects_underlined</location>effects_underlined</feature> <symbol>=</symbol> <local>flags</local><symbol>)</symbol> <keyword>and</keyword> <feature><location>../interface/ev_character_format_range_information_short.xml#f_effects_vertical_offset</location>effects_vertical_offset</feature> <symbol>=</symbol> <symbol>(</symbol><local>flags</local> <symbol>|</symbol> <symbol>{</symbol><class><location>../interface/ev_character_format_constants_short.xml</location>EV_CHARACTER_FORMAT_CONSTANTS</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_character_format_constants_short.xml#f_effects_vertical_offset</location>effects_vertical_offset</feature> <symbol>=</symbol> <local>flags</local><symbol>)</symbol>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_font_family</anchor><feature><location>../interface/ev_character_format_range_information_short.xml#f_font_family</location>font_family</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is family of font applicable?</comment>
+
+	<anchor>f_font_weight</anchor><feature><location>../interface/ev_character_format_range_information_short.xml#f_font_weight</location>font_weight</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is weight of font applicable?</comment>
+
+	<anchor>f_font_shape</anchor><feature><location>../interface/ev_character_format_range_information_short.xml#f_font_shape</location>font_shape</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is shape of font applicable?</comment>
+
+	<anchor>f_font_height</anchor><feature><location>../interface/ev_character_format_range_information_short.xml#f_font_height</location>font_height</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is height of font applicable?</comment>
+
+	<anchor>f_color</anchor><feature><location>../interface/ev_character_format_range_information_short.xml#f_color</location>color</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is color of font applicable?</comment>
+
+	<anchor>f_background_color</anchor><feature><location>../interface/ev_character_format_range_information_short.xml#f_background_color</location>background_color</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is background color of font applicable?</comment>
+
+	<anchor>f_effects_striked_out</anchor><feature><location>../interface/ev_character_format_range_information_short.xml#f_effects_striked_out</location>effects_striked_out</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is striked out effect of font applicable?</comment>
+
+	<anchor>f_effects_underlined</anchor><feature><location>../interface/ev_character_format_range_information_short.xml#f_effects_underlined</location>effects_underlined</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is underlined effect of font applicable?</comment>
+
+	<anchor>f_effects_vertical_offset</anchor><feature><location>../interface/ev_character_format_range_information_short.xml#f_effects_vertical_offset</location>effects_vertical_offset</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is vertical offset effect of font applicable?</comment>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2006, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>356 Storke Road, Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../interface/ev_character_format_range_information_short.xml</location>EV_CHARACTER_FORMAT_RANGE_INFORMATION</class></system>
+

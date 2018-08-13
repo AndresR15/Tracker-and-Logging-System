@@ -1,0 +1,757 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "Unicode strings"{\line}
+{\tab}{\cf1 remark}{\cf1 :} "[{\line}
+{\tab}{\tab}Unless specified otherwise, STRING and CHARACTER are{\line}
+{\tab}{\tab}supposed to contain characters whose code follows the{\line}
+{\tab}{\tab}unicode character set. In other words characters whose{\line}
+{\tab}{\tab}code is between 128 and 255 should follow the ISO 8859-1{\line}
+{\tab}{\tab}Latin-1 character set.{\line}
+{\tab}]"{\line}
+{\tab}{\cf1 remark2}{\cf1 :} "[{\line}
+{\tab}{\tab}By default UC_STRING is implemented using the UTF-8 encoding.{\line}
+{\tab}{\tab}Use UC_UTF*_STRING to specify the encoding explicitly.{\line}
+{\tab}]"{\line}
+{\tab}{\cf1 library}{\cf1 :} "Gobo Eiffel Kernel Library"{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 2001-2016, Eric Bezault and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "MIT License"{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2017-04-11 11:34:55 -0700 (Tue, 11 Apr 2017) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 100137 $"{\line}
+{\line}
+{\b\cf6 class} {\b\cf6 interface}{\line}
+{\tab}{\cf4 UC_STRING}{\line}
+{\line}
+{\b\cf6 create} {\line}
+{\tab}{\cf5 make}{\cf1 ,}{\line}
+{\tab}{\cf5 make_empty}{\cf1 ,}{\line}
+{\tab}{\cf5 make_from_string}{\cf1 ,}{\line}
+{\tab}{\cf5 make_from_utf8}{\cf1 ,}{\line}
+{\tab}{\cf5 make_filled}{\cf1 ,}{\line}
+{\tab}{\cf5 make_filled_code}{\cf1 ,}{\line}
+{\tab}{\cf5 make_filled_unicode}{\cf1 ,}{\line}
+{\tab}{\cf5 make_from_substring}{\cf1 ,}{\line}
+{\tab}{\cf5 make_from_utf16}{\cf1 ,}{\line}
+{\tab}{\cf5 make_from_utf16le}{\cf1 ,}{\line}
+{\tab}{\cf5 make_from_utf16be}{\cf1 ,}{\line}
+{\tab}{\cf5 make_from_string_general}{\cf1 ,}{\line}
+{\tab}{\cf5 make_from_substring_general}{\line}
+{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Initialization}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make} {\cf1 (}{\cf5 suggested_capacity}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create empty string, or remove all characters from}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  existing string.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Extended from ELKS 2001 STRING)}{\line}
+{\tab}{\tab}{\b\cf6 ensure then}{\line}
+{\tab}{\tab}{\tab}{\cf1 byte_count_set}{\cf1 :} {\cf5 byte_count} {\cf1 =} 0{\line}
+{\tab}{\tab}{\tab}{\cf1 byte_capacity_set}{\cf1 :} {\cf5 byte_capacity} {\cf1 >=} {\cf5 suggested_capacity}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 make_from_string} {\cf1 (}{\cf5 a_string}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Initialize from the character sequence of }{\cf5 a_string}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (ELKS 2001 STRING)}{\line}
+{\tab}{\tab}{\b\cf6 ensure then}{\line}
+{\tab}{\tab}{\tab}{\cf1 same_unicode}{\cf1 :} {\cf5 same_unicode_string}{\cf1  }{\cf1 (}{\cf5 a_string}{\cf1 )}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 unicode_item} {\cf1 (}{\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 UC_CHARACTER}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Unicode character at index }{\cf5 i}{\cf3 ;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Return a new object at each call}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_index}{\cf1 :} {\cf5 valid_index}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 item_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 code_set}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 code} {\cf1 =} {\cf5 item_code}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 item_code} {\cf1 (}{\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Code of character at index }{\cf5 i}{\line}
+{\tab}{\tab}{\b\cf6 ensure then}{\line}
+{\tab}{\tab}{\tab}{\cf1 item_code_not_negative}{\cf1 :} {\b\cf6 Result} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_item_code}{\cf1 :} {\cf5 Unicode}{\b\cf1 .}{\cf5 valid_code}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 item} {\cf1 (}{\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 CHARACTER_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Character at index }{\cf5 i}{\cf3 ;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  '%U' if the unicode character at index}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 i}{\cf3  cannot fit into a CHARACTER}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Extended from ELKS 2001 STRING)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Note: Use }{\cf5 item_code}{\cf3  instead of this routine when }{\cf5 Current}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  can contain characters which may not fit into a CHARACTER.}{\line}
+{\tab}{\tab}{\b\cf6 ensure then}{\line}
+{\tab}{\tab}{\tab}{\cf1 code_small_enough}{\cf1 :} {\cf5 item_code}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )} {\cf1 <=} {\cf5 Platform}{\b\cf1 .}{\cf5 Maximum_character_code} {\b\cf6 implies} {\b\cf6 Result}{\b\cf1 .}{\cf5 code} {\cf1 =} {\cf5 item_code}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 overflow}{\cf1 :} {\cf5 item_code}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )} {\cf1 >} {\cf5 Platform}{\b\cf1 .}{\cf5 Maximum_character_code} {\b\cf6 implies} {\b\cf6 Result} {\cf1 =} '%U'{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 at} {\b\cf6 alias} {\cf1 "}{\cf1 @}{\cf1 "} {\cf1 (}{\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 CHARACTER_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Character at index }{\cf5 i}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (ELKS 2001 STRING)}{\line}
+{\tab}{\tab}{\b\cf6 ensure then}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf5 item}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 substring} {\cf1 (}{\cf5 start_index}{\cf1 ,} {\cf5 end_index}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\b\cf6 like} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New object containing all characters}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  from }{\cf5 start_index}{\cf3  to }{\cf5 end_index}{\cf3  inclusive}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (ELKS 2001 STRING)}{\line}
+{\tab}{\tab}{\b\cf6 ensure then}{\line}
+{\tab}{\tab}{\tab}{\cf1 first_unicode_item}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 count} {\cf1 >} 0 {\b\cf6 implies} {\b\cf6 Result}{\b\cf1 .}{\cf5 item_code}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} {\cf5 item_code}{\cf1  }{\cf1 (}{\cf5 start_index}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 unicode_substring_index} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 READABLE_STRING_GENERAL}{\cf1 ;} {\cf5 start_index}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Index of first occurrence of }{\cf5 other}{\cf3  at or after }{\cf5 start_index}{\cf3 ;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  0 if none}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_start_index}{\cf1 :} {\cf5 start_index} {\cf1 >=} 1 {\b\cf6 and} {\cf5 start_index} {\cf1 <=} {\cf5 count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_result}{\cf1 :} {\b\cf6 Result} {\cf1 =} 0 {\b\cf6 or else} {\cf1 (}{\cf5 start_index} {\cf1 <=} {\b\cf6 Result} {\b\cf6 and} {\b\cf6 Result} {\cf1 <=} {\cf5 count} {\cf1 -} {\cf5 other}{\b\cf1 .}{\cf5 count} {\cf1 +} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 zero_if_absent}{\cf1 :} {\cf1 (}{\b\cf6 Result} {\cf1 =} 0{\cf1 )} {\cf1 =} {\b\cf6 not} {\cf5 substring}{\cf1  }{\cf1 (}{\cf5 start_index}{\cf1 ,} {\cf5 count}{\cf1 )}{\b\cf1 .}{\cf5 has_unicode_substring}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 at_this_index}{\cf1 :} {\b\cf6 Result} {\cf1 >=} {\cf5 start_index} {\b\cf6 implies} {\cf5 substring}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 ,} {\b\cf6 Result} {\cf1 +} {\cf5 other}{\b\cf1 .}{\cf5 count} {\cf1 -} 1{\cf1 )}{\b\cf1 .}{\cf5 same_unicode_string}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 none_before}{\cf1 :} {\b\cf6 Result} {\cf1 >} {\cf5 start_index} {\b\cf6 implies} {\b\cf6 not} {\cf5 substring}{\cf1  }{\cf1 (}{\cf5 start_index}{\cf1 ,} {\b\cf6 Result} {\cf1 +} {\cf5 other}{\b\cf1 .}{\cf5 count} {\cf1 -} 2{\cf1 )}{\b\cf1 .}{\cf5 has_unicode_substring}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 substring_index} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 start_index}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Index of first occurrence of }{\cf5 other}{\cf3  at or after }{\cf5 start_index}{\cf3 ;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  0 if none. }{\cf5 other}{\cf3  and }{\cf5 Current}{\cf3  are considered with their}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  characters which do not fit in a CHARACTER replaced by a '%U'}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Extended from ELKS 2001 STRING)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 string}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New STRING having the same character sequence as }{\cf5 Current}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  where characters which do not fit in a CHARACTER are}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  replaced by a '%U'}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Extended from ELKS 2001 STRING)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 plus} {\b\cf6 alias} {\cf1 "}{\cf1 +}{\cf1 "} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 READABLE_STRING_8}{\cf1 )}{\cf1 :} {\b\cf6 like} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New object which is a clone of }{\cf5 Current}{\cf3  extended}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  by the characters of }{\cf5 other}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (ELKS 2001 STRING)}{\line}
+{\tab}{\tab}{\b\cf6 ensure then}{\line}
+{\tab}{\tab}{\tab}{\cf1 final_unicode}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}{\cf5 count} {\cf1 +} 1{\cf1 ,} {\cf5 count} {\cf1 +} {\cf5 other}{\b\cf1 .}{\cf5 count}{\cf1 )}{\b\cf1 .}{\cf5 same_unicode_string}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 prefixed_string} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\b\cf6 like} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New object which is a clone of }{\cf5 Current}{\cf3  preceded}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  by the characters of }{\cf5 other}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 prefixed_string_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 prefixed_string_count}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 count} {\cf1 =} {\cf5 other}{\b\cf1 .}{\cf5 count} {\cf1 +} {\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\cf1 initial}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}1{\cf1 ,} {\cf5 other}{\b\cf1 .}{\cf5 count}{\cf1 )}{\b\cf1 .}{\cf5 same_unicode_string}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 final}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}{\cf5 other}{\b\cf1 .}{\cf5 count} {\cf1 +} 1{\cf1 ,} {\b\cf6 Result}{\b\cf1 .}{\cf5 count}{\cf1 )}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 index_of_unicode} {\cf1 (}{\cf5 c}{\cf1 :} {\cf4 UC_CHARACTER}{\cf1 ;} {\cf5 start_index}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Index of first occurrence of }{\cf5 c}{\cf3  at or after }{\cf5 start_index}{\cf3 ;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  0 if none}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 c_not_void}{\cf1 :} {\cf5 c} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_start_index}{\cf1 :} {\cf5 start_index} {\cf1 >=} 1 {\b\cf6 and} {\cf5 start_index} {\cf1 <=} {\cf5 count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_result}{\cf1 :} {\b\cf6 Result} {\cf1 =} 0 {\b\cf6 or} {\cf1 (}{\cf5 start_index} {\cf1 <=} {\b\cf6 Result} {\b\cf6 and} {\b\cf6 Result} {\cf1 <=} {\cf5 count}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 zero_if_absent}{\cf1 :} {\cf1 (}{\b\cf6 Result} {\cf1 =} 0{\cf1 )} {\cf1 =} {\b\cf6 not} {\cf5 substring}{\cf1  }{\cf1 (}{\cf5 start_index}{\cf1 ,} {\cf5 count}{\cf1 )}{\b\cf1 .}{\cf5 has_unicode}{\cf1  }{\cf1 (}{\cf5 c}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 found_if_present}{\cf1 :} {\cf5 substring}{\cf1  }{\cf1 (}{\cf5 start_index}{\cf1 ,} {\cf5 count}{\cf1 )}{\b\cf1 .}{\cf5 has_unicode}{\cf1  }{\cf1 (}{\cf5 c}{\cf1 )} {\b\cf6 implies} {\cf5 item_code}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 )} {\cf1 =} {\cf5 c}{\b\cf1 .}{\cf5 code}{\line}
+{\tab}{\tab}{\tab}{\cf1 none_before}{\cf1 :} {\cf5 substring}{\cf1  }{\cf1 (}{\cf5 start_index}{\cf1 ,} {\cf5 count}{\cf1 )}{\b\cf1 .}{\cf5 has_unicode}{\cf1  }{\cf1 (}{\cf5 c}{\cf1 )} {\b\cf6 implies} {\b\cf6 not} {\cf5 substring}{\cf1  }{\cf1 (}{\cf5 start_index}{\cf1 ,} {\b\cf6 Result} {\cf1 -} 1{\cf1 )}{\b\cf1 .}{\cf5 has_unicode}{\cf1  }{\cf1 (}{\cf5 c}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 index_of_item_code} {\cf1 (}{\cf5 a_code}{\cf1 :} {\cf4 INTEGER_32}{\cf1 ;} {\cf5 start_index}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Index of first occurrence of unicode character with}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  code }{\cf5 a_code}{\cf3  at or after }{\cf5 start_index}{\cf3 ; 0 if none}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_start_index}{\cf1 :} {\cf5 start_index} {\cf1 >=} 1 {\b\cf6 and} {\cf5 start_index} {\cf1 <=} {\cf5 count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_code}{\cf1 :} {\cf5 Unicode}{\b\cf1 .}{\cf5 valid_code}{\cf1  }{\cf1 (}{\cf5 a_code}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_result}{\cf1 :} {\b\cf6 Result} {\cf1 =} 0 {\b\cf6 or} {\cf1 (}{\cf5 start_index} {\cf1 <=} {\b\cf6 Result} {\b\cf6 and} {\b\cf6 Result} {\cf1 <=} {\cf5 count}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 zero_if_absent}{\cf1 :} {\cf1 (}{\b\cf6 Result} {\cf1 =} 0{\cf1 )} {\cf1 =} {\b\cf6 not} {\cf5 substring}{\cf1  }{\cf1 (}{\cf5 start_index}{\cf1 ,} {\cf5 count}{\cf1 )}{\b\cf1 .}{\cf5 has_item_code}{\cf1  }{\cf1 (}{\cf5 a_code}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 found_if_present}{\cf1 :} {\cf5 substring}{\cf1  }{\cf1 (}{\cf5 start_index}{\cf1 ,} {\cf5 count}{\cf1 )}{\b\cf1 .}{\cf5 has_item_code}{\cf1  }{\cf1 (}{\cf5 a_code}{\cf1 )} {\b\cf6 implies} {\cf5 item_code}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 )} {\cf1 =} {\cf5 a_code}{\line}
+{\tab}{\tab}{\tab}{\cf1 none_before}{\cf1 :} {\cf5 substring}{\cf1  }{\cf1 (}{\cf5 start_index}{\cf1 ,} {\cf5 count}{\cf1 )}{\b\cf1 .}{\cf5 has_item_code}{\cf1  }{\cf1 (}{\cf5 a_code}{\cf1 )} {\b\cf6 implies} {\b\cf6 not} {\cf5 substring}{\cf1  }{\cf1 (}{\cf5 start_index}{\cf1 ,} {\b\cf6 Result} {\cf1 -} 1{\cf1 )}{\b\cf1 .}{\cf5 has_item_code}{\cf1  }{\cf1 (}{\cf5 a_code}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 index_of} {\cf1 (}{\cf5 c}{\cf1 :} {\cf4 CHARACTER_8}{\cf1 ;} {\cf5 start_index}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Index of first occurrence of character }{\cf5 c}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  at or after }{\cf5 start_index}{\cf3 ; 0 if none}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (ELKS 2001 STRING)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 hash_code}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Hash code}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (ELKS 2001 STRING)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 new_empty_string} {\cf1 (}{\cf5 suggested_capacity}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\b\cf6 like} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New empty string with same dynamic type as }{\cf5 Current}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 non_negative_suggested_capacity}{\cf1 :} {\cf5 suggested_capacity} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 new_string_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 same_type}{\cf1 :} {\cf5 Any_}{\b\cf1 .}{\cf5 same_types}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 ,} {\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 new_string_empty}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 count} {\cf1 =} 0{\line}
+{\tab}{\tab}{\tab}{\cf1 byte_count_set}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 byte_count} {\cf1 =} 0{\line}
+{\tab}{\tab}{\tab}{\cf1 byte_capacity_set}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 byte_capacity} {\cf1 >=} {\cf5 suggested_capacity}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Measurement}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 unicode_occurrences} {\cf1 (}{\cf5 c}{\cf1 :} {\cf4 UC_CHARACTER}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of times }{\cf5 c}{\cf3  appears in the string}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 c_not_void}{\cf1 :} {\cf5 c} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 zero_if_empty}{\cf1 :} {\cf5 count} {\cf1 =} 0 {\b\cf6 implies} {\b\cf6 Result} {\cf1 =} 0{\line}
+{\tab}{\tab}{\tab}{\cf1 recurse_if_not_found_at_first_position}{\cf1 :} {\cf1 (}{\cf5 count} {\cf1 >} 0 {\b\cf6 and then} {\cf5 item_code}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 /=} {\cf5 c}{\b\cf1 .}{\cf5 code}{\cf1 )} {\b\cf6 implies} {\b\cf6 Result} {\cf1 =} {\cf5 substring}{\cf1  }{\cf1 (}2{\cf1 ,} {\cf5 count}{\cf1 )}{\b\cf1 .}{\cf5 unicode_occurrences}{\cf1  }{\cf1 (}{\cf5 c}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 recurse_if_found_at_first_position}{\cf1 :} {\cf1 (}{\cf5 count} {\cf1 >} 0 {\b\cf6 and then} {\cf5 item_code}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} {\cf5 c}{\b\cf1 .}{\cf5 code}{\cf1 )} {\b\cf6 implies} {\b\cf6 Result} {\cf1 =} 1 {\cf1 +} {\cf5 substring}{\cf1  }{\cf1 (}2{\cf1 ,} {\cf5 count}{\cf1 )}{\b\cf1 .}{\cf5 unicode_occurrences}{\cf1  }{\cf1 (}{\cf5 c}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 code_occurrences} {\cf1 (}{\cf5 a_code}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of times unicode character of code}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 a_code}{\cf3  appears in the string}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_code}{\cf1 :} {\cf5 Unicode}{\b\cf1 .}{\cf5 valid_code}{\cf1  }{\cf1 (}{\cf5 a_code}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 zero_if_empty}{\cf1 :} {\cf5 count} {\cf1 =} 0 {\b\cf6 implies} {\b\cf6 Result} {\cf1 =} 0{\line}
+{\tab}{\tab}{\tab}{\cf1 recurse_if_not_found_at_first_position}{\cf1 :} {\cf1 (}{\cf5 count} {\cf1 >} 0 {\b\cf6 and then} {\cf5 item_code}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 /=} {\cf5 a_code}{\cf1 )} {\b\cf6 implies} {\b\cf6 Result} {\cf1 =} {\cf5 substring}{\cf1  }{\cf1 (}2{\cf1 ,} {\cf5 count}{\cf1 )}{\b\cf1 .}{\cf5 code_occurrences}{\cf1  }{\cf1 (}{\cf5 a_code}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 recurse_if_found_at_first_position}{\cf1 :} {\cf1 (}{\cf5 count} {\cf1 >} 0 {\b\cf6 and then} {\cf5 item_code}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} {\cf5 a_code}{\cf1 )} {\b\cf6 implies} {\b\cf6 Result} {\cf1 =} 1 {\cf1 +} {\cf5 substring}{\cf1  }{\cf1 (}2{\cf1 ,} {\cf5 count}{\cf1 )}{\b\cf1 .}{\cf5 code_occurrences}{\cf1  }{\cf1 (}{\cf5 a_code}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 occurrences} {\cf1 (}{\cf5 c}{\cf1 :} {\cf4 CHARACTER_8}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of times character }{\cf5 c}{\cf3  appears in the string}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (ELKS 2001 STRING)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 count}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of characters}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (ELKS 2001 STRING)}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 byte_count}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of bytes in internal storage}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 byte_capacity}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Maximum number of bytes that can be put in}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  internal storage}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status report}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 has_unicode} {\cf1 (}{\cf5 c}{\cf1 :} {\cf4 UC_CHARACTER}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does }{\cf5 Current}{\cf3  contain }{\cf5 c}{\cf3 ?}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 c_not_void}{\cf1 :} {\cf5 c} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 false_if_empty}{\cf1 :} {\cf5 count} {\cf1 =} 0 {\b\cf6 implies} {\b\cf6 not} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\cf1 true_if_first}{\cf1 :} {\cf5 count} {\cf1 >} 0 {\b\cf6 and then} {\cf5 item_code}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} {\cf5 c}{\b\cf1 .}{\cf5 code} {\b\cf6 implies} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\cf1 recurse}{\cf1 :} {\cf1 (}{\cf5 count} {\cf1 >} 0 {\b\cf6 and then} {\cf5 item_code}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 /=} {\cf5 c}{\b\cf1 .}{\cf5 code}{\cf1 )} {\b\cf6 implies} {\cf1 (}{\b\cf6 Result} {\cf1 =} {\cf5 substring}{\cf1  }{\cf1 (}2{\cf1 ,} {\cf5 count}{\cf1 )}{\b\cf1 .}{\cf5 has_unicode}{\cf1  }{\cf1 (}{\cf5 c}{\cf1 )}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 has_item_code} {\cf1 (}{\cf5 a_code}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does }{\cf5 Current}{\cf3  contain the unicode character of code }{\cf5 a_code}{\cf3 ?}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_code}{\cf1 :} {\cf5 Unicode}{\b\cf1 .}{\cf5 valid_code}{\cf1  }{\cf1 (}{\cf5 a_code}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 false_if_empty}{\cf1 :} {\cf5 count} {\cf1 =} 0 {\b\cf6 implies} {\b\cf6 not} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\cf1 true_if_first}{\cf1 :} {\cf5 count} {\cf1 >} 0 {\b\cf6 and then} {\cf5 item_code}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} {\cf5 a_code} {\b\cf6 implies} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\cf1 recurse}{\cf1 :} {\cf1 (}{\cf5 count} {\cf1 >} 0 {\b\cf6 and then} {\cf5 item_code}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 /=} {\cf5 a_code}{\cf1 )} {\b\cf6 implies} {\cf1 (}{\b\cf6 Result} {\cf1 =} {\cf5 substring}{\cf1  }{\cf1 (}2{\cf1 ,} {\cf5 count}{\cf1 )}{\b\cf1 .}{\cf5 has_item_code}{\cf1  }{\cf1 (}{\cf5 a_code}{\cf1 )}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 has} {\cf1 (}{\cf5 c}{\cf1 :} {\cf4 CHARACTER_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does }{\cf5 Current}{\cf3  contain character }{\cf5 c}{\cf3 ?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (ELKS 2001 STRING)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 has_unicode_substring} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 READABLE_STRING_GENERAL}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does }{\cf5 Current}{\cf3  contain }{\cf5 other}{\cf3 ?}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 false_if_too_small}{\cf1 :} {\cf5 count} {\cf1 <} {\cf5 other}{\b\cf1 .}{\cf5 count} {\b\cf6 implies} {\b\cf6 not} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\cf1 true_if_initial}{\cf1 :} {\cf1 (}{\cf5 count} {\cf1 >=} {\cf5 other}{\b\cf1 .}{\cf5 count} {\b\cf6 and then} {\cf5 substring}{\cf1  }{\cf1 (}1{\cf1 ,} {\cf5 other}{\b\cf1 .}{\cf5 count}{\cf1 )}{\b\cf1 .}{\cf5 same_unicode_string}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\cf1 )} {\b\cf6 implies} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\cf1 recurse}{\cf1 :} {\cf1 (}{\cf5 count} {\cf1 >=} {\cf5 other}{\b\cf1 .}{\cf5 count} {\b\cf6 and then} {\b\cf6 not} {\cf5 substring}{\cf1  }{\cf1 (}1{\cf1 ,} {\cf5 other}{\b\cf1 .}{\cf5 count}{\cf1 )}{\b\cf1 .}{\cf5 same_unicode_string}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\cf1 )} {\b\cf6 implies} {\cf1 (}{\b\cf6 Result} {\cf1 =} {\cf5 substring}{\cf1  }{\cf1 (}2{\cf1 ,} {\cf5 count}{\cf1 )}{\b\cf1 .}{\cf5 has_unicode_substring}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 has_substring} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does }{\cf5 Current}{\cf3  contain }{\cf5 other}{\cf3 ?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 other}{\cf3  and }{\cf5 Current}{\cf3  are considered with their characters}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  which do not fit in a CHARACTER replaced by a '%U'.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Extented from ELKS 2001 STRING)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_empty}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is string empty?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (ELKS 2001 STRING)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_ascii}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does string contain only ASCII characters?}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 empty}{\cf1 :} {\cf5 count} {\cf1 =} 0 {\b\cf6 implies} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\cf1 recurse}{\cf1 :} {\cf5 count} {\cf1 >} 0 {\b\cf6 implies} {\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf5 unicode_item}{\cf1  }{\cf1 (}1{\cf1 )}{\b\cf1 .}{\cf5 is_ascii} {\b\cf6 and} {\cf5 substring}{\cf1  }{\cf1 (}2{\cf1 ,} {\cf5 count}{\cf1 )}{\b\cf1 .}{\cf5 is_ascii}{\cf1 )}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Comparison}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_equal} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 like} {\b\cf6 Current}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 other}{\cf3  attached to an object considered equal}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to current object?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Extended from ELKS 2001 STRING)}{\line}
+{\tab}{\tab}{\b\cf6 ensure then}{\line}
+{\tab}{\tab}{\tab}{\cf1 unicode_definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf5 Any_}{\b\cf1 .}{\cf5 same_types}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 ,} {\cf5 other}{\cf1 )} {\b\cf6 and then} {\cf5 count} {\cf1 =} {\cf5 other}{\b\cf1 .}{\cf5 count} {\b\cf6 and then} {\cf1 (}{\cf5 count} {\cf1 >} 0 {\b\cf6 implies} {\cf1 (}{\cf5 item_code}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} {\cf5 other}{\b\cf1 .}{\cf5 item_code}{\cf1  }{\cf1 (}1{\cf1 )} {\b\cf6 and} {\cf5 substring}{\cf1  }{\cf1 (}2{\cf1 ,} {\cf5 count}{\cf1 )}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 other}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}2{\cf1 ,} {\cf5 count}{\cf1 )}{\cf1 )}{\cf1 )}{\cf1 )}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_less} {\b\cf6 alias} {\cf1 "}{\cf1 <}{\cf1 "} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 like} {\b\cf6 Current}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is string lexicographically lower than }{\cf5 other}{\cf3 ?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Extended from ELKS 2001 STRING, inherited from COMPARABLE)}{\line}
+{\tab}{\tab}{\b\cf6 ensure then}{\line}
+{\tab}{\tab}{\tab}{\cf1 unicode_definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf5 count} {\cf1 =} 0 {\b\cf6 and} {\cf5 other}{\b\cf1 .}{\cf5 count} {\cf1 >} 0 {\b\cf6 or} {\cf5 count} {\cf1 >} 0 {\b\cf6 and then} {\cf5 other}{\b\cf1 .}{\cf5 count} {\cf1 >} 0 {\b\cf6 and then} {\cf1 (}{\cf5 item_code}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 <} {\cf5 other}{\b\cf1 .}{\cf5 item_code}{\cf1  }{\cf1 (}1{\cf1 )} {\b\cf6 or} {\cf5 item_code}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} {\cf5 other}{\b\cf1 .}{\cf5 item_code}{\cf1  }{\cf1 (}1{\cf1 )} {\b\cf6 and} {\cf5 substring}{\cf1  }{\cf1 (}2{\cf1 ,} {\cf5 count}{\cf1 )} {\cf1 <} {\cf5 other}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}2{\cf1 ,} {\cf5 other}{\b\cf1 .}{\cf5 count}{\cf1 )}{\cf1 )}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 same_string} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 READABLE_STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do }{\cf5 Current}{\cf3  and }{\cf5 other}{\cf3  have the same character sequence?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 Current}{\cf3  is considered with its characters which do not}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  fit in a CHARACTER replaced by a '%U'.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Extended from ELKS 2001 STRING)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 same_string_general} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 READABLE_STRING_GENERAL}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do }{\cf5 Current}{\cf3  and }{\cf5 other}{\cf3  have the same character sequence?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 Current}{\cf3  is considered with its characters which do not}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  fit in a CHARACTER replaced by a '%U'.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Extended from ELKS 2001 STRING)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 same_unicode_string} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 READABLE_STRING_GENERAL}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do }{\cf5 Current}{\cf3  and }{\cf5 other}{\cf3  have the same unicode character sequence?}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf5 count} {\cf1 =} {\cf5 other}{\b\cf1 .}{\cf5 count} {\b\cf6 and then} {\cf1 (}{\cf5 count} {\cf1 >} 0 {\b\cf6 implies} {\cf1 (}{\cf5 code}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} {\cf5 other}{\b\cf1 .}{\cf5 code}{\cf1  }{\cf1 (}1{\cf1 )} {\b\cf6 and} {\cf1 (}{\cf5 count} {\cf1 >=} 2 {\b\cf6 implies} {\cf5 substring}{\cf1  }{\cf1 (}2{\cf1 ,} {\cf5 count}{\cf1 )}{\b\cf1 .}{\cf5 same_unicode_string}{\cf1  }{\cf1 (}{\cf5 other}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}2{\cf1 ,} {\cf5 count}{\cf1 )}{\cf1 )}{\cf1 )}{\cf1 )}{\cf1 )}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 three_way_comparison} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 like} {\b\cf6 Current}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  If current object equal to }{\cf5 other}{\cf3 , 0;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  if smaller, -1; if greater, 1}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (ELKS 2001 STRING, inherited from COMPARABLE)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Note: there is a bug in the specification of the}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  contracts of }{\cf5 three_way_comparison}{\cf3  inherited}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  from COMPARABLE. This routine cannot satisfy}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  its postconditions if }{\cf5 other}{\cf3  is not of the}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  same type as }{\cf5 Current}{\cf3  because the postcondition}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  uses }{\cf5 is_equal}{\cf3  and }{\cf5 is_equal}{\cf3  has a postcondition}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  inherited from ANY which says if it returns true}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  then }{\cf5 other}{\cf3  has the same type as }{\cf5 Current}{\cf3 .}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 three_way_unicode_comparison} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  If current object equal to }{\cf5 other}{\cf3 , 0;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  if smaller, -1; if greater, 1}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Note: there is a bug in the specification of the}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  contracts of }{\cf5 three_way_comparison}{\cf3  inherited}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  from COMPARABLE. This routine cannot satisfy}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  its postconditions if }{\cf5 other}{\cf3  is not of the}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  same type as }{\cf5 Current}{\cf3  because the postcondition}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  uses }{\cf5 is_equal}{\cf3  and }{\cf5 is_equal}{\cf3  has a postcondition}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  inherited from ANY which says if it returns true}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  then }{\cf5 other}{\cf3  has the same type as }{\cf5 Current}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 three_way_unicode_comparison}{\cf3  solves this problem}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  and make the comparison polymorphically safe by}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  changing the signature from 'like Current' to}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  'STRING' and by using }{\cf5 same_unicode_string}{\cf3  instead}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of }{\cf5 is_equal}{\cf3  in its postcondition.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 equal_zero}{\cf1 :} {\cf1 (}{\b\cf6 Result} {\cf1 =} 0{\cf1 )} {\cf1 =} {\cf5 same_unicode_string}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Element change}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 put_unicode} {\cf1 (}{\cf5 c}{\cf1 :} {\cf4 UC_CHARACTER}{\cf1 ;} {\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Replace unicode character at index }{\cf5 i}{\cf3  by }{\cf5 c}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_index}{\cf1 :} {\cf5 valid_index}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 c_not_void}{\cf1 :} {\cf5 c} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 stable_count}{\cf1 :} {\cf5 count} {\cf1 =} {\b\cf6 old} {\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\cf1 replaced}{\cf1 :} {\cf5 item_code}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )} {\cf1 =} {\cf5 c}{\b\cf1 .}{\cf5 code}{\line}
+{\tab}{\tab}{\tab}{\cf1 stable_before_i}{\cf1 :} {\cf5 substring}{\cf1  }{\cf1 (}1{\cf1 ,} {\cf5 i} {\cf1 -} 1{\cf1 )}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 substring}{\cf1  }{\cf1 (}1{\cf1 ,} {\cf5 i} {\cf1 -} 1{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 stable_after_i}{\cf1 :} {\cf5 substring}{\cf1  }{\cf1 (}{\cf5 i} {\cf1 +} 1{\cf1 ,} {\cf5 count}{\cf1 )}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 substring}{\cf1  }{\cf1 (}{\cf5 i} {\cf1 +} 1{\cf1 ,} {\cf5 count}{\cf1 )}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 put_item_code} {\cf1 (}{\cf5 a_code}{\cf1 :} {\cf4 INTEGER_32}{\cf1 ;} {\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Replace unicode character at index }{\cf5 i}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  by unicode character of code }{\cf5 a_code}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_index}{\cf1 :} {\cf5 valid_index}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_item_code}{\cf1 :} {\cf5 Unicode}{\b\cf1 .}{\cf5 valid_code}{\cf1  }{\cf1 (}{\cf5 a_code}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 stable_count}{\cf1 :} {\cf5 count} {\cf1 =} {\b\cf6 old} {\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\cf1 replaced}{\cf1 :} {\cf5 item_code}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )} {\cf1 =} {\cf5 a_code}{\line}
+{\tab}{\tab}{\tab}{\cf1 stable_before_i}{\cf1 :} {\cf5 substring}{\cf1  }{\cf1 (}1{\cf1 ,} {\cf5 i} {\cf1 -} 1{\cf1 )}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 substring}{\cf1  }{\cf1 (}1{\cf1 ,} {\cf5 i} {\cf1 -} 1{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 stable_after_i}{\cf1 :} {\cf5 substring}{\cf1  }{\cf1 (}{\cf5 i} {\cf1 +} 1{\cf1 ,} {\cf5 count}{\cf1 )}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 substring}{\cf1  }{\cf1 (}{\cf5 i} {\cf1 +} 1{\cf1 ,} {\cf5 count}{\cf1 )}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 put} {\cf1 (}{\cf5 c}{\cf1 :} {\cf4 CHARACTER_8}{\cf1 ;} {\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Replace unicode character at index }{\cf5 i}{\cf3  by character }{\cf5 c}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (ELKS 2001 STRING)}{\line}
+{\tab}{\tab}{\b\cf6 ensure then}{\line}
+{\tab}{\tab}{\tab}{\cf1 unicode_replaced}{\cf1 :} {\cf5 item_code}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )} {\cf1 =} {\cf5 c}{\b\cf1 .}{\cf5 code}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 prepend} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 READABLE_STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Prepend a copy of }{\cf5 s}{\cf3  at front.}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 prepend_string} {\cf1 (}{\cf5 s}{\cf1 :} {\b\cf6 detachable} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Prepend a copy of }{\cf5 s}{\cf3 , if not void, at front.}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 append_string_general} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 READABLE_STRING_GENERAL}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Append a copy of }{\cf5 s}{\cf3  at end.}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 append_unicode_character} {\cf1 (}{\cf5 c}{\cf1 :} {\cf4 UC_CHARACTER}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Append unicode character }{\cf5 c}{\cf3  at end.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 c_not_void}{\cf1 :} {\cf5 c} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 new_count}{\cf1 :} {\cf5 count} {\cf1 =} {\b\cf6 old} {\cf5 count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 appended}{\cf1 :} {\cf5 item_code}{\cf1  }{\cf1 (}{\cf5 count}{\cf1 )} {\cf1 =} {\cf5 c}{\b\cf1 .}{\cf5 code}{\line}
+{\tab}{\tab}{\tab}{\cf1 stable_before}{\cf1 :} {\cf5 substring}{\cf1  }{\cf1 (}1{\cf1 ,} {\cf5 count} {\cf1 -} 1{\cf1 )}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 cloned_string}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 append_item_code} {\cf1 (}{\cf5 a_code}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Append unicode character of code }{\cf5 a_code}{\cf3  at end.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_item_code}{\cf1 :} {\cf5 Unicode}{\b\cf1 .}{\cf5 valid_code}{\cf1  }{\cf1 (}{\cf5 a_code}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 new_count}{\cf1 :} {\cf5 count} {\cf1 =} {\b\cf6 old} {\cf5 count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 appended}{\cf1 :} {\cf5 item_code}{\cf1  }{\cf1 (}{\cf5 count}{\cf1 )} {\cf1 =} {\cf5 a_code}{\line}
+{\tab}{\tab}{\tab}{\cf1 stable_before}{\cf1 :} {\cf5 substring}{\cf1  }{\cf1 (}1{\cf1 ,} {\cf5 count} {\cf1 -} 1{\cf1 )}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 cloned_string}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 append_character} {\cf1 (}{\cf5 c}{\cf1 :} {\cf4 CHARACTER_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Append character }{\cf5 c}{\cf3  at end.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (ELKS 2001 STRING)}{\line}
+{\tab}{\tab}{\b\cf6 ensure then}{\line}
+{\tab}{\tab}{\tab}{\cf1 unicode_appended}{\cf1 :} {\cf5 item_code}{\cf1  }{\cf1 (}{\cf5 count}{\cf1 )} {\cf1 =} {\cf5 c}{\b\cf1 .}{\cf5 code}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 append_string} {\cf1 (}{\cf5 s}{\cf1 :} {\b\cf6 detachable} {\cf4 READABLE_STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Append a copy of }{\cf5 s}{\cf3  at end.}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 put_string} {\cf1 (}{\cf5 a_string}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Write }{\cf5 a_string}{\cf3  to output stream.}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 append} {\cf1 (}{\cf5 a_string}{\cf1 :} {\cf4 READABLE_STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Append a copy of }{\cf5 a_string}{\cf3  at end.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (ELKS 2001 STRING)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 gobo_append_substring} {\cf1 (}{\cf5 a_string}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 s}{\cf1 ,} {\cf5 e}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Append substring of }{\cf5 a_string}{\cf3  between indexes}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 s}{\cf3  and }{\cf5 e}{\cf3  at end of current string.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_large_enough}{\cf1 :} {\cf5 s} {\cf1 >=} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 e_small_enough}{\cf1 :} {\cf5 e} {\cf1 <=} {\cf5 a_string}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_interval}{\cf1 :} {\cf5 s} {\cf1 <=} {\cf5 e} {\cf1 +} 1{\line}
+{\tab}{\tab}{\b\cf6 ensure then}{\line}
+{\tab}{\tab}{\tab}{\cf1 appended}{\cf1 :} {\cf5 is_equal}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 cloned_string} {\cf1 +} {\b\cf6 old} {\cf5 a_string}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 ,} {\cf5 e}{\cf1 )}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 put_substring} {\cf1 (}{\cf5 a_string}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 s}{\cf1 ,} {\cf5 e}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Write substring of }{\cf5 a_string}{\cf3  between indexes}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 s}{\cf3  and }{\cf5 e}{\cf3  to output stream.}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 append_utf8} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Append UTF-8 encoded string }{\cf5 s}{\cf3  at end of current string.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_not_void}{\cf1 :} {\cf5 s} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_is_string}{\cf1 :} {\cf5 Any_}{\b\cf1 .}{\cf5 same_types}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 ,} ""{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_utf8}{\cf1 :} {\cf5 Utf8}{\b\cf1 .}{\cf5 valid_utf8}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 append_utf16} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Append UTF-16 encoded string }{\cf5 s}{\cf3  at end of current string.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_not_void}{\cf1 :} {\cf5 s} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_is_string}{\cf1 :} {\cf5 Any_}{\b\cf1 .}{\cf5 same_types}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 ,} ""{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_utf16}{\cf1 :} {\cf5 Utf16}{\b\cf1 .}{\cf5 valid_utf16}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 append_utf16be} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Append UTF-16BE encoded string }{\cf5 s}{\cf3  at end of current string.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_not_void}{\cf1 :} {\cf5 s} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_is_string}{\cf1 :} {\cf5 Any_}{\b\cf1 .}{\cf5 same_types}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 ,} ""{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_utf16be}{\cf1 :} {\cf5 Utf16}{\b\cf1 .}{\cf5 valid_utf16be}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 append_utf16le} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Append UTF-16LE encoded string }{\cf5 s}{\cf3  at end of current string.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_not_void}{\cf1 :} {\cf5 s} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_is_string}{\cf1 :} {\cf5 Any_}{\b\cf1 .}{\cf5 same_types}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 ,} ""{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_utf16le}{\cf1 :} {\cf5 Utf16}{\b\cf1 .}{\cf5 valid_utf16le}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 fill_with_unicode} {\cf1 (}{\cf5 c}{\cf1 :} {\cf4 UC_CHARACTER}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Replace every character with unicode character }{\cf5 c}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 c_not_void}{\cf1 :} {\cf5 c} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 same_count}{\cf1 :} {\b\cf6 old} {\cf5 count} {\cf1 =} {\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\cf1 filled}{\cf1 :} {\cf5 unicode_occurrences}{\cf1  }{\cf1 (}{\cf5 c}{\cf1 )} {\cf1 =} {\cf5 count}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 fill_with_code} {\cf1 (}{\cf5 a_code}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Replace every character with unicode character of code }{\cf5 a_code}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_code}{\cf1 :} {\cf5 Unicode}{\b\cf1 .}{\cf5 valid_code}{\cf1  }{\cf1 (}{\cf5 a_code}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 same_count}{\cf1 :} {\b\cf6 old} {\cf5 count} {\cf1 =} {\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\cf1 filled}{\cf1 :} {\cf5 code_occurrences}{\cf1  }{\cf1 (}{\cf5 a_code}{\cf1 )} {\cf1 =} {\cf5 count}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 fill_with} {\cf1 (}{\cf5 c}{\cf1 :} {\cf4 CHARACTER_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Replace every character with character }{\cf5 c}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (ELKS 2001 STRING)}{\line}
+{\tab}{\tab}{\b\cf6 ensure then}{\line}
+{\tab}{\tab}{\tab}{\cf1 all_code}{\cf1 :} {\cf5 code_occurrences}{\cf1  }{\cf1 (}{\cf5 c}{\b\cf1 .}{\cf5 code}{\cf1 )} {\cf1 =} {\cf5 count}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 insert_unicode_character} {\cf1 (}{\cf5 c}{\cf1 :} {\cf4 UC_CHARACTER}{\cf1 ;} {\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Insert unicode character }{\cf5 c}{\cf3  at index }{\cf5 i}{\cf3 , shifting}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  characters between ranks }{\cf5 i}{\cf3  and }{\cf5 count}{\cf3  rightwards.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 c_not_void}{\cf1 :} {\cf5 c} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_insertion_index}{\cf1 :} 1 {\cf1 <=} {\cf5 i} {\b\cf6 and} {\cf5 i} {\cf1 <=} {\cf5 count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 one_more_character}{\cf1 :} {\cf5 count} {\cf1 =} {\b\cf6 old} {\cf5 count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 inserted}{\cf1 :} {\cf5 item_code}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )} {\cf1 =} {\cf5 c}{\b\cf1 .}{\cf5 code}{\line}
+{\tab}{\tab}{\tab}{\cf1 stable_before_i}{\cf1 :} {\cf5 substring}{\cf1  }{\cf1 (}1{\cf1 ,} {\cf5 i} {\cf1 -} 1{\cf1 )}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 substring}{\cf1  }{\cf1 (}1{\cf1 ,} {\cf5 i} {\cf1 -} 1{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 stable_after_i}{\cf1 :} {\cf5 substring}{\cf1  }{\cf1 (}{\cf5 i} {\cf1 +} 1{\cf1 ,} {\cf5 count}{\cf1 )}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 substring}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 ,} {\cf5 count}{\cf1 )}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 insert_code} {\cf1 (}{\cf5 a_code}{\cf1 :} {\cf4 INTEGER_32}{\cf1 ;} {\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Insert unicode character of code }{\cf5 a_code}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  at index }{\cf5 i}{\cf3 , shifting characters between}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  ranks }{\cf5 i}{\cf3  and }{\cf5 count}{\cf3  rightwards.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_code}{\cf1 :} {\cf5 Unicode}{\b\cf1 .}{\cf5 valid_code}{\cf1  }{\cf1 (}{\cf5 a_code}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_insertion_index}{\cf1 :} 1 {\cf1 <=} {\cf5 i} {\b\cf6 and} {\cf5 i} {\cf1 <=} {\cf5 count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 one_more_character}{\cf1 :} {\cf5 count} {\cf1 =} {\b\cf6 old} {\cf5 count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 inserted}{\cf1 :} {\cf5 item_code}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )} {\cf1 =} {\cf5 a_code}{\line}
+{\tab}{\tab}{\tab}{\cf1 stable_before_i}{\cf1 :} {\cf5 substring}{\cf1  }{\cf1 (}1{\cf1 ,} {\cf5 i} {\cf1 -} 1{\cf1 )}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 substring}{\cf1  }{\cf1 (}1{\cf1 ,} {\cf5 i} {\cf1 -} 1{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 stable_after_i}{\cf1 :} {\cf5 substring}{\cf1  }{\cf1 (}{\cf5 i} {\cf1 +} 1{\cf1 ,} {\cf5 count}{\cf1 )}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 substring}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 ,} {\cf5 count}{\cf1 )}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 insert_character} {\cf1 (}{\cf5 c}{\cf1 :} {\cf4 CHARACTER_8}{\cf1 ;} {\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Insert character }{\cf5 c}{\cf3  at index }{\cf5 i}{\cf3 , shifting}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  characters between ranks }{\cf5 i}{\cf3  and }{\cf5 count}{\cf3  rightwards.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (ELKS 2001 STRING)}{\line}
+{\tab}{\tab}{\b\cf6 ensure then}{\line}
+{\tab}{\tab}{\tab}{\cf1 code_inserted}{\cf1 :} {\cf5 item_code}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )} {\cf1 =} {\cf5 c}{\b\cf1 .}{\cf5 code}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 insert_string} {\cf1 (}{\cf5 a_string}{\cf1 :} {\cf4 READABLE_STRING_8}{\cf1 ;} {\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Insert }{\cf5 a_string}{\cf3  at index }{\cf5 i}{\cf3 , shifting characters between ranks}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 i}{\cf3  and }{\cf5 count}{\cf3  rightwards.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (ELKS 2001 STRING)}{\line}
+{\tab}{\tab}{\b\cf6 require else}{\line}
+{\tab}{\tab}{\tab}{\cf1 string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_insertion_index}{\cf1 :} 1 {\cf1 <=} {\cf5 i} {\b\cf6 and} {\cf5 i} {\cf1 <=} {\cf5 count} {\cf1 +} 1{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 replace_substring} {\cf1 (}{\cf5 a_string}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 start_index}{\cf1 ,} {\cf5 end_index}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Replace the substring from }{\cf5 start_index}{\cf3  to }{\cf5 end_index}{\cf3 ,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  inclusive, with }{\cf5 a_string}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (ELKS 2001 STRING)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 replace_substring_by_string} {\cf1 (}{\cf5 a_string}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 start_index}{\cf1 ,} {\cf5 end_index}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Replace the substring from }{\cf5 start_index}{\cf3  to }{\cf5 end_index}{\cf3 ,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  inclusive, with }{\cf5 a_string}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 replace_substring_all} {\cf1 (}{\cf5 original}{\cf1 ,} {\cf5 new}{\cf1 :} {\b\cf6 like} {\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Replace every occurrence of }{\cf5 original}{\cf3  with }{\cf5 new}{\cf3 .}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Removal}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 keep_head} {\cf1 (}{\cf5 n}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Remove all the characters except for the first }{\cf5 n}{\cf3 ;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  if }{\cf5 n}{\cf3  > }{\cf5 count}{\cf3 , do nothing.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (ELKS 2001 STRING)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 keep_tail} {\cf1 (}{\cf5 n}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Remove all the characters except for the last }{\cf5 n}{\cf3 ;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  if }{\cf5 n}{\cf3  > }{\cf5 count}{\cf3 , do nothing.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (ELKS 2001 STRING)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 remove_head} {\cf1 (}{\cf5 n}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Remove the first }{\cf5 n}{\cf3  characters;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  if }{\cf5 n}{\cf3  > }{\cf5 count}{\cf3 , remove all.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (ELKS 2001 STRING)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 remove_tail} {\cf1 (}{\cf5 n}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Remove the last }{\cf5 n}{\cf3  characters;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  if }{\cf5 n}{\cf3  > }{\cf5 count}{\cf3 , remove all.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (ELKS 2001 STRING)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 remove} {\cf1 (}{\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Remove }{\cf5 i}{\cf3 -th character, shifting characters between}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  ranks i + 1 and }{\cf5 count}{\cf3  leftwards.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (ELKS 2001 STRING)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 remove_substring} {\cf1 (}{\cf5 start_index}{\cf1 ,} {\cf5 end_index}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Remove all characters from }{\cf5 start_index}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to }{\cf5 end_index}{\cf3  inclusive.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (ELKS 2001 STRING)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 wipe_out}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Remove all characters.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (ELKS 2001 STRING)}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Duplication}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 copy} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 like} {\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Reinitialize by copying the characters of }{\cf5 other}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (This is also used by clone.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (ELKS 2001 STRING)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 cloned_string}{\cf1 :} {\b\cf6 like} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New object equal to }{\cf5 Current}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 twin_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_equal}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Output}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 out}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New STRING containing terse printable representation}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of current object; Non-ascii characters are represented}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  with the %/code/ convention.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (ELKS 2001 STRING)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 debug_output}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String that should be displayed in debugger to represent }{\cf5 Current}{\cf3 .}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Conversion}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 as_lower}{\cf1 :} {\b\cf6 like} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New object with all letters in lower case}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Extended from ELKS 2001 STRING)}{\line}
+{\tab}{\tab}{\b\cf6 ensure then}{\line}
+{\tab}{\tab}{\tab}{\cf1 unicode_anchor}{\cf1 :} {\cf5 count} {\cf1 >} 0 {\b\cf6 implies} {\b\cf6 Result}{\b\cf1 .}{\cf5 unicode_item}{\cf1  }{\cf1 (}1{\cf1 )}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 unicode_item}{\cf1  }{\cf1 (}1{\cf1 )}{\b\cf1 .}{\cf5 as_lower}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 unicode_recurse}{\cf1 :} {\cf5 count} {\cf1 >} 1 {\b\cf6 implies} {\b\cf6 Result}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}2{\cf1 ,} {\cf5 count}{\cf1 )}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 substring}{\cf1  }{\cf1 (}2{\cf1 ,} {\cf5 count}{\cf1 )}{\b\cf1 .}{\cf5 as_lower}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 as_upper}{\cf1 :} {\b\cf6 like} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New object with all letters in upper case}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Extended from ELKS 2001 STRING)}{\line}
+{\tab}{\tab}{\b\cf6 ensure then}{\line}
+{\tab}{\tab}{\tab}{\cf1 unicode_anchor}{\cf1 :} {\cf5 count} {\cf1 >} 0 {\b\cf6 implies} {\b\cf6 Result}{\b\cf1 .}{\cf5 unicode_item}{\cf1  }{\cf1 (}1{\cf1 )}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 unicode_item}{\cf1  }{\cf1 (}1{\cf1 )}{\b\cf1 .}{\cf5 as_upper}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 unicode_recurse}{\cf1 :} {\cf5 count} {\cf1 >} 1 {\b\cf6 implies} {\b\cf6 Result}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}2{\cf1 ,} {\cf5 count}{\cf1 )}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 substring}{\cf1  }{\cf1 (}2{\cf1 ,} {\cf5 count}{\cf1 )}{\b\cf1 .}{\cf5 as_upper}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 to_lower}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Convert all letters to lower case.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (ELKS 2001 STRING)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 to_upper}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Convert all letters to upper case.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (ELKS 2001 STRING)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 to_utf8}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New STRING made up of bytes corresponding to}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the UTF-8 representation of current string}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 to_utf8_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 string_type}{\cf1 :} {\cf5 Any_}{\b\cf1 .}{\cf5 same_types}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 ,} ""{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_utf8}{\cf1 :} {\cf5 Utf8}{\b\cf1 .}{\cf5 valid_utf8}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 to_utf16_be}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New STRING made up of bytes corresponding to}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the UTF-16BE representation of current string}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 to_utf16_be_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 string_type}{\cf1 :} {\cf5 Any_}{\b\cf1 .}{\cf5 same_types}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 ,} ""{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_utf16}{\cf1 :} {\cf5 Utf16}{\b\cf1 .}{\cf5 valid_utf16}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 to_utf16_le}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New STRING made up of bytes corresponding to}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the UTF-16LE representation of current string}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 to_utf16_le_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 string_type}{\cf1 :} {\cf5 Any_}{\b\cf1 .}{\cf5 same_types}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 ,} ""{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_utf16}{\cf1 :} {\cf5 Utf16}{\b\cf1 .}{\cf5 valid_utf16}{\cf1  }{\cf1 (}{\cf5 Utf16}{\b\cf1 .}{\cf5 Bom_le} {\cf1 +} {\b\cf6 Result}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 to_utf32_be}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New STRING made up of bytes corresponding to}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the UTF-32BE representation of current string}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 to_utf32_be_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 string_type}{\cf1 :} {\cf5 Any_}{\b\cf1 .}{\cf5 same_types}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 ,} ""{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_utf32}{\cf1 :} {\cf5 Utf32}{\b\cf1 .}{\cf5 valid_utf32}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 to_utf32_le}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New STRING made up of bytes corresponding to}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the UTF-32LE representation of current string}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 to_utf32_le_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 string_type}{\cf1 :} {\cf5 Any_}{\b\cf1 .}{\cf5 same_types}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 ,} ""{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_utf32}{\cf1 :} {\cf5 Utf32}{\b\cf1 .}{\cf5 valid_utf32}{\cf1  }{\cf1 (}{\cf5 Utf32}{\b\cf1 .}{\cf5 Bom_le} {\cf1 +} {\b\cf6 Result}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 as_string}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  STRING version of current string;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Return the UTF8 representation if it is encoded}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  with UTF8, the UTF16 representation if it is}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  encoded with UTF16, etc.}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 as_string_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 string_type}{\cf1 :} {\cf5 Any_}{\b\cf1 .}{\cf5 same_types}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 ,} ""{\cf1 )}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Output stream}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Name}{\cf1 :} {\cf4 STRING_8} {\cf1 =} "UC_STRING"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Name of output stream}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Eol}{\cf1 :} {\cf4 STRING_8} {\cf1 =} "%N"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Line separator}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_open_write}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Can characters be written to output stream?}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 flush}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do nothing (operation does not apply to string).}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Traversal}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 item_code_at_byte_index} {\cf1 (}{\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Code of character at byte index }{\cf5 i}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 i_large_enough}{\cf1 :} {\cf5 i} {\cf1 >=} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 i_small_enough}{\cf1 :} {\cf5 i} {\cf1 <=} {\cf5 byte_count}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_encoded_first_byte}{\cf1 :} {\cf5 is_encoded_first_byte}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_item_code}{\cf1 :} {\cf5 Unicode}{\b\cf1 .}{\cf5 valid_code}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 character_item_at_byte_index} {\cf1 (}{\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 CHARACTER_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Character at byte_index }{\cf5 i}{\cf3 ;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  '%U' is the unicode character at byte index}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 i}{\cf3  cannot fit into a CHARACTER}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 i_large_enough}{\cf1 :} {\cf5 i} {\cf1 >=} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 i_small_enough}{\cf1 :} {\cf5 i} {\cf1 <=} {\cf5 byte_count}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_encoded_first_byte}{\cf1 :} {\cf5 is_encoded_first_byte}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 code_small_enough}{\cf1 :} {\cf5 item_code_at_byte_index}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )} {\cf1 <=} {\cf5 Platform}{\b\cf1 .}{\cf5 Maximum_character_code} {\b\cf6 implies} {\b\cf6 Result}{\b\cf1 .}{\cf5 code} {\cf1 =} {\cf5 item_code_at_byte_index}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 overflow}{\cf1 :} {\cf5 item_code_at_byte_index}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )} {\cf1 >} {\cf5 Platform}{\b\cf1 .}{\cf5 Maximum_character_code} {\b\cf6 implies} {\b\cf6 Result} {\cf1 =} '%U'{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 next_byte_index} {\cf1 (}{\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Byte index of unicode character after character}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  at byte index }{\cf5 i}{\cf3 ; Return 'byte_count + 1' if}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  character at byte index }{\cf5 i}{\cf3  is the last character}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  in the string}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 i_large_enough}{\cf1 :} {\cf5 i} {\cf1 >=} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 i_small_enough}{\cf1 :} {\cf5 i} {\cf1 <=} {\cf5 byte_count}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_encoded_first_byte}{\cf1 :} {\cf5 is_encoded_first_byte}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 next_byte_index_large_enough}{\cf1 :} {\b\cf6 Result} {\cf1 >} {\cf5 i}{\line}
+{\tab}{\tab}{\tab}{\cf1 next_byte_index_small_enough}{\cf1 :} {\b\cf6 Result} {\cf1 <=} {\cf5 byte_count} {\cf1 +} 1{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 shifted_byte_index} {\cf1 (}{\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 ;} {\cf5 n}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Byte index of unicode character }{\cf5 n}{\cf3  positions after}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  character at byte index }{\cf5 i}{\cf3 ; Return 'byte_count + 1'}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  if no such character in the string}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 i_large_enough}{\cf1 :} {\cf5 i} {\cf1 >=} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 i_small_enough}{\cf1 :} {\cf5 i} {\cf1 <=} {\cf5 byte_count}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_encoded_first_byte}{\cf1 :} {\cf5 is_encoded_first_byte}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 n_positive}{\cf1 :} {\cf5 n} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 next_byte_index_large_enough}{\cf1 :} {\b\cf6 Result} {\cf1 >=} {\cf5 i}{\line}
+{\tab}{\tab}{\tab}{\cf1 next_byte_index_small_enough}{\cf1 :} {\b\cf6 Result} {\cf1 <=} {\cf5 byte_count} {\cf1 +} 1{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 byte_index} {\cf1 (}{\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Byte index of character at index }{\cf5 i}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_index}{\cf1 :} {\cf5 valid_index}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 byte_index_large_enough}{\cf1 :} {\b\cf6 Result} {\cf1 >=} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 byte_index_small_enough}{\cf1 :} {\b\cf6 Result} {\cf1 <=} {\cf5 byte_count}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_encoded_first_byte}{\cf1 :} {\cf5 is_encoded_first_byte}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_encoded_first_byte} {\cf1 (}{\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is byte at index }{\cf5 i}{\cf3  the first byte of an encoded unicode character?}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 i_large_enough}{\cf1 :} {\cf5 i} {\cf1 >=} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 i_small_enough}{\cf1 :} {\cf5 i} {\cf1 <=} {\cf5 byte_count}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 current_string}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Current string}{\line}
+}{\tab}{\line}
+{\b\cf6 invariant}{\line}
+{\tab}{\cf1 non_negative_byte_count}{\cf1 :} {\cf5 byte_count} {\cf1 >=} 0{\line}
+{\tab}{\cf1 byte_count_small_enough}{\cf1 :} {\cf5 byte_count} {\cf1 <=} {\cf5 byte_capacity}{\line}
+{\tab}{\cf1 count_small_enough}{\cf1 :} {\cf5 count} {\cf1 <=} {\cf5 byte_count}{\line}
+{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 UC_STRING}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

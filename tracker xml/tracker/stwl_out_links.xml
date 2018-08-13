@@ -1,0 +1,20 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../tracker/stwl_out_links.xml</location>STWL_OUT</class> <symbol>[</symbol><generic>G</generic> <symbol>-&gt;</symbol> <keyword>attached</keyword> <class><include>False</include>COMPARABLE</class><symbol>]</symbol>
+
+<keyword>Ancestors</keyword>
+	<class><include>False</include>ANY</class>
+
+<keyword>Clients</keyword>
+	<class><location>../tracker/stwl_out_links.xml</location>STWL_OUT</class> <symbol>[</symbol><generic>G</generic> <symbol>-&gt;</symbol> <keyword>attached</keyword> <class><include>False</include>COMPARABLE</class><symbol>]</symbol>
+	<class><location>../tracker/tracker_links.xml</location>TRACKER</class>
+
+<keyword>Suppliers</keyword>
+	<class><include>False</include>COMPARABLE</class><char>*</char>
+	<class><include>False</include>ITERATION_CURSOR</class><char>*</char> <symbol>[</symbol><generic>G</generic><symbol>]</symbol>
+	<class><include>False</include>SORTED_TWO_WAY_LIST</class> <symbol>[</symbol><generic>G</generic> <symbol>-&gt;</symbol> <class><include>False</include>COMPARABLE</class><symbol>]</symbol>
+	<class><include>False</include>STRING_8</class>
+	<class><location>../tracker/stwl_out_links.xml</location>STWL_OUT</class> <symbol>[</symbol><generic>G</generic> <symbol>-&gt;</symbol> <keyword>attached</keyword> <class><include>False</include>COMPARABLE</class><symbol>]</symbol>
+	<class><include>False</include>TWO_WAY_LIST_ITERATION_CURSOR</class> <symbol>[</symbol><generic>G</generic><symbol>]</symbol>
+
+</system>

@@ -1,0 +1,279 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;A low-level string class to solve some garbage collector problems (mainly objects moving around) when interfacing with C APIs&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>author</indexing_tag><symbol>:</symbol> <string>&quot;&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2012-11-20 15:44:43 -0800 (Tue, 20 Nov 2012) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 89958 $&quot;</string>
+
+<keyword>class</keyword> 
+	<class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class>
+
+<keyword>inherit</keyword>
+	<class><include>False</include>DISPOSABLE</class>
+
+	<class><include>False</include>STRING_HANDLER</class>
+
+	<class><include>False</include>NATIVE_STRING_HANDLER</class>
+
+<keyword>create</keyword> 
+	<feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_set_with_eiffel_string</location>set_with_eiffel_string</feature><symbol>,</symbol>
+	<feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_share_from_pointer</location>share_from_pointer</feature><symbol>,</symbol>
+	<feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_make_from_pointer</location>make_from_pointer</feature><symbol>,</symbol>
+	<feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_make_from_path</location>make_from_path</feature>
+
+<keyword>convert</keyword>
+	<feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_set_with_eiffel_string</location>set_with_eiffel_string</feature> <symbol>(</symbol><symbol>{</symbol><class><include>False</include>READABLE_STRING_GENERAL</class><symbol>,</symbol>
+		<class><include>False</include>STRING_8</class><symbol>,</symbol>
+		<class><include>False</include>STRING_32</class><symbol>}</symbol><symbol>)</symbol>
+
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Initialization</comment>
+
+	<anchor>f_make_from_pointer</anchor><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_make_from_pointer</location>make_from_pointer</feature> <symbol>(</symbol><local>a_utf8_ptr</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_item</location>item</feature><comment> to </comment><quoted>a_utf8_ptr</quoted><comment> and gain ownership of memory.</comment>
+		<keyword>require</keyword>
+			<tag>a_utf8_ptr_not_null</tag><symbol>:</symbol> <local>a_utf8_ptr</local> <symbol>/=</symbol> <feature><include>False</include>default_pointer</feature>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_set_from_pointer</location>set_from_pointer</feature><symbol> </symbol><symbol>(</symbol><local>a_utf8_ptr</local><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_c_strlen</location>c_strlen</feature><symbol> </symbol><symbol>(</symbol><local>a_utf8_ptr</local><symbol>)</symbol> <symbol>+</symbol> <number>1</number><symbol>,</symbol> <keyword>False</keyword><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_make_from_path</anchor><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_make_from_path</location>make_from_path</feature> <symbol>(</symbol><local>a_path</local><symbol>:</symbol> <class><include>False</include>PATH</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_item</location>item</feature><comment> to the content of </comment><quoted>a_path</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>a_path_not_void</tag><symbol>:</symbol> <local>a_path</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>local</keyword>
+			<local>l_ptr</local><symbol>:</symbol> <class><include>False</include>MANAGED_POINTER</class>
+		<keyword>do</keyword>
+			<local>l_ptr</local> <symbol>:=</symbol> <local>a_path</local><dot>.</dot><feature><include>False</include>to_pointer</feature>
+			<feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_string_length</location>string_length</feature> <symbol>:=</symbol> <local>l_ptr</local><dot>.</dot><feature><include>False</include>count</feature> <symbol>-</symbol> <number>1</number>
+			<feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_item</location>item</feature> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_g_malloc</location>g_malloc</feature> <symbol>(</symbol><local>l_ptr</local><dot>.</dot><feature><include>False</include>count</feature><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_item</location>item</feature><dot>.</dot><feature><include>False</include>memory_copy</feature><symbol> </symbol><symbol>(</symbol><local>l_ptr</local><dot>.</dot><feature><include>False</include>item</feature><symbol>,</symbol> <local>l_ptr</local><dot>.</dot><feature><include>False</include>count</feature><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_is_shared</location>is_shared</feature> <symbol>:=</symbol> <keyword>False</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_is_shared</anchor><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_is_shared</location>is_shared</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is </comment><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_item</location>item</feature><comment> shared with gtk?</comment>
+
+	<anchor>f_item</anchor><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_item</location>item</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Pointer to the UTF8 string.</comment>
+
+	<anchor>f_string</anchor><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_string</location>string</feature><symbol>:</symbol> <class><include>False</include>STRING_32</class>
+			<comment>--</comment><comment> Locale string representation of the UTF8 string</comment>
+		<keyword>local</keyword>
+			<local>l_ptr</local><symbol>:</symbol> <class><include>False</include>MANAGED_POINTER</class>
+			<local>l_nat8</local><symbol>:</symbol> <class><include>False</include>NATURAL_8</class>
+			<local>l_code</local><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+			<local>i</local><symbol>,</symbol> <local>nb</local><symbol>,</symbol> <local>cnt</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+		<keyword>do</keyword>
+			<keyword>from</keyword>
+				<local>i</local> <symbol>:=</symbol> <number>0</number>
+				<local>cnt</local> <symbol>:=</symbol> <number>0</number>
+				<local>nb</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_string_length</location>string_length</feature>
+				<local>l_ptr</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_shared_pointer_helper</location>Shared_pointer_helper</feature>
+				<local>l_ptr</local><dot>.</dot><feature><include>False</include>set_from_pointer</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_item</location>item</feature><symbol>,</symbol> <local>nb</local><symbol>)</symbol>
+				<keyword>create</keyword> <keyword>Result</keyword><dot>.</dot><feature><include>False</include>make</feature><symbol> </symbol><symbol>(</symbol><local>nb</local><symbol>)</symbol>
+				<keyword>Result</keyword><dot>.</dot><feature><include>False</include>set_count</feature><symbol> </symbol><symbol>(</symbol><local>nb</local><symbol>)</symbol>
+			<keyword>until</keyword>
+				<local>i</local> <symbol>=</symbol> <local>nb</local>
+			<keyword>loop</keyword>
+				<local>l_nat8</local> <symbol>:=</symbol> <local>l_ptr</local><dot>.</dot><feature><include>False</include>read_natural_8</feature><symbol> </symbol><symbol>(</symbol><local>i</local><symbol>)</symbol>
+				<local>cnt</local> <symbol>:=</symbol> <local>cnt</local> <symbol>+</symbol> <number>1</number>
+				<keyword>if</keyword> <local>l_nat8</local> <symbol>&lt;=</symbol> <number>127</number> <keyword>then</keyword>
+					<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><local>l_nat8</local><dot>.</dot><feature><include>False</include>to_character_8</feature><dot>.</dot><feature><include>False</include>to_character_32</feature><symbol>,</symbol> <local>cnt</local><symbol>)</symbol>
+				<keyword>elseif</keyword> <symbol>(</symbol><local>l_nat8</local> <symbol>&amp;</symbol> <number>224</number><symbol>)</symbol> <symbol>=</symbol> <number>192</number> <keyword>then</keyword>
+					<local>l_code</local> <symbol>:=</symbol> <symbol>(</symbol><local>l_nat8</local> <symbol>&amp;</symbol> <number>31</number><symbol>)</symbol><dot>.</dot><feature><include>False</include>to_natural_32</feature> <symbol>|&lt;&lt;</symbol> <number>6</number>
+					<local>i</local> <symbol>:=</symbol> <local>i</local> <symbol>+</symbol> <number>1</number>
+					<local>l_nat8</local> <symbol>:=</symbol> <local>l_ptr</local><dot>.</dot><feature><include>False</include>read_natural_8</feature><symbol> </symbol><symbol>(</symbol><local>i</local><symbol>)</symbol>
+					<local>l_code</local> <symbol>:=</symbol> <local>l_code</local> <symbol>|</symbol> <symbol>(</symbol><local>l_nat8</local> <symbol>&amp;</symbol> <number>63</number><symbol>)</symbol><dot>.</dot><feature><include>False</include>to_natural_32</feature>
+					<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><local>l_code</local><dot>.</dot><feature><include>False</include>to_character_32</feature><symbol>,</symbol> <local>cnt</local><symbol>)</symbol>
+				<keyword>elseif</keyword> <symbol>(</symbol><local>l_nat8</local> <symbol>&amp;</symbol> <number>240</number><symbol>)</symbol> <symbol>=</symbol> <number>224</number> <keyword>then</keyword>
+					<local>l_code</local> <symbol>:=</symbol> <symbol>(</symbol><local>l_nat8</local> <symbol>&amp;</symbol> <number>15</number><symbol>)</symbol><dot>.</dot><feature><include>False</include>to_natural_32</feature> <symbol>|&lt;&lt;</symbol> <number>12</number>
+					<local>l_nat8</local> <symbol>:=</symbol> <local>l_ptr</local><dot>.</dot><feature><include>False</include>read_natural_8</feature><symbol> </symbol><symbol>(</symbol><local>i</local> <symbol>+</symbol> <number>1</number><symbol>)</symbol>
+					<local>l_code</local> <symbol>:=</symbol> <local>l_code</local> <symbol>|</symbol> <symbol>(</symbol><symbol>(</symbol><local>l_nat8</local> <symbol>&amp;</symbol> <number>63</number><symbol>)</symbol><dot>.</dot><feature><include>False</include>to_natural_32</feature> <symbol>|&lt;&lt;</symbol> <number>6</number><symbol>)</symbol>
+					<local>l_nat8</local> <symbol>:=</symbol> <local>l_ptr</local><dot>.</dot><feature><include>False</include>read_natural_8</feature><symbol> </symbol><symbol>(</symbol><local>i</local> <symbol>+</symbol> <number>2</number><symbol>)</symbol>
+					<local>l_code</local> <symbol>:=</symbol> <local>l_code</local> <symbol>|</symbol> <symbol>(</symbol><local>l_nat8</local> <symbol>&amp;</symbol> <number>63</number><symbol>)</symbol><dot>.</dot><feature><include>False</include>to_natural_32</feature>
+					<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><local>l_code</local><dot>.</dot><feature><include>False</include>to_character_32</feature><symbol>,</symbol> <local>cnt</local><symbol>)</symbol>
+					<local>i</local> <symbol>:=</symbol> <local>i</local> <symbol>+</symbol> <number>2</number>
+				<keyword>elseif</keyword> <symbol>(</symbol><local>l_nat8</local> <symbol>&amp;</symbol> <number>248</number><symbol>)</symbol> <symbol>=</symbol> <number>240</number> <keyword>then</keyword>
+					<local>l_code</local> <symbol>:=</symbol> <symbol>(</symbol><local>l_nat8</local> <symbol>&amp;</symbol> <number>7</number><symbol>)</symbol><dot>.</dot><feature><include>False</include>to_natural_32</feature> <symbol>|&lt;&lt;</symbol> <number>18</number>
+					<local>l_nat8</local> <symbol>:=</symbol> <local>l_ptr</local><dot>.</dot><feature><include>False</include>read_natural_8</feature><symbol> </symbol><symbol>(</symbol><local>i</local> <symbol>+</symbol> <number>1</number><symbol>)</symbol>
+					<local>l_code</local> <symbol>:=</symbol> <local>l_code</local> <symbol>|</symbol> <symbol>(</symbol><symbol>(</symbol><local>l_nat8</local> <symbol>&amp;</symbol> <number>63</number><symbol>)</symbol><dot>.</dot><feature><include>False</include>to_natural_32</feature> <symbol>|&lt;&lt;</symbol> <number>12</number><symbol>)</symbol>
+					<local>l_nat8</local> <symbol>:=</symbol> <local>l_ptr</local><dot>.</dot><feature><include>False</include>read_natural_8</feature><symbol> </symbol><symbol>(</symbol><local>i</local> <symbol>+</symbol> <number>2</number><symbol>)</symbol>
+					<local>l_code</local> <symbol>:=</symbol> <local>l_code</local> <symbol>|</symbol> <symbol>(</symbol><symbol>(</symbol><local>l_nat8</local> <symbol>&amp;</symbol> <number>63</number><symbol>)</symbol><dot>.</dot><feature><include>False</include>to_natural_32</feature> <symbol>|&lt;&lt;</symbol> <number>6</number><symbol>)</symbol>
+					<local>l_nat8</local> <symbol>:=</symbol> <local>l_ptr</local><dot>.</dot><feature><include>False</include>read_natural_8</feature><symbol> </symbol><symbol>(</symbol><local>i</local> <symbol>+</symbol> <number>3</number><symbol>)</symbol>
+					<local>l_code</local> <symbol>:=</symbol> <local>l_code</local> <symbol>|</symbol> <symbol>(</symbol><local>l_nat8</local> <symbol>&amp;</symbol> <number>63</number><symbol>)</symbol><dot>.</dot><feature><include>False</include>to_natural_32</feature>
+					<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><local>l_code</local><dot>.</dot><feature><include>False</include>to_character_32</feature><symbol>,</symbol> <local>cnt</local><symbol>)</symbol>
+					<local>i</local> <symbol>:=</symbol> <local>i</local> <symbol>+</symbol> <number>3</number>
+				<keyword>elseif</keyword> <symbol>(</symbol><local>l_nat8</local> <symbol>&amp;</symbol> <number>252</number><symbol>)</symbol> <symbol>=</symbol> <number>248</number> <keyword>then</keyword>
+					<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><char>' '</char><dot>.</dot><feature><include>False</include>to_character_32</feature><symbol>,</symbol> <local>cnt</local><symbol>)</symbol>
+					<local>i</local> <symbol>:=</symbol> <local>i</local> <symbol>+</symbol> <number>4</number>
+				<keyword>else</keyword>
+					<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><char>' '</char><dot>.</dot><feature><include>False</include>to_character_32</feature><symbol>,</symbol> <local>cnt</local><symbol>)</symbol>
+					<local>i</local> <symbol>:=</symbol> <local>i</local> <symbol>+</symbol> <number>5</number>
+				<keyword>end</keyword>
+				<local>i</local> <symbol>:=</symbol> <local>i</local> <symbol>+</symbol> <number>1</number>
+			<keyword>end</keyword>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>set_count</feature><symbol> </symbol><symbol>(</symbol><local>cnt</local><symbol>)</symbol>
+			<local>l_ptr</local><dot>.</dot><feature><include>False</include>set_from_pointer</feature><symbol> </symbol><symbol>(</symbol><feature><include>False</include>default_pointer</feature><symbol>,</symbol> <number>0</number><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_string_length</anchor><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_string_length</location>string_length</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Length of string data held in </comment><quoted>managed_data</quoted>
+
+	<anchor>f_set_with_eiffel_string</anchor><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_set_with_eiffel_string</location>set_with_eiffel_string</feature> <symbol>(</symbol><local>a_string</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol>
+			<comment>--</comment><comment> Create </comment><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_item</location>item</feature><comment> and retain ownership.</comment>
+		<keyword>require</keyword>
+			<tag>a_string_not_void</tag><symbol>:</symbol> <local>a_string</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_internal_set_with_eiffel_string</location>internal_set_with_eiffel_string</feature><symbol> </symbol><symbol>(</symbol><local>a_string</local><symbol>,</symbol> <keyword>False</keyword><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>string_set</tag><symbol>:</symbol> <feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_string</location>string</feature><dot>.</dot><feature><include>False</include>same_string_general</feature><symbol> </symbol><symbol>(</symbol><local>a_string</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_share_with_eiffel_string</anchor><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_share_with_eiffel_string</location>share_with_eiffel_string</feature> <symbol>(</symbol><local>a_string</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol>
+			<comment>--</comment><comment> Create </comment><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_item</location>item</feature><comment> but do not take ownership.</comment>
+		<keyword>require</keyword>
+			<tag>a_string_not_void</tag><symbol>:</symbol> <local>a_string</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_internal_set_with_eiffel_string</location>internal_set_with_eiffel_string</feature><symbol> </symbol><symbol>(</symbol><local>a_string</local><symbol>,</symbol> <keyword>True</keyword><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>string_set</tag><symbol>:</symbol> <feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_string</location>string</feature><dot>.</dot><feature><include>False</include>same_string_general</feature><symbol> </symbol><symbol>(</symbol><local>a_string</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_share_from_pointer</anchor><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_share_from_pointer</location>share_from_pointer</feature> <symbol>(</symbol><local>a_utf8_ptr</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><quoted>Current</quoted><comment> to use </comment><quoted>a_utf8_ptr</quoted><comment>.</comment>
+			<comment>--</comment><comment> </comment><quoted>a_utf8_ptr</quoted><comment> is not owned by </comment><quoted>Current</quoted><comment> as it isn't copied so do not free from outside.</comment>
+		<keyword>require</keyword>
+			<tag>a_utf8_ptr_not_null</tag><symbol>:</symbol> <local>a_utf8_ptr</local> <symbol>/=</symbol> <feature><include>False</include>default_pointer</feature>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_set_from_pointer</location>set_from_pointer</feature><symbol> </symbol><symbol>(</symbol><local>a_utf8_ptr</local><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_c_strlen</location>c_strlen</feature><symbol> </symbol><symbol>(</symbol><local>a_utf8_ptr</local><symbol>)</symbol> <symbol>+</symbol> <number>1</number><symbol>,</symbol> <keyword>True</keyword><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_shared_pointer_helper</anchor><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_shared_pointer_helper</location>Shared_pointer_helper</feature><symbol>:</symbol> <class><include>False</include>MANAGED_POINTER</class>
+			<comment>--</comment><comment> Reusable Managed Pointer for UTF8 pointer manipulations.</comment>
+		<keyword>once</keyword>
+			<keyword>create</keyword> <keyword>Result</keyword><dot>.</dot><feature><include>False</include>share_from_pointer</feature><symbol> </symbol><symbol>(</symbol><feature><include>False</include>default_pointer</feature><symbol>,</symbol> <number>0</number><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_internal_set_with_eiffel_string</anchor><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_internal_set_with_eiffel_string</location>internal_set_with_eiffel_string</feature> <symbol>(</symbol><local>a_string</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>;</symbol> <local>a_shared</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class><symbol>)</symbol>
+			<comment>--</comment><comment> Create a UTF8 string from Eiffel String </comment><quoted>a_string</quoted>
+		<keyword>require</keyword>
+			<tag>a_string_not_void</tag><symbol>:</symbol> <local>a_string</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>local</keyword>
+			<local>utf8_ptr</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>bytes_written</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<local>i</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<local>l_code</local><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+			<local>l_string_length</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<local>l_ptr</local><symbol>:</symbol> <class><include>False</include>MANAGED_POINTER</class>
+		<keyword>do</keyword>
+			<local>l_string_length</local> <symbol>:=</symbol> <local>a_string</local><dot>.</dot><feature><include>False</include>count</feature>
+			<keyword>from</keyword>
+				<local>i</local> <symbol>:=</symbol> <local>l_string_length</local>
+			<keyword>until</keyword>
+				<local>i</local> <symbol>=</symbol> <number>0</number>
+			<keyword>loop</keyword>
+				<local>l_code</local> <symbol>:=</symbol> <local>a_string</local><dot>.</dot><feature><include>False</include>code</feature><symbol> </symbol><symbol>(</symbol><local>i</local><symbol>)</symbol>
+				<keyword>if</keyword> <local>l_code</local> <symbol>&lt;=</symbol> <number>127</number> <keyword>then</keyword>
+					<local>bytes_written</local> <symbol>:=</symbol> <local>bytes_written</local> <symbol>+</symbol> <number>1</number>
+				<keyword>elseif</keyword> <local>l_code</local> <symbol>&lt;=</symbol> <number>2047</number> <keyword>then</keyword>
+					<local>bytes_written</local> <symbol>:=</symbol> <local>bytes_written</local> <symbol>+</symbol> <number>2</number>
+				<keyword>elseif</keyword> <local>l_code</local> <symbol>&lt;=</symbol> <number>65535</number> <keyword>then</keyword>
+					<local>bytes_written</local> <symbol>:=</symbol> <local>bytes_written</local> <symbol>+</symbol> <number>3</number>
+				<keyword>else</keyword>
+					<local>bytes_written</local> <symbol>:=</symbol> <local>bytes_written</local> <symbol>+</symbol> <number>4</number>
+				<keyword>end</keyword>
+				<local>i</local> <symbol>:=</symbol> <local>i</local> <symbol>-</symbol> <number>1</number>
+			<keyword>end</keyword>
+			<keyword>from</keyword>
+				<local>i</local> <symbol>:=</symbol> <number>1</number>
+				<keyword>if</keyword> <feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_item</location>item</feature> <symbol>/=</symbol> <feature><include>False</include>default_pointer</feature> <keyword>and then</keyword> <keyword>not</keyword> <feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_is_shared</location>is_shared</feature> <keyword>then</keyword>
+					<local>utf8_ptr</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_g_realloc</location>g_realloc</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_item</location>item</feature><symbol>,</symbol> <local>bytes_written</local> <symbol>+</symbol> <number>1</number><symbol>)</symbol>
+					<feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_item</location>item</feature> <symbol>:=</symbol> <feature><include>False</include>default_pointer</feature>
+				<keyword>else</keyword>
+					<local>utf8_ptr</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_g_malloc</location>g_malloc</feature> <symbol>(</symbol><local>bytes_written</local> <symbol>+</symbol> <number>1</number><symbol>)</symbol>
+				<keyword>end</keyword>
+				<local>l_ptr</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_shared_pointer_helper</location>Shared_pointer_helper</feature>
+				<local>l_ptr</local><dot>.</dot><feature><include>False</include>set_from_pointer</feature><symbol> </symbol><symbol>(</symbol><local>utf8_ptr</local><symbol>,</symbol> <local>bytes_written</local> <symbol>+</symbol> <number>1</number><symbol>)</symbol>
+				<local>bytes_written</local> <symbol>:=</symbol> <number>0</number>
+			<keyword>until</keyword>
+				<local>i</local> <symbol>&gt;</symbol> <local>l_string_length</local>
+			<keyword>loop</keyword>
+				<local>l_code</local> <symbol>:=</symbol> <local>a_string</local><dot>.</dot><feature><include>False</include>code</feature><symbol> </symbol><symbol>(</symbol><local>i</local><symbol>)</symbol>
+				<keyword>if</keyword> <local>l_code</local> <symbol>&lt;=</symbol> <number>127</number> <keyword>then</keyword>
+					<local>l_ptr</local><dot>.</dot><feature><include>False</include>put_natural_8</feature><symbol> </symbol><symbol>(</symbol><local>l_code</local><dot>.</dot><feature><include>False</include>to_natural_8</feature><symbol>,</symbol> <local>bytes_written</local><symbol>)</symbol>
+					<local>bytes_written</local> <symbol>:=</symbol> <local>bytes_written</local> <symbol>+</symbol> <number>1</number>
+				<keyword>elseif</keyword> <local>l_code</local> <symbol>&lt;=</symbol> <number>2047</number> <keyword>then</keyword>
+					<local>l_ptr</local><dot>.</dot><feature><include>False</include>put_natural_8</feature><symbol> </symbol><symbol>(</symbol><symbol>(</symbol><number>192</number> <symbol>|</symbol> <symbol>(</symbol><local>l_code</local> <symbol>|&gt;&gt;</symbol> <number>6</number><symbol>)</symbol><symbol>)</symbol><dot>.</dot><feature><include>False</include>to_natural_8</feature><symbol>,</symbol> <local>bytes_written</local><symbol>)</symbol>
+					<local>l_ptr</local><dot>.</dot><feature><include>False</include>put_natural_8</feature><symbol> </symbol><symbol>(</symbol><symbol>(</symbol><number>128</number> <symbol>|</symbol> <symbol>(</symbol><local>l_code</local> <symbol>&amp;</symbol> <number>63</number><symbol>)</symbol><symbol>)</symbol><dot>.</dot><feature><include>False</include>to_natural_8</feature><symbol>,</symbol> <local>bytes_written</local> <symbol>+</symbol> <number>1</number><symbol>)</symbol>
+					<local>bytes_written</local> <symbol>:=</symbol> <local>bytes_written</local> <symbol>+</symbol> <number>2</number>
+				<keyword>elseif</keyword> <local>l_code</local> <symbol>&lt;=</symbol> <number>65535</number> <keyword>then</keyword>
+					<local>l_ptr</local><dot>.</dot><feature><include>False</include>put_natural_8</feature><symbol> </symbol><symbol>(</symbol><symbol>(</symbol><number>224</number> <symbol>|</symbol> <symbol>(</symbol><local>l_code</local> <symbol>|&gt;&gt;</symbol> <number>12</number><symbol>)</symbol><symbol>)</symbol><dot>.</dot><feature><include>False</include>to_natural_8</feature><symbol>,</symbol> <local>bytes_written</local><symbol>)</symbol>
+					<local>l_ptr</local><dot>.</dot><feature><include>False</include>put_natural_8</feature><symbol> </symbol><symbol>(</symbol><symbol>(</symbol><number>128</number> <symbol>|</symbol> <symbol>(</symbol><symbol>(</symbol><local>l_code</local> <symbol>|&gt;&gt;</symbol> <number>6</number><symbol>)</symbol> <symbol>&amp;</symbol> <number>63</number><symbol>)</symbol><symbol>)</symbol><dot>.</dot><feature><include>False</include>to_natural_8</feature><symbol>,</symbol> <local>bytes_written</local> <symbol>+</symbol> <number>1</number><symbol>)</symbol>
+					<local>l_ptr</local><dot>.</dot><feature><include>False</include>put_natural_8</feature><symbol> </symbol><symbol>(</symbol><symbol>(</symbol><number>128</number> <symbol>|</symbol> <symbol>(</symbol><local>l_code</local> <symbol>&amp;</symbol> <number>63</number><symbol>)</symbol><symbol>)</symbol><dot>.</dot><feature><include>False</include>to_natural_8</feature><symbol>,</symbol> <local>bytes_written</local> <symbol>+</symbol> <number>2</number><symbol>)</symbol>
+					<local>bytes_written</local> <symbol>:=</symbol> <local>bytes_written</local> <symbol>+</symbol> <number>3</number>
+				<keyword>else</keyword>
+					<keyword>check</keyword>
+						<tag>max_4_bytes</tag><symbol>:</symbol> <local>l_code</local> <symbol>&lt;=</symbol> <number>1114111</number>
+					<keyword>end</keyword>
+					<local>l_ptr</local><dot>.</dot><feature><include>False</include>put_natural_8</feature><symbol> </symbol><symbol>(</symbol><symbol>(</symbol><number>240</number> <symbol>|</symbol> <symbol>(</symbol><local>l_code</local> <symbol>|&gt;&gt;</symbol> <number>18</number><symbol>)</symbol><symbol>)</symbol><dot>.</dot><feature><include>False</include>to_natural_8</feature><symbol>,</symbol> <local>bytes_written</local><symbol>)</symbol>
+					<local>l_ptr</local><dot>.</dot><feature><include>False</include>put_natural_8</feature><symbol> </symbol><symbol>(</symbol><symbol>(</symbol><number>128</number> <symbol>|</symbol> <symbol>(</symbol><symbol>(</symbol><local>l_code</local> <symbol>|&gt;&gt;</symbol> <number>12</number><symbol>)</symbol> <symbol>&amp;</symbol> <number>63</number><symbol>)</symbol><symbol>)</symbol><dot>.</dot><feature><include>False</include>to_natural_8</feature><symbol>,</symbol> <local>bytes_written</local> <symbol>+</symbol> <number>1</number><symbol>)</symbol>
+					<local>l_ptr</local><dot>.</dot><feature><include>False</include>put_natural_8</feature><symbol> </symbol><symbol>(</symbol><symbol>(</symbol><number>128</number> <symbol>|</symbol> <symbol>(</symbol><symbol>(</symbol><local>l_code</local> <symbol>|&gt;&gt;</symbol> <number>6</number><symbol>)</symbol> <symbol>&amp;</symbol> <number>63</number><symbol>)</symbol><symbol>)</symbol><dot>.</dot><feature><include>False</include>to_natural_8</feature><symbol>,</symbol> <local>bytes_written</local> <symbol>+</symbol> <number>2</number><symbol>)</symbol>
+					<local>l_ptr</local><dot>.</dot><feature><include>False</include>put_natural_8</feature><symbol> </symbol><symbol>(</symbol><symbol>(</symbol><number>128</number> <symbol>|</symbol> <symbol>(</symbol><local>l_code</local> <symbol>&amp;</symbol> <number>63</number><symbol>)</symbol><symbol>)</symbol><dot>.</dot><feature><include>False</include>to_natural_8</feature><symbol>,</symbol> <local>bytes_written</local> <symbol>+</symbol> <number>3</number><symbol>)</symbol>
+					<local>bytes_written</local> <symbol>:=</symbol> <local>bytes_written</local> <symbol>+</symbol> <number>4</number>
+				<keyword>end</keyword>
+				<local>i</local> <symbol>:=</symbol> <local>i</local> <symbol>+</symbol> <number>1</number>
+			<keyword>end</keyword>
+			<local>l_ptr</local><dot>.</dot><feature><include>False</include>put_integer_8</feature><symbol> </symbol><symbol>(</symbol><number>0</number><symbol>,</symbol> <local>bytes_written</local><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_set_from_pointer</location>set_from_pointer</feature><symbol> </symbol><symbol>(</symbol><local>utf8_ptr</local><symbol>,</symbol> <local>bytes_written</local> <symbol>+</symbol> <number>1</number><symbol>,</symbol> <local>a_shared</local><symbol>)</symbol>
+			<local>l_ptr</local><dot>.</dot><feature><include>False</include>set_from_pointer</feature><symbol> </symbol><symbol>(</symbol><feature><include>False</include>default_pointer</feature><symbol>,</symbol> <number>0</number><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_set_from_pointer</anchor><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_set_from_pointer</location>set_from_pointer</feature> <symbol>(</symbol><local>a_ptr</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>;</symbol> <local>a_size</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_shared</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class><symbol>)</symbol>
+			<comment>--</comment><comment>  Set </comment><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_item</location>item</feature><comment> to use </comment><quoted>a_ptr</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>a_ptr_not_null</tag><symbol>:</symbol> <local>a_ptr</local> <symbol>/=</symbol> <feature><include>False</include>default_pointer</feature>
+			<tag>size_valid</tag><symbol>:</symbol> <local>a_size</local> <symbol>&gt;</symbol> <number>0</number>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_dispose</location>dispose</feature>
+			<feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_string_length</location>string_length</feature> <symbol>:=</symbol> <local>a_size</local> <symbol>-</symbol> <number>1</number>
+			<feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_item</location>item</feature> <symbol>:=</symbol> <local>a_ptr</local>
+			<feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_is_shared</location>is_shared</feature> <symbol>:=</symbol> <local>a_shared</local>
+		<keyword>end</keyword>
+
+	<anchor>f_dispose</anchor><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_dispose</location>dispose</feature>
+			<comment>--</comment><comment> Dispose </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_item</location>item</feature> <symbol>/=</symbol> <feature><include>False</include>default_pointer</feature> <keyword>and then</keyword> <keyword>not</keyword> <feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_is_shared</location>is_shared</feature> <keyword>then</keyword>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_g_free</location>g_free</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_item</location>item</feature><symbol>)</symbol>
+				<feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_item</location>item</feature> <symbol>:=</symbol> <feature><include>False</include>default_pointer</feature>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Externals</comment>
+
+	<anchor>f_c_strlen</anchor><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_c_strlen</location>c_strlen</feature> <symbol>(</symbol><local>ptr</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+		<keyword>external</keyword>
+			&quot;C macro signature (char *): EIF_INTEGER use &lt;string.h&gt;&quot;
+		<keyword>alias</keyword>
+			&quot;strlen&quot;
+		<keyword>end</keyword>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2012, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class></system>
+

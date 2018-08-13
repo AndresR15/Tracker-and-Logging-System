@@ -1,0 +1,133 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "A position in a 2 dimensional space as INTEGERs (x, y)"{\line}
+{\tab}{\cf1 legal}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 status}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2013-05-20 16:15:17 -0700 (Mon, 20 May 2013) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 92557 $"{\line}
+{\line}
+{\b\cf6 class} {\b\cf6 interface}{\line}
+{\tab}{\cf4 EV_COORDINATE}{\line}
+{\line}
+{\b\cf6 create} {\line}
+{\tab}{\cf5 default_create}{\cf1 ,}{\line}
+{\tab}{\cf5 set}{\cf1 ,}{\line}
+{\tab}{\cf5 make}{\cf1 ,}{\line}
+{\tab}{\cf5 make_with_position}{\cf1 ,}{\line}
+{\tab}{\cf5 make_precise}{\line}
+{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Initialization}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make} {\cf1 (}{\cf5 a_x}{\cf1 :} {\b\cf6 like} {\cf5 x}{\cf1 ;} {\cf5 a_y}{\cf1 :} {\b\cf6 like} {\cf5 y}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create an EV_COORDINATE at position (}{\cf5 a_x}{\cf3 , }{\cf5 a_y}{\cf3 ).}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 EV_COORDINATE}{\cf3  as synonym of }{\cf5 set}{\cf3 , }{\cf5 make_with_position}{\cf3  and }{\cf5 set_position}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 x_set}{\cf1 :} {\cf5 x} {\cf1 =} {\cf5 a_x}{\line}
+{\tab}{\tab}{\tab}{\cf1 y_set}{\cf1 :} {\cf5 y} {\cf1 =} {\cf5 a_y}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 set} {\cf1 (}{\cf5 a_x}{\cf1 :} {\b\cf6 like} {\cf5 x}{\cf1 ;} {\cf5 a_y}{\cf1 :} {\b\cf6 like} {\cf5 y}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create an EV_COORDINATE at position (}{\cf5 a_x}{\cf3 , }{\cf5 a_y}{\cf3 ).}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 EV_COORDINATE}{\cf3  as synonym of }{\cf5 make}{\cf3 , }{\cf5 make_with_position}{\cf3  and }{\cf5 set_position}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 x_set}{\cf1 :} {\cf5 x} {\cf1 =} {\cf5 a_x}{\line}
+{\tab}{\tab}{\tab}{\cf1 y_set}{\cf1 :} {\cf5 y} {\cf1 =} {\cf5 a_y}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 make_with_position} {\cf1 (}{\cf5 a_x}{\cf1 :} {\b\cf6 like} {\cf5 x}{\cf1 ;} {\cf5 a_y}{\cf1 :} {\b\cf6 like} {\cf5 y}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create an EV_COORDINATE at position (}{\cf5 a_x}{\cf3 , }{\cf5 a_y}{\cf3 ).}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 EV_COORDINATE}{\cf3  as synonym of }{\cf5 make}{\cf3 , }{\cf5 set}{\cf3  and }{\cf5 set_position}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 x_set}{\cf1 :} {\cf5 x} {\cf1 =} {\cf5 a_x}{\line}
+{\tab}{\tab}{\tab}{\cf1 y_set}{\cf1 :} {\cf5 y} {\cf1 =} {\cf5 a_y}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 set_position} {\cf1 (}{\cf5 a_x}{\cf1 :} {\b\cf6 like} {\cf5 x}{\cf1 ;} {\cf5 a_y}{\cf1 :} {\b\cf6 like} {\cf5 y}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create an EV_COORDINATE at position (}{\cf5 a_x}{\cf3 , }{\cf5 a_y}{\cf3 ).}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 EV_COORDINATE}{\cf3  as synonym of }{\cf5 make}{\cf3 , }{\cf5 set}{\cf3  and }{\cf5 make_with_position}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 x_set}{\cf1 :} {\cf5 x} {\cf1 =} {\cf5 a_x}{\line}
+{\tab}{\tab}{\tab}{\cf1 y_set}{\cf1 :} {\cf5 y} {\cf1 =} {\cf5 a_y}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 make_precise} {\cf1 (}{\cf5 a_x}{\cf1 :} {\b\cf6 like} {\cf5 x_precise}{\cf1 ;} {\cf5 a_y}{\cf1 :} {\b\cf6 like} {\cf5 y_precise}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create an EV_COORDINATE at position (}{\cf5 a_x}{\cf3 , }{\cf5 a_y}{\cf3 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 EV_COORDINATE}{\cf3  as synonym of }{\cf5 set_precise}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 x_set}{\cf1 :} {\cf5 x_precise} {\cf1 =} {\cf5 a_x}{\line}
+{\tab}{\tab}{\tab}{\cf1 y_set}{\cf1 :} {\cf5 y_precise} {\cf1 =} {\cf5 a_y}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 set_precise} {\cf1 (}{\cf5 a_x}{\cf1 :} {\b\cf6 like} {\cf5 x_precise}{\cf1 ;} {\cf5 a_y}{\cf1 :} {\b\cf6 like} {\cf5 y_precise}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create an EV_COORDINATE at position (}{\cf5 a_x}{\cf3 , }{\cf5 a_y}{\cf3 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 EV_COORDINATE}{\cf3  as synonym of }{\cf5 make_precise}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 x_set}{\cf1 :} {\cf5 x_precise} {\cf1 =} {\cf5 a_x}{\line}
+{\tab}{\tab}{\tab}{\cf1 y_set}{\cf1 :} {\cf5 y_precise} {\cf1 =} {\cf5 a_y}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 x}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Horizontal position.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 EV_COORDINATE}{\cf3  as synonym of }{\cf5 x_abs}{\cf3 .}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 x_abs}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Horizontal position.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 EV_COORDINATE}{\cf3  as synonym of }{\cf5 x}{\cf3 .}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 y}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Vertical position.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 EV_COORDINATE}{\cf3  as synonym of }{\cf5 y_abs}{\cf3 .}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 y_abs}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Vertical position.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 EV_COORDINATE}{\cf3  as synonym of }{\cf5 y}{\cf3 .}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 x_precise}{\cf1 :} {\cf4 REAL_64}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  The precise horizontal position.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 y_precise}{\cf1 :} {\cf4 REAL_64}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  The precise vertival position.}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Element change}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_x} {\cf1 (}{\cf5 a_x}{\cf1 :} {\b\cf6 like} {\cf5 x}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Assign }{\cf5 a_x}{\cf3  to }{\cf5 x}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 x_set}{\cf1 :} {\cf5 x} {\cf1 =} {\cf5 a_x}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 set_y} {\cf1 (}{\cf5 a_y}{\cf1 :} {\b\cf6 like} {\cf5 y}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Assign }{\cf5 a_y}{\cf3  to }{\cf5 y}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 y_set}{\cf1 :} {\cf5 y} {\cf1 =} {\cf5 a_y}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 set_x_precise} {\cf1 (}{\cf5 a_x}{\cf1 :} {\b\cf6 like} {\cf5 x_precise}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Assign }{\cf5 a_x}{\cf3  to }{\cf5 x}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 x_set}{\cf1 :} {\cf5 x_precise} {\cf1 =} {\cf5 a_x}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 set_y_precise} {\cf1 (}{\cf5 a_y}{\cf1 :} {\b\cf6 like} {\cf5 y_precise}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Assign }{\cf5 a_y}{\cf3  to }{\cf5 y}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 y_set}{\cf1 :} {\cf5 y_precise} {\cf1 =} {\cf5 a_y}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Output}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 debug_output}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Textual representation.}{\line}
+}{\tab}{\line}
+{\b\cf6 note}{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 1984-2006, Eiffel Software and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"{\line}
+{\tab}{\cf1 source}{\cf1 :} "[{\line}
+{\tab}{\tab}Eiffel Software{\line}
+{\tab}{\tab}356 Storke Road, Goleta, CA 93117 USA{\line}
+{\tab}{\tab}Telephone 805-685-1006, Fax 805-685-6869{\line}
+{\tab}{\tab}Website http://www.eiffel.com{\line}
+{\tab}{\tab}Customer support http://support.eiffel.com{\line}
+{\tab}]"{\line}
+{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 EV_COORDINATE}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

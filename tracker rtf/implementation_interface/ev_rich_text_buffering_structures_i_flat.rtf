@@ -1,0 +1,1935 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "[{\line}
+{\tab}{\tab}Objects that contain all structures required for buffering RTF for saving/loading/implementation.{\line}
+{\tab}]"{\line}
+{\tab}{\cf1 legal}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 status}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2013-08-07 11:55:28 -0700 (Wed, 07 Aug 2013) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 92864 $"{\line}
+{\line}
+{\b\cf6 class} {\line}
+{\tab}{\cf4 EV_RICH_TEXT_BUFFERING_STRUCTURES_I}{\line}
+{\line}
+{\b\cf6 create} {\line}
+{\tab}{\cf5 set_rich_text}{\line}
+{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Initialization}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 default_create}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Process instances of classes with no creation clause.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Default: do nothing.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 generating_type}{\cf1 :} {\cf4 TYPE} {\cf1 [}{\b\cf6 detachable} {\cf4 EV_RICH_TEXT_BUFFERING_STRUCTURES_I}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Type of current object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (type of which it is a direct instance)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 generating_type_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 generator}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Name of current object's generating class}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (base class of the type of which it is a direct instance)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 generator_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 generator_not_empty}{\cf1 :} {\b\cf6 not} {\b\cf6 Result}{\b\cf1 .}{\cf5 is_empty}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Color_table_start}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "\{\\colortbl ;"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  RTF string denoting start of color table.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Default_font}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "\\cf1\\highlight2\\f0\\fs"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Font_table_start}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "\{\\rtf1\\ansi\\ansicpg1252\\uc1\\deff0\\deflang1033\{\\fonttbl"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  RTF string denoting start of font table.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_backslash}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "\\\\"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting RTF backslash.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_blue}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "blue"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting blue component of a RTF color.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_bold_string}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "b"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting bold in RTF.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_charset}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "fcharset"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_close_brace}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "\\\}"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting RTF close brace.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_close_brace_character}{\cf1 :} {\cf4 CHARACTER_8} {\cf1 =} '\}'}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_color_string}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "cf"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting color in RTF.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_colortbl}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "colortbl"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_control_character}{\cf1 :} {\cf4 CHARACTER_8} {\cf1 =} '\\'}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_family_modern}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "fmodern"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_family_modern_int}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 5}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_family_nill}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "fnill"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_family_nill_int}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 6}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_family_roman}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "froman"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_family_roman_int}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 2}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_family_script}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "fscript"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_family_script_int}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 4}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_family_swiss}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "fswiss"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_family_swiss_int}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 3}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_family_tech}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "ftech"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_family_tech_int}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 1}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_font_charset}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "fcharset"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_font_size_string}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "fs"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting font size in RTF.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_font_string}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "f"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting font index in RTF.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_fonttable}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "fonttbl"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_green}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "green"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting green component of a RTF color.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_highlight_string}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "highlight"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting highlighting color in RFT.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_info}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "info"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_italic_string}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "i"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting italic in RTF.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_new_paragraph}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "pard"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting start of standard paragraph.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_newline}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "par"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting RTF newline.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_open_brace}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "\\\{"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting RTF open brace.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_open_brace_character}{\cf1 :} {\cf4 CHARACTER_8} {\cf1 =} '\{'}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_paragraph_center_aligned}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "qc"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting start of center aligned paragraph.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_paragraph_justified}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "qj"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting start of justified paragraph.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_paragraph_left_aligned}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "ql"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting start of left aligned paragraph.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_paragraph_left_indent}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "li"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting left indent of paragraph.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_paragraph_right_aligned}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "qr"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting start of right aligned paragraph.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_paragraph_right_indent}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "ri"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting right indent of paragraph.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_paragraph_space_after}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "sa"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting space after paragraph.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_paragraph_space_before}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "sb"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting space before paragraph.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_red}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "red"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting red component of a RTF color.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_strikeout_string}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "strike"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting striked out in RTF.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_stylesheet}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "stylesheet"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_underline_none_string}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "ulnone"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting end of underlined in RTF.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_underline_string}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "ul"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting underlined in RTF.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_unicode_character}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "\\u"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting starting of a Unicode character.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_unicode_string}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "u"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting underlined in RTF.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_user_props}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "*"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_vertical_offset}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "up"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting start of vertical offset in RTF.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Space_string}{\cf1 :} {\cf4 STRING_32} {\cf1 =} " "}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting empty space.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 View_text}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "\\viewkind4\\uc1\\pard"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  A STRING constant representing the view type of the RTF document.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf3 )}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Comparison}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 deep_equal} {\cf1 (}{\cf5 a}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 ;} {\cf5 b}{\cf1 :} {\b\cf6 like} arg #1{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are }{\cf5 a}{\cf3  and }{\cf5 b}{\cf3  either both void}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  or attached to isomorphic object structures?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a} {\cf1 =} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 =} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 is_deep_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 shallow_implies_deep}{\cf1 :} {\cf5 standard_equal}{\cf1  }{\cf1 (}{\cf5 a}{\cf1 ,} {\cf5 b}{\cf1 )} {\b\cf6 implies} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\cf1 both_or_none_void}{\cf1 :} {\cf1 (}{\cf5 a} {\cf1 =} {\b\cf6 Void}{\cf1 )} {\b\cf6 implies} {\cf1 (}{\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf5 b} {\cf1 =} {\b\cf6 Void}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 same_type}{\cf1 :} {\cf1 (}{\b\cf6 Result} {\b\cf6 and} {\cf1 (}{\cf5 a} {\cf1 /=} {\b\cf6 Void}{\cf1 )}{\cf1 )} {\b\cf6 implies} {\cf1 (}{\cf5 b} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 same_type}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 symmetric}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 deep_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 ,} {\cf5 a}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 equal} {\cf1 (}{\cf5 a}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 ;} {\cf5 b}{\cf1 :} {\b\cf6 like} arg #1{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are }{\cf5 a}{\cf3  and }{\cf5 b}{\cf3  either both void or attached}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to objects considered equal?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a} {\cf1 =} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 =} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf5 a} {\cf1 =} {\b\cf6 Void} {\b\cf6 and} {\cf5 b} {\cf1 =} {\b\cf6 Void}{\cf1 )} {\b\cf6 or else} {\cf1 (}{\cf1 (}{\cf5 a} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and} {\cf5 b} {\cf1 /=} {\b\cf6 Void}{\cf1 )} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 is_deep_equal} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 EV_RICH_TEXT_BUFFERING_STRUCTURES_I}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are }{\cf5 Current}{\cf3  and }{\cf5 other}{\cf3  attached to isomorphic object structures?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 shallow_implies_deep}{\cf1 :} {\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )} {\b\cf6 implies} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\cf1 same_type}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 same_type}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 symmetric}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 other}{\b\cf1 .}{\cf5 is_deep_equal}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_equal} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 EV_RICH_TEXT_BUFFERING_STRUCTURES_I}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 other}{\cf3  attached to an object considered}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  equal to current object?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 symmetric}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 other} {\cf1 ~} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\tab}{\cf1 consistent}{\cf1 :} {\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )} {\b\cf6 implies} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 standard_equal} {\cf1 (}{\cf5 a}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 ;} {\cf5 b}{\cf1 :} {\b\cf6 like} arg #1{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are }{\cf5 a}{\cf3  and }{\cf5 b}{\cf3  either both void or attached to}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  field-by-field identical objects of the same type?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Always uses default object comparison criterion.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a} {\cf1 =} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 =} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf5 a} {\cf1 =} {\b\cf6 Void} {\b\cf6 and} {\cf5 b} {\cf1 =} {\b\cf6 Void}{\cf1 )} {\b\cf6 or else} {\cf1 (}{\cf1 (}{\cf5 a} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and} {\cf5 b} {\cf1 /=} {\b\cf6 Void}{\cf1 )} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 standard_is_equal} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 EV_RICH_TEXT_BUFFERING_STRUCTURES_I}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 other}{\cf3  attached to an object of the same type}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  as current object, and field-by-field identical to it?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 same_type}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 same_type}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 symmetric}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 other}{\b\cf1 .}{\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status report}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 conforms_to} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 ANY}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does type of current object conform to type}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of }{\cf5 other}{\cf3  (as per Eiffel: The Language, chapter 13)?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 same_type} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 ANY}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is type of current object identical to type of }{\cf5 other}{\cf3 ?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf5 conforms_to}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )} {\b\cf6 and} {\cf5 other}{\b\cf1 .}{\cf5 conforms_to}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Duplication}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 clone} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 )}{\cf1 :} {\b\cf6 like} {\cf5 other}{\line}
+{\tab}{\tab}{\b\cf6 obsolete} "Use `twin' instead. [2017-05-31]"{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Void if }{\cf5 other}{\cf3  is void; otherwise new object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  equal to }{\cf5 other}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  For non-void }{\cf5 other}{\cf3 , }{\cf5 clone}{\cf3  calls }{\cf5 copy}{\cf3 ;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to change copying/cloning semantics, redefine }{\cf5 copy}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 other} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 other}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 equal}{\cf1 :} {\b\cf6 Result} {\cf1 ~} {\cf5 other}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 copy} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 EV_RICH_TEXT_BUFFERING_STRUCTURES_I}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Update current object using fields of object attached}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to }{\cf5 other}{\cf3 , so as to yield equal objects.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 type_identity}{\cf1 :} {\cf5 same_type}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_equal}{\cf1 :} {\b\cf6 Current} {\cf1 ~} {\cf5 other}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 deep_clone} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 )}{\cf1 :} {\b\cf6 like} {\cf5 other}{\line}
+{\tab}{\tab}{\b\cf6 obsolete} "Use `deep_twin' instead. [2017-05-31]"{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Void if }{\cf5 other}{\cf3  is void: otherwise, new object structure}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  recursively duplicated from the one attached to }{\cf5 other}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 other} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 other}{\b\cf1 .}{\cf5 deep_twin}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 deep_equal}{\cf1 :} {\cf5 deep_equal}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 ,} {\b\cf6 Result}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 deep_copy} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 EV_RICH_TEXT_BUFFERING_STRUCTURES_I}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Effect equivalent to that of:}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3 		}{\cf5 copy}{\cf3  (}{\cf5 other}{\cf3  . }{\cf5 deep_twin}{\cf3 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 copy}{\cf1  }{\cf1 (}{\cf5 other}{\b\cf1 .}{\cf5 deep_twin}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 deep_equal}{\cf1 :} {\cf5 deep_equal}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 ,} {\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 deep_twin}{\cf1 :} {\b\cf6 attached} {\cf4 EV_RICH_TEXT_BUFFERING_STRUCTURES_I}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New object structure recursively duplicated from Current.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 deep_twin_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 deep_equal}{\cf1 :} {\cf5 deep_equal}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 ,} {\b\cf6 Result}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 standard_clone} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 )}{\cf1 :} {\b\cf6 like} {\cf5 other}{\line}
+{\tab}{\tab}{\b\cf6 obsolete} "Use `standard_twin' instead. [2017-05-31]"{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Void if }{\cf5 other}{\cf3  is void; otherwise new object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  field-by-field identical to }{\cf5 other}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Always uses default copying semantics.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 other} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 other}{\b\cf1 .}{\cf5 standard_twin}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 equal}{\cf1 :} {\cf5 standard_equal}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 ,} {\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 standard_copy} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 EV_RICH_TEXT_BUFFERING_STRUCTURES_I}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Copy every field of }{\cf5 other}{\cf3  onto corresponding field}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of current object.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 type_identity}{\cf1 :} {\cf5 same_type}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_standard_equal}{\cf1 :} {\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 standard_twin}{\cf1 :} {\b\cf6 attached} {\cf4 EV_RICH_TEXT_BUFFERING_STRUCTURES_I}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New object field-by-field identical to }{\cf5 other}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Always uses default copying semantics.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 standard_twin_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 equal}{\cf1 :} {\cf5 standard_equal}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 ,} {\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 twin}{\cf1 :} {\b\cf6 attached} {\cf4 EV_RICH_TEXT_BUFFERING_STRUCTURES_I}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New object equal to }{\cf5 Current}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 twin}{\cf3  calls }{\cf5 copy}{\cf3 ; to change copying/twinning semantics, redefine }{\cf5 copy}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 twin_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_equal}{\cf1 :} {\b\cf6 Result} {\cf1 ~} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Basic operations}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 as_attached}{\cf1 :} {\b\cf6 attached} {\cf4 EV_RICH_TEXT_BUFFERING_STRUCTURES_I}{\line}
+{\tab}{\tab}{\b\cf6 obsolete} "Remove calls to this feature. [2017-05-31]"{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Attached version of Current.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Can be used during transitional period to convert}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  non-void-safe classes to void-safe ones.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 default}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_RICH_TEXT_BUFFERING_STRUCTURES_I}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Default value of object's type}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 default_pointer}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Default value of type }{\cf5 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Avoid the need to write }{\cf5 p}{\cf3 .}{\cf5 default}{\cf3  for}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  some }{\cf5 p}{\cf3  of type }{\cf5 POINTER}{\cf3 .)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 default_rescue}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Process exception for routines with no Rescue clause.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Default: do nothing.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 do_nothing}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Execute a null action.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 add_rtf_keyword} {\cf1 (}{\cf5 a_string}{\cf1 ,} {\cf5 a_keyword}{\cf1 :} {\cf4 STRING_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Add rtf representation of }{\cf5 Rtf_control_character}{\cf3  and keyword }{\cf5 a_keyword}{\cf3  to }{\cf5 a_string}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 keyword_not_void}{\cf1 :} {\cf5 a_keyword} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_string}{\b\cf1 .}{\cf5 append_character}{\cf1  }{\cf1 (}{\cf5 Rtf_control_character}{\b\cf1 .}{\cf5 to_character_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_string}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 a_keyword}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 count_increased}{\cf1 :} {\b\cf6 old} {\cf5 a_string}{\b\cf1 .}{\cf5 count} {\cf1 +} {\cf5 a_keyword}{\b\cf1 .}{\cf5 count} {\cf1 +} 1 {\cf1 =} {\cf5 a_string}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 back_color_offset}{\cf1 :} {\cf4 ARRAYED_LIST} {\cf1 [}{\cf4 INTEGER_32}{\cf1 ]}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  All color indexes to use for background colors in document,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  indexed by their corresponding character format index.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  So, for example, item 20 would correspond to the color offset to use from}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the color table for the 20th character format.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 buffered_text}{\cf1 :} {\cf4 STRING_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Internal representation of }{\cf5 text}{\cf3  used only when flushing the buffers. Prevents the need}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to stream the contents of }{\cf5 current}{\cf3 , every time that the }{\cf5 text}{\cf3  is needed.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 build_color_from_format} {\cf1 (}{\cf5 a_format}{\cf1 :} {\cf4 EV_CHARACTER_FORMAT_I}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Update color text }{\cf5 color_text}{\cf3  for addition of a new format to the buffering.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_color}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 hashed_color}{\cf1 ,} {\cf5 hashed_back_color}{\cf1 :} {\cf4 STRING_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 red}{\cf1 ,} {\cf5 green}{\cf1 ,} {\cf5 blue}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_color} {\cf1 :=} {\cf5 a_format}{\b\cf1 .}{\cf5 fcolor}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 hashed_color}{\b\cf1 .}{\cf5 make_empty}{\line}
+{\tab}{\tab}{\tab}{\cf5 add_rtf_keyword}{\cf1  }{\cf1 (}{\cf5 hashed_color}{\cf1 ,} {\cf5 Rtf_red}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 red} {\cf1 :=} {\cf5 l_color} {\cf1 &} 255{\line}
+{\tab}{\tab}{\tab}{\cf5 l_color} {\cf1 :=} {\cf5 l_color} {\cf1 |>>} 8{\line}
+{\tab}{\tab}{\tab}{\cf5 green} {\cf1 :=} {\cf5 l_color} {\cf1 &} 255{\line}
+{\tab}{\tab}{\tab}{\cf5 l_color} {\cf1 :=} {\cf5 l_color} {\cf1 |>>} 8{\line}
+{\tab}{\tab}{\tab}{\cf5 blue} {\cf1 :=} {\cf5 l_color} {\cf1 &} 255{\line}
+{\tab}{\tab}{\tab}{\cf5 hashed_color}{\b\cf1 .}{\cf5 append_integer}{\cf1  }{\cf1 (}{\cf5 red}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 add_rtf_keyword}{\cf1  }{\cf1 (}{\cf5 hashed_color}{\cf1 ,} {\cf5 Rtf_green}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 hashed_color}{\b\cf1 .}{\cf5 append_integer}{\cf1  }{\cf1 (}{\cf5 green}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 add_rtf_keyword}{\cf1  }{\cf1 (}{\cf5 hashed_color}{\cf1 ,} {\cf5 Rtf_blue}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 hashed_color}{\b\cf1 .}{\cf5 append_integer}{\cf1  }{\cf1 (}{\cf5 blue}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 hashed_color}{\b\cf1 .}{\cf5 append_character}{\cf1  }{\cf1 (}';'{\b\cf1 .}{\cf5 to_character_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 hashed_colors}{\b\cf1 .}{\cf5 search}{\cf1  }{\cf1 (}{\cf5 hashed_color}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 hashed_colors}{\b\cf1 .}{\cf5 found} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 color_count} {\cf1 :=} {\cf5 color_count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 hashed_colors}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 color_count}{\cf1 ,} {\cf5 hashed_color}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 color_offset}{\b\cf1 .}{\cf5 force}{\cf1  }{\cf1 (}{\cf5 hashed_colors}{\b\cf1 .}{\cf5 found_item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 color_text}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 hashed_color}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 color_offset}{\b\cf1 .}{\cf5 force}{\cf1  }{\cf1 (}{\cf5 hashed_colors}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 hashed_color}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_color} {\cf1 :=} {\cf5 a_format}{\b\cf1 .}{\cf5 bcolor}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 hashed_back_color}{\b\cf1 .}{\cf5 make_empty}{\line}
+{\tab}{\tab}{\tab}{\cf5 add_rtf_keyword}{\cf1  }{\cf1 (}{\cf5 hashed_back_color}{\cf1 ,} {\cf5 Rtf_red}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 red} {\cf1 :=} {\cf5 l_color} {\cf1 &} 255{\line}
+{\tab}{\tab}{\tab}{\cf5 l_color} {\cf1 :=} {\cf5 l_color} {\cf1 |>>} 8{\line}
+{\tab}{\tab}{\tab}{\cf5 green} {\cf1 :=} {\cf5 l_color} {\cf1 &} 255{\line}
+{\tab}{\tab}{\tab}{\cf5 l_color} {\cf1 :=} {\cf5 l_color} {\cf1 |>>} 8{\line}
+{\tab}{\tab}{\tab}{\cf5 blue} {\cf1 :=} {\cf5 l_color} {\cf1 &} 255{\line}
+{\tab}{\tab}{\tab}{\cf5 hashed_back_color}{\b\cf1 .}{\cf5 append_integer}{\cf1  }{\cf1 (}{\cf5 red}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 add_rtf_keyword}{\cf1  }{\cf1 (}{\cf5 hashed_back_color}{\cf1 ,} {\cf5 Rtf_green}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 hashed_back_color}{\b\cf1 .}{\cf5 append_integer}{\cf1  }{\cf1 (}{\cf5 green}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 add_rtf_keyword}{\cf1  }{\cf1 (}{\cf5 hashed_back_color}{\cf1 ,} {\cf5 Rtf_blue}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 hashed_back_color}{\b\cf1 .}{\cf5 append_integer}{\cf1  }{\cf1 (}{\cf5 blue}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 hashed_back_color}{\b\cf1 .}{\cf5 append_character}{\cf1  }{\cf1 (}';'{\b\cf1 .}{\cf5 to_character_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 hashed_colors}{\b\cf1 .}{\cf5 search}{\cf1  }{\cf1 (}{\cf5 hashed_back_color}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 hashed_colors}{\b\cf1 .}{\cf5 found} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 color_count} {\cf1 :=} {\cf5 color_count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 hashed_colors}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 color_count}{\cf1 ,} {\cf5 hashed_back_color}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 back_color_offset}{\b\cf1 .}{\cf5 force}{\cf1  }{\cf1 (}{\cf5 hashed_colors}{\b\cf1 .}{\cf5 found_item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 color_text}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 hashed_back_color}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 back_color_offset}{\b\cf1 .}{\cf5 force}{\cf1  }{\cf1 (}{\cf5 hashed_colors}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 hashed_back_color}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 build_font_from_format} {\cf1 (}{\cf5 a_format}{\cf1 :} {\cf4 EV_CHARACTER_FORMAT_I}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Update font text }{\cf5 font_text}{\cf3  for addition of a new format to the buffering.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 current_family}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 family}{\cf1 :} {\cf4 STRING_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 temp_string}{\cf1 :} {\cf4 STRING_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 current_family} {\cf1 :=} {\cf5 a_format}{\b\cf1 .}{\cf5 family}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 inspect} {\cf5 current_family}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 when} {\cf5 Family_screen} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 family} {\cf1 :=} {\cf5 Rtf_family_tech}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 when} {\cf5 Family_roman} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 family} {\cf1 :=} {\cf5 Rtf_family_roman}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 when} {\cf5 Family_sans} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 family} {\cf1 :=} {\cf5 Rtf_family_swiss}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 when} {\cf5 Family_typewriter} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 family} {\cf1 :=} {\cf5 Rtf_family_script}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 when} {\cf5 Family_modern} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 family} {\cf1 :=} {\cf5 Rtf_family_modern}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 family} {\cf1 :=} {\cf5 Rtf_family_nill}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 temp_string}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}50{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 temp_string}{\b\cf1 .}{\cf5 append_character}{\cf1  }{\cf1 (}'\\'{\b\cf1 .}{\cf5 to_character_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 temp_string}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 family}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 temp_string}{\b\cf1 .}{\cf5 append_string_general}{\cf1  }{\cf1 (}"\\fcharset"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 temp_string}{\b\cf1 .}{\cf5 append_integer}{\cf1  }{\cf1 (}{\cf5 a_format}{\b\cf1 .}{\cf5 char_set}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 temp_string}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 Space_string}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 temp_string}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 a_format}{\b\cf1 .}{\cf5 name}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 hashed_fonts}{\b\cf1 .}{\cf5 search}{\cf1  }{\cf1 (}{\cf5 temp_string}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 hashed_fonts}{\b\cf1 .}{\cf5 found} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 font_count} {\cf1 :=} {\cf5 font_count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 hashed_fonts}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 font_count}{\cf1 ,} {\cf5 temp_string}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 font_offset}{\b\cf1 .}{\cf5 force}{\cf1  }{\cf1 (}{\cf5 hashed_fonts}{\b\cf1 .}{\cf5 found_item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 font_text}{\b\cf1 .}{\cf5 append_string_general}{\cf1  }{\cf1 (}"\{\\f"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 font_text}{\b\cf1 .}{\cf5 append_integer}{\cf1  }{\cf1 (}{\cf5 font_count}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 font_text}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 temp_string}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 font_text}{\b\cf1 .}{\cf5 append_string_general}{\cf1  }{\cf1 (}";\}"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 font_offset}{\b\cf1 .}{\cf5 force}{\cf1  }{\cf1 (}{\cf5 hashed_fonts}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 temp_string}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 build_paragraph_from_format} {\cf1 (}{\cf5 a_format}{\cf1 :} {\cf4 EV_PARAGRAPH_FORMAT}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Add RTF representation of }{\cf5 a_format}{\cf3  to }{\cf5 paragraph_formats}{\cf3  is}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 formats_not_void}{\cf1 :} {\cf5 paragraph_formats} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 format}{\cf1 :} {\cf4 STRING_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 format}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}128{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 add_rtf_keyword}{\cf1  }{\cf1 (}{\cf5 format}{\cf1 ,} {\cf5 Rtf_new_paragraph}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a_format}{\b\cf1 .}{\cf5 is_left_aligned} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 add_rtf_keyword}{\cf1  }{\cf1 (}{\cf5 format}{\cf1 ,} {\cf5 Rtf_paragraph_left_aligned}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 a_format}{\b\cf1 .}{\cf5 is_center_aligned} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 add_rtf_keyword}{\cf1  }{\cf1 (}{\cf5 format}{\cf1 ,} {\cf5 Rtf_paragraph_center_aligned}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 a_format}{\b\cf1 .}{\cf5 is_right_aligned} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 add_rtf_keyword}{\cf1  }{\cf1 (}{\cf5 format}{\cf1 ,} {\cf5 Rtf_paragraph_right_aligned}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 a_format}{\b\cf1 .}{\cf5 is_justified} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 add_rtf_keyword}{\cf1  }{\cf1 (}{\cf5 format}{\cf1 ,} {\cf5 Rtf_paragraph_justified}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a_format}{\b\cf1 .}{\cf5 left_margin} {\cf1 /=} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 add_rtf_keyword}{\cf1  }{\cf1 (}{\cf5 format}{\cf1 ,} {\cf5 Rtf_paragraph_left_indent}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 format}{\b\cf1 .}{\cf5 append_integer}{\cf1  }{\cf1 (}{\cf5 pixels_to_half_points}{\cf1  }{\cf1 (}{\cf5 a_format}{\b\cf1 .}{\cf5 left_margin} {\cf1 *} 10{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a_format}{\b\cf1 .}{\cf5 right_margin} {\cf1 /=} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 add_rtf_keyword}{\cf1  }{\cf1 (}{\cf5 format}{\cf1 ,} {\cf5 Rtf_paragraph_right_indent}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 format}{\b\cf1 .}{\cf5 append_integer}{\cf1  }{\cf1 (}{\cf5 pixels_to_half_points}{\cf1  }{\cf1 (}{\cf5 a_format}{\b\cf1 .}{\cf5 right_margin} {\cf1 *} 10{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a_format}{\b\cf1 .}{\cf5 top_spacing} {\cf1 /=} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 add_rtf_keyword}{\cf1  }{\cf1 (}{\cf5 format}{\cf1 ,} {\cf5 Rtf_paragraph_space_before}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 format}{\b\cf1 .}{\cf5 append_integer}{\cf1  }{\cf1 (}{\cf5 pixels_to_half_points}{\cf1  }{\cf1 (}{\cf5 a_format}{\b\cf1 .}{\cf5 top_spacing} {\cf1 *} 10{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a_format}{\b\cf1 .}{\cf5 bottom_spacing} {\cf1 /=} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 add_rtf_keyword}{\cf1  }{\cf1 (}{\cf5 format}{\cf1 ,} {\cf5 Rtf_paragraph_space_after}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 format}{\b\cf1 .}{\cf5 append_integer}{\cf1  }{\cf1 (}{\cf5 pixels_to_half_points}{\cf1  }{\cf1 (}{\cf5 a_format}{\b\cf1 .}{\cf5 bottom_spacing} {\cf1 *} 10{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 format}{\b\cf1 .}{\cf5 append_character}{\cf1  }{\cf1 (}' '{\b\cf1 .}{\cf5 to_character_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 paragraph_formats} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 paragraph_formats}{\b\cf1 .}{\cf5 extend}{\cf1  }{\cf1 (}{\cf5 format}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 formats_count_increased}{\cf1 :} {\b\cf6 attached} {\cf5 paragraph_formats} {\b\cf6 and then} {\cf5 paragraph_formats}{\b\cf1 .}{\cf5 count} {\cf1 =} {\b\cf6 old} {\cf5 paragraph_formats}{\b\cf1 .}{\cf5 count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 color_count}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of colors currently buffered.		}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 color_offset}{\cf1 :} {\cf4 ARRAYED_LIST} {\cf1 [}{\cf4 INTEGER_32}{\cf1 ]}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  All color indexes to use for foreground colors in document,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  indexed by their corresponding character format index.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  So, for example, item 20 would correspond to the color offset to use from}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the color table for the 20th character format.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 color_text}{\cf1 :} {\cf4 STRING_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  The RTF string correponding to all colors in the document.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  These attributes are used to stop multiple versions of the same font being}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  generate in the RTF.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 current_vertical_offset}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Booleans used to determine current formatting. These are used to prevent}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  repeatedly opening the same tags each time a new format is encountered.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Default_string_size}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 50000}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Default size used for all internal strings for buffering.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  This reduces the need to resize the string as the formatting is applied.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Resizing strings can be slow, so is to be avoided wherever possible.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 hashed_formats}{\cf3 , }{\cf5 format_offsets}{\cf3  and }{\cf5 color_offsets}{\cf3  are only used in the}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  buffered append operations, while the other lists and hash tables are used}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  in the buffered formatting operations.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Default_structure_size}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 20}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Default size used to initalize all buffering structures.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 end_formats}{\cf1 :} {\cf4 HASH_TABLE} {\cf1 [}{\cf4 STRING_8}{\cf1 ,} {\cf4 INTEGER_32}{\cf1 ]}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  The format type applicable at a paticular character position. The integer represents the index of the}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  closing caret index.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  These attributes are used to stop multiple versions of the same color being}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  generated in the RTF.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 font_count}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of fonts currently buffered.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 font_offset}{\cf1 :} {\cf4 ARRAYED_LIST} {\cf1 [}{\cf4 INTEGER_32}{\cf1 ]}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  All font indexes  in document,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  indexed by their corresponding character format index.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  So, for example, item 20 would correspond to the font offset to use from}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the font table for the 20th character format.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 font_text}{\cf1 :} {\cf4 STRING_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  The RTF string corresponding to all fonts in the document.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 format_offsets}{\cf1 :} {\cf4 HASH_TABLE} {\cf1 [}{\cf4 INTEGER_32}{\cf1 ,} {\cf4 STRING_8}{\cf1 ]}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  The index of each format in }{\cf5 hashed_formats}{\cf3  within the RTF document that must be generated.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  For each set of formatting that must be applied, a reference to the format in the document}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  must be specified, and this table holds the appropriate offset of that formatting.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 formats}{\cf1 :} {\cf4 ARRAYED_LIST} {\cf1 [}{\cf4 EV_CHARACTER_FORMAT}{\cf1 ]}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  All character formats used in }{\cf5 Current}{\cf3 .}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 formats_index}{\cf1 :} {\cf4 HASH_TABLE} {\cf1 [}{\cf4 INTEGER_32}{\cf1 ,} {\cf4 INTEGER_32}{\cf1 ]}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  The index of each format relative to a paticular character index. This permits the correct}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  format to be looked up when the start positions of the formats are traversed.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 half_points_to_pixels} {\cf1 (}{\cf5 half_points}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 Result}{\cf3  is half points converted to pixels.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 half_points} {\cf1 *} {\cf5 Screen}{\b\cf1 .}{\cf5 vertical_resolution} {\cf1 //} {\cf1 (}{\cf5 Points_per_inch} {\cf1 *} 2{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 hashed_colors}{\cf1 :} {\cf4 HASH_TABLE} {\cf1 [}{\cf4 INTEGER_32}{\cf1 ,} {\cf4 STRING_32}{\cf1 ]}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  All colors currently stored for buffering, accessible via the}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  actual RTF output, in the form ";\\red255\\green0\\blue0". The integer }{\cf5 item}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  corresponds to the offset of the color in }{\cf5 colors}{\cf3 .}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 hashed_fonts}{\cf1 :} {\cf4 HASH_TABLE} {\cf1 [}{\cf4 INTEGER_32}{\cf1 ,} {\cf4 STRING_32}{\cf1 ]}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  All fonts currently stored for buffering, accessible via the}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  actual RTF output, in the form "\\froman\\fcharset0 System". The integer }{\cf5 item}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  corresponds to the offset of the font in }{\cf5 fonts}{\cf3 .}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 hashed_formats}{\cf1 :} {\cf4 HASH_TABLE} {\cf1 [}{\cf4 EV_CHARACTER_FORMAT}{\cf1 ,} {\cf4 STRING_8}{\cf1 ]}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  A list of all character formats to be applied to buffering, accessible}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  through }{\cf5 hash_value}{\cf3  of EV_CHARACTER_FORMAT. This ensures that repeated formats}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  are not stored multiple times.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 heights}{\cf1 :} {\cf4 ARRAYED_LIST} {\cf1 [}{\cf4 INTEGER_32}{\cf1 ]}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  All heights of formats used in }{\cf5 Current}{\cf3 , corresponding to contents of }{\cf5 forrmats}{\cf3 .}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 highest_buffered_value}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Used when applying a buffered format, these values represent the lowest and highest character indexes}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  that have been buffered. This allows implementations to only stream between these indexes if possible.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Initial_color_value}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} -1}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Value assigned to each color RGB component before loading.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  This permits us to determine if the first color is auto, as if}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  so, the rgb values are all still set to this value.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_current_format_bold}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_current_format_italic}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_current_format_striked_through}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_current_format_underlined}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 lowest_buffered_value}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Used when applying a buffered format, these values represent the lowest and highest character indexes}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  that have been buffered. This allows implementations to only stream between these indexes if possible.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 pixels_to_half_points} {\cf1 (}{\cf5 pixels}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 Result}{\cf3  is pixels converted to half points, being}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the meaurement used for font sizes in RTF.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 pixels} {\cf1 *} {\cf5 Points_per_inch} {\cf1 *} 2{\cf1 )} {\cf1 //} {\cf5 Screen}{\b\cf1 .}{\cf5 vertical_resolution}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Points_per_inch}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 72}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of points per inch.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Screen}{\cf1 :} {\cf4 EV_SCREEN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Once acces to EV_SCREEN object.}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 start_formats}{\cf1 :} {\cf4 HASH_TABLE} {\cf1 [}{\cf4 STRING_8}{\cf1 ,} {\cf4 INTEGER_32}{\cf1 ]}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  The format type applicable at a paticular character position. The }{\cf5 item}{\cf3  is used to look up the}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  character format from }{\cf5 hashed_formats}{\cf3 .}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_ANY_I}{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 paragraph_formats}{\cf1 :} {\b\cf6 detachable} {\cf4 ARRAYED_LIST} {\cf1 [}{\cf4 STRING_32}{\cf1 ]}{\line}
+{\tab}{\tab}{\b\cf6 note}{\line}
+{\tab}{\tab}{\tab}option: stable{\line}
+{\tab}{\tab}{\b\cf6 attribute}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 paragraph_start_indexes}{\cf1 :} {\b\cf6 detachable} {\cf4 ARRAYED_LIST} {\cf1 [}{\cf4 INTEGER_32}{\cf1 ]}{\line}
+{\tab}{\tab}{\b\cf6 note}{\line}
+{\tab}{\tab}{\tab}option: stable{\line}
+{\tab}{\tab}{\b\cf6 attribute}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Constants}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Family_modern}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 5}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_FONT_CONSTANTS}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Family_roman}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 2}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_FONT_CONSTANTS}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Family_sans}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 3}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_FONT_CONSTANTS}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Family_screen}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 1}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_FONT_CONSTANTS}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Family_typewriter}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 4}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_FONT_CONSTANTS}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Shape_italic}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 11}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_FONT_CONSTANTS}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Shape_regular}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 10}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_FONT_CONSTANTS}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Weight_black}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 9}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_FONT_CONSTANTS}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Weight_bold}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_FONT_CONSTANTS}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Weight_regular}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 7}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_FONT_CONSTANTS}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Weight_thin}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 6}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_FONT_CONSTANTS}{\cf3 )}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Contract support}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 valid_family} {\cf1 (}{\cf5 a_family}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 a_family}{\cf3  a valid family value.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_FONT_CONSTANTS}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 a_family} {\cf1 =} {\cf5 Family_screen} {\b\cf6 or else} {\cf5 a_family} {\cf1 =} {\cf5 Family_roman} {\b\cf6 or else} {\cf5 a_family} {\cf1 =} {\cf5 Family_sans} {\b\cf6 or else} {\cf5 a_family} {\cf1 =} {\cf5 Family_typewriter} {\b\cf6 or else} {\cf5 a_family} {\cf1 =} {\cf5 Family_modern}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 valid_shape} {\cf1 (}{\cf5 a_shape}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 a_shape}{\cf3  a valid shape value.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_FONT_CONSTANTS}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 a_shape} {\cf1 =} {\cf5 Shape_regular} {\b\cf6 or else} {\cf5 a_shape} {\cf1 =} {\cf5 Shape_italic}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 valid_weight} {\cf1 (}{\cf5 a_weight}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 a_weight}{\cf3  a valid weight value.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_FONT_CONSTANTS}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 a_weight} {\cf1 =} {\cf5 Weight_thin} {\b\cf6 or else} {\cf5 a_weight} {\cf1 =} {\cf5 Weight_regular} {\b\cf6 or else} {\cf5 a_weight} {\cf1 =} {\cf5 Weight_bold} {\b\cf6 or else} {\cf5 a_weight} {\cf1 =} {\cf5 Weight_black}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Implementation		}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 add_font_to_all_fonts}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create and add a new font to }{\cf5 all_fonts}{\cf3  at index }{\cf5 last_font_index}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  based on }{\cf5 last_fontfamily}{\cf3  and }{\cf5 last_fontname}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_font}{\cf1 :} {\cf4 EV_FONT}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_font}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 inspect} {\cf5 last_fontfamily}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 when} {\cf5 Rtf_family_roman_int} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 a_font}{\b\cf1 .}{\cf5 set_family}{\cf1  }{\cf1 (}{\cf5 Family_roman}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 when} {\cf5 Rtf_family_swiss_int} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 a_font}{\b\cf1 .}{\cf5 set_family}{\cf1  }{\cf1 (}{\cf5 Family_sans}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 when} {\cf5 Rtf_family_modern_int} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 a_font}{\b\cf1 .}{\cf5 set_family}{\cf1  }{\cf1 (}{\cf5 Family_modern}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 when} {\cf5 Rtf_family_script_int} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 a_font}{\b\cf1 .}{\cf5 set_family}{\cf1  }{\cf1 (}{\cf5 Family_typewriter}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 when} {\cf5 Rtf_family_tech_int} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 a_font}{\b\cf1 .}{\cf5 set_family}{\cf1  }{\cf1 (}{\cf5 Family_screen}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 last_fontname} {\b\cf6 as} l_last_fontname {\b\cf6 and then} {\b\cf6 not} {\cf5 l_last_fontname}{\b\cf1 .}{\cf5 is_empty} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 a_font}{\b\cf1 .}{\cf5 preferred_families}{\b\cf1 .}{\cf5 extend}{\cf1  }{\cf1 (}{\cf5 l_last_fontname}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 all_fonts} {\b\cf6 as} l_fonts {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_fonts}{\b\cf1 .}{\cf5 force}{\cf1  }{\cf1 (}{\cf5 a_font}{\cf1 ,} {\cf5 last_fontindex}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 all_colors}{\cf1 :} {\b\cf6 detachable} {\cf4 HASH_TABLE} {\cf1 [}{\cf4 EV_COLOR}{\cf1 ,} {\cf4 INTEGER_32}{\cf1 ]}{\line}
+{\tab}{\tab}{\b\cf6 note}{\line}
+{\tab}{\tab}{\tab}option: stable{\line}
+{\tab}{\tab}{\b\cf6 attribute}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 all_fonts}{\cf1 :} {\b\cf6 detachable} {\cf4 HASH_TABLE} {\cf1 [}{\cf4 EV_FONT}{\cf1 ,} {\cf4 INTEGER_32}{\cf1 ]}{\line}
+{\tab}{\tab}{\b\cf6 note}{\line}
+{\tab}{\tab}{\tab}option: stable{\line}
+{\tab}{\tab}{\b\cf6 attribute}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 all_formats}{\cf1 :} {\b\cf6 detachable} {\cf4 HASH_TABLE} {\cf1 [}{\cf4 EV_CHARACTER_FORMAT}{\cf1 ,} {\cf4 STRING_8}{\cf1 ]}{\line}
+{\tab}{\tab}{\b\cf6 note}{\line}
+{\tab}{\tab}{\tab}option: stable{\line}
+{\tab}{\tab}{\b\cf6 attribute}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 all_paragraph_format_keys}{\cf1 :} {\b\cf6 detachable} {\cf4 ARRAYED_LIST} {\cf1 [}{\cf4 STRING_8}{\cf1 ]}{\line}
+{\tab}{\tab}{\b\cf6 note}{\line}
+{\tab}{\tab}{\tab}option: stable{\line}
+{\tab}{\tab}{\b\cf6 attribute}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 all_paragraph_formats}{\cf1 :} {\b\cf6 detachable} {\cf4 HASH_TABLE} {\cf1 [}{\cf4 EV_PARAGRAPH_FORMAT}{\cf1 ,} {\cf4 STRING_8}{\cf1 ]}{\line}
+{\tab}{\tab}{\b\cf6 note}{\line}
+{\tab}{\tab}{\tab}option: stable{\line}
+{\tab}{\tab}{\b\cf6 attribute}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 all_paragraph_indexes}{\cf1 :} {\b\cf6 detachable} {\cf4 ARRAYED_LIST} {\cf1 [}{\cf4 INTEGER_32}{\cf1 ]}{\line}
+{\tab}{\tab}{\b\cf6 note}{\line}
+{\tab}{\tab}{\tab}option: stable{\line}
+{\tab}{\tab}{\b\cf6 attribute}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 buffer_formatting} {\cf1 (}{\cf5 a_text}{\cf1 :} {\cf4 STRING_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Buffer }{\cf5 a_text}{\cf3  into }{\cf5 rich_text}{\cf3  with formatting applied from }{\cf5 current_format}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_text_not_void}{\cf1 :} {\cf5 a_text} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_text_not_empty}{\cf1 :} {\b\cf6 not} {\cf5 a_text}{\b\cf1 .}{\cf5 is_empty}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 character_format}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_CHARACTER_FORMAT}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_font}{\cf1 :} {\cf4 EV_FONT}{\line}
+{\tab}{\tab}{\tab}{\cf5 effects}{\cf1 :} {\cf4 EV_CHARACTER_FORMAT_EFFECTS}{\line}
+{\tab}{\tab}{\tab}{\cf5 paragraph_format}{\cf1 :} {\cf4 EV_PARAGRAPH_FORMAT}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_current_format}{\cf1 :} {\b\cf6 like} {\cf5 current_format}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_rich_text}{\cf1 :} {\b\cf6 like} {\cf5 rich_text}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_current_format} {\cf1 :=} {\cf5 current_format}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_current_format} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_rich_text} {\cf1 :=} {\cf5 rich_text}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_rich_text} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 all_formats} {\b\cf6 as} l_formats {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 character_format} {\cf1 :=} {\cf5 l_formats}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 l_current_format}{\b\cf1 .}{\cf5 character_format_out}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 character_format} {\cf1 =} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 character_format}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 first_color_is_auto} {\b\cf6 and} {\cf5 l_current_format}{\b\cf1 .}{\cf5 text_color} {\cf1 =} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 character_format}{\b\cf1 .}{\cf5 set_color}{\cf1  }{\cf1 (}{\cf5 l_rich_text}{\b\cf1 .}{\cf5 foreground_color}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\b\cf6 attached} {\cf5 all_colors} {\b\cf6 as} l_colors {\b\cf6 and then} {\b\cf6 attached} {\cf5 l_colors}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 l_current_format}{\b\cf1 .}{\cf5 text_color}{\cf1 )} {\b\cf6 as} l_color {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 character_format}{\b\cf1 .}{\cf5 set_color}{\cf1  }{\cf1 (}{\cf5 l_color}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 first_color_is_auto} {\b\cf6 and} {\cf5 l_current_format}{\b\cf1 .}{\cf5 highlight_color} {\cf1 =} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 character_format}{\b\cf1 .}{\cf5 set_background_color}{\cf1  }{\cf1 (}{\cf5 l_rich_text}{\b\cf1 .}{\cf5 background_color}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 l_current_format}{\b\cf1 .}{\cf5 highlight_set} {\b\cf6 and then} {\b\cf6 attached} {\cf5 all_colors} {\b\cf6 as} l_colors {\b\cf6 and then} {\b\cf6 attached} {\cf5 l_colors}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 l_current_format}{\b\cf1 .}{\cf5 highlight_color}{\cf1 )} {\b\cf6 as} l_color {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 character_format}{\b\cf1 .}{\cf5 set_background_color}{\cf1  }{\cf1 (}{\cf5 l_color}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 all_fonts} {\b\cf6 as} l_fonts {\b\cf6 and then} {\b\cf6 attached} {\cf5 l_fonts}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 l_current_format}{\b\cf1 .}{\cf5 character_format}{\cf1 )} {\b\cf6 as} l_font {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 a_font} {\cf1 :=} {\cf5 l_font}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_current_format}{\b\cf1 .}{\cf5 is_bold} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 a_font}{\b\cf1 .}{\cf5 set_weight}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 EV_FONT_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 weight_bold}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_current_format}{\b\cf1 .}{\cf5 is_italic} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 a_font}{\b\cf1 .}{\cf5 set_shape}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 EV_FONT_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 shape_italic}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 effects}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_current_format}{\b\cf1 .}{\cf5 is_striked_out} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 effects}{\b\cf1 .}{\cf5 enable_striked_out}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_current_format}{\b\cf1 .}{\cf5 is_underlined} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 effects}{\b\cf1 .}{\cf5 enable_underlined}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 effects}{\b\cf1 .}{\cf5 set_vertical_offset}{\cf1  }{\cf1 (}{\cf5 half_points_to_pixels}{\cf1  }{\cf1 (}{\cf5 l_current_format}{\b\cf1 .}{\cf5 vertical_offset}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 character_format}{\b\cf1 .}{\cf5 set_effects}{\cf1  }{\cf1 (}{\cf5 effects}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 a_font}{\b\cf1 .}{\cf5 set_height_in_points}{\cf1  }{\cf1 (}{\cf5 l_current_format}{\b\cf1 .}{\cf5 font_height} {\cf1 //} 2{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 character_format}{\b\cf1 .}{\cf5 set_font}{\cf1  }{\cf1 (}{\cf5 a_font}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_formats}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 character_format}{\cf1 ,} {\cf5 l_current_format}{\b\cf1 .}{\cf5 character_format_out}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 all_paragraph_formats} {\b\cf6 and then} {\cf1 (}{\cf5 all_paragraph_formats}{\b\cf1 .}{\cf5 is_empty} {\b\cf6 or else} {\b\cf6 not} {\cf5 all_paragraph_formats}{\b\cf1 .}{\cf5 has}{\cf1  }{\cf1 (}{\cf5 l_current_format}{\b\cf1 .}{\cf5 paragraph_format_out}{\cf1 )}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 paragraph_format}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 paragraph_format}{\b\cf1 .}{\cf5 set_alignment}{\cf1  }{\cf1 (}{\cf5 l_current_format}{\b\cf1 .}{\cf5 alignment}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 paragraph_format}{\b\cf1 .}{\cf5 set_left_margin}{\cf1  }{\cf1 (}{\cf5 l_current_format}{\b\cf1 .}{\cf5 left_margin}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 paragraph_format}{\b\cf1 .}{\cf5 set_right_margin}{\cf1  }{\cf1 (}{\cf5 l_current_format}{\b\cf1 .}{\cf5 right_margin}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 paragraph_format}{\b\cf1 .}{\cf5 set_top_spacing}{\cf1  }{\cf1 (}{\cf5 l_current_format}{\b\cf1 .}{\cf5 top_spacing}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 paragraph_format}{\b\cf1 .}{\cf5 set_bottom_spacing}{\cf1  }{\cf1 (}{\cf5 l_current_format}{\b\cf1 .}{\cf5 bottom_spacing}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 all_paragraph_formats}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 paragraph_format}{\cf1 ,} {\cf5 l_current_format}{\b\cf1 .}{\cf5 paragraph_format_out}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 all_paragraph_format_keys} {\b\cf6 and then} {\b\cf6 attached} {\cf5 all_paragraph_indexes} {\b\cf6 and then} {\cf1 (}{\cf5 all_paragraph_format_keys}{\b\cf1 .}{\cf5 is_empty} {\b\cf6 or else} {\b\cf6 not} {\cf5 all_paragraph_format_keys}{\b\cf1 .}{\cf5 last}{\b\cf1 .}{\cf5 same_string_general}{\cf1  }{\cf1 (}{\cf5 l_current_format}{\b\cf1 .}{\cf5 paragraph_format_out}{\cf1 )}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 all_paragraph_format_keys}{\b\cf1 .}{\cf5 extend}{\cf1  }{\cf1 (}{\cf5 l_current_format}{\b\cf1 .}{\cf5 paragraph_format_out}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 all_paragraph_indexes}{\b\cf1 .}{\cf5 extend}{\cf1  }{\cf1 (}{\cf5 number_of_characters_opened} {\cf1 +} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 character_format} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_rich_text}{\b\cf1 .}{\cf5 buffered_append}{\cf1  }{\cf1 (}{\cf5 a_text}{\cf1 ,} {\cf5 character_format}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_rich_text}{\b\cf1 .}{\cf5 buffered_append}{\cf1  }{\cf1 (}{\cf5 a_text}{\cf1 ,} {\b\cf6 create}{\cf1  }{\cf1 \{}{\cf4 EV_CHARACTER_FORMAT}{\cf1 \}}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 number_of_characters_opened} {\cf1 :=} {\cf5 number_of_characters_opened} {\cf1 +} {\cf5 a_text}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 current_depth}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Current depth of rtf parsing as determined by openeing "\{" and}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  closing "\}". Valid rtf opens as many as are closed.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 current_format}{\cf1 :} {\b\cf6 detachable} {\cf4 RTF_FORMAT_I}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  The current format retrieved from the RTF.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 first_color_is_auto}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Color at index }{\cf5 0}{\cf3  in the color table corresponds to the auto color.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Any color references to this color must use either the foreground or}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  background color of the control, instead of its actual value.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 format_stack}{\cf1 :} {\b\cf6 detachable} {\cf4 ARRAYED_STACK} {\cf1 [}{\cf4 RTF_FORMAT_I}{\cf1 ]}{\line}
+{\tab}{\tab}{\b\cf6 note}{\line}
+{\tab}{\tab}{\tab}option: stable{\line}
+{\tab}{\tab}{\b\cf6 attribute}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 get_character} {\cf1 (}{\cf5 rtf_text}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 index}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 CHARACTER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 Result}{\cf3  is character }{\cf5 index}{\cf3  within }{\cf5 rtf_text}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 rtf_text_not_void}{\cf1 :} {\cf5 rtf_text} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_index}{\cf1 :} {\cf5 rtf_text}{\b\cf1 .}{\cf5 valid_index}{\cf1  }{\cf1 (}{\cf5 index}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 rtf_text}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 index}{\cf1 )}{\b\cf1 .}{\cf5 to_character_32}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 index} {\cf1 >} {\cf5 highest_read_char} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 highest_read_char} {\cf1 :=} {\cf5 index}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 Result} {\cf1 =} '\{'{\b\cf1 .}{\cf5 to_character_32} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 current_depth} {\cf1 :=} {\cf5 current_depth} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\b\cf6 Result} {\cf1 =} '\}'{\b\cf1 .}{\cf5 to_character_32} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 current_depth} {\cf1 :=} {\cf5 current_depth} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 highest_read_char}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Highest character index already read. This prevents us from increasing or}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  decreasing the "depth" of the document if a "\{" or "\}" character is read twice.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 last_colorblue}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Current values read in by parsing RTF.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 last_colorgreen}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 last_colorindex}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 last_colorred}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 last_fontcharset}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 last_fontfamily}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 last_fontindex}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 last_fontname}{\cf1 :} {\b\cf6 detachable} {\cf4 STRING_32}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Line_string}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "line"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String constants}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 main_iterator}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  The index currently iterated within the RTF file that is being loaded.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  This must be accessible to }{\cf5 move_main_iterator}{\cf3 .}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 move_main_iterator} {\cf1 (}{\cf5 step}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Ensure }{\cf5 main_iterator}{\cf3  is moved }{\cf5 step}{\cf3  characters next time }{\cf5 update_main_iterator}{\cf3  is called.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Each call will not move the iterator back to less than one of the previous calls}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  as enforced by the value of }{\cf5 temp_iterator}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  i.e. calling `move_main_iterator three times with 5, 12, and 2 as arguments, ensures that}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  next time }{\cf5 update_main_iterator}{\cf3  is called it will increase by 12.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 step_positive}{\cf1 :} {\cf5 step} {\cf1 >} 0{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 main_iterator} {\cf1 +} {\cf5 step} {\cf1 >} {\cf5 temp_iterator} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 temp_iterator} {\cf1 :=} {\cf5 main_iterator} {\cf1 +} {\cf5 step}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 temp_iterator_moved_forwards}{\cf1 :} {\cf5 temp_iterator} {\cf1 >=} {\b\cf6 old} {\cf5 temp_iterator}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 move_to_end_of_tag} {\cf1 (}{\cf5 rtf_text}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 start_index}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Move }{\cf5 main_iterator}{\cf3  to the next character immediately following the closing brace}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  associated with the opening brace at }{\cf5 start_index}{\cf3  within RTF text }{\cf5 rtf_text}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  This includes the depth of the brace, and will find the brace pair, not just the next closing brace.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 rtf_text_not_void}{\cf1 :} {\cf5 rtf_text} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_index}{\cf1 :} {\cf5 rtf_text}{\b\cf1 .}{\cf5 valid_index}{\cf1  }{\cf1 (}{\cf5 start_index}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 index_points_to_start_tag}{\cf1 :} {\cf5 rtf_text}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 start_index}{\cf1 )} {\cf1 =} '\{'{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_index}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 depth}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 current_character}{\cf1 :} {\cf4 CHARACTER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 depth} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_index} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 depth} {\cf1 =} 0{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 current_character} {\cf1 :=} {\cf5 get_character}{\cf1  }{\cf1 (}{\cf5 rtf_text}{\cf1 ,} {\cf5 start_index} {\cf1 +} {\cf5 l_index}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 current_character} {\cf1 =} {\cf5 Rtf_open_brace_character}{\b\cf1 .}{\cf5 to_character_32} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 depth} {\cf1 :=} {\cf5 depth} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 current_character} {\cf1 =} {\cf5 Rtf_close_brace_character}{\b\cf1 .}{\cf5 to_character_32} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 depth} {\cf1 :=} {\cf5 depth} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 depth} {\cf1 /=} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_index} {\cf1 :=} {\cf5 l_index} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 move_main_iterator}{\cf1  }{\cf1 (}{\cf5 l_index} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 New_line_string}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "%N"}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 number_of_characters_opened}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 plain_text}{\cf1 :} {\b\cf6 detachable} {\cf4 STRING_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  A string representation of the contents of from the last}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  RTF file loaded.}{\line}
+{\tab}{\tab}{\b\cf6 note}{\line}
+{\tab}{\tab}{\tab}option: stable{\line}
+{\tab}{\tab}{\b\cf6 attribute}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 process_colortable} {\cf1 (}{\cf5 rtf_text}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Process colortable contained in }{\cf5 rtf_text}{\cf3 , the contents of which}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  start at character index }{\cf5 main_iterator}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 pointing_to_colortable}{\cf1 :} {\cf5 rtf_text}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}{\cf5 main_iterator}{\cf1 ,} {\cf5 main_iterator} {\cf1 +} {\cf5 Rtf_colortbl}{\b\cf1 .}{\cf5 count}{\cf1 )}{\b\cf1 .}{\cf5 same_string_general}{\cf1  }{\cf1 (}{\cf5 Rtf_control_character}{\b\cf1 .}{\cf5 out} {\cf1 +} {\cf5 Rtf_colortbl}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 depth}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 current_character}{\cf1 :} {\cf4 CHARACTER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_color}{\cf1 :} {\cf4 EV_COLOR}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_colors}{\cf1 :} {\b\cf6 like} {\cf5 all_colors}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_colors} {\cf1 :=} {\cf5 all_colors}{\line}
+{\tab}{\tab}{\tab}{\cf5 depth} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 move_main_iterator}{\cf1  }{\cf1 (}1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 depth} {\cf1 =} 0{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 update_main_iterator}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 current_character} {\cf1 :=} {\cf5 get_character}{\cf1  }{\cf1 (}{\cf5 rtf_text}{\cf1 ,} {\cf5 main_iterator}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 current_character} {\cf1 =} '\{'{\b\cf1 .}{\cf5 to_character_32} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 depth} {\cf1 :=} {\cf5 depth} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 current_character} {\cf1 =} '\}'{\b\cf1 .}{\cf5 to_character_32} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 depth} {\cf1 :=} {\cf5 depth} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 current_character} {\cf1 =} '\\'{\b\cf1 .}{\cf5 to_character_32} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 process_keyword}{\cf1  }{\cf1 (}{\cf5 rtf_text}{\cf1 ,} {\cf5 main_iterator}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 current_character} {\cf1 =} ';'{\b\cf1 .}{\cf5 to_character_32} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 last_colorred} {\cf1 =} {\cf5 Initial_color_value} {\b\cf6 and} {\cf5 last_colorgreen} {\cf1 =} {\cf5 Initial_color_value} {\b\cf6 and} {\cf5 last_colorblue} {\cf1 =} {\cf5 Initial_color_value} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_color}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 first_color_is_auto} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 l_colors} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_color}{\b\cf1 .}{\cf5 make_with_8_bit_rgb}{\cf1  }{\cf1 (}{\cf5 last_colorred}{\cf1 ,} {\cf5 last_colorgreen}{\cf1 ,} {\cf5 last_colorblue}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_colors}{\b\cf1 .}{\cf5 force}{\cf1  }{\cf1 (}{\cf5 a_color}{\cf1 ,} {\cf5 last_colorindex}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 last_colorindex} {\cf1 :=} {\cf5 last_colorindex} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 move_main_iterator}{\cf1  }{\cf1 (}1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 process_fontname} {\cf1 (}{\cf5 rtf_text}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Process a font name found in RTF text }{\cf5 rtf_text}{\cf3  starting at position }{\cf5 main_iterator}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 rtf_text_not_void}{\cf1 :} {\cf5 rtf_text} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 text_completed}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf5 current_text}{\cf1 :} {\cf4 STRING_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 current_character}{\cf1 :} {\cf4 CHARACTER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 current_text}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}50{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 text_completed}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 update_main_iterator}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 current_character} {\cf1 :=} {\cf5 get_character}{\cf1  }{\cf1 (}{\cf5 rtf_text}{\cf1 ,} {\cf5 main_iterator}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 current_character} {\cf1 /=} '%N'{\b\cf1 .}{\cf5 to_character_32} {\b\cf6 and} {\cf5 current_character} {\cf1 /=} '%R'{\b\cf1 .}{\cf5 to_character_32} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 current_character} {\cf1 =} ';'{\b\cf1 .}{\cf5 to_character_32} {\b\cf6 or} {\cf5 current_character} {\cf1 =} '\}'{\b\cf1 .}{\cf5 to_character_32} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 text_completed} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 text_completed} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 current_text}{\b\cf1 .}{\cf5 append_character}{\cf1  }{\cf1 (}{\cf5 current_character}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 text_completed} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 move_main_iterator}{\cf1  }{\cf1 (}1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 current_character} {\cf1 =} ';'{\b\cf1 .}{\cf5 to_character_32} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 current_character} {\cf1 =} '\}'{\b\cf1 .}{\cf5 to_character_32} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 temp_iterator} {\cf1 :=} {\cf5 temp_iterator} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 main_iterator} {\cf1 :=} {\cf5 main_iterator} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf1 unhandled_condition}{\cf1 :} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 last_fontname} {\cf1 :=} {\cf5 current_text}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 process_fonttable} {\cf1 (}{\cf5 rtf_text}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Process fonttable contained in }{\cf5 rtf_text}{\cf3 , the contents of which}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  start at character index }{\cf5 main_iterator}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 pointing_to_fonttable}{\cf1 :} {\cf5 rtf_text}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}{\cf5 main_iterator}{\cf1 ,} {\cf5 main_iterator} {\cf1 +} {\cf5 Rtf_fonttable}{\b\cf1 .}{\cf5 count}{\cf1 )}{\b\cf1 .}{\cf5 same_string_general}{\cf1  }{\cf1 (}{\cf5 Rtf_control_character}{\b\cf1 .}{\cf5 out} {\cf1 +} {\cf5 Rtf_fonttable}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 depth}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 current_character}{\cf1 :} {\cf4 CHARACTER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 depth} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 move_main_iterator}{\cf1  }{\cf1 (}1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 depth} {\cf1 =} 0{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 update_main_iterator}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 current_character} {\cf1 :=} {\cf5 get_character}{\cf1  }{\cf1 (}{\cf5 rtf_text}{\cf1 ,} {\cf5 main_iterator}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 current_character} {\cf1 =} '\{'{\b\cf1 .}{\cf5 to_character_32} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 depth} {\cf1 :=} {\cf5 depth} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 current_character} {\cf1 =} '\}'{\b\cf1 .}{\cf5 to_character_32} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 depth} {\cf1 :=} {\cf5 depth} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 add_font_to_all_fonts}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 current_character} {\cf1 =} '\\'{\b\cf1 .}{\cf5 to_character_32} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 process_keyword}{\cf1  }{\cf1 (}{\cf5 rtf_text}{\cf1 ,} {\cf5 main_iterator}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 current_character} {\cf1 =} ' '{\b\cf1 .}{\cf5 to_character_32} {\b\cf6 and then} {\cf5 rtf_text}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 main_iterator} {\cf1 +} 1{\cf1 )} {\cf1 /=} '\\' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 move_main_iterator}{\cf1  }{\cf1 (}1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 update_main_iterator}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 process_fontname}{\cf1  }{\cf1 (}{\cf5 rtf_text}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 add_font_to_all_fonts}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 current_character} {\cf1 /=} '%R'{\b\cf1 .}{\cf5 to_character_32} {\b\cf6 and} {\cf1 (}{\cf5 rtf_text}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 main_iterator} {\cf1 -} 1{\cf1 )} {\cf1 =} '%N' {\b\cf6 or} {\cf5 rtf_text}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 main_iterator} {\cf1 -} 1{\cf1 )} {\cf1 =} '\}'{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 process_fontname}{\cf1  }{\cf1 (}{\cf5 rtf_text}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 add_font_to_all_fonts}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 move_main_iterator}{\cf1  }{\cf1 (}1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 process_keyword} {\cf1 (}{\cf5 rtf_text}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 index}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Process RTF string }{\cf5 rtf_text}{\cf3  for a keyword starting at position }{\cf5 index}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  until a rtf character is received signifying the end of the keyword.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 rtf_text_not_void}{\cf1 :} {\cf5 rtf_text} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_index}{\cf1 :} {\cf5 rtf_text}{\b\cf1 .}{\cf5 valid_index}{\cf1  }{\cf1 (}{\cf5 index}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_index}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 current_character}{\cf1 :} {\cf4 CHARACTER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 tag}{\cf1 ,} {\cf5 l_char}{\cf1 :} {\cf4 STRING_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 tag_value}{\cf1 :} {\cf4 STRING_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 performed_one_iteration}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf5 tag_completed}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf5 reading_tag_value}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf5 tag_start_position}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 processing_moved_iterator}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_current_format}{\cf1 :} {\b\cf6 like} {\cf5 current_format}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_current_format} {\cf1 :=} {\cf5 current_format}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_current_format} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 tag_start_position} {\cf1 :=} {\cf5 index}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 tag}{\b\cf1 .}{\cf5 make_empty}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 tag_value}{\b\cf1 .}{\cf5 make_empty}{\line}
+{\tab}{\tab}{\tab}{\cf5 current_character} {\cf1 :=} ' '{\b\cf1 .}{\cf5 to_character_32}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_index} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 tag_completed}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 current_character} {\cf1 :=} {\cf5 get_character}{\cf1  }{\cf1 (}{\cf5 rtf_text}{\cf1 ,} {\cf5 l_index} {\cf1 +} {\cf5 index}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 inspect} {\cf5 current_character}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} ' '{\cf1 ,} '\\'{\cf1 ,} '\}'{\cf1 ,} '\{'{\cf1 ,} '%N'{\cf1 ,} '%R'{\cf1 ,} ';' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 performed_one_iteration} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 tag_completed} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} '0'{\cf1 ..}'9' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 reading_tag_value} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 tag_completed} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 current_character} {\cf1 /=} '%N'{\b\cf1 .}{\cf5 to_character_32} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 reading_tag_value} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 tag}{\b\cf1 .}{\cf5 append_character}{\cf1  }{\cf1 (}{\cf5 current_character}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 tag_value}{\b\cf1 .}{\cf5 append_character}{\cf1  }{\cf1 (}{\cf5 current_character}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 performed_one_iteration} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_index} {\cf1 :=} {\cf5 l_index} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 tag}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 Tab_tag_string}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 buffer_formatting}{\cf1  }{\cf1 (}{\cf5 Tab_string}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 tag}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 Rtf_color_string}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_current_format}{\b\cf1 .}{\cf5 set_text_color}{\cf1  }{\cf1 (}{\cf5 tag_value}{\b\cf1 .}{\cf5 to_integer}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 tag}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 Line_string}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 buffer_formatting}{\cf1  }{\cf1 (}{\cf5 New_line_string}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 tag}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 Rtf_unicode_string}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 tag_value}{\b\cf1 .}{\cf5 remove_tail}{\cf1  }{\cf1 (}1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 l_char}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_char}{\b\cf1 .}{\cf5 append_code}{\cf1  }{\cf1 (}{\cf5 tag_value}{\b\cf1 .}{\cf5 to_integer_32}{\b\cf1 .}{\cf5 as_natural_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 buffer_formatting}{\cf1  }{\cf1 (}{\cf5 l_char}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 tag}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 Rtf_bold_string}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 tag_value}{\b\cf1 .}{\cf5 is_empty} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_current_format}{\b\cf1 .}{\cf5 set_bold}{\cf1  }{\cf1 (}{\b\cf6 True}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf1 tag_is_zero}{\cf1 :} {\cf5 tag_value}{\b\cf1 .}{\cf5 same_string_general}{\cf1  }{\cf1 (}"0"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_current_format}{\b\cf1 .}{\cf5 set_bold}{\cf1  }{\cf1 (}{\b\cf6 False}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 tag}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 Rtf_italic_string}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 tag_value}{\b\cf1 .}{\cf5 is_empty} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_current_format}{\b\cf1 .}{\cf5 set_italic}{\cf1  }{\cf1 (}{\b\cf6 True}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf1 tag_is_zero}{\cf1 :} {\cf5 tag_value}{\b\cf1 .}{\cf5 same_string_general}{\cf1  }{\cf1 (}"0"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_current_format}{\b\cf1 .}{\cf5 set_italic}{\cf1  }{\cf1 (}{\b\cf6 False}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 tag}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 Rtf_strikeout_string}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 tag_value}{\b\cf1 .}{\cf5 is_empty} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_current_format}{\b\cf1 .}{\cf5 set_striked_out}{\cf1  }{\cf1 (}{\b\cf6 True}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf1 tag_is_zero}{\cf1 :} {\cf5 tag_value}{\b\cf1 .}{\cf5 same_string_general}{\cf1  }{\cf1 (}"0"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_current_format}{\b\cf1 .}{\cf5 set_striked_out}{\cf1  }{\cf1 (}{\b\cf6 False}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 tag}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 Rtf_underline_string}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 tag_value}{\b\cf1 .}{\cf5 is_empty} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_current_format}{\b\cf1 .}{\cf5 set_underlined}{\cf1  }{\cf1 (}{\b\cf6 True}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf1 tag_is_zero}{\cf1 :} {\cf5 tag_value}{\b\cf1 .}{\cf5 same_string_general}{\cf1  }{\cf1 (}"0"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_current_format}{\b\cf1 .}{\cf5 set_underlined}{\cf1  }{\cf1 (}{\b\cf6 False}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 tag}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 Rtf_underline_none_string}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_current_format}{\b\cf1 .}{\cf5 set_underlined}{\cf1  }{\cf1 (}{\b\cf6 False}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 tag}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 Rtf_vertical_offset}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf1 tag_not_empty}{\cf1 :} {\b\cf6 not} {\cf5 tag}{\b\cf1 .}{\cf5 is_empty}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_current_format}{\b\cf1 .}{\cf5 set_vertical_offset}{\cf1  }{\cf1 (}{\cf5 tag_value}{\b\cf1 .}{\cf5 to_integer}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 tag}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 Rtf_highlight_string}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_current_format}{\b\cf1 .}{\cf5 set_highlight_color}{\cf1  }{\cf1 (}{\cf5 tag_value}{\b\cf1 .}{\cf5 to_integer}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 tag}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 Rtf_red}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 last_colorred} {\cf1 :=} {\cf5 tag_value}{\b\cf1 .}{\cf5 to_integer}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 tag}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 Rtf_green}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 last_colorgreen} {\cf1 :=} {\cf5 tag_value}{\b\cf1 .}{\cf5 to_integer}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 tag}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 Rtf_blue}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 last_colorblue} {\cf1 :=} {\cf5 tag_value}{\b\cf1 .}{\cf5 to_integer}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 tag}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 Rtf_font_string}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 last_fontindex} {\cf1 :=} {\cf5 tag_value}{\b\cf1 .}{\cf5 to_integer}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_current_format}{\b\cf1 .}{\cf5 set_character_format}{\cf1  }{\cf1 (}{\cf5 tag_value}{\b\cf1 .}{\cf5 to_integer}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 tag}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 Rtf_font_size_string}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_current_format}{\b\cf1 .}{\cf5 set_font_height}{\cf1  }{\cf1 (}{\cf5 tag_value}{\b\cf1 .}{\cf5 to_integer}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 tag}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 Rtf_charset}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 last_fontcharset} {\cf1 :=} {\cf5 tag_value}{\b\cf1 .}{\cf5 to_integer}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 tag}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 Rtf_family_nill}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 last_fontfamily} {\cf1 :=} {\cf5 Rtf_family_nill_int}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 tag}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 Rtf_family_modern}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 last_fontfamily} {\cf1 :=} {\cf5 Rtf_family_modern_int}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 tag}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 Rtf_family_roman}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 last_fontfamily} {\cf1 :=} {\cf5 Rtf_family_roman_int}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 tag}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 Rtf_family_script}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 last_fontfamily} {\cf1 :=} {\cf5 Rtf_family_script_int}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 tag}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 Rtf_family_swiss}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 last_fontfamily} {\cf1 :=} {\cf5 Rtf_family_swiss_int}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 tag}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 Rtf_family_tech}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 last_fontfamily} {\cf1 :=} {\cf5 Rtf_family_tech_int}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 tag}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 Rtf_font_size_string}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 tag}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 Rtf_newline}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 buffer_formatting}{\cf1  }{\cf1 (}{\cf5 New_line_string}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 tag}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 Rtf_user_props}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf1 is_start_of_group}{\cf1 :} {\cf5 rtf_text}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}{\cf5 tag_start_position} {\cf1 -} 1{\cf1 ,} {\cf5 tag_start_position} {\cf1 +} 1{\cf1 )}{\b\cf1 .}{\cf5 same_string_general}{\cf1  }{\cf1 (}"\{\\*"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 move_to_end_of_tag}{\cf1  }{\cf1 (}{\cf5 rtf_text}{\cf1 ,} {\cf5 tag_start_position} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 tag}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 Rtf_info}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf1 is_start_of_group}{\cf1 :} {\cf5 rtf_text}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}{\cf5 tag_start_position} {\cf1 -} 1{\cf1 ,} {\cf5 tag_start_position}{\cf1 )}{\b\cf1 .}{\cf5 same_string_general}{\cf1  }{\cf1 (}"\{\\"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 move_to_end_of_tag}{\cf1  }{\cf1 (}{\cf5 rtf_text}{\cf1 ,} {\cf5 tag_start_position} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 tag}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 Rtf_stylesheet}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf1 is_start_of_group}{\cf1 :} {\cf5 rtf_text}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}{\cf5 tag_start_position} {\cf1 -} 1{\cf1 ,} {\cf5 tag_start_position}{\cf1 )}{\b\cf1 .}{\cf5 same_string_general}{\cf1  }{\cf1 (}"\{\\"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 move_to_end_of_tag}{\cf1  }{\cf1 (}{\cf5 rtf_text}{\cf1 ,} {\cf5 tag_start_position} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 tag}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 Rtf_new_paragraph}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_current_format}{\b\cf1 .}{\cf5 reset_paragraph}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 tag}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 Rtf_paragraph_left_aligned}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_current_format}{\b\cf1 .}{\cf5 set_alignment}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 EV_PARAGRAPH_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 alignment_left}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 tag}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 Rtf_paragraph_center_aligned}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_current_format}{\b\cf1 .}{\cf5 set_alignment}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 EV_PARAGRAPH_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 alignment_center}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 tag}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 Rtf_paragraph_right_aligned}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_current_format}{\b\cf1 .}{\cf5 set_alignment}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 EV_PARAGRAPH_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 alignment_right}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 tag}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 Rtf_paragraph_justified}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_current_format}{\b\cf1 .}{\cf5 set_alignment}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 EV_PARAGRAPH_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 alignment_justified}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 tag}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 Rtf_paragraph_left_indent}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_current_format}{\b\cf1 .}{\cf5 set_left_margin}{\cf1  }{\cf1 (}{\cf5 half_points_to_pixels}{\cf1  }{\cf1 (}{\cf5 tag_value}{\b\cf1 .}{\cf5 to_integer}{\cf1 )} {\cf1 //} 10{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 tag}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 Rtf_paragraph_right_indent}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_current_format}{\b\cf1 .}{\cf5 set_right_margin}{\cf1  }{\cf1 (}{\cf5 half_points_to_pixels}{\cf1  }{\cf1 (}{\cf5 tag_value}{\b\cf1 .}{\cf5 to_integer}{\cf1 )} {\cf1 //} 10{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 tag}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 Rtf_paragraph_space_before}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_current_format}{\b\cf1 .}{\cf5 set_top_spacing}{\cf1  }{\cf1 (}{\cf5 half_points_to_pixels}{\cf1  }{\cf1 (}{\cf5 tag_value}{\b\cf1 .}{\cf5 to_integer}{\cf1 )} {\cf1 //} 10{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 tag}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 Rtf_paragraph_space_after}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_current_format}{\b\cf1 .}{\cf5 set_bottom_spacing}{\cf1  }{\cf1 (}{\cf5 half_points_to_pixels}{\cf1  }{\cf1 (}{\cf5 tag_value}{\b\cf1 .}{\cf5 to_integer}{\cf1 )} {\cf1 //} 10{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 tag}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 Rtf_fonttable}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 process_fonttable}{\cf1  }{\cf1 (}{\cf5 rtf_text}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 processing_moved_iterator} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 tag}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 Rtf_colortbl}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 process_colortable}{\cf1  }{\cf1 (}{\cf5 rtf_text}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 processing_moved_iterator} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 processing_moved_iterator} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 move_main_iterator}{\cf1  }{\cf1 (}{\cf5 tag}{\b\cf1 .}{\cf5 count} {\cf1 +} {\cf5 tag_value}{\b\cf1 .}{\cf5 count} {\cf1 +} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 process_text} {\cf1 (}{\cf5 rtf_text}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 index}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Process RTF string }{\cf5 rtf_text}{\cf3  for text data from }{\cf5 index}{\cf3  until}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  text is exhausted signified through encountering a control character.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 rtf_text_not_void}{\cf1 :} {\cf5 rtf_text} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_index}{\cf1 :} {\cf5 rtf_text}{\b\cf1 .}{\cf5 valid_index}{\cf1  }{\cf1 (}{\cf5 index}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_index}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 text_completed}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf5 current_text}{\cf1 :} {\cf4 STRING_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 current_character}{\cf1 :} {\cf4 CHARACTER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 next_character}{\cf1 :} {\cf4 CHARACTER_8}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_new_line}{\cf1 ,} {\cf5 l_carriage_return}{\cf1 ,} {\cf5 l_closed_parenthesis}{\cf1 ,} {\cf5 l_open_parenthesis}{\cf1 ,} {\cf5 l_backslash}{\cf1 :} {\cf4 CHARACTER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 current_text}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}128{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_index} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_new_line} {\cf1 :=} '%N'{\b\cf1 .}{\cf5 to_character_32}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_carriage_return} {\cf1 :=} '%R'{\b\cf1 .}{\cf5 to_character_32}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_closed_parenthesis} {\cf1 :=} '\}'{\b\cf1 .}{\cf5 to_character_32}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_open_parenthesis} {\cf1 :=} '\{'{\b\cf1 .}{\cf5 to_character_32}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_backslash} {\cf1 :=} '\\'{\b\cf1 .}{\cf5 to_character_32}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 text_completed} {\b\cf6 or} {\cf5 l_index} {\cf1 +} {\cf5 index} {\cf1 >} {\cf5 rtf_text}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 current_character} {\cf1 :=} {\cf5 get_character}{\cf1  }{\cf1 (}{\cf5 rtf_text}{\cf1 ,} {\cf5 l_index} {\cf1 +} {\cf5 index}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 current_character} {\cf1 /=} {\cf5 l_new_line} {\b\cf6 and} {\cf5 current_character} {\cf1 /=} {\cf5 l_carriage_return} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 current_character} {\cf1 =} {\cf5 l_closed_parenthesis} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 text_completed} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 current_character} {\cf1 =} {\cf5 l_open_parenthesis} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 text_completed} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_index} {\cf1 :=} {\cf5 l_index} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 current_character} {\cf1 =} {\cf5 l_backslash} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 next_character} {\cf1 :=} {\cf5 rtf_text}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 l_index} {\cf1 +} {\cf5 index} {\cf1 +} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 next_character}{\b\cf1 .}{\cf5 to_character_32} {\cf1 =} {\cf5 l_closed_parenthesis} {\b\cf6 or else} {\cf5 next_character}{\b\cf1 .}{\cf5 to_character_32} {\cf1 =} {\cf5 l_open_parenthesis} {\b\cf6 or else} {\cf5 next_character}{\b\cf1 .}{\cf5 to_character_32} {\cf1 =} {\cf5 l_backslash} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 current_character} {\cf1 :=} {\cf5 next_character}{\b\cf1 .}{\cf5 to_character_32}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_index} {\cf1 :=} {\cf5 l_index} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 text_completed} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_index} {\cf1 :=} {\cf5 l_index} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 text_completed} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 current_text}{\b\cf1 .}{\cf5 append_character}{\cf1  }{\cf1 (}{\cf5 current_character}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_index} {\cf1 :=} {\cf5 l_index} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 current_text}{\b\cf1 .}{\cf5 count} {\cf1 >} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 move_main_iterator}{\cf1  }{\cf1 (}{\cf5 l_index} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 buffer_formatting}{\cf1  }{\cf1 (}{\cf5 current_text}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Tab_string}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "%T"}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Tab_tag_string}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "tab"}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 temp_iterator}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  A temporary value used by }{\cf5 move_main_iterator}{\cf3  to ensure that multiple calls to}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  move forwards do not move backwards.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 update_main_iterator}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Ensure }{\cf5 main_iterator}{\cf3  takes the value of }{\cf5 temp_iterator}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 main_iterator} {\cf1 :=} {\cf5 temp_iterator}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 main_iterator_set}{\cf1 :} {\cf5 main_iterator} {\cf1 =} {\cf5 temp_iterator}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Output}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Io}{\cf1 :} {\cf4 STD_FILES}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Handle to standard file setup}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 set_output_default}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 io_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 out}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New string containing terse printable representation}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of current object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 tagged_out}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 out_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 print} {\cf1 (}{\cf5 o}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Write terse external representation of }{\cf5 o}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  on standard output.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 o} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 Io}{\b\cf1 .}{\cf5 put_string}{\cf1  }{\cf1 (}{\cf5 o}{\b\cf1 .}{\cf5 out}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 tagged_out}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New string containing terse printable representation}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of current object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 tagged_out_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Platform}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Operating_environment}{\cf1 :} {\cf4 OPERATING_ENVIRONMENT}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Objects available from the operating system}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 operating_environment_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Retrieval}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 internal_correct_mismatch}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Called from runtime to perform a proper dynamic dispatch on }{\cf5 correct_mismatch}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  from MISMATCH_CORRECTOR.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_msg}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_exc}{\cf1 :} {\cf4 EXCEPTIONS}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf1 \{}{\cf4 MISMATCH_CORRECTOR}{\cf1 \}} {\b\cf6 Current} {\b\cf6 as} l_corrector {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_corrector}{\b\cf1 .}{\cf5 correct_mismatch}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 l_msg}{\b\cf1 .}{\cf5 make_from_string}{\cf1  }{\cf1 (}"Mismatch: "{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 l_exc}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_msg}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 generating_type}{\b\cf1 .}{\cf5 name}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_exc}{\b\cf1 .}{\cf5 raise_retrieval_exception}{\cf1  }{\cf1 (}{\cf5 l_msg}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status Setting}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 append_text_for_rtf} {\cf1 (}{\cf5 a_text}{\cf1 :} {\cf4 READABLE_STRING_GENERAL}{\cf1 ;} {\cf5 a_format}{\cf1 :} {\cf4 EV_CHARACTER_FORMAT_I}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Append RTF representation of }{\cf5 a_text}{\cf3  with format }{\cf5 a_format}{\cf3  to }{\cf5 internal_text}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  and store information required from }{\cf5 a_format}{\cf3  ready for completion of buffering.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 hashed_character_format}{\cf1 :} {\b\cf6 detachable} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf5 temp_string}{\cf1 :} {\cf4 STRING_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 format_index}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 vertical_offset}{\cf1 ,} {\cf5 counter}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 character_code}{\cf1 :} {\cf4 CHARACTER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 format_underlined}{\cf1 ,} {\cf5 format_striked}{\cf1 ,} {\cf5 format_bold}{\cf1 ,} {\cf5 format_italic}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf5 height_in_half_points}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 hashed_character_format} {\cf1 :=} {\cf5 a_format}{\b\cf1 .}{\cf5 attached_interface}{\b\cf1 .}{\cf5 hash_value}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 hashed_character_format} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 hashed_formats}{\b\cf1 .}{\cf5 has}{\cf1  }{\cf1 (}{\cf5 hashed_character_format}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 hashed_formats}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 a_format}{\b\cf1 .}{\cf5 attached_interface}{\cf1 ,} {\cf5 hashed_character_format}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 formats}{\b\cf1 .}{\cf5 extend}{\cf1  }{\cf1 (}{\cf5 a_format}{\b\cf1 .}{\cf5 attached_interface}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 heights}{\b\cf1 .}{\cf5 extend}{\cf1  }{\cf1 (}{\cf5 a_format}{\b\cf1 .}{\cf5 height_in_points} {\cf1 *} 2{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 format_offsets}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 hashed_formats}{\b\cf1 .}{\cf5 count}{\cf1 ,} {\cf5 hashed_character_format}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 build_color_from_format}{\cf1  }{\cf1 (}{\cf5 a_format}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 build_font_from_format}{\cf1  }{\cf1 (}{\cf5 a_format}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 format_index} {\cf1 :=} {\cf5 format_offsets}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 hashed_character_format}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 temp_string}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}128{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a_format}{\b\cf1 .}{\cf5 bcolor_set} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 add_rtf_keyword}{\cf1  }{\cf1 (}{\cf5 temp_string}{\cf1 ,} {\cf5 Rtf_highlight_string}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 temp_string}{\b\cf1 .}{\cf5 append_integer}{\cf1  }{\cf1 (}{\cf5 back_color_offset}{\b\cf1 .}{\cf5 i_th}{\cf1  }{\cf1 (}{\cf5 format_index}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 add_rtf_keyword}{\cf1  }{\cf1 (}{\cf5 temp_string}{\cf1 ,} {\cf5 Rtf_color_string}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 temp_string}{\b\cf1 .}{\cf5 append_integer}{\cf1  }{\cf1 (}{\cf5 color_offset}{\b\cf1 .}{\cf5 i_th}{\cf1  }{\cf1 (}{\cf5 format_index}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 format_underlined} {\cf1 :=} {\cf5 a_format}{\b\cf1 .}{\cf5 is_underlined}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 is_current_format_underlined} {\b\cf6 and} {\cf5 format_underlined} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 add_rtf_keyword}{\cf1  }{\cf1 (}{\cf5 temp_string}{\cf1 ,} {\cf5 Rtf_underline_string}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 is_current_format_underlined} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 is_current_format_underlined} {\b\cf6 and} {\b\cf6 not} {\cf5 format_underlined} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 add_rtf_keyword}{\cf1  }{\cf1 (}{\cf5 temp_string}{\cf1 ,} {\cf5 Rtf_underline_string} {\cf1 +} "0"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 is_current_format_underlined} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 format_striked} {\cf1 :=} {\cf5 a_format}{\b\cf1 .}{\cf5 is_striked_out}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 is_current_format_striked_through} {\b\cf6 and} {\cf5 format_striked} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 add_rtf_keyword}{\cf1  }{\cf1 (}{\cf5 temp_string}{\cf1 ,} {\cf5 Rtf_strikeout_string}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 is_current_format_striked_through} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 is_current_format_striked_through} {\b\cf6 and} {\b\cf6 not} {\cf5 format_striked} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 add_rtf_keyword}{\cf1  }{\cf1 (}{\cf5 temp_string}{\cf1 ,} {\cf5 Rtf_strikeout_string} {\cf1 +} "0"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 is_current_format_striked_through} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 format_bold} {\cf1 :=} {\cf5 a_format}{\b\cf1 .}{\cf5 is_bold}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 is_current_format_bold} {\b\cf6 and} {\cf5 format_bold} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 add_rtf_keyword}{\cf1  }{\cf1 (}{\cf5 temp_string}{\cf1 ,} {\cf5 Rtf_bold_string}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 is_current_format_bold} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 is_current_format_bold} {\b\cf6 and} {\b\cf6 not} {\cf5 format_bold} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 add_rtf_keyword}{\cf1  }{\cf1 (}{\cf5 temp_string}{\cf1 ,} {\cf5 Rtf_bold_string} {\cf1 +} "0"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 is_current_format_bold} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 format_italic} {\cf1 :=} {\cf5 a_format}{\b\cf1 .}{\cf5 shape} {\cf1 =} {\cf5 Shape_italic}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 is_current_format_italic} {\b\cf6 and} {\cf5 format_italic} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 add_rtf_keyword}{\cf1  }{\cf1 (}{\cf5 temp_string}{\cf1 ,} {\cf5 Rtf_italic_string}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 is_current_format_italic} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 is_current_format_italic} {\b\cf6 and} {\b\cf6 not} {\cf5 format_italic} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 add_rtf_keyword}{\cf1  }{\cf1 (}{\cf5 temp_string}{\cf1 ,} {\cf5 Rtf_italic_string} {\cf1 +} "0"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 is_current_format_italic} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 vertical_offset} {\cf1 :=} {\cf5 a_format}{\b\cf1 .}{\cf5 vertical_offset}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 vertical_offset} {\cf1 /=} {\cf5 current_vertical_offset} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 add_rtf_keyword}{\cf1  }{\cf1 (}{\cf5 temp_string}{\cf1 ,} {\cf5 Rtf_vertical_offset}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 height_in_half_points} {\cf1 :=} {\cf1 (}{\cf5 pixels_to_half_points}{\cf1  }{\cf1 (}{\cf5 vertical_offset}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 temp_string}{\b\cf1 .}{\cf5 append_integer}{\cf1  }{\cf1 (}{\cf5 height_in_half_points}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 current_vertical_offset} {\cf1 :=} {\cf5 vertical_offset}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 add_rtf_keyword}{\cf1  }{\cf1 (}{\cf5 temp_string}{\cf1 ,} {\cf5 Rtf_font_string}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 temp_string}{\b\cf1 .}{\cf5 append_integer}{\cf1  }{\cf1 (}{\cf5 font_offset}{\b\cf1 .}{\cf5 i_th}{\cf1  }{\cf1 (}{\cf5 format_index}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 add_rtf_keyword}{\cf1  }{\cf1 (}{\cf5 temp_string}{\cf1 ,} {\cf5 Rtf_font_size_string}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 temp_string}{\b\cf1 .}{\cf5 append_integer}{\cf1  }{\cf1 (}{\cf5 heights}{\b\cf1 .}{\cf5 i_th}{\cf1  }{\cf1 (}{\cf5 format_index}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 temp_string}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 Space_string}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 internal_text}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 temp_string}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 counter} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 counter} {\cf1 >} {\cf5 a_text}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 character_code} {\cf1 :=} {\cf5 a_text}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 counter}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 character_code} {\cf1 =} '%N'{\b\cf1 .}{\cf5 to_character_32} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 add_rtf_keyword}{\cf1  }{\cf1 (}{\cf5 internal_text}{\cf1 ,} {\cf5 Rtf_newline} {\cf1 +} "%N"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 character_code} {\cf1 =} '\\'{\b\cf1 .}{\cf5 to_character_32} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 internal_text}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 Rtf_backslash}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 character_code} {\cf1 =} '\{'{\b\cf1 .}{\cf5 to_character_32} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 internal_text}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 Rtf_open_brace}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 character_code} {\cf1 =} '\}'{\b\cf1 .}{\cf5 to_character_32} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 internal_text}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 Rtf_close_brace}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 character_code}{\b\cf1 .}{\cf5 natural_32_code} {\cf1 <=} {\cf1 \{}{\cf4 CHARACTER_8}{\cf1 \}}{\b\cf1 .}{\cf5 max_value}{\b\cf1 .}{\cf5 to_natural_32} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 internal_text}{\b\cf1 .}{\cf5 append_character}{\cf1  }{\cf1 (}{\cf5 character_code}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 internal_text}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 Rtf_unicode_character}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 internal_text}{\b\cf1 .}{\cf5 append_natural_32}{\cf1  }{\cf1 (}{\cf5 character_code}{\b\cf1 .}{\cf5 natural_32_code}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 internal_text}{\b\cf1 .}{\cf5 append_character}{\cf1  }{\cf1 (}'?'{\b\cf1 .}{\cf5 to_character_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 counter} {\cf1 :=} {\cf5 counter} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 clear_structures}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Clear all structures used for buffering into RTF format.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 start_formats}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 Default_structure_size}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 end_formats}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 Default_structure_size}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 formats}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 Default_structure_size}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 formats_index}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 Default_structure_size}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 heights}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 Default_structure_size}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 hashed_formats}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 Default_structure_size}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 format_offsets}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 Default_structure_size}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 hashed_colors}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 Default_structure_size}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 color_offset}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 Default_structure_size}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 back_color_offset}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 Default_structure_size}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 hashed_fonts}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 Default_structure_size}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 font_offset}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 Default_structure_size}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 internal_text}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 Default_structure_size}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 is_current_format_underlined} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\cf5 is_current_format_striked_through} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\cf5 is_current_format_bold} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\cf5 is_current_format_italic} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\cf5 current_vertical_offset} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\cf5 color_text} {\cf1 :=} {\cf5 Color_table_start}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\cf5 font_text} {\cf1 :=} {\cf5 Font_table_start}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\cf5 font_count} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\cf5 color_count} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 buffered_text}{\b\cf1 .}{\cf5 make_empty}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 initialize_for_saving}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Initialize }{\cf5 Current}{\cf3  for saving'.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 clear_structures}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 internal_text}{\cf1 :} {\cf4 STRING_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Text used for building RTF strings internally before buffering or saving.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 rich_text}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_RICH_TEXT_I}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Rich text associated with }{\cf5 Current}{\cf3 .}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_rich_text} {\cf1 (}{\cf5 a_rich_text}{\cf1 :} {\cf4 EV_RICH_TEXT_I}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Assign }{\cf5 a_rich_text}{\cf3  to }{\cf5 rich_text}{\cf3  and initialize buffering structures.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_rich_text_not_void}{\cf1 :} {\cf5 a_rich_text} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 clear_structures}{\line}
+{\tab}{\tab}{\tab}{\cf5 rich_text} {\cf1 :=} {\cf5 a_rich_text}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_ANY_I}{\cf1 \}} {\cf3 --}{\cf3  Status Setting}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 generate_complete_rtf_from_buffering}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Generate the rtf heading for buffered operations into }{\cf5 internal_text}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Current contents of }{\cf5 internal_text}{\cf3  are lost.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 old_internal_text}{\cf1 :} {\b\cf6 like} {\cf5 internal_text}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 font_text}{\b\cf1 .}{\cf5 append_character}{\cf1  }{\cf1 (}'\}'{\b\cf1 .}{\cf5 to_character_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 color_text}{\b\cf1 .}{\cf5 append_character}{\cf1  }{\cf1 (}'\}'{\b\cf1 .}{\cf5 to_character_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 old_internal_text} {\cf1 :=} {\cf5 internal_text}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 internal_text}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 old_internal_text}{\b\cf1 .}{\cf5 count} {\cf1 +} {\cf5 font_text}{\b\cf1 .}{\cf5 count}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 internal_text}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 font_text}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 internal_text}{\b\cf1 .}{\cf5 append_string_general}{\cf1  }{\cf1 (}"%R%N"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 internal_text}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 color_text}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 internal_text}{\b\cf1 .}{\cf5 append_string_general}{\cf1  }{\cf1 (}"%R%N"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 internal_text}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 old_internal_text}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 internal_text}{\b\cf1 .}{\cf5 append_character}{\cf1  }{\cf1 (}'\}'{\b\cf1 .}{\cf5 to_character_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 internal_text}{\b\cf1 .}{\cf5 append_string_general}{\cf1  }{\cf1 (}"%R%N"{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 generate_paragraph_information} {\cf1 (}{\cf5 a_text}{\cf1 :} {\cf4 READABLE_STRING_GENERAL}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 Result}{\cf3  is index of first character of every line in }{\cf5 a_text}{\cf3  upon}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  which the paragraph formatting changes, as determined by '%N'.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 text_not_void}{\cf1 :} {\cf5 a_text} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 counter}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_rich_text}{\cf1 :} {\b\cf6 like} {\cf5 rich_text}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_rich_text} {\cf1 :=} {\cf5 rich_text}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_rich_text} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 paragraph_start_indexes}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}50{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 paragraph_formats}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}50{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 paragraph_start_indexes}{\b\cf1 .}{\cf5 extend}{\cf1  }{\cf1 (}1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 build_paragraph_from_format}{\cf1  }{\cf1 (}{\cf5 l_rich_text}{\b\cf1 .}{\cf5 internal_paragraph_format}{\cf1  }{\cf1 (}1{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 counter} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 counter} {\cf1 >} {\cf5 a_text}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 counter} {\cf1 <} {\cf5 a_text}{\b\cf1 .}{\cf5 count} {\cf1 -} 1 {\b\cf6 and then} {\cf5 a_text}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 counter}{\cf1 )} {\cf1 =} '%N'{\b\cf1 .}{\cf5 to_character_32} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 l_rich_text}{\b\cf1 .}{\cf5 internal_paragraph_format_contiguous}{\cf1  }{\cf1 (}{\cf5 counter}{\cf1 ,} {\cf5 counter} {\cf1 +} 2{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 paragraph_start_indexes}{\b\cf1 .}{\cf5 extend}{\cf1  }{\cf1 (}{\cf5 counter} {\cf1 +} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 build_paragraph_from_format}{\cf1  }{\cf1 (}{\cf5 l_rich_text}{\b\cf1 .}{\cf5 internal_paragraph_format}{\cf1  }{\cf1 (}{\cf5 counter} {\cf1 +} 1{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 counter} {\cf1 :=} {\cf5 counter} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 start_indexes_not_void}{\cf1 :} {\cf5 paragraph_start_indexes} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 formats_not_void}{\cf1 :} {\cf5 paragraph_formats} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 count_greater_or_equal_to_one}{\cf1 :} {\cf5 paragraph_start_indexes}{\b\cf1 .}{\cf5 count} {\cf1 >=} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 counts_equal}{\cf1 :} {\cf5 paragraph_start_indexes}{\b\cf1 .}{\cf5 count} {\cf1 =} {\cf5 paragraph_formats}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 last_load_successful}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was last call to }{\cf5 set_with_rtf}{\cf3  successful?}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_with_rtf} {\cf1 (}{\cf5 rtf_text}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 text}{\cf3  and formatting of }{\cf5 Current}{\cf3  from }{\cf5 rtf_text}{\cf3  in RTF format.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 rtf_text_not_void}{\cf1 :} {\cf5 rtf_text} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 rtf_text_not_empty}{\cf1 :} {\b\cf6 not} {\cf5 rtf_text}{\b\cf1 .}{\cf5 is_empty}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 current_character}{\cf1 :} {\cf4 CHARACTER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 found_opening_brace}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf5 paragraph_format}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_PARAGRAPH_FORMAT}{\line}
+{\tab}{\tab}{\tab}{\cf5 last_load_value}{\cf1 ,} {\cf5 current_load_value}{\cf1 ,} {\cf5 key_index}{\cf1 ,} {\cf5 keys_count}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_rich_text}{\cf1 :} {\b\cf6 like} {\cf5 rich_text}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_current_format}{\cf1 :} {\b\cf6 like} {\cf5 current_format}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_rich_text} {\cf1 :=} {\cf5 rich_text}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_rich_text} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 last_load_successful} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 rtf_text}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} {\cf5 Rtf_open_brace_character} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 format_stack}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}8{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 all_fonts}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}50{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 all_colors}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}50{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 all_colors}{\b\cf1 .}{\cf5 force}{\cf1  }{\cf1 (}{\cf5 l_rich_text}{\b\cf1 .}{\cf5 foreground_color}{\cf1 ,} 0{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 all_formats}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}50{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 all_paragraph_formats}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}50{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 all_paragraph_indexes}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}50{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 all_paragraph_format_keys}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}50{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 highest_read_char} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 number_of_characters_opened} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 current_depth} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 first_color_is_auto} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 last_colorred} {\cf1 :=} -1{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 last_colorgreen} {\cf1 :=} -1{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 last_colorblue} {\cf1 :=} -1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 l_current_format}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 current_format} {\cf1 :=} {\cf5 l_current_format}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 plain_text}{\b\cf1 .}{\cf5 make_empty}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 main_iterator} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 main_iterator} {\cf1 >} {\cf5 rtf_text}{\b\cf1 .}{\cf5 count} {\b\cf6 or} {\cf1 (}{\cf5 found_opening_brace} {\b\cf6 and} {\cf5 current_depth} {\cf1 =} 0{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 current_character} {\cf1 :=} {\cf5 get_character}{\cf1  }{\cf1 (}{\cf5 rtf_text}{\cf1 ,} {\cf5 main_iterator}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 found_opening_brace} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 current_character} {\cf1 =} '\{'{\b\cf1 .}{\cf5 to_character_32} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 format_stack}{\b\cf1 .}{\cf5 extend}{\cf1  }{\cf1 (}{\cf5 l_current_format}{\b\cf1 .}{\cf5 twin}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 current_character} {\cf1 =} '\}'{\b\cf1 .}{\cf5 to_character_32} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_current_format} {\cf1 :=} {\cf5 format_stack}{\b\cf1 .}{\cf5 item}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 current_format} {\cf1 :=} {\cf5 l_current_format}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 format_stack}{\b\cf1 .}{\cf5 remove}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 current_character} {\cf1 =} '\\'{\b\cf1 .}{\cf5 to_character_32} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 process_keyword}{\cf1  }{\cf1 (}{\cf5 rtf_text}{\cf1 ,} {\cf5 main_iterator}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 main_iterator} {\cf1 >=} 2 {\b\cf6 and then} {\cf5 current_character} {\cf1 /=} '%R'{\b\cf1 .}{\cf5 to_character_32} {\b\cf6 and} {\cf1 (}{\cf5 rtf_text}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 main_iterator} {\cf1 -} 1{\cf1 )} {\cf1 =} '%N' {\b\cf6 or} {\cf5 rtf_text}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 main_iterator} {\cf1 -} 1{\cf1 )} {\cf1 =} '\}' {\b\cf6 or} {\cf5 rtf_text}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 main_iterator} {\cf1 -} 1{\cf1 )} {\cf1 =} '\{'{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 process_text}{\cf1  }{\cf1 (}{\cf5 rtf_text}{\cf1 ,} {\cf5 main_iterator} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 current_character} {\cf1 =} ' '{\b\cf1 .}{\cf5 to_character_32} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 process_text}{\cf1  }{\cf1 (}{\cf5 rtf_text}{\cf1 ,} {\cf5 main_iterator}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 current_character} {\cf1 =} '\{'{\b\cf1 .}{\cf5 to_character_32} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 format_stack}{\b\cf1 .}{\cf5 extend}{\cf1  }{\cf1 (}{\cf5 l_current_format}{\b\cf1 .}{\cf5 twin}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 found_opening_brace} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 move_main_iterator}{\cf1  }{\cf1 (}1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 update_main_iterator}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_rich_text}{\b\cf1 .}{\cf5 file_access_actions_internal} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 current_load_value} {\cf1 :=} {\cf1 (}{\cf5 main_iterator} {\cf1 *} 90{\cf1 )} {\cf1 //} {\cf5 rtf_text}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 current_load_value} {\cf1 /=} {\cf5 last_load_value} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 last_load_value} {\cf1 :=} {\cf5 current_load_value}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_rich_text}{\b\cf1 .}{\cf5 file_access_actions}{\b\cf1 .}{\cf5 call}{\cf1  }{\cf1 (}{\cf1 [}{\cf5 current_load_value}{\cf1 ]}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf1 no_carriage_returns}{\cf1 :} {\b\cf6 not} {\cf5 plain_text}{\b\cf1 .}{\cf5 has}{\cf1  }{\cf1 (}'%R'{\b\cf1 .}{\cf5 to_character_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_rich_text}{\b\cf1 .}{\cf5 flush_buffer}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 keys_count} {\cf1 :=} {\cf5 all_paragraph_format_keys}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 all_paragraph_format_keys}{\b\cf1 .}{\cf5 start}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 all_paragraph_format_keys}{\b\cf1 .}{\cf5 off}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 key_index} {\cf1 :=} {\cf5 all_paragraph_format_keys}{\b\cf1 .}{\cf5 index}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 paragraph_format} {\cf1 :=} {\cf5 all_paragraph_formats}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 all_paragraph_format_keys}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 paragraph_format} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 key_index} {\cf1 <} {\cf5 keys_count} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_rich_text}{\b\cf1 .}{\cf5 format_paragraph}{\cf1  }{\cf1 (}{\cf5 all_paragraph_indexes}{\b\cf1 .}{\cf5 i_th}{\cf1  }{\cf1 (}{\cf5 key_index}{\cf1 )}{\cf1 ,} {\cf5 all_paragraph_indexes}{\b\cf1 .}{\cf5 i_th}{\cf1  }{\cf1 (}{\cf5 key_index} {\cf1 +} 1{\cf1 )}{\cf1 ,} {\cf5 paragraph_format}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_rich_text}{\b\cf1 .}{\cf5 format_paragraph}{\cf1  }{\cf1 (}{\cf5 all_paragraph_indexes}{\b\cf1 .}{\cf5 i_th}{\cf1  }{\cf1 (}{\cf5 key_index}{\cf1 )}{\cf1 ,} {\cf5 l_rich_text}{\b\cf1 .}{\cf5 text_length}{\cf1 ,} {\cf5 paragraph_format}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_rich_text}{\b\cf1 .}{\cf5 file_access_actions_internal} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 current_load_value} {\cf1 :=} 90 {\cf1 +} {\cf1 (}{\cf1 (}{\cf5 key_index} {\cf1 *} 10{\cf1 )} {\cf1 //} {\cf5 keys_count}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 current_load_value} {\cf1 /=} {\cf5 last_load_value} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 last_load_value} {\cf1 :=} {\cf5 current_load_value}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_rich_text}{\b\cf1 .}{\cf5 file_access_actions}{\b\cf1 .}{\cf5 call}{\cf1  }{\cf1 (}{\cf1 [}{\cf5 current_load_value}{\cf1 ]}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 all_paragraph_format_keys}{\b\cf1 .}{\cf5 forth}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 last_load_successful} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 invariant}{\line}
+{\tab}{\cf1 rich_text_not_void}{\cf1 :} {\cf5 rich_text} {\cf1 /=} {\b\cf6 Void}{\line}
+{\line}
+{\tab}{\tab}{\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\cf1 reflexive_equality}{\cf1 :} {\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\cf1 reflexive_conformance}{\cf1 :} {\cf5 conforms_to}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\line}
+{\line}
+{\b\cf6 note}{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 1984-2013, Eiffel Software and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"{\line}
+{\tab}{\cf1 source}{\cf1 :} "[{\line}
+{\tab}{\tab}Eiffel Software{\line}
+{\tab}{\tab}5949 Hollister Ave., Goleta, CA 93117 USA{\line}
+{\tab}{\tab}Telephone 805-685-1006, Fax 805-685-6869{\line}
+{\tab}{\tab}Website http://www.eiffel.com{\line}
+{\tab}{\tab}Customer support http://support.eiffel.com{\line}
+{\tab}]"{\line}
+{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 EV_RICH_TEXT_BUFFERING_STRUCTURES_I}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

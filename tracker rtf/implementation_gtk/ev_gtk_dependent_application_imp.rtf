@@ -1,0 +1,401 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "EiffelVision application, GTK+ implementation."{\line}
+{\tab}{\cf1 legal}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 status}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 keywords}{\cf1 :} "application"{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2016-09-28 11:45:08 -0700 (Wed, 28 Sep 2016) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 99198 $"{\line}
+{\line}
+{\b\cf6 deferred} {\b\cf6 class} {\line}
+{\tab}{\cf4 EV_GTK_DEPENDENT_APPLICATION_IMP}{\line}
+{\line}
+{\b\cf6 inherit}{\line}
+{\tab}{\cf4 EV_GTK_ENVIRONMENT}{\line}
+{\line}
+{\tab}{\cf4 IDENTIFIED}{\line}
+{\tab}{\tab}{\b\cf6 undefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 is_equal}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 copy}{\line}
+{\tab}{\tab}{\b\cf6 end}{\line}
+{\line}
+{\tab}{\cf4 EXECUTION_ENVIRONMENT}{\line}
+{\tab}{\tab}{\b\cf6 rename}{\line}
+{\tab}{\tab}{\tab}{\cf5 launch} {\b\cf6 as} {\cf5 ee_launch}{\line}
+{\tab}{\tab}{\b\cf6 end}{\line}
+{\line}
+{\tab}{\cf4 PLATFORM}{\line}
+{\line}
+{\tab}{\cf4 EV_ANY_HANDLER}{\line}
+{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Initialize}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 gtk_dependent_initialize}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Gtk dependent code for }{\cf5 initialize}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 initialize_window_style}{\line}
+{\tab}{\tab}{\tab}{\cf5 initialize_combo_box_style}{\line}
+{\tab}{\tab}{\tab}{\cf5 initialize_tool_bar_style}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 gtk_dependent_launch_initialize}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Gtk dependent code for }{\cf5 launch}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_maj_ver} {\cf1 =} 1 {\b\cf6 and then} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_min_ver} {\cf1 <=} 2 {\b\cf6 and then} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_mic_ver} {\cf1 <} 8 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 print}{\cf1  }{\cf1 (}"This application is designed for Gtk 1.2.8 and above, your current version is 1.2." {\cf1 +} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_mic_ver}{\b\cf1 .}{\cf5 out} {\cf1 +} " and may cause some unexpected behavior%N"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 pixel_value_from_point_value} {\cf1 (}{\cf5 a_point_value}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Returns the number of screen pixels represented by }{\cf5 a_point_value}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf1 (}{\cf5 a_point_value} {\cf1 /} 3 {\cf1 *} 4{\b\cf1 .}{\cf5 to_double}{\cf1 )} {\cf1 +} 0.5{\cf1 )}{\b\cf1 .}{\cf5 truncated_to_integer}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 point_value_from_pixel_value} {\cf1 (}{\cf5 a_pixel_value}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Returns the number of points represented by }{\cf5 a_pixel_value}{\cf3  screen pixels value}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf1 (}{\cf5 a_pixel_value} {\cf1 /} 4 {\cf1 *} 3{\b\cf1 .}{\cf5 to_double}{\cf1 )} {\cf1 +} 0.5{\cf1 )}{\b\cf1 .}{\cf5 truncated_to_integer}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Pango_layout}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  PangoLayout structure used for rendering fonts}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_widget_create_pango_layout} {\cf1 (}{\cf5 default_gtk_window}{\cf1 ,} {\cf5 default_pointer}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 pango_iter}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Retrieve PangoLayoutIter from our default layout object, Result must be freed when not needed}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 pango_layout_get_iter} {\cf1 (}{\cf5 Pango_layout}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 initialize_default_font_values}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Initialize values use for creating our default font}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 font_desc}{\cf1 :} {\cf4 STRING_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 font_names}{\cf1 ,} {\cf5 font_names_as_lower}{\cf1 :} {\cf4 ARRAYED_LIST} {\cf1 [}{\cf4 STRING_32}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf5 exit_loop}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf5 split_values}{\cf1 :} {\cf4 LIST} {\cf1 [}{\cf4 STRING_32}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf5 i}{\cf1 ,} {\cf5 l_font_names_count}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_font_item}{\cf1 :} {\cf4 STRING_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_sans}{\cf1 :} {\cf4 STRING_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 font_desc} {\cf1 :=} {\cf5 default_font_description}{\b\cf1 .}{\cf5 as_lower}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 font_names_as_lower} {\cf1 :=} {\cf5 Font_names_on_system_as_lower}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 font_names} {\cf1 :=} {\cf5 Font_names_on_system}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_font_names_count} {\cf1 :=} {\cf5 font_names}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_sans} {\cf1 :=} {\b\cf6 once} {\cf1 \{}{\cf4 STRING_32}{\cf1 \}}"Sans"{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 default_font_name_internal} {\cf1 :=} {\cf5 l_sans}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 exit_loop} {\b\cf6 or else} {\cf5 i} {\cf1 >} {\cf5 l_font_names_count}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_font_item} {\cf1 :=} {\cf5 font_names_as_lower} {\cf1 [}{\cf5 i}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 font_desc}{\b\cf1 .}{\cf5 substring_index}{\cf1  }{\cf1 (}{\cf5 l_font_item}{\cf1 ,} 1{\cf1 )} {\cf1 =} 1 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 default_font_name_internal} {\cf1 =} {\cf5 l_sans} {\b\cf6 or else} {\cf5 l_font_item}{\b\cf1 .}{\cf5 count} {\cf1 >} {\cf5 default_font_name_internal}{\b\cf1 .}{\cf5 count} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 default_font_name_internal} {\cf1 :=} {\cf5 font_names} {\cf1 [}{\cf5 i}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 exit_loop} {\cf1 :=} {\cf5 default_font_name_internal}{\b\cf1 .}{\cf5 count} {\cf1 =} {\cf5 font_desc}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 i} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 split_values} {\cf1 :=} {\cf5 font_desc}{\b\cf1 .}{\cf5 split}{\cf1  }{\cf1 (}' '{\b\cf1 .}{\cf5 to_character_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 split_values}{\b\cf1 .}{\cf5 compare_objects}{\line}
+{\tab}{\tab}{\tab}{\cf5 default_font_point_height_internal} {\cf1 :=} {\cf5 split_values}{\b\cf1 .}{\cf5 last}{\b\cf1 .}{\cf5 to_integer}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 split_values}{\b\cf1 .}{\cf5 has}{\cf1  }{\cf1 (}{\b\cf6 once} {\cf1 \{}{\cf4 STRING_32}{\cf1 \}}"italic"{\cf1 )} {\b\cf6 or else} {\cf5 split_values}{\b\cf1 .}{\cf5 has}{\cf1  }{\cf1 (}{\b\cf6 once} {\cf1 \{}{\cf4 STRING_32}{\cf1 \}}"oblique"{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 default_font_style_internal} {\cf1 :=} {\cf1 \{}{\cf4 EV_FONT_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 shape_italic}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 default_font_style_internal} {\cf1 :=} {\cf1 \{}{\cf4 EV_FONT_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 shape_regular}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 split_values}{\b\cf1 .}{\cf5 has}{\cf1  }{\cf1 (}{\b\cf6 once} {\cf1 \{}{\cf4 STRING_32}{\cf1 \}}"bold"{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 default_font_weight_internal} {\cf1 :=} {\cf1 \{}{\cf4 EV_FONT_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 weight_bold}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 split_values}{\b\cf1 .}{\cf5 has}{\cf1  }{\cf1 (}{\b\cf6 once} {\cf1 \{}{\cf4 STRING_32}{\cf1 \}}"light"{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 default_font_weight_internal} {\cf1 :=} {\cf1 \{}{\cf4 EV_FONT_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 weight_thin}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 split_values}{\b\cf1 .}{\cf5 has}{\cf1  }{\cf1 (}{\b\cf6 once} {\cf1 \{}{\cf4 STRING_32}{\cf1 \}}"superbold"{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 default_font_weight_internal} {\cf1 :=} {\cf1 \{}{\cf4 EV_FONT_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 weight_black}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 default_font_weight_internal} {\cf1 :=} {\cf1 \{}{\cf4 EV_FONT_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 weight_regular}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 default_font_name}{\cf1 :} {\cf4 STRING_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Face name of the default font}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 font_settings_changed} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 initialize_default_font_values}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 default_font_name_internal}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 default_font_name_internal}{\cf1 :} {\cf4 STRING_32}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 default_font_point_height}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Size of the default font in points}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 font_settings_changed} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 initialize_default_font_values}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 default_font_point_height_internal}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 default_font_point_height_internal}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 default_font_style}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Style of the default font}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 font_settings_changed} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 initialize_default_font_values}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 default_font_style_internal}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 default_font_style_internal}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 default_font_weight}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Weight of the default font}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 font_settings_changed} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 initialize_default_font_values}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 default_font_weight_internal}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 default_font_weight_internal}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 font_settings_changed}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Have the default font settings been changed by the user}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 font_name_ptr}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 g_object_get_string} {\cf1 (}{\cf5 Default_gtk_settings}{\cf1 ,} {\cf5 Gtk_font_name_setting}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf1 $}{\cf5 font_name_ptr}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 font_name_ptr} {\cf1 /=} {\cf5 default_pointer} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 previous_font_settings} {\cf1 /=} {\cf5 default_pointer} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 c_strcmp}{\cf1  }{\cf1 (}{\cf5 previous_font_settings}{\cf1 ,} {\cf5 font_name_ptr}{\cf1 )} {\cf1 /=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 Result} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 g_free} {\cf1 (}{\cf5 previous_font_settings}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 previous_font_settings} {\cf1 :=} {\cf5 font_name_ptr}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 g_free} {\cf1 (}{\cf5 font_name_ptr}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 previous_font_settings} {\cf1 :=} {\cf5 font_name_ptr}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 previous_font_settings}{\cf1 :} {\cf4 POINTER}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Pointer to the previous gtk-settings font value.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 c_strcmp} {\cf1 (}{\cf5 ptr1}{\cf1 ,} {\cf5 ptr2}{\cf1 :} {\cf4 POINTER}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C inline use <string.h>"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"return strcmp ((const char*) $ptr1, (const char*) $ptr2);"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Default_gtk_settings}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Default GtkSettings}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_settings_get_default}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 default_font_description}{\cf1 :} {\cf4 STRING_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Description string of the current font used}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 font_name_ptr}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_cs}{\cf1 :} {\cf4 EV_GTK_C_STRING}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_result}{\cf1 :} {\b\cf6 detachable} {\cf4 STRING_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 g_object_get_string} {\cf1 (}{\cf5 Default_gtk_settings}{\cf1 ,} {\cf5 Gtk_font_name_setting}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf1 $}{\cf5 font_name_ptr}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 font_name_ptr} {\cf1 /=} {\cf5 default_pointer} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_cs}{\b\cf1 .}{\cf5 make_from_pointer}{\cf1  }{\cf1 (}{\cf5 font_name_ptr}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_result} {\cf1 :=} {\cf5 a_cs}{\b\cf1 .}{\cf5 string}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_result} {\cf1 =} {\b\cf6 Void} {\b\cf6 or else} {\cf5 l_result}{\b\cf1 .}{\cf5 is_empty} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 once} {\cf1 \{}{\cf4 STRING_32}{\cf1 \}}"Sans 10"{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 l_result}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Gtk_font_name_setting}{\cf1 :} {\cf4 EV_GTK_C_STRING}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String optimization for gtk-font-name property string}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 create} {\cf1 \{}{\b\cf6 attached} {\cf4 EV_GTK_C_STRING}{\cf1 \}}{\b\cf1 .}{\cf5 set_with_eiffel_string}{\cf1  }{\cf1 (}"gtk-font-name"{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Font_names_on_system}{\cf1 :} {\cf4 ARRAYED_LIST} {\cf1 [}{\cf4 STRING_32}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Retrieve a list of all the font names available on the system}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_name_array}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf5 i}{\cf1 ,} {\cf5 n_array_elements}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 utf8_string}{\cf1 :} {\cf4 EV_GTK_C_STRING}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\cf5 retrieve_available_fonts}{\cf1  }{\cf1 (}{\cf5 default_gtk_window}{\cf1 ,} {\cf1 $}{\cf5 a_name_array}{\cf1 ,} {\cf1 $}{\cf5 n_array_elements}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 n_array_elements}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 utf8_string}{\b\cf1 .}{\cf5 set_with_eiffel_string}{\cf1  }{\cf1 (}""{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 >} {\cf5 n_array_elements}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 utf8_string}{\b\cf1 .}{\cf5 share_from_pointer}{\cf1  }{\cf1 (}{\cf5 gchar_array_i_th}{\cf1  }{\cf1 (}{\cf5 a_name_array}{\cf1 ,} {\cf5 i}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 extend}{\cf1  }{\cf1 (}{\cf5 utf8_string}{\b\cf1 .}{\cf5 string}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 i} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 compare_objects}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_name_array}{\b\cf1 .}{\cf5 memory_free}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Font_names_on_system_as_lower}{\cf1 :} {\cf4 ARRAYED_LIST} {\cf1 [}{\cf4 STRING_32}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Retrieve a list of all the font names available on the system in lower case}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  This is needed for easy case insensitive lookup in EV_FONT_IMP.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 i}{\cf1 ,} {\cf5 l_font_count}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_font_names}{\cf1 :} {\b\cf6 like} {\cf5 Font_names_on_system}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_font_names} {\cf1 :=} {\cf5 Font_names_on_system}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_font_count} {\cf1 :=} {\cf5 l_font_names}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 l_font_count}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 >} {\cf5 l_font_count}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 extend}{\cf1  }{\cf1 (}{\cf1 (}{\cf5 l_font_names} {\cf1 [}{\cf5 i}{\cf1 ]}{\cf1 )}{\b\cf1 .}{\cf5 as_lower}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 i} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 compare_objects}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 default_gtk_window}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 window_manager_name}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Name of Window Manager currently running.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_display}{\cf1 ,} {\cf5 l_screen}{\cf1 ,} {\cf5 l_wm_name}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_display} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_display_get_default}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_screen} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_display_get_default_screen} {\cf1 (}{\cf5 l_display}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_wm_name} {\cf1 :=} {\cf5 gdk_x11_screen_get_window_manager_name}{\cf1  }{\cf1 (}{\cf5 l_screen}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make_from_c}{\cf1  }{\cf1 (}{\cf5 l_wm_name}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Externals}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 gdk_x11_screen_get_window_manager_name} {\cf1 (}{\cf5 a_screen}{\cf1 :} {\cf4 POINTER}{\cf1 )}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C inline use %"ev_c_util.h%""{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"[{\line}
+{\tab}{\tab}{\tab}{\tab}#ifdef GDK_WINDOWING_X11{\line}
+{\tab}{\tab}{\tab}{\tab}	return (EIF_POINTER) gdk_x11_screen_get_window_manager_name ((GdkScreen*) $a_screen);{\line}
+{\tab}{\tab}{\tab}{\tab}#else{\line}
+{\tab}{\tab}{\tab}{\tab}	return "unknown";{\line}
+{\tab}{\tab}{\tab}{\tab}#endif{\line}
+{\tab}{\tab}{\tab}]"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 initialize_window_style}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set the window style to remove any resize grip.}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C inline use <ev_gtk.h>"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"[{\line}
+{\tab}{\tab}{\tab}{\tab}\{{\line}
+{\tab}{\tab}{\tab}{\tab}	gtk_rc_parse_string ("style \\"default-style\\" \{\\n GtkWindow::resize-grip-height = 0\\n GtkWindow::resize-grip-width = 0\\n\}\\n  class \\"GtkWidget\\" style  \\"default-style\\" ");{\line}
+{\tab}{\tab}{\tab}{\tab}\}{\line}
+{\tab}{\tab}{\tab}]"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 initialize_combo_box_style}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set the combo box style so that they appear as lists and not menus.}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C inline use <ev_gtk.h>"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"[{\line}
+{\tab}{\tab}{\tab}{\tab}\{{\line}
+{\tab}{\tab}{\tab}{\tab}	gtk_rc_parse_string ("style \\"v2-combo-style\\" \{\\n GtkComboBox::appears-as-list = 1\\n \}\\n  widget \\"*.v2combobox\\" style : highest  \\"v2-combo-style\\" " );{\line}
+{\tab}{\tab}{\tab}{\tab}\}{\line}
+{\tab}{\tab}{\tab}]"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 initialize_tool_bar_style}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Remove the default shadow from the toolbar.}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C inline use <ev_gtk.h>"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"[{\line}
+{\tab}{\tab}{\tab}{\tab}\{{\line}
+{\tab}{\tab}{\tab}{\tab}	gtk_rc_parse_string ("style \\"v2-toolbar-style\\" \{\\n GtkToolbar::shadow-type = none\\n \}\\n  widget \\"*.v2toolbar\\" style : highest  \\"v2-toolbar-style\\" " );{\line}
+{\tab}{\tab}{\tab}{\tab}\}{\line}
+{\tab}{\tab}{\tab}]"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 retrieve_available_fonts} {\cf1 (}{\cf5 a_widget}{\cf1 :} {\cf4 POINTER}{\cf1 ;} {\cf5 name_array}{\cf1 :} {\cf4 TYPED_POINTER} {\cf1 [}{\cf4 POINTER}{\cf1 ]}{\cf1 ;} {\cf5 number_elements}{\cf1 :} {\cf4 TYPED_POINTER} {\cf1 [}{\cf4 INTEGER_32}{\cf1 ]}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Retrieve all available fonts present on the system}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C inline use <ev_gtk.h>"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"[{\line}
+{\tab}{\tab}{\tab}{\tab}			\{{\line}
+{\tab}{\tab}{\tab}{\tab}				PangoFontFamily **families;{\line}
+{\tab}{\tab}{\tab}{\tab}				gchar **l_name_array = NULL;{\line}
+{\tab}{\tab}{\tab}{\tab}				gint i;{\line}
+{\tab}{\tab}{\tab}{\tab}				pango_context_list_families (gtk_widget_get_pango_context ((GtkWidget*) $a_widget), &families, $number_elements);{\line}
+{\tab}{\tab}{\tab}{\tab}{\line}
+{\tab}{\tab}{\tab}{\tab}				{\line}
+{\tab}{\tab}{\tab}{\tab}				l_name_array = malloc (*$number_elements * sizeof (gchar*));{\line}
+{\tab}{\tab}{\tab}{\tab}				{\line}
+{\tab}{\tab}{\tab}{\tab}				for (i=0; i < *$number_elements; i++){\line}
+{\tab}{\tab}{\tab}{\tab}				\{{\line}
+{\tab}{\tab}{\tab}{\tab}					 l_name_array [i] = (gchar *) pango_font_family_get_name (families[i]);{\line}
+{\tab}{\tab}{\tab}{\tab}				\}{\line}
+{\tab}{\tab}{\tab}{\tab}				{\line}
+{\tab}{\tab}{\tab}{\tab}				g_free (families);{\line}
+{\tab}{\tab}{\tab}{\tab}				{\line}
+{\tab}{\tab}{\tab}{\tab}				*(EIF_POINTER *) $name_array = (EIF_POINTER *) l_name_array;{\line}
+{\tab}{\tab}{\tab}{\tab}			\}{\line}
+{\tab}{\tab}{\tab}]"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 gchar_array_i_th} {\cf1 (}{\cf5 a_gchar_array}{\cf1 :} {\cf4 POINTER}{\cf1 ;} {\cf5 an_index}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Returns }{\cf5 an_index}{\cf3  i_th value from gchar** }{\cf5 a_gchar_array}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 an_index_valid}{\cf1 :} {\cf5 an_index} {\cf1 >} 0{\line}
+{\tab}{\tab}{\tab}{\cf1 array_valid}{\cf1 :} {\cf5 a_gchar_array} {\cf1 /=} {\cf5 default_pointer}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C inline use <ev_gtk.h>"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"(EIF_POINTER) *((gchar**) $a_gchar_array + (int) ($an_index - 1))"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 note}{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 1984-2016, Eiffel Software and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"{\line}
+{\tab}{\cf1 source}{\cf1 :} "[{\line}
+{\tab}{\tab}Eiffel Software{\line}
+{\tab}{\tab}5949 Hollister Ave., Goleta, CA 93117 USA{\line}
+{\tab}{\tab}Telephone 805-685-1006, Fax 805-685-6869{\line}
+{\tab}{\tab}Website http://www.eiffel.com{\line}
+{\tab}{\tab}Customer support http://support.eiffel.com{\line}
+{\tab}]"{\line}
+{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 EV_GTK_DEPENDENT_APPLICATION_IMP}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

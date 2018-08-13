@@ -1,0 +1,30 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../tracker/new_phase_chart.xml</location>NEW_PHASE</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>tracker</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Summary description for </string><symbol>{</symbol><class><location>../tracker/new_phase_chart.xml</location>NEW_PHASE</class><symbol>}</symbol><string>.&quot;</string>
+	<indexing_tag>create</indexing_tag><symbol>:</symbol> <feature><location>../tracker/new_phase.xml#f_make</location>make</feature>
+
+<keyword>Ancestors</keyword>
+	<class><location>../tracker/command_chart.xml</location>COMMAND</class><char>*</char>
+
+<keyword>Queries</keyword>
+	<feature><location>../tracker/new_phase.xml#f_capacity</location>capacity</feature><symbol>:</symbol> <class><include>False</include>INTEGER_64</class>
+	<feature><location>../tracker/new_phase.xml#f_expected_mats</location>expected_mats</feature><symbol>:</symbol> <class><include>False</include>ARRAY</class> <symbol>[</symbol><class><include>False</include>INTEGER_64</class><symbol>]</symbol>
+	<feature><location>../tracker/command.xml#f_m_a</location>m_a</feature><symbol>:</symbol> <class><location>../tracker/messages_access_chart.xml</location>MESSAGES_ACCESS</class>
+	<feature><location>../tracker/command.xml#f_msg</location>msg</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+	<feature><location>../tracker/new_phase.xml#f_p_id</location>p_id</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+	<feature><location>../tracker/new_phase.xml#f_p_name</location>p_name</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+	<feature><location>../tracker/command.xml#f_state</location>state</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../tracker/command.xml#f_track</location>track</feature><symbol>:</symbol> <class><location>../tracker/tracker_chart.xml</location>TRACKER</class>
+
+<keyword>Commands</keyword>
+	<feature><location>../tracker/new_phase.xml#f_execute</location>execute</feature>
+	<feature><location>../tracker/new_phase.xml#f_make</location>make</feature> <symbol>(</symbol><local>pid</local><symbol>,</symbol> <local>pname</local><symbol>:</symbol> <class><include>False</include>STRING_8</class><symbol>;</symbol> <local>cap</local><symbol>:</symbol> <class><include>False</include>INTEGER_64</class><symbol>;</symbol> <local>mats</local><symbol>:</symbol> <class><include>False</include>ARRAY</class> <symbol>[</symbol><class><include>False</include>INTEGER_64</class><symbol>]</symbol><symbol>)</symbol>
+	<feature><location>../tracker/new_phase.xml#f_redo</location>redo</feature>
+	<feature><location>../tracker/command.xml#f_set_state</location>set_state</feature>
+	<feature><location>../tracker/new_phase.xml#f_undo</location>undo</feature>
+
+</system>

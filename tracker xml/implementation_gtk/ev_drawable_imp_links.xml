@@ -1,0 +1,49 @@
+<system>
+<keyword>deferred</keyword> <keyword>class</keyword>
+	<class><location>../implementation_gtk/ev_drawable_imp_links.xml</location>EV_DRAWABLE_IMP</class>
+
+<keyword>Ancestors</keyword>
+	<class><include>False</include>DISPOSABLE</class><char>*</char>
+	<class><location>../interface/ev_drawable_constants_links.xml</location>EV_DRAWABLE_CONSTANTS</class>
+	<class><location>../implementation_interface/ev_drawable_i_links.xml</location>EV_DRAWABLE_I</class><char>*</char>
+	<class><include>False</include>MATH_CONST</class>
+	<class><include>False</include>PLATFORM</class>
+
+<keyword>Descendants</keyword>
+	<class><location>../implementation_gtk/ev_bitmap_imp_links.xml</location>EV_BITMAP_IMP</class>
+	<class><location>../implementation_gtk/ev_drawing_area_imp_links.xml</location>EV_DRAWING_AREA_IMP</class>
+	<class><location>../implementation_gtk/ev_pixmap_imp_links.xml</location>EV_PIXMAP_IMP</class>
+	<class><location>../implementation_gtk/ev_screen_imp_links.xml</location>EV_SCREEN_IMP</class>
+
+<keyword>Clients</keyword>
+	<class><location>../implementation_gtk/ev_drawable_imp_links.xml</location>EV_DRAWABLE_IMP</class><char>*</char>
+
+<keyword>Suppliers</keyword>
+	<class><include>False</include>ARRAY</class> <symbol>[</symbol><generic>G</generic><symbol>]</symbol>
+	<class><include>False</include>BOOLEAN</class>
+	<class><location>../implementation_gtk/ev_application_imp_links.xml</location>EV_APPLICATION_IMP</class>
+	<class><location>../interface/ev_color_links.xml</location>EV_COLOR</class>
+	<class><location>../interface/ev_coordinate_links.xml</location>EV_COORDINATE</class>
+	<class><location>../implementation_gtk/ev_drawable_imp_links.xml</location>EV_DRAWABLE_IMP</class><char>*</char>
+	<class><location>../interface/ev_font_links.xml</location>EV_FONT</class>
+	<class><location>../implementation_gtk/ev_font_imp_links.xml</location>EV_FONT_IMP</class>
+	<class><location>../implementation_gtk/ev_gtk_c_string_links.xml</location>EV_GTK_C_STRING</class>
+	<class><location>../interface/ev_pixel_buffer_links.xml</location>EV_PIXEL_BUFFER</class>
+	<class><location>../implementation_gtk/ev_pixel_buffer_imp_links.xml</location>EV_PIXEL_BUFFER_IMP</class>
+	<class><location>../interface/ev_pixmap_links.xml</location>EV_PIXMAP</class>
+	<class><location>../implementation_gtk/ev_pixmap_imp_links.xml</location>EV_PIXMAP_IMP</class>
+	<class><location>../interface/ev_rectangle_links.xml</location>EV_RECTANGLE</class>
+	<class><location>../interface/ev_region_links.xml</location>EV_REGION</class>
+	<class><location>../implementation_gtk/ev_region_imp_links.xml</location>EV_REGION_IMP</class>
+	<class><location>../implementation_gtk/gtk_links.xml</location>GTK</class>
+	<class><location>../implementation_gtk/gtk2_links.xml</location>GTK2</class>
+	<class><include>False</include>INTEGER_16</class>
+	<class><include>False</include>INTEGER_32</class>
+	<class><include>False</include>NATURAL_32</class>
+	<class><include>False</include>POINTER</class>
+	<class><include>False</include>REAL_32</class>
+	<class><include>False</include>REAL_64</class>
+	<class><include>False</include>SPECIAL</class> <symbol>[</symbol><generic>T</generic><symbol>]</symbol>
+	<class><include>False</include>TYPED_POINTER</class> <symbol>[</symbol><generic>G</generic><symbol>]</symbol>
+
+</system>

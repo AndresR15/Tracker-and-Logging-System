@@ -1,0 +1,31 @@
+<system>
+<keyword>deferred</keyword> <keyword>class</keyword>
+	<class><location>../implementation_interface/ev_window_i_links.xml</location>EV_WINDOW_I</class>
+
+<keyword>Ancestors</keyword>
+	<class><location>../implementation_interface/ev_cell_i_links.xml</location>EV_CELL_I</class><char>*</char>
+	<class><location>../implementation_interface/ev_positionable_i_links.xml</location>EV_POSITIONABLE_I</class><char>*</char>
+	<class><location>../implementation_interface/ev_window_action_sequences_i_links.xml</location>EV_WINDOW_ACTION_SEQUENCES_I</class><char>*</char>
+
+<keyword>Descendants</keyword>
+	<class><location>../implementation_interface/ev_popup_window_i_links.xml</location>EV_POPUP_WINDOW_I</class><char>*</char>
+	<class><location>../implementation_interface/ev_titled_window_i_links.xml</location>EV_TITLED_WINDOW_I</class><char>*</char>
+	<class><location>../implementation_gtk/ev_window_imp_links.xml</location>EV_WINDOW_IMP</class>
+
+<keyword>Clients</keyword>
+	<class><location>../interface/ev_window_links.xml</location>EV_WINDOW</class>
+	<class><location>../implementation_interface/ev_window_i_links.xml</location>EV_WINDOW_I</class><char>*</char>
+
+<keyword>Suppliers</keyword>
+	<class><include>False</include>BOOLEAN</class>
+	<class><location>../interface/ev_accelerator_list_links.xml</location>EV_ACCELERATOR_LIST</class>
+	<class><location>../implementation_interface/ev_application_i_links.xml</location>EV_APPLICATION_I</class><char>*</char>
+	<class><location>../implementation_interface/ev_cell_i_links.xml</location>EV_CELL_I</class><char>*</char>
+	<class><location>../interface/ev_environment_links.xml</location>EV_ENVIRONMENT</class>
+	<class><location>../implementation_interface/ev_environment_i_links.xml</location>EV_ENVIRONMENT_I</class><char>*</char>
+	<class><location>../interface/ev_vertical_box_links.xml</location>EV_VERTICAL_BOX</class>
+	<class><location>../implementation_interface/ev_vertical_box_i_links.xml</location>EV_VERTICAL_BOX_I</class><char>*</char>
+	<class><location>../implementation_interface/ev_window_i_links.xml</location>EV_WINDOW_I</class><char>*</char>
+	<class><include>False</include>INTEGER_32</class>
+
+</system>

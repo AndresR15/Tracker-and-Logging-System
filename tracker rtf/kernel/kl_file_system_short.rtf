@@ -1,0 +1,232 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "File systems"{\line}
+{\tab}{\cf1 library}{\cf1 :} "Gobo Eiffel Kernel Library"{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 2001-2016, Eric Bezault and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "MIT License"{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2017-04-11 11:34:55 -0700 (Tue, 11 Apr 2017) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 100137 $"{\line}
+{\line}
+{\b\cf6 deferred} {\b\cf6 class} {\b\cf6 interface}{\line}
+{\tab}{\cf4 KL_FILE_SYSTEM}{\line}
+{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status report}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_current_file_system}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is file system the file system of the underlying platform?}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  File handling}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_file_readable} {\cf1 (}{\cf5 a_filename}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Can file named }{\cf5 a_filename}{\cf3  be opened in read mode?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_filename}{\cf3  should follow the pathname convention}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of the underlying platform. For pathname conversion}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  use KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 file_exists} {\cf1 (}{\cf5 a_filename}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does file named }{\cf5 a_filename}{\cf3  physically exist on disk?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_filename}{\cf3  should follow the pathname convention}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of the underlying platform. For pathname conversion}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  use KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 file_count} {\cf1 (}{\cf5 a_filename}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of bytes in file named }{\cf5 a_filename}{\cf3 ;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Return -1 if the number of bytes was not available,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  if the file did not exist for example.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_filename}{\cf3  should follow the pathname convention}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of the underlying platform. For pathname conversion}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  use KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 file_time_stamp} {\cf1 (}{\cf5 a_filename}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Time stamp (number of seconds since 1 January 1970}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  at 00:00:00 UTC) of last modification to file }{\cf5 a_filename}{\cf3 ;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Return -1 if the time stamp was not available, if the}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  file did not exist for example, or if the time stamp}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  didn't fit into an INTEGER. (Use DT_DATE_TIME.make_from_epoch}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to convert this time stamp to a human readable format.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_filename}{\cf3  should follow the pathname convention}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of the underlying platform. For pathname conversion}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  use KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 same_physical_file} {\cf1 (}{\cf5 a_filename1}{\cf1 ,} {\cf5 a_filename2}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are files named }{\cf5 a_filename1}{\cf3  and }{\cf5 a_filename2}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the same physical file? Return False if one}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  or both files don't exist. (Return True if}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  it was impossible to determine whether the}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  files were physically the same files.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_filename1}{\cf3  and }{\cf5 a_filename2}{\cf3  should follow}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the pathname convention of the underlying}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  platform. For pathname conversion use}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 same_text_files} {\cf1 (}{\cf5 a_filename1}{\cf1 ,} {\cf5 a_filename2}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do files named }{\cf5 a_filename1}{\cf3  and }{\cf5 a_filename2}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  contain the same number of lines and are these}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  lines equal? Return False if one or both files}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  don't exist or cannot be open in read mode.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_filename1}{\cf3  and }{\cf5 a_filename2}{\cf3  should follow}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the pathname convention of the underlying}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  platform. For pathname conversion use}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 same_binary_files} {\cf1 (}{\cf5 a_filename1}{\cf1 ,} {\cf5 a_filename2}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do files named }{\cf5 a_filename1}{\cf3  and }{\cf5 a_filename2}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  contain the same number of characters and are these}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  characters equal? Return False if one or both files}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  don't exist or cannot be open in read mode.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_filename1}{\cf3  and }{\cf5 a_filename2}{\cf3  should follow}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the pathname convention of the underlying}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  platform. For pathname conversion use}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 rename_file} {\cf1 (}{\cf5 old_name}{\cf1 ,} {\cf5 new_name}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Rename file named }{\cf5 old_name}{\cf3  as }{\cf5 new_name}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do nothing if the file could not be renamed, if}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  it did not exist or if }{\cf5 new_name}{\cf3  is physically}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the same file as current file. Overwrite }{\cf5 new_name}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  if it already existed. (}{\cf5 old_name}{\cf3  and }{\cf5 new_name}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  should follow the pathname convention of the}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  underlying platform. For pathname conversion use}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 copy_file} {\cf1 (}{\cf5 old_name}{\cf1 ,} {\cf5 new_name}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Copy file named }{\cf5 old_name}{\cf3  to }{\cf5 new_name}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do nothing if the file could not be copied, if it}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  did not exist or if }{\cf5 new_name}{\cf3  is physically}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the same file as }{\cf5 old_name}{\cf3 . Overwrite }{\cf5 new_name}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  if it already existed. (}{\cf5 old_name}{\cf3  and }{\cf5 new_name}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  should follow the pathname convention of the}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  underlying platform. For pathname conversion use}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 concat_files} {\cf1 (}{\cf5 a_target_filename}{\cf1 ,} {\cf5 a_source_filename}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Copy content of file }{\cf5 a_source_filename}{\cf3  to the end of file}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 a_target_filename}{\cf3 . Do nothing if file }{\cf5 a_source_filename}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  does not exist. Create file }{\cf5 a_target_filename}{\cf3  if it does}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  not exist yet. If file }{\cf5 a_source_filename}{\cf3  is physically the}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  same as file }{\cf5 a_target_filename}{\cf3 , then a copy of the file is}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  appended to itself. Do nothing if file }{\cf5 a_target_filename}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  could not be open in append mode or if file }{\cf5 a_source_filename}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  could not be opened in read mode.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_source_filename}{\cf3  and }{\cf5 a_target_filename}{\cf3  should follow}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the pathname convention of the underlying platform. For pathname}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  conversion use KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 delete_file} {\cf1 (}{\cf5 a_filename}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Delete file named }{\cf5 a_filename}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do nothing if the file could not be}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  deleted or if it did not exist.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_dirname}{\cf3  should follow the pathname convention}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of the underlying platform. For pathname conversion}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  use KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Directory handling}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_directory_readable} {\cf1 (}{\cf5 a_dirname}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Can directory named }{\cf5 a_dirname}{\cf3  be opened in read mode?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_dirname}{\cf3  should follow the pathname convention}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of the underlying platform. For pathname conversion}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  use KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 directory_exists} {\cf1 (}{\cf5 a_dirname}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does directory named }{\cf5 a_dirname}{\cf3  physically exist on disk?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_dirname}{\cf3  should follow the pathname convention}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of the underlying platform. For pathname conversion}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  use KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_directory_empty} {\cf1 (}{\cf5 a_dirname}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does directory named }{\cf5 a_dirname}{\cf3  contain no entry apart}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  from the parent and current directory entries?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Return False if not able to open current directory.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_dirname}{\cf3  should follow the pathname convention}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of the underlying platform. For pathname conversion}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  use KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 create_directory} {\cf1 (}{\cf5 a_dirname}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create a new directory named }{\cf5 a_dirname}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do nothing if the directory could not}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  be created, if it already existed or if}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 a_dirname}{\cf3  is a nested directory name}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  and the parent directory does not exist.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_dirname}{\cf3  should follow the pathname convention}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of the underlying platform. For pathname conversion}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  use KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 recursive_create_directory} {\cf1 (}{\cf5 a_dirname}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create a new directory named }{\cf5 a_dirname}{\cf3  on disk.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create its parent directories if they do not exist yet.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do nothing if the directory could not be created,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  if it already existed or }{\cf5 name}{\cf3  is a nested directory}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  name and its parent directory does not exist and}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  could not be created.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_dirname}{\cf3  should follow the pathname convention}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of the underlying platform. For pathname conversion}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  use KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 delete_directory} {\cf1 (}{\cf5 a_dirname}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Delete directory named }{\cf5 a_dirname}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do nothing if the directory could not be deleted,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  if it did not exist or if it is not empty.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_dirname}{\cf3  should follow the pathname convention}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of the underlying platform. For pathname conversion}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  use KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 recursive_delete_directory} {\cf1 (}{\cf5 a_dirname}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Delete directory named }{\cf5 a_dirname}{\cf3 , its files}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  and its subdirectories recursively. Do nothing if}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the directory could not be deleted, if it did not exist.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_dirname}{\cf3  should follow the pathname convention}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of the underlying platform. For pathname conversion}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  use KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 recursive_copy_directory} {\cf1 (}{\cf5 old_name}{\cf1 ,} {\cf5 new_name}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Copy recursively directory named }{\cf5 old_name}{\cf3  to }{\cf5 new_name}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do nothing if the directory could not be copied,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  if it did not exist, or if }{\cf5 new_name}{\cf3  already existed.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 old_name}{\cf3  and }{\cf5 new_name}{\cf3  should follow the pathname}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  convention of the underlying platform. For pathname}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  conversion use KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Working directory}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 cwd}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Name of current working directory;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Return absolute pathname with the naming}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  convention of the underlying file system}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Return a new object at each call.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 KL_FILE_SYSTEM}{\cf3  as synonym of }{\cf5 current_working_directory}{\cf3 .}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 current_working_directory}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Name of current working directory;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Return absolute pathname with the naming}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  convention of the underlying file system}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Return a new object at each call.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 KL_FILE_SYSTEM}{\cf3  as synonym of }{\cf5 cwd}{\cf3 .}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 cd} {\cf1 (}{\cf5 a_dirname}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set current working directory to }{\cf5 a_dirname}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do nothing if the current working directory could not}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  be changed or if directory }{\cf5 a_dirname}{\cf3  did not exist.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_dirname}{\cf3  should follow the pathname convention}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of the underlying platform. For pathname conversion}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  use KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 KL_FILE_SYSTEM}{\cf3  as synonym of }{\cf5 set_current_working_directory}{\cf3 .}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 set_current_working_directory} {\cf1 (}{\cf5 a_dirname}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set current working directory to }{\cf5 a_dirname}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do nothing if the current working directory could not}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  be changed or if directory }{\cf5 a_dirname}{\cf3  did not exist.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_dirname}{\cf3  should follow the pathname convention}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of the underlying platform. For pathname conversion}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  use KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 KL_FILE_SYSTEM}{\cf3  as synonym of }{\cf5 cd}{\cf3 .}{\line}
+}{\tab}{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 KL_FILE_SYSTEM}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

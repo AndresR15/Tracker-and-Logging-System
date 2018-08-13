@@ -1,0 +1,16 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../interface/ev_menu_separator_links.xml</location>EV_MENU_SEPARATOR</class>
+
+<keyword>Ancestors</keyword>
+	<class><location>../interface/ev_menu_item_links.xml</location>EV_MENU_ITEM</class>
+
+<keyword>Clients</keyword>
+	<class><location>../implementation_gtk/ev_menu_item_list_imp_links.xml</location>EV_MENU_ITEM_LIST_IMP</class><char>*</char>
+	<class><location>../interface/ev_menu_separator_links.xml</location>EV_MENU_SEPARATOR</class>
+
+<keyword>Suppliers</keyword>
+	<class><location>../interface/ev_menu_separator_links.xml</location>EV_MENU_SEPARATOR</class>
+	<class><location>../implementation_gtk/ev_menu_separator_imp_links.xml</location>EV_MENU_SEPARATOR_IMP</class>
+
+</system>

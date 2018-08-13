@@ -1,0 +1,209 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;EiffelVision popup window, GTK+ implementation&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2017-03-27 13:31:29 -0700 (Mon, 27 Mar 2017) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 100058 $&quot;</string>
+
+<keyword>class</keyword> 
+	<class><location>../implementation_gtk/ev_popup_window_imp.xml</location>EV_POPUP_WINDOW_IMP</class>
+
+<keyword>inherit</keyword>
+	<class><location>../implementation_interface/ev_popup_window_i.xml</location>EV_POPUP_WINDOW_I</class>
+		<keyword>undefine</keyword>
+			<feature><location>../implementation_gtk/ev_container_imp.xml#f_propagate_background_color</location>propagate_background_color</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_container_imp.xml#f_propagate_foreground_color</location>propagate_foreground_color</feature><symbol>,</symbol>
+			<feature><location>../implementation_interface/ev_window_i.xml#f_lock_update</location>lock_update</feature><symbol>,</symbol>
+			<feature><location>../implementation_interface/ev_window_i.xml#f_unlock_update</location>unlock_update</feature>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_interface</location>interface</feature>
+		<keyword>end</keyword>
+
+	<class><location>../implementation_gtk/ev_window_imp.xml</location>EV_WINDOW_IMP</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_interface</location>interface</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_old_make</location>old_make</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_make</location>make</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_default_wm_decorations</location>default_wm_decorations</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_client_area</location>client_area</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_show</location>show</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_hide</location>hide</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_internal_enable_border</location>internal_enable_border</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_internal_disable_border</location>internal_disable_border</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_grab_keyboard_and_mouse</location>grab_keyboard_and_mouse</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_release_keyboard_and_mouse</location>release_keyboard_and_mouse</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_allow_resize</location>allow_resize</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_forbid_resize</location>forbid_resize</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_on_focus_changed</location>on_focus_changed</feature>
+		<keyword>end</keyword>
+
+<keyword>create</keyword> 
+	<feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_make</location>make</feature><symbol>,</symbol>
+	<feature><location>../implementation_interface/ev_popup_window_i.xml#f_initialize_with_shadow</location>initialize_with_shadow</feature>
+
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Initialization</comment>
+
+	<anchor>f_old_make</anchor><feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_old_make</location>old_make</feature> <symbol>(</symbol><local>an_interface</local><symbol>:</symbol> <keyword>attached</keyword> <keyword>like</keyword> <feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_interface</location>interface</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Connect interface and initialize </comment><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><comment>.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_interface/ev_any_i.xml#f_assign_interface</location>assign_interface</feature><symbol> </symbol><symbol>(</symbol><local>an_interface</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_make</anchor><feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_make</location>make</feature>
+			<comment>--</comment><comment> Initialize </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_client_area</location>client_area</feature> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_event_box_new</location>gtk_event_box_new</feature>
+			<keyword><location>../implementation_gtk/ev_window_imp.xml#f_make</location>Precursor</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_window_imp.xml</location>EV_WINDOW_IMP</class><symbol>}</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_widget_show</location>gtk_widget_show</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_client_area</location>client_area</feature><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_container_add</location>gtk_container_add</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_client_area</location>client_area</feature><symbol>)</symbol>
+			<keyword>if</keyword> <keyword>not</keyword> <feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_override_redirect</location>Override_redirect</feature> <keyword>then</keyword>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_window_set_skip_taskbar_hint</location>gtk_window_set_skip_taskbar_hint</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>,</symbol> <keyword>True</keyword><symbol>)</symbol>
+			<keyword>end</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_override_redirect</location>Override_redirect</feature> <keyword>then</keyword>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_window_set_override_redirect</location>gdk_window_set_override_redirect</feature> <symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_widget_struct_window</location>gtk_widget_struct_window</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>)</symbol><symbol>,</symbol> <keyword>True</keyword><symbol>)</symbol>
+			<keyword>end</keyword>
+			<feature><location>../implementation_interface/ev_window_i.xml#f_disable_border</location>disable_border</feature>
+			<feature><location>../implementation_gtk/ev_window_imp.xml#f_disable_user_resize</location>disable_user_resize</feature>
+			<feature><location>../implementation_gtk/ev_colorizable_imp.xml#f_set_background_color</location>set_background_color</feature><symbol> </symbol><symbol>(</symbol><symbol>(</symbol><keyword>create</keyword><symbol> </symbol><symbol>{</symbol><class><location>../interface/ev_stock_colors.xml</location>EV_STOCK_COLORS</class><symbol>}</symbol><symbol>)</symbol><dot>.</dot><feature><location>../interface/ev_stock_colors.xml#f_black</location>Black</feature><symbol>)</symbol>
+			<feature><location>../implementation_interface/ev_any_i.xml#f_set_is_initialized</location>set_is_initialized</feature><symbol> </symbol><symbol>(</symbol><keyword>True</keyword><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_override_redirect</anchor><feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_override_redirect</location>Override_redirect</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class> <symbol>=</symbol> <keyword>False</keyword>
+
+	<anchor>f_on_focus_changed</anchor><feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_on_focus_changed</location>on_focus_changed</feature> <symbol>(</symbol><local>a_has_focus</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class><symbol>)</symbol>
+			<comment>--</comment><comment> Called from focus intermediary agents when focus for </comment><quoted>Current</quoted><comment> has changed.</comment>
+			<comment>--</comment><comment> if </comment><quoted>a_has_focus</quoted><comment> then </comment><quoted>Current</quoted><comment> has just received focus.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_override_redirect</location>Override_redirect</feature> <keyword>then</keyword>
+				<keyword>if</keyword> <local>a_has_focus</local> <keyword>then</keyword>
+					<feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_set_focused_popup_window</location>set_focused_popup_window</feature><symbol> </symbol><symbol>(</symbol><keyword>Current</keyword><symbol>)</symbol>
+				<keyword>else</keyword>
+					<feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_set_focused_popup_window</location>set_focused_popup_window</feature><symbol> </symbol><symbol>(</symbol><keyword>Void</keyword><symbol>)</symbol>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+			<keyword><location>../implementation_gtk/ev_window_imp.xml#f_on_focus_changed</location>Precursor</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_window_imp.xml</location>EV_WINDOW_IMP</class><symbol>}</symbol><symbol> </symbol><symbol>(</symbol><local>a_has_focus</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_grab_keyboard_and_mouse</anchor><feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_grab_keyboard_and_mouse</location>grab_keyboard_and_mouse</feature>
+			<comment>--</comment><comment> Perform a global mouse and keyboard grab.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <keyword>not</keyword> <feature><location>../implementation_interface/ev_popup_window_i.xml#f_is_disconnected_from_window_manager</location>is_disconnected_from_window_manager</feature> <keyword>then</keyword>
+				<keyword><location>../implementation_gtk/ev_pick_and_dropable_imp.xml#f_grab_keyboard_and_mouse</location>Precursor</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_release_keyboard_and_mouse</anchor><feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_release_keyboard_and_mouse</location>release_keyboard_and_mouse</feature>
+			<comment>--</comment><comment> Release mouse and keyboard grab.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <keyword>not</keyword> <feature><location>../implementation_interface/ev_popup_window_i.xml#f_is_disconnected_from_window_manager</location>is_disconnected_from_window_manager</feature> <keyword>then</keyword>
+				<keyword><location>../implementation_gtk/ev_pick_and_dropable_imp.xml#f_release_keyboard_and_mouse</location>Precursor</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> implementation</comment>
+
+	<anchor>f_allow_resize</anchor><feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_allow_resize</location>allow_resize</feature>
+			<comment>--</comment><comment> Allow user resizing of </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_internal_enable_border</location>internal_enable_border</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_forbid_resize</anchor><feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_forbid_resize</location>forbid_resize</feature>
+			<comment>--</comment><comment> Forbid user resizing of </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>do</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_border_width</anchor><feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_border_width</location>Border_width</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class> <symbol>=</symbol> <number>1</number>
+			<comment>--</comment><comment> Border width of </comment><quoted>Current</quoted><comment>.</comment>
+
+	<anchor>f_internal_enable_border</anchor><feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_internal_enable_border</location>internal_enable_border</feature>
+			<comment>--</comment><comment> Ensure a border is displayed around Current.</comment>
+		<keyword>do</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_container_set_border_width</location>gtk_container_set_border_width</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_border_width</location>Border_width</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_internal_disable_border</anchor><feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_internal_disable_border</location>internal_disable_border</feature>
+			<comment>--</comment><comment> Ensure no border is displayed around Current.</comment>
+		<keyword>do</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_container_set_border_width</location>gtk_container_set_border_width</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>,</symbol> <number>0</number><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_application_imp.xml</location>EV_APPLICATION_IMP</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_show</anchor><feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_show</location>show</feature>
+			<comment>--</comment><comment> Map the Window to the screen.</comment>
+		<keyword>do</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_window_set_accept_focus</location>gtk_window_set_accept_focus</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>,</symbol> <keyword>not</keyword> <feature><location>../implementation_interface/ev_popup_window_i.xml#f_is_disconnected_from_window_manager</location>is_disconnected_from_window_manager</feature><symbol>)</symbol>
+			<keyword><location>../implementation_gtk/ev_window_imp.xml#f_show</location>Precursor</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_override_redirect</location>Override_redirect</feature> <keyword>then</keyword>
+				<keyword>if</keyword> <keyword>not</keyword> <feature><location>../implementation_gtk/ev_window_imp.xml#f_has_focus</location>has_focus</feature> <keyword>then</keyword>
+					<feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_grab_keyboard_and_mouse</location>grab_keyboard_and_mouse</feature>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_hide</anchor><feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_hide</location>hide</feature>
+			<comment>--</comment><comment> Unmap the Window from the screen.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_override_redirect</location>Override_redirect</feature> <keyword>then</keyword>
+				<keyword>if</keyword> <feature><location>../implementation_gtk/ev_window_imp.xml#f_has_focus</location>has_focus</feature> <keyword>then</keyword>
+					<feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_release_keyboard_and_mouse</location>release_keyboard_and_mouse</feature>
+					<keyword>if</keyword> <feature><location>../implementation_interface/ev_any_i.xml#f_is_in_destroy</location>is_in_destroy</feature> <keyword>then</keyword>
+						<feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_set_focused_popup_window</location>set_focused_popup_window</feature><symbol> </symbol><symbol>(</symbol><keyword>Void</keyword><symbol>)</symbol>
+					<keyword>end</keyword>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+			<keyword><location>../implementation_gtk/ev_window_imp.xml#f_hide</location>Precursor</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_handle_mouse_button_event</anchor><feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_handle_mouse_button_event</location>handle_mouse_button_event</feature> <symbol>(</symbol><local>a_type</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_button</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_screen_x</local><symbol>,</symbol> <local>a_screen_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> A mouse event has occurred.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_override_redirect</location>Override_redirect</feature> <keyword>then</keyword>
+				<keyword>if</keyword> <local>a_type</local> <symbol>=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_button_press_enum</location>gdk_button_press_enum</feature> <keyword>then</keyword>
+					<keyword>if</keyword> <local>a_screen_x</local> <symbol>&gt;=</symbol> <feature><location>../implementation_gtk/ev_gtk_window_imp.xml#f_x_position</location>x_position</feature> <keyword>and then</keyword> <local>a_screen_x</local> <symbol>&lt;=</symbol> <symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_window_imp.xml#f_x_position</location>x_position</feature> <symbol>+</symbol> <feature><location>../implementation_gtk/ev_gtk_window_imp.xml#f_width</location>width</feature><symbol>)</symbol> <keyword>and then</keyword> <local>a_screen_y</local> <symbol>&gt;=</symbol> <feature><location>../implementation_gtk/ev_gtk_window_imp.xml#f_y_position</location>y_position</feature> <keyword>and then</keyword> <local>a_screen_y</local> <symbol>&lt;=</symbol> <symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_window_imp.xml#f_y_position</location>y_position</feature> <symbol>+</symbol> <feature><location>../implementation_gtk/ev_gtk_window_imp.xml#f_height</location>height</feature><symbol>)</symbol> <keyword>then</keyword>
+						<feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_grab_keyboard_and_mouse</location>grab_keyboard_and_mouse</feature>
+					<keyword>else</keyword>
+						<keyword>if</keyword> <feature><location>../implementation_gtk/ev_window_imp.xml#f_has_focus</location>has_focus</feature> <keyword>then</keyword>
+							<feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_release_keyboard_and_mouse</location>release_keyboard_and_mouse</feature>
+						<keyword>end</keyword>
+					<keyword>end</keyword>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_default_wm_decorations</anchor><feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_default_wm_decorations</location>default_wm_decorations</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Default Window Manager decorations of </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <number>0</number>
+		<keyword>end</keyword>
+
+	<anchor>f_client_area</anchor><feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_client_area</location>client_area</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Container area of </comment><quoted>Current</quoted><comment>.</comment>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_any.xml</location>EV_ANY</class><symbol>,</symbol> <class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_interface</anchor><feature><location>../implementation_gtk/ev_popup_window_imp.xml#f_interface</location>interface</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_popup_window.xml</location>EV_POPUP_WINDOW</class>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2017, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_gtk/ev_popup_window_imp.xml</location>EV_POPUP_WINDOW_IMP</class></system>
+

@@ -1,0 +1,97 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Vision container, GTK+ implementation.&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;container&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2016-09-27 08:50:48 -0700 (Tue, 27 Sep 2016) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 99192 $&quot;</string>
+
+<keyword>deferred</keyword> <keyword>class</keyword> <keyword>interface</keyword>
+	<class><location>../implementation_gtk/ev_container_imp_short.xml</location>EV_CONTAINER_IMP</class>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_container_widget</anchor><feature><location>../implementation_gtk/ev_container_imp_short.xml#f_container_widget</location>container_widget</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+
+	<anchor>f_client_width</anchor><feature><location>../implementation_gtk/ev_container_imp_short.xml#f_client_width</location>client_width</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Width of the client area of container.</comment>
+			<comment>--</comment><comment> Redefined in children.</comment>
+
+	<anchor>f_client_height</anchor><feature><location>../implementation_gtk/ev_container_imp_short.xml#f_client_height</location>client_height</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Height of the client area of container</comment>
+			<comment>--</comment><comment> Redefined in children.</comment>
+
+	<anchor>f_background_pixmap</anchor><feature><location>../implementation_gtk/ev_container_imp_short.xml#f_background_pixmap</location>background_pixmap</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_pixmap_short.xml</location>EV_PIXMAP</class>
+			<comment>--</comment><comment> the background pixmap</comment>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Element change</comment>
+
+	<anchor>f_replace</anchor><feature><location>../implementation_gtk/ev_container_imp_short.xml#f_replace</location>replace</feature> <symbol>(</symbol><local>v</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../implementation_interface/ev_container_i_short.xml#f_item</location>item</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Replace </comment><feature><location>../implementation_interface/ev_container_i_short.xml#f_item</location>item</feature><comment> with </comment><quoted>v</quoted><comment>.</comment>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status setting</comment>
+
+	<anchor>f_connect_radio_grouping</anchor><feature><location>../implementation_gtk/ev_container_imp_short.xml#f_connect_radio_grouping</location>connect_radio_grouping</feature> <symbol>(</symbol><local>a_container</local><symbol>:</symbol> <class><location>../interface/ev_container_short.xml</location>EV_CONTAINER</class><symbol>)</symbol>
+			<comment>--</comment><comment> Join radio grouping of </comment><quoted>a_container</quoted><comment> to </comment><quoted>Current</quoted><comment>.</comment>
+
+	<anchor>f_unconnect_radio_grouping</anchor><feature><location>../implementation_gtk/ev_container_imp_short.xml#f_unconnect_radio_grouping</location>unconnect_radio_grouping</feature> <symbol>(</symbol><local>a_container</local><symbol>:</symbol> <class><location>../interface/ev_container_short.xml</location>EV_CONTAINER</class><symbol>)</symbol>
+			<comment>--</comment><comment> Remove Join of </comment><quoted>a_container</quoted><comment> to radio grouping of </comment><quoted>Current</quoted><comment>.</comment>
+
+	<anchor>f_add_radio_button</anchor><feature><location>../implementation_gtk/ev_container_imp_short.xml#f_add_radio_button</location>add_radio_button</feature> <symbol>(</symbol><local>a_widget_imp</local><symbol>:</symbol> <class><location>../implementation_gtk/ev_widget_imp_short.xml</location>EV_WIDGET_IMP</class><symbol>)</symbol>
+			<comment>--</comment><comment> Called every time a widget is added to the container.</comment>
+		<keyword>require</keyword>
+			<tag>a_widget_imp_not_void</tag><symbol>:</symbol> <local>a_widget_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_remove_radio_button</anchor><feature><location>../implementation_gtk/ev_container_imp_short.xml#f_remove_radio_button</location>remove_radio_button</feature> <symbol>(</symbol><local>a_widget_imp</local><symbol>:</symbol> <class><location>../implementation_gtk/ev_widget_imp_short.xml</location>EV_WIDGET_IMP</class><symbol>)</symbol>
+			<comment>--</comment><comment> Called every time a widget is removed from the container.</comment>
+		<keyword>require</keyword>
+			<tag>a_widget_imp_not_void</tag><symbol>:</symbol> <local>a_widget_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_internal_set_background_pixmap</anchor><feature><location>../implementation_gtk/ev_container_imp_short.xml#f_internal_set_background_pixmap</location>internal_set_background_pixmap</feature> <symbol>(</symbol><local>a_pixmap</local><symbol>:</symbol> <class><location>../interface/ev_pixmap_short.xml</location>EV_PIXMAP</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set the container background pixmap to </comment><quoted>pixmap</quoted><comment>.</comment>
+
+	<anchor>f_set_background_pixmap</anchor><feature><location>../implementation_gtk/ev_container_imp_short.xml#f_set_background_pixmap</location>set_background_pixmap</feature> <symbol>(</symbol><local>a_pixmap</local><symbol>:</symbol> <class><location>../interface/ev_pixmap_short.xml</location>EV_PIXMAP</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set the container background pixmap to </comment><quoted>pixmap</quoted><comment>.</comment>
+
+	<anchor>f_bg_pixmap</anchor><feature><location>../implementation_gtk/ev_container_imp_short.xml#f_bg_pixmap</location>bg_pixmap</feature> <symbol>(</symbol><local>p</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>POINTER</class>
+
+	<anchor>f_remove_background_pixmap</anchor><feature><location>../implementation_gtk/ev_container_imp_short.xml#f_remove_background_pixmap</location>remove_background_pixmap</feature>
+			<comment>--</comment><comment> Make background pixmap Void.</comment>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Basic operations</comment>
+
+	<anchor>f_propagate_foreground_color</anchor><feature><location>../implementation_gtk/ev_container_imp_short.xml#f_propagate_foreground_color</location>propagate_foreground_color</feature>
+			<comment>--</comment><comment> Propagate the current foreground color of the</comment>
+			<comment>--</comment><comment> container to the children.</comment>
+
+	<anchor>f_propagate_background_color</anchor><feature><location>../implementation_gtk/ev_container_imp_short.xml#f_propagate_background_color</location>propagate_background_color</feature>
+			<comment>--</comment><comment> Propagate the current background color of the</comment>
+			<comment>--</comment><comment> container to the children.</comment>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Command</comment>
+
+	<anchor>f_destroy</anchor><feature><location>../implementation_gtk/ev_container_imp_short.xml#f_destroy</location>destroy</feature>
+			<comment>--</comment><comment> Render </comment><quoted>Current</quoted><comment> unusable.</comment>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Event handling</comment>
+
+	<anchor>f_on_new_item</anchor><feature><location>../implementation_gtk/ev_container_imp_short.xml#f_on_new_item</location>on_new_item</feature> <symbol>(</symbol><local>an_item_imp</local><symbol>:</symbol> <class><location>../implementation_gtk/ev_widget_imp_short.xml</location>EV_WIDGET_IMP</class><symbol>)</symbol>
+			<comment>--</comment><comment> Called after </comment><quoted>an_item</quoted><comment> is added.</comment>
+
+	<anchor>f_on_removed_item</anchor><feature><location>../implementation_gtk/ev_container_imp_short.xml#f_on_removed_item</location>on_removed_item</feature> <symbol>(</symbol><local>an_item_imp</local><symbol>:</symbol> <class><location>../implementation_gtk/ev_widget_imp_short.xml</location>EV_WIDGET_IMP</class><symbol>)</symbol>
+			<comment>--</comment><comment> Called just before </comment><quoted>an_item</quoted><comment> is removed.</comment>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2014, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_gtk/ev_container_imp_short.xml</location>EV_CONTAINER_IMP</class></system>
+

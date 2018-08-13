@@ -1,0 +1,217 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Used for describing 32-bit RGBA component values of EV_PIXEL_BUFFER&quot;</string>
+	<indexing_tag>author</indexing_tag><symbol>:</symbol> <string>&quot;&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2013-05-20 16:15:17 -0700 (Mon, 20 May 2013) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 92557 $&quot;</string>
+
+<keyword>class</keyword> 
+	<class><location>../interface/ev_pixel_buffer_pixel.xml</location>EV_PIXEL_BUFFER_PIXEL</class>
+
+<keyword>inherit</keyword>
+	<class><include>False</include>ANY</class>
+		<keyword>redefine</keyword>
+			<feature><location>../interface/ev_pixel_buffer_pixel.xml#f_default_create</location>default_create</feature>
+		<keyword>end</keyword>
+
+<keyword>create</keyword> 
+	<feature><location>../interface/ev_pixel_buffer_pixel.xml#f_default_create</location>default_create</feature>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Initialization</comment>
+
+	<anchor>f_default_create</anchor><feature><location>../interface/ev_pixel_buffer_pixel.xml#f_default_create</location>default_create</feature>
+			<comment>--</comment><comment> Initialize pixel.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <symbol>(</symbol><keyword>create</keyword><symbol> </symbol><symbol>{</symbol><class><include>False</include>PLATFORM</class><symbol>}</symbol><symbol>)</symbol><dot>.</dot><feature><include>False</include>is_windows</feature> <keyword>then</keyword>
+				<feature><location>../interface/ev_pixel_buffer_pixel.xml#f_red_shift</location>red_shift</feature> <symbol>:=</symbol> <number>16</number>
+				<feature><location>../interface/ev_pixel_buffer_pixel.xml#f_green_shift</location>green_shift</feature> <symbol>:=</symbol> <number>8</number>
+				<feature><location>../interface/ev_pixel_buffer_pixel.xml#f_blue_shift</location>blue_shift</feature> <symbol>:=</symbol> <number>0</number>
+				<feature><location>../interface/ev_pixel_buffer_pixel.xml#f_alpha_shift</location>alpha_shift</feature> <symbol>:=</symbol> <number>24</number>
+			<keyword>else</keyword>
+				<feature><location>../interface/ev_pixel_buffer_pixel.xml#f_red_shift</location>red_shift</feature> <symbol>:=</symbol> <number>24</number>
+				<feature><location>../interface/ev_pixel_buffer_pixel.xml#f_green_shift</location>green_shift</feature> <symbol>:=</symbol> <number>16</number>
+				<feature><location>../interface/ev_pixel_buffer_pixel.xml#f_blue_shift</location>blue_shift</feature> <symbol>:=</symbol> <number>8</number>
+				<feature><location>../interface/ev_pixel_buffer_pixel.xml#f_alpha_shift</location>alpha_shift</feature> <symbol>:=</symbol> <number>0</number>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_red</anchor><feature><location>../interface/ev_pixel_buffer_pixel.xml#f_red</location>red</feature><symbol>:</symbol> <class><include>False</include>NATURAL_8</class> <keyword>assign</keyword> <feature><location>../interface/ev_pixel_buffer_pixel.xml#f_set_red</location>set_red</feature>
+			<comment>--</comment><comment> Red component value of pixel.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <symbol>(</symbol><symbol>(</symbol><feature><location>../interface/ev_pixel_buffer_pixel.xml#f_internal_color_value</location>internal_color_value</feature> <symbol>|&gt;&gt;</symbol> <feature><location>../interface/ev_pixel_buffer_pixel.xml#f_red_shift</location>red_shift</feature><dot>.</dot><feature><include>False</include>to_integer_32</feature><symbol>)</symbol><symbol>)</symbol><dot>.</dot><feature><include>False</include>to_natural_8</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_green</anchor><feature><location>../interface/ev_pixel_buffer_pixel.xml#f_green</location>green</feature><symbol>:</symbol> <class><include>False</include>NATURAL_8</class> <keyword>assign</keyword> <feature><location>../interface/ev_pixel_buffer_pixel.xml#f_set_green</location>set_green</feature>
+			<comment>--</comment><comment> Green component value of pixel.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <symbol>(</symbol><symbol>(</symbol><feature><location>../interface/ev_pixel_buffer_pixel.xml#f_internal_color_value</location>internal_color_value</feature> <symbol>|&gt;&gt;</symbol> <feature><location>../interface/ev_pixel_buffer_pixel.xml#f_green_shift</location>green_shift</feature><dot>.</dot><feature><include>False</include>to_integer_32</feature><symbol>)</symbol><symbol>)</symbol><dot>.</dot><feature><include>False</include>to_natural_8</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_blue</anchor><feature><location>../interface/ev_pixel_buffer_pixel.xml#f_blue</location>blue</feature><symbol>:</symbol> <class><include>False</include>NATURAL_8</class> <keyword>assign</keyword> <feature><location>../interface/ev_pixel_buffer_pixel.xml#f_set_blue</location>set_blue</feature>
+			<comment>--</comment><comment> Blue component value of pixel.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <symbol>(</symbol><symbol>(</symbol><feature><location>../interface/ev_pixel_buffer_pixel.xml#f_internal_color_value</location>internal_color_value</feature> <symbol>|&gt;&gt;</symbol> <feature><location>../interface/ev_pixel_buffer_pixel.xml#f_blue_shift</location>blue_shift</feature><dot>.</dot><feature><include>False</include>to_integer_32</feature><symbol>)</symbol><symbol>)</symbol><dot>.</dot><feature><include>False</include>to_natural_8</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_alpha</anchor><feature><location>../interface/ev_pixel_buffer_pixel.xml#f_alpha</location>alpha</feature><symbol>:</symbol> <class><include>False</include>NATURAL_8</class> <keyword>assign</keyword> <feature><location>../interface/ev_pixel_buffer_pixel.xml#f_set_alpha</location>set_alpha</feature>
+			<comment>--</comment><comment> Alpha component value of pixel.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <symbol>(</symbol><symbol>(</symbol><feature><location>../interface/ev_pixel_buffer_pixel.xml#f_internal_color_value</location>internal_color_value</feature> <symbol>|&gt;&gt;</symbol> <feature><location>../interface/ev_pixel_buffer_pixel.xml#f_alpha_shift</location>alpha_shift</feature><dot>.</dot><feature><include>False</include>to_integer_32</feature><symbol>)</symbol><symbol>)</symbol><dot>.</dot><feature><include>False</include>to_natural_8</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_rgba_value</anchor><feature><location>../interface/ev_pixel_buffer_pixel.xml#f_rgba_value</location>rgba_value</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class> <keyword>assign</keyword> <feature><location>../interface/ev_pixel_buffer_pixel.xml#f_set_rgba_value</location>set_rgba_value</feature>
+			<comment>--</comment><comment> RGBA value of pixel.</comment>
+		<keyword>local</keyword>
+			<local>l_color_value</local><symbol>,</symbol> <local>l_alpha_value</local><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_pixel_buffer_pixel.xml#f_internal_color_value</location>internal_color_value</feature>
+			<keyword>if</keyword> <symbol>{</symbol><class><include>False</include>PLATFORM</class><symbol>}</symbol><dot>.</dot><feature><include>False</include>is_windows</feature> <keyword>then</keyword>
+				<local>l_color_value</local> <symbol>:=</symbol> <keyword>Result</keyword> <symbol>|&lt;&lt;</symbol> <number>8</number>
+				<local>l_alpha_value</local> <symbol>:=</symbol> <keyword>Result</keyword> <symbol>|&gt;&gt;</symbol> <number>24</number>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>l_color_value</local> <symbol>|</symbol> <local>l_alpha_value</local>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Element Change</comment>
+
+	<anchor>f_set_red</anchor><feature><location>../interface/ev_pixel_buffer_pixel.xml#f_set_red</location>set_red</feature> <symbol>(</symbol><local>a_red</local><symbol>:</symbol> <class><include>False</include>NATURAL_8</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set red component of pixel to </comment><quoted>a_red</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_pixel_buffer_pixel.xml#f_set_component_value</location>set_component_value</feature><symbol> </symbol><symbol>(</symbol><local>a_red</local><symbol>,</symbol> <feature><location>../interface/ev_pixel_buffer_pixel.xml#f_red_shift</location>red_shift</feature><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>red_set</tag><symbol>:</symbol> <feature><location>../interface/ev_pixel_buffer_pixel.xml#f_red</location>red</feature> <symbol>=</symbol> <local>a_red</local>
+		<keyword>end</keyword>
+
+	<anchor>f_set_green</anchor><feature><location>../interface/ev_pixel_buffer_pixel.xml#f_set_green</location>set_green</feature> <symbol>(</symbol><local>a_green</local><symbol>:</symbol> <class><include>False</include>NATURAL_8</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set green component of pixel to </comment><quoted>a_green</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_pixel_buffer_pixel.xml#f_set_component_value</location>set_component_value</feature><symbol> </symbol><symbol>(</symbol><local>a_green</local><symbol>,</symbol> <feature><location>../interface/ev_pixel_buffer_pixel.xml#f_green_shift</location>green_shift</feature><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>green_set</tag><symbol>:</symbol> <feature><location>../interface/ev_pixel_buffer_pixel.xml#f_green</location>green</feature> <symbol>=</symbol> <local>a_green</local>
+		<keyword>end</keyword>
+
+	<anchor>f_set_blue</anchor><feature><location>../interface/ev_pixel_buffer_pixel.xml#f_set_blue</location>set_blue</feature> <symbol>(</symbol><local>a_blue</local><symbol>:</symbol> <class><include>False</include>NATURAL_8</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set blue component of pixel to </comment><quoted>a_blue</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_pixel_buffer_pixel.xml#f_set_component_value</location>set_component_value</feature><symbol> </symbol><symbol>(</symbol><local>a_blue</local><symbol>,</symbol> <feature><location>../interface/ev_pixel_buffer_pixel.xml#f_blue_shift</location>blue_shift</feature><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>blue_set</tag><symbol>:</symbol> <feature><location>../interface/ev_pixel_buffer_pixel.xml#f_blue</location>blue</feature> <symbol>=</symbol> <local>a_blue</local>
+		<keyword>end</keyword>
+
+	<anchor>f_set_alpha</anchor><feature><location>../interface/ev_pixel_buffer_pixel.xml#f_set_alpha</location>set_alpha</feature> <symbol>(</symbol><local>a_alpha</local><symbol>:</symbol> <class><include>False</include>NATURAL_8</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set alpha component of pixel to </comment><quoted>a_alpha</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_pixel_buffer_pixel.xml#f_set_component_value</location>set_component_value</feature><symbol> </symbol><symbol>(</symbol><local>a_alpha</local><symbol>,</symbol> <feature><location>../interface/ev_pixel_buffer_pixel.xml#f_alpha_shift</location>alpha_shift</feature><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>alpha_set</tag><symbol>:</symbol> <feature><location>../interface/ev_pixel_buffer_pixel.xml#f_alpha</location>alpha</feature> <symbol>=</symbol> <local>a_alpha</local>
+		<keyword>end</keyword>
+
+	<anchor>f_set_values</anchor><feature><location>../interface/ev_pixel_buffer_pixel.xml#f_set_values</location>set_values</feature> <symbol>(</symbol><local>a_red</local><symbol>,</symbol> <local>a_green</local><symbol>,</symbol> <local>a_blue</local><symbol>,</symbol> <local>a_alpha</local><symbol>:</symbol> <class><include>False</include>NATURAL_8</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set RGBA values to </comment><quoted>a_red</quoted><comment>, </comment><quoted>a_green</quoted><comment>, </comment><quoted>a_blue</quoted><comment> and </comment><quoted>a_alpha</quoted><comment> respectively.</comment>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_pixel_buffer_pixel.xml#f_set_red</location>set_red</feature><symbol> </symbol><symbol>(</symbol><local>a_red</local><symbol>)</symbol>
+			<feature><location>../interface/ev_pixel_buffer_pixel.xml#f_set_green</location>set_green</feature><symbol> </symbol><symbol>(</symbol><local>a_green</local><symbol>)</symbol>
+			<feature><location>../interface/ev_pixel_buffer_pixel.xml#f_set_blue</location>set_blue</feature><symbol> </symbol><symbol>(</symbol><local>a_blue</local><symbol>)</symbol>
+			<feature><location>../interface/ev_pixel_buffer_pixel.xml#f_set_alpha</location>set_alpha</feature><symbol> </symbol><symbol>(</symbol><local>a_alpha</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_set_rgba_value</anchor><feature><location>../interface/ev_pixel_buffer_pixel.xml#f_set_rgba_value</location>set_rgba_value</feature> <symbol>(</symbol><local>a_rgba_value</local><symbol>:</symbol> <class><include>False</include>NATURAL_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set RGBA value to </comment><quoted>a_rgba_value</quoted><comment>.</comment>
+		<keyword>local</keyword>
+			<local>l_color_value</local><symbol>,</symbol> <local>l_alpha</local><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+			<local>l_internal_pixel_buffer</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../interface/ev_pixel_buffer_pixel.xml#f_internal_pixel_buffer</location>internal_pixel_buffer</feature>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <symbol>{</symbol><class><include>False</include>PLATFORM</class><symbol>}</symbol><dot>.</dot><feature><include>False</include>is_windows</feature> <keyword>then</keyword>
+				<local>l_color_value</local> <symbol>:=</symbol> <local>a_rgba_value</local> <symbol>|&gt;&gt;</symbol> <number>8</number>
+				<local>l_alpha</local> <symbol>:=</symbol> <local>a_rgba_value</local> <symbol>|&lt;&lt;</symbol> <number>24</number>
+				<local>l_color_value</local> <symbol>:=</symbol> <local>l_color_value</local> <symbol>|</symbol> <local>l_alpha</local>
+			<keyword>else</keyword>
+				<local>l_color_value</local> <symbol>:=</symbol> <local>a_rgba_value</local>
+			<keyword>end</keyword>
+			<local>l_internal_pixel_buffer</local> <symbol>:=</symbol> <feature><location>../interface/ev_pixel_buffer_pixel.xml#f_internal_pixel_buffer</location>internal_pixel_buffer</feature>
+			<keyword>if</keyword> <local>l_internal_pixel_buffer</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>and then</keyword> <local>l_internal_pixel_buffer</local><dot>.</dot><feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_is_locked</location>is_locked</feature> <keyword>then</keyword>
+				<local>l_internal_pixel_buffer</local><dot>.</dot><feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_set_pixel</location>set_pixel</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_pixel_buffer_pixel.xml#f_current_column_value</location>current_column_value</feature><symbol>,</symbol> <feature><location>../interface/ev_pixel_buffer_pixel.xml#f_current_row_value</location>current_row_value</feature><symbol>,</symbol> <local>l_color_value</local><symbol>)</symbol>
+			<keyword>end</keyword>
+			<feature><location>../interface/ev_pixel_buffer_pixel.xml#f_internal_color_value</location>internal_color_value</feature> <symbol>:=</symbol> <local>a_rgba_value</local>
+		<keyword>ensure</keyword>
+			<tag>rgba_value_set</tag><symbol>:</symbol> <feature><location>../interface/ev_pixel_buffer_pixel.xml#f_internal_pixel_buffer</location>internal_pixel_buffer</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>and then</keyword> <feature><location>../interface/ev_pixel_buffer_pixel.xml#f_internal_pixel_buffer</location>internal_pixel_buffer</feature><dot>.</dot><feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_is_locked</location>is_locked</feature> <keyword>implies</keyword> <feature><location>../interface/ev_pixel_buffer_pixel.xml#f_internal_pixel_buffer</location>internal_pixel_buffer</feature><dot>.</dot><feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_get_pixel</location>get_pixel</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_pixel_buffer_pixel.xml#f_current_column_value</location>current_column_value</feature><symbol>,</symbol> <feature><location>../interface/ev_pixel_buffer_pixel.xml#f_current_row_value</location>current_row_value</feature><symbol>)</symbol> <symbol>=</symbol> <local>a_rgba_value</local>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_pixel_buffer_iterator.xml</location>EV_PIXEL_BUFFER_ITERATOR</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_set_pixel_buffer</anchor><feature><location>../interface/ev_pixel_buffer_pixel.xml#f_set_pixel_buffer</location>set_pixel_buffer</feature> <symbol>(</symbol><local>a_pixel_buffer</local><symbol>:</symbol> <class><location>../implementation_interface/ev_pixel_buffer_i.xml</location>EV_PIXEL_BUFFER_I</class><symbol>)</symbol>
+			<comment>--</comment><comment> Make </comment><quoted>Current</quoted><comment> for pixel buffer </comment><quoted>a_pixel_buffer</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>a_pixel_buffer_not_void</tag><symbol>:</symbol> <local>a_pixel_buffer</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_pixel_buffer_pixel.xml#f_internal_pixel_buffer</location>internal_pixel_buffer</feature> <symbol>:=</symbol> <local>a_pixel_buffer</local>
+		<keyword>end</keyword>
+
+	<anchor>f_sync_with_pixel_buffer_value</anchor><feature><location>../interface/ev_pixel_buffer_pixel.xml#f_sync_with_pixel_buffer_value</location>sync_with_pixel_buffer_value</feature> <symbol>(</symbol><local>a_column</local><symbol>,</symbol> <local>a_row</local><symbol>:</symbol> <class><include>False</include>NATURAL_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Update </comment><quoted>Current</quoted><comment> to reflect pixel value (a_column, a_row) or </comment><feature><location>../interface/ev_pixel_buffer_pixel.xml#f_internal_pixel_buffer</location>internal_pixel_buffer</feature><comment>.</comment>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_pixel_buffer_pixel.xml#f_current_column_value</location>current_column_value</feature> <symbol>:=</symbol> <local>a_column</local>
+			<feature><location>../interface/ev_pixel_buffer_pixel.xml#f_current_row_value</location>current_row_value</feature> <symbol>:=</symbol> <local>a_row</local>
+			<keyword>if</keyword> <feature><location>../interface/ev_pixel_buffer_pixel.xml#f_internal_pixel_buffer</location>internal_pixel_buffer</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<feature><location>../interface/ev_pixel_buffer_pixel.xml#f_internal_color_value</location>internal_color_value</feature> <symbol>:=</symbol> <feature><location>../interface/ev_pixel_buffer_pixel.xml#f_internal_pixel_buffer</location>internal_pixel_buffer</feature><dot>.</dot><feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_get_pixel</location>get_pixel</feature><symbol> </symbol><symbol>(</symbol><local>a_column</local><symbol>,</symbol> <local>a_row</local><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_red_shift</anchor><feature><location>../interface/ev_pixel_buffer_pixel.xml#f_red_shift</location>red_shift</feature><symbol>:</symbol> <class><include>False</include>NATURAL_8</class>
+
+	<anchor>f_green_shift</anchor><feature><location>../interface/ev_pixel_buffer_pixel.xml#f_green_shift</location>green_shift</feature><symbol>:</symbol> <class><include>False</include>NATURAL_8</class>
+
+	<anchor>f_blue_shift</anchor><feature><location>../interface/ev_pixel_buffer_pixel.xml#f_blue_shift</location>blue_shift</feature><symbol>:</symbol> <class><include>False</include>NATURAL_8</class>
+
+	<anchor>f_alpha_shift</anchor><feature><location>../interface/ev_pixel_buffer_pixel.xml#f_alpha_shift</location>alpha_shift</feature><symbol>:</symbol> <class><include>False</include>NATURAL_8</class>
+			<comment>--</comment><comment> Bit shift values to access color components.</comment>
+
+	<anchor>f_set_component_value</anchor><feature><location>../interface/ev_pixel_buffer_pixel.xml#f_set_component_value</location>set_component_value</feature> <symbol>(</symbol><local>a_color</local><symbol>,</symbol> <local>a_shift</local><symbol>:</symbol> <class><include>False</include>NATURAL_8</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set color component to </comment><quoted>a_color</quoted><comment> for color requiring </comment><quoted>a_shift</quoted><comment> bit-shifts.</comment>
+		<keyword>local</keyword>
+			<local>l_mask</local><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+			<local>l_value</local><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>do</keyword>
+			<keyword>inspect</keyword> <local>a_shift</local>
+			<keyword>when</keyword> <number>24</number> <keyword>then</keyword>
+				<local>l_mask</local> <symbol>:=</symbol> <number>16777215</number>
+			<keyword>when</keyword> <number>16</number> <keyword>then</keyword>
+				<local>l_mask</local> <symbol>:=</symbol> <number>4278255615</number>
+			<keyword>when</keyword> <number>8</number> <keyword>then</keyword>
+				<local>l_mask</local> <symbol>:=</symbol> <number>4294902015</number>
+			<keyword>else</keyword>
+				<local>l_mask</local> <symbol>:=</symbol> <number>4294967040</number>
+			<keyword>end</keyword>
+			<feature><location>../interface/ev_pixel_buffer_pixel.xml#f_internal_color_value</location>internal_color_value</feature> <symbol>:=</symbol> <feature><location>../interface/ev_pixel_buffer_pixel.xml#f_internal_color_value</location>internal_color_value</feature> <symbol>&amp;</symbol> <local>l_mask</local>
+			<local>l_value</local> <symbol>:=</symbol> <local>a_color</local><dot>.</dot><feature><include>False</include>to_natural_32</feature>
+			<local>l_value</local> <symbol>:=</symbol> <local>l_value</local> <symbol>|&lt;&lt;</symbol> <local>a_shift</local><dot>.</dot><feature><include>False</include>to_integer_32</feature>
+			<feature><location>../interface/ev_pixel_buffer_pixel.xml#f_internal_color_value</location>internal_color_value</feature> <symbol>:=</symbol> <feature><location>../interface/ev_pixel_buffer_pixel.xml#f_internal_color_value</location>internal_color_value</feature> <symbol>|</symbol> <local>l_value</local>
+			<keyword>if</keyword> <feature><location>../interface/ev_pixel_buffer_pixel.xml#f_internal_pixel_buffer</location>internal_pixel_buffer</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>and then</keyword> <feature><location>../interface/ev_pixel_buffer_pixel.xml#f_internal_pixel_buffer</location>internal_pixel_buffer</feature><dot>.</dot><feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_is_locked</location>is_locked</feature> <keyword>then</keyword>
+				<feature><location>../interface/ev_pixel_buffer_pixel.xml#f_internal_pixel_buffer</location>internal_pixel_buffer</feature><dot>.</dot><feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_set_pixel</location>set_pixel</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_pixel_buffer_pixel.xml#f_current_column_value</location>current_column_value</feature><symbol>,</symbol> <feature><location>../interface/ev_pixel_buffer_pixel.xml#f_current_row_value</location>current_row_value</feature><symbol>,</symbol> <feature><location>../interface/ev_pixel_buffer_pixel.xml#f_internal_color_value</location>internal_color_value</feature><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>ensure</keyword>
+			<tag>pixel_set</tag><symbol>:</symbol> <feature><location>../interface/ev_pixel_buffer_pixel.xml#f_internal_pixel_buffer</location>internal_pixel_buffer</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>and then</keyword> <feature><location>../interface/ev_pixel_buffer_pixel.xml#f_internal_pixel_buffer</location>internal_pixel_buffer</feature><dot>.</dot><feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_is_locked</location>is_locked</feature> <keyword>implies</keyword> <feature><location>../interface/ev_pixel_buffer_pixel.xml#f_internal_color_value</location>internal_color_value</feature> <symbol>=</symbol> <feature><location>../interface/ev_pixel_buffer_pixel.xml#f_internal_pixel_buffer</location>internal_pixel_buffer</feature><dot>.</dot><feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_get_pixel</location>get_pixel</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_pixel_buffer_pixel.xml#f_current_column_value</location>current_column_value</feature><symbol>,</symbol> <feature><location>../interface/ev_pixel_buffer_pixel.xml#f_current_row_value</location>current_row_value</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_current_column_value</anchor><feature><location>../interface/ev_pixel_buffer_pixel.xml#f_current_column_value</location>current_column_value</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+			<comment>--</comment><comment> Current row and column that </comment><quoted>Current</quoted><comment> reflects.</comment>
+
+	<anchor>f_current_row_value</anchor><feature><location>../interface/ev_pixel_buffer_pixel.xml#f_current_row_value</location>current_row_value</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+			<comment>--</comment><comment> Current row and column that </comment><quoted>Current</quoted><comment> reflects.</comment>
+
+	<anchor>f_internal_color_value</anchor><feature><location>../interface/ev_pixel_buffer_pixel.xml#f_internal_color_value</location>internal_color_value</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+			<comment>--</comment><comment> Packed color value which is updated by </comment><quoted>update</quoted><comment>.</comment>
+
+	<anchor>f_internal_pixel_buffer</anchor><feature><location>../interface/ev_pixel_buffer_pixel.xml#f_internal_pixel_buffer</location>internal_pixel_buffer</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_interface/ev_pixel_buffer_i.xml</location>EV_PIXEL_BUFFER_I</class>
+			<comment>--</comment><comment> Pixel buffer for which </comment><quoted>Current</quoted><comment> change values of.</comment>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../interface/ev_pixel_buffer_pixel.xml</location>EV_PIXEL_BUFFER_PIXEL</class></system>
+

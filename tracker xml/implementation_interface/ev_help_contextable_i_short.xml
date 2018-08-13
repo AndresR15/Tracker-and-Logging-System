@@ -1,0 +1,49 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;EV_HELP_CONTEXTABLE implementation interface.&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;help&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2015-12-17 05:34:17 -0800 (Thu, 17 Dec 2015) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 98279 $&quot;</string>
+
+<keyword>deferred</keyword> <keyword>class</keyword> <keyword>interface</keyword>
+	<class><location>../implementation_interface/ev_help_contextable_i_short.xml</location>EV_HELP_CONTEXTABLE_I</class>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_help_context</anchor><feature><location>../implementation_interface/ev_help_contextable_i_short.xml#f_help_context</location>help_context</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>FUNCTION</class> <symbol>[</symbol><class><location>../interface/ev_help_context_short.xml</location>EV_HELP_CONTEXT</class><symbol>]</symbol>
+			<comment>--</comment><comment> Agent that evaluates to help context sent to help engine when help is requested</comment>
+		<keyword>ensure</keyword>
+			<tag>current_if_exists</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_help_contextable_i_short.xml#f_internal_help_context</location>internal_help_context</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>implies</keyword> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../implementation_interface/ev_help_contextable_i_short.xml#f_internal_help_context</location>internal_help_context</feature>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Element change</comment>
+
+	<anchor>f_set_help_context</anchor><feature><location>../implementation_interface/ev_help_contextable_i_short.xml#f_set_help_context</location>set_help_context</feature> <symbol>(</symbol><local>an_help_context</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../implementation_interface/ev_help_contextable_i_short.xml#f_help_context</location>help_context</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>a_help_context</quoted><comment> to </comment><feature><location>../implementation_interface/ev_help_contextable_i_short.xml#f_help_context</location>help_context</feature><comment>.</comment>
+			<comment>--</comment><comment> Assign </comment><quoted>an_help_context</quoted><comment> to </comment><feature><location>../implementation_interface/ev_help_contextable_i_short.xml#f_help_context</location>help_context</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>an_help_context_not_void</tag><symbol>:</symbol> <local>an_help_context</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>ensure</keyword>
+			<tag>help_context_assigned</tag><symbol>:</symbol> <keyword>attached</keyword> <feature><location>../implementation_interface/ev_help_contextable_i_short.xml#f_help_context</location>help_context</feature> <keyword>as</keyword> l_help_context <keyword>and then</keyword> <local>l_help_context</local> <symbol>~</symbol> <local>an_help_context</local>
+
+	<anchor>f_remove_help_context</anchor><feature><location>../implementation_interface/ev_help_contextable_i_short.xml#f_remove_help_context</location>remove_help_context</feature>
+			<comment>--</comment><comment> Remove key press action associated with </comment><quoted>EV_APPLICATION.help_key</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>help_context_not_void</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_help_contextable_i_short.xml#f_help_context</location>help_context</feature> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>ensure</keyword>
+			<tag>no_help_context</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_help_contextable_i_short.xml#f_internal_help_context</location>internal_help_context</feature> <symbol>=</symbol> <keyword>Void</keyword>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2013, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_interface/ev_help_contextable_i_short.xml</location>EV_HELP_CONTEXTABLE_I</class></system>
+

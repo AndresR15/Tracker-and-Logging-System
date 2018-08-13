@@ -1,0 +1,31 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../interface/ev_region_chart.xml</location>EV_REGION</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>interface</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Used for defining a clip region in EV_DRAWABLE&quot;</string>
+	<indexing_tag>create</indexing_tag><symbol>:</symbol> <feature><location>../interface/ev_any.xml#f_default_create</location>default_create</feature><symbol>,</symbol> <feature><location>../interface/ev_region.xml#f_make_with_rectangle</location>make_with_rectangle</feature>
+
+<keyword>Ancestors</keyword>
+	<class><location>../interface/ev_any_chart.xml</location>EV_ANY</class><char>*</char>
+
+<keyword>Queries</keyword>
+	<feature><location>../interface/ev_region.xml#f_conjuncted</location>conjuncted</feature> <keyword>alias</keyword> <symbol>&quot;</symbol><symbol><location>../interface/ev_region.xml#f_conjuncted</location>&amp;</symbol><symbol>&quot;</symbol> <symbol>(</symbol><local>a_region</local><symbol>:</symbol> <class><location>../interface/ev_region_chart.xml</location>EV_REGION</class><symbol>)</symbol><symbol>:</symbol> <class><location>../interface/ev_region_chart.xml</location>EV_REGION</class>
+	<feature><location>../interface/ev_any.xml#f_data</location>data</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>ANY</class>
+	<feature><location>../interface/ev_region.xml#f_disjuncted</location>disjuncted</feature> <keyword>alias</keyword> <symbol>&quot;</symbol><symbol><location>../interface/ev_region.xml#f_disjuncted</location>|</symbol><symbol>&quot;</symbol> <symbol>(</symbol><local>a_region</local><symbol>:</symbol> <class><location>../interface/ev_region_chart.xml</location>EV_REGION</class><symbol>)</symbol><symbol>:</symbol> <class><location>../interface/ev_region_chart.xml</location>EV_REGION</class>
+	<feature><location>../interface/ev_region.xml#f_exclusive_or</location>exclusive_or</feature> <keyword>alias</keyword> <symbol>&quot;</symbol><keyword><location>../interface/ev_region.xml#f_exclusive_or</location>xor</keyword><symbol>&quot;</symbol> <symbol>(</symbol><local>a_region</local><symbol>:</symbol> <class><location>../interface/ev_region_chart.xml</location>EV_REGION</class><symbol>)</symbol><symbol>:</symbol> <class><location>../interface/ev_region_chart.xml</location>EV_REGION</class>
+	<feature><location>../interface/ev_region.xml#f_intersect</location>intersect</feature> <keyword>alias</keyword> <symbol>&quot;</symbol><keyword><location>../interface/ev_region.xml#f_intersect</location>and</keyword><symbol>&quot;</symbol> <symbol>(</symbol><local>a_region</local><symbol>:</symbol> <class><location>../interface/ev_region_chart.xml</location>EV_REGION</class><symbol>)</symbol><symbol>:</symbol> <class><location>../interface/ev_region_chart.xml</location>EV_REGION</class>
+	<feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_region.xml#f_is_equal</location>is_equal</feature> <symbol>(</symbol><local>other</local><symbol>:</symbol> <symbol>[</symbol><keyword>like</keyword> <keyword>Current</keyword><symbol>]</symbol> <keyword>attached</keyword> <class><location>../interface/ev_region_chart.xml</location>EV_REGION</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_region.xml#f_subtract</location>subtract</feature> <keyword>alias</keyword> <symbol>&quot;</symbol><symbol><location>../interface/ev_region.xml#f_subtract</location>-</symbol><symbol>&quot;</symbol> <symbol>(</symbol><local>a_region</local><symbol>:</symbol> <class><location>../interface/ev_region_chart.xml</location>EV_REGION</class><symbol>)</symbol><symbol>:</symbol> <class><location>../interface/ev_region_chart.xml</location>EV_REGION</class>
+	<feature><location>../interface/ev_region.xml#f_union</location>union</feature> <keyword>alias</keyword> <symbol>&quot;</symbol><keyword><location>../interface/ev_region.xml#f_union</location>or</keyword><symbol>&quot;</symbol> <symbol>(</symbol><local>a_region</local><symbol>:</symbol> <class><location>../interface/ev_region_chart.xml</location>EV_REGION</class><symbol>)</symbol><symbol>:</symbol> <class><location>../interface/ev_region_chart.xml</location>EV_REGION</class>
+
+<keyword>Commands</keyword>
+	<feature><location>../interface/ev_region.xml#f_copy</location>copy</feature> <symbol>(</symbol><local>other</local><symbol>:</symbol> <symbol>[</symbol><keyword>like</keyword> <keyword>Current</keyword><symbol>]</symbol> <keyword>attached</keyword> <class><location>../interface/ev_region_chart.xml</location>EV_REGION</class><symbol>)</symbol>
+	<feature><location>../interface/ev_any.xml#f_destroy</location>destroy</feature>
+	<feature><location>../interface/ev_region.xml#f_offset</location>offset</feature> <symbol>(</symbol><local>a_horizontal_offset</local><symbol>,</symbol> <local>a_vertical_offset</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../interface/ev_any.xml#f_set_data</location>set_data</feature> <symbol>(</symbol><local>some_data</local><symbol>:</symbol> <symbol>[</symbol><keyword>like</keyword> <feature><location>../interface/ev_any.xml#f_data</location>data</feature><symbol>]</symbol> <keyword>detachable</keyword> <class><include>False</include>ANY</class><symbol>)</symbol>
+	<feature><location>../interface/ev_region.xml#f_set_rectangle</location>set_rectangle</feature> <symbol>(</symbol><local>a_rectangle</local><symbol>:</symbol> <class><location>../interface/ev_rectangle_chart.xml</location>EV_RECTANGLE</class><symbol>)</symbol>
+
+</system>

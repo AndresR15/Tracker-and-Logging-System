@@ -1,0 +1,29 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../tracker/etf_model_facade_chart.xml</location>ETF_MODEL_FACADE</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>tracker</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;A facade class for easy manipulation of the business objects.&quot;</string>
+	<indexing_tag>create</indexing_tag><symbol>:</symbol> <feature><location>../tracker/etf_model_facade.xml#f_make</location>make</feature>
+
+<keyword>Ancestors</keyword>
+	<class><include>False</include>ANY</class>
+
+<keyword>Queries</keyword>
+	<feature><location>../tracker/etf_model_facade.xml#f_error</location>error</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../tracker/etf_model_facade.xml#f_history</location>history</feature><symbol>:</symbol> <class><include>False</include>LIST</class> <symbol>[</symbol><class><include>False</include>STRING_8</class><symbol>]</symbol>
+	<feature><location>../tracker/etf_model_facade.xml#f_man_page</location>Man_page</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+	<feature><location>../tracker/etf_model_facade.xml#f_model</location>model</feature><symbol>:</symbol> <class><location>../tracker/tracker_chart.xml</location>TRACKER</class>
+	<feature><location>../tracker/etf_model_facade.xml#f_output_message</location>output_message</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+	<feature><location>../tracker/etf_model_facade.xml#f_status_message</location>status_message</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+
+<keyword>Commands</keyword>
+	<feature><location>../tracker/etf_model_facade.xml#f_execute_cmd</location>execute_cmd</feature> <symbol>(</symbol><local>cmd</local><symbol>:</symbol> <class><include>False</include>STRING_8</class><symbol>)</symbol>
+	<feature><location>../tracker/etf_model_facade.xml#f_make</location>make</feature>
+	<feature><location>../tracker/etf_model_facade.xml#f_reset</location>reset</feature>
+
+<keyword>Constraints</keyword>
+	<tag>err msg set</tag>
+
+</system>

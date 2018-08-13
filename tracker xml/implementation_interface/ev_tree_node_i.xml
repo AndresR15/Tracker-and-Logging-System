@@ -1,0 +1,156 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;EiffelVision tree node. Implementation interface.&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2013-05-30 14:33:11 -0700 (Thu, 30 May 2013) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 92653 $&quot;</string>
+
+<keyword>deferred</keyword> <keyword>class</keyword> 
+	<class><location>../implementation_interface/ev_tree_node_i.xml</location>EV_TREE_NODE_I</class>
+
+<keyword>inherit</keyword>
+	<class><location>../implementation_interface/ev_item_i.xml</location>EV_ITEM_I</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_interface/ev_tree_node_i.xml#f_interface</location>interface</feature><symbol>,</symbol>
+			<feature><location>../implementation_interface/ev_tree_node_i.xml#f_pixmap_equal_to</location>pixmap_equal_to</feature><symbol>,</symbol>
+			<feature><location>../implementation_interface/ev_tree_node_i.xml#f_parent</location>parent</feature>
+		<keyword>end</keyword>
+
+	<class><location>../implementation_interface/ev_textable_i.xml</location>EV_TEXTABLE_I</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_interface/ev_tree_node_i.xml#f_interface</location>interface</feature>
+		<keyword>end</keyword>
+
+	<class><location>../implementation_interface/ev_tree_node_list_i.xml</location>EV_TREE_NODE_LIST_I</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_interface/ev_tree_node_i.xml#f_interface</location>interface</feature>
+		<keyword>end</keyword>
+
+	<class><location>../implementation_interface/ev_deselectable_i.xml</location>EV_DESELECTABLE_I</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_interface/ev_tree_node_i.xml#f_interface</location>interface</feature><symbol>,</symbol>
+			<feature><location>../implementation_interface/ev_tree_node_i.xml#f_is_selectable</location>is_selectable</feature>
+		<keyword>end</keyword>
+
+	<class><location>../implementation_interface/ev_tooltipable_i.xml</location>EV_TOOLTIPABLE_I</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_interface/ev_tree_node_i.xml#f_interface</location>interface</feature>
+		<keyword>end</keyword>
+
+	<class><location>../implementation_interface/ev_tree_node_action_sequences_i.xml</location>EV_TREE_NODE_ACTION_SEQUENCES_I</class>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_parent</anchor><feature><location>../implementation_interface/ev_tree_node_i.xml#f_parent</location>parent</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_tree_node_list.xml</location>EV_TREE_NODE_LIST</class>
+			<comment>--</comment><comment> Parent of </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../implementation_interface/ev_item_i.xml#f_parent_imp</location>parent_imp</feature> <keyword>as</keyword> l_parent_imp <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>?=</symbol> <local>l_parent_imp</local><dot>.</dot><feature><location>../implementation_interface/ev_item_list_i.xml#f_interface</location>interface</feature>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_parent_tree</anchor><feature><location>../implementation_interface/ev_tree_node_i.xml#f_parent_tree</location>parent_tree</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_tree.xml</location>EV_TREE</class>
+			<comment>--</comment><comment> Root tree that holds </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>local</keyword>
+			<local>parent_item</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_interface/ev_tree_node_i.xml</location>EV_TREE_NODE_I</class>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>?=</symbol> <feature><location>../implementation_interface/ev_tree_node_i.xml#f_parent</location>parent</feature>
+			<keyword>if</keyword> <keyword>Result</keyword> <symbol>=</symbol> <keyword>Void</keyword> <keyword>and then</keyword> <keyword>attached</keyword> <feature><location>../implementation_interface/ev_tree_node_i.xml#f_parent</location>parent</feature> <keyword>as</keyword> l_parent <keyword>then</keyword>
+				<local>parent_item</local> <symbol>?=</symbol> <local>l_parent</local><dot>.</dot><feature><location>../interface/ev_tree_node_list.xml#f_implementation</location>implementation</feature>
+				<keyword>check</keyword>
+						<local>parent_item</local> <symbol>/=</symbol> <keyword>Void</keyword>
+				<keyword>then</keyword>
+				<keyword>end</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>parent_item</local><dot>.</dot><feature><location>../implementation_interface/ev_tree_node_i.xml#f_parent_tree</location>parent_tree</feature>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_parent_tree_i</anchor><feature><location>../implementation_interface/ev_tree_node_i.xml#f_parent_tree_i</location>parent_tree_i</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_interface/ev_tree_i.xml</location>EV_TREE_I</class>
+			<comment>--</comment><comment> Root tree that holds </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>?=</symbol> <feature><location>../implementation_interface/ev_item_i.xml#f_parent_imp</location>parent_imp</feature>
+			<keyword>if</keyword> <keyword>Result</keyword> <symbol>=</symbol> <keyword>Void</keyword> <keyword>and then</keyword> <keyword>attached</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_tree_node_i.xml</location>EV_TREE_NODE_I</class><symbol>}</symbol> <feature><location>../implementation_interface/ev_item_i.xml#f_parent_imp</location>parent_imp</feature> <keyword>as</keyword> l_parent_imp <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>l_parent_imp</local><dot>.</dot><feature><location>../implementation_interface/ev_tree_node_i.xml#f_parent_tree_i</location>parent_tree_i</feature>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status report</comment>
+
+	<anchor>f_is_selectable</anchor><feature><location>../implementation_interface/ev_tree_node_i.xml#f_is_selectable</location>is_selectable</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> May the </comment><quoted>Current</quoted><comment> be selected?</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_tree_node_i.xml#f_parent_tree_i</location>parent_tree_i</feature> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_is_expanded</anchor><feature><location>../implementation_interface/ev_tree_node_i.xml#f_is_expanded</location>is_expanded</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> is </comment><quoted>Current</quoted><comment> expanded ?</comment>
+		<keyword>require</keyword>
+			<tag>in_tree</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_tree_node_i.xml#f_parent_tree_i</location>parent_tree_i</feature> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_tree_node.xml</location>EV_TREE_NODE</class><symbol>}</symbol> <comment>--</comment><comment> Status setting</comment>
+
+	<anchor>f_set_expand</anchor><feature><location>../implementation_interface/ev_tree_node_i.xml#f_set_expand</location>set_expand</feature> <symbol>(</symbol><local>flag</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class><symbol>)</symbol>
+			<comment>--</comment><comment> Expand </comment><quoted>Current</quoted><comment> if </comment><quoted>flag</quoted><comment>, otherwise collapse it.</comment>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>state_set</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_tree_node_i.xml#f_is_expanded</location>is_expanded</feature> <symbol>=</symbol> <local>flag</local>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Contract support</comment>
+
+	<anchor>f_pixmap_equal_to</anchor><feature><location>../implementation_interface/ev_tree_node_i.xml#f_pixmap_equal_to</location>pixmap_equal_to</feature> <symbol>(</symbol><local>a_pixmap</local><symbol>:</symbol> <class><location>../interface/ev_pixmap.xml</location>EV_PIXMAP</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is </comment><quoted>a_pixmap</quoted><comment> equal to </comment><feature><location>../implementation_interface/ev_pixmapable_i.xml#f_pixmap</location>pixmap</feature><comment>?</comment>
+		<keyword>local</keyword>
+			<local>scaled_pixmap</local><symbol>:</symbol> <class><location>../interface/ev_pixmap.xml</location>EV_PIXMAP</class>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../implementation_interface/ev_tree_node_i.xml#f_parent_tree_i</location>parent_tree_i</feature> <keyword>as</keyword> l_parent_tree <keyword>then</keyword>
+				<local>scaled_pixmap</local> <symbol>:=</symbol> <local>a_pixmap</local><dot>.</dot><feature><include>False</include>twin</feature>
+				<local>scaled_pixmap</local><dot>.</dot><feature><location>../interface/ev_pixmap.xml#f_stretch</location>stretch</feature><symbol> </symbol><symbol>(</symbol><local>l_parent_tree</local><dot>.</dot><feature><location>../implementation_interface/ev_item_pixmap_scaler_i.xml#f_pixmaps_width</location>pixmaps_width</feature><symbol>,</symbol> <local>l_parent_tree</local><dot>.</dot><feature><location>../implementation_interface/ev_item_pixmap_scaler_i.xml#f_pixmaps_height</location>pixmaps_height</feature><symbol>)</symbol>
+			<keyword>else</keyword>
+				<local>scaled_pixmap</local> <symbol>:=</symbol> <local>a_pixmap</local>
+			<keyword>end</keyword>
+			<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../implementation_interface/ev_pixmapable_i.xml#f_pixmap</location>pixmap</feature> <keyword>as</keyword> l_pixmap <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>scaled_pixmap</local><dot>.</dot><feature><location>../interface/ev_pixmap.xml#f_is_equal</location>is_equal</feature><symbol> </symbol><symbol>(</symbol><local>l_pixmap</local><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>,</symbol> <class><include>False</include>EV_DYNAMIC_TREE_ITEM</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_ensure_expandable</anchor><feature><location>../implementation_interface/ev_tree_node_i.xml#f_ensure_expandable</location>ensure_expandable</feature>
+			<comment>--</comment><comment> Ensure </comment><quoted>Current</quoted><comment> is displayed as expandable.</comment>
+		<keyword>require</keyword>
+			<tag>is_empty</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature><dot>.</dot><feature><include>False</include>is_empty</feature>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>is_empty</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature><dot>.</dot><feature><include>False</include>is_empty</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_remove_expandable</anchor><feature><location>../implementation_interface/ev_tree_node_i.xml#f_remove_expandable</location>remove_expandable</feature>
+			<comment>--</comment><comment> Ensure </comment><quoted>Current</quoted><comment> is no longer displayed as expandable.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_any.xml</location>EV_ANY</class><symbol>,</symbol> <class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_interface</anchor><feature><location>../implementation_interface/ev_tree_node_i.xml#f_interface</location>interface</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_tree_node.xml</location>EV_TREE_NODE</class>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2013, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_interface/ev_tree_node_i.xml</location>EV_TREE_NODE_I</class></system>
+

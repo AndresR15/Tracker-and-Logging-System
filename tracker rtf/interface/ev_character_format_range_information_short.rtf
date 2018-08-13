@@ -1,0 +1,81 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "[{\line}
+{\tab}{\tab}Objects that provide information for a range of characters in an EV_RICH_TEXT.{\line}
+{\tab}{\tab}Depending on the query applied to Current, the values of all attributes are used in different{\line}
+{\tab}{\tab}fashions, sometimes to indicate which fields of an EV_CHARACTER_FORMAT are valid, or have a particular{\line}
+{\tab}{\tab}property. The applicable features in EV_RICH_TEXT which use Current provide full descriptions.{\line}
+{\tab}]"{\line}
+{\tab}{\cf1 legal}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 status}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2008-12-29 12:27:11 -0800 (Mon, 29 Dec 2008) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 76420 $"{\line}
+{\line}
+{\b\cf6 class} {\b\cf6 interface}{\line}
+{\tab}{\cf4 EV_CHARACTER_FORMAT_RANGE_INFORMATION}{\line}
+{\line}
+{\b\cf6 create} {\line}
+{\tab}{\cf5 make_with_flags}{\line}
+{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Creation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make_with_flags} {\cf1 (}{\cf5 flags}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create }{\cf5 Current}{\cf3  and apply }{\cf5 flags}{\cf3  to set attributes.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Valid flags are the corresponding flags from EV_CHARACTER_FORMAT_CONSTANTS.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Combine these in }{\cf5 flags}{\cf3  to set multiple attrbutes, e.g. to set the}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  font height and font color as applicable perform:}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  "make_with_flags (feature }{\cf1 \{}{\cf4 EV_CHARACTER_FORMAT_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 font_height}{\cf3  | feature }{\cf1 \{}{\cf4 EV_CHARACTER_FORMAT_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 color}{\cf3 )"}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_flags}{\cf1 :} {\cf5 valid_character_format_flag}{\cf1  }{\cf1 (}{\cf5 flags}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 attributes_set}{\cf1 :} {\cf5 font_family} {\cf1 =} {\cf1 (}{\cf5 flags} {\cf1 |} {\cf1 \{}{\cf4 EV_CHARACTER_FORMAT_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 font_family} {\cf1 =} {\cf5 flags}{\cf1 )} {\b\cf6 and} {\cf5 font_weight} {\cf1 =} {\cf1 (}{\cf5 flags} {\cf1 |} {\cf1 \{}{\cf4 EV_CHARACTER_FORMAT_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 font_weight} {\cf1 =} {\cf5 flags}{\cf1 )} {\b\cf6 and} {\cf5 font_shape} {\cf1 =} {\cf1 (}{\cf5 flags} {\cf1 |} {\cf1 \{}{\cf4 EV_CHARACTER_FORMAT_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 font_shape} {\cf1 =} {\cf5 flags}{\cf1 )} {\b\cf6 and} {\cf5 font_height} {\cf1 =} {\cf1 (}{\cf5 flags} {\cf1 |} {\cf1 \{}{\cf4 EV_CHARACTER_FORMAT_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 font_height} {\cf1 =} {\cf5 flags}{\cf1 )} {\b\cf6 and} {\cf5 color} {\cf1 =} {\cf1 (}{\cf5 flags} {\cf1 |} {\cf1 \{}{\cf4 EV_CHARACTER_FORMAT_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 color} {\cf1 =} {\cf5 flags}{\cf1 )} {\b\cf6 and} {\cf5 background_color} {\cf1 =} {\cf1 (}{\cf5 flags} {\cf1 |} {\cf1 \{}{\cf4 EV_CHARACTER_FORMAT_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 background_color} {\cf1 =} {\cf5 flags}{\cf1 )} {\b\cf6 and} {\cf5 effects_striked_out} {\cf1 =} {\cf1 (}{\cf5 flags} {\cf1 |} {\cf1 \{}{\cf4 EV_CHARACTER_FORMAT_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 effects_striked_out} {\cf1 =} {\cf5 flags}{\cf1 )} {\b\cf6 and} {\cf5 effects_underlined} {\cf1 =} {\cf1 (}{\cf5 flags} {\cf1 |} {\cf1 \{}{\cf4 EV_CHARACTER_FORMAT_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 effects_underlined} {\cf1 =} {\cf5 flags}{\cf1 )} {\b\cf6 and} {\cf5 effects_vertical_offset} {\cf1 =} {\cf1 (}{\cf5 flags} {\cf1 |} {\cf1 \{}{\cf4 EV_CHARACTER_FORMAT_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 effects_vertical_offset} {\cf1 =} {\cf5 flags}{\cf1 )}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 font_family}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is family of font applicable?}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 font_weight}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is weight of font applicable?}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 font_shape}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is shape of font applicable?}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 font_height}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is height of font applicable?}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 color}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is color of font applicable?}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 background_color}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is background color of font applicable?}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 effects_striked_out}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is striked out effect of font applicable?}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 effects_underlined}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is underlined effect of font applicable?}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 effects_vertical_offset}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is vertical offset effect of font applicable?}{\line}
+{\tab}{\line}
+{\b\cf6 note}{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 1984-2006, Eiffel Software and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"{\line}
+{\tab}{\cf1 source}{\cf1 :} "[{\line}
+{\tab}{\tab}Eiffel Software{\line}
+{\tab}{\tab}356 Storke Road, Goleta, CA 93117 USA{\line}
+{\tab}{\tab}Telephone 805-685-1006, Fax 805-685-6869{\line}
+{\tab}{\tab}Website http://www.eiffel.com{\line}
+{\tab}{\tab}Customer support http://support.eiffel.com{\line}
+{\tab}]"{\line}
+{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 EV_CHARACTER_FORMAT_RANGE_INFORMATION}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

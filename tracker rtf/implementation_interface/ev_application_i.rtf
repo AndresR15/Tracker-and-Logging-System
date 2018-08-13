@@ -1,0 +1,1198 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "Eiffel Vision application. Implementation interface.%NSee ev_application.e"{\line}
+{\tab}{\cf1 legal}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 status}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 keywords}{\cf1 :} "application"{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2017-03-27 10:23:22 -0700 (Mon, 27 Mar 2017) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 100056 $"{\line}
+{\line}
+{\b\cf6 deferred} {\b\cf6 class} {\line}
+{\tab}{\cf4 EV_APPLICATION_I}{\line}
+{\line}
+{\b\cf6 inherit}{\line}
+{\tab}{\cf4 EV_ANY_I}{\line}
+{\tab}{\tab}{\b\cf6 export}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 ANY}{\cf1 \}} {\cf5 attached_interface}{\line}
+{\tab}{\tab}{\b\cf6 redefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 interface}{\line}
+{\tab}{\tab}{\b\cf6 end}{\line}
+{\line}
+{\tab}{\cf4 EV_APPLICATION_ACTION_SEQUENCES_I}{\line}
+{\line}
+{\tab}{\cf4 EXCEPTIONS}{\line}
+{\line}
+{\tab}{\cf4 MEMORY}{\line}
+{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Initialization}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 old_make} {\cf1 (}{\cf5 an_interface}{\cf1 :} {\b\cf6 attached} {\b\cf6 like} {\cf5 interface}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create underlying native toolkit objects.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Every descendant should exactly one a creation procedure }{\cf5 make}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Must call }{\cf5 base_make}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 assign_interface}{\cf1  }{\cf1 (}{\cf5 an_interface}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create pick and drop target list.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set F1 as default help key.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create default help engine.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 f1_key}{\cf1 :} {\cf4 EV_KEY}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 kamikaze_actions}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}25{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf1 \{}{\cf4 PLATFORM}{\cf1 \}}{\b\cf1 .}{\cf5 is_thread_capable} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 idle_action_mutex}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 kamikaze_action_mutex}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 pnd_targets}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}8{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 dockable_targets}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}8{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf1 \{}{\cf4 EV_SIMPLE_HELP_ENGINE}{\cf1 \}} {\cf5 help_engine}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 f1_key}{\b\cf1 .}{\cf5 make_with_code}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 EV_KEY_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 key_f1}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 help_accelerator}{\b\cf1 .}{\cf5 make_with_key_combination}{\cf1  }{\cf1 (}{\cf5 f1_key}{\cf1 ,} {\b\cf6 False}{\cf1 ,} {\b\cf6 False}{\cf1 ,} {\b\cf6 False}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 contextual_help_accelerator}{\b\cf1 .}{\cf5 make_with_key_combination}{\cf1  }{\cf1 (}{\cf5 f1_key}{\cf1 ,} {\b\cf6 False}{\cf1 ,} {\b\cf6 False}{\cf1 ,} {\b\cf6 True}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 help_handler_procedure} {\cf1 :=} {\b\cf6 agent} {\cf5 help_handler}{\line}
+{\tab}{\tab}{\tab}{\cf5 contextual_help_handler_procedure} {\cf1 :=} {\b\cf6 agent} {\cf5 enable_contextual_help}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_help_accelerator}{\cf1  }{\cf1 (}{\cf5 help_accelerator}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_contextual_help_accelerator}{\cf1  }{\cf1 (}{\cf5 contextual_help_accelerator}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 Is_gui_thread_cell}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\b\cf6 True}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 idle_actions}{\b\cf1 .}{\cf5 call}{\cf1  }{\cf1 (}{\b\cf6 Void}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 idle_iteration_count} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\cf5 set_invoke_garbage_collection_when_inactive}{\cf1  }{\cf1 (}{\b\cf6 True}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_is_initialized}{\cf1  }{\cf1 (}{\b\cf6 True}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_ANY_I}{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Cpu_relinquishment_time}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 20}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of milliseconds to relinquish CPU when idling.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 idle_iteration_count}{\cf1 :} {\cf4 NATURAL_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of iterations that the application has been idle.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Idle_iteration_boundary}{\cf1 :} {\cf4 NATURAL_32} {\cf1 =} 1500}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of iterations before forcing Garbage Collector to kick in.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  30 Seconds = 30 * 1000 / sleep time}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 idle_actions_snapshot}{\cf1 :} {\b\cf6 detachable} {\cf4 SPECIAL} {\cf1 [}{\cf4 PROCEDURE}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Idle actions snapshot used for temporarily storing a copy of }{\cf5 idle_actions}{\cf3  during its iteration.}{\line}
+{\tab}{\tab}{\b\cf6 note}{\line}
+{\tab}{\tab}{\tab}option: stable{\line}
+{\tab}{\tab}{\b\cf6 attribute}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 kamikaze_idle_actions_snapshot}{\cf1 :} {\b\cf6 detachable} {\cf4 SPECIAL} {\cf1 [}{\b\cf6 separate} {\cf4 PROCEDURE}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Kamikaze Idle actions snapshot used for temporarily storing a copy of }{\cf5 kamikaze_idle_actions}{\cf3  during its iteration.}{\line}
+{\tab}{\tab}{\b\cf6 note}{\line}
+{\tab}{\tab}{\tab}option: stable{\line}
+{\tab}{\tab}{\b\cf6 attribute}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_APPLICATION}{\cf1 ,} {\cf4 EV_ANY_HANDLER}{\cf1 ,} {\cf4 EV_ANY_I}{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 process_event_queue} {\cf1 (}{\cf5 a_relinquish_cpu}{\cf1 :} {\cf4 BOOLEAN}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Process all posted events on the event queue.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  CPU will be relinquished if }{\cf5 a_relinquish_cpu}{\cf3  and idle actions are successfully executed.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_idle_actions_internal}{\cf1 :} {\b\cf6 like} {\cf5 idle_actions_internal}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_idle_is_locked}{\cf1 ,} {\cf5 l_kamikaze_is_locked}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_retry_count}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_idle_actions_snapshot}{\cf1 :} {\b\cf6 detachable} {\cf4 SPECIAL} {\cf1 [}{\cf4 PROCEDURE}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_kamikaze_idle_actions_snapshot}{\cf1 :} {\b\cf6 detachable} {\cf4 SPECIAL} {\cf1 [}{\b\cf6 separate} {\cf4 PROCEDURE}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf5 i}{\cf1 ,} {\cf5 l_count}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_retry_count} {\cf1 =} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 process_underlying_toolkit_event_queue}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 user_events_processed_from_underlying_toolkit} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 idle_iteration_count} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 a_relinquish_cpu} {\b\cf6 and then} {\b\cf6 not} {\cf5 events_processed_from_underlying_toolkit} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 idle_iteration_count} {\cf1 :=} {\cf5 idle_iteration_count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 idle_iteration_count} {\cf1 =} {\cf5 Idle_iteration_boundary} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 invoke_garbage_collection_when_inactive} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 full_collect}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 full_coalesce}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 idle_iteration_count} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 idle_iteration_count} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_idle_actions_internal} {\cf1 :=} {\cf5 idle_actions_internal}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 is_destroyed} {\b\cf6 and then} {\cf5 l_idle_actions_internal} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\b\cf6 not} {\cf5 events_processed_from_underlying_toolkit} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 try_kamikaze_lock} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_kamikaze_is_locked} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 kamikaze_idle_actions_snapshot} {\cf1 =} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 kamikaze_actions}{\b\cf1 .}{\cf5 count} {\cf1 >} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 kamikaze_idle_actions_snapshot} {\cf1 :=} {\cf5 kamikaze_actions}{\b\cf1 .}{\cf5 area}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_kamikaze_idle_actions_snapshot} {\cf1 :=} {\cf5 kamikaze_idle_actions_snapshot}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 idle_actions_executing} {\b\cf6 and} {\cf5 kamikaze_idle_actions_snapshot}{\b\cf1 .}{\cf5 count} {\cf1 >} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 kamikaze_idle_actions_snapshot} {\cf1 :=} {\cf5 kamikaze_idle_actions_snapshot}{\b\cf1 .}{\cf5 resized_area}{\cf1  }{\cf1 (}{\cf5 kamikaze_actions}{\b\cf1 .}{\cf5 count}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 kamikaze_idle_actions_snapshot} {\cf1 :=} {\cf5 kamikaze_idle_actions_snapshot}{\b\cf1 .}{\cf5 aliased_resized_area}{\cf1  }{\cf1 (}{\cf5 kamikaze_actions}{\b\cf1 .}{\cf5 count}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 kamikaze_idle_actions_snapshot}{\b\cf1 .}{\cf5 copy_data}{\cf1  }{\cf1 (}{\cf5 kamikaze_actions}{\b\cf1 .}{\cf5 area}{\cf1 ,} 0{\cf1 ,} 0{\cf1 ,} {\cf5 kamikaze_actions}{\b\cf1 .}{\cf5 count}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_kamikaze_idle_actions_snapshot} {\cf1 :=} {\cf5 kamikaze_idle_actions_snapshot}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_kamikaze_idle_actions_snapshot} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 kamikaze_actions}{\b\cf1 .}{\cf5 wipe_out}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 kamikaze_unlock}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_kamikaze_is_locked} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 try_idle_lock} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_idle_is_locked} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 idle_actions_snapshot} {\cf1 =} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_idle_actions_internal}{\b\cf1 .}{\cf5 count} {\cf1 >} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 idle_actions_snapshot} {\cf1 :=} {\cf5 l_idle_actions_internal}{\b\cf1 .}{\cf5 area}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_idle_actions_snapshot} {\cf1 :=} {\cf5 idle_actions_snapshot}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 idle_actions_executing} {\b\cf6 and} {\cf5 idle_actions_snapshot}{\b\cf1 .}{\cf5 count} {\cf1 >} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 idle_actions_snapshot} {\cf1 :=} {\cf5 idle_actions_snapshot}{\b\cf1 .}{\cf5 resized_area}{\cf1  }{\cf1 (}{\cf5 l_idle_actions_internal}{\b\cf1 .}{\cf5 count}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 idle_actions_snapshot} {\cf1 :=} {\cf5 idle_actions_snapshot}{\b\cf1 .}{\cf5 aliased_resized_area}{\cf1  }{\cf1 (}{\cf5 l_idle_actions_internal}{\b\cf1 .}{\cf5 count}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 idle_actions_snapshot}{\b\cf1 .}{\cf5 copy_data}{\cf1  }{\cf1 (}{\cf5 l_idle_actions_internal}{\b\cf1 .}{\cf5 area}{\cf1 ,} 0{\cf1 ,} 0{\cf1 ,} {\cf5 l_idle_actions_internal}{\b\cf1 .}{\cf5 count}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_idle_actions_snapshot} {\cf1 :=} {\cf5 idle_actions_snapshot}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 idle_unlock}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_idle_is_locked} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 idle_actions_executing} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_kamikaze_idle_actions_snapshot} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_count} {\cf1 :=} {\cf5 l_kamikaze_idle_actions_snapshot}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 =} {\cf5 l_count} {\b\cf6 or else} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 call_separate_action}{\cf1  }{\cf1 (}{\cf5 l_kamikaze_idle_actions_snapshot} {\cf1 [}{\cf5 i}{\cf1 ]}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 i} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_kamikaze_idle_actions_snapshot}{\b\cf1 .}{\cf5 wipe_out}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_idle_actions_snapshot} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_count} {\cf1 :=} {\cf5 l_idle_actions_snapshot}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 =} {\cf5 l_count} {\b\cf6 or else} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_idle_actions_snapshot} {\cf1 [}{\cf5 i}{\cf1 ]}{\b\cf1 .}{\cf5 call}{\cf1  }{\cf1 (}{\b\cf6 Void}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 i} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_idle_actions_snapshot}{\b\cf1 .}{\cf5 wipe_out}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 idle_actions_executing} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a_relinquish_cpu} {\b\cf6 and then} {\b\cf6 not} {\cf5 is_destroyed} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 process_underlying_toolkit_event_queue}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 events_processed_from_underlying_toolkit} {\b\cf6 and then} {\cf5 kamikaze_actions}{\b\cf1 .}{\cf5 count} {\cf1 =} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 wait_for_input}{\cf1  }{\cf1 (}{\cf5 Cpu_relinquishment_time}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_retry_count} {\cf1 =} 1 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 on_exception_action}{\cf1  }{\cf1 (}{\cf5 new_exception}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 rescue}{\line}
+{\tab}{\tab}{\tab}{\cf5 idle_actions_executing} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_kamikaze_is_locked} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_kamikaze_is_locked} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 kamikaze_unlock}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_idle_is_locked} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_idle_is_locked} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 idle_unlock}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_retry_count} {\cf1 =} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_retry_count} {\cf1 :=} {\cf5 l_retry_count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 retry}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 idle_actions_executing}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are the idle actions currently being executed?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  We need this flag to prevent recursive calls to idle actions from the GUI thread.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 call_separate_action} {\cf1 (}{\cf5 a_action}{\cf1 :} {\b\cf6 separate} {\cf4 PROCEDURE}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Execute }{\cf5 call}{\cf3  on 'a_action'.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_action}{\b\cf1 .}{\cf5 call}{\cf1  }{\cf1 (}{\b\cf6 Void}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 process_underlying_toolkit_event_queue}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Process event queue from underlying toolkit.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  `events_process_from_toolkit}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 events_processed_from_underlying_toolkit}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Were any events processed in previous call to }{\cf5 process_underlying_toolkit_event_queue}{\cf3 ?}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 user_events_processed_from_underlying_toolkit}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Were user generated events processed in previous call to }{\cf5 process_underlying_toolkit_event_queue}{\cf3 ?}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_DOCKABLE_SOURCE_I}{\cf1 ,} {\cf4 EV_DOCKABLE_TARGET_I}{\cf1 ,} {\cf4 EV_SHARED_TRANSPORT_I}{\cf1 \}} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 dockable_targets}{\cf1 :} {\cf4 ARRAYED_LIST} {\cf1 [}{\cf4 INTEGER_32}{\cf1 ]}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 invoke_garbage_collection_when_inactive}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Should garbage collection be invoked when application is inactive.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 pnd_targets}{\cf1 :} {\cf4 HASH_TABLE} {\cf1 [}{\cf4 INTEGER_32}{\cf1 ,} {\cf4 INTEGER_32}{\cf1 ]}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Global list of pick and drop target object ids.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 windows}{\cf1 :} {\cf4 LINEAR} {\cf1 [}{\cf4 EV_WINDOW}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Global list of windows.}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 locked_window}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_WINDOW}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Window currently locked. Void if no window}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  is currently locked.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  See }{\cf5 \{EV_WINDOW\}.lock_update}{\cf3  for more details}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 captured_widget}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_WIDGET}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Widget currently captured. Void if none.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 pick_and_drop_source}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_PICK_AND_DROPABLE_I}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  The current pick and drop source.}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 help_accelerator}{\cf1 :} {\cf4 EV_ACCELERATOR}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Accelerator that displays contextual help}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 contextual_help_accelerator}{\cf1 :} {\cf4 EV_ACCELERATOR}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Accelerator that enables contextual help mode}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 help_engine}{\cf1 :} {\cf4 EV_HELP_ENGINE}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Object that handle contextual help display requests}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 clipboard}{\cf1 :} {\cf4 EV_CLIPBOARD}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Native platform clipboard access.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 clipboard_internal} {\cf1 =} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 clipboard_internal}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 clipboard_internal}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 ctrl_pressed}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is ctrl key currently pressed?}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 shift_pressed}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is shift key currently pressed?}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 alt_pressed}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is alt key currently pressed?}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 caps_lock_on}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is the Caps Lock key currently on?}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 transport_in_progress}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is a Pick and Drop transport currently in progress?}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 pick_and_drop_source} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_display_remote}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is application display remote?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  This function is primarily to determine if drawing to the display is optimal.}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Element Change}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_invoke_garbage_collection_when_inactive} {\cf1 (}{\cf5 a_enabled}{\cf1 :} {\cf4 BOOLEAN}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 invoke_garbage_collection_when_inactive}{\cf3  to }{\cf5 a_enabled}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 invoke_garbage_collection_when_inactive} {\cf1 :=} {\cf5 a_enabled}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_captured_widget} {\cf1 (}{\cf5 a_captured_widget}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_WIDGET}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 captured_widget}{\cf3  to the widget that has the current capture 'a_capture_widget'.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 captured_widget} {\cf1 :=} {\cf5 a_captured_widget}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 captured_widget_set}{\cf1 :} {\cf5 captured_widget} {\cf1 =} {\cf5 a_captured_widget}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_help_accelerator} {\cf1 (}{\cf5 an_accelerator}{\cf1 :} {\cf4 EV_ACCELERATOR}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Assign }{\cf5 an_accelerator}{\cf3  to }{\cf5 help_accelerator}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 an_accelerator_not_void}{\cf1 :} {\cf5 an_accelerator} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 help_accelerator} {\cf1 :=} {\cf5 an_accelerator}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 help_handler_procedure} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\b\cf6 not} {\cf5 help_accelerator}{\b\cf1 .}{\cf5 actions}{\b\cf1 .}{\cf5 has}{\cf1  }{\cf1 (}{\cf5 help_handler_procedure}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 help_accelerator}{\b\cf1 .}{\cf5 actions}{\b\cf1 .}{\cf5 extend}{\cf1  }{\cf1 (}{\cf5 help_handler_procedure}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 help_accelerator_assigned}{\cf1 :} {\cf5 help_accelerator} {\cf1 =} {\cf5 an_accelerator}{\line}
+{\tab}{\tab}{\tab}{\cf1 help_accelerator_complete}{\cf1 :} {\b\cf6 attached} {\cf5 help_handler_procedure} {\b\cf6 and then} {\cf5 help_accelerator}{\b\cf1 .}{\cf5 actions}{\b\cf1 .}{\cf5 has}{\cf1  }{\cf1 (}{\cf5 help_handler_procedure}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_contextual_help_accelerator} {\cf1 (}{\cf5 an_accelerator}{\cf1 :} {\cf4 EV_ACCELERATOR}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Assign }{\cf5 an_accelerator}{\cf3  to }{\cf5 contextual_help_accelerator}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 an_accelerator_not_void}{\cf1 :} {\cf5 an_accelerator} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 contextual_help_accelerator} {\cf1 :=} {\cf5 an_accelerator}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 contextual_help_handler_procedure} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\b\cf6 not} {\cf5 contextual_help_accelerator}{\b\cf1 .}{\cf5 actions}{\b\cf1 .}{\cf5 has}{\cf1  }{\cf1 (}{\cf5 contextual_help_handler_procedure}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 contextual_help_accelerator}{\b\cf1 .}{\cf5 actions}{\b\cf1 .}{\cf5 extend}{\cf1  }{\cf1 (}{\cf5 contextual_help_handler_procedure}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 contextual_help_accelerator_assigned}{\cf1 :} {\cf5 contextual_help_accelerator} {\cf1 =} {\cf5 an_accelerator}{\line}
+{\tab}{\tab}{\tab}{\cf1 contextual_help_accelerator_complete}{\cf1 :} {\b\cf6 attached} {\cf5 contextual_help_handler_procedure} {\b\cf6 and then} {\cf5 contextual_help_accelerator}{\b\cf1 .}{\cf5 actions}{\b\cf1 .}{\cf5 has}{\cf1  }{\cf1 (}{\cf5 contextual_help_handler_procedure}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_help_engine} {\cf1 (}{\cf5 an_engine}{\cf1 :} {\cf4 EV_HELP_ENGINE}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Assign }{\cf5 an_engine}{\cf3  to }{\cf5 help_engine}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 an_engine_not_void}{\cf1 :} {\cf5 an_engine} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 help_engine} {\cf1 :=} {\cf5 an_engine}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 help_engine_set}{\cf1 :} {\cf5 help_engine} {\cf1 =} {\cf5 an_engine}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_locked_window} {\cf1 (}{\cf5 a_window}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_WINDOW}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 locked_window}{\cf3  to }{\cf5 a_window}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  See }{\cf5 \{EV_WINDOW\}.lock_update}{\cf3  for more details}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 locked_window} {\cf1 :=} {\cf5 a_window}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Basic operation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 process_events}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Process any pending events.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 process_event_queue}{\cf1  }{\cf1 (}{\b\cf6 False}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 process_graphical_events}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Process any pending paint events.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Pass control to the GUI toolkit so that it can}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  handle any paint events that may be in its queue.}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 process_events_until_stopped}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Process all events until 'stop_processing' is called.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 stop_processing_requested} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 stop_processing_requested} {\b\cf6 or else} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 process_event_queue}{\cf1  }{\cf1 (}{\b\cf6 True}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 stop_processing}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3   Exit }{\cf5 process_events_until_stopped}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 stop_processing_requested} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 sleep} {\cf1 (}{\cf5 msec}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Wait for }{\cf5 msec}{\cf3  milliseconds and return.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 msec_non_negative}{\cf1 :} {\cf5 msec} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 enable_contextual_help}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Change mouse cursor to help cursor}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Capture mouse input}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Send help context of widget under mouse cursor when left mouse button is pressed to help engine.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Cancel contextual help mode when right mouse button is pressed.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 focused_widget} {\b\cf6 as} l_focused_widget {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 captured_widget} {\cf1 :=} {\cf5 l_focused_widget}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 old_pointer_button_press_actions} {\cf1 :=} {\cf5 l_focused_widget}{\b\cf1 .}{\cf5 pointer_button_press_actions}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_focused_widget}{\b\cf1 .}{\cf5 pointer_button_press_actions}{\b\cf1 .}{\cf5 wipe_out}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_focused_widget}{\b\cf1 .}{\cf5 pointer_button_press_actions}{\b\cf1 .}{\cf5 extend_kamikaze}{\cf1  }{\cf1 (}{\cf5 Contextual_help_procedure}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 old_pointer_style} {\cf1 :=} {\cf5 l_focused_widget}{\b\cf1 .}{\cf5 pointer_style}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_focused_widget}{\b\cf1 .}{\cf5 set_pointer_style}{\cf1  }{\cf1 (}{\cf1 (}{\b\cf6 create}{\cf1  }{\cf1 \{}{\cf4 EV_STOCK_PIXMAPS}{\cf1 \}}{\cf1 )}{\b\cf1 .}{\cf5 Help_cursor}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_focused_widget}{\b\cf1 .}{\cf5 enable_capture}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 display_help_for_widget} {\cf1 (}{\cf5 a_widget}{\cf1 :} {\cf4 EV_WIDGET}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Display contextual help for }{\cf5 a_widget}{\cf3 , if any.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_widget_not_void}{\cf1 :} {\cf5 a_widget} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 an_help_context}{\cf1 :} {\b\cf6 detachable} {\cf4 FUNCTION} {\cf1 [}{\cf4 EV_HELP_CONTEXT}{\cf1 ]}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 an_help_context} {\cf1 :=} {\cf5 a_widget}{\b\cf1 .}{\cf5 help_context}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 an_help_context} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 help_engine}{\b\cf1 .}{\cf5 show}{\cf1  }{\cf1 (}{\cf5 an_help_context}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\b\cf6 Void}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 add_idle_action} {\cf1 (}{\cf5 a_idle_action}{\cf1 :} {\cf4 PROCEDURE}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Extend }{\cf5 idle_actions}{\cf3  with }{\cf5 a_idle_action}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Thread safe}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_idle_action_not_void}{\cf1 :} {\cf5 a_idle_action} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 idle_lock}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 idle_actions}{\b\cf1 .}{\cf5 has}{\cf1  }{\cf1 (}{\cf5 a_idle_action}{\cf1 )} {\b\cf6 and then} {\cf5 idle_actions_internal} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 idle_actions_internal}{\b\cf1 .}{\cf5 extend}{\cf1  }{\cf1 (}{\cf5 a_idle_action}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 idle_unlock}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 remove_idle_action} {\cf1 (}{\cf5 a_idle_action}{\cf1 :} {\cf4 PROCEDURE}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Remove }{\cf5 a_idle_action}{\cf3  from }{\cf5 idle_actions}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Thread safe}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_idle_action_not_void}{\cf1 :} {\cf5 a_idle_action} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_cursor}{\cf1 :} {\cf4 CURSOR}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_idle_actions}{\cf1 :} {\b\cf6 like} {\cf5 idle_actions}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 idle_lock}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_idle_actions} {\cf1 :=} {\cf5 idle_actions}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_cursor} {\cf1 :=} {\cf5 l_idle_actions}{\b\cf1 .}{\cf5 cursor}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_idle_actions}{\b\cf1 .}{\cf5 prune_all}{\cf1  }{\cf1 (}{\cf5 a_idle_action}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_idle_actions}{\b\cf1 .}{\cf5 valid_cursor}{\cf1  }{\cf1 (}{\cf5 l_cursor}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_idle_actions}{\b\cf1 .}{\cf5 go_to}{\cf1  }{\cf1 (}{\cf5 l_cursor}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 idle_unlock}{\line}
+{\tab}{\tab}{\tab}{\cf5 kamikaze_lock}{\line}
+{\tab}{\tab}{\tab}{\cf5 kamikaze_actions}{\b\cf1 .}{\cf5 prune_all}{\cf1  }{\cf1 (}{\cf5 a_idle_action}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 kamikaze_unlock}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 idle_lock}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Lock the Idle Actions Mutex.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 idle_action_mutex} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 idle_action_mutex}{\b\cf1 .}{\cf5 lock}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 try_idle_lock}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Attempt to lock the Idle Actions Mutex. True if successful.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 idle_action_mutex} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 idle_action_mutex}{\b\cf1 .}{\cf5 try_lock}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 idle_unlock}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Unlock the Idle Actions Mutex.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 idle_action_mutex} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 idle_action_mutex}{\b\cf1 .}{\cf5 unlock}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 kamikaze_lock}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Lock the Kamikaze Actions Mutex.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 kamikaze_action_mutex} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 kamikaze_action_mutex}{\b\cf1 .}{\cf5 lock}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 try_kamikaze_lock}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Attempt to lock the Kamikaze Actions Mutex. True if successful.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 kamikaze_action_mutex} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 kamikaze_action_mutex}{\b\cf1 .}{\cf5 try_lock}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 kamikaze_unlock}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Unlock the Kamikaze Actions Mutex.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 kamikaze_action_mutex} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 kamikaze_action_mutex}{\b\cf1 .}{\cf5 unlock}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Thread implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 idle_action_mutex}{\cf1 :} {\b\cf6 detachable} {\cf4 MUTEX}{\line}
+{\tab}{\tab}{\b\cf6 note}{\line}
+{\tab}{\tab}{\tab}option: stable{\line}
+{\tab}{\tab}{\b\cf6 attribute}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 kamikaze_action_mutex}{\cf1 :} {\b\cf6 detachable} {\cf4 MUTEX}{\line}
+{\tab}{\tab}{\b\cf6 note}{\line}
+{\tab}{\tab}{\tab}option: stable{\line}
+{\tab}{\tab}{\b\cf6 attribute}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Events}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 do_once_on_idle} {\cf1 (}{\cf5 an_action}{\cf1 :} {\b\cf6 separate} {\cf4 PROCEDURE}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Perform }{\cf5 an_action}{\cf3  one time only on idle.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 kamikaze_lock}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 kamikaze_actions}{\b\cf1 .}{\cf5 has}{\cf1  }{\cf1 (}{\cf5 an_action}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 kamikaze_actions}{\b\cf1 .}{\cf5 extend}{\cf1  }{\cf1 (}{\cf5 an_action}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 is_gui_thread} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 wake_up_gui_thread}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 kamikaze_unlock}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 actions_are_callable}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  May actions be called}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 is_destroyed} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 increase_action_sequence_call_counter}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 increase_action_sequence_call_counter}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Increase }{\cf5 action_sequence_call_counter}{\cf3  by one.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 action_sequence_call_counter} {\cf1 :=} {\cf5 action_sequence_call_counter} {\cf1 +} 1{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 action_sequence_call_counter}{\cf1 :} {\cf4 NATURAL_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Counter used in post-conditions to determine if any actions sequences have been}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  called as a result of the routine the post-condition is applied to.}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Event handling}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 accelerator_actions} {\cf1 (}{\cf5 an_accelerator}{\cf1 :} {\cf4 EV_ACCELERATOR}{\cf1 )}{\cf1 :} {\cf4 EV_NOTIFY_ACTION_SEQUENCE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Actions to be performed when }{\cf5 an_accelerator}{\cf3  key sequence is}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  pressed.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status report}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 tooltip_delay}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Time in milliseconds before tooltips pop up.}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 focused_widget}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_WIDGET}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Widget with keyboard focus}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 current_windows}{\cf1 :} {\b\cf6 like} {\cf5 windows}{\line}
+{\tab}{\tab}{\tab}{\cf5 current_window}{\cf1 :} {\cf4 EV_WINDOW}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 current_windows} {\cf1 :=} {\cf5 windows}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 current_windows}{\b\cf1 .}{\cf5 start}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 current_windows}{\b\cf1 .}{\cf5 off} {\b\cf6 or} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 current_window} {\cf1 :=} {\cf5 current_windows}{\b\cf1 .}{\cf5 item}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 current_window}{\b\cf1 .}{\cf5 has_focus} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 current_window}{\b\cf1 .}{\cf5 full} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 focused_widget_from_container}{\cf1  }{\cf1 (}{\cf5 current_window}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 current_window}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 current_windows}{\b\cf1 .}{\cf5 forth}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status setting}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_tooltip_delay} {\cf1 (}{\cf5 a_delay}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 tooltip_delay}{\cf3  to }{\cf5 a_delay}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_delay_non_negative}{\cf1 :} {\cf5 a_delay} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 assigned}{\cf1 :} {\cf5 tooltip_delay} {\cf1 =} {\cf5 a_delay}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 interface}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_APPLICATION}{\line}
+{\tab}{\tab}{\b\cf6 note}{\line}
+{\tab}{\tab}{\tab}option: stable{\line}
+{\tab}{\tab}{\b\cf6 attribute}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_APPLICATION}{\cf1 ,} {\cf4 EV_PICK_AND_DROPABLE_I}{\cf1 \}} {\cf3 --}{\cf3  Pick and drop}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Pnd_screen}{\cf1 :} {\cf4 EV_SCREEN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Screen object used for drawing PND transport line.}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 enable_dashed_line_style}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 set_foreground_color}{\cf1  }{\cf1 (}{\cf5 Stock_colors}{\b\cf1 .}{\cf5 White}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 set_invert_mode}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Stock_colors}{\cf1 :} {\cf4 EV_STOCK_COLORS}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Once access to default colors}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_PICK_AND_DROPABLE_I}{\cf1 \}} {\cf3 --}{\cf3  Pick and drop}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 x_origin}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Temp coordinate values for origin of Pick and Drop.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 y_origin}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Temp coordinate values for origin of Pick and Drop.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_x_y_origin} {\cf1 (}{\cf5 a_x_origin}{\cf1 ,} {\cf5 a_y_origin}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 x_origin}{\cf3  and }{\cf5 y_origin}{\cf3  to }{\cf5 a_x_origin}{\cf3  and }{\cf5 a_y_origin}{\cf3  respectively.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 x_origin} {\cf1 :=} {\cf5 a_x_origin}{\line}
+{\tab}{\tab}{\tab}{\cf5 y_origin} {\cf1 :=} {\cf5 a_y_origin}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 rubber_band_is_drawn}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is the PnD rubber band drawn on screen?}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 draw_rubber_band}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Draw a segment between initial pick point and }{\cf5 destination}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 Pnd_screen}{\b\cf1 .}{\cf5 draw_segment}{\cf1  }{\cf1 (}{\cf5 x_origin}{\cf1 ,} {\cf5 y_origin}{\cf1 ,} {\cf5 pnd_pointer_x}{\cf1 ,} {\cf5 pnd_pointer_y}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 rubber_band_is_drawn} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 erase_rubber_band}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Erase previously drawn rubber band.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 rubber_band_is_drawn} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 Pnd_screen}{\b\cf1 .}{\cf5 draw_segment}{\cf1  }{\cf1 (}{\cf5 x_origin}{\cf1 ,} {\cf5 y_origin}{\cf1 ,} {\cf5 pnd_pointer_x}{\cf1 ,} {\cf5 pnd_pointer_y}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 rubber_band_is_drawn} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 pnd_pointer_x}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Position of pointer on previous PND draw.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 pnd_pointer_y}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Position of pointer on previous PND draw.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_pnd_pointer_coords} {\cf1 (}{\cf5 a_pnd_pointer_x}{\cf1 ,} {\cf5 a_pnd_pointer_y}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set PND pointer origins to }{\cf5 a_pnd_pointer_x}{\cf3  and }{\cf5 a_pnd_pointer_y}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 pnd_pointer_x} {\cf1 :=} {\cf5 a_pnd_pointer_x}{\line}
+{\tab}{\tab}{\tab}{\cf5 pnd_pointer_y} {\cf1 :=} {\cf5 a_pnd_pointer_y}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 create_target_menu} {\cf1 (}{\cf5 a_x}{\cf1 ,} {\cf5 a_y}{\cf1 ,} {\cf5 a_screen_x}{\cf1 ,} {\cf5 a_screen_y}{\cf1 :} {\cf4 INTEGER_32}{\cf1 ;} {\cf5 a_pnd_source}{\cf1 :} {\cf4 EV_PICK_AND_DROPABLE}{\cf1 ;} {\cf5 a_pebble}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 ;} {\cf5 a_configure_agent}{\cf1 :} {\b\cf6 detachable} {\cf4 PROCEDURE}{\cf1 ;} {\cf5 a_menu_only}{\cf1 :} {\cf4 BOOLEAN}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Menu of targets that accept }{\cf5 a_pebble}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 cur}{\cf1 :} {\cf4 CURSOR}{\line}
+{\tab}{\tab}{\tab}{\cf5 trg}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_ABSTRACT_PICK_AND_DROPABLE}{\line}
+{\tab}{\tab}{\tab}{\cf5 pnd_trg}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_PICK_AND_DROPABLE}{\line}
+{\tab}{\tab}{\tab}{\cf5 targets}{\cf1 :} {\b\cf6 like} {\cf5 pnd_targets}{\line}
+{\tab}{\tab}{\tab}{\cf5 identified}{\cf1 :} {\b\cf6 detachable} {\cf4 IDENTIFIED}{\line}
+{\tab}{\tab}{\tab}{\cf5 sensitive}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_SENSITIVE}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_item_data}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_PND_TARGET_DATA}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_search_tree}{\cf1 :} {\b\cf6 detachable} {\cf4 BINARY_SEARCH_TREE} {\cf1 [}{\cf4 PROXY_COMPARABLE} {\cf1 [}{\cf4 EV_PND_TARGET_DATA}{\cf1 ]}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_object_comparable}{\cf1 :} {\cf4 PROXY_COMPARABLE} {\cf1 [}{\cf4 EV_PND_TARGET_DATA}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_comparator_agent}{\cf1 :} {\cf4 PREDICATE} {\cf1 [}{\cf4 EV_PND_TARGET_DATA}{\cf1 ,} {\cf4 EV_PND_TARGET_DATA}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_arrayed_list}{\cf1 :} {\cf4 ARRAYED_LIST} {\cf1 [}{\cf4 EV_PND_TARGET_DATA}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_alphabetical_sort_agent}{\cf1 :} {\cf4 PROCEDURE} {\cf1 [}{\cf4 PROCEDURE}{\cf1 ,} {\cf4 BINARY_SEARCH_TREE} {\cf1 [}{\cf4 PROXY_COMPARABLE} {\cf1 [}{\cf4 EV_PND_TARGET_DATA}{\cf1 ]}{\cf1 ]}{\cf1 ,} {\cf4 ARRAYED_LIST} {\cf1 [}{\cf4 EV_PND_TARGET_DATA}{\cf1 ]}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_configurable_item_added}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_menu}{\cf1 :} {\cf4 EV_MENU}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_menu_count}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_has_targets}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_pebble}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 targets} {\cf1 :=} {\cf5 pnd_targets}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 l_menu}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 identified}{\line}
+{\tab}{\tab}{\tab}{\cf5 cur} {\cf1 :=} {\cf5 targets}{\b\cf1 .}{\cf5 cursor}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 targets}{\b\cf1 .}{\cf5 start}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_comparator_agent} {\cf1 :=} {\b\cf6 agent} {\cf1 (}{\cf5 first_item}{\cf1 ,} {\cf5 second_item}{\cf1 :} {\cf4 EV_PND_TARGET_DATA}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 first_item}{\b\cf1 .}{\cf5 name} {\b\cf6 as} l_first_name {\b\cf6 and then} {\b\cf6 attached} {\cf5 second_item}{\b\cf1 .}{\cf5 name} {\b\cf6 as} l_second_name {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 l_first_name} {\cf1 <} {\cf5 l_second_name}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 targets}{\b\cf1 .}{\cf5 after}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 trg} {\cf1 ?=} {\cf5 identified}{\b\cf1 .}{\cf5 id_object}{\cf1  }{\cf1 (}{\cf5 targets}{\b\cf1 .}{\cf5 item_for_iteration}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 pnd_trg} {\cf1 ?=} {\cf5 trg}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 trg} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\cf1 (}{\cf5 pnd_trg} {\cf1 =} {\b\cf6 Void} {\b\cf6 or else} {\b\cf6 not} {\cf5 pnd_trg}{\b\cf1 .}{\cf5 is_destroyed}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 a_pebble} {\b\cf6 as} l_p {\b\cf6 and then} {\cf5 trg}{\b\cf1 .}{\cf5 drop_actions}{\b\cf1 .}{\cf5 accepts_pebble}{\cf1  }{\cf1 (}{\cf5 l_p}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 sensitive} {\cf1 ?=} {\cf5 trg}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf1 (}{\cf5 sensitive} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\cf1 (}{\b\cf6 not} {\cf5 sensitive}{\b\cf1 .}{\cf5 is_destroyed} {\b\cf6 and then} {\b\cf6 not} {\cf5 sensitive}{\b\cf1 .}{\cf5 is_sensitive}{\cf1 )}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_has_targets} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 l_configurable_item_added} {\b\cf6 and then} {\cf5 a_configure_agent} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_menu}{\b\cf1 .}{\cf5 extend}{\cf1  }{\cf1 (}{\b\cf6 create}{\cf1  }{\cf1 \{}{\cf4 EV_MENU_ITEM}{\cf1 \}}{\b\cf1 .}{\cf5 make_with_text_and_action}{\cf1  }{\cf1 (}"Pick"{\cf1 ,} {\cf5 a_configure_agent}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_configurable_item_added} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 trg}{\b\cf1 .}{\cf5 target_data_function} {\b\cf6 as} l_target_data_function {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_item_data} {\cf1 :=} {\cf5 l_target_data_function}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf1 [}{\cf5 l_p}{\cf1 ]}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_item_data} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_item_data}{\b\cf1 .}{\cf5 set_target}{\cf1  }{\cf1 (}{\cf5 trg}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 l_object_comparable}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 l_item_data}{\cf1 ,} {\cf5 l_comparator_agent}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_search_tree} {\cf1 =} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 l_search_tree}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 l_object_comparable}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_search_tree}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 l_object_comparable}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_item_data} {\cf1 :=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 targets}{\b\cf1 .}{\cf5 forth}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_has_targets} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 l_arrayed_list}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}0{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_search_tree} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_alphabetical_sort_agent} {\cf1 :=} {\b\cf6 agent} {\cf1 (}{\cf5 l_sort_agent}{\cf1 :} {\cf4 PROCEDURE}{\cf1 ;} {\cf5 a_node}{\cf1 :} {\cf4 BINARY_SEARCH_TREE} {\cf1 [}{\cf4 PROXY_COMPARABLE} {\cf1 [}{\cf4 EV_PND_TARGET_DATA}{\cf1 ]}{\cf1 ]}{\cf1 ;} {\cf5 a_list}{\cf1 :} {\cf4 ARRAYED_LIST} {\cf1 [}{\cf4 EV_PND_TARGET_DATA}{\cf1 ]}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a_node} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_sort_agent}{\b\cf1 .}{\cf5 call}{\cf1  }{\cf1 (}{\cf1 [}{\cf5 l_sort_agent}{\cf1 ,} {\cf5 a_node}{\b\cf1 .}{\cf5 left_child}{\cf1 ,} {\cf5 a_list}{\cf1 ]}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 a_list}{\b\cf1 .}{\cf5 extend}{\cf1  }{\cf1 (}{\cf5 a_node}{\b\cf1 .}{\cf5 item}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_sort_agent}{\b\cf1 .}{\cf5 call}{\cf1  }{\cf1 (}{\cf1 [}{\cf5 l_sort_agent}{\cf1 ,} {\cf5 a_node}{\b\cf1 .}{\cf5 right_child}{\cf1 ,} {\cf5 a_list}{\cf1 ]}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_alphabetical_sort_agent}{\b\cf1 .}{\cf5 call}{\cf1  }{\cf1 (}{\cf1 [}{\cf5 l_alphabetical_sort_agent}{\cf1 ,} {\cf5 l_search_tree}{\cf1 ,} {\cf5 l_arrayed_list}{\cf1 ]}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_menu_count} {\cf1 :=} {\cf5 l_menu}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 a_pnd_source}{\b\cf1 .}{\cf5 configurable_target_menu_handler} {\b\cf6 as} l_menu_handler {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_pebble} {\cf1 :=} {\cf5 a_pebble}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_pebble} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_menu_handler}{\b\cf1 .}{\cf5 call}{\cf1  }{\cf1 (}{\cf1 [}{\cf5 l_menu}{\cf1 ,} {\cf5 l_arrayed_list}{\cf1 ,} {\cf5 a_pnd_source}{\cf1 ,} {\cf5 l_pebble}{\cf1 ]}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_arrayed_list}{\b\cf1 .}{\cf5 start}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_arrayed_list}{\b\cf1 .}{\cf5 after}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 l_arrayed_list}{\b\cf1 .}{\cf5 item}{\b\cf1 .}{\cf5 target} {\b\cf6 as} l_target {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_pebble} {\cf1 :=} {\cf5 a_pebble}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_pebble} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_menu}{\b\cf1 .}{\cf5 extend}{\cf1  }{\cf1 (}{\b\cf6 create}{\cf1  }{\cf1 \{}{\cf4 EV_MENU_ITEM}{\cf1 \}}{\b\cf1 .}{\cf5 make_with_text_and_action}{\cf1  }{\cf1 (}{\cf5 l_arrayed_list}{\b\cf1 .}{\cf5 item}{\b\cf1 .}{\cf5 name}{\cf1 ,} {\b\cf6 agent} {\cf5 l_target}{\b\cf1 .}{\cf5 drop_actions}{\b\cf1 .}{\cf5 call}{\cf1  }{\cf1 (}{\cf1 [}{\cf5 l_pebble}{\cf1 ]}{\cf1 )}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_arrayed_list}{\b\cf1 .}{\cf5 forth}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 l_menu}{\b\cf1 .}{\cf5 is_destroyed} {\b\cf6 and then} {\cf5 l_menu}{\b\cf1 .}{\cf5 count} {\cf1 >} {\cf5 l_menu_count} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_menu}{\b\cf1 .}{\cf5 show_at}{\cf1  }{\cf1 (}{\b\cf6 Void}{\cf1 ,} {\cf5 a_screen_x} {\cf1 -} {\cf5 Menu_placement_offset}{\cf1 ,} {\cf5 a_screen_y} {\cf1 -} {\cf5 Menu_placement_offset}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 a_configure_agent} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and} {\b\cf6 not} {\cf5 a_menu_only} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 a_configure_agent}{\b\cf1 .}{\cf5 call}{\cf1  }{\cf1 (}{\b\cf6 Void}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 a_pnd_source}{\b\cf1 .}{\cf5 configurable_target_menu_handler} {\b\cf6 as} l_configurable_target_menu_handler {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 l_menu}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_configurable_target_menu_handler}{\b\cf1 .}{\cf5 call}{\cf1  }{\cf1 (}{\cf1 [}{\cf5 l_menu}{\cf1 ,} {\b\cf6 create}{\cf1  }{\cf1 \{}{\cf4 ARRAYED_LIST} {\cf1 [}{\cf4 EV_PND_TARGET_DATA}{\cf1 ]}{\cf1 \}}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}0{\cf1 )}{\cf1 ,} {\cf5 a_pnd_source}{\cf1 ,} {\cf5 a_pebble}{\cf1 ]}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 l_menu}{\b\cf1 .}{\cf5 is_destroyed} {\b\cf6 and then} {\cf5 l_menu}{\b\cf1 .}{\cf5 count} {\cf1 >} 0 {\b\cf6 and then} {\b\cf6 not} {\cf5 ctrl_pressed} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_menu}{\b\cf1 .}{\cf5 show_at}{\cf1  }{\cf1 (}{\b\cf6 Void}{\cf1 ,} {\cf5 a_screen_x} {\cf1 -} {\cf5 Menu_placement_offset}{\cf1 ,} {\cf5 a_screen_y} {\cf1 -} {\cf5 Menu_placement_offset}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 targets}{\b\cf1 .}{\cf5 valid_cursor}{\cf1  }{\cf1 (}{\cf5 cur}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 targets}{\b\cf1 .}{\cf5 go_to}{\cf1  }{\cf1 (}{\cf5 cur}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Menu_placement_offset}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 3}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Offset for both X and Y dimensions to which to move the menu so its placement is directly underneath the mouse pointer.}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_ANY_I}{\cf1 \}} {\cf3 --}{\cf3  Tab Navigation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 tab_navigation_state}{\cf1 :} {\cf4 NATURAL_8}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Current tab navigation state.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_tab_navigation_state} {\cf1 (}{\cf5 a_state}{\cf1 :} {\b\cf6 like} {\cf5 tab_navigation_state}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 tab_navigation_state}{\cf3  to }{\cf5 a_state}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_valid_state}{\cf1 :} {\cf5 a_state} {\cf1 >=} {\cf5 Tab_state_none} {\b\cf6 and then} {\cf5 a_state} {\cf1 <=} {\cf5 Tab_state_from_next}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 tab_navigation_state} {\cf1 :=} {\cf5 a_state}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Tab_state_none}{\cf1 :} {\cf4 NATURAL_8} {\cf1 =} 0}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Tab_state_from_previous}{\cf1 :} {\cf4 NATURAL_8} {\cf1 =} 1}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Tab_state_from_next}{\cf1 :} {\cf4 NATURAL_8} {\cf1 =} 2}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Tab navigation states.}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Debug}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 trace}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Output all PND targets.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 cur}{\cf1 :} {\cf4 CURSOR}{\line}
+{\tab}{\tab}{\tab}{\cf5 trg}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_ABSTRACT_PICK_AND_DROPABLE}{\line}
+{\tab}{\tab}{\tab}{\cf5 identified}{\cf1 :} {\cf4 IDENTIFIED}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 cur} {\cf1 :=} {\cf5 pnd_targets}{\b\cf1 .}{\cf5 cursor}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 identified}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 pnd_targets}{\b\cf1 .}{\cf5 start}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 pnd_targets}{\b\cf1 .}{\cf5 after}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 trg} {\cf1 ?=} {\cf5 identified}{\b\cf1 .}{\cf5 id_object}{\cf1  }{\cf1 (}{\cf5 pnd_targets}{\b\cf1 .}{\cf5 item_for_iteration}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 trg} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\b\cf6 attached} {\cf5 trg}{\b\cf1 .}{\cf5 target_name} {\b\cf6 as} l_target_name {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 Io}{\b\cf1 .}{\cf5 Error}{\b\cf1 .}{\cf5 put_string}{\cf1  }{\cf1 (}{\cf5 l_target_name}{\b\cf1 .}{\cf5 as_string_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 pnd_targets}{\b\cf1 .}{\cf5 forth}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 pnd_targets}{\b\cf1 .}{\cf5 go_to}{\cf1  }{\cf1 (}{\cf5 cur}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 call_post_launch_actions}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Call the post launch actions.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 retried}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 retried} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 post_launch_actions}{\b\cf1 .}{\cf5 call}{\cf1  }{\cf1 (}{\b\cf6 Void}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 on_exception_action}{\cf1  }{\cf1 (}{\cf5 new_exception}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 rescue}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 retried} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 retried} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 retry}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 on_exception_action} {\cf1 (}{\cf5 an_exception}{\cf1 :} {\cf4 EXCEPTION}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Call exception actions.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 an_exception_not_void}{\cf1 :} {\cf5 an_exception} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_dialog}{\cf1 :} {\b\cf6 like} {\cf5 exception_dialog}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 locked_window} {\b\cf6 as} l_locked_window {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_locked_window}{\b\cf1 .}{\cf5 unlock_update}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 captured_widget} {\b\cf6 as} l_captured_widget {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_captured_widget}{\b\cf1 .}{\cf5 disable_capture}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 uncaught_exception_actions_called} {\b\cf6 and then} {\cf5 uncaught_exception_actions_internal} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\b\cf6 not} {\cf5 uncaught_exception_actions}{\b\cf1 .}{\cf5 is_empty} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 uncaught_exception_actions_called} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 uncaught_exception_actions}{\b\cf1 .}{\cf5 call}{\cf1  }{\cf1 (}{\cf1 [}{\cf5 an_exception}{\cf1 ]}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 uncaught_exception_actions_called} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 Show_exception_dialog} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 l_dialog}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 exception_dialog} {\cf1 :=} {\cf5 l_dialog}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 raise_default_exception_dialog}{\cf1  }{\cf1 (}{\cf5 l_dialog}{\cf1 ,} {\cf5 an_exception}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 raise_default_exception_dialog} {\cf1 (}{\cf5 a_empty_dialog}{\cf1 :} {\cf4 EV_DIALOG}{\cf1 ;} {\cf5 an_exception}{\cf1 :} {\cf4 EXCEPTION}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Raise the exception dialog}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_empty_dialog_valid}{\cf1 :} {\cf5 a_empty_dialog} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\b\cf6 not} {\cf5 a_empty_dialog}{\b\cf1 .}{\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_exception_string}{\cf1 :} {\b\cf6 detachable} {\cf4 STRING_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_label}{\cf1 :} {\cf4 EV_TEXT}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_label_box}{\cf1 :} {\cf4 EV_HORIZONTAL_BOX}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_vbox}{\cf1 :} {\cf4 EV_VERTICAL_BOX}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_hbox}{\cf1 :} {\cf4 EV_HORIZONTAL_BOX}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_font}{\cf1 :} {\cf4 EV_FONT}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_ignore}{\cf1 ,} {\cf5 l_quit}{\cf1 :} {\cf4 EV_BUTTON}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_frame}{\cf1 :} {\cf4 EV_FRAME}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_error_box}{\cf1 :} {\cf4 EV_HORIZONTAL_BOX}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_error_label}{\cf1 :} {\cf4 EV_LABEL}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_exception_message}{\cf1 :} {\cf4 READABLE_STRING_GENERAL}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_exception_string} {\cf1 :=} {\cf5 an_exception}{\b\cf1 .}{\cf5 trace}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_exception_string} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_exception_string} {\cf1 :=} {\cf5 l_exception_string}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_exception_string}{\b\cf1 .}{\cf5 prune_all}{\cf1  }{\cf1 (}'%R'{\b\cf1 .}{\cf5 to_character_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 l_label}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_label}{\b\cf1 .}{\cf5 disable_word_wrapping}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_label}{\b\cf1 .}{\cf5 disable_edit}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 l_font}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_font}{\b\cf1 .}{\cf5 set_family}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 EV_FONT_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 family_typewriter}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_label}{\b\cf1 .}{\cf5 set_font}{\cf1  }{\cf1 (}{\cf5 l_font}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_exception_string} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_label}{\b\cf1 .}{\cf5 set_text}{\cf1  }{\cf1 (}{\cf5 l_exception_string}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_label}{\b\cf1 .}{\cf5 set_text}{\cf1  }{\cf1 (}"No trace available."{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 l_vbox}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 l_error_box}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_error_box}{\b\cf1 .}{\cf5 set_border_width}{\cf1  }{\cf1 (}5{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_error_box}{\b\cf1 .}{\cf5 set_padding}{\cf1  }{\cf1 (}5{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_error_box}{\b\cf1 .}{\cf5 extend}{\cf1  }{\cf1 (}{\cf1 (}{\b\cf6 create}{\cf1  }{\cf1 \{}{\cf4 EV_STOCK_PIXMAPS}{\cf1 \}}{\cf1 )}{\b\cf1 .}{\cf5 Error_pixmap}{\b\cf1 .}{\cf5 twin}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_error_box}{\b\cf1 .}{\cf5 disable_item_expand}{\cf1  }{\cf1 (}{\cf5 l_error_box}{\b\cf1 .}{\cf5 first}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_error_box}{\b\cf1 .}{\cf5 first}{\b\cf1 .}{\cf5 set_minimum_size}{\cf1  }{\cf1 (}32{\cf1 ,} 32{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 l_error_label}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_error_label}{\b\cf1 .}{\cf5 align_text_left}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_error_label}{\b\cf1 .}{\cf5 set_text}{\cf1  }{\cf1 (}"The following uncaught exception has occurred:%N%NClick Ignore to continue or Quit to exit the application"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_error_box}{\b\cf1 .}{\cf5 extend}{\cf1  }{\cf1 (}{\cf5 l_error_label}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_vbox}{\b\cf1 .}{\cf5 extend}{\cf1  }{\cf1 (}{\cf5 l_error_box}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_vbox}{\b\cf1 .}{\cf5 disable_item_expand}{\cf1  }{\cf1 (}{\cf5 l_error_box}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 l_frame}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 l_label_box}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_frame}{\b\cf1 .}{\cf5 extend}{\cf1  }{\cf1 (}{\cf5 l_label_box}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_label_box}{\b\cf1 .}{\cf5 set_padding}{\cf1  }{\cf1 (}5{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_label_box}{\b\cf1 .}{\cf5 set_border_width}{\cf1  }{\cf1 (}5{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_label_box}{\b\cf1 .}{\cf5 extend}{\cf1  }{\cf1 (}{\cf5 l_label}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_frame}{\b\cf1 .}{\cf5 set_text}{\cf1  }{\cf1 (}"Exception Trace"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_vbox}{\b\cf1 .}{\cf5 extend}{\cf1  }{\cf1 (}{\cf5 l_frame}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_empty_dialog}{\b\cf1 .}{\cf5 extend}{\cf1  }{\cf1 (}{\cf5 l_vbox}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 l_hbox}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_vbox}{\b\cf1 .}{\cf5 extend}{\cf1  }{\cf1 (}{\cf5 l_hbox}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_vbox}{\b\cf1 .}{\cf5 disable_item_expand}{\cf1  }{\cf1 (}{\cf5 l_hbox}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 l_ignore}{\b\cf1 .}{\cf5 make_with_text}{\cf1  }{\cf1 (}"Ignore"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_ignore}{\b\cf1 .}{\cf5 select_actions}{\b\cf1 .}{\cf5 extend}{\cf1  }{\cf1 (}{\b\cf6 agent} {\cf5 a_empty_dialog}{\b\cf1 .}{\cf5 destroy}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_hbox}{\b\cf1 .}{\cf5 extend}{\cf1  }{\cf1 (}{\b\cf6 create}{\cf1  }{\cf1 \{}{\cf4 EV_CELL}{\cf1 \}}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_hbox}{\b\cf1 .}{\cf5 extend}{\cf1  }{\cf1 (}{\cf5 l_ignore}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_hbox}{\b\cf1 .}{\cf5 disable_item_expand}{\cf1  }{\cf1 (}{\cf5 l_ignore}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 l_quit}{\b\cf1 .}{\cf5 make_with_text}{\cf1  }{\cf1 (}"Quit"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_quit}{\b\cf1 .}{\cf5 set_minimum_width}{\cf1  }{\cf1 (}{\cf5 l_ignore}{\b\cf1 .}{\cf5 minimum_width}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_quit}{\b\cf1 .}{\cf5 select_actions}{\b\cf1 .}{\cf5 extend}{\cf1  }{\cf1 (}{\b\cf6 agent} {\cf5 safe_destroy}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_hbox}{\b\cf1 .}{\cf5 extend}{\cf1  }{\cf1 (}{\cf5 l_quit}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_hbox}{\b\cf1 .}{\cf5 disable_item_expand}{\cf1  }{\cf1 (}{\cf5 l_quit}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_hbox}{\b\cf1 .}{\cf5 set_border_width}{\cf1  }{\cf1 (}5{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_hbox}{\b\cf1 .}{\cf5 set_padding}{\cf1  }{\cf1 (}5{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 an_exception}{\b\cf1 .}{\cf5 description} {\b\cf6 as} l_message {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_exception_message} {\cf1 :=} {\cf5 l_message}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_exception_message} {\cf1 :=} ""{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_empty_dialog}{\b\cf1 .}{\cf5 set_title}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 STRING_32}{\cf1 \}}"Uncaught Exception: " {\cf1 +} {\cf5 l_exception_message}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_empty_dialog}{\b\cf1 .}{\cf5 set_minimum_height}{\cf1  }{\cf1 (}350{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_empty_dialog}{\b\cf1 .}{\cf5 set_size}{\cf1  }{\cf1 (}500{\cf1 ,} 300{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_empty_dialog}{\b\cf1 .}{\cf5 raise}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_ignore}{\b\cf1 .}{\cf5 set_focus}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 exception_dialog}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_DIALOG}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Dialog used for showing uncaught exceptions.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Show_exception_dialog}{\cf1 :} {\cf4 BOOLEAN} {\cf1 =} {\b\cf6 True}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Should the exception dialog be shown by default?}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 uncaught_exception_actions_called}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are the }{\cf5 uncaught_exceptions_actions}{\cf3  currently being called?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  This is used to prevent infinite looping should an exception be raised as part of calling }{\cf5 uncaught_exception_actions}{\cf3 .}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 new_exception}{\cf1 :} {\cf4 EXCEPTION}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New exception object representating the last exception caught in Current}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_result}{\cf1 :} {\b\cf6 detachable} {\cf4 EXCEPTION}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_result} {\cf1 :=} {\cf5 Exception_manager}{\b\cf1 .}{\cf5 last_exception}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 l_result}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 new_exception_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 wake_up_gui_thread}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Wake up the GUI thread if sleeping.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_gui_thread}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is the currently executing thread a gui thread?}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 Is_gui_thread_cell}{\b\cf1 .}{\cf5 item}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Is_gui_thread_cell}{\cf1 :} {\cf4 CELL} {\cf1 [}{\cf4 BOOLEAN}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Cell holder for }{\cf5 is_gui_thread}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\b\cf6 False}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 stop_processing_requested}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Has 'stop_processing' been called?}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 clipboard_internal}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_CLIPBOARD}{\line}
+{\tab}{\tab}{\b\cf6 note}{\line}
+{\tab}{\tab}{\tab}option: stable{\line}
+{\tab}{\tab}{\b\cf6 attribute}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 old_pointer_style}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_POINTER_STYLE}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Pointer style of window being used while contextual help is enabled}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 old_pointer_button_press_actions}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_POINTER_BUTTON_ACTION_SEQUENCE}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Button press actions of window being used whie contextual help is enabled}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 help_handler_procedure}{\cf1 :} {\b\cf6 detachable} {\cf4 PROCEDURE}{\line}
+{\tab}{\tab}{\b\cf6 note}{\line}
+{\tab}{\tab}{\tab}option: stable{\line}
+{\tab}{\tab}{\b\cf6 attribute}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 help_handler}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Display contextual help for currently focused widget.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 w}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_WIDGET}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 w} {\cf1 :=} {\cf5 focused_widget}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 w} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 display_help_for_widget}{\cf1  }{\cf1 (}{\cf5 w}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 contextual_help_handler_procedure}{\cf1 :} {\b\cf6 detachable} {\cf4 PROCEDURE}{\line}
+{\tab}{\tab}{\b\cf6 note}{\line}
+{\tab}{\tab}{\tab}option: stable{\line}
+{\tab}{\tab}{\b\cf6 attribute}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Contextual_help_procedure}{\cf1 :} {\cf4 PROCEDURE} {\cf1 [}{\cf4 INTEGER_32}{\cf1 ,} {\cf4 INTEGER_32}{\cf1 ,} {\cf4 INTEGER_32}{\cf1 ,} {\cf4 REAL_64}{\cf1 ,} {\cf4 REAL_64}{\cf1 ,} {\cf4 REAL_64}{\cf1 ,} {\cf4 INTEGER_32}{\cf1 ,} {\cf4 INTEGER_32}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Called when mouse pointer is pressed while contextual help is enabled}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 agent} {\cf5 contextual_help}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 contextual_help} {\cf1 (}{\cf5 x}{\cf1 ,} {\cf5 y}{\cf1 ,} {\cf5 button}{\cf1 :} {\cf4 INTEGER_32}{\cf1 ;} {\cf5 x_tilt}{\cf1 ,} {\cf5 y_tilt}{\cf1 ,} {\cf5 pressure}{\cf1 :} {\cf4 REAL_64}{\cf1 ;} {\cf5 screen_x}{\cf1 ,} {\cf5 screen_y}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Send help context of widget under mouse cursor when left mouse button is pressed to help engine.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Cancel contextual help mode when right mouse button is pressed.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 w}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_WIDGET}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 button} {\cf1 =} 1 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 disable_contextual_help}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 w} {\cf1 :=} {\cf5 Pnd_screen}{\b\cf1 .}{\cf5 widget_at_mouse_pointer}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 w} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 display_help_for_widget}{\cf1  }{\cf1 (}{\cf5 w}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 disable_contextual_help}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Disable contextual help: remove capture and restore mouse pointer style.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 captured_widget} {\b\cf6 as} l_captured_widget {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 old_pointer_button_press_actions} {\b\cf6 as} l_actions {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_captured_widget}{\b\cf1 .}{\cf5 pointer_button_press_actions}{\b\cf1 .}{\cf5 fill}{\cf1  }{\cf1 (}{\cf5 l_actions}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 old_pointer_style} {\b\cf6 as} l_old_pointer_style {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_captured_widget}{\b\cf1 .}{\cf5 set_pointer_style}{\cf1  }{\cf1 (}{\cf5 l_old_pointer_style}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_captured_widget}{\b\cf1 .}{\cf5 disable_capture}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 focused_widget_from_container} {\cf1 (}{\cf5 a_widget}{\cf1 :} {\cf4 EV_WIDGET}{\cf1 )}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_WIDGET}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Child widget of }{\cf5 a_widget}{\cf3  with keyboard focus, if any}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_container}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_CONTAINER}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_widget_list}{\cf1 :} {\cf4 LINEAR} {\cf1 [}{\cf4 EV_WIDGET}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf5 chain}{\cf1 :} {\b\cf6 detachable} {\cf4 CHAIN} {\cf1 [}{\cf4 EV_WIDGET}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf5 cursor}{\cf1 :} {\b\cf6 detachable} {\cf4 CURSOR}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a_widget}{\b\cf1 .}{\cf5 has_focus} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 a_widget}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 a_container} {\cf1 ?=} {\cf5 a_widget}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a_container} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 chain} {\cf1 ?=} {\cf5 a_container}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 chain} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 cursor} {\cf1 :=} {\cf5 chain}{\b\cf1 .}{\cf5 cursor}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 a_widget_list} {\cf1 :=} {\cf5 a_container}{\b\cf1 .}{\cf5 linear_representation}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 a_widget_list}{\b\cf1 .}{\cf5 start}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 a_widget_list}{\b\cf1 .}{\cf5 off} {\b\cf6 or} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 focused_widget_from_container}{\cf1  }{\cf1 (}{\cf5 a_widget_list}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 a_widget_list}{\b\cf1 .}{\cf5 forth}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 chain} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 cursor} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 chain}{\b\cf1 .}{\cf5 go_to}{\cf1  }{\cf1 (}{\cf5 cursor}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 focused_widget}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void} {\b\cf6 implies} {\b\cf6 Result}{\b\cf1 .}{\cf5 has_focus}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 wait_for_input} {\cf1 (}{\cf5 msec}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Wait for at most }{\cf5 msec}{\cf3  milliseconds for an input.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 msec_non_negative}{\cf1 :} {\cf5 msec} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 note}{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 1984-2017, Eiffel Software and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"{\line}
+{\tab}{\cf1 source}{\cf1 :} "[{\line}
+{\tab}{\tab}Eiffel Software{\line}
+{\tab}{\tab}5949 Hollister Ave., Goleta, CA 93117 USA{\line}
+{\tab}{\tab}Telephone 805-685-1006, Fax 805-685-6869{\line}
+{\tab}{\tab}Website http://www.eiffel.com{\line}
+{\tab}{\tab}Customer support http://support.eiffel.com{\line}
+{\tab}]"{\line}
+{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 EV_APPLICATION_I}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

@@ -1,0 +1,25 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../tracker/etf_new_tracker_links.xml</location>ETF_NEW_TRACKER</class>
+
+<keyword>Ancestors</keyword>
+	<class><include>False</include>ETF_NEW_TRACKER_INTERFACE</class><char>*</char>
+
+<keyword>Clients</keyword>
+	<class><include>False</include>ETF_INPUT_HANDLER_INTERFACE</class><char>*</char>
+	<class><location>../tracker/etf_new_tracker_links.xml</location>ETF_NEW_TRACKER</class>
+
+<keyword>Suppliers</keyword>
+	<class><location>../tracker/error_links.xml</location>ERROR</class>
+	<class><include>False</include>ETF_ABSTRACT_UI_INTERFACE</class><char>*</char>
+	<class><include>False</include>ETF_EVENT</class> <symbol>[</symbol><generic>G</generic> <symbol>-&gt;</symbol> <class><include>False</include>TUPLE</class><symbol>]</symbol>
+	<class><location>../tracker/etf_new_tracker_links.xml</location>ETF_NEW_TRACKER</class>
+	<class><location>../tracker/history_links.xml</location>HISTORY</class>
+	<class><include>False</include>INTEGER_32</class>
+	<class><location>../tracker/messages_access_links.xml</location>MESSAGES_ACCESS</class>
+	<class><location>../tracker/new_tracker_links.xml</location>NEW_TRACKER</class>
+	<class><include>False</include>REAL_64</class>
+	<class><location>../tracker/tracker_links.xml</location>TRACKER</class>
+	<class><location>../mathmodels/value_links.xml</location>VALUE</class>
+
+</system>

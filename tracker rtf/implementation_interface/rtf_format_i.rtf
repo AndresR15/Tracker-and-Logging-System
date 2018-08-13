@@ -1,0 +1,356 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "Objects that hold the current formatting applied while loading a RTF file."{\line}
+{\tab}{\cf1 legal}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 status}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 author}{\cf1 :} ""{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2013-01-28 17:14:10 -0800 (Mon, 28 Jan 2013) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 91071 $"{\line}
+{\line}
+{\b\cf6 class} {\line}
+{\tab}{\cf4 RTF_FORMAT_I}{\line}
+{\line}
+{\b\cf6 inherit}{\line}
+{\tab}{\cf4 EV_PARAGRAPH_CONSTANTS}{\line}
+{\tab}{\tab}{\b\cf6 rename}{\line}
+{\tab}{\tab}{\tab}{\cf5 Alignment} {\b\cf6 as} {\cf5 Alignment_constant}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 Left_margin} {\b\cf6 as} {\cf5 Left_margin_constant}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 Right_margin} {\b\cf6 as} {\cf5 Right_margin_constant}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 Top_spacing} {\b\cf6 as} {\cf5 Top_spacing_constant}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 Bottom_spacing} {\b\cf6 as} {\cf5 Bottom_spacing_constant}{\line}
+{\tab}{\tab}{\b\cf6 redefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 default_create}{\line}
+{\tab}{\tab}{\b\cf6 end}{\line}
+{\line}
+{\b\cf6 create} {\line}
+{\tab}{\cf5 default_create}{\line}
+{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Initialization}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 default_create}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create }{\cf5 Current}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 alignment} {\cf1 :=} {\cf5 Alignment_left}{\line}
+{\tab}{\tab}{\tab}{\cf5 reset_internals}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 highlight_color}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Highlighting applied to text.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 highlight_set}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Has }{\cf5 highlight_color}{\cf3  been explicitly set and does not correspond to auto?}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 text_color}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Text color of format}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 color_set}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Has }{\cf5 text_color}{\cf3  been explicitly set and does not correspond to auto?}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_bold}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is format bold?}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_italic}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is format italic?}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_striked_out}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is format striken out?}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_underlined}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is format underlined?}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 vertical_offset}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Vertical offset in pixels.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 font_height}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Height of font used by format.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 character_format}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Current character format index.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 boolean_out} {\cf1 (}{\cf5 a_boolean}{\cf1 :} {\cf4 BOOLEAN}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a_boolean} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 True_constant}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 False_constant}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 True_constant}{\cf1 :} {\cf4 STRING_8} {\cf1 =} "T"}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 False_constant}{\cf1 :} {\cf4 STRING_8} {\cf1 =} "F"}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 character_format_out}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Result is representation of character format attributes of }{\cf5 Current}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Paragraph and formats need to be buffered independently, hence a}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  separate out feature for each of these set of attributes.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 internal_character_format_out} {\b\cf6 as} l_internal_character_format_out {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 l_internal_character_format_out}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}30{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append_integer}{\cf1  }{\cf1 (}{\cf5 highlight_color}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 boolean_out}{\cf1  }{\cf1 (}{\cf5 is_bold}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append_integer}{\cf1  }{\cf1 (}{\cf5 character_format}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 boolean_out}{\cf1  }{\cf1 (}{\cf5 is_italic}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append_integer}{\cf1  }{\cf1 (}{\cf5 font_height}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 boolean_out}{\cf1  }{\cf1 (}{\cf5 is_striked_out}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append_integer}{\cf1  }{\cf1 (}{\cf5 text_color}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 boolean_out}{\cf1  }{\cf1 (}{\cf5 is_underlined}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append_integer}{\cf1  }{\cf1 (}{\cf5 vertical_offset}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 boolean_out}{\cf1  }{\cf1 (}{\cf5 highlight_set}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 boolean_out}{\cf1  }{\cf1 (}{\cf5 color_set}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 internal_character_format_out} {\cf1 :=} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 alignment}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Alignment of text.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 bottom_spacing}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Bottom spacing}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 top_spacing}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Top spacing}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 right_margin}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Right margin}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 left_margin}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Left margin}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 reset_paragraph}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Ensure all paragraph formatting attributes are reset to}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  default values.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 alignment} {\cf1 :=} {\cf5 Alignment_left}{\line}
+{\tab}{\tab}{\tab}{\cf5 left_margin} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\cf5 right_margin} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\cf5 top_spacing} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\cf5 bottom_spacing} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\cf5 reset_internals}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 alignment} {\cf1 =} {\cf5 Alignment_left}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 left_margin} {\cf1 =} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 right_margin} {\cf1 =} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 top_spacing} {\cf1 =} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 bottom_spacing} {\cf1 =} 0{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 paragraph_format_out}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Result is representation of paragraph format attributes of }{\cf5 Current}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Paragraph and formats need to be buffered independently, hence a}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  separate out fetaure for each of these set of attributes.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 internal_paragraph_format_out} {\b\cf6 as} l_internal_paragraph_format_out {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 l_internal_paragraph_format_out}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}16{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append_integer}{\cf1  }{\cf1 (}{\cf5 alignment}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append_integer}{\cf1  }{\cf1 (}{\cf5 bottom_spacing}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append_integer}{\cf1  }{\cf1 (}{\cf5 top_spacing}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append_integer}{\cf1  }{\cf1 (}{\cf5 right_margin}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append_integer}{\cf1  }{\cf1 (}{\cf5 left_margin}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 internal_paragraph_format_out} {\cf1 :=} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Element change}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_bottom_spacing} {\cf1 (}{\cf5 a_bottom_spacing}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 bottom_spacing}{\cf3  to }{\cf5 a_bottom_spacing}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_bottom_spacing_non_negative}{\cf1 :} {\cf5 a_bottom_spacing} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 bottom_spacing} {\cf1 :=} {\cf5 a_bottom_spacing}{\line}
+{\tab}{\tab}{\tab}{\cf5 reset_internals}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 bottom_spacing_assigned}{\cf1 :} {\cf5 bottom_spacing} {\cf1 =} {\cf5 a_bottom_spacing}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_top_spacing} {\cf1 (}{\cf5 a_top_spacing}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 top_spacing}{\cf3  to }{\cf5 a_top_spacing}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_top_spacing_non_negative}{\cf1 :} {\cf5 a_top_spacing} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 top_spacing} {\cf1 :=} {\cf5 a_top_spacing}{\line}
+{\tab}{\tab}{\tab}{\cf5 reset_internals}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 top_spacing_assigned}{\cf1 :} {\cf5 top_spacing} {\cf1 =} {\cf5 a_top_spacing}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_right_margin} {\cf1 (}{\cf5 a_right_margin}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 right_margin}{\cf3  to }{\cf5 a_right_margin}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_right_margin_non_negative}{\cf1 :} {\cf5 a_right_margin} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 right_margin} {\cf1 :=} {\cf5 a_right_margin}{\line}
+{\tab}{\tab}{\tab}{\cf5 reset_internals}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 right_margin_assigned}{\cf1 :} {\cf5 right_margin} {\cf1 =} {\cf5 a_right_margin}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_left_margin} {\cf1 (}{\cf5 a_left_margin}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 left_margin}{\cf3  to }{\cf5 a_left_margin}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_left_margin_non_negative}{\cf1 :} {\cf5 a_left_margin} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 left_margin} {\cf1 :=} {\cf5 a_left_margin}{\line}
+{\tab}{\tab}{\tab}{\cf5 reset_internals}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 left_margin_assigned}{\cf1 :} {\cf5 left_margin} {\cf1 =} {\cf5 a_left_margin}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_highlight_color} {\cf1 (}{\cf5 a_highlight_color}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 highlight_color}{\cf3  to }{\cf5 a_highlight_color}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_highlight_color_non_negative}{\cf1 :} {\cf5 a_highlight_color} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 highlight_color} {\cf1 :=} {\cf5 a_highlight_color}{\line}
+{\tab}{\tab}{\tab}{\cf5 highlight_set} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\cf5 reset_internals}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 highlight_color_assigned}{\cf1 :} {\cf5 highlight_color} {\cf1 =} {\cf5 a_highlight_color}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_text_color} {\cf1 (}{\cf5 a_text_color}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 text_color}{\cf3  to }{\cf5 a_text_color}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_text_color_non_negative}{\cf1 :} {\cf5 a_text_color} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 text_color} {\cf1 :=} {\cf5 a_text_color}{\line}
+{\tab}{\tab}{\tab}{\cf5 color_set} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\cf5 reset_internals}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 text_color_assigned}{\cf1 :} {\cf5 text_color} {\cf1 =} {\cf5 a_text_color}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_bold} {\cf1 (}{\cf5 a_is_bold}{\cf1 :} {\cf4 BOOLEAN}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 is_bold}{\cf3  to }{\cf5 a_is_bold}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 is_bold} {\cf1 :=} {\cf5 a_is_bold}{\line}
+{\tab}{\tab}{\tab}{\cf5 reset_internals}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_bold_assigned}{\cf1 :} {\cf5 is_bold} {\cf1 =} {\cf5 a_is_bold}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_italic} {\cf1 (}{\cf5 an_is_italic}{\cf1 :} {\cf4 BOOLEAN}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 is_italic}{\cf3  to }{\cf5 an_is_italic}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 is_italic} {\cf1 :=} {\cf5 an_is_italic}{\line}
+{\tab}{\tab}{\tab}{\cf5 reset_internals}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_italic_assigned}{\cf1 :} {\cf5 is_italic} {\cf1 =} {\cf5 an_is_italic}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_striked_out} {\cf1 (}{\cf5 an_is_striked_out}{\cf1 :} {\cf4 BOOLEAN}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 is_striked_out}{\cf3  to }{\cf5 an_is_striked_out}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 is_striked_out} {\cf1 :=} {\cf5 an_is_striked_out}{\line}
+{\tab}{\tab}{\tab}{\cf5 reset_internals}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_striked_out_assigned}{\cf1 :} {\cf5 is_striked_out} {\cf1 =} {\cf5 an_is_striked_out}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_underlined} {\cf1 (}{\cf5 an_is_underlined}{\cf1 :} {\cf4 BOOLEAN}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 is_underlined}{\cf3  to }{\cf5 an_is_underlined}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 is_underlined} {\cf1 :=} {\cf5 an_is_underlined}{\line}
+{\tab}{\tab}{\tab}{\cf5 reset_internals}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_underlined}{\cf1 :} {\cf5 is_underlined} {\cf1 =} {\cf5 an_is_underlined}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_vertical_offset} {\cf1 (}{\cf5 an_offset}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 vertical_offset}{\cf3  to }{\cf5 an_offset}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 vertical_offset} {\cf1 :=} {\cf5 an_offset}{\line}
+{\tab}{\tab}{\tab}{\cf5 reset_internals}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 offset_set}{\cf1 :} {\cf5 vertical_offset} {\cf1 =} {\cf5 an_offset}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_font_height} {\cf1 (}{\cf5 a_font_height}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 font_height}{\cf3  to }{\cf5 a_font_height}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_font_height_positive}{\cf1 :} {\cf5 a_font_height} {\cf1 >} 0{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 font_height} {\cf1 :=} {\cf5 a_font_height}{\line}
+{\tab}{\tab}{\tab}{\cf5 reset_internals}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 font_height_assigned}{\cf1 :} {\cf5 font_height} {\cf1 =} {\cf5 a_font_height}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_character_format} {\cf1 (}{\cf5 a_character_format}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 character_format}{\cf3  to }{\cf5 a_character_format}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_character_format_non_negative}{\cf1 :} {\cf5 a_character_format} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 character_format} {\cf1 :=} {\cf5 a_character_format}{\line}
+{\tab}{\tab}{\tab}{\cf5 reset_internals}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 character_format_assigned}{\cf1 :} {\cf5 character_format} {\cf1 =} {\cf5 a_character_format}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_alignment} {\cf1 (}{\cf5 an_alignment}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 alignment}{\cf3  to }{\cf5 an_alignment}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_alignment}{\cf1 :} {\cf5 valid_alignment}{\cf1  }{\cf1 (}{\cf5 an_alignment}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 alignment} {\cf1 :=} {\cf5 an_alignment}{\line}
+{\tab}{\tab}{\tab}{\cf5 reset_internals}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 alignment_set}{\cf1 :} {\cf5 alignment} {\cf1 =} {\cf5 an_alignment}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 internal_character_format_out}{\cf1 :} {\b\cf6 detachable} {\cf4 STRING_8}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Once per object for }{\cf5 character_format_out}{\cf3 .}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 internal_paragraph_format_out}{\cf1 :} {\b\cf6 detachable} {\cf4 STRING_8}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Once per object for }{\cf5 paragraph_format_out}{\cf3 .}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 reset_internals}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Reset }{\cf5 internal_character_format_out}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 internal_character_format_out} {\cf1 :=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf5 internal_paragraph_format_out} {\cf1 :=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 internal_character_format_out_reset}{\cf1 :} {\cf5 internal_character_format_out} {\cf1 =} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 invariant}{\line}
+{\tab}{\cf1 character_format_non_negative}{\cf1 :} {\cf5 character_format} {\cf1 >=} 0{\line}
+{\tab}{\cf1 font_height_non_negative}{\cf1 :} {\cf5 font_height} {\cf1 >=} 0{\line}
+{\tab}{\cf1 text_color_non_negative}{\cf1 :} {\cf5 text_color} {\cf1 >=} 0{\line}
+{\tab}{\cf1 highlight_color_non_negative}{\cf1 :} {\cf5 highlight_color} {\cf1 >=} 0{\line}
+{\tab}{\cf1 left_margin_non_negative}{\cf1 :} {\cf5 left_margin} {\cf1 >=} 0{\line}
+{\tab}{\cf1 right_margin_non_negative}{\cf1 :} {\cf5 right_margin} {\cf1 >=} 0{\line}
+{\tab}{\cf1 top_spacing_non_negative}{\cf1 :} {\cf5 top_spacing} {\cf1 >=} 0{\line}
+{\tab}{\cf1 bottom_spacing_non_negative}{\cf1 :} {\cf5 bottom_spacing} {\cf1 >=} 0{\line}
+{\line}
+{\b\cf6 note}{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 1984-2006, Eiffel Software and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"{\line}
+{\tab}{\cf1 source}{\cf1 :} "[{\line}
+{\tab}{\tab}Eiffel Software{\line}
+{\tab}{\tab}356 Storke Road, Goleta, CA 93117 USA{\line}
+{\tab}{\tab}Telephone 805-685-1006, Fax 805-685-6869{\line}
+{\tab}{\tab}Website http://www.eiffel.com{\line}
+{\tab}{\tab}Customer support http://support.eiffel.com{\line}
+{\tab}]"{\line}
+{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 RTF_FORMAT_I}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

@@ -1,0 +1,27 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../interface/ev_font_constants_links.xml</location>EV_FONT_CONSTANTS</class>
+
+<keyword>Ancestors</keyword>
+	<class><include>False</include>ANY</class>
+
+<keyword>Descendants</keyword>
+	<class><location>../interface/ev_font_links.xml</location>EV_FONT</class>
+	<class><location>../implementation_interface/ev_font_i_links.xml</location>EV_FONT_I</class><char>*</char>
+	<class><location>../implementation_interface/ev_rich_text_buffering_structures_i_links.xml</location>EV_RICH_TEXT_BUFFERING_STRUCTURES_I</class>
+
+<keyword>Clients</keyword>
+	<class><location>../implementation_interface/ev_application_i_links.xml</location>EV_APPLICATION_I</class><char>*</char>
+	<class><location>../implementation_gtk/ev_character_format_imp_links.xml</location>EV_CHARACTER_FORMAT_IMP</class>
+	<class><location>../interface/ev_font_constants_links.xml</location>EV_FONT_CONSTANTS</class>
+	<class><location>../implementation_gtk/ev_font_dialog_imp_links.xml</location>EV_FONT_DIALOG_IMP</class>
+	<class><location>../implementation_gtk/ev_font_imp_links.xml</location>EV_FONT_IMP</class>
+	<class><location>../implementation_gtk/ev_gtk_dependent_application_imp_links.xml</location>EV_GTK_DEPENDENT_APPLICATION_IMP</class><char>*</char>
+	<class><location>../implementation_interface/ev_rich_text_buffering_structures_i_links.xml</location>EV_RICH_TEXT_BUFFERING_STRUCTURES_I</class>
+	<class><location>../implementation_gtk/ev_rich_text_imp_links.xml</location>EV_RICH_TEXT_IMP</class>
+
+<keyword>Suppliers</keyword>
+	<class><include>False</include>BOOLEAN</class>
+	<class><location>../interface/ev_font_constants_links.xml</location>EV_FONT_CONSTANTS</class>
+
+</system>

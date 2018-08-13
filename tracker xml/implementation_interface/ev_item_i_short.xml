@@ -1,0 +1,34 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Vision item. Implementation interface.&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;item&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2012-05-02 22:50:26 -0700 (Wed, 02 May 2012) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 88680 $&quot;</string>
+
+<keyword>deferred</keyword> <keyword>class</keyword> <keyword>interface</keyword>
+	<class><location>../implementation_interface/ev_item_i_short.xml</location>EV_ITEM_I</class>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_parent</anchor><feature><location>../implementation_interface/ev_item_i_short.xml#f_parent</location>parent</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_item_list_short.xml</location>EV_ITEM_LIST</class> <symbol>[</symbol><class><location>../interface/ev_item_short.xml</location>EV_ITEM</class><symbol>]</symbol>
+			<comment>--</comment><comment> Item list containing </comment><quoted>Current</quoted><comment>.</comment>
+
+	<anchor>f_parent_imp</anchor><feature><location>../implementation_interface/ev_item_i_short.xml#f_parent_imp</location>parent_imp</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_interface/ev_item_list_i_short.xml</location>EV_ITEM_LIST_I</class> <symbol>[</symbol><class><location>../interface/ev_item_short.xml</location>EV_ITEM</class><symbol>]</symbol>
+			<comment>--</comment><comment> The parent of the Current widget</comment>
+			<comment>--</comment><comment> Can be void.</comment>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2012, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_interface/ev_item_i_short.xml</location>EV_ITEM_I</class></system>
+

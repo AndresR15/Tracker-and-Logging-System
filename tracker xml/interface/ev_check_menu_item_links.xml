@@ -1,0 +1,19 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../interface/ev_check_menu_item_links.xml</location>EV_CHECK_MENU_ITEM</class>
+
+<keyword>Ancestors</keyword>
+	<class><location>../interface/ev_deselectable_links.xml</location>EV_DESELECTABLE</class><char>*</char>
+	<class><location>../interface/ev_menu_item_links.xml</location>EV_MENU_ITEM</class>
+
+<keyword>Clients</keyword>
+	<class><location>../interface/ev_check_menu_item_links.xml</location>EV_CHECK_MENU_ITEM</class>
+
+<keyword>Suppliers</keyword>
+	<class><include>False</include>BOOLEAN</class>
+	<class><location>../interface/ev_check_menu_item_links.xml</location>EV_CHECK_MENU_ITEM</class>
+	<class><location>../implementation_gtk/ev_check_menu_item_imp_links.xml</location>EV_CHECK_MENU_ITEM_IMP</class>
+	<class><location>../interface/ev_deselectable_links.xml</location>EV_DESELECTABLE</class><char>*</char>
+	<class><location>../interface/ev_menu_item_links.xml</location>EV_MENU_ITEM</class>
+
+</system>

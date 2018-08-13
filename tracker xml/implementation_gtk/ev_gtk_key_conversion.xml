@@ -1,0 +1,1460 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Vision GTK key conversion. Provides a function%Nfor GTK to vision2 conversion and for vision2 to GTK conversion.&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;generated&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;generated&quot;</string>
+
+<keyword>class</keyword> 
+	<class><location>../implementation_gtk/ev_gtk_key_conversion.xml</location>EV_GTK_KEY_CONVERSION</class>
+
+<keyword>inherit</keyword>
+	<class><location>../interface/ev_key_constants.xml</location>EV_KEY_CONSTANTS</class>
+
+<keyword>create</keyword> 
+	<feature><include>False</include>default_create</feature>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Conversion</comment>
+
+	<anchor>f_key_code_to_gtk</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_code_to_gtk</location>key_code_to_gtk</feature> <symbol>(</symbol><local>a_key_code</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+			<comment>--</comment><comment> Corresponding GTK code for </comment><quoted>a_key_code</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>a_key_code_valid</tag><symbol>:</symbol> <feature><location>../interface/ev_key_constants.xml#f_valid_key_code</location>valid_key_code</feature><symbol> </symbol><symbol>(</symbol><local>a_key_code</local><symbol>)</symbol>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_v2_to_gtk_table</location>V2_to_gtk_table</feature> <symbol>@</symbol> <local>a_key_code</local>
+		<keyword>end</keyword>
+
+	<anchor>f_key_code_from_gtk</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_code_from_gtk</location>key_code_from_gtk</feature> <symbol>(</symbol><local>a_gtk_code</local><symbol>:</symbol> <class><include>False</include>NATURAL_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Corresponding key code for </comment><quoted>a_gtk_code</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>a_gtk_code_valid</tag><symbol>:</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_valid_gtk_code</location>valid_gtk_code</feature><symbol> </symbol><symbol>(</symbol><local>a_gtk_code</local><symbol>)</symbol>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_gtk_to_v2_table</location>Gtk_to_v2_table</feature><dot>.</dot><feature><include>False</include>item</feature><symbol> </symbol><symbol>(</symbol><local>a_gtk_code</local><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Contract support</comment>
+
+	<anchor>f_valid_gtk_code</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_valid_gtk_code</location>valid_gtk_code</feature> <symbol>(</symbol><local>a_gtk_code</local><symbol>:</symbol> <class><include>False</include>NATURAL_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is </comment><quoted>a_gtk_code</quoted><comment> valid?</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_gtk_to_v2_table</location>Gtk_to_v2_table</feature><dot>.</dot><feature><include>False</include>has</feature><symbol> </symbol><symbol>(</symbol><local>a_gtk_code</local><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_v2_to_gtk_table</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_v2_to_gtk_table</location>V2_to_gtk_table</feature><symbol>:</symbol> <class><include>False</include>ARRAY</class> <symbol>[</symbol><class><include>False</include>NATURAL_32</class><symbol>]</symbol>
+			<comment>--</comment><comment> GTK keycodes indexed by Vision2 key code.</comment>
+		<keyword>once</keyword>
+			<keyword>create</keyword> <keyword>Result</keyword><dot>.</dot><feature><include>False</include>make_filled</feature><symbol> </symbol><symbol>(</symbol><symbol>{</symbol><class><include>False</include>NATURAL_32</class><symbol>}</symbol> <number>0</number><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_0</location>Key_0</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_menu</location>Key_menu</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_0_keysym</location>key_0_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_0</location>Key_0</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_1_keysym</location>key_1_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_1</location>Key_1</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_2_keysym</location>key_2_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_2</location>Key_2</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_3_keysym</location>key_3_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_3</location>Key_3</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_4_keysym</location>key_4_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_4</location>Key_4</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_5_keysym</location>key_5_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_5</location>Key_5</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_6_keysym</location>key_6_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_6</location>Key_6</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_7_keysym</location>key_7_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_7</location>Key_7</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_8_keysym</location>key_8_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_8</location>Key_8</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_9_keysym</location>key_9_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_9</location>Key_9</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numpad_0_keysym</location>key_numpad_0_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_numpad_0</location>Key_numpad_0</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numpad_1_keysym</location>key_numpad_1_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_numpad_1</location>Key_numpad_1</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numpad_2_keysym</location>key_numpad_2_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_numpad_2</location>Key_numpad_2</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numpad_3_keysym</location>key_numpad_3_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_numpad_3</location>Key_numpad_3</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numpad_4_keysym</location>key_numpad_4_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_numpad_4</location>Key_numpad_4</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numpad_5_keysym</location>key_numpad_5_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_numpad_5</location>Key_numpad_5</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numpad_6_keysym</location>key_numpad_6_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_numpad_6</location>Key_numpad_6</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numpad_7_keysym</location>key_numpad_7_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_numpad_7</location>Key_numpad_7</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numpad_8_keysym</location>key_numpad_8_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_numpad_8</location>Key_numpad_8</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numpad_9_keysym</location>key_numpad_9_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_numpad_9</location>Key_numpad_9</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numpad_add_keysym</location>key_numpad_add_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_numpad_add</location>Key_numpad_add</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numpad_divide_keysym</location>key_numpad_divide_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_numpad_divide</location>Key_numpad_divide</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numpad_multiply_keysym</location>key_numpad_multiply_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_numpad_multiply</location>Key_numpad_multiply</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_num_lock_keysym</location>key_num_lock_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_num_lock</location>Key_num_lock</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numpad_subtract_keysym</location>key_numpad_subtract_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_numpad_subtract</location>Key_numpad_subtract</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numpad_decimal_keysym</location>key_numpad_decimal_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_numpad_decimal</location>Key_numpad_decimal</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_f1_keysym</location>key_f1_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_f1</location>Key_f1</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_f2_keysym</location>key_f2_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_f2</location>Key_f2</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_f3_keysym</location>key_f3_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_f3</location>Key_f3</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_f4_keysym</location>key_f4_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_f4</location>Key_f4</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_f5_keysym</location>key_f5_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_f5</location>Key_f5</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_f6_keysym</location>key_f6_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_f6</location>Key_f6</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_f7_keysym</location>key_f7_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_f7</location>Key_f7</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_f8_keysym</location>key_f8_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_f8</location>Key_f8</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_f9_keysym</location>key_f9_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_f9</location>Key_f9</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_f10_keysym</location>key_f10_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_f10</location>Key_f10</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_f11_keysym</location>key_f11_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_f11</location>Key_f11</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_f12_keysym</location>key_f12_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_f12</location>Key_f12</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_space_keysym</location>key_space_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_space</location>Key_space</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_back_space_keysym</location>key_back_space_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_back_space</location>Key_back_space</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_enter_keysym</location>key_enter_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_enter</location>Key_enter</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_escape_keysym</location>key_escape_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_escape</location>Key_escape</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_tab_keysym</location>key_tab_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_tab</location>Key_tab</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_pause_keysym</location>key_pause_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_pause</location>Key_pause</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_caps_lock_keysym</location>key_caps_lock_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_caps_lock</location>Key_caps_lock</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_scroll_lock_keysym</location>key_scroll_lock_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_scroll_lock</location>Key_scroll_lock</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_comma_keysym</location>key_comma_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_comma</location>Key_comma</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_equal_keysym</location>key_equal_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_equal</location>Key_equal</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_period_keysym</location>key_period_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_period</location>Key_period</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_semicolon_keysym</location>key_semicolon_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_semicolon</location>Key_semicolon</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_open_bracket_keysym</location>key_open_bracket_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_open_bracket</location>Key_open_bracket</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_close_bracket_keysym</location>key_close_bracket_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_close_bracket</location>Key_close_bracket</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_slash_keysym</location>key_slash_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_slash</location>Key_slash</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_backslash_keysym</location>key_backslash_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_backslash</location>Key_backslash</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_quote_keysym</location>key_quote_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_quote</location>Key_quote</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_backquote_keysym</location>key_backquote_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_backquote</location>Key_backquote</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_dash_keysym</location>key_dash_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_dash</location>Key_dash</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_up_keysym</location>key_up_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_up</location>Key_up</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_down_keysym</location>key_down_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_down</location>Key_down</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_left_keysym</location>key_left_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_left</location>Key_left</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_right_keysym</location>key_right_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_right</location>Key_right</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_page_up_keysym</location>key_page_up_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_page_up</location>Key_page_up</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_page_down_keysym</location>key_page_down_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_page_down</location>Key_page_down</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_home_keysym</location>key_home_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_home</location>Key_home</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_end_keysym</location>key_end_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_end</location>Key_end</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_insert_keysym</location>key_insert_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_insert</location>Key_insert</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_delete_keysym</location>key_delete_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_delete</location>Key_delete</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_a_keysym</location>key_a_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_a</location>Key_a</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_b_keysym</location>key_b_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_b</location>Key_b</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_c_keysym</location>key_c_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_c</location>Key_c</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_d_keysym</location>key_d_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_d</location>Key_d</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_e_keysym</location>key_e_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_e</location>Key_e</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_f_keysym</location>key_f_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_f</location>Key_f</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_g_keysym</location>key_g_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_g</location>Key_g</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_h_keysym</location>key_h_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_h</location>Key_h</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_i_keysym</location>key_i_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_i</location>Key_i</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_j_keysym</location>key_j_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_j</location>Key_j</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_k_keysym</location>key_k_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_k</location>Key_k</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_l_keysym</location>key_l_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_l</location>Key_l</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_m_keysym</location>key_m_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_m</location>Key_m</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_n_keysym</location>key_n_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_n</location>Key_n</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_o_keysym</location>key_o_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_o</location>Key_o</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_p_keysym</location>key_p_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_p</location>Key_p</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_q_keysym</location>key_q_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_q</location>Key_q</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_r_keysym</location>key_r_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_r</location>Key_r</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_s_keysym</location>key_s_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_s</location>Key_s</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_t_keysym</location>key_t_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_t</location>Key_t</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_u_keysym</location>key_u_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_u</location>Key_u</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_v_keysym</location>key_v_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_v</location>Key_v</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_w_keysym</location>key_w_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_w</location>Key_w</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_x_keysym</location>key_x_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_x</location>Key_x</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_y_keysym</location>key_y_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_y</location>Key_y</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_z_keysym</location>key_z_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_z</location>Key_z</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_shift_keysym</location>key_shift_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_shift</location>Key_shift</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_ctrl_keysym</location>key_ctrl_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_ctrl</location>Key_ctrl</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_left_alt_keysym</location>key_left_alt_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_alt</location>Key_alt</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_right_alt_keysym</location>key_right_alt_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_alt</location>Key_alt</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_left_meta_keysym</location>key_left_meta_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_left_meta</location>Key_left_meta</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_right_meta_keysym</location>key_right_meta_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_right_meta</location>Key_right_meta</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_menu_keysym</location>key_menu_keysym</feature><symbol>,</symbol> <feature><location>../interface/ev_key_constants.xml#f_key_menu</location>Key_menu</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_gtk_to_v2_table</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_gtk_to_v2_table</location>Gtk_to_v2_table</feature><symbol>:</symbol> <class><include>False</include>HASH_TABLE</class> <symbol>[</symbol><class><include>False</include>INTEGER_32</class><symbol>,</symbol> <class><include>False</include>NATURAL_32</class><symbol>]</symbol>
+			<comment>--</comment><comment> Vision2 keycodes indexed by GTK key code.</comment>
+		<keyword>once</keyword>
+			<keyword>create</keyword> <keyword>Result</keyword><dot>.</dot><feature><include>False</include>make</feature><symbol> </symbol><symbol>(</symbol><number>128</number><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_0</location>Key_0</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_0_keysym</location>key_0_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_1</location>Key_1</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_1_keysym</location>key_1_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_2</location>Key_2</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_2_keysym</location>key_2_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_3</location>Key_3</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_3_keysym</location>key_3_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_4</location>Key_4</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_4_keysym</location>key_4_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_5</location>Key_5</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_5_keysym</location>key_5_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_6</location>Key_6</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_6_keysym</location>key_6_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_7</location>Key_7</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_7_keysym</location>key_7_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_8</location>Key_8</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_8_keysym</location>key_8_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_9</location>Key_9</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_9_keysym</location>key_9_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_numpad_0</location>Key_numpad_0</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numpad_0_keysym</location>key_numpad_0_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_numpad_1</location>Key_numpad_1</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numpad_1_keysym</location>key_numpad_1_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_numpad_2</location>Key_numpad_2</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numpad_2_keysym</location>key_numpad_2_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_numpad_3</location>Key_numpad_3</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numpad_3_keysym</location>key_numpad_3_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_numpad_4</location>Key_numpad_4</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numpad_4_keysym</location>key_numpad_4_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_numpad_5</location>Key_numpad_5</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numpad_5_keysym</location>key_numpad_5_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_numpad_6</location>Key_numpad_6</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numpad_6_keysym</location>key_numpad_6_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_numpad_7</location>Key_numpad_7</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numpad_7_keysym</location>key_numpad_7_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_numpad_8</location>Key_numpad_8</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numpad_8_keysym</location>key_numpad_8_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_numpad_9</location>Key_numpad_9</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numpad_9_keysym</location>key_numpad_9_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_numpad_add</location>Key_numpad_add</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numpad_add_keysym</location>key_numpad_add_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_numpad_divide</location>Key_numpad_divide</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numpad_divide_keysym</location>key_numpad_divide_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_numpad_multiply</location>Key_numpad_multiply</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numpad_multiply_keysym</location>key_numpad_multiply_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_num_lock</location>Key_num_lock</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_num_lock_keysym</location>key_num_lock_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_numpad_subtract</location>Key_numpad_subtract</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numpad_subtract_keysym</location>key_numpad_subtract_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_numpad_decimal</location>Key_numpad_decimal</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numpad_decimal_keysym</location>key_numpad_decimal_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_f1</location>Key_f1</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_f1_keysym</location>key_f1_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_f2</location>Key_f2</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_f2_keysym</location>key_f2_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_f3</location>Key_f3</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_f3_keysym</location>key_f3_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_f4</location>Key_f4</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_f4_keysym</location>key_f4_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_f5</location>Key_f5</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_f5_keysym</location>key_f5_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_f6</location>Key_f6</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_f6_keysym</location>key_f6_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_f7</location>Key_f7</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_f7_keysym</location>key_f7_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_f8</location>Key_f8</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_f8_keysym</location>key_f8_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_f9</location>Key_f9</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_f9_keysym</location>key_f9_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_f10</location>Key_f10</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_f10_keysym</location>key_f10_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_f11</location>Key_f11</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_f11_keysym</location>key_f11_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_f12</location>Key_f12</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_f12_keysym</location>key_f12_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_space</location>Key_space</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_space_keysym</location>key_space_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_back_space</location>Key_back_space</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_back_space_keysym</location>key_back_space_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_enter</location>Key_enter</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_enter_keysym</location>key_enter_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_enter</location>Key_enter</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_kp_enter_keysym</location>key_kp_enter_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_escape</location>Key_escape</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_escape_keysym</location>key_escape_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_tab</location>Key_tab</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_tab_keysym</location>key_tab_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_tab</location>Key_tab</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_shift_tab_keysym</location>key_shift_tab_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_pause</location>Key_pause</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_pause_keysym</location>key_pause_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_caps_lock</location>Key_caps_lock</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_caps_lock_keysym</location>key_caps_lock_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_scroll_lock</location>Key_scroll_lock</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_scroll_lock_keysym</location>key_scroll_lock_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_comma</location>Key_comma</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_comma_keysym</location>key_comma_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_equal</location>Key_equal</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_equal_keysym</location>key_equal_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_period</location>Key_period</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_period_keysym</location>key_period_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_semicolon</location>Key_semicolon</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_semicolon_keysym</location>key_semicolon_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_open_bracket</location>Key_open_bracket</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_open_bracket_keysym</location>key_open_bracket_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_close_bracket</location>Key_close_bracket</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_close_bracket_keysym</location>key_close_bracket_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_slash</location>Key_slash</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_slash_keysym</location>key_slash_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_backslash</location>Key_backslash</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_backslash_keysym</location>key_backslash_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_quote</location>Key_quote</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_quote_keysym</location>key_quote_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_backquote</location>Key_backquote</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_backquote_keysym</location>key_backquote_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_dash</location>Key_dash</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_dash_keysym</location>key_dash_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_up</location>Key_up</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_up_keysym</location>key_up_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_up</location>Key_up</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_kp_up_keysym</location>key_kp_up_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_down</location>Key_down</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_down_keysym</location>key_down_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_down</location>Key_down</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_kp_down_keysym</location>key_kp_down_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_left</location>Key_left</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_left_keysym</location>key_left_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_left</location>Key_left</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_kp_left_keysym</location>key_kp_left_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_right</location>Key_right</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_right_keysym</location>key_right_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_right</location>Key_right</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_kp_right_keysym</location>key_kp_right_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_page_up</location>Key_page_up</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_page_up_keysym</location>key_page_up_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_page_up</location>Key_page_up</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_kp_page_up_keysym</location>key_kp_page_up_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_page_down</location>Key_page_down</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_page_down_keysym</location>key_page_down_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_page_down</location>Key_page_down</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_kp_page_down_keysym</location>key_kp_page_down_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_home</location>Key_home</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_home_keysym</location>key_home_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_home</location>Key_home</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_kp_home_keysym</location>key_kp_home_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_end</location>Key_end</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_end_keysym</location>key_end_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_end</location>Key_end</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_kp_end_keysym</location>key_kp_end_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_insert</location>Key_insert</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_insert_keysym</location>key_insert_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_insert</location>Key_insert</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_kp_insert_keysym</location>key_kp_insert_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_delete</location>Key_delete</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_delete_keysym</location>key_delete_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_delete</location>Key_delete</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_kp_delete_keysym</location>key_kp_delete_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_a</location>Key_a</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_a_upper_keysym</location>key_a_upper_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_b</location>Key_b</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_b_upper_keysym</location>key_b_upper_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_c</location>Key_c</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_c_upper_keysym</location>key_c_upper_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_d</location>Key_d</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_d_upper_keysym</location>key_d_upper_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_e</location>Key_e</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_e_upper_keysym</location>key_e_upper_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_f</location>Key_f</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_f_upper_keysym</location>key_f_upper_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_g</location>Key_g</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_g_upper_keysym</location>key_g_upper_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_h</location>Key_h</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_h_upper_keysym</location>key_h_upper_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_i</location>Key_i</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_i_upper_keysym</location>key_i_upper_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_j</location>Key_j</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_j_upper_keysym</location>key_j_upper_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_k</location>Key_k</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_k_upper_keysym</location>key_k_upper_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_l</location>Key_l</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_l_upper_keysym</location>key_l_upper_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_m</location>Key_m</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_m_upper_keysym</location>key_m_upper_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_n</location>Key_n</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_n_upper_keysym</location>key_n_upper_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_o</location>Key_o</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_o_upper_keysym</location>key_o_upper_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_p</location>Key_p</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_p_upper_keysym</location>key_p_upper_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_q</location>Key_q</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_q_upper_keysym</location>key_q_upper_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_r</location>Key_r</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_r_upper_keysym</location>key_r_upper_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_s</location>Key_s</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_s_upper_keysym</location>key_s_upper_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_t</location>Key_t</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_t_upper_keysym</location>key_t_upper_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_u</location>Key_u</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_u_upper_keysym</location>key_u_upper_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_v</location>Key_v</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_v_upper_keysym</location>key_v_upper_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_w</location>Key_w</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_w_upper_keysym</location>key_w_upper_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_x</location>Key_x</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_x_upper_keysym</location>key_x_upper_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_y</location>Key_y</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_y_upper_keysym</location>key_y_upper_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_z</location>Key_z</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_z_upper_keysym</location>key_z_upper_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_a</location>Key_a</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_a_keysym</location>key_a_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_b</location>Key_b</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_b_keysym</location>key_b_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_c</location>Key_c</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_c_keysym</location>key_c_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_d</location>Key_d</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_d_keysym</location>key_d_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_e</location>Key_e</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_e_keysym</location>key_e_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_f</location>Key_f</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_f_keysym</location>key_f_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_g</location>Key_g</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_g_keysym</location>key_g_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_h</location>Key_h</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_h_keysym</location>key_h_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_i</location>Key_i</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_i_keysym</location>key_i_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_j</location>Key_j</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_j_keysym</location>key_j_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_k</location>Key_k</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_k_keysym</location>key_k_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_l</location>Key_l</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_l_keysym</location>key_l_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_m</location>Key_m</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_m_keysym</location>key_m_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_n</location>Key_n</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_n_keysym</location>key_n_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_o</location>Key_o</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_o_keysym</location>key_o_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_p</location>Key_p</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_p_keysym</location>key_p_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_q</location>Key_q</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_q_keysym</location>key_q_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_r</location>Key_r</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_r_keysym</location>key_r_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_s</location>Key_s</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_s_keysym</location>key_s_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_t</location>Key_t</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_t_keysym</location>key_t_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_u</location>Key_u</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_u_keysym</location>key_u_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_v</location>Key_v</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_v_keysym</location>key_v_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_w</location>Key_w</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_w_keysym</location>key_w_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_x</location>Key_x</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_x_keysym</location>key_x_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_y</location>Key_y</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_y_keysym</location>key_y_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_z</location>Key_z</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_z_keysym</location>key_z_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_shift</location>Key_shift</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_shift_keysym</location>key_shift_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_shift</location>Key_shift</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_right_shift_keysym</location>key_right_shift_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_ctrl</location>Key_ctrl</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_ctrl_keysym</location>key_ctrl_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_ctrl</location>Key_ctrl</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_right_ctrl_keysym</location>key_right_ctrl_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_alt</location>Key_alt</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_left_alt_keysym</location>key_left_alt_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_alt</location>Key_alt</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_right_alt_keysym</location>key_right_alt_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_left_meta</location>Key_left_meta</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_left_meta_keysym</location>key_left_meta_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_right_meta</location>Key_right_meta</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_right_meta_keysym</location>key_right_meta_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_backquote</location>Key_backquote</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_tilde_keysym</location>key_tilde_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_1</location>Key_1</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_exclamation_keysym</location>key_exclamation_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_2</location>Key_2</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_at_keysym</location>key_at_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_3</location>Key_3</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numbersign_keysym</location>key_numbersign_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_4</location>Key_4</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_dollar_keysym</location>key_dollar_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_5</location>Key_5</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_percent_keysym</location>key_percent_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_6</location>Key_6</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_asciicircum_keysym</location>key_asciicircum_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_7</location>Key_7</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_ampersand_keysym</location>key_ampersand_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_8</location>Key_8</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_asterisk_keysym</location>key_asterisk_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_9</location>Key_9</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_parenleft_keysym</location>key_parenleft_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_0</location>Key_0</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_parenright_keysym</location>key_parenright_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_dash</location>Key_dash</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_underscore_keysym</location>key_underscore_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_equal</location>Key_equal</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_plus_keysym</location>key_plus_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_semicolon</location>Key_semicolon</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_colon_keysym</location>key_colon_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_quote</location>Key_quote</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_quotedbl_keysym</location>key_quotedbl_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_comma</location>Key_comma</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_less_keysym</location>key_less_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_period</location>Key_period</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_greater_keysym</location>key_greater_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_slash</location>Key_slash</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_question_keysym</location>key_question_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_open_bracket</location>Key_open_bracket</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_braceleft_keysym</location>key_braceleft_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_close_bracket</location>Key_close_bracket</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_braceright_keysym</location>key_braceright_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_backslash</location>Key_backslash</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_bar_keysym</location>key_bar_keysym</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_key_constants.xml#f_key_menu</location>Key_menu</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_menu_keysym</location>key_menu_keysym</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Externals</comment>
+
+	<anchor>f_key_tilde_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_tilde_keysym</location>key_tilde_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_asciitilde&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_exclamation_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_exclamation_keysym</location>key_exclamation_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_exclam&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_at_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_at_keysym</location>key_at_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_at&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_numbersign_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numbersign_keysym</location>key_numbersign_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_numbersign&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_dollar_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_dollar_keysym</location>key_dollar_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_dollar&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_percent_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_percent_keysym</location>key_percent_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_percent&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_asciicircum_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_asciicircum_keysym</location>key_asciicircum_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_asciicircum&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_ampersand_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_ampersand_keysym</location>key_ampersand_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_ampersand&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_asterisk_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_asterisk_keysym</location>key_asterisk_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_asterisk&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_parenleft_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_parenleft_keysym</location>key_parenleft_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_parenleft&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_parenright_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_parenright_keysym</location>key_parenright_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_parenright&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_underscore_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_underscore_keysym</location>key_underscore_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_underscore&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_plus_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_plus_keysym</location>key_plus_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_plus&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_colon_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_colon_keysym</location>key_colon_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_colon&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_quotedbl_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_quotedbl_keysym</location>key_quotedbl_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_quotedbl&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_less_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_less_keysym</location>key_less_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_less&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_greater_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_greater_keysym</location>key_greater_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_greater&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_question_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_question_keysym</location>key_question_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_question&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_braceleft_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_braceleft_keysym</location>key_braceleft_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_braceleft&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_braceright_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_braceright_keysym</location>key_braceright_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_braceright&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_bar_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_bar_keysym</location>key_bar_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_bar&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_0_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_0_keysym</location>key_0_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_0&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_1_keysym</anchor><keyword>frozen</keyword> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_1_keysym</location>key_1_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_1&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_2_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_2_keysym</location>key_2_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_2&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_3_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_3_keysym</location>key_3_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_3&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_4_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_4_keysym</location>key_4_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_4&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_5_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_5_keysym</location>key_5_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_5&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_6_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_6_keysym</location>key_6_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_6&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_7_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_7_keysym</location>key_7_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_7&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_8_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_8_keysym</location>key_8_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_8&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_9_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_9_keysym</location>key_9_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_9&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_numpad_0_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numpad_0_keysym</location>key_numpad_0_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_KP_0&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_numpad_1_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numpad_1_keysym</location>key_numpad_1_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_KP_1&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_numpad_2_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numpad_2_keysym</location>key_numpad_2_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_KP_2&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_numpad_3_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numpad_3_keysym</location>key_numpad_3_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_KP_3&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_numpad_4_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numpad_4_keysym</location>key_numpad_4_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_KP_4&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_numpad_5_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numpad_5_keysym</location>key_numpad_5_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_KP_5&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_numpad_6_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numpad_6_keysym</location>key_numpad_6_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_KP_6&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_numpad_7_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numpad_7_keysym</location>key_numpad_7_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_KP_7&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_numpad_8_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numpad_8_keysym</location>key_numpad_8_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_KP_8&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_numpad_9_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numpad_9_keysym</location>key_numpad_9_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_KP_9&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_numpad_add_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numpad_add_keysym</location>key_numpad_add_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_KP_Add&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_numpad_divide_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numpad_divide_keysym</location>key_numpad_divide_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_KP_Divide&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_numpad_multiply_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numpad_multiply_keysym</location>key_numpad_multiply_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_KP_Multiply&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_num_lock_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_num_lock_keysym</location>key_num_lock_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_Num_Lock&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_numpad_subtract_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numpad_subtract_keysym</location>key_numpad_subtract_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_KP_Subtract&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_numpad_decimal_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_numpad_decimal_keysym</location>key_numpad_decimal_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_KP_Decimal&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_f1_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_f1_keysym</location>key_f1_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_F1&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_f2_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_f2_keysym</location>key_f2_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_F2&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_f3_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_f3_keysym</location>key_f3_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_F3&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_f4_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_f4_keysym</location>key_f4_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_F4&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_f5_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_f5_keysym</location>key_f5_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_F5&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_f6_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_f6_keysym</location>key_f6_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_F6&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_f7_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_f7_keysym</location>key_f7_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_F7&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_f8_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_f8_keysym</location>key_f8_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_F8&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_f9_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_f9_keysym</location>key_f9_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_F9&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_f10_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_f10_keysym</location>key_f10_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_F10&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_f11_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_f11_keysym</location>key_f11_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_F11&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_f12_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_f12_keysym</location>key_f12_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_F12&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_space_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_space_keysym</location>key_space_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_space&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_back_space_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_back_space_keysym</location>key_back_space_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_BackSpace&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_enter_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_enter_keysym</location>key_enter_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_Return&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_kp_enter_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_kp_enter_keysym</location>key_kp_enter_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_KP_Enter&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_escape_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_escape_keysym</location>key_escape_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_Escape&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_tab_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_tab_keysym</location>key_tab_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_Tab&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_shift_tab_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_shift_tab_keysym</location>key_shift_tab_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_ISO_Left_Tab&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_pause_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_pause_keysym</location>key_pause_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_Pause&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_caps_lock_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_caps_lock_keysym</location>key_caps_lock_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_Caps_Lock&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_scroll_lock_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_scroll_lock_keysym</location>key_scroll_lock_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_F23&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_comma_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_comma_keysym</location>key_comma_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_comma&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_equal_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_equal_keysym</location>key_equal_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_equal&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_period_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_period_keysym</location>key_period_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_period&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_semicolon_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_semicolon_keysym</location>key_semicolon_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_semicolon&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_open_bracket_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_open_bracket_keysym</location>key_open_bracket_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_bracketleft&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_close_bracket_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_close_bracket_keysym</location>key_close_bracket_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_bracketright&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_slash_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_slash_keysym</location>key_slash_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_slash&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_backslash_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_backslash_keysym</location>key_backslash_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_backslash&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_quote_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_quote_keysym</location>key_quote_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_quoteright&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_backquote_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_backquote_keysym</location>key_backquote_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_quoteleft&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_dash_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_dash_keysym</location>key_dash_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_minus&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_up_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_up_keysym</location>key_up_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_Up&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_kp_up_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_kp_up_keysym</location>key_kp_up_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_KP_Up&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_down_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_down_keysym</location>key_down_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_Down&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_kp_down_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_kp_down_keysym</location>key_kp_down_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_KP_Down&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_left_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_left_keysym</location>key_left_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_Left&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_kp_left_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_kp_left_keysym</location>key_kp_left_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_KP_Left&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_right_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_right_keysym</location>key_right_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_Right&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_kp_right_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_kp_right_keysym</location>key_kp_right_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_KP_Right&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_page_up_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_page_up_keysym</location>key_page_up_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_Page_Up&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_kp_page_up_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_kp_page_up_keysym</location>key_kp_page_up_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_KP_Page_Up&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_page_down_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_page_down_keysym</location>key_page_down_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_Page_Down&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_kp_page_down_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_kp_page_down_keysym</location>key_kp_page_down_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_KP_Page_Down&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_home_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_home_keysym</location>key_home_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_Home&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_kp_home_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_kp_home_keysym</location>key_kp_home_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_KP_Home&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_end_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_end_keysym</location>key_end_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_End&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_kp_end_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_kp_end_keysym</location>key_kp_end_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_KP_End&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_insert_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_insert_keysym</location>key_insert_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_Insert&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_kp_insert_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_kp_insert_keysym</location>key_kp_insert_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_KP_Insert&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_delete_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_delete_keysym</location>key_delete_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_Delete&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_kp_delete_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_kp_delete_keysym</location>key_kp_delete_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_KP_Delete&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_a_upper_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_a_upper_keysym</location>key_a_upper_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_A&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_b_upper_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_b_upper_keysym</location>key_b_upper_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_B&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_c_upper_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_c_upper_keysym</location>key_c_upper_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_C&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_d_upper_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_d_upper_keysym</location>key_d_upper_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_D&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_e_upper_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_e_upper_keysym</location>key_e_upper_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_E&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_f_upper_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_f_upper_keysym</location>key_f_upper_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_F&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_g_upper_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_g_upper_keysym</location>key_g_upper_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_G&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_h_upper_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_h_upper_keysym</location>key_h_upper_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_H&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_i_upper_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_i_upper_keysym</location>key_i_upper_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_I&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_j_upper_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_j_upper_keysym</location>key_j_upper_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_J&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_k_upper_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_k_upper_keysym</location>key_k_upper_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_K&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_l_upper_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_l_upper_keysym</location>key_l_upper_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_L&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_m_upper_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_m_upper_keysym</location>key_m_upper_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_M&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_n_upper_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_n_upper_keysym</location>key_n_upper_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_N&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_o_upper_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_o_upper_keysym</location>key_o_upper_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_O&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_p_upper_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_p_upper_keysym</location>key_p_upper_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_P&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_q_upper_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_q_upper_keysym</location>key_q_upper_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_Q&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_r_upper_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_r_upper_keysym</location>key_r_upper_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_R&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_s_upper_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_s_upper_keysym</location>key_s_upper_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_S&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_t_upper_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_t_upper_keysym</location>key_t_upper_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_T&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_u_upper_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_u_upper_keysym</location>key_u_upper_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_U&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_v_upper_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_v_upper_keysym</location>key_v_upper_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_V&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_w_upper_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_w_upper_keysym</location>key_w_upper_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_W&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_x_upper_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_x_upper_keysym</location>key_x_upper_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_X&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_y_upper_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_y_upper_keysym</location>key_y_upper_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_Y&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_z_upper_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_z_upper_keysym</location>key_z_upper_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_Z&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_a_keysym</anchor><keyword>frozen</keyword> <feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_a_keysym</location>key_a_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_a&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_b_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_b_keysym</location>key_b_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_b&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_c_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_c_keysym</location>key_c_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_c&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_d_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_d_keysym</location>key_d_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_d&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_e_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_e_keysym</location>key_e_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_e&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_f_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_f_keysym</location>key_f_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_f&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_g_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_g_keysym</location>key_g_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_g&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_h_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_h_keysym</location>key_h_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_h&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_i_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_i_keysym</location>key_i_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_i&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_j_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_j_keysym</location>key_j_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_j&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_k_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_k_keysym</location>key_k_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_k&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_l_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_l_keysym</location>key_l_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_l&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_m_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_m_keysym</location>key_m_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_m&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_n_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_n_keysym</location>key_n_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_n&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_o_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_o_keysym</location>key_o_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_o&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_p_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_p_keysym</location>key_p_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_p&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_q_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_q_keysym</location>key_q_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_q&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_r_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_r_keysym</location>key_r_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_r&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_s_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_s_keysym</location>key_s_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_s&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_t_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_t_keysym</location>key_t_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_t&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_u_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_u_keysym</location>key_u_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_u&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_v_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_v_keysym</location>key_v_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_v&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_w_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_w_keysym</location>key_w_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_w&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_x_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_x_keysym</location>key_x_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_x&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_y_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_y_keysym</location>key_y_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_y&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_z_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_z_keysym</location>key_z_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_z&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_shift_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_shift_keysym</location>key_shift_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_Shift_L&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_right_shift_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_right_shift_keysym</location>key_right_shift_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_Shift_R&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_ctrl_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_ctrl_keysym</location>key_ctrl_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_Control_L&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_right_ctrl_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_right_ctrl_keysym</location>key_right_ctrl_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_Control_R&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_left_meta_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_left_meta_keysym</location>key_left_meta_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_Meta_L&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_right_meta_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_right_meta_keysym</location>key_right_meta_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;gdk/gdkkeysyms.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_Meta_R&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_left_alt_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_left_alt_keysym</location>key_left_alt_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C macro use &lt;gdk/gdkkeysyms.h&gt;&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_Alt_L&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_right_alt_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_right_alt_keysym</location>key_right_alt_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C macro use &lt;gdk/gdkkeysyms.h&gt;&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_Alt_R&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_key_menu_keysym</anchor><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_menu_keysym</location>key_menu_keysym</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+		<keyword>external</keyword>
+			&quot;C macro use &lt;gdk/gdkkeysyms.h&gt;&quot;
+		<keyword>alias</keyword>
+			&quot;GDK_Menu&quot;
+		<keyword>end</keyword>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2006, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>356 Storke Road, Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_gtk/ev_gtk_key_conversion.xml</location>EV_GTK_KEY_CONVERSION</class></system>
+

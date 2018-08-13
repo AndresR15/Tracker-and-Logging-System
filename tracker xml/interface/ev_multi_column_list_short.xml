@@ -1,0 +1,255 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>		Displays a list of multi item rows from which the user can select.</string>
+		
+		<string>		Note: The list start at the index 1, the titles are not count among</string>
+		<string>			the rows. The columns start also at the index 1.</string>
+	<string>]</string><string>&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;list, multi, column, row, table&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2017-05-03 08:56:14 -0700 (Wed, 03 May 2017) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 100317 $&quot;</string>
+
+<keyword>class</keyword> <keyword>interface</keyword>
+	<class><location>../interface/ev_multi_column_list_short.xml</location>EV_MULTI_COLUMN_LIST</class>
+
+<keyword>create</keyword> 
+	<feature><location>../interface/ev_any_short.xml#f_default_create</location>default_create</feature>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_column_count</anchor><feature><location>../interface/ev_multi_column_list_short.xml#f_column_count</location>column_count</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Column count.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>ensure</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_multi_column_list_short.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_multi_column_list_i_short.xml#f_column_count</location>column_count</feature>
+
+	<anchor>f_selected_item</anchor><feature><location>../interface/ev_multi_column_list_short.xml#f_selected_item</location>selected_item</feature><symbol>:</symbol> <keyword>detachable</keyword> <keyword>like</keyword> <feature><location>../interface/ev_dynamic_list_short.xml#f_item</location>item</feature>
+			<comment>--</comment><comment> Currently selected item.</comment>
+			<comment>--</comment><comment> Topmost selected item if multiple items are selected.</comment>
+			<comment>--</comment><comment> (For multiple selections see </comment><feature><location>../interface/ev_multi_column_list_short.xml#f_selected_items</location>selected_items</feature><comment>).</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>ensure</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_multi_column_list_short.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_multi_column_list_i_short.xml#f_selected_item</location>selected_item</feature>
+
+	<anchor>f_selected_items</anchor><feature><location>../interface/ev_multi_column_list_short.xml#f_selected_items</location>selected_items</feature><symbol>:</symbol> <class><include>False</include>DYNAMIC_LIST</class> <symbol>[</symbol><keyword>like</keyword> <feature><location>../interface/ev_dynamic_list_short.xml#f_item</location>item</feature><symbol>]</symbol>
+			<comment>--</comment><comment> Currently selected items.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>ensure</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <feature><location>../interface/ev_item_list_short.xml#f_lists_equal</location>lists_equal</feature><symbol> </symbol><symbol>(</symbol><keyword>Result</keyword><symbol>,</symbol> <feature><location>../interface/ev_multi_column_list_short.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_multi_column_list_i_short.xml#f_selected_items</location>selected_items</feature><symbol>)</symbol>
+
+	<anchor>f_row_height</anchor><feature><location>../interface/ev_multi_column_list_short.xml#f_row_height</location>row_height</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Height in pixels of each row.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>ensure</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_multi_column_list_short.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_multi_column_list_i_short.xml#f_row_height</location>row_height</feature>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status report</comment>
+
+	<anchor>f_multiple_selection_enabled</anchor><feature><location>../interface/ev_multi_column_list_short.xml#f_multiple_selection_enabled</location>multiple_selection_enabled</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Can more than one item be selected?</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>ensure</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_multi_column_list_short.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_multi_column_list_i_short.xml#f_multiple_selection_enabled</location>multiple_selection_enabled</feature>
+
+	<anchor>f_title_shown</anchor><feature><location>../interface/ev_multi_column_list_short.xml#f_title_shown</location>title_shown</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is a row displaying column titles shown?</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>ensure</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_multi_column_list_short.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_multi_column_list_i_short.xml#f_title_shown</location>title_shown</feature>
+
+	<anchor>f_column_title</anchor><feature><location>../interface/ev_multi_column_list_short.xml#f_column_title</location>column_title</feature> <symbol>(</symbol><local>a_column</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>STRING_32</class>
+			<comment>--</comment><comment> Title of </comment><quoted>a_column</quoted><comment>.</comment>
+			<comment>--</comment><comment> Returns &quot;&quot; if no title given yet.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>a_column_positive</tag><symbol>:</symbol> <local>a_column</local> <symbol>&gt;=</symbol> <number>1</number>
+		<keyword>ensure</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_multi_column_list_short.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_multi_column_list_i_short.xml#f_column_title</location>column_title</feature><symbol> </symbol><symbol>(</symbol><local>a_column</local><symbol>)</symbol><symbol>)</symbol>
+			<tag>cloned</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <feature><location>../interface/ev_multi_column_list_short.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_multi_column_list_i_short.xml#f_column_title</location>column_title</feature><symbol> </symbol><symbol>(</symbol><local>a_column</local><symbol>)</symbol>
+
+	<anchor>f_column_width</anchor><feature><location>../interface/ev_multi_column_list_short.xml#f_column_width</location>column_width</feature> <symbol>(</symbol><local>a_column</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Width of </comment><quoted>a_column</quoted><comment> in pixels.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>a_column_within_range</tag><symbol>:</symbol> <local>a_column</local> <symbol>&gt;=</symbol> <number>1</number> <keyword>and</keyword> <local>a_column</local> <symbol>&lt;=</symbol> <feature><location>../interface/ev_multi_column_list_short.xml#f_column_count</location>column_count</feature>
+		<keyword>ensure</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_multi_column_list_short.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_multi_column_list_i_short.xml#f_column_width</location>column_width</feature><symbol> </symbol><symbol>(</symbol><local>a_column</local><symbol>)</symbol>
+
+	<anchor>f_column_alignment</anchor><feature><location>../interface/ev_multi_column_list_short.xml#f_column_alignment</location>column_alignment</feature> <symbol>(</symbol><local>a_column</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><location>../interface/ev_text_alignment_short.xml</location>EV_TEXT_ALIGNMENT</class>
+			<comment>--</comment><comment> </comment><quoted>Result</quoted><comment> is alignment of column </comment><quoted>a_column</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>a_column_within_range</tag><symbol>:</symbol> <local>a_column</local> <symbol>&gt;=</symbol> <number>1</number> <keyword>and</keyword> <local>a_column</local> <symbol>&lt;=</symbol> <feature><location>../interface/ev_multi_column_list_short.xml#f_column_count</location>column_count</feature>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_multi_column_list_short.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_multi_column_list_i_short.xml#f_column_alignment</location>column_alignment</feature><symbol> </symbol><symbol>(</symbol><local>a_column</local><symbol>)</symbol><symbol>)</symbol>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status setting</comment>
+
+	<anchor>f_ensure_item_visible</anchor><feature><location>../interface/ev_multi_column_list_short.xml#f_ensure_item_visible</location>ensure_item_visible</feature> <symbol>(</symbol><local>an_item</local><symbol>:</symbol> <class><location>../interface/ev_multi_column_list_row_short.xml</location>EV_MULTI_COLUMN_LIST_ROW</class><symbol>)</symbol>
+			<comment>--</comment><comment> Ensure </comment><quoted>an_item</quoted><comment> is visible in </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>is_displayed</tag><symbol>:</symbol> <feature><location>../interface/ev_widget_short.xml#f_is_displayed</location>is_displayed</feature>
+			<tag>an_item_contained</tag><symbol>:</symbol> <feature><include>False</include>has</feature><symbol> </symbol><symbol>(</symbol><local>an_item</local><symbol>)</symbol>
+
+	<anchor>f_remove_selection</anchor><feature><location>../interface/ev_multi_column_list_short.xml#f_remove_selection</location>remove_selection</feature>
+			<comment>--</comment><comment> Ensure that </comment><feature><location>../interface/ev_multi_column_list_short.xml#f_selected_items</location>selected_items</feature><comment> is empty.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>ensure</keyword>
+			<tag>selected_items_empty</tag><symbol>:</symbol> <feature><location>../interface/ev_multi_column_list_short.xml#f_selected_items</location>selected_items</feature><dot>.</dot><feature><include>False</include>is_empty</feature>
+
+	<anchor>f_enable_multiple_selection</anchor><feature><location>../interface/ev_multi_column_list_short.xml#f_enable_multiple_selection</location>enable_multiple_selection</feature>
+			<comment>--</comment><comment> Allow more than one item to be selected.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>ensure</keyword>
+			<tag>multiple_selection_enabled</tag><symbol>:</symbol> <feature><location>../interface/ev_multi_column_list_short.xml#f_multiple_selection_enabled</location>multiple_selection_enabled</feature>
+
+	<anchor>f_disable_multiple_selection</anchor><feature><location>../interface/ev_multi_column_list_short.xml#f_disable_multiple_selection</location>disable_multiple_selection</feature>
+			<comment>--</comment><comment> Allow only one item to be selected.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>ensure</keyword>
+			<tag>not_multiple_selection_enabled</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_multi_column_list_short.xml#f_multiple_selection_enabled</location>multiple_selection_enabled</feature>
+
+	<anchor>f_show_title_row</anchor><feature><location>../interface/ev_multi_column_list_short.xml#f_show_title_row</location>show_title_row</feature>
+			<comment>--</comment><comment> Show row displaying column titles.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>ensure</keyword>
+			<tag>title_shown</tag><symbol>:</symbol> <feature><location>../interface/ev_multi_column_list_short.xml#f_title_shown</location>title_shown</feature>
+
+	<anchor>f_hide_title_row</anchor><feature><location>../interface/ev_multi_column_list_short.xml#f_hide_title_row</location>hide_title_row</feature>
+			<comment>--</comment><comment> Hide row displaying column titles.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>ensure</keyword>
+			<tag>not_title_shown</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_multi_column_list_short.xml#f_title_shown</location>title_shown</feature>
+
+	<anchor>f_align_text_left</anchor><feature><location>../interface/ev_multi_column_list_short.xml#f_align_text_left</location>align_text_left</feature> <symbol>(</symbol><local>a_column</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Display text of </comment><quoted>a_column</quoted><comment> left aligned.</comment>
+			<comment>--</comment><comment> First column is always left aligned.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>a_column_within_range</tag><symbol>:</symbol> <local>a_column</local> <symbol>&gt;</symbol> <number>1</number> <keyword>and</keyword> <local>a_column</local> <symbol>&lt;=</symbol> <feature><location>../interface/ev_multi_column_list_short.xml#f_column_count</location>column_count</feature>
+		<keyword>ensure</keyword>
+			<tag>left_aligned</tag><symbol>:</symbol> <feature><location>../interface/ev_multi_column_list_short.xml#f_column_alignment</location>column_alignment</feature><symbol> </symbol><symbol>(</symbol><local>a_column</local><symbol>)</symbol><dot>.</dot><feature><location>../interface/ev_text_alignment_short.xml#f_is_left_aligned</location>is_left_aligned</feature>
+
+	<anchor>f_align_text_center</anchor><feature><location>../interface/ev_multi_column_list_short.xml#f_align_text_center</location>align_text_center</feature> <symbol>(</symbol><local>a_column</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Display text of </comment><quoted>a_column</quoted><comment> centered.</comment>
+			<comment>--</comment><comment> First column is always left aligned.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>a_column_within_range</tag><symbol>:</symbol> <local>a_column</local> <symbol>&gt;</symbol> <number>1</number> <keyword>and</keyword> <local>a_column</local> <symbol>&lt;=</symbol> <feature><location>../interface/ev_multi_column_list_short.xml#f_column_count</location>column_count</feature>
+		<keyword>ensure</keyword>
+			<tag>center_aligned</tag><symbol>:</symbol> <feature><location>../interface/ev_multi_column_list_short.xml#f_column_alignment</location>column_alignment</feature><symbol> </symbol><symbol>(</symbol><local>a_column</local><symbol>)</symbol><dot>.</dot><feature><location>../interface/ev_text_alignment_short.xml#f_is_center_aligned</location>is_center_aligned</feature>
+
+	<anchor>f_align_text_right</anchor><feature><location>../interface/ev_multi_column_list_short.xml#f_align_text_right</location>align_text_right</feature> <symbol>(</symbol><local>a_column</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Display text of </comment><quoted>a_column</quoted><comment> right aligned.</comment>
+			<comment>--</comment><comment> First column is always left aligned.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>a_column_within_range</tag><symbol>:</symbol> <local>a_column</local> <symbol>&gt;</symbol> <number>1</number> <keyword>and</keyword> <local>a_column</local> <symbol>&lt;=</symbol> <feature><location>../interface/ev_multi_column_list_short.xml#f_column_count</location>column_count</feature>
+		<keyword>ensure</keyword>
+			<tag>right_aligned</tag><symbol>:</symbol> <feature><location>../interface/ev_multi_column_list_short.xml#f_column_alignment</location>column_alignment</feature><symbol> </symbol><symbol>(</symbol><local>a_column</local><symbol>)</symbol><dot>.</dot><feature><location>../interface/ev_text_alignment_short.xml#f_is_right_aligned</location>is_right_aligned</feature>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Element change</comment>
+
+	<anchor>f_set_column_title</anchor><feature><location>../interface/ev_multi_column_list_short.xml#f_set_column_title</location>set_column_title</feature> <symbol>(</symbol><local>a_title</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>;</symbol> <local>a_column</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>a_title</quoted><comment> to the </comment><feature><location>../interface/ev_multi_column_list_short.xml#f_column_title</location>column_title</feature><comment>(</comment><quoted>a_column</quoted><comment>).</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>a_column_positive</tag><symbol>:</symbol> <local>a_column</local> <symbol>&gt;</symbol> <number>0</number>
+			<tag>a_title_not_void</tag><symbol>:</symbol> <local>a_title</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>ensure</keyword>
+			<tag>a_title_assigned</tag><symbol>:</symbol> <feature><location>../interface/ev_multi_column_list_short.xml#f_column_title</location>column_title</feature><symbol> </symbol><symbol>(</symbol><local>a_column</local><symbol>)</symbol><dot>.</dot><feature><include>False</include>same_string_general</feature><symbol> </symbol><symbol>(</symbol><local>a_title</local><symbol>)</symbol>
+			<tag>column_count_valid</tag><symbol>:</symbol> <feature><location>../interface/ev_multi_column_list_short.xml#f_column_count</location>column_count</feature> <symbol>&gt;=</symbol> <local>a_column</local>
+			<tag>cloned</tag><symbol>:</symbol> <feature><location>../interface/ev_multi_column_list_short.xml#f_column_title</location>column_title</feature><symbol> </symbol><symbol>(</symbol><local>a_column</local><symbol>)</symbol> <symbol>/=</symbol> <local>a_title</local>
+
+	<anchor>f_set_column_titles</anchor><feature><location>../interface/ev_multi_column_list_short.xml#f_set_column_titles</location>set_column_titles</feature> <symbol>(</symbol><local>titles</local><symbol>:</symbol> <class><include>False</include>ARRAY</class> <symbol>[</symbol><class><include>False</include>READABLE_STRING_GENERAL</class><symbol>]</symbol><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>titles</quoted><comment> to titles of columns in order.</comment>
+			<comment>--</comment><comment> </comment><quoted>Current</quoted><comment> will resize if the number of titles exceeds</comment>
+			<comment>--</comment><comment> </comment><feature><location>../interface/ev_multi_column_list_short.xml#f_column_count</location>column_count</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>titles_not_void</tag><symbol>:</symbol> <local>titles</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>ensure</keyword>
+			<tag>column_count_valid</tag><symbol>:</symbol> <feature><location>../interface/ev_multi_column_list_short.xml#f_column_count</location>column_count</feature> <symbol>&gt;=</symbol> <local>titles</local><dot>.</dot><feature><include>False</include>count</feature>
+			<tag>column_titles_assigned</tag><symbol>:</symbol> <feature><location>../interface/ev_multi_column_list_short.xml#f_column_titles_assigned</location>column_titles_assigned</feature><symbol> </symbol><symbol>(</symbol><local>titles</local><symbol>)</symbol>
+
+	<anchor>f_set_column_width</anchor><feature><location>../interface/ev_multi_column_list_short.xml#f_set_column_width</location>set_column_width</feature> <symbol>(</symbol><local>a_width</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_column</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>a_width</quoted><comment> </comment><feature><location>../interface/ev_multi_column_list_short.xml#f_column_width</location>column_width</feature><comment>(</comment><quoted>a_column</quoted><comment>).</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>a_column_within_range</tag><symbol>:</symbol> <local>a_column</local> <symbol>&gt;</symbol> <number>0</number>
+			<tag>a_width_positive</tag><symbol>:</symbol> <local>a_width</local> <symbol>&gt;=</symbol> <number>0</number>
+		<keyword>ensure</keyword>
+			<tag>column_count_valid</tag><symbol>:</symbol> <feature><location>../interface/ev_multi_column_list_short.xml#f_column_count</location>column_count</feature> <symbol>&gt;=</symbol> <local>a_column</local>
+			<tag>a_width_assigned</tag><symbol>:</symbol> <local>a_width</local> <symbol>=</symbol> <feature><location>../interface/ev_multi_column_list_short.xml#f_column_width</location>column_width</feature><symbol> </symbol><symbol>(</symbol><local>a_column</local><symbol>)</symbol>
+
+	<anchor>f_resize_column_to_content</anchor><feature><location>../interface/ev_multi_column_list_short.xml#f_resize_column_to_content</location>resize_column_to_content</feature> <symbol>(</symbol><local>a_column</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Resize column </comment><quoted>a_column</quoted><comment> to width of its widest text.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>a_column_within_range</tag><symbol>:</symbol> <local>a_column</local> <symbol>&gt;</symbol> <number>0</number> <keyword>and</keyword> <local>a_column</local> <symbol>&lt;=</symbol> <feature><location>../interface/ev_multi_column_list_short.xml#f_column_count</location>column_count</feature>
+
+	<anchor>f_set_column_widths</anchor><feature><location>../interface/ev_multi_column_list_short.xml#f_set_column_widths</location>set_column_widths</feature> <symbol>(</symbol><local>widths</local><symbol>:</symbol> <class><include>False</include>ARRAY</class> <symbol>[</symbol><class><include>False</include>INTEGER_32</class><symbol>]</symbol><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>widths</quoted><comment> to column widths in order.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>widths_not_void</tag><symbol>:</symbol> <local>widths</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>ensure</keyword>
+			<tag>column_count_valid</tag><symbol>:</symbol> <feature><location>../interface/ev_multi_column_list_short.xml#f_column_count</location>column_count</feature> <symbol>&gt;=</symbol> <local>widths</local><dot>.</dot><feature><include>False</include>count</feature>
+			<tag>column_widths_assigned</tag><symbol>:</symbol> <feature><location>../interface/ev_multi_column_list_short.xml#f_column_widths_assigned</location>column_widths_assigned</feature><symbol> </symbol><symbol>(</symbol><local>widths</local><symbol>)</symbol>
+
+	<anchor>f_set_column_alignment</anchor><feature><location>../interface/ev_multi_column_list_short.xml#f_set_column_alignment</location>set_column_alignment</feature> <symbol>(</symbol><local>an_alignment</local><symbol>:</symbol> <class><location>../interface/ev_text_alignment_short.xml</location>EV_TEXT_ALIGNMENT</class><symbol>;</symbol> <local>a_column</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Align the text of column </comment><quoted>a_column</quoted><comment> to </comment><quoted>an_alignment</quoted>
+			<comment>--</comment><comment> The first column must stay as left aligned as MSDN</comment>
+			<comment>--</comment><comment> states that the first column can only be set as left aligned</comment>
+			<comment>--</comment><comment> for Win32.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>a_column_within_range</tag><symbol>:</symbol> <local>a_column</local> <symbol>&gt;</symbol> <number>1</number> <keyword>and</keyword> <local>a_column</local> <symbol>&lt;=</symbol> <feature><location>../interface/ev_multi_column_list_short.xml#f_column_count</location>column_count</feature>
+			<tag>alignment_not_void</tag><symbol>:</symbol> <local>an_alignment</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>ensure</keyword>
+			<tag>column_alignment_assigned</tag><symbol>:</symbol> <feature><location>../interface/ev_multi_column_list_short.xml#f_column_alignment</location>column_alignment</feature><symbol> </symbol><symbol>(</symbol><local>a_column</local><symbol>)</symbol><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><local>an_alignment</local><symbol>)</symbol>
+
+	<anchor>f_set_column_alignments</anchor><feature><location>../interface/ev_multi_column_list_short.xml#f_set_column_alignments</location>set_column_alignments</feature> <symbol>(</symbol><local>alignments</local><symbol>:</symbol> <class><include>False</include>LINKED_LIST</class> <symbol>[</symbol><class><location>../interface/ev_text_alignment_short.xml</location>EV_TEXT_ALIGNMENT</class><symbol>]</symbol><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>alignments</quoted><comment> to column text alignments in order.</comment>
+			<comment>--</comment><comment> The first alignment element is ignored</comment>
+			<comment>--</comment><comment> (see set_column_alignment).</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>alignments_not_void</tag><symbol>:</symbol> <local>alignments</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>ensure</keyword>
+			<tag>column_alignments_assigned</tag><symbol>:</symbol> <feature><location>../interface/ev_multi_column_list_short.xml#f_column_alignments_assigned</location>column_alignments_assigned</feature><symbol> </symbol><symbol>(</symbol><local>alignments</local><symbol>)</symbol>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Contract support</comment>
+
+	<anchor>f_is_parent_recursive</anchor><feature><location>../interface/ev_multi_column_list_short.xml#f_is_parent_recursive</location>is_parent_recursive</feature> <symbol>(</symbol><local>a_row</local><symbol>:</symbol> <class><location>../interface/ev_multi_column_list_row_short.xml</location>EV_MULTI_COLUMN_LIST_ROW</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is </comment><quoted>a_row</quoted><comment> a parent of </comment><quoted>Current</quoted><comment>?</comment>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2014, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../interface/ev_multi_column_list_short.xml</location>EV_MULTI_COLUMN_LIST</class></system>
+

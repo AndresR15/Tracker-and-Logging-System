@@ -1,0 +1,105 @@
+<system>
+<keyword>deferred</keyword> <keyword>class</keyword>
+	<class><location>../implementation_gtk/ev_gtk_dependent_application_imp_chart.xml</location>EV_GTK_DEPENDENT_APPLICATION_IMP</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>implementation_gtk</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;EiffelVision application, GTK+ implementation.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;application&quot;</string>
+
+<keyword>Ancestors</keyword>
+	<class><location>../interface/ev_any_handler_chart.xml</location>EV_ANY_HANDLER</class>
+	<class><location>../implementation_gtk/ev_gtk_environment_chart.xml</location>EV_GTK_ENVIRONMENT</class>
+	<class><include>False</include>EXECUTION_ENVIRONMENT</class>
+	<class><include>False</include>IDENTIFIED</class>
+	<class><include>False</include>PLATFORM</class>
+
+<keyword>Queries</keyword>
+	<feature><include>False</include>Arguments</feature><symbol>:</symbol> <class><include>False</include>ARGUMENTS_32</class>
+	<feature><include>False</include>boolean_bits</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>boolean_bytes</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_gtk/ev_gtk_dependent_application_imp.xml#f_c_strcmp</location>c_strcmp</feature> <symbol>(</symbol><local>ptr1</local><symbol>,</symbol> <local>ptr2</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Character_32_bits</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Character_32_bytes</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Character_8_bits</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Character_8_bytes</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>current_working_path</feature><symbol>:</symbol> <class><include>False</include>PATH</class>
+	<feature><location>../implementation_gtk/ev_gtk_dependent_application_imp.xml#f_default_font_description</location>default_font_description</feature><symbol>:</symbol> <class><include>False</include>STRING_32</class>
+	<feature><location>../implementation_gtk/ev_gtk_dependent_application_imp.xml#f_default_font_name</location>default_font_name</feature><symbol>:</symbol> <class><include>False</include>STRING_32</class>
+	<feature><location>../implementation_gtk/ev_gtk_dependent_application_imp.xml#f_default_font_name_internal</location>default_font_name_internal</feature><symbol>:</symbol> <class><include>False</include>STRING_32</class>
+	<feature><location>../implementation_gtk/ev_gtk_dependent_application_imp.xml#f_default_font_point_height</location>default_font_point_height</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_gtk/ev_gtk_dependent_application_imp.xml#f_default_font_point_height_internal</location>default_font_point_height_internal</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_gtk/ev_gtk_dependent_application_imp.xml#f_default_font_style</location>default_font_style</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_gtk/ev_gtk_dependent_application_imp.xml#f_default_font_style_internal</location>default_font_style_internal</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_gtk/ev_gtk_dependent_application_imp.xml#f_default_font_weight</location>default_font_weight</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_gtk/ev_gtk_dependent_application_imp.xml#f_default_font_weight_internal</location>default_font_weight_internal</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_gtk/ev_gtk_dependent_application_imp.xml#f_default_gtk_settings</location>Default_gtk_settings</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+	<feature><location>../implementation_gtk/ev_gtk_dependent_application_imp.xml#f_default_gtk_window</location>default_gtk_window</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+	<feature><include>False</include>Default_shell</feature><symbol>:</symbol> <class><include>False</include>STRING_32</class>
+	<feature><location>../implementation_gtk/ev_gtk_dependent_application_imp.xml#f_font_names_on_system</location>Font_names_on_system</feature><symbol>:</symbol> <class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><class><include>False</include>STRING_32</class><symbol>]</symbol>
+	<feature><location>../implementation_gtk/ev_gtk_dependent_application_imp.xml#f_font_names_on_system_as_lower</location>Font_names_on_system_as_lower</feature><symbol>:</symbol> <class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><class><include>False</include>STRING_32</class><symbol>]</symbol>
+	<feature><location>../implementation_gtk/ev_gtk_dependent_application_imp.xml#f_font_settings_changed</location>font_settings_changed</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../implementation_gtk/ev_gtk_dependent_application_imp.xml#f_gtk_font_name_setting</location>Gtk_font_name_setting</feature><symbol>:</symbol> <class><location>../implementation_gtk/ev_gtk_c_string_chart.xml</location>EV_GTK_C_STRING</class>
+	<feature><include>False</include>Home_directory_path</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>PATH</class>
+	<feature><include>False</include>id_freed</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><include>False</include>id_object</feature> <symbol>(</symbol><local>an_id</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>IDENTIFIED</class>
+	<feature><include>False</include>Integer_16_bits</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Integer_16_bytes</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Integer_32_bits</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Integer_32_bytes</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Integer_64_bits</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Integer_64_bytes</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Integer_8_bits</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Integer_8_bytes</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>is_64_bits</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><include>False</include>is_dotnet</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><include>False</include>Is_little_endian</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><include>False</include>is_mac</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><include>False</include>is_scoop_capable</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><include>False</include>is_thread_capable</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><include>False</include>is_unix</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><include>False</include>is_vms</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><include>False</include>is_vxworks</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><include>False</include>is_windows</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><include>False</include>item</feature> <symbol>(</symbol><local>s</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>STRING_32</class>
+	<feature><include>False</include>Natural_16_bits</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Natural_16_bytes</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Natural_32_bits</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Natural_32_bytes</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Natural_64_bits</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Natural_64_bytes</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Natural_8_bits</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Natural_8_bytes</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>object_id</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_gtk/ev_gtk_dependent_application_imp.xml#f_pango_iter</location>pango_iter</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+	<feature><location>../implementation_gtk/ev_gtk_dependent_application_imp.xml#f_pango_layout</location>Pango_layout</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+	<feature><location>../implementation_gtk/ev_gtk_environment.xml#f_pixbuf_formats</location>pixbuf_formats</feature> <symbol>(</symbol><local>a_writeable</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><class><include>False</include>STRING_32</class><symbol>]</symbol>
+	<feature><location>../implementation_gtk/ev_gtk_dependent_application_imp.xml#f_pixel_value_from_point_value</location>pixel_value_from_point_value</feature> <symbol>(</symbol><local>a_point_value</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_gtk/ev_gtk_dependent_application_imp.xml#f_point_value_from_pixel_value</location>point_value_from_pixel_value</feature> <symbol>(</symbol><local>a_pixel_value</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>pointer_bits</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>pointer_bytes</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_gtk/ev_gtk_dependent_application_imp.xml#f_previous_font_settings</location>previous_font_settings</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+	<feature><location>../implementation_gtk/ev_gtk_environment.xml#f_readable_pixbuf_formats</location>Readable_pixbuf_formats</feature><symbol>:</symbol> <class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><class><include>False</include>STRING_32</class><symbol>]</symbol>
+	<feature><include>False</include>Real_32_bits</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Real_32_bytes</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Real_64_bits</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Real_64_bytes</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>return_code</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Root_directory_name</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+	<feature><include>False</include>starting_environment</feature><symbol>:</symbol> <class><include>False</include>HASH_TABLE</class> <symbol>[</symbol><class><include>False</include>STRING_32</class><symbol>,</symbol> <class><include>False</include>STRING_32</class><symbol>]</symbol>
+	<feature><include>False</include>User_directory_path</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>PATH</class>
+	<feature><location>../implementation_gtk/ev_gtk_dependent_application_imp.xml#f_window_manager_name</location>window_manager_name</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+	<feature><location>../implementation_gtk/ev_gtk_environment.xml#f_writeable_pixbuf_formats</location>Writeable_pixbuf_formats</feature><symbol>:</symbol> <class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><class><include>False</include>STRING_32</class><symbol>]</symbol>
+
+<keyword>Commands</keyword>
+	<feature><include>False</include>change_working_path</feature> <symbol>(</symbol><local>path</local><symbol>:</symbol> <class><include>False</include>PATH</class><symbol>)</symbol>
+	<feature><include>False</include>ee_launch</feature> <symbol>(</symbol><local>s</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol>
+	<feature><include>False</include>free_id</feature>
+	<feature><location>../implementation_gtk/ev_gtk_dependent_application_imp.xml#f_gtk_dependent_initialize</location>gtk_dependent_initialize</feature>
+	<feature><location>../implementation_gtk/ev_gtk_dependent_application_imp.xml#f_gtk_dependent_launch_initialize</location>gtk_dependent_launch_initialize</feature>
+	<feature><location>../implementation_gtk/ev_gtk_dependent_application_imp.xml#f_initialize_default_font_values</location>initialize_default_font_values</feature>
+	<feature><include>False</include>put</feature> <symbol>(</symbol><local>value</local><symbol>,</symbol> <local>key</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol>
+	<feature><include>False</include>sleep</feature> <symbol>(</symbol><local>nanoseconds</local><symbol>:</symbol> <class><include>False</include>INTEGER_64</class><symbol>)</symbol>
+	<feature><include>False</include>system</feature> <symbol>(</symbol><local>s</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol>
+
+</system>

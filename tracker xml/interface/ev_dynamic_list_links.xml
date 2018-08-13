@@ -1,0 +1,29 @@
+<system>
+<keyword>deferred</keyword> <keyword>class</keyword>
+	<class><location>../interface/ev_dynamic_list_links.xml</location>EV_DYNAMIC_LIST</class> <symbol>[</symbol><generic>G</generic> <symbol>-&gt;</symbol> <class><location>../interface/ev_containable_links.xml</location>EV_CONTAINABLE</class><symbol>]</symbol>
+
+<keyword>Ancestors</keyword>
+	<class><include>False</include>DYNAMIC_LIST</class><char>*</char> <symbol>[</symbol><generic>G</generic><symbol>]</symbol>
+	<class><location>../interface/ev_containable_links.xml</location>EV_CONTAINABLE</class><char>*</char>
+
+<keyword>Descendants</keyword>
+	<class><location>../interface/ev_item_list_links.xml</location>EV_ITEM_LIST</class><char>*</char> <symbol>[</symbol><generic>G</generic> <symbol>-&gt;</symbol> <class><location>../interface/ev_item_links.xml</location>EV_ITEM</class><symbol>]</symbol>
+	<class><location>../interface/ev_widget_list_links.xml</location>EV_WIDGET_LIST</class><char>*</char>
+
+<keyword>Clients</keyword>
+	<class><location>../interface/ev_dynamic_list_links.xml</location>EV_DYNAMIC_LIST</class><char>*</char> <symbol>[</symbol><generic>G</generic> <symbol>-&gt;</symbol> <class><location>../interface/ev_containable_links.xml</location>EV_CONTAINABLE</class><symbol>]</symbol>
+	<class><location>../implementation_interface/ev_dynamic_list_i_links.xml</location>EV_DYNAMIC_LIST_I</class><char>*</char> <symbol>[</symbol><generic>G</generic> <symbol>-&gt;</symbol> <class><location>../interface/ev_containable_links.xml</location>EV_CONTAINABLE</class><symbol>]</symbol>
+	<class><location>../interface/ev_item_list_links.xml</location>EV_ITEM_LIST</class><char>*</char> <symbol>[</symbol><generic>G</generic> <symbol>-&gt;</symbol> <class><location>../interface/ev_item_links.xml</location>EV_ITEM</class><symbol>]</symbol>
+	<class><location>../interface/ev_widget_list_links.xml</location>EV_WIDGET_LIST</class><char>*</char>
+
+<keyword>Suppliers</keyword>
+	<class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><generic>G</generic><symbol>]</symbol>
+	<class><include>False</include>BOOLEAN</class>
+	<class><location>../interface/ev_containable_links.xml</location>EV_CONTAINABLE</class><char>*</char>
+	<class><location>../interface/ev_dynamic_list_links.xml</location>EV_DYNAMIC_LIST</class><char>*</char> <symbol>[</symbol><generic>G</generic> <symbol>-&gt;</symbol> <class><location>../interface/ev_containable_links.xml</location>EV_CONTAINABLE</class><symbol>]</symbol>
+	<class><location>../interface/ev_dynamic_list_cursor_links.xml</location>EV_DYNAMIC_LIST_CURSOR</class> <symbol>[</symbol><generic>G</generic><symbol>]</symbol>
+	<class><location>../implementation_interface/ev_dynamic_list_i_links.xml</location>EV_DYNAMIC_LIST_I</class><char>*</char> <symbol>[</symbol><generic>G</generic> <symbol>-&gt;</symbol> <class><location>../interface/ev_containable_links.xml</location>EV_CONTAINABLE</class><symbol>]</symbol>
+	<class><include>False</include>INTEGER_32</class>
+	<class><include>False</include>SEQUENCE</class><char>*</char> <symbol>[</symbol><generic>G</generic><symbol>]</symbol>
+
+</system>

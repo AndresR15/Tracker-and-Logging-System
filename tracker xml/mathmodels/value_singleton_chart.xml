@@ -1,0 +1,19 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../mathmodels/value_singleton_chart.xml</location>VALUE_SINGLETON</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>mathmodels</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Summary description for </string><string>{</string><string>VALUE2_SINGLETON</string><string>}</string><string>.&quot;</string>
+	<indexing_tag>create</indexing_tag><symbol>:</symbol> <feature><location>../mathmodels/value_singleton.xml#f_default_create</location>default_create</feature>
+
+<keyword>Ancestors</keyword>
+	<class><include>False</include>ANY</class>
+
+<keyword>Queries</keyword>
+	<feature><location>../mathmodels/value_singleton.xml#f_epsilon</location>epsilon</feature><symbol>:</symbol> <class><location>../mathmodels/value_chart.xml</location>VALUE</class>
+
+<keyword>Commands</keyword>
+	<feature><location>../mathmodels/value_singleton.xml#f_set_epsilon</location>set_epsilon</feature> <symbol>(</symbol><local>v</local><symbol>:</symbol> <class><include>False</include>STRING_8</class><symbol>)</symbol>
+
+</system>

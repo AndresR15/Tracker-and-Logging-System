@@ -1,0 +1,305 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "Absolute dates"{\line}
+{\tab}{\cf1 legal}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 status}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2017-03-29 05:26:46 -0700 (Wed, 29 Mar 2017) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 100065 $"{\line}
+{\tab}{\cf1 access}{\cf1 :} date{\line}
+{\tab}{\cf1 eis}{\cf1 :} "name=DATE / TIME to STRING Conversion"{\cf1 ,} "src=$(ISE_DOC_UUID)/88972ba4-694b-8558-b0c8-87b1fc40afc4"{\cf1 ,} "tag=EiffelTime"{\line}
+{\tab}{\cf1 eis}{\cf1 :} "name=Obtaining a DATE from a DATE_TIME and vice versa"{\cf1 ,} "src=$(ISE_DOC_UUID)/195849fc-1a9c-d734-2d2b-acae78133886#Obtaining_a_DATE_from_a_DATE_TIME_and_vice_versa"{\cf1 ,} "tag=EiffelTime"{\line}
+{\line}
+{\b\cf6 class} {\b\cf6 interface}{\line}
+{\tab}{\cf4 DATE}{\line}
+{\line}
+{\b\cf6 create} {\line}
+{\tab}{\cf5 make}{\cf1 ,}{\line}
+{\tab}{\cf5 make_month_day_year}{\cf1 ,}{\line}
+{\tab}{\cf5 make_day_month_year}{\cf1 ,}{\line}
+{\tab}{\cf5 make_now}{\cf1 ,}{\line}
+{\tab}{\cf5 make_now_utc}{\cf1 ,}{\line}
+{\tab}{\cf5 make_by_days}{\cf1 ,}{\line}
+{\tab}{\cf5 make_from_string_default}{\cf1 ,}{\line}
+{\tab}{\cf5 make_from_string_default_with_base}{\cf1 ,}{\line}
+{\tab}{\cf5 make_from_string}{\cf1 ,}{\line}
+{\tab}{\cf5 make_from_string_with_base}{\cf1 ,}{\line}
+{\tab}{\cf5 make_by_compact_date}{\cf1 ,}{\line}
+{\tab}{\cf5 make_by_ordered_compact_date}{\line}
+{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Initialization}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make} {\cf1 (}{\cf5 y}{\cf1 ,} {\cf5 m}{\cf1 ,} {\cf5 d}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 year}{\cf3 , }{\cf5 month}{\cf3  and }{\cf5 day}{\cf3  to }{\cf5 y}{\cf3 , }{\cf5 m}{\cf3 , }{\cf5 d}{\cf3  respectively.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 correct_date}{\cf1 :} {\cf5 is_correct_date}{\cf1  }{\cf1 (}{\cf5 y}{\cf1 ,} {\cf5 m}{\cf1 ,} {\cf5 d}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 year_set}{\cf1 :} {\cf5 year} {\cf1 =} {\cf5 y}{\line}
+{\tab}{\tab}{\tab}{\cf1 month_set}{\cf1 :} {\cf5 month} {\cf1 =} {\cf5 m}{\line}
+{\tab}{\tab}{\tab}{\cf1 day_set}{\cf1 :} {\cf5 day} {\cf1 =} {\cf5 d}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 make_month_day_year} {\cf1 (}{\cf5 m}{\cf1 ,} {\cf5 d}{\cf1 ,} {\cf5 y}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 month}{\cf3 , }{\cf5 day}{\cf3  and }{\cf5 year}{\cf3  to }{\cf5 m}{\cf3 , }{\cf5 d}{\cf3  and }{\cf5 y}{\cf3  respectively.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 correct_date}{\cf1 :} {\cf5 is_correct_date}{\cf1  }{\cf1 (}{\cf5 y}{\cf1 ,} {\cf5 m}{\cf1 ,} {\cf5 d}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 year_set}{\cf1 :} {\cf5 year} {\cf1 =} {\cf5 y}{\line}
+{\tab}{\tab}{\tab}{\cf1 month_set}{\cf1 :} {\cf5 month} {\cf1 =} {\cf5 m}{\line}
+{\tab}{\tab}{\tab}{\cf1 day_set}{\cf1 :} {\cf5 day} {\cf1 =} {\cf5 d}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 make_day_month_year} {\cf1 (}{\cf5 d}{\cf1 ,} {\cf5 m}{\cf1 ,} {\cf5 y}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 day}{\cf3 , }{\cf5 month}{\cf3  and }{\cf5 year}{\cf3  to }{\cf5 d}{\cf3 , }{\cf5 m}{\cf3  and }{\cf5 y}{\cf3  respectively.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 correct_date}{\cf1 :} {\cf5 is_correct_date}{\cf1  }{\cf1 (}{\cf5 y}{\cf1 ,} {\cf5 m}{\cf1 ,} {\cf5 d}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 year_set}{\cf1 :} {\cf5 year} {\cf1 =} {\cf5 y}{\line}
+{\tab}{\tab}{\tab}{\cf1 month_set}{\cf1 :} {\cf5 month} {\cf1 =} {\cf5 m}{\line}
+{\tab}{\tab}{\tab}{\cf1 day_set}{\cf1 :} {\cf5 day} {\cf1 =} {\cf5 d}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 make_now}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set the current object to today's date.}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 make_now_utc}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set the current object to today's date in utc format.}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 make_by_days} {\cf1 (}{\cf5 n}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set the current date with the number of days }{\cf5 n}{\cf3  since }{\cf5 Origin}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 days_set}{\cf1 :} {\cf5 days} {\cf1 =} {\cf5 n}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 make_from_string_default} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Initialize from a "standard" string of form}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 date_default_format_string}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (For 2-digit year specifications, the current century is used as}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  base century.)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_exists}{\cf1 :} {\cf5 s} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 date_valid}{\cf1 :} {\cf5 date_valid}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 ,} {\cf5 date_default_format_string}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 make_from_string_default_with_base} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 base}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Initialize from a "standard" string of form}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 date_default_format_string}{\cf3  with base century }{\cf5 base}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_exists}{\cf1 :} {\cf5 s} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 base_valid}{\cf1 :} {\cf5 base} {\cf1 >} 0 {\b\cf6 and} {\cf1 (}{\cf5 base} {\cf1 \\\\} 100 {\cf1 =} 0{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 date_valid}{\cf1 :} {\cf5 date_valid_with_base}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 ,} {\cf5 date_default_format_string}{\cf1 ,} {\cf5 base}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 make_from_string} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 code}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Initialize from a "standard" string of form}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 code}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (For 2-digit year specifications, the current century is used as}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  base century.)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_exists}{\cf1 :} {\cf5 s} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 c_exists}{\cf1 :} {\cf5 code} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 date_valid}{\cf1 :} {\cf5 date_valid}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 ,} {\cf5 code}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 make_from_string_with_base} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 code}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 base}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Initialize from a "standard" string of form}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 code}{\cf3  with base century }{\cf5 base}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_exists}{\cf1 :} {\cf5 s} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 c_exists}{\cf1 :} {\cf5 code} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 base_valid}{\cf1 :} {\cf5 base} {\cf1 >} 0 {\b\cf6 and} {\cf1 (}{\cf5 base} {\cf1 \\\\} 100 {\cf1 =} 0{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 date_valid}{\cf1 :} {\cf5 date_valid_with_base}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 ,} {\cf5 code}{\cf1 ,} {\cf5 base}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 make_by_ordered_compact_date} {\cf1 (}{\cf5 c_d}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Initialize from a }{\cf5 ordered_compact_date}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 c_d_valid}{\cf1 :} {\cf5 ordered_compact_date_valid}{\cf1  }{\cf1 (}{\cf5 c_d}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 ordered_compact_date_set}{\cf1 :} {\cf5 ordered_compact_date} {\cf1 =} {\cf5 c_d}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Origin}{\cf1 :} {\cf4 DATE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Origin date}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Comparison}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_less} {\b\cf6 alias} {\cf1 "}{\cf1 <}{\cf1 "} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 like} {\b\cf6 Current}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is the current date before }{\cf5 other}{\cf3 ?}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Measurement}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 duration}{\cf1 :} {\cf4 DATE_DURATION}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Definite duration elapsed since }{\cf5 Origin}{\line}
+{\tab}{\tab}{\b\cf6 ensure then}{\line}
+{\tab}{\tab}{\tab}{\cf1 definite_result}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 definite}{\line}
+{\tab}{\tab}{\tab}{\cf1 duration_set}{\cf1 :} {\cf1 (}{\cf1 (}{\b\cf6 Current} {\cf1 -} {\cf5 Origin}{\cf1 )}{\b\cf1 .}{\cf5 duration}{\cf1 )}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 days}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of days elapsed since }{\cf5 Origin}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 same_duration}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf5 duration}{\b\cf1 .}{\cf5 day}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status report}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 leap_year}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is the current year a leap year?}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 days_at_month}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of days from the beginning of the year}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  until the beginning of the current month}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 positive_result}{\cf1 :} {\b\cf6 Result} {\cf1 >=} 0{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 year_day}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of days from the beginning of the year}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_large_enough}{\cf1 :} {\b\cf6 Result} {\cf1 >=} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 result_small_enough}{\cf1 :} {\b\cf6 Result} {\cf1 <=} {\cf5 days_in_year}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 week_of_year}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of weeks from the beginning of the year}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  The first week of the year begins on the first sunday of the year}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  The week number before the first sunday of the year is 0}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 positive_result}{\cf1 :} {\b\cf6 Result} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\tab}{\cf1 result_small_enough}{\cf1 :} {\b\cf6 Result} {\cf1 <} {\cf5 Max_weeks_in_year}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 days_in_year}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of days in the current year}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_result}{\cf1 :} {\cf1 (}{\cf5 leap_year} {\b\cf6 implies} {\b\cf6 Result} {\cf1 =} {\cf5 Days_in_leap_year}{\cf1 )} {\b\cf6 and then} {\cf1 (}{\b\cf6 not} {\cf5 leap_year} {\b\cf6 implies} {\b\cf6 Result} {\cf1 =} {\cf5 Days_in_non_leap_year}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 day_of_the_week}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of day from the beginning of the week}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  sunday is 1, etc.., saturday is 7}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 day_of_the_week_range}{\cf1 :} {\b\cf6 Result} {\cf1 >} 0 {\b\cf6 and then} {\b\cf6 Result} {\cf1 <} 8{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 day_of_january_1st}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Day of the week of january 1st of the current year}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 day_of_the_week_definition}{\cf1 :} {\b\cf6 Result} {\cf1 >} 0 {\b\cf6 and then} {\b\cf6 Result} {\cf1 <} 8{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 days_from} {\cf1 (}{\cf5 y}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Days between the current year and year }{\cf5 y}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Conversion}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 to_date_time}{\cf1 :} {\cf4 DATE_TIME}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Date-time version, with a zero time component}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Basic operations}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 plus} {\b\cf6 alias} {\cf1 "}{\cf1 +}{\cf1 "} {\cf1 (}{\cf5 d}{\cf1 :} {\cf4 DATE_DURATION}{\cf1 )}{\cf1 :} {\cf4 DATE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Sum to current date the duration }{\cf5 d}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  if duration not define, add years and then months and then days.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 d_not_void}{\cf1 :} {\cf5 d} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_exists}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 definite_set}{\cf1 :} {\cf5 d}{\b\cf1 .}{\cf5 definite} {\b\cf6 implies} {\cf1 (}{\b\cf6 Result} {\cf1 -} {\b\cf6 Current}{\cf1 )}{\b\cf1 .}{\cf5 duration}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 d}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 add} {\cf1 (}{\cf5 d}{\cf1 :} {\cf4 DATE_DURATION}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Adds }{\cf5 d}{\cf3  to the current date.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  if }{\cf5 d}{\cf3  is not definite, add years and months and then days.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 d_not_void}{\cf1 :} {\cf5 d} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 relative_duration} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 like} {\b\cf6 Current}{\cf1 )}{\cf1 :} {\cf4 DATE_DURATION}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Duration from }{\cf5 other}{\cf3  to the current date}{\line}
+{\tab}{\tab}{\b\cf6 ensure then}{\line}
+{\tab}{\tab}{\tab}{\cf1 exact_duration}{\cf1 :} {\cf1 (}{\cf5 other} {\cf1 +} {\b\cf6 Result}{\cf1 )}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 canonical_duration}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 canonical}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 origin_date_set}{\cf1 :} {\cf5 equal}{\cf1  }{\cf1 (}{\b\cf6 Result}{\b\cf1 .}{\cf5 origin_date}{\cf1 ,} {\cf5 other}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 day_forth}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Move to next day.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  days is from the origin, day is current.}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 days_set}{\cf1 :} {\cf5 days} {\cf1 =} {\b\cf6 old} {\cf5 days} {\cf1 +} 1{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 day_back}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Move to previous day.}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 days_set}{\cf1 :} {\cf5 days} {\cf1 =} {\b\cf6 old} {\cf5 days} {\cf1 -} 1{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 day_add} {\cf1 (}{\cf5 d}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Add }{\cf5 d}{\cf3  days to the current date.}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 days_set}{\cf1 :} {\cf5 days} {\cf1 =} {\b\cf6 old} {\cf5 days} {\cf1 +} {\cf5 d}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 month_forth}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Move to next month.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Can move days backward if next month has less days than the}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  current month.}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 month_back}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Move to previous month.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Can move days backward if previous month has less days than the}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  current month.}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 month_add} {\cf1 (}{\cf5 m}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Add }{\cf5 m}{\cf3  months to the current date.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Can move days backward.}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 year_forth}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Move to next year.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  May cut the 29th february.}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 year_increased}{\cf1 :} {\cf5 year} {\cf1 =} {\b\cf6 old} {\cf5 year} {\cf1 +} 1{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 year_back}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Move to previous year.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  May cut the 29th february.}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 year_decreased}{\cf1 :} {\cf5 year} {\cf1 =} {\b\cf6 old} {\cf5 year} {\cf1 -} 1{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 year_add} {\cf1 (}{\cf5 y}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Add }{\cf5 y}{\cf3  years to the current date.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  May cut the 29th february.}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 year_set}{\cf1 :} {\cf5 year} {\cf1 =} {\b\cf6 old} {\cf5 year} {\cf1 +} {\cf5 y}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 year_month_add} {\cf1 (}{\cf5 y}{\cf1 ,} {\cf5 m}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Add }{\cf5 y}{\cf3  years and }{\cf5 m}{\cf3  months to the current date.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Check the number of days after.}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Output}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 debug_output}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Printable representation of }{\cf5 Current}{\cf3  with "standard"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Form: }{\cf5 date_default_format_string}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 DATE}{\cf3  as synonym of }{\cf5 out}{\cf3 .}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 out}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Printable representation of }{\cf5 Current}{\cf3  with "standard"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Form: }{\cf5 date_default_format_string}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 DATE}{\cf3  as synonym of }{\cf5 debug_output}{\cf3 .}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 formatted_out} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Printable representation of }{\cf5 Current}{\cf3  with "standard"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Form: }{\cf5 s}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_exists}{\cf1 :} {\cf5 s} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\tab}{\line}
+{\b\cf6 invariant}{\line}
+{\tab}{\cf1 day_large_enough}{\cf1 :} {\cf5 day} {\cf1 >=} 1{\line}
+{\tab}{\cf1 day_small_enough}{\cf1 :} {\cf5 day} {\cf1 <=} {\cf5 days_in_month}{\line}
+{\tab}{\cf1 month_large_enough}{\cf1 :} {\cf5 month} {\cf1 >=} 1{\line}
+{\tab}{\cf1 month_small_enough}{\cf1 :} {\cf5 month} {\cf1 <=} {\cf5 Months_in_year}{\line}
+{\tab}{\cf1 year_small_enough}{\cf1 :} {\cf5 year} {\cf1 <=} 65535{\line}
+{\tab}{\cf1 year_non_negative}{\cf1 :} {\cf5 year} {\cf1 >=} 0{\line}
+{\line}
+{\b\cf6 note}{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 1984-2017, Eiffel Software and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"{\line}
+{\tab}{\cf1 source}{\cf1 :} "[{\line}
+{\tab}{\tab}Eiffel Software{\line}
+{\tab}{\tab}5949 Hollister Ave., Goleta, CA 93117 USA{\line}
+{\tab}{\tab}Telephone 805-685-1006, Fax 805-685-6869{\line}
+{\tab}{\tab}Website http://www.eiffel.com{\line}
+{\tab}{\tab}Customer support http://support.eiffel.com{\line}
+{\tab}]"{\line}
+{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 DATE}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

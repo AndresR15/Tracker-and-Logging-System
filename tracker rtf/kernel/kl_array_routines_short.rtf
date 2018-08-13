@@ -1,0 +1,138 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "Routines that ought to be in class ARRAY"{\line}
+{\tab}{\cf1 library}{\cf1 :} "Gobo Eiffel Kernel Library"{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 1999-2016, Eric Bezault and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "MIT License"{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2017-04-11 11:34:55 -0700 (Tue, 11 Apr 2017) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 100137 $"{\line}
+{\line}
+{\b\cf6 class} {\b\cf6 interface}{\line}
+{\tab}{\cf4 KL_ARRAY_ROUTINES} {\cf1 [}G{\cf1 ]}{\line}
+{\line}
+{\b\cf6 create} {\line}
+{\tab}{\cf5 default_create}{\line}
+{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Initialization}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make_from_array} {\cf1 (}{\cf5 an_array}{\cf1 :} {\cf4 ARRAY} {\cf1 [}G{\cf1 ]}{\cf1 ;} {\cf5 min_index}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 ARRAY} {\cf1 [}G{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create a new array and initialize it}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  with items from }{\cf5 an_array}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 an_array_not_void}{\cf1 :} {\cf5 an_array} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 array_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 lower_set}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 lower} {\cf1 =} {\cf5 min_index}{\line}
+{\tab}{\tab}{\tab}{\cf1 count_set}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 count} {\cf1 =} {\cf5 an_array}{\b\cf1 .}{\cf5 count}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 make_empty_with_lower} {\cf1 (}{\cf5 min_index}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 ARRAY} {\cf1 [}G{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create an empty array with }{\cf5 min_index}{\cf3  as lower bound.}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 array_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 lower_set}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 lower} {\cf1 =} {\cf5 min_index}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_empty}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 is_empty}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status report}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 has} {\cf1 (}{\cf5 an_array}{\cf1 :} {\cf4 ARRAY} {\cf1 [}G{\cf1 ]}{\cf1 ;} {\cf5 v}{\cf1 :} G{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does }{\cf5 v}{\cf3  appear in }{\cf5 an_array}{\cf3  (use '=' for item comparison).}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Reasons why we don't use ARRAY.has directly:}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  * }{\cf5 has}{\cf3  is not in ELKS ARRAY 2000.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  * ISE may change this behavior with }{\cf5 compare_objects}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 an_array_not_void}{\cf1 :} {\cf5 an_array} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 has_void} {\cf1 (}{\cf5 a_array}{\cf1 :} {\cf4 ARRAY} {\cf1 [}G{\cf1 ]}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does 'Void' appear in }{\cf5 an_array}{\cf3  (use '=' for item comparison).}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Reason why we don't use }{\cf5 has (Void)}{\cf3  directly:}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  * the actual generic parameter may be attached and}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3    'Void' would not conform to it.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_array_not_void}{\cf1 :} {\cf5 a_array} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 subarray} {\cf1 (}{\cf5 an_array}{\cf1 :} {\cf4 ARRAY} {\cf1 [}G{\cf1 ]}{\cf1 ;} {\cf5 start_pos}{\cf1 ,} {\cf5 end_pos}{\cf1 ,} {\cf5 min_index}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 ARRAY} {\cf1 [}G{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Array made up of items from }{\cf5 an_array}{\cf3  within}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  bounds }{\cf5 start_pos}{\cf3  and }{\cf5 end_pos}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Reasons why we don't use ARRAY.subarray directly:}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  * ELKS ARRAY 2000 returns an 'ARRAY }{\cf3 [G]}{\cf3 '}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3    whereas ISE 5.4/5.5 return a 'like Current'.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  * ISE 5.4/5.5 does not allow subarrays of empty array,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3    and does not work with empty subarrays.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  * This routine has an extra argument }{\cf5 min_index}{\cf3  compared}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3    to the one provided by ELKS and the various compilers.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 an_array_not_void}{\cf1 :} {\cf5 an_array} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 start_pos_large_enough}{\cf1 :} {\cf5 start_pos} {\cf1 >=} {\cf5 an_array}{\b\cf1 .}{\cf5 lower}{\line}
+{\tab}{\tab}{\tab}{\cf1 end_pos_small_enough}{\cf1 :} {\cf5 end_pos} {\cf1 <=} {\cf5 an_array}{\b\cf1 .}{\cf5 upper}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_bounds}{\cf1 :} {\cf5 start_pos} {\cf1 <=} {\cf5 end_pos} {\cf1 +} 1{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 array_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 lower_set}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 lower} {\cf1 =} {\cf5 min_index}{\line}
+{\tab}{\tab}{\tab}{\cf1 count_set}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 count} {\cf1 =} {\cf5 end_pos} {\cf1 -} {\cf5 start_pos} {\cf1 +} 1{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Duplication}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 cloned_array} {\cf1 (}{\cf5 an_array}{\cf1 :} {\cf4 ARRAY} {\cf1 [}G{\cf1 ]}{\cf1 )}{\cf1 :} {\cf4 ARRAY} {\cf1 [}G{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Clone of }{\cf5 an_array}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 an_array_not_void}{\cf1 :} {\cf5 an_array} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 cloned_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 same_type}{\cf1 :} {\cf5 Any_}{\b\cf1 .}{\cf5 same_types}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 ,} {\cf5 an_array}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_equal}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 an_array}{\cf1 )}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Element change}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 subcopy} {\cf1 (}{\cf5 an_array}{\cf1 :} {\cf4 ARRAY} {\cf1 [}G{\cf1 ]}{\cf1 ;} {\cf5 other}{\cf1 :} {\cf4 ARRAY} {\cf1 [}G{\cf1 ]}{\cf1 ;} {\cf5 start_pos}{\cf1 ,} {\cf5 end_pos}{\cf1 ,} {\cf5 index_pos}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Copy items of }{\cf5 other}{\cf3  within bounds }{\cf5 start_pos}{\cf3  and }{\cf5 end_pos}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to }{\cf5 an_array}{\cf3  starting at index }{\cf5 index_pos}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Reasons why we don't use ARRAY.subcopy directly:}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  * }{\cf5 subcopy}{\cf3  is not in ELKS ARRAY 2000.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 an_array_not_void}{\cf1 :} {\cf5 an_array} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_same}{\cf1 :} {\cf5 an_array} {\cf1 /=} {\cf5 other}{\line}
+{\tab}{\tab}{\tab}{\cf1 start_pos_large_enough}{\cf1 :} {\cf5 start_pos} {\cf1 >=} {\cf5 other}{\b\cf1 .}{\cf5 lower}{\line}
+{\tab}{\tab}{\tab}{\cf1 end_pos_small_enough}{\cf1 :} {\cf5 end_pos} {\cf1 <=} {\cf5 other}{\b\cf1 .}{\cf5 upper}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_bounds}{\cf1 :} {\cf5 start_pos} {\cf1 <=} {\cf5 end_pos} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 index_pos_large_enough}{\cf1 :} {\cf5 index_pos} {\cf1 >=} {\cf5 an_array}{\b\cf1 .}{\cf5 lower}{\line}
+{\tab}{\tab}{\tab}{\cf1 enough_space}{\cf1 :} {\cf1 (}{\cf5 an_array}{\b\cf1 .}{\cf5 upper} {\cf1 -} {\cf5 index_pos}{\cf1 )} {\cf1 >=} {\cf1 (}{\cf5 end_pos} {\cf1 -} {\cf5 start_pos}{\cf1 )}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Resizing}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 resize} {\cf1 (}{\cf5 an_array}{\cf1 :} {\cf4 ARRAY} {\cf1 [}G{\cf1 ]}{\cf1 ;} {\cf5 min_index}{\cf1 ,} {\cf5 max_index}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Rearrange array so that it can accommodate}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  indices down to }{\cf5 min_index}{\cf3  and up to }{\cf5 max_index}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do not lose any previously entered item.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 an_array_not_void}{\cf1 :} {\cf5 an_array} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_min_index}{\cf1 :} {\cf5 min_index} {\cf1 <=} {\cf5 an_array}{\b\cf1 .}{\cf5 lower}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_max_index}{\cf1 :} {\cf5 max_index} {\cf1 >=} {\cf5 an_array}{\b\cf1 .}{\cf5 upper}{\line}
+{\tab}{\tab}{\tab}{\cf1 has_default}{\cf1 :} {\cf1 (}{\cf1 \{}G{\cf1 \}}{\cf1 )}{\b\cf1 .}{\cf5 has_default}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 lower_set}{\cf1 :} {\cf5 an_array}{\b\cf1 .}{\cf5 lower} {\cf1 =} {\cf5 min_index}{\line}
+{\tab}{\tab}{\tab}{\cf1 upper_set}{\cf1 :} {\cf5 an_array}{\b\cf1 .}{\cf5 upper} {\cf1 =} {\cf5 max_index}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 resize_with_default} {\cf1 (}{\cf5 an_array}{\cf1 :} {\cf4 ARRAY} {\cf1 [}G{\cf1 ]}{\cf1 ;} {\cf5 a_default_value}{\cf1 :} G{\cf1 ;} {\cf5 min_index}{\cf1 ,} {\cf5 max_index}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Rearrange array so that it can accommodate}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  indices down to }{\cf5 min_index}{\cf3  and up to }{\cf5 max_index}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do not lose any previously entered item.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 an_array_not_void}{\cf1 :} {\cf5 an_array} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_min_index}{\cf1 :} {\cf5 min_index} {\cf1 <=} {\cf5 an_array}{\b\cf1 .}{\cf5 lower}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_max_index}{\cf1 :} {\cf5 max_index} {\cf1 >=} {\cf5 an_array}{\b\cf1 .}{\cf5 upper}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 lower_set}{\cf1 :} {\cf5 an_array}{\b\cf1 .}{\cf5 lower} {\cf1 =} {\cf5 min_index}{\line}
+{\tab}{\tab}{\tab}{\cf1 upper_set}{\cf1 :} {\cf5 an_array}{\b\cf1 .}{\cf5 upper} {\cf1 =} {\cf5 max_index}{\line}
+}{\tab}{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 KL_ARRAY_ROUTINES}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

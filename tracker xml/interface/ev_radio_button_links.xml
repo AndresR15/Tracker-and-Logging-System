@@ -1,0 +1,21 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../interface/ev_radio_button_links.xml</location>EV_RADIO_BUTTON</class>
+
+<keyword>Ancestors</keyword>
+	<class><location>../interface/ev_button_links.xml</location>EV_BUTTON</class>
+	<class><location>../interface/ev_radio_peer_links.xml</location>EV_RADIO_PEER</class><char>*</char>
+	<class><location>../interface/ev_selectable_links.xml</location>EV_SELECTABLE</class><char>*</char>
+
+<keyword>Clients</keyword>
+	<class><location>../implementation_interface/ev_container_i_links.xml</location>EV_CONTAINER_I</class><char>*</char>
+	<class><location>../interface/ev_radio_button_links.xml</location>EV_RADIO_BUTTON</class>
+
+<keyword>Suppliers</keyword>
+	<class><include>False</include>BOOLEAN</class>
+	<class><location>../interface/ev_button_links.xml</location>EV_BUTTON</class>
+	<class><location>../interface/ev_radio_button_links.xml</location>EV_RADIO_BUTTON</class>
+	<class><location>../implementation_gtk/ev_radio_button_imp_links.xml</location>EV_RADIO_BUTTON_IMP</class>
+	<class><location>../interface/ev_radio_peer_links.xml</location>EV_RADIO_PEER</class><char>*</char>
+
+</system>

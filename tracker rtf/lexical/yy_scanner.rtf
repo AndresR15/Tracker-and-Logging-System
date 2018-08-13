@@ -1,0 +1,523 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "General lexical analyzers"{\line}
+{\tab}{\cf1 library}{\cf1 :} "Gobo Eiffel Lexical Library"{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 2001-2016, Eric Bezault and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "MIT License"{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2016-05-06 12:15:38 -0700 (Fri, 06 May 2016) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 98678 $"{\line}
+{\line}
+{\b\cf6 deferred} {\b\cf6 class} {\line}
+{\tab}{\cf4 YY_SCANNER}{\line}
+{\line}
+{\b\cf6 inherit}{\line}
+{\tab}{\cf4 ANY}{\line}
+{\line}
+{\tab}{\cf4 KL_SHARED_STANDARD_FILES}{\line}
+{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Initialization}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create a new scanner with}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  standard input as input file.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 make_with_file}{\cf1  }{\cf1 (}{\cf5 Std}{\b\cf1 .}{\cf5 Input}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make_with_file} {\cf1 (}{\cf5 a_file}{\cf1 :} {\cf4 KI_CHARACTER_INPUT_STREAM}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create a new scanner with}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 a_file}{\cf3  as input file.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_file_not_void}{\cf1 :} {\cf5 a_file} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_file_open_read}{\cf1 :} {\cf5 a_file}{\b\cf1 .}{\cf5 is_open_read}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 make_with_buffer}{\cf1  }{\cf1 (}{\cf5 new_file_buffer}{\cf1  }{\cf1 (}{\cf5 a_file}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make_with_buffer} {\cf1 (}{\cf5 a_buffer}{\cf1 :} {\b\cf6 like} {\cf5 input_buffer}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create a new scanner with}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 a_buffer}{\cf3  as input buffer.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_buffer_not_void}{\cf1 :} {\cf5 a_buffer} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 input_buffer} {\cf1 :=} {\cf5 a_buffer}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 input_buffer_set}{\cf1 :} {\cf5 input_buffer} {\cf1 =} {\cf5 a_buffer}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Initialization}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 reset}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Reset scanner before scanning next input source.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (This routine can be called in }{\cf5 wrap}{\cf3  before scanning}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  another input buffer.)}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 reset_with_file} {\cf1 (}{\cf5 a_file}{\cf1 :} {\cf4 KI_CHARACTER_INPUT_STREAM}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Reset scanner before scanning next input source.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Then reuse }{\cf5 input_buffer}{\cf3  and set it to }{\cf5 a_file}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  if it was a file buffer, create a new file input buffer}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  with }{\cf5 a_file}{\cf3  otherwise.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_file_not_void}{\cf1 :} {\cf5 a_file} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_file_open_read}{\cf1 :} {\cf5 a_file}{\b\cf1 .}{\cf5 is_open_read}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_input_buffer}{\cf1 :} {\b\cf6 like} {\cf5 input_buffer}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 reset}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_input_buffer} {\cf1 :=} {\cf5 input_buffer}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf1 \{}{\cf4 YY_FILE_BUFFER}{\cf1 \}} {\cf5 l_input_buffer} {\b\cf6 as} l_file_buffer {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_file_buffer}{\b\cf1 .}{\cf5 set_file}{\cf1  }{\cf1 (}{\cf5 a_file}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 input_buffer} {\cf1 :=} {\cf5 Empty_buffer}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_input_buffer} {\cf1 :=} {\cf5 new_file_buffer}{\cf1  }{\cf1 (}{\cf5 a_file}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_input_buffer}{\cf1  }{\cf1 (}{\cf5 l_input_buffer}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 reset_with_string} {\cf1 (}{\cf5 a_string}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Reset scanner before scanning next input source.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Then reuse }{\cf5 input_buffer}{\cf3  and set it to }{\cf5 a_string}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  if it was not }{\cf5 Empty_buffer}{\cf3 , create a new input buffer}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  with }{\cf5 a_string}{\cf3  otherwise.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_input_buffer}{\cf1 :} {\b\cf6 like} {\cf5 input_buffer}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 reset}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_input_buffer} {\cf1 :=} {\cf5 input_buffer}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_input_buffer} {\cf1 /=} {\cf5 Empty_buffer} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_input_buffer}{\b\cf1 .}{\cf5 set_string}{\cf1  }{\cf1 (}{\cf5 a_string}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 input_buffer} {\cf1 :=} {\cf5 Empty_buffer}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_input_buffer} {\cf1 :=} {\cf5 new_string_buffer}{\cf1  }{\cf1 (}{\cf5 a_string}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_input_buffer}{\cf1  }{\cf1 (}{\cf5 l_input_buffer}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 reset_start_condition}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Clear pushed start conditions and set }{\cf5 start_condition}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to the "INITIAL" start condition.}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 pushed_start_conditions_cleared}{\cf1 :} {\cf5 pushed_start_condition_count} {\cf1 =} 0{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 last_token}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Code of last token read}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (0 means that the end-of-input has been reached,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  non-positive values mean that an error occurred}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (see header-comment of }{\cf5 scanning_error}{\cf3 .))}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 text}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Text of last token read}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Create a new string at each call.)}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 text_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 correct_count}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 count} {\cf1 =} {\cf5 text_count}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 text_item} {\cf1 (}{\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 CHARACTER_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 i}{\cf3 -th character of last token read}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 i_large_enough}{\cf1 :} {\cf5 i} {\cf1 >=} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 i_small_enough}{\cf1 :} {\cf5 i} {\cf1 <=} {\cf5 text_count}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf5 text}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 text_substring} {\cf1 (}{\cf5 s}{\cf1 ,} {\cf5 e}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Substring of last token read}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Create a new string at each call.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (For efficiency reason, this function can bypass the}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  call to }{\cf5 text}{\cf3  and create the substring directly from}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the input buffer.)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 meaningful_start}{\cf1 :} 1 {\cf1 <=} {\cf5 s}{\line}
+{\tab}{\tab}{\tab}{\cf1 meaningful_interval}{\cf1 :} {\cf5 s} {\cf1 <=} {\cf5 e} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 meaningful_end}{\cf1 :} {\cf5 e} {\cf1 <=} {\cf5 text_count}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 text_substring_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 text_substring_empty}{\cf1 :} {\cf1 (}{\cf5 s} {\cf1 >} {\cf5 e}{\cf1 )} {\b\cf6 implies} {\cf1 (}{\b\cf6 Result}{\b\cf1 .}{\cf5 count} {\cf1 =} 0{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\cf5 s} {\cf1 <=} {\cf5 e} {\b\cf6 implies} {\b\cf6 Result}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 text}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 ,} {\cf5 e}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 start_condition}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Start condition}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Measurement}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 text_count}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of characters in last token read}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 positive_count}{\cf1 :} {\b\cf6 Result} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 line}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Line number of last token read when}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  '%option line' has been specified}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 line_positive}{\cf1 :} {\b\cf6 Result} {\cf1 >=} 1{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 column}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Column number of last token read when}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  '%option line' has been specified}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 column_positive}{\cf1 :} {\b\cf6 Result} {\cf1 >=} 1{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 position}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Position of last token read (i.e. number of}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  characters from the start of the input source)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  when '%option position' has been specified}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 position_positive}{\cf1 :} {\b\cf6 Result} {\cf1 >=} 1{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 pushed_start_condition_count}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of start conditions already pushed (and not popped yet)}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 pushed_start_condition_count_not_negative}{\cf1 :} {\b\cf6 Result} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status report}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 end_of_file}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Has the end of input buffer been reached?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  This means that }{\cf5 last_token}{\cf3  has been set}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to 0 indicating "all done".}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 last_token} {\cf1 =} {\cf5 Yyeof_token}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 scanning_error}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Has an error occurred during scanning?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  This can occur when too many }{\cf5 reject}{\cf3  are called (and hence}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  nothing can be matched anymore) or when the option "nodefault"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (or option -s) has been specified but the default rule is}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  matched nevertheless.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 last_token} {\cf1 =} {\cf5 Yyerror_token}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 valid_start_condition} {\cf1 (}{\cf5 sc}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 sc}{\cf3  a valid start condition?}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Setting}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_last_token} {\cf1 (}{\cf5 a_token}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 last_token}{\cf3  to }{\cf5 a_token}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 last_token} {\cf1 :=} {\cf5 a_token}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 last_token_set}{\cf1 :} {\cf5 last_token} {\cf1 =} {\cf5 a_token}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_start_condition} {\cf1 (}{\cf5 a_start_condition}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 start_condition}{\cf3  to }{\cf5 a_start_condition}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_start_condition}{\cf1 :} {\cf5 valid_start_condition}{\cf1  }{\cf1 (}{\cf5 a_start_condition}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 start_condition_set}{\cf1 :} {\cf5 start_condition} {\cf1 =} {\cf5 a_start_condition}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 push_start_condition} {\cf1 (}{\cf5 a_start_condition}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set start condition and add previous to stack.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_start_condition}{\cf1 :} {\cf5 valid_start_condition}{\cf1  }{\cf1 (}{\cf5 a_start_condition}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 start_condition_set}{\cf1 :} {\cf5 start_condition} {\cf1 =} {\cf5 a_start_condition}{\line}
+{\tab}{\tab}{\tab}{\cf1 one_more}{\cf1 :} {\cf5 pushed_start_condition_count} {\cf1 =} {\b\cf6 old} {\cf5 pushed_start_condition_count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 pop_start_condition}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Restore previous start condition.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 has_pushed_start_conditions}{\cf1 :} {\cf5 pushed_start_condition_count} {\cf1 >} 0{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 one_less}{\cf1 :} {\cf5 pushed_start_condition_count} {\cf1 =} {\b\cf6 old} {\cf5 pushed_start_condition_count} {\cf1 -} 1{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Scanning}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 scan}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Scan }{\cf5 input_buffer}{\cf3  until end of file is found}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  or an error occurs.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 read_token}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 last_token} {\cf1 <=} 0{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 read_token}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 end_of_file}{\cf1 :} {\b\cf6 not} {\cf5 scanning_error} {\b\cf6 implies} {\cf5 end_of_file}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 read_token}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Read a token from }{\cf5 input_buffer}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Make result available in }{\cf5 last_token}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Element change}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 append_text_to_string} {\cf1 (}{\cf5 a_string}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Append }{\cf5 text}{\cf3  at end of }{\cf5 a_string}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (For efficiency reason, this feature can bypass the}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  call to }{\cf5 text}{\cf3  and directly copy the characters from}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the input buffer.)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_string}{\b\cf1 .}{\cf5 append_string}{\cf1  }{\cf1 (}{\cf5 text}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 count_set}{\cf1 :} {\cf5 a_string}{\b\cf1 .}{\cf5 count} {\cf1 =} {\b\cf6 old} {\cf1 (}{\cf5 a_string}{\b\cf1 .}{\cf5 count}{\cf1 )} {\cf1 +} {\cf5 text_count}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 append_text_substring_to_string} {\cf1 (}{\cf5 s}{\cf1 ,} {\cf5 e}{\cf1 :} {\cf4 INTEGER_32}{\cf1 ;} {\cf5 a_string}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Append }{\cf5 text_substring}{\cf3  at end of }{\cf5 a_string}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (For efficiency reason, this feature can bypass}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the call to }{\cf5 text_substring}{\cf3  and directly copy}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the characters from the input buffer.)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_large_enough}{\cf1 :} 1 {\cf1 <=} {\cf5 s}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_interval}{\cf1 :} {\cf5 s} {\cf1 <=} {\cf5 e} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 e_small_enough}{\cf1 :} {\cf5 e} {\cf1 <=} {\cf5 text_count}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_string}{\b\cf1 .}{\cf5 append_string}{\cf1  }{\cf1 (}{\cf5 text_substring}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 ,} {\cf5 e}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 count_set}{\cf1 :} {\cf5 a_string}{\b\cf1 .}{\cf5 count} {\cf1 =} {\b\cf6 old} {\cf1 (}{\cf5 a_string}{\b\cf1 .}{\cf5 count}{\cf1 )} {\cf1 +} {\cf1 (}{\cf5 e} {\cf1 -} {\cf5 s} {\cf1 +} 1{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 terminate}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Terminate scanner and set }{\cf5 last_token}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to 0 indicating "all done".}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 last_token} {\cf1 :=} {\cf5 Yyeof_token}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 wrap}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Should current scanner terminate when end of file is reached?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  This function can be redefined to switch to another input}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  buffer (but don't forget to update }{\cf5 start_condition}{\cf3 ).}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (default: True.)}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 more}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Tell scanner to append the next matched token}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to current value of }{\cf5 text}{\cf3  instead of}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  replacing it.}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 less} {\cf1 (}{\cf5 n}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Return all but the first }{\cf5 n}{\cf3  matched}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  characters back to }{\cf5 input_buffer}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 n_large_enough}{\cf1 :} {\cf5 n} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\tab}{\cf1 n_small_enough}{\cf1 :} {\cf5 n} {\cf1 <=} {\cf5 text_count}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 text_count_set}{\cf1 :} {\cf5 text_count} {\cf1 =} {\cf5 n}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 unread_character} {\cf1 (}{\cf5 c}{\cf1 :} {\cf4 CHARACTER_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Put }{\cf5 c}{\cf3  back to }{\cf5 input_buffer}{\cf3 . This will alter both}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 text}{\cf3  and the content of }{\cf5 input_buffer}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 read_character}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Read a character from }{\cf5 input_buffer}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Make result available in }{\cf5 last_character}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 last_character}{\cf1 :} {\cf4 CHARACTER_8}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Last character read by }{\cf5 read_character}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Input}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 input_buffer}{\cf1 :} {\cf4 YY_BUFFER}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Input buffer}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_input_buffer} {\cf1 (}{\cf5 a_buffer}{\cf1 :} {\b\cf6 like} {\cf5 input_buffer}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 input_buffer}{\cf3  to }{\cf5 a_buffer}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_buffer_not_void}{\cf1 :} {\cf5 a_buffer} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 input_buffer} {\cf1 :=} {\cf5 a_buffer}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 input_buffer_set}{\cf1 :} {\cf5 input_buffer} {\cf1 =} {\cf5 a_buffer}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 flush_input_buffer}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Flush }{\cf5 input_buffer}{\cf3 . }{\cf5 input_buffer}{\cf3  will be automatically}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  refilled unless end of file has been found.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 input_buffer}{\b\cf1 .}{\cf5 flush}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 flushed}{\cf1 :} {\cf5 input_buffer}{\b\cf1 .}{\cf5 count} {\cf1 =} 0{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 new_file_buffer} {\cf1 (}{\cf5 a_file}{\cf1 :} {\cf4 KI_CHARACTER_INPUT_STREAM}{\cf1 )}{\cf1 :} {\cf4 YY_FILE_BUFFER}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New input buffer for }{\cf5 a_file}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_file_not_void}{\cf1 :} {\cf5 a_file} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_file_open_read}{\cf1 :} {\cf5 a_file}{\b\cf1 .}{\cf5 is_open_read}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 a_file}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 new_buffer_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 new_string_buffer} {\cf1 (}{\cf5 a_string}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 YY_BUFFER}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New input buffer for }{\cf5 a_string}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 a_string}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 new_buffer_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Empty_buffer}{\cf1 :} {\cf4 YY_BUFFER}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Empty input buffer}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}""{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 empty_buffer_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Output}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 output} {\cf1 (}{\cf5 a_text}{\cf1 :} {\b\cf6 like} {\cf5 text}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Output }{\cf5 a_text}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Note: this routine can be redefined in descendant}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  classes. Default: print }{\cf5 a_text}{\cf3  to standard output.)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_text_not_void}{\cf1 :} {\cf5 a_text} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 Std}{\b\cf1 .}{\cf5 Output}{\b\cf1 .}{\cf5 put_string}{\cf1  }{\cf1 (}{\cf5 a_text}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 echo}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Output }{\cf5 text}{\cf3  using feature }{\cf5 output}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 output}{\cf1  }{\cf1 (}{\cf5 text}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Action}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 pre_action}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Action executed before every semantic action}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  when '%option pre-action' has been specified.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Note: this routine can be redefined in descendant}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  classes. Default: do nothing.)}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 post_action}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Action executed after every semantic action}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  when '%option post-action' has been specified.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Note: this routine can be redefined in descendant}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  classes. Default: do nothing.)}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 pre_eof_action}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Action executed before every end-of-file semantic action}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (i.e. <<EOF>>) when '%option pre-eof-action' has been specified.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Note: this routine can be redefined in descendant classes.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Default: do nothing.)}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 post_eof_action}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Action executed after every end-of-file semantic action}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (i.e. <<EOF>>) when '%option post-eof-action' has been specified.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Note: this routine can be redefined in descendant classes.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Default: do nothing.)}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 default_action}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Action executed when default rule is matched.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Note: this routine can be redefined in descendant classes.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Default: print last character read to standard output.)}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 echo}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Error handling}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 fatal_error} {\cf1 (}{\cf5 a_message}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  A fatal error occurred.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Print }{\cf5 a_message}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_message_not_void}{\cf1 :} {\cf5 a_message} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 Std}{\b\cf1 .}{\cf5 Error}{\b\cf1 .}{\cf5 put_string}{\cf1  }{\cf1 (}{\cf5 a_message}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 Std}{\b\cf1 .}{\cf5 Error}{\b\cf1 .}{\cf5 put_character}{\cf1  }{\cf1 (}'%N'{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Debugging}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 print_last_token}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Print to standard error debug information}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  about the last token read. Can be redefined}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  in descendant classes to print more information.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Called at the end of }{\cf5 read_token}{\cf3  when compiled}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  with 'debug ("GELEX")' enabled).}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Constants}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Yyeof_token}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 0}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Predefined EOF token code}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Yyerror_token}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} -1}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Predefined Error token code}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Yyunknown_token}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} -2}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Predefined Unknown token code}{\line}
+{\tab}{\line}
+{\b\cf6 invariant}{\line}
+{\tab}{\cf1 input_buffer_not_void}{\cf1 :} {\cf5 input_buffer} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\cf1 valid_start_condition}{\cf1 :} {\cf5 valid_start_condition}{\cf1  }{\cf1 (}{\cf5 start_condition}{\cf1 )}{\line}
+{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 YY_SCANNER}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

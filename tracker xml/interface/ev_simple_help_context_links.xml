@@ -1,0 +1,9 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../interface/ev_simple_help_context_links.xml</location>EV_SIMPLE_HELP_CONTEXT</class>
+
+<keyword>Ancestors</keyword>
+	<class><location>../interface/ev_help_context_links.xml</location>EV_HELP_CONTEXT</class><char>*</char>
+	<class><include>False</include>STRING_8</class>
+
+</system>

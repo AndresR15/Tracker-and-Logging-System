@@ -1,0 +1,45 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Vision list item list. Implementation interface.&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2013-05-20 16:15:17 -0700 (Mon, 20 May 2013) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 92557 $&quot;</string>
+
+<keyword>deferred</keyword> <keyword>class</keyword> <keyword>interface</keyword>
+	<class><location>../implementation_interface/ev_list_item_list_i_short.xml</location>EV_LIST_ITEM_LIST_I</class>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_selected_item</anchor><feature><location>../implementation_interface/ev_list_item_list_i_short.xml#f_selected_item</location>selected_item</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_list_item_short.xml</location>EV_LIST_ITEM</class>
+			<comment>--</comment><comment> </comment><quoted>Result</quoted><comment> is currently selected item.</comment>
+			<comment>--</comment><comment> Topmost selected item if multiple items are selected.</comment>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status setting</comment>
+
+	<anchor>f_select_item</anchor><feature><location>../implementation_interface/ev_list_item_list_i_short.xml#f_select_item</location>select_item</feature> <symbol>(</symbol><local>an_index</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Select item at one based index, </comment><quoted>an_index</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>index_within_range</tag><symbol>:</symbol> <local>an_index</local> <symbol>&gt;</symbol> <number>0</number> <keyword>and</keyword> <local>an_index</local> <symbol>&lt;=</symbol> <feature><location>../implementation_interface/ev_dynamic_list_i_short.xml#f_count</location>count</feature>
+
+	<anchor>f_deselect_item</anchor><feature><location>../implementation_interface/ev_list_item_list_i_short.xml#f_deselect_item</location>deselect_item</feature> <symbol>(</symbol><local>an_index</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Deselect item at one based index, </comment><quoted>an_index</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>index_within_range</tag><symbol>:</symbol> <local>an_index</local> <symbol>&gt;</symbol> <number>0</number> <keyword>and</keyword> <local>an_index</local> <symbol>&lt;=</symbol> <feature><location>../implementation_interface/ev_dynamic_list_i_short.xml#f_count</location>count</feature>
+
+	<anchor>f_clear_selection</anchor><feature><location>../implementation_interface/ev_list_item_list_i_short.xml#f_clear_selection</location>clear_selection</feature>
+			<comment>--</comment><comment> Ensure there is no </comment><feature><location>../implementation_interface/ev_list_item_list_i_short.xml#f_selected_item</location>selected_item</feature><comment> in </comment><quoted>Current</quoted><comment>.</comment>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2006, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>356 Storke Road, Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_interface/ev_list_item_list_i_short.xml</location>EV_LIST_ITEM_LIST_I</class></system>
+

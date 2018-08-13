@@ -1,0 +1,191 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "Durations of time"{\line}
+{\tab}{\cf1 legal}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 status}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2017-03-29 05:26:46 -0700 (Wed, 29 Mar 2017) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 100065 $"{\line}
+{\tab}{\cf1 access}{\cf1 :} time{\line}
+{\line}
+{\b\cf6 class} {\b\cf6 interface}{\line}
+{\tab}{\cf4 TIME_DURATION}{\line}
+{\line}
+{\b\cf6 create} {\line}
+{\tab}{\cf5 make}{\cf1 ,}{\line}
+{\tab}{\cf5 make_fine}{\cf1 ,}{\line}
+{\tab}{\cf5 make_by_seconds}{\cf1 ,}{\line}
+{\tab}{\cf5 make_by_fine_seconds}{\line}
+{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Initialization}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make} {\cf1 (}{\cf5 h}{\cf1 ,} {\cf5 m}{\cf1 ,} {\cf5 s}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 hour}{\cf3 , }{\cf5 minute}{\cf3  and }{\cf5 second}{\cf3  to }{\cf5 h}{\cf3 , }{\cf5 m}{\cf3 , }{\cf5 s}{\cf3  respectively.}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 hour_set}{\cf1 :} {\cf5 hour} {\cf1 =} {\cf5 h}{\line}
+{\tab}{\tab}{\tab}{\cf1 minute_set}{\cf1 :} {\cf5 minute} {\cf1 =} {\cf5 m}{\line}
+{\tab}{\tab}{\tab}{\cf1 second_set}{\cf1 :} {\cf5 second} {\cf1 =} {\cf5 s}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 make_fine} {\cf1 (}{\cf5 h}{\cf1 ,} {\cf5 m}{\cf1 :} {\cf4 INTEGER_32}{\cf1 ;} {\cf5 s}{\cf1 :} {\cf4 REAL_64}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 hour, }{\cf3 minute' and }{\cf5 second}{\cf3  to }{\cf5 h}{\cf3 , }{\cf5 m}{\cf3  and truncated to}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  integer part of }{\cf5 s}{\cf3  respectively.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 fractional_second}{\cf3  to the fractional part of }{\cf5 s}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 hour_set}{\cf1 :} {\cf5 hour} {\cf1 =} {\cf5 h}{\line}
+{\tab}{\tab}{\tab}{\cf1 minute_set}{\cf1 :} {\cf5 minute} {\cf1 =} {\cf5 m}{\line}
+{\tab}{\tab}{\tab}{\cf1 fine_second_set}{\cf1 :} {\cf5 fine_second} {\cf1 =} {\cf5 s}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 make_by_seconds} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set the object by the number of seconds }{\cf5 s}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 seconds_count_set}{\cf1 :} {\cf5 seconds_count} {\cf1 =} {\cf5 s}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 make_by_fine_seconds} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 REAL_64}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set the object by the number of seconds }{\cf5 s}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 minute_large_enough}{\cf1 :} {\cf5 minute} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\tab}{\cf1 minute_small_enough}{\cf1 :} {\cf5 minute} {\cf1 <} {\cf5 Minutes_in_hour}{\line}
+{\tab}{\tab}{\tab}{\cf1 second_large_enough}{\cf1 :} {\cf5 second} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\tab}{\cf1 second_small_enough}{\cf1 :} {\cf5 second} {\cf1 <} {\cf5 Seconds_in_minute}{\line}
+{\tab}{\tab}{\tab}{\cf1 fine_seconds_set}{\cf1 :} {\cf5 dabs}{\cf1  }{\cf1 (}{\cf5 fine_seconds_count} {\cf1 -} {\cf5 s}{\cf1 )} {\cf1 <=} {\cf5 Tolerance}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 fine_seconds_count}{\cf1 :} {\cf4 REAL_64}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of seconds and fractionals of seconds of current duration}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 seconds_count}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Total number of seconds of current duration}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 same_count}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf5 fine_seconds_count}{\b\cf1 .}{\cf5 truncated_to_integer}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 zero}{\cf1 :} {\b\cf6 like} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Neutral element for "+" and "-"}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Attributes}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 hour}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of hours associated with current object}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 minute}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of minutes associated with current object}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 second}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of seconds associated with current object.}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 fine_second}{\cf1 :} {\cf4 REAL_64}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of fine seconds associated with current object}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 fractional_second}{\cf1 :} {\cf4 REAL_64}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Comparaison}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_less} {\b\cf6 alias} {\cf1 "}{\cf1 <}{\cf1 "} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 like} {\b\cf6 Current}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is the current duration smaller than }{\cf5 other}{\cf3 ?}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_equal} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 like} {\b\cf6 Current}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is the current duration equal to }{\cf5 other}{\cf3 ?}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status report}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 canonical}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is duration expressed minimally, i.e.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3 	If duration is positive then}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3 		}{\cf5 hour}{\cf3  positive,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3 		}{\cf5 minute}{\cf3  and }{\cf5 second}{\cf3  between 0 and 59,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3 		}{\cf5 fractional_second}{\cf3  between 0 and 999?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3 	If duration is negative then}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3 		}{\cf5 hour}{\cf3  negative,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3 		}{\cf5 minute}{\cf3  and }{\cf5 second}{\cf3  between -59 and 0,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3 		}{\cf5 fractional_second}{\cf3  between -999 and 0?}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_positive}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is duration positive?}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Element Change}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_second} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 second}{\cf3  to }{\cf5 s}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 fractional_second}{\cf3  is cut down to 0.}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 set_fine_second} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 REAL_64}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 fine_second}{\cf3  to }{\cf5 s}{\cf3 .}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 set_fractionals} {\cf1 (}{\cf5 f}{\cf1 :} {\cf4 REAL_64}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 fractional_second}{\cf3  to }{\cf5 f}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 f}{\cf3  must have the same sign as }{\cf5 second}{\cf3 .}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 set_minute} {\cf1 (}{\cf5 m}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 minute}{\cf3  to }{\cf5 m}{\cf3 .}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 set_hour} {\cf1 (}{\cf5 h}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 hour}{\cf3  to }{\cf5 h}{\cf3 .}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Basic operations}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 second_add} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Add }{\cf5 s}{\cf3  seconds to the current duration.}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 second_set}{\cf1 :} {\cf5 second} {\cf1 =} {\b\cf6 old} {\cf5 second} {\cf1 +} {\cf5 s}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 fine_second_add} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 REAL_64}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Add }{\cf5 s}{\cf3  seconds to the current time.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  if }{\cf5 s}{\cf3  has decimals, }{\cf5 fractional_second}{\cf3  is modifed.}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 minute_add} {\cf1 (}{\cf5 m}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Add }{\cf5 m}{\cf3  minutes to the current duration.}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 minute_set}{\cf1 :} {\cf5 minute} {\cf1 =} {\b\cf6 old} {\cf5 minute} {\cf1 +} {\cf5 m}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 hour_add} {\cf1 (}{\cf5 h}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Add }{\cf5 h}{\cf3  hours to the current duration.}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 hour_set}{\cf1 :} {\cf5 hour} {\cf1 =} {\b\cf6 old} {\cf5 hour} {\cf1 +} {\cf5 h}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 plus} {\b\cf6 alias} {\cf1 "}{\cf1 +}{\cf1 "} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 like} {\b\cf6 Current}{\cf1 )}{\cf1 :} {\b\cf6 like} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Sum with }{\cf5 other}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 opposite} {\b\cf6 alias} {\cf1 "}{\cf1 -}{\cf1 "}{\cf1 :} {\b\cf6 like} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Unary minus}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Conversion}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 to_canonical}{\cf1 :} {\b\cf6 like} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  A new duration}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_canonical}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 canonical}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 to_days}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Total number of days equivalent to the current duration}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 time_modulo_day}{\cf1 :} {\b\cf6 like} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Duration modulo duration of a day}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_smaller_than_day}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 seconds_count} {\cf1 <} {\cf5 Seconds_in_day}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_positive}{\cf1 :} {\b\cf6 Result} {\cf1 >=} {\cf5 zero}{\line}
+}{\tab}{\line}
+{\b\cf6 invariant}{\line}
+{\tab}{\cf1 fractionals_large_enough}{\cf1 :} {\cf5 fractional_second} {\cf1 >} -1{\b\cf1 .}{\cf5 to_double}{\line}
+{\tab}{\cf1 fractionals_small_enough}{\cf1 :} {\cf5 fractional_second} {\cf1 <} 1{\b\cf1 .}{\cf5 to_double}{\line}
+{\tab}{\cf1 fractional_and_second_same_sign}{\cf1 :} {\cf5 second}{\b\cf1 .}{\cf5 to_double} {\cf1 *} {\cf5 fractional_second} {\cf1 >=} 0{\b\cf1 .}{\cf5 to_double}{\line}
+{\tab}{\cf1 equal_signs}{\cf1 :} {\cf5 canonical} {\b\cf6 implies} {\cf1 (}{\cf5 hour} {\cf1 >=} 0 {\b\cf6 and} {\cf5 minute} {\cf1 >=} 0 {\b\cf6 and} {\cf5 fine_second} {\cf1 >=} 0{\b\cf1 .}{\cf5 to_double}{\cf1 )} {\b\cf6 or} {\cf1 (}{\cf5 hour} {\cf1 <=} 0 {\b\cf6 and} {\cf5 minute} {\cf1 <=} 0 {\b\cf6 and} {\cf5 fine_second} {\cf1 <=} 0{\b\cf1 .}{\cf5 to_double}{\cf1 )}{\line}
+{\line}
+{\b\cf6 note}{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 1984-2017, Eiffel Software and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"{\line}
+{\tab}{\cf1 source}{\cf1 :} "[{\line}
+{\tab}{\tab}Eiffel Software{\line}
+{\tab}{\tab}5949 Hollister Ave., Goleta, CA 93117 USA{\line}
+{\tab}{\tab}Telephone 805-685-1006, Fax 805-685-6869{\line}
+{\tab}{\tab}Website http://www.eiffel.com{\line}
+{\tab}{\tab}Customer support http://support.eiffel.com{\line}
+{\tab}]"{\line}
+{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 TIME_DURATION}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

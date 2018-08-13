@@ -1,0 +1,42 @@
+<system>
+<keyword>deferred</keyword> <keyword>class</keyword>
+	<class><location>../implementation_interface/ev_pick_and_dropable_i_links.xml</location>EV_PICK_AND_DROPABLE_I</class>
+
+<keyword>Ancestors</keyword>
+	<class><location>../implementation_interface/ev_any_i_links.xml</location>EV_ANY_I</class><char>*</char>
+	<class><location>../implementation_interface/ev_pick_and_dropable_action_sequences_i_links.xml</location>EV_PICK_AND_DROPABLE_ACTION_SEQUENCES_I</class><char>*</char>
+	<class><location>../implementation_interface/ev_positioned_i_links.xml</location>EV_POSITIONED_I</class><char>*</char>
+	<class><location>../implementation_interface/ev_shared_transport_i_links.xml</location>EV_SHARED_TRANSPORT_I</class>
+
+<keyword>Descendants</keyword>
+	<class><location>../implementation_interface/ev_item_i_links.xml</location>EV_ITEM_I</class><char>*</char>
+	<class><location>../implementation_interface/ev_multi_column_list_row_i_links.xml</location>EV_MULTI_COLUMN_LIST_ROW_I</class><char>*</char>
+	<class><location>../implementation_gtk/ev_pick_and_dropable_imp_links.xml</location>EV_PICK_AND_DROPABLE_IMP</class><char>*</char>
+	<class><location>../implementation_interface/ev_tool_bar_button_i_links.xml</location>EV_TOOL_BAR_BUTTON_I</class><char>*</char>
+	<class><location>../implementation_interface/ev_widget_i_links.xml</location>EV_WIDGET_I</class><char>*</char>
+
+<keyword>Clients</keyword>
+	<class><location>../interface/ev_pick_and_dropable_links.xml</location>EV_PICK_AND_DROPABLE</class><char>*</char>
+	<class><location>../implementation_interface/ev_pick_and_dropable_i_links.xml</location>EV_PICK_AND_DROPABLE_I</class><char>*</char>
+	<class><location>../implementation_interface/ev_tool_bar_button_i_links.xml</location>EV_TOOL_BAR_BUTTON_I</class><char>*</char>
+
+<keyword>Suppliers</keyword>
+	<class><include>False</include>BOOLEAN</class>
+	<class><location>../interface/ev_abstract_pick_and_dropable_links.xml</location>EV_ABSTRACT_PICK_AND_DROPABLE</class><char>*</char>
+	<class><location>../implementation_interface/ev_application_i_links.xml</location>EV_APPLICATION_I</class><char>*</char>
+	<class><location>../implementation_gtk/ev_application_imp_links.xml</location>EV_APPLICATION_IMP</class>
+	<class><location>../interface/ev_environment_links.xml</location>EV_ENVIRONMENT</class>
+	<class><location>../implementation_interface/ev_environment_i_links.xml</location>EV_ENVIRONMENT_I</class><char>*</char>
+	<class><location>../implementation_interface/ev_pick_and_dropable_i_links.xml</location>EV_PICK_AND_DROPABLE_I</class><char>*</char>
+	<class><location>../interface/ev_pnd_action_sequence_links.xml</location>EV_PND_ACTION_SEQUENCE</class>
+	<class><location>../interface/ev_pnd_motion_action_sequence_links.xml</location>EV_PND_MOTION_ACTION_SEQUENCE</class>
+	<class><location>../interface/ev_widget_links.xml</location>EV_WIDGET</class><char>*</char>
+	<class><location>../implementation_interface/ev_widget_i_links.xml</location>EV_WIDGET_I</class><char>*</char>
+	<class><location>../interface/ev_window_links.xml</location>EV_WINDOW</class>
+	<class><location>../implementation_gtk/ev_window_imp_links.xml</location>EV_WINDOW_IMP</class>
+	<class><include>False</include>FUNCTION</class> <symbol>[</symbol><generic>OPEN_ARGS</generic> <symbol>-&gt;</symbol> <keyword>detachable</keyword> <class><include>False</include>TUPLE</class> <keyword>create</keyword> <feature><include>False</include>default_create</feature> <keyword>end</keyword><symbol>,</symbol> <generic>RESULT_TYPE</generic><symbol>]</symbol>
+	<class><include>False</include>INTEGER_16</class>
+	<class><include>False</include>INTEGER_32</class>
+	<class><include>False</include>LINEAR</class><char>*</char> <symbol>[</symbol><generic>G</generic><symbol>]</symbol>
+
+</system>

@@ -1,0 +1,226 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "Windows-like file systems"{\line}
+{\tab}{\cf1 library}{\cf1 :} "Gobo Eiffel Kernel Library"{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 2001-2017, Eric Bezault and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "MIT License"{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2017-04-11 11:34:55 -0700 (Tue, 11 Apr 2017) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 100137 $"{\line}
+{\line}
+{\b\cf6 class} {\b\cf6 interface}{\line}
+{\tab}{\cf4 KL_WINDOWS_FILE_SYSTEM}{\line}
+{\line}
+{\b\cf6 create} {\line}
+{\tab}{\cf5 make}{\cf1 ,}{\line}
+{\tab}{\cf5 make_backslash_only}{\line}
+{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  File handling}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 new_input_file} {\cf1 (}{\cf5 a_name}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 KL_WINDOWS_INPUT_FILE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New input text file in current file system}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_name}{\cf3  should follow the pathname convention}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of the underlying platform. For pathname conversion}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  use KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 new_output_file} {\cf1 (}{\cf5 a_name}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 KL_WINDOWS_OUTPUT_FILE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New output text file in current file system}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_name}{\cf3  should follow the pathname convention}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of the underlying platform. For pathname conversion}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  use KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 Eol}{\cf1 :} {\cf4 STRING_8} {\cf1 =} "%R%N"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Line separator in current file system}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Pathname handling}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_absolute_pathname} {\cf1 (}{\cf5 a_pathname}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 a_pathname}{\cf3  an absolute pathname (it needs}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to include the drive letter or the hostname)?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_pathname}{\cf3  should follow the Windows pathname convention.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  For pathname conversion use }{\cf5 pathname_from_file_system}{\cf3 .)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_relative_pathname} {\cf1 (}{\cf5 a_pathname}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 a_pathname}{\cf3  a relative pathname (relative}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to the current working directory)?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_pathname}{\cf3  should follow the Windows pathname convention.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  For pathname conversion use }{\cf5 pathname_from_file_system}{\cf3 .)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_root_directory} {\cf1 (}{\cf5 a_dirname}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 a_dirname}{\cf3  a root directory (i.e. it has no parent directory)?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_dirname}{\cf3  should follow the Windows pathname convention.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  For pathname conversion use }{\cf5 pathname_from_file_system}{\cf3 .)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 same_pathnames} {\cf1 (}{\cf5 a_pathname1}{\cf1 ,} {\cf5 a_pathname2}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are }{\cf5 a_pathname1}{\cf3  and }{\cf5 a_pathname2}{\cf3  considered equal when}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  viewed from the current file system?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_pathname1}{\cf3  and }{\cf5 a_pathname2}{\cf3  should follow}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the pathname convention of the underlying}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  platform. For pathname conversion use}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Note that pathnames may be considered equal when viewed}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  from one file system but not from another. For example}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Windows is case-insensitive, but Unix is case-sensitive.}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 same_canonical_pathnames} {\cf1 (}{\cf5 a_pathname1}{\cf1 ,} {\cf5 a_pathname2}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are the canonical versions of }{\cf5 a_pathname1}{\cf3  and }{\cf5 a_pathname2}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  considered equal when viewed from the current file system?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_pathname1}{\cf3  and }{\cf5 a_pathname2}{\cf3  should follow}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the pathname convention of the underlying}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  platform. For pathname conversion use}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Note that pathnames may be considered equal when viewed}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  from one file system but not from another. For example}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Windows is case-insensitive, but Unix is case-sensitive.}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_subpathname} {\cf1 (}{\cf5 a_pathname1}{\cf1 ,} {\cf5 a_pathname2}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 a_pathname1}{\cf3  considered as a subpathname of }{\cf5 a_pathname2}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  when viewed from the current file system?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_pathname1}{\cf3  and }{\cf5 a_pathname2}{\cf3  should follow}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the pathname convention of the underlying}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  platform. For pathname conversion use}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Note that pathnames may be considered equal when viewed}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  from one file system but not from another. For example}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Windows is case-insensitive, but Unix is case-sensitive.}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_canonical_subpathname} {\cf1 (}{\cf5 a_pathname1}{\cf1 ,} {\cf5 a_pathname2}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is the canonical version of }{\cf5 a_pathname1}{\cf3  considered as}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  a subpathname of the canonical version of }{\cf5 a_pathname2}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  when viewed from the current file system?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_pathname1}{\cf3  and }{\cf5 a_pathname2}{\cf3  should follow}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the pathname convention of the underlying}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  platform. For pathname conversion use}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Note that pathnames may be considered equal when viewed}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  from one file system but not from another. For example}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Windows is case-insensitive, but Unix is case-sensitive.}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 basename} {\cf1 (}{\cf5 a_pathname}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Pathname with any leading directory components removed}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_pathname}{\cf3  should follow the Windows pathname convention.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  The result also follows this pathname convention. For}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  pathname conversion use }{\cf5 pathname_from_file_system}{\cf3 .)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 dirname} {\cf1 (}{\cf5 a_pathname}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Pathname containing only the leading directory components so}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  that 'pathname (dirname (a_pathname), basename (a_pathname))'}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  is equivalent to }{\cf5 a_pathname}{\cf3 ; Return }{\cf5 Relative_current_directory}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  when there is no leading directory components in }{\cf5 a_pathname}{\cf3 ;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Return a root directory when }{\cf5 a_pathname}{\cf3  is a root directory}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_pathname}{\cf3  should follow the Windows pathname convention.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  The result also follows this pathname convention. For}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  pathname conversion use }{\cf5 pathname_from_file_system}{\cf3 .)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 pathname} {\cf1 (}{\cf5 a_dirname}{\cf1 ,} {\cf5 a_pathname}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Pathname made up of relative pathname}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 a_pathname}{\cf3  in directory }{\cf5 a_dirname}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_dirname}{\cf3  and }{\cf5 a_pathname}{\cf3  should follow the Windows pathname}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  convention. The result also follows this pathname convention.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  For pathname conversion use }{\cf5 pathname_from_file_system}{\cf3 .)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 append_pathname_to_string} {\cf1 (}{\cf5 a_dirname}{\cf1 ,} {\cf5 a_pathname}{\cf1 ,} {\cf5 a_string}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Append to }{\cf5 a_string}{\cf3  the pathname made up of relative pathname}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 a_pathname}{\cf3  in directory }{\cf5 a_dirname}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_dirname}{\cf3  and }{\cf5 a_pathname}{\cf3  should follow the pathname convention}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of current file system: Unix convention in KL_UNIX_FILE_SYSTEM,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Windows convention in KL_WINDOWS_FILE_SYSTEM, etc. The}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  result also follows this pathname convention. For pathname}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  conversion use }{\cf5 pathname_from_file_system}{\cf3 .)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 nested_pathname} {\cf1 (}{\cf5 a_dirname}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 a_pathnames}{\cf1 :} {\cf4 ARRAY} {\cf1 [}{\cf4 STRING_8}{\cf1 ]}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Pathname made up of relative pathnames}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 a_pathnames}{\cf3  in directory }{\cf5 a_dirname}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_dirname}{\cf3  and }{\cf5 a_pathnames}{\cf3  should follow the Windows pathname}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  convention. The result also follows this pathname convention.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  For pathname conversion use }{\cf5 pathname_from_file_system}{\cf3 .)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 Relative_current_directory}{\cf1 :} {\cf4 STRING_8} {\cf1 =} "."}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Relative pathname of current directory}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (The result follows the Windows pathname convention. For}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  pathname conversion use }{\cf5 pathname_from_file_system}{\cf3 .)}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Relative_parent_directory}{\cf1 :} {\cf4 STRING_8} {\cf1 =} ".."}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Relative pathname of current parent directory}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (The result follows the Windows pathname convention. For}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  pathname conversion use }{\cf5 pathname_from_file_system}{\cf3 .)}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Root_directory}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Pathname of current root directory;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does not include current drive (please}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  use }{\cf5 absolute_root_directory}{\cf3  otherwise)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (The result follows the Windows pathname convention. For}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  pathname conversion use }{\cf5 pathname_from_file_system}{\cf3 .)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 absolute_pathname} {\cf1 (}{\cf5 a_pathname}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Absolute pathname of }{\cf5 a_pathname}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_pathname}{\cf3  should follow the Windows pathname convention.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  For pathname conversion use }{\cf5 pathname_from_file_system}{\cf3 .)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 absolute_parent_directory} {\cf1 (}{\cf5 a_pathname}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Absolute pathname of parent directory of }{\cf5 a_pathname}{\cf3 ;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  If }{\cf5 a_pathname}{\cf3  is a root directory (i.e. has no parent)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  then return }{\cf5 a_pathname}{\cf3  itself if it is an absolute pathname,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  or }{\cf5 absolute_root_directory}{\cf3  if it is a relative pathname}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_pathname}{\cf3  should follow the Windows pathname convention.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  For pathname conversion use }{\cf5 pathname_from_file_system}{\cf3 .)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 absolute_root_directory}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Absolute pathname of current root directory;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Includes current drive letter}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (The result follows the Windows pathname convention. For}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  pathname conversion use }{\cf5 pathname_from_file_system}{\cf3 .)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 string_to_pathname} {\cf1 (}{\cf5 a_pathname}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 KL_PATHNAME}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Convert string to pathname}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_pathname}{\cf3  should follow the Windows pathname convention.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  For pathname conversion use }{\cf5 pathname_from_file_system}{\cf3 .)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 pathname_to_string} {\cf1 (}{\cf5 a_pathname}{\cf1 :} {\cf4 KI_PATHNAME}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Convert pathname to string}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (The result follows the Windows pathname convention. For}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  pathname conversion use }{\cf5 pathname_from_file_system}{\cf3 .)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 has_extension} {\cf1 (}{\cf5 a_filename}{\cf1 ,} {\cf5 an_extension}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 an_extension}{\cf3  a file extension of }{\cf5 a_filename}{\cf3 ?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_filename}{\cf3  should follow the Windows pathname convention.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  For pathname conversion use }{\cf5 pathname_from_file_system}{\cf3 .)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 extension} {\cf1 (}{\cf5 a_filename}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  File extension of }{\cf5 a_filename}{\cf3  (include the leading '.')}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_filename}{\cf3  should follow the Windows pathname convention.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  For pathname conversion use }{\cf5 pathname_from_file_system}{\cf3 .)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 Exe_extension}{\cf1 :} {\cf4 STRING_8} {\cf1 =} ".exe"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Executable file extension ('.exe' under Windows)}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_directory_separator} {\cf1 (}{\cf5 c}{\cf1 :} {\cf4 CHARACTER_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 c}{\cf3  a directory separator?}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf5 c} {\cf1 =} {\cf5 Directory_separator} {\b\cf6 or} {\cf5 c} {\cf1 =} {\cf5 secondary_directory_separator}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 Directory_separator}{\cf1 :} {\cf4 CHARACTER_8} {\cf1 =} '\\'}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Primary directory separator}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 secondary_directory_separator}{\cf1 :} {\cf4 CHARACTER_8}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Secondary directory separator}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 current_drive}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Current drive (include the ':' but not the '\\')}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_current_file_system}{\cf1 :} {\cf5 is_current_file_system}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 current_drive_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\tab}{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 KL_WINDOWS_FILE_SYSTEM}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

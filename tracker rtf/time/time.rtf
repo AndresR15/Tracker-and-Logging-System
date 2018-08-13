@@ -1,0 +1,411 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "Absolute times"{\line}
+{\tab}{\cf1 legal}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 status}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2017-03-29 05:26:46 -0700 (Wed, 29 Mar 2017) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 100065 $"{\line}
+{\tab}{\cf1 access}{\cf1 :} time{\line}
+{\tab}{\cf1 eis}{\cf1 :} "name=Obtaining a DATE from a DATE_TIME and vice versa"{\cf1 ,} "src=$(ISE_DOC_UUID)/195849fc-1a9c-d734-2d2b-acae78133886#Obtaining_a_DATE_from_a_DATE_TIME_and_vice_versa"{\cf1 ,} "tag=EiffelTime"{\line}
+{\line}
+{\b\cf6 class} {\line}
+{\tab}{\cf4 TIME}{\line}
+{\line}
+{\b\cf6 inherit}{\line}
+{\tab}{\cf4 ABSOLUTE}{\line}
+{\tab}{\tab}{\b\cf6 undefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 out}{\line}
+{\tab}{\tab}{\b\cf6 redefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 is_less}{\line}
+{\tab}{\tab}{\b\cf6 end}{\line}
+{\line}
+{\tab}{\cf4 TIME_VALUE}{\line}
+{\tab}{\tab}{\b\cf6 undefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 is_equal}{\line}
+{\tab}{\tab}{\b\cf6 redefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 out}{\line}
+{\tab}{\tab}{\b\cf6 end}{\line}
+{\line}
+{\tab}{\cf4 TIME_VALIDITY_CHECKER}{\line}
+{\tab}{\tab}{\b\cf6 undefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 is_equal}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 out}{\line}
+{\tab}{\tab}{\b\cf6 end}{\line}
+{\line}
+{\tab}{\cf4 DEBUG_OUTPUT}{\line}
+{\tab}{\tab}{\b\cf6 export}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}NONE{\cf1 \}} {\b\cf6 all}{\line}
+{\tab}{\tab}{\b\cf6 undefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 is_equal}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 out}{\line}
+{\tab}{\tab}{\b\cf6 end}{\line}
+{\line}
+{\b\cf6 create} {\line}
+{\tab}{\cf5 make}{\cf1 ,}{\line}
+{\tab}{\cf5 make_fine}{\cf1 ,}{\line}
+{\tab}{\cf5 make_now}{\cf1 ,}{\line}
+{\tab}{\cf5 make_now_utc}{\cf1 ,}{\line}
+{\tab}{\cf5 make_by_seconds}{\cf1 ,}{\line}
+{\tab}{\cf5 make_by_fine_seconds}{\cf1 ,}{\line}
+{\tab}{\cf5 make_from_string}{\cf1 ,}{\line}
+{\tab}{\cf5 make_from_string_default}{\cf1 ,}{\line}
+{\tab}{\cf5 make_by_compact_time}{\line}
+{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Initialization}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make} {\cf1 (}{\cf5 h}{\cf1 ,} {\cf5 m}{\cf1 ,} {\cf5 s}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 hour, }{\cf3 minute' and }{\cf5 second}{\cf3  to }{\cf5 h}{\cf3 , }{\cf5 m}{\cf3 , }{\cf5 s}{\cf3  respectively.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 correct_time}{\cf1 :} {\cf5 is_correct_time}{\cf1  }{\cf1 (}{\cf5 h}{\cf1 ,} {\cf5 m}{\cf1 ,} {\cf5 s}{\b\cf1 .}{\cf5 to_double}{\cf1 ,} {\b\cf6 False}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_hour}{\cf1  }{\cf1 (}{\cf5 h}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_minute}{\cf1  }{\cf1 (}{\cf5 m}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_second}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 fractional_second} {\cf1 :=} 0{\b\cf1 .}{\cf5 to_double}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 hour_set}{\cf1 :} {\cf5 hour} {\cf1 =} {\cf5 h}{\line}
+{\tab}{\tab}{\tab}{\cf1 minute_set}{\cf1 :} {\cf5 minute} {\cf1 =} {\cf5 m}{\line}
+{\tab}{\tab}{\tab}{\cf1 second_set}{\cf1 :} {\cf5 second} {\cf1 =} {\cf5 s}{\line}
+{\tab}{\tab}{\tab}{\cf1 fractional_second_set}{\cf1 :} {\cf5 fractional_second} {\cf1 =} 0{\b\cf1 .}{\cf5 to_double}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make_fine} {\cf1 (}{\cf5 h}{\cf1 ,} {\cf5 m}{\cf1 :} {\cf4 INTEGER_32}{\cf1 ;} {\cf5 s}{\cf1 :} {\cf4 REAL_64}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 hour, }{\cf3 minute' and }{\cf5 second}{\cf3  to }{\cf5 h}{\cf3 , }{\cf5 m}{\cf3  and truncated to}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  integer part of }{\cf5 s}{\cf3  respectively.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 fractional_second}{\cf3  to the fractional part of }{\cf5 s}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 correct_time}{\cf1 :} {\cf5 is_correct_time}{\cf1  }{\cf1 (}{\cf5 h}{\cf1 ,} {\cf5 m}{\cf1 ,} {\cf5 s}{\cf1 ,} {\b\cf6 False}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 s_tmp}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 s_tmp} {\cf1 :=} {\cf5 s}{\b\cf1 .}{\cf5 truncated_to_integer}{\line}
+{\tab}{\tab}{\tab}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 h}{\cf1 ,} {\cf5 m}{\cf1 ,} {\cf5 s_tmp}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 fractional_second} {\cf1 :=} {\cf5 s} {\cf1 -} {\cf5 s_tmp}{\b\cf1 .}{\cf5 to_double}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 hour_set}{\cf1 :} {\cf5 hour} {\cf1 =} {\cf5 h}{\line}
+{\tab}{\tab}{\tab}{\cf1 minute_set}{\cf1 :} {\cf5 minute} {\cf1 =} {\cf5 m}{\line}
+{\tab}{\tab}{\tab}{\cf1 fine_second_set}{\cf1 :} {\cf5 fine_second} {\cf1 =} {\cf5 s}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make_now}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set current time according to timezone.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_date}{\cf1 :} {\cf4 C_DATE}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 l_date}{\line}
+{\tab}{\tab}{\tab}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 l_date}{\b\cf1 .}{\cf5 hour_now}{\cf1 ,} {\cf5 l_date}{\b\cf1 .}{\cf5 minute_now}{\cf1 ,} {\cf5 l_date}{\b\cf1 .}{\cf5 second_now}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 fractional_second} {\cf1 :=} {\cf5 l_date}{\b\cf1 .}{\cf5 millisecond_now} {\cf1 /} 1000{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make_now_utc}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set the current object to today's date in utc format.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_date}{\cf1 :} {\cf4 C_DATE}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 l_date}{\b\cf1 .}{\cf5 make_utc}{\line}
+{\tab}{\tab}{\tab}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 l_date}{\b\cf1 .}{\cf5 hour_now}{\cf1 ,} {\cf5 l_date}{\b\cf1 .}{\cf5 minute_now}{\cf1 ,} {\cf5 l_date}{\b\cf1 .}{\cf5 second_now}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 fractional_second} {\cf1 :=} {\cf5 l_date}{\b\cf1 .}{\cf5 millisecond_now} {\cf1 /} 1000{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make_by_seconds} {\cf1 (}{\cf5 sec}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set the object by the number of seconds }{\cf5 sec}{\cf3  from midnight.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_large_enough}{\cf1 :} {\cf5 sec} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\tab}{\cf1 s_small_enough}{\cf1 :} {\cf5 sec} {\cf1 <} {\cf5 Seconds_in_day}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 h}{\cf1 ,} {\cf5 m}{\cf1 ,} {\cf5 s}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 s} {\cf1 :=} {\cf5 sec}{\line}
+{\tab}{\tab}{\tab}{\cf5 h} {\cf1 :=} {\cf5 s} {\cf1 //} {\cf5 Seconds_in_hour}{\line}
+{\tab}{\tab}{\tab}{\cf5 s} {\cf1 :=} {\cf5 s} {\cf1 -} {\cf1 (}{\cf5 h} {\cf1 *} {\cf5 Seconds_in_hour}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 m} {\cf1 :=} {\cf5 s} {\cf1 //} {\cf5 Seconds_in_minute}{\line}
+{\tab}{\tab}{\tab}{\cf5 s} {\cf1 :=} {\cf5 s} {\cf1 -} {\cf1 (}{\cf5 m} {\cf1 *} {\cf5 Seconds_in_minute}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 h}{\cf1 ,} {\cf5 m}{\cf1 ,} {\cf5 s}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 seconds_set}{\cf1 :} {\cf5 seconds} {\cf1 =} {\cf5 sec}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make_by_fine_seconds} {\cf1 (}{\cf5 sec}{\cf1 :} {\cf4 REAL_64}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set the object by the number of seconds }{\cf5 sec}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_large_enough}{\cf1 :} {\cf5 sec} {\cf1 >=} 0{\b\cf1 .}{\cf5 to_double}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_small_enough}{\cf1 :} {\cf5 sec} {\cf1 <} {\cf5 Seconds_in_day}{\b\cf1 .}{\cf5 to_double}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 s}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 s} {\cf1 :=} {\cf5 sec}{\b\cf1 .}{\cf5 truncated_to_integer}{\line}
+{\tab}{\tab}{\tab}{\cf5 make_by_seconds}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 fractional_second} {\cf1 :=} {\cf5 sec} {\cf1 -} {\cf5 s}{\b\cf1 .}{\cf5 to_double}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make_from_string_default} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Initialize from a "standard" string of form}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 default_format_string}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_exists}{\cf1 :} {\cf5 s} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 time_valid}{\cf1 :} {\cf5 time_valid}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 ,} {\cf5 default_format_string}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 make_from_string}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 ,} {\cf5 default_format_string}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make_from_string} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 code}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Initialize from a "standard" string of form}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 code}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_exists}{\cf1 :} {\cf5 s} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 c_exists}{\cf1 :} {\cf5 code} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 time_valid}{\cf1 :} {\cf5 time_valid}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 ,} {\cf5 code}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 time}{\cf1 :} {\cf4 TIME}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 time} {\cf1 :=} {\cf1 (}{\b\cf6 create}{\cf1  }{\cf1 \{}{\cf4 DATE_TIME_CODE_STRING}{\cf1 \}}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 code}{\cf1 )}{\cf1 )}{\b\cf1 .}{\cf5 create_time}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 make_fine}{\cf1  }{\cf1 (}{\cf5 time}{\b\cf1 .}{\cf5 hour}{\cf1 ,} {\cf5 time}{\b\cf1 .}{\cf5 minute}{\cf1 ,} {\cf5 time}{\b\cf1 .}{\cf5 fine_second}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make_by_compact_time} {\cf1 (}{\cf5 c_t}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Initialize from }{\cf5 compact_time}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 c_t_valid}{\cf1 :} {\cf5 compact_time_valid}{\cf1  }{\cf1 (}{\cf5 c_t}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 compact_time} {\cf1 :=} {\cf5 c_t}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 compact_time_set}{\cf1 :} {\cf5 compact_time} {\cf1 =} {\cf5 c_t}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Origin}{\cf1 :} {\cf4 TIME}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Origin time}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}0{\cf1 ,} 0{\cf1 ,} 0{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Comparison}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_less} {\b\cf6 alias} {\cf1 "}{\cf1 <}{\cf1 "} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 like} {\b\cf6 Current}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is the current time before }{\cf5 other}{\cf3 ?}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_current}{\cf1 ,} {\cf5 l_other}{\cf1 :} {\b\cf6 like} {\cf5 compact_time}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_current} {\cf1 :=} {\cf5 compact_time}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_other} {\cf1 :=} {\cf5 other}{\b\cf1 .}{\cf5 compact_time}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 l_current} {\cf1 <} {\cf5 l_other}{\cf1 )} {\b\cf6 or else} {\cf1 (}{\cf1 (}{\cf5 l_current} {\cf1 =} {\cf5 l_other}{\cf1 )} {\b\cf6 and} {\cf1 (}{\cf5 fractional_second} {\cf1 <} {\cf5 other}{\b\cf1 .}{\cf5 fractional_second} {\b\cf6 and then} {\cf1 (}{\cf5 other}{\b\cf1 .}{\cf5 fractional_second} {\cf1 -} {\cf5 fractional_second}{\cf1 )} {\cf1 >} 1.0e-10{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Measurement}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 duration}{\cf1 :} {\cf4 TIME_DURATION}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Duration elapsed from midnight}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make_fine}{\cf1  }{\cf1 (}{\cf5 hour}{\cf1 ,} {\cf5 minute}{\cf1 ,} {\cf5 fine_second}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure then}{\line}
+{\tab}{\tab}{\tab}{\cf1 seconds_large_enough}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 seconds_count} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\tab}{\cf1 seconds_small_enough}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 seconds_count} {\cf1 <} {\cf5 Seconds_in_day}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 seconds}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of seconds elapsed from midnight}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 hour} {\cf1 *} {\cf5 Seconds_in_hour}{\cf1 )} {\cf1 +} {\cf1 (}{\cf5 minute} {\cf1 *} {\cf5 Seconds_in_minute}{\cf1 )} {\cf1 +} {\cf5 second}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf5 duration}{\b\cf1 .}{\cf5 seconds_count}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 fine_seconds}{\cf1 :} {\cf4 REAL_64}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of seconds and fractions of seconds elapsed from midnight}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 hour} {\cf1 *} {\cf5 Seconds_in_hour}{\cf1 )} {\cf1 +} {\cf1 (}{\cf5 minute} {\cf1 *} {\cf5 Seconds_in_minute}{\cf1 )}{\b\cf1 .}{\cf5 to_double} {\cf1 +} {\cf5 fine_second}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Basic operations}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 plus} {\b\cf6 alias} {\cf1 "}{\cf1 +}{\cf1 "} {\cf1 (}{\cf5 t}{\cf1 :} {\cf4 TIME_DURATION}{\cf1 )}{\cf1 :} {\cf4 TIME}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Sum of the current time and duration }{\cf5 t}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 t_exists}{\cf1 :} {\cf5 t} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 fine_second_add}{\cf1  }{\cf1 (}{\cf5 t}{\b\cf1 .}{\cf5 fine_second}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 minute_add}{\cf1  }{\cf1 (}{\cf5 t}{\b\cf1 .}{\cf5 minute}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 hour_add}{\cf1  }{\cf1 (}{\cf5 t}{\b\cf1 .}{\cf5 hour}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_exists}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 relative_duration} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 like} {\b\cf6 Current}{\cf1 )}{\cf1 :} {\cf4 TIME_DURATION}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Duration elapsed from }{\cf5 other}{\cf3  to }{\cf5 Current}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make_by_fine_seconds}{\cf1  }{\cf1 (}{\cf5 fine_seconds} {\cf1 -} {\cf5 other}{\b\cf1 .}{\cf5 fine_seconds}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Result}{\b\cf1 .}{\cf5 to_canonical}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 second_add} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Add }{\cf5 s}{\cf3  seconds to the current time.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 total_second}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 total_second} {\cf1 :=} {\cf5 second} {\cf1 +} {\cf5 s}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 total_second} {\cf1 <} 0 {\b\cf6 or else} {\cf5 total_second} {\cf1 >=} {\cf5 Seconds_in_minute} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 set_fine_second}{\cf1  }{\cf1 (}{\cf5 mod}{\cf1  }{\cf1 (}{\cf5 total_second}{\cf1 ,} {\cf5 Seconds_in_minute}{\cf1 )}{\b\cf1 .}{\cf5 to_double} {\cf1 +} {\cf5 fractional_second}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 minute_add}{\cf1  }{\cf1 (}{\cf5 div}{\cf1  }{\cf1 (}{\cf5 total_second}{\cf1 ,} {\cf5 Seconds_in_minute}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 set_fine_second}{\cf1  }{\cf1 (}{\cf5 total_second}{\b\cf1 .}{\cf5 to_double} {\cf1 +} {\cf5 fractional_second}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 fine_second_add} {\cf1 (}{\cf5 f}{\cf1 :} {\cf4 REAL_64}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Add }{\cf5 f}{\cf3  seconds to the current time.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  if }{\cf5 f}{\cf3  has decimals, }{\cf5 fractional_second}{\cf3  is modified.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 total_second}{\cf1 :} {\cf4 REAL_64}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 total_second} {\cf1 :=} {\cf5 fine_second} {\cf1 +} {\cf5 f}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 total_second} {\cf1 <} 0{\b\cf1 .}{\cf5 to_double} {\b\cf6 or else} {\cf5 total_second} {\cf1 >=} {\cf5 Seconds_in_minute}{\b\cf1 .}{\cf5 to_double} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 set_fine_second}{\cf1  }{\cf1 (}{\cf5 total_second} {\cf1 -} {\cf5 div}{\cf1  }{\cf1 (}{\cf5 total_second}{\b\cf1 .}{\cf5 floor}{\cf1 ,} {\cf5 Seconds_in_minute}{\cf1 )} {\cf1 *} {\cf5 Seconds_in_minute}{\b\cf1 .}{\cf5 to_double}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 minute_add}{\cf1  }{\cf1 (}{\cf5 div}{\cf1  }{\cf1 (}{\cf5 total_second}{\b\cf1 .}{\cf5 floor}{\cf1 ,} {\cf5 Seconds_in_minute}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 set_fine_second}{\cf1  }{\cf1 (}{\cf5 total_second}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 minute_add} {\cf1 (}{\cf5 m}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Add }{\cf5 m}{\cf3  minutes to the current object.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 total_minute}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 total_minute} {\cf1 :=} {\cf5 minute} {\cf1 +} {\cf5 m}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 total_minute} {\cf1 <} 0 {\b\cf6 or else} {\cf5 total_minute} {\cf1 >=} {\cf5 Minutes_in_hour} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 set_minute}{\cf1  }{\cf1 (}{\cf5 mod}{\cf1  }{\cf1 (}{\cf5 total_minute}{\cf1 ,} {\cf5 Minutes_in_hour}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 hour_add}{\cf1  }{\cf1 (}{\cf5 div}{\cf1  }{\cf1 (}{\cf5 total_minute}{\cf1 ,} {\cf5 Minutes_in_hour}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 set_minute}{\cf1  }{\cf1 (}{\cf5 total_minute}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 hour_add} {\cf1 (}{\cf5 h}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Add }{\cf5 h}{\cf3  hours to the current object.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_hour}{\cf1  }{\cf1 (}{\cf5 mod}{\cf1  }{\cf1 (}{\cf5 hour} {\cf1 +} {\cf5 h}{\cf1 ,} {\cf5 Hours_in_day}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 second_forth}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Move to next second.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 fine_second} {\cf1 <} {\cf5 Seconds_in_minute} {\cf1 -} 1{\b\cf1 .}{\cf5 to_double} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 set_fine_second}{\cf1  }{\cf1 (}{\cf5 fine_second} {\cf1 +} 1{\b\cf1 .}{\cf5 to_double}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 set_fine_second}{\cf1  }{\cf1 (}0{\b\cf1 .}{\cf5 to_double}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 minute_forth}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 second_back}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Move to previous second.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 fine_second} {\cf1 >} 0{\b\cf1 .}{\cf5 to_double} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 set_fine_second}{\cf1  }{\cf1 (}{\cf5 fine_second} {\cf1 -} 1{\b\cf1 .}{\cf5 to_double}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 set_fine_second}{\cf1  }{\cf1 (}{\cf5 Seconds_in_minute} {\cf1 -} 1{\b\cf1 .}{\cf5 to_double}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 minute_back}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 minute_forth}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Move to next minute.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 minute} {\cf1 <} {\cf5 Minutes_in_hour} {\cf1 -} 1 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 set_minute}{\cf1  }{\cf1 (}{\cf5 minute} {\cf1 +} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 set_minute}{\cf1  }{\cf1 (}0{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 hour_forth}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 minute_back}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Move to evious minute.	}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 minute} {\cf1 >} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 set_minute}{\cf1  }{\cf1 (}{\cf5 minute} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 set_minute}{\cf1  }{\cf1 (}{\cf5 Minutes_in_hour} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 hour_back}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 hour_forth}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Move to next hour.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 hour} {\cf1 <} {\cf5 Hours_in_day} {\cf1 -} 1 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 set_hour}{\cf1  }{\cf1 (}{\cf5 hour} {\cf1 +} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 set_hour}{\cf1  }{\cf1 (}0{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 hour_back}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Move to evious hour.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 hour} {\cf1 >} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 set_hour}{\cf1  }{\cf1 (}{\cf5 hour} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 set_hour}{\cf1  }{\cf1 (}{\cf5 Hours_in_day} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Output}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 debug_output}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Printable representation of time with "standard"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Form: }{\cf5 time_default_format_string}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 TIME}{\cf3  as synonym of }{\cf5 out}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 formatted_out}{\cf1  }{\cf1 (}{\cf5 time_default_format_string}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 out}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Printable representation of time with "standard"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Form: }{\cf5 time_default_format_string}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 TIME}{\cf3  as synonym of }{\cf5 debug_output}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 formatted_out}{\cf1  }{\cf1 (}{\cf5 time_default_format_string}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 formatted_out} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Printable representation of time with "standard"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Form: }{\cf5 s}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_exists}{\cf1 :} {\cf5 s} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\b\cf6 create}{\cf1  }{\cf1 \{}{\cf4 DATE_TIME_CODE_STRING}{\cf1 \}}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\cf1 )}{\b\cf1 .}{\cf5 create_time_string}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 invariant}{\line}
+{\tab}{\cf1 second_large_enough}{\cf1 :} {\cf5 second} {\cf1 >=} 0{\line}
+{\tab}{\cf1 second_small_enough}{\cf1 :} {\cf5 second} {\cf1 <} {\cf5 Seconds_in_minute}{\line}
+{\tab}{\cf1 fractionals_large_enough}{\cf1 :} {\cf5 fractional_second} {\cf1 >=} 0{\b\cf1 .}{\cf5 to_double}{\line}
+{\tab}{\cf1 fractionals_small_enough}{\cf1 :} {\cf5 fractional_second} {\cf1 <} 1{\b\cf1 .}{\cf5 to_double}{\line}
+{\tab}{\cf1 minute_large_enough}{\cf1 :} {\cf5 minute} {\cf1 >=} 0{\line}
+{\tab}{\cf1 minute_small_enough}{\cf1 :} {\cf5 minute} {\cf1 <} {\cf5 Minutes_in_hour}{\line}
+{\tab}{\cf1 hour_large_enough}{\cf1 :} {\cf5 hour} {\cf1 >=} 0{\line}
+{\tab}{\cf1 hour_small_enough}{\cf1 :} {\cf5 hour} {\cf1 <} {\cf5 Hours_in_day}{\line}
+{\line}
+{\b\cf6 note}{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 1984-2017, Eiffel Software and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"{\line}
+{\tab}{\cf1 source}{\cf1 :} "[{\line}
+{\tab}{\tab}Eiffel Software{\line}
+{\tab}{\tab}5949 Hollister Ave., Goleta, CA 93117 USA{\line}
+{\tab}{\tab}Telephone 805-685-1006, Fax 805-685-6869{\line}
+{\tab}{\tab}Website http://www.eiffel.com{\line}
+{\tab}{\tab}Customer support http://support.eiffel.com{\line}
+{\tab}]"{\line}
+{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 TIME}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

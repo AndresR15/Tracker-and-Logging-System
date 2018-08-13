@@ -1,0 +1,143 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../implementation_gtk/ev_intermediary_routines_chart.xml</location>EV_INTERMEDIARY_ROUTINES</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>implementation_gtk</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Intermediary routines between gtk and eiffel.&quot;</string>
+
+<keyword>Ancestors</keyword>
+	<class><location>../interface/ev_any_handler_chart.xml</location>EV_ANY_HANDLER</class>
+	<class><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines_chart.xml</location>EV_GTK_DEPENDENT_INTERMEDIARY_ROUTINES</class>
+
+<keyword>Queries</keyword>
+	<feature><include>False</include>id_freed</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><include>False</include>id_object</feature> <symbol>(</symbol><local>an_id</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>IDENTIFIED</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_0</location>Key_0</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_1</location>Key_1</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_2</location>Key_2</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_3</location>Key_3</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_4</location>Key_4</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_5</location>Key_5</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_6</location>Key_6</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_7</location>Key_7</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_8</location>Key_8</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_9</location>Key_9</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_a</location>Key_a</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_alt</location>Key_alt</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_b</location>Key_b</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_back_space</location>Key_back_space</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_backquote</location>Key_backquote</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_backslash</location>Key_backslash</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_c</location>Key_c</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_caps_lock</location>Key_caps_lock</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_close_bracket</location>Key_close_bracket</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_code_from_gtk</location>key_code_from_gtk</feature> <symbol>(</symbol><local>a_gtk_code</local><symbol>:</symbol> <class><include>False</include>NATURAL_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_code_from_key_string</location>key_code_from_key_string</feature> <symbol>(</symbol><local>key_string</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_code_to_gtk</location>key_code_to_gtk</feature> <symbol>(</symbol><local>a_key_code</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_comma</location>Key_comma</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_ctrl</location>Key_ctrl</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_d</location>Key_d</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_dash</location>Key_dash</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_delete</location>Key_delete</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_down</location>Key_down</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_e</location>Key_e</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_end</location>Key_end</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_enter</location>Key_enter</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_equal</location>Key_equal</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_escape</location>Key_escape</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_f</location>Key_f</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_f1</location>Key_f1</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_f10</location>Key_f10</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_f11</location>Key_f11</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_f12</location>Key_f12</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_f2</location>Key_f2</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_f3</location>Key_f3</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_f4</location>Key_f4</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_f5</location>Key_f5</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_f6</location>Key_f6</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_f7</location>Key_f7</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_f8</location>Key_f8</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_f9</location>Key_f9</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_g</location>Key_g</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_h</location>Key_h</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_home</location>Key_home</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_i</location>Key_i</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_insert</location>Key_insert</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_j</location>Key_j</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_k</location>Key_k</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_l</location>Key_l</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_left</location>Key_left</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_left_meta</location>Key_left_meta</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_m</location>Key_m</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_menu</location>Key_menu</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_n</location>Key_n</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_num_lock</location>Key_num_lock</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_numpad_0</location>Key_numpad_0</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_numpad_1</location>Key_numpad_1</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_numpad_2</location>Key_numpad_2</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_numpad_3</location>Key_numpad_3</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_numpad_4</location>Key_numpad_4</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_numpad_5</location>Key_numpad_5</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_numpad_6</location>Key_numpad_6</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_numpad_7</location>Key_numpad_7</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_numpad_8</location>Key_numpad_8</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_numpad_9</location>Key_numpad_9</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_numpad_add</location>Key_numpad_add</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_numpad_decimal</location>Key_numpad_decimal</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_numpad_divide</location>Key_numpad_divide</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_numpad_multiply</location>Key_numpad_multiply</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_numpad_subtract</location>Key_numpad_subtract</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_o</location>Key_o</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_open_bracket</location>Key_open_bracket</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_p</location>Key_p</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_page_down</location>Key_page_down</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_page_up</location>Key_page_up</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_pause</location>Key_pause</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_period</location>Key_period</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_q</location>Key_q</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_quote</location>Key_quote</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_r</location>Key_r</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_right</location>Key_right</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_right_meta</location>Key_right_meta</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_s</location>Key_s</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_scroll_lock</location>Key_scroll_lock</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_semicolon</location>Key_semicolon</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_shift</location>Key_shift</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_slash</location>Key_slash</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_space</location>Key_space</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_strings</location>Key_strings</feature><symbol>:</symbol> <class><include>False</include>ARRAY</class> <symbol>[</symbol><class><include>False</include>STRING_32</class><symbol>]</symbol>
+	<feature><location>../interface/ev_key_constants.xml#f_key_t</location>Key_t</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_tab</location>Key_tab</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_u</location>Key_u</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_up</location>Key_up</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_v</location>Key_v</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_w</location>Key_w</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_x</location>Key_x</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_y</location>Key_y</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_key_constants.xml#f_key_z</location>Key_z</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>object_id</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines.xml#f_page_switch_translate</location>page_switch_translate</feature> <symbol>(</symbol><local>n</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>args</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>TUPLE</class>
+	<feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_valid_gtk_code</location>valid_gtk_code</feature> <symbol>(</symbol><local>a_gtk_code</local><symbol>:</symbol> <class><include>False</include>NATURAL_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_key_constants.xml#f_valid_key_code</location>valid_key_code</feature> <symbol>(</symbol><local>a_code</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+
+<keyword>Commands</keyword>
+	<feature><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines.xml#f_boolean_cell_renderer_toggle_intermediary</location>boolean_cell_renderer_toggle_intermediary</feature> <symbol>(</symbol><local>a_object_id</local><symbol>,</symbol> <local>nargs</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>args</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_intermediary_routines.xml#f_button_select_intermediary</location>button_select_intermediary</feature> <symbol>(</symbol><local>a_c_object</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_intermediary_routines.xml#f_create_expose_actions_intermediary</location>create_expose_actions_intermediary</feature> <symbol>(</symbol><local>a_c_object</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>;</symbol> <local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><include>False</include>free_id</feature>
+	<feature><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines.xml#f_gdk_event_dispatcher</location>gdk_event_dispatcher</feature> <symbol>(</symbol><local>a_object_id</local><symbol>,</symbol> <local>n_args</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>args</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines.xml#f_mcl_column_click_callback</location>mcl_column_click_callback</feature> <symbol>(</symbol><local>a_object_id</local><symbol>,</symbol> <local>int</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines.xml#f_mcl_column_resize_callback</location>mcl_column_resize_callback</feature> <symbol>(</symbol><local>a_object_id</local><symbol>,</symbol> <local>a_column</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines.xml#f_new_toolbar_item_select_actions_intermediary</location>new_toolbar_item_select_actions_intermediary</feature> <symbol>(</symbol><local>a_object_id</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines.xml#f_on_combo_box_toggle_button_event</location>on_combo_box_toggle_button_event</feature> <symbol>(</symbol><local>a_object_id</local><symbol>,</symbol> <local>a_event_id</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines.xml#f_on_pnd_deferred_item_parent_selection_change</location>on_pnd_deferred_item_parent_selection_change</feature> <symbol>(</symbol><local>a_object_id</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_intermediary_routines.xml#f_on_set_focus_event_intermediary</location>on_set_focus_event_intermediary</feature> <symbol>(</symbol><local>a_object_id</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_widget_ptr</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_intermediary_routines.xml#f_on_size_allocate_intermediate</location>on_size_allocate_intermediate</feature> <symbol>(</symbol><local>a_object_id</local><symbol>,</symbol> <local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_intermediary_routines.xml#f_on_timeout_intermediary</location>on_timeout_intermediary</feature> <symbol>(</symbol><local>a_object_id</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines.xml#f_pnd_deferred_parent_start_transport_filter_intermediary</location>pnd_deferred_parent_start_transport_filter_intermediary</feature> <symbol>(</symbol><local>a_c_object</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>;</symbol> <local>a_type</local><symbol>,</symbol> <local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>a_button</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_x_tilt</local><symbol>,</symbol> <local>a_y_tilt</local><symbol>,</symbol> <local>a_pressure</local><symbol>:</symbol> <class><include>False</include>REAL_64</class><symbol>;</symbol> <local>a_screen_x</local><symbol>,</symbol> <local>a_screen_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines.xml#f_text_buffer_mark_set_intermediary</location>text_buffer_mark_set_intermediary</feature> <symbol>(</symbol><local>a_object_id</local><symbol>,</symbol> <local>nargs</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>args</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines.xml#f_toolbar_item_select_actions_intermediary</location>toolbar_item_select_actions_intermediary</feature> <symbol>(</symbol><local>a_object_id</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines.xml#f_tree_row_expansion_change_intermediary</location>tree_row_expansion_change_intermediary</feature> <symbol>(</symbol><local>a_object_id</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>is_expanded</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class><symbol>;</symbol> <local>nargs</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>args</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>)</symbol>
+
+</system>

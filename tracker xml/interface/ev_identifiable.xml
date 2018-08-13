@@ -1,0 +1,124 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Abstraction for objects that can be identified by name.&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;identifiable&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2017-05-03 12:17:49 -0700 (Wed, 03 May 2017) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 100318 $&quot;</string>
+
+<keyword>deferred</keyword> <keyword>class</keyword> 
+	<class><location>../interface/ev_identifiable.xml</location>EV_IDENTIFIABLE</class>
+
+<keyword>inherit</keyword>
+	<class><location>../interface/ev_any.xml</location>EV_ANY</class>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_parent</anchor><feature><location>../interface/ev_identifiable.xml#f_parent</location>parent</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_identifiable.xml</location>EV_IDENTIFIABLE</class>
+			<comment>--</comment><comment> Parent of object</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>correct</tag><symbol>:</symbol> <feature><location>../interface/ev_identifiable.xml#f_has_parent</location>has_parent</feature> <keyword>implies</keyword> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>correct</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_identifiable.xml#f_has_parent</location>has_parent</feature> <keyword>implies</keyword> <keyword>Result</keyword> <symbol>=</symbol> <keyword>Void</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_identifier_name</anchor><feature><location>../interface/ev_identifiable.xml#f_identifier_name</location>identifier_name</feature><symbol>:</symbol> <class><include>False</include>STRING_32</class>
+			<comment>--</comment><comment> Name of object</comment>
+			<comment>--</comment><comment> If no specific name is set, </comment><feature><location>../interface/ev_identifiable.xml#f_default_identifier_name</location>default_identifier_name</feature><comment> is used.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../interface/ev_identifiable.xml#f_internal_name</location>internal_name</feature> <keyword>as</keyword> l_internal_name <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>l_internal_name</local><dot>.</dot><feature><include>False</include>twin</feature>
+			<keyword>else</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_identifiable.xml#f_default_identifier_name</location>default_identifier_name</feature>
+			<keyword>end</keyword>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>result_not_empty</tag><symbol>:</symbol> <keyword>not</keyword> <keyword>Result</keyword><dot>.</dot><feature><include>False</include>is_empty</feature>
+			<tag>no_period_in_result</tag><symbol>:</symbol> <keyword>not</keyword> <keyword>Result</keyword><dot>.</dot><feature><include>False</include>has</feature><symbol> </symbol><symbol>(</symbol><char>'.'</char><dot>.</dot><feature><include>False</include>to_character_32</feature><symbol>)</symbol>
+			<tag>default_name_available</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_identifiable.xml#f_has_identifier_name_set</location>has_identifier_name_set</feature> <keyword>implies</keyword> <keyword>Result</keyword><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_identifiable.xml#f_default_identifier_name</location>default_identifier_name</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_default_identifier_name</anchor><feature><location>../interface/ev_identifiable.xml#f_default_identifier_name</location>default_identifier_name</feature><symbol>:</symbol> <class><include>False</include>STRING_32</class>
+			<comment>--</comment><comment> Default name if no other name is set.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <symbol>{</symbol><class><include>False</include>STRING_32</class><symbol>}</symbol>&quot;{&quot; <symbol>+</symbol> <feature><include>False</include>generating_type</feature><dot>.</dot><feature><include>False</include>name_32</feature> <symbol>+</symbol> &quot;}&quot;
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>result_not_empty</tag><symbol>:</symbol> <keyword>not</keyword> <keyword>Result</keyword><dot>.</dot><feature><include>False</include>is_empty</feature>
+			<tag>no_period_in_result</tag><symbol>:</symbol> <keyword>not</keyword> <keyword>Result</keyword><dot>.</dot><feature><include>False</include>has</feature><symbol> </symbol><symbol>(</symbol><char>'.'</char><dot>.</dot><feature><include>False</include>to_character_32</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_full_identifier_path</anchor><feature><location>../interface/ev_identifiable.xml#f_full_identifier_path</location>full_identifier_path</feature><symbol>:</symbol> <class><include>False</include>STRING_32</class>
+			<comment>--</comment><comment> Full name of object by prepending path of parent</comment>
+			<comment>--</comment><comment> Uses '.' as a separator.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../interface/ev_identifiable.xml#f_parent</location>parent</feature> <keyword>as</keyword> l_parent <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>l_parent</local><dot>.</dot><feature><location>../interface/ev_identifiable.xml#f_full_identifier_path</location>full_identifier_path</feature>
+				<keyword>Result</keyword><dot>.</dot><feature><include>False</include>append_character</feature><symbol> </symbol><symbol>(</symbol><local>l_parent</local><dot>.</dot><feature><location>../interface/ev_identifiable.xml#f_identifier_path_separator</location>Identifier_path_separator</feature><dot>.</dot><feature><include>False</include>to_character_32</feature><symbol>)</symbol>
+				<keyword>Result</keyword><dot>.</dot><feature><include>False</include>append_string</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_identifiable.xml#f_identifier_name</location>identifier_name</feature><symbol>)</symbol>
+			<keyword>else</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_identifiable.xml#f_identifier_name</location>identifier_name</feature><dot>.</dot><feature><include>False</include>twin</feature>
+			<keyword>end</keyword>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>result_correct</tag><symbol>:</symbol> <feature><location>../interface/ev_identifiable.xml#f_parent</location>parent</feature> <symbol>=</symbol> <keyword>Void</keyword> <keyword>implies</keyword> <keyword>Result</keyword><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_identifiable.xml#f_identifier_name</location>identifier_name</feature><symbol>)</symbol>
+			<tag>result_correct</tag><symbol>:</symbol> <keyword>attached</keyword> <feature><location>../interface/ev_identifiable.xml#f_parent</location>parent</feature> <keyword>as</keyword> l_parent <keyword>implies</keyword> <keyword>Result</keyword><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><local>l_parent</local><dot>.</dot><feature><location>../interface/ev_identifiable.xml#f_full_identifier_path</location>full_identifier_path</feature> <symbol>+</symbol> &quot;.&quot; <symbol>+</symbol> <feature><location>../interface/ev_identifiable.xml#f_identifier_name</location>identifier_name</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status report</comment>
+
+	<anchor>f_has_parent</anchor><feature><location>../interface/ev_identifiable.xml#f_has_parent</location>has_parent</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Does identifiable has a parent?</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature> <keyword>and then</keyword> <feature><location>../interface/ev_identifiable.xml#f_parent</location>parent</feature> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_has_identifier_name_set</anchor><feature><location>../interface/ev_identifiable.xml#f_has_identifier_name_set</location>has_identifier_name_set</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is a specific identifier name set?</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_identifiable.xml#f_internal_name</location>internal_name</feature> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Element change</comment>
+
+	<anchor>f_set_identifier_name</anchor><feature><location>../interface/ev_identifiable.xml#f_set_identifier_name</location>set_identifier_name</feature> <symbol>(</symbol><local>a_name</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><feature><location>../interface/ev_identifiable.xml#f_identifier_name</location>identifier_name</feature><comment> to </comment><quoted>a_name</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>a_name_not_void</tag><symbol>:</symbol> <local>a_name</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>a_name_not_empty</tag><symbol>:</symbol> <keyword>not</keyword> <local>a_name</local><dot>.</dot><feature><include>False</include>is_empty</feature>
+			<tag>no_period_in_name</tag><symbol>:</symbol> <keyword>not</keyword> <local>a_name</local><dot>.</dot><feature><include>False</include>has</feature><symbol> </symbol><symbol>(</symbol><char>'.'</char><dot>.</dot><feature><include>False</include>to_character_32</feature><symbol>)</symbol>
+		<keyword>do</keyword>
+			<keyword>create</keyword> <feature><location>../interface/ev_identifiable.xml#f_internal_name</location>internal_name</feature><dot>.</dot><feature><include>False</include>make_from_string_general</feature><symbol> </symbol><symbol>(</symbol><local>a_name</local><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>identifier_name_set</tag><symbol>:</symbol> <feature><location>../interface/ev_identifiable.xml#f_identifier_name</location>identifier_name</feature><dot>.</dot><feature><include>False</include>same_string_general</feature><symbol> </symbol><symbol>(</symbol><local>a_name</local><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_identifiable.xml</location>EV_IDENTIFIABLE</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_identifier_path_separator</anchor><feature><location>../interface/ev_identifiable.xml#f_identifier_path_separator</location>Identifier_path_separator</feature><symbol>:</symbol> <class><include>False</include>CHARACTER_8</class>
+			<comment>--</comment><comment> Character used to separate path to children</comment>
+		<keyword>once</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <char>'.'</char>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_internal_name</anchor><feature><location>../interface/ev_identifiable.xml#f_internal_name</location>internal_name</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>STRING_32</class>
+			<comment>--</comment><comment> Internal name set by </comment><feature><location>../interface/ev_identifiable.xml#f_set_identifier_name</location>set_identifier_name</feature>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2006, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>356 Storke Road, Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../interface/ev_identifiable.xml</location>EV_IDENTIFIABLE</class></system>
+

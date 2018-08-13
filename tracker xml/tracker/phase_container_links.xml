@@ -1,0 +1,23 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../tracker/phase_container_links.xml</location>PHASE_CONTAINER</class>
+
+<keyword>Ancestors</keyword>
+	<class><include>False</include>ANY</class>
+	<class><include>False</include>COMPARABLE</class><char>*</char>
+
+<keyword>Clients</keyword>
+	<class><location>../tracker/etf_move_container_links.xml</location>ETF_MOVE_CONTAINER</class>
+	<class><location>../tracker/phase_links.xml</location>PHASE</class>
+	<class><location>../tracker/phase_container_links.xml</location>PHASE_CONTAINER</class>
+	<class><location>../tracker/remove_container_links.xml</location>REMOVE_CONTAINER</class>
+	<class><location>../tracker/tracker_links.xml</location>TRACKER</class>
+
+<keyword>Suppliers</keyword>
+	<class><include>False</include>BOOLEAN</class>
+	<class><location>../tracker/material_links.xml</location>MATERIAL</class>
+	<class><location>../tracker/phase_container_links.xml</location>PHASE_CONTAINER</class>
+	<class><include>False</include>STRING_8</class>
+	<class><location>../mathmodels/value_links.xml</location>VALUE</class>
+
+</system>

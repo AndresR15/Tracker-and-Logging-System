@@ -1,0 +1,153 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "EiffelVision notebook. Implementation interface."{\line}
+{\tab}{\cf1 legal}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 status}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2014-05-30 14:06:37 -0700 (Fri, 30 May 2014) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 95208 $"{\line}
+{\line}
+{\b\cf6 deferred} {\b\cf6 class} {\line}
+{\tab}{\cf4 EV_NOTEBOOK_I}{\line}
+{\line}
+{\b\cf6 inherit}{\line}
+{\tab}{\cf4 EV_WIDGET_LIST_I}{\line}
+{\tab}{\tab}{\b\cf6 redefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 interface}{\line}
+{\tab}{\tab}{\b\cf6 end}{\line}
+{\line}
+{\tab}{\cf4 EV_FONTABLE_I}{\line}
+{\tab}{\tab}{\b\cf6 redefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 interface}{\line}
+{\tab}{\tab}{\b\cf6 end}{\line}
+{\line}
+{\tab}{\cf4 EV_NOTEBOOK_ACTION_SEQUENCES_I}{\line}
+{\line}
+{\tab}{\cf4 EV_ITEM_PIXMAP_SCALER_I}{\line}
+{\tab}{\tab}{\b\cf6 redefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 interface}{\line}
+{\tab}{\tab}{\b\cf6 end}{\line}
+{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_NOTEBOOK}{\cf1 \}} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 item_text} {\cf1 (}{\cf5 an_item}{\cf1 :} {\b\cf6 like} {\cf5 item}{\cf1 )}{\cf1 :} {\cf4 STRING_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Label of }{\cf5 an_item}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 interface_has_an_item}{\cf1 :} {\b\cf6 attached} {\cf5 an_item} {\b\cf6 and then} {\cf5 attached_interface}{\b\cf1 .}{\cf5 has}{\cf1  }{\cf1 (}{\cf5 an_item}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 item_tab} {\cf1 (}{\cf5 an_item}{\cf1 :} {\cf4 EV_WIDGET}{\cf1 )}{\cf1 :} {\cf4 EV_NOTEBOOK_TAB}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Tab associated with }{\cf5 an_item}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 has_an_item}{\cf1 :} {\cf5 has}{\cf1  }{\cf1 (}{\cf5 an_item}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status report}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 selected_item}{\cf1 :} {\b\cf6 detachable} {\b\cf6 like} {\cf5 item}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Page displayed topmost.}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 selected_item_index}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Index of }{\cf5 selected_item}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 tab_position}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Position of tabs.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  One of }{\cf5 Tab_left}{\cf3 , }{\cf5 Tab_right}{\cf3 , }{\cf5 Tab_top}{\cf3  or }{\cf5 Tab_bottom}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Default: }{\cf5 Tab_top}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 pointed_tab_index}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Index of tab currently under mouse pointer, or 0 if none.}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_valid}{\cf1 :} {\b\cf6 Result} {\cf1 >=} 0 {\b\cf6 and} {\b\cf6 Result} {\cf1 <=} {\cf5 count}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 tab_index_at_screen_position} {\cf1 (}{\cf5 a_x}{\cf1 ,} {\cf5 a_y}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Index of tab currently at screen position (a_x, a_y), or 0 if none.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_screen}{\cf1 :} {\cf4 EV_SCREEN}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_old_cursor}{\cf1 :} {\cf4 EV_COORDINATE}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 l_screen}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_old_cursor} {\cf1 :=} {\cf5 l_screen}{\b\cf1 .}{\cf5 pointer_position}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_screen}{\b\cf1 .}{\cf5 set_pointer_position}{\cf1  }{\cf1 (}{\cf5 a_x}{\cf1 ,} {\cf5 a_y}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 pointed_tab_index}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_screen}{\b\cf1 .}{\cf5 set_pointer_position}{\cf1  }{\cf1 (}{\cf5 l_old_cursor}{\b\cf1 .}{\cf5 x}{\cf1 ,} {\cf5 l_old_cursor}{\b\cf1 .}{\cf5 y}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_valid}{\cf1 :} {\b\cf6 Result} {\cf1 >=} 0 {\b\cf6 and} {\b\cf6 Result} {\cf1 <=} {\cf5 count}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_NOTEBOOK}{\cf1 \}} {\cf3 --}{\cf3  Status setting}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_tab_position} {\cf1 (}{\cf5 a_tab_position}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Display tabs at }{\cf5 a_tab_position}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_position_within_range}{\cf1 :} {\cf5 a_tab_position} {\cf1 =} {\cf5 attached_interface}{\b\cf1 .}{\cf5 Tab_left} {\b\cf6 or} {\cf5 a_tab_position} {\cf1 =} {\cf5 attached_interface}{\b\cf1 .}{\cf5 Tab_right} {\b\cf6 or} {\cf5 a_tab_position} {\cf1 =} {\cf5 attached_interface}{\b\cf1 .}{\cf5 Tab_bottom} {\b\cf6 or} {\cf5 a_tab_position} {\cf1 =} {\cf5 attached_interface}{\b\cf1 .}{\cf5 Tab_top}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 select_item} {\cf1 (}{\cf5 an_item}{\cf1 :} {\b\cf6 like} {\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Display }{\cf5 an_item}{\cf3  above all others.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 interface_has_an_item}{\cf1 :} {\b\cf6 attached} {\cf5 an_item} {\b\cf6 and then} {\cf5 attached_interface}{\b\cf1 .}{\cf5 has}{\cf1  }{\cf1 (}{\cf5 an_item}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 item_selected}{\cf1 :} {\cf5 selected_item} {\cf1 =} {\cf5 an_item}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_NOTEBOOK}{\cf1 \}} {\cf3 --}{\cf3  Element change}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_item_text} {\cf1 (}{\cf5 an_item}{\cf1 :} {\b\cf6 like} {\cf5 item}{\cf1 ;} {\cf5 a_text}{\cf1 :} {\cf4 READABLE_STRING_GENERAL}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Assign }{\cf5 a_text}{\cf3  to the label for }{\cf5 an_item}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 interface_has_an_item}{\cf1 :} {\b\cf6 attached} {\cf5 an_item} {\b\cf6 and then} {\cf5 attached_interface}{\b\cf1 .}{\cf5 has}{\cf1  }{\cf1 (}{\cf5 an_item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_text_not_void}{\cf1 :} {\cf5 a_text} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_ANY}{\cf1 ,} {\cf4 EV_ANY_I}{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 interface}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_NOTEBOOK}{\line}
+{\tab}{\tab}{\b\cf6 note}{\line}
+{\tab}{\tab}{\tab}option: stable{\line}
+{\tab}{\tab}{\b\cf6 attribute}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 invariant}{\line}
+{\tab}{\cf1 tab_position_within_range}{\cf1 :} {\cf5 is_usable} {\b\cf6 implies} {\cf5 tab_position} {\cf1 =} {\cf5 attached_interface}{\b\cf1 .}{\cf5 Tab_left} {\b\cf6 or} {\cf5 tab_position} {\cf1 =} {\cf5 attached_interface}{\b\cf1 .}{\cf5 Tab_right} {\b\cf6 or} {\cf5 tab_position} {\cf1 =} {\cf5 attached_interface}{\b\cf1 .}{\cf5 Tab_bottom} {\b\cf6 or} {\cf5 tab_position} {\cf1 =} {\cf5 attached_interface}{\b\cf1 .}{\cf5 Tab_top}{\line}
+{\tab}{\cf1 selected_item_not_void}{\cf1 :} {\cf5 is_usable} {\b\cf6 and} {\cf5 count} {\cf1 >} 0 {\b\cf6 implies} {\cf5 selected_item} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\cf1 selected_item_index_within_range}{\cf1 :} {\cf5 is_usable} {\b\cf6 and} {\cf5 count} {\cf1 >} 0 {\b\cf6 implies} {\cf1 (}{\cf5 selected_item_index} {\cf1 >=} {\cf5 attached_interface}{\b\cf1 .}{\cf5 index_of}{\cf1  }{\cf1 (}{\cf5 attached_interface}{\b\cf1 .}{\cf5 first}{\cf1 ,} 1{\cf1 )} {\b\cf6 and} {\cf5 selected_item_index} {\cf1 <=} {\cf5 attached_interface}{\b\cf1 .}{\cf5 index_of}{\cf1  }{\cf1 (}{\cf5 attached_interface}{\b\cf1 .}{\cf5 last}{\cf1 ,} 1{\cf1 )}{\cf1 )}{\line}
+{\tab}{\cf1 selected_item_is_i_th_of_selected_item_index}{\cf1 :} {\cf5 is_usable} {\b\cf6 and} {\cf5 count} {\cf1 >} 0 {\b\cf6 implies} {\cf5 selected_item} {\cf1 =} {\cf5 attached_interface}{\b\cf1 .}{\cf5 i_th}{\cf1  }{\cf1 (}{\cf5 selected_item_index}{\cf1 )}{\line}
+{\tab}{\cf1 selected_item_index_is_index_of_selected_item}{\cf1 :} {\cf5 is_usable} {\b\cf6 and} {\cf5 count} {\cf1 >} 0 {\b\cf6 implies} {\b\cf6 attached} {\cf5 selected_item} {\b\cf6 as} l_selected_item {\b\cf6 and then} {\cf5 selected_item_index} {\cf1 =} {\cf5 attached_interface}{\b\cf1 .}{\cf5 index_of}{\cf1  }{\cf1 (}{\cf5 l_selected_item}{\cf1 ,} 1{\cf1 )}{\line}
+{\line}
+{\b\cf6 note}{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 1984-2014, Eiffel Software and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"{\line}
+{\tab}{\cf1 source}{\cf1 :} "[{\line}
+{\tab}{\tab}Eiffel Software{\line}
+{\tab}{\tab}5949 Hollister Ave., Goleta, CA 93117 USA{\line}
+{\tab}{\tab}Telephone 805-685-1006, Fax 805-685-6869{\line}
+{\tab}{\tab}Website http://www.eiffel.com{\line}
+{\tab}{\tab}Customer support http://support.eiffel.com{\line}
+{\tab}]"{\line}
+{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 EV_NOTEBOOK_I}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

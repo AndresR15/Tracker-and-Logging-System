@@ -1,0 +1,25 @@
+<system>
+<keyword>deferred</keyword> <keyword>class</keyword>
+	<class><location>../implementation_gtk/ev_dockable_target_imp_chart.xml</location>EV_DOCKABLE_TARGET_IMP</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>implementation_gtk</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Gtk implementation of dockable target.&quot;</string>
+
+<keyword>Ancestors</keyword>
+	<class><location>../implementation_interface/ev_dockable_target_i_chart.xml</location>EV_DOCKABLE_TARGET_I</class><char>*</char>
+
+<keyword>Action sequences</keyword>
+	<feature><location>../implementation_interface/ev_dockable_target_action_sequences_i.xml#f_docked_actions</location>docked_actions</feature><symbol>:</symbol> <class><location>../interface/ev_dockable_source_action_sequence_chart.xml</location>EV_DOCKABLE_SOURCE_ACTION_SEQUENCE</class>
+
+<keyword>Queries</keyword>
+	<feature><location>../implementation_interface/ev_any_i.xml#f_is_destroyed</location>is_destroyed</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../implementation_interface/ev_dockable_target_i.xml#f_is_docking_enabled</location>is_docking_enabled</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../implementation_interface/ev_dockable_target_i.xml#f_veto_dock_function</location>veto_dock_function</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>FUNCTION</class> <symbol>[</symbol><class><location>../interface/ev_dockable_source_chart.xml</location>EV_DOCKABLE_SOURCE</class><symbol>,</symbol> <class><include>False</include>BOOLEAN</class><symbol>]</symbol>
+
+<keyword>Commands</keyword>
+	<feature><location>../implementation_interface/ev_dockable_target_i.xml#f_disable_docking</location>disable_docking</feature>
+	<feature><location>../implementation_interface/ev_dockable_target_i.xml#f_enable_docking</location>enable_docking</feature>
+	<feature><location>../implementation_interface/ev_dockable_target_i.xml#f_set_veto_dock_function</location>set_veto_dock_function</feature> <symbol>(</symbol><local>a_function</local><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>FUNCTION</class> <symbol>[</symbol><class><location>../interface/ev_dockable_source_chart.xml</location>EV_DOCKABLE_SOURCE</class><symbol>,</symbol> <class><include>False</include>BOOLEAN</class><symbol>]</symbol><symbol>)</symbol>
+
+</system>

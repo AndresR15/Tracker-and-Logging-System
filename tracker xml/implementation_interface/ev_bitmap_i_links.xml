@@ -1,0 +1,17 @@
+<system>
+<keyword>deferred</keyword> <keyword>class</keyword>
+	<class><location>../implementation_interface/ev_bitmap_i_links.xml</location>EV_BITMAP_I</class>
+
+<keyword>Ancestors</keyword>
+	<class><location>../implementation_interface/ev_drawable_i_links.xml</location>EV_DRAWABLE_I</class><char>*</char>
+
+<keyword>Descendants</keyword>
+	<class><location>../implementation_gtk/ev_bitmap_imp_links.xml</location>EV_BITMAP_IMP</class>
+
+<keyword>Clients</keyword>
+	<class><location>../interface/ev_bitmap_links.xml</location>EV_BITMAP</class>
+
+<keyword>Suppliers</keyword>
+	<class><include>False</include>INTEGER_32</class>
+
+</system>

@@ -1,0 +1,256 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "[{\line}
+{\tab}{\tab}EiffelVision text area. To query multiple lines of text from the user.{\line}
+{\tab}]"{\line}
+{\tab}{\cf1 legal}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 status}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2017-05-03 08:56:14 -0700 (Wed, 03 May 2017) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 100317 $"{\line}
+{\line}
+{\b\cf6 class} {\line}
+{\tab}{\cf4 EV_TEXT}{\line}
+{\line}
+{\b\cf6 inherit}{\line}
+{\tab}{\cf4 EV_TEXT_COMPONENT}{\line}
+{\tab}{\tab}{\b\cf6 redefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 is_in_default_state}{\line}
+{\tab}{\tab}{\b\cf6 end}{\line}
+{\line}
+{\tab}{\cf4 EV_FONTABLE}{\line}
+{\tab}{\tab}{\b\cf6 undefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 is_in_default_state}{\line}
+{\tab}{\tab}{\b\cf6 redefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 is_in_default_state}{\line}
+{\tab}{\tab}{\b\cf6 end}{\line}
+{\line}
+{\b\cf6 create} {\line}
+{\tab}{\cf5 default_create}{\cf1 ,}{\line}
+{\tab}{\cf5 make_with_text}{\line}
+{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 line} {\cf1 (}{\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 STRING_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 Result}{\cf3  is content of }{\cf5 i}{\cf3 th line.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_line_index}{\cf1 :} {\cf5 valid_line_index}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 implementation}{\b\cf1 .}{\cf5 line}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status report}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 has_word_wrapping}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is word wrapping enabled?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  If enabled, lines that are too long to be displayed}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  in }{\cf5 Current}{\cf3  will be wrapped onto new lines.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  If disabled, a horizontal scroll bar will be displayed}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  and lines will not be wrapped.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 implementation}{\b\cf1 .}{\cf5 has_word_wrapping}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 bridge_ok}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf5 implementation}{\b\cf1 .}{\cf5 has_word_wrapping}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 current_line_number}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Line currently containing cursor.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 implementation}{\b\cf1 .}{\cf5 current_line_number}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_line_index}{\cf1 :} {\cf5 valid_line_index}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 first_visible_line}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  First visible line current being displayed.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 implementation}{\b\cf1 .}{\cf5 first_visible_line}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_line_index}{\cf1 :} {\cf5 valid_line_index}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 line_count}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of lines in }{\cf5 Current}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 implementation}{\b\cf1 .}{\cf5 line_count}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_greater_zero}{\cf1 :} {\b\cf6 Result} {\cf1 >} 0{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 first_position_from_line_number} {\cf1 (}{\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Position of first character on }{\cf5 i}{\cf3 -th line.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_line}{\cf1 :} {\cf5 valid_line_index}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 implementation}{\b\cf1 .}{\cf5 first_position_from_line_number}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_caret_position}{\cf1 :} {\cf5 valid_caret_position}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 last_position_from_line_number} {\cf1 (}{\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Position of last character on }{\cf5 i}{\cf3 -th line.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_line}{\cf1 :} {\cf5 valid_line_index}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 implementation}{\b\cf1 .}{\cf5 last_position_from_line_number}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_caret_position}{\cf1 :} {\cf5 valid_caret_position}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 line_number_from_position} {\cf1 (}{\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Line containing caret position }{\cf5 i}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_caret_position}{\cf1 :} {\cf5 valid_caret_position}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 implementation}{\b\cf1 .}{\cf5 line_number_from_position}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_line_number}{\cf1 :} {\b\cf6 Result} {\cf1 >=} 1 {\b\cf6 and} {\b\cf6 Result} {\cf1 <=} {\cf5 line_count}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Basic operation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 enable_word_wrapping}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Ensure }{\cf5 has_word_wrapping}{\cf3  is True.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 enable_word_wrapping}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 word_wrapping_enabled}{\cf1 :} {\cf5 has_word_wrapping}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 disable_word_wrapping}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Ensure }{\cf5 has_word_wrapping}{\cf3  is False.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 disable_word_wrapping}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 word_wrapping_disabled}{\cf1 :} {\b\cf6 not} {\cf5 has_word_wrapping}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 scroll_to_line} {\cf1 (}{\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Ensure that line }{\cf5 i}{\cf3  is visible in }{\cf5 Current}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_line_index}{\cf1 :} {\cf5 valid_line_index}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 scroll_to_line}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 scroll_to_end}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Ensure that the last line is visible in }{\cf5 Current}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 scroll_to_end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 scroll_up} {\cf1 (}{\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Scroll up }{\cf5 i}{\cf3  lines from current visible position.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 i_positive}{\cf1 :} {\cf5 i} {\cf1 >} 0{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 scroll_to_line}{\cf1  }{\cf1 (}{\cf1 (}{\cf5 first_visible_line} {\cf1 -} {\cf5 i}{\cf1 )}{\b\cf1 .}{\cf5 max}{\cf1  }{\cf1 (}1{\cf1 )}{\b\cf1 .}{\cf5 min}{\cf1  }{\cf1 (}{\cf5 line_count}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 scroll_down} {\cf1 (}{\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Scroll down }{\cf5 i}{\cf3  lines from current visible position.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 i_positive}{\cf1 :} {\cf5 i} {\cf1 >} 0{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 scroll_to_line}{\cf1  }{\cf1 (}{\cf1 (}{\cf5 first_visible_line} {\cf1 +} {\cf5 i}{\cf1 )}{\b\cf1 .}{\cf5 max}{\cf1  }{\cf1 (}1{\cf1 )}{\b\cf1 .}{\cf5 min}{\cf1  }{\cf1 (}{\cf5 line_count}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 search} {\cf1 (}{\cf5 str}{\cf1 :} {\cf4 READABLE_STRING_GENERAL}{\cf1 ;} {\cf5 start}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Position of first occurrence of }{\cf5 str}{\cf3  at or after }{\cf5 start}{\cf3 ;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  0 if none.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_string}{\cf1 :} {\cf5 str} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 implementation}{\b\cf1 .}{\cf5 search}{\cf1  }{\cf1 (}{\cf5 str}{\cf1 ,} {\cf5 start}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 select_lines} {\cf1 (}{\cf5 first_line}{\cf1 ,} {\cf5 last_line}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Select all lines from }{\cf5 first_line}{\cf3  to }{\cf5 last_line}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_line_index}{\cf1 :} {\cf5 valid_line_index}{\cf1  }{\cf1 (}{\cf5 first_line}{\cf1 )} {\b\cf6 and} {\cf5 valid_line_index}{\cf1  }{\cf1 (}{\cf5 last_line}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 select_region}{\cf1  }{\cf1 (}{\cf5 first_position_from_line_number}{\cf1  }{\cf1 (}{\cf5 first_line}{\cf1 )}{\cf1 ,} {\cf5 last_position_from_line_number}{\cf1  }{\cf1 (}{\cf5 last_line}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 has_selection}{\cf1 :} {\cf5 has_selection}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Contract support}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 valid_line_index} {\cf1 (}{\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 i}{\cf3  a valid line index?}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 i} {\cf1 >} 0 {\b\cf6 and} {\cf5 i} {\cf1 <=} {\cf5 line_count}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 last_line_not_empty}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\b\cf6 obsolete} "Use `not line (line_count).is_empty' [2017-05-31]"{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Has last line at least one character?}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 not} {\cf5 line}{\cf1  }{\cf1 (}{\cf5 line_count}{\cf1 )}{\b\cf1 .}{\cf5 is_empty}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Contract support}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_in_default_state}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 Current}{\cf3  in its default state?}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 Precursor} {\cf1 \{}{\cf4 EV_TEXT_COMPONENT}{\cf1 \}} {\b\cf6 and} {\cf1 Precursor} {\cf1 \{}{\cf4 EV_FONTABLE}{\cf1 \}} {\b\cf6 and} {\cf5 has_word_wrapping}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_ANY}{\cf1 ,} {\cf4 EV_ANY_I}{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 implementation}{\cf1 :} {\cf4 EV_TEXT_I}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Responsible for interaction with native graphics toolkit.}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 create_implementation}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  See }{\cf5 \{EV_ANY\}.create_implementation}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf1 \{}{\cf4 EV_TEXT_IMP}{\cf1 \}} {\cf5 implementation}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 note}{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 1984-2012, Eiffel Software and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"{\line}
+{\tab}{\cf1 source}{\cf1 :} "[{\line}
+{\tab}{\tab}Eiffel Software{\line}
+{\tab}{\tab}5949 Hollister Ave., Goleta, CA 93117 USA{\line}
+{\tab}{\tab}Telephone 805-685-1006, Fax 805-685-6869{\line}
+{\tab}{\tab}Website http://www.eiffel.com{\line}
+{\tab}{\tab}Customer support http://support.eiffel.com{\line}
+{\tab}]"{\line}
+{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 EV_TEXT}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

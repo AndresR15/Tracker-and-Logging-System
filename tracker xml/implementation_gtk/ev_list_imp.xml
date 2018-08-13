@@ -1,0 +1,433 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;EiffelVision list, gtk implementation&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2017-03-27 13:31:29 -0700 (Mon, 27 Mar 2017) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 100058 $&quot;</string>
+
+<keyword>class</keyword> 
+	<class><location>../implementation_gtk/ev_list_imp.xml</location>EV_LIST_IMP</class>
+
+<keyword>inherit</keyword>
+	<class><location>../implementation_interface/ev_list_i.xml</location>EV_LIST_I</class>
+		<keyword>undefine</keyword>
+			<feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_wipe_out</location>wipe_out</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_list_imp.xml#f_selected_items</location>selected_items</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_list_item_list_imp.xml#f_call_pebble_function</location>call_pebble_function</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_list_item_list_imp.xml#f_reset_pebble_function</location>reset_pebble_function</feature>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_gtk/ev_list_imp.xml#f_interface</location>interface</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_list_imp.xml#f_disable_default_key_processing</location>disable_default_key_processing</feature>
+		<keyword>end</keyword>
+
+	<class><location>../implementation_gtk/ev_list_item_list_imp.xml</location>EV_LIST_ITEM_LIST_IMP</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_gtk/ev_list_imp.xml#f_interface</location>interface</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_list_imp.xml#f_visual_widget</location>visual_widget</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_list_imp.xml#f_make</location>make</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_list_imp.xml#f_item_from_coords</location>item_from_coords</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_list_imp.xml#f_on_mouse_button_event</location>on_mouse_button_event</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_list_imp.xml#f_row_height</location>row_height</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_list_imp.xml#f_call_selection_action_sequences</location>call_selection_action_sequences</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_list_imp.xml#f_needs_event_box</location>Needs_event_box</feature>
+		<keyword>end</keyword>
+
+<keyword>create</keyword> 
+	<feature><location>../implementation_gtk/ev_list_imp.xml#f_make</location>make</feature>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Initialize</comment>
+
+	<anchor>f_old_make</anchor><feature><location>../implementation_gtk/ev_list_imp.xml#f_old_make</location>old_make</feature> <symbol>(</symbol><local>an_interface</local><symbol>:</symbol> <keyword>attached</keyword> <keyword>like</keyword> <feature><location>../implementation_gtk/ev_list_imp.xml#f_interface</location>interface</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Create a list widget with </comment><quoted>par</quoted><comment> as parent.</comment>
+			<comment>--</comment><comment> By default, a list allow only one selection.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_interface/ev_any_i.xml#f_assign_interface</location>assign_interface</feature><symbol> </symbol><symbol>(</symbol><local>an_interface</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_scrollable_area</anchor><feature><location>../implementation_gtk/ev_list_imp.xml#f_scrollable_area</location>scrollable_area</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Scrollable area used for </comment><quoted>Current</quoted>
+
+	<anchor>f_make</anchor><feature><location>../implementation_gtk/ev_list_imp.xml#f_make</location>make</feature>
+			<comment>--</comment><comment> Initialize the list.</comment>
+		<keyword>local</keyword>
+			<local>a_column</local><symbol>,</symbol> <local>a_cell_renderer</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>a_gtk_c_str</local><symbol>:</symbol> <class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class>
+			<local>a_selection</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_list_imp.xml#f_scrollable_area</location>scrollable_area</feature> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_scrolled_window_new</location>gtk_scrolled_window_new</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_scrolled_window_set_shadow_type</location>gtk_scrolled_window_set_shadow_type</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_list_imp.xml#f_scrollable_area</location>scrollable_area</feature><symbol>,</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_shadow_in_enum</location>gtk_shadow_in_enum</feature><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_any_imp.xml#f_set_c_object</location>set_c_object</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_list_imp.xml#f_scrollable_area</location>scrollable_area</feature><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_list_imp.xml#f_tree_view</location>tree_view</feature> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_new</location>gtk_tree_view_new</feature>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_container_add</location>gtk_container_add</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_list_imp.xml#f_scrollable_area</location>scrollable_area</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>)</symbol>
+			<keyword><location>../implementation_gtk/ev_list_item_list_imp.xml#f_make</location>Precursor</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_list_item_list_imp.xml</location>EV_LIST_ITEM_LIST_IMP</class><symbol>}</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_set_model</location>gtk_tree_view_set_model</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_list_item_list_imp.xml#f_list_store</location>list_store</feature><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_scrolled_window_set_policy</location>gtk_scrolled_window_set_policy</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_list_imp.xml#f_scrollable_area</location>scrollable_area</feature><symbol>,</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_policy_automatic_enum</location>gtk_policy_automatic_enum</feature><symbol>,</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_policy_automatic_enum</location>gtk_policy_automatic_enum</feature><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_widget_show</location>gtk_widget_show</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_set_headers_visible</location>gtk_tree_view_set_headers_visible</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>,</symbol> <keyword>False</keyword><symbol>)</symbol>
+			<local>a_column</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_column_new</location>gtk_tree_view_column_new</feature>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_column_set_resizable</location>gtk_tree_view_column_set_resizable</feature> <symbol>(</symbol><local>a_column</local><symbol>,</symbol> <keyword>True</keyword><symbol>)</symbol>
+			<local>a_cell_renderer</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_cell_renderer_text_new</location>gtk_cell_renderer_text_new</feature>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_column_pack_end</location>gtk_tree_view_column_pack_end</feature> <symbol>(</symbol><local>a_column</local><symbol>,</symbol> <local>a_cell_renderer</local><symbol>,</symbol> <keyword>True</keyword><symbol>)</symbol>
+			<local>a_gtk_c_str</local> <symbol>:=</symbol> <keyword>create</keyword> <symbol>{</symbol><keyword>attached</keyword> <class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_set_with_eiffel_string</location>set_with_eiffel_string</feature><symbol> </symbol><symbol>(</symbol>&quot;text&quot;<symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_column_add_attribute</location>gtk_tree_view_column_add_attribute</feature> <symbol>(</symbol><local>a_column</local><symbol>,</symbol> <local>a_cell_renderer</local><symbol>,</symbol> <local>a_gtk_c_str</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_item</location>item</feature><symbol>,</symbol> <number>1</number><symbol>)</symbol>
+			<local>a_cell_renderer</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_cell_renderer_pixbuf_new</location>gtk_cell_renderer_pixbuf_new</feature>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_column_pack_end</location>gtk_tree_view_column_pack_end</feature> <symbol>(</symbol><local>a_column</local><symbol>,</symbol> <local>a_cell_renderer</local><symbol>,</symbol> <keyword>False</keyword><symbol>)</symbol>
+			<local>a_gtk_c_str</local> <symbol>:=</symbol> <keyword>create</keyword> <symbol>{</symbol><keyword>attached</keyword> <class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_set_with_eiffel_string</location>set_with_eiffel_string</feature><symbol> </symbol><symbol>(</symbol>&quot;pixbuf&quot;<symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_column_add_attribute</location>gtk_tree_view_column_add_attribute</feature> <symbol>(</symbol><local>a_column</local><symbol>,</symbol> <local>a_cell_renderer</local><symbol>,</symbol> <local>a_gtk_c_str</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_item</location>item</feature><symbol>,</symbol> <number>0</number><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_insert_column</location>gtk_tree_view_insert_column</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>,</symbol> <local>a_column</local><symbol>,</symbol> <number>1</number><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_list_imp.xml#f_previous_selection</location>previous_selection</feature> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_list_imp.xml#f_selected_items</location>selected_items</feature>
+			<local>a_selection</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_get_selection</location>gtk_tree_view_get_selection</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_any_imp.xml#f_real_signal_connect</location>real_signal_connect</feature><symbol> </symbol><symbol>(</symbol><local>a_selection</local><symbol>,</symbol> &quot;changed&quot;<symbol>,</symbol> <keyword>agent</keyword> <feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_gtk_marshal</location>gtk_marshal</feature><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines.xml#f_on_pnd_deferred_item_parent_selection_change</location>on_pnd_deferred_item_parent_selection_change</feature><symbol> </symbol><symbol>(</symbol><feature><include>False</include>internal_id</feature><symbol>)</symbol><symbol>,</symbol> <keyword>Void</keyword><symbol>)</symbol>
+			<feature><location>../implementation_interface/ev_item_pixmap_scaler_i.xml#f_initialize_pixmaps</location>initialize_pixmaps</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_needs_event_box</anchor><feature><location>../implementation_gtk/ev_list_imp.xml#f_needs_event_box</location>Needs_event_box</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class> <symbol>=</symbol> <keyword>True</keyword>
+			<comment>--</comment><comment> Give event box to Current.</comment>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_selected_item</anchor><feature><location>../implementation_gtk/ev_list_imp.xml#f_selected_item</location>selected_item</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_list_item.xml</location>EV_LIST_ITEM</class>
+			<comment>--</comment><comment> Item which is currently selected, for a multiple</comment>
+			<comment>--</comment><comment> selection.</comment>
+		<keyword>local</keyword>
+			<local>a_selection</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>a_tree_path_list</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>a_model</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>a_tree_path</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>a_int_ptr</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>mp</local><symbol>:</symbol> <class><include>False</include>MANAGED_POINTER</class>
+		<keyword>do</keyword>
+			<local>a_selection</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_get_selection</location>gtk_tree_view_get_selection</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>)</symbol>
+			<local>a_tree_path_list</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_selection_get_selected_rows</location>gtk_tree_selection_get_selected_rows</feature> <symbol>(</symbol><local>a_selection</local><symbol>,</symbol> <symbol>$</symbol><local>a_model</local><symbol>)</symbol>
+			<keyword>if</keyword> <local>a_tree_path_list</local> <symbol>/=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature> <keyword>then</keyword>
+				<local>a_tree_path</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_glist_struct_data</location>glist_struct_data</feature> <symbol>(</symbol><local>a_tree_path_list</local><symbol>)</symbol>
+				<local>a_int_ptr</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_path_get_indices</location>gtk_tree_path_get_indices</feature> <symbol>(</symbol><local>a_tree_path</local><symbol>)</symbol>
+				<keyword>create</keyword> <local>mp</local><dot>.</dot><feature><include>False</include>share_from_pointer</feature><symbol> </symbol><symbol>(</symbol><local>a_int_ptr</local><symbol>,</symbol> <symbol>{</symbol><class><include>False</include>PLATFORM</class><symbol>}</symbol><dot>.</dot><feature><include>False</include>integer_32_bytes</feature><symbol>)</symbol>
+				<keyword>Result</keyword> <symbol>:=</symbol> <symbol>(</symbol><feature><location>../implementation_gtk/ev_dynamic_list_imp.xml#f_child_array</location>child_array</feature> <symbol>@</symbol> <symbol>(</symbol><local>mp</local><dot>.</dot><feature><include>False</include>read_integer_32</feature><symbol> </symbol><symbol>(</symbol><number>0</number><symbol>)</symbol> <symbol>+</symbol> <number>1</number><symbol>)</symbol><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_path_list_free_contents</location>gtk_tree_path_list_free_contents</feature> <symbol>(</symbol><local>a_tree_path_list</local><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_g_list_free</location>g_list_free</feature> <symbol>(</symbol><local>a_tree_path_list</local><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_selected_items</anchor><feature><location>../implementation_gtk/ev_list_imp.xml#f_selected_items</location>selected_items</feature><symbol>:</symbol> <class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><class><location>../interface/ev_list_item.xml</location>EV_LIST_ITEM</class><symbol>]</symbol>
+			<comment>--</comment><comment> List of all the selected items. For a single</comment>
+			<comment>--</comment><comment> selection list, it gives a list with only one</comment>
+			<comment>--</comment><comment> element which is </comment><feature><location>../implementation_gtk/ev_list_imp.xml#f_selected_item</location>selected_item</feature><comment>. Therefore, one</comment>
+			<comment>--</comment><comment> should use </comment><feature><location>../implementation_gtk/ev_list_imp.xml#f_selected_item</location>selected_item</feature><comment> rather than</comment>
+			<comment>--</comment><comment> </comment><feature><location>../implementation_gtk/ev_list_imp.xml#f_selected_items</location>selected_items</feature><comment> for a single selection list.</comment>
+		<keyword>local</keyword>
+			<local>a_selection</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>a_tree_path_list</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>a_model</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>a_tree_path</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>a_int_ptr</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>mp</local><symbol>:</symbol> <class><include>False</include>MANAGED_POINTER</class>
+		<keyword>do</keyword>
+			<keyword>create</keyword> <keyword>Result</keyword><dot>.</dot><feature><include>False</include>make</feature><symbol> </symbol><symbol>(</symbol><number>0</number><symbol>)</symbol>
+			<local>a_selection</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_get_selection</location>gtk_tree_view_get_selection</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>)</symbol>
+			<local>a_tree_path_list</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_selection_get_selected_rows</location>gtk_tree_selection_get_selected_rows</feature> <symbol>(</symbol><local>a_selection</local><symbol>,</symbol> <symbol>$</symbol><local>a_model</local><symbol>)</symbol>
+			<keyword>if</keyword> <local>a_tree_path_list</local> <symbol>/=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature> <keyword>then</keyword>
+				<keyword>from</keyword>
+				<keyword>until</keyword>
+					<local>a_tree_path_list</local> <symbol>=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature>
+				<keyword>loop</keyword>
+					<local>a_tree_path</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_glist_struct_data</location>glist_struct_data</feature> <symbol>(</symbol><local>a_tree_path_list</local><symbol>)</symbol>
+					<local>a_int_ptr</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_path_get_indices</location>gtk_tree_path_get_indices</feature> <symbol>(</symbol><local>a_tree_path</local><symbol>)</symbol>
+					<keyword>create</keyword> <local>mp</local><dot>.</dot><feature><include>False</include>share_from_pointer</feature><symbol> </symbol><symbol>(</symbol><local>a_int_ptr</local><symbol>,</symbol> <symbol>{</symbol><class><include>False</include>PLATFORM</class><symbol>}</symbol><dot>.</dot><feature><include>False</include>integer_32_bytes</feature><symbol>)</symbol>
+					<keyword>Result</keyword><dot>.</dot><feature><include>False</include>extend</feature><symbol> </symbol><symbol>(</symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_dynamic_list_imp.xml#f_child_array</location>child_array</feature> <symbol>@</symbol> <symbol>(</symbol><local>mp</local><dot>.</dot><feature><include>False</include>read_integer_32</feature><symbol> </symbol><symbol>(</symbol><number>0</number><symbol>)</symbol> <symbol>+</symbol> <number>1</number><symbol>)</symbol><symbol>)</symbol><symbol>)</symbol>
+					<local>a_tree_path_list</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_glist_struct_next</location>glist_struct_next</feature> <symbol>(</symbol><local>a_tree_path_list</local><symbol>)</symbol>
+				<keyword>end</keyword>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_path_list_free_contents</location>gtk_tree_path_list_free_contents</feature> <symbol>(</symbol><local>a_tree_path_list</local><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_g_list_free</location>g_list_free</feature> <symbol>(</symbol><local>a_tree_path_list</local><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status Report</comment>
+
+	<anchor>f_multiple_selection_enabled</anchor><feature><location>../implementation_gtk/ev_list_imp.xml#f_multiple_selection_enabled</location>multiple_selection_enabled</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> True if the user can choose several items</comment>
+			<comment>--</comment><comment> False otherwise.</comment>
+		<keyword>local</keyword>
+			<local>a_selection</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>do</keyword>
+			<local>a_selection</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_get_selection</location>gtk_tree_view_get_selection</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>)</symbol>
+			<keyword>Result</keyword> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_selection_get_mode</location>gtk_tree_selection_get_mode</feature> <symbol>(</symbol><local>a_selection</local><symbol>)</symbol> <symbol>=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_selection_multiple_enum</location>gtk_selection_multiple_enum</feature>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status setting</comment>
+
+	<anchor>f_ensure_item_visible</anchor><feature><location>../implementation_gtk/ev_list_imp.xml#f_ensure_item_visible</location>ensure_item_visible</feature> <symbol>(</symbol><local>an_item</local><symbol>:</symbol> <class><location>../interface/ev_list_item.xml</location>EV_LIST_ITEM</class><symbol>)</symbol>
+			<comment>--</comment><comment> Ensure item </comment><quoted>an_index</quoted><comment> is visible in </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>local</keyword>
+			<local>list_item_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_list_item_imp.xml</location>EV_LIST_ITEM_IMP</class>
+			<local>l_list_iter</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_gtk_tree_iter_struct.xml</location>EV_GTK_TREE_ITER_STRUCT</class>
+			<local>a_path</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>do</keyword>
+			<local>list_item_imp</local> <symbol>?=</symbol> <local>an_item</local><dot>.</dot><feature><location>../interface/ev_list_item.xml#f_implementation</location>implementation</feature>
+			<keyword>check</keyword>
+					<local>list_item_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<local>l_list_iter</local> <symbol>:=</symbol> <local>list_item_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_list_item_imp.xml#f_list_iter</location>list_iter</feature>
+			<keyword>check</keyword>
+					<local>l_list_iter</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<local>a_path</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_model_get_path</location>gtk_tree_model_get_path</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_list_item_list_imp.xml#f_list_store</location>list_store</feature><symbol>,</symbol> <local>l_list_iter</local><dot>.</dot><feature><include>False</include>item</feature><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_scroll_to_cell</location>gtk_tree_view_scroll_to_cell</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>,</symbol> <local>a_path</local><symbol>,</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature><symbol>,</symbol> <keyword>False</keyword><symbol>,</symbol> <number>0</number><dot>.</dot><feature><include>False</include>to_real</feature><symbol>,</symbol> <number>0</number><dot>.</dot><feature><include>False</include>to_real</feature><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_path_free</location>gtk_tree_path_free</feature> <symbol>(</symbol><local>a_path</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_enable_multiple_selection</anchor><feature><location>../implementation_gtk/ev_list_imp.xml#f_enable_multiple_selection</location>enable_multiple_selection</feature>
+			<comment>--</comment><comment> Allow the user to do a multiple selection simply</comment>
+			<comment>--</comment><comment> by clicking on several choices.</comment>
+		<keyword>local</keyword>
+			<local>a_selection</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>do</keyword>
+			<local>a_selection</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_get_selection</location>gtk_tree_view_get_selection</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_selection_set_mode</location>gtk_tree_selection_set_mode</feature> <symbol>(</symbol><local>a_selection</local><symbol>,</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_selection_multiple_enum</location>gtk_selection_multiple_enum</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_disable_multiple_selection</anchor><feature><location>../implementation_gtk/ev_list_imp.xml#f_disable_multiple_selection</location>disable_multiple_selection</feature>
+			<comment>--</comment><comment> Allow the user to do only one selection. It is the</comment>
+			<comment>--</comment><comment> default status of the list.</comment>
+		<keyword>local</keyword>
+			<local>a_selection</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>do</keyword>
+			<local>a_selection</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_get_selection</location>gtk_tree_view_get_selection</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_selection_set_mode</location>gtk_tree_selection_set_mode</feature> <symbol>(</symbol><local>a_selection</local><symbol>,</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_selection_single_enum</location>gtk_selection_single_enum</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_select_item</anchor><feature><location>../implementation_gtk/ev_list_imp.xml#f_select_item</location>select_item</feature> <symbol>(</symbol><local>an_index</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Select an item at the one-based </comment><feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_index</location>index</feature><comment> of the list.</comment>
+		<keyword>local</keyword>
+			<local>a_selection</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>a_item_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_list_item_imp.xml</location>EV_LIST_ITEM_IMP</class>
+			<local>l_list_iter</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_gtk_tree_iter_struct.xml</location>EV_GTK_TREE_ITER_STRUCT</class>
+		<keyword>do</keyword>
+			<local>a_selection</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_get_selection</location>gtk_tree_view_get_selection</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>)</symbol>
+			<local>a_item_imp</local> <symbol>?=</symbol> <symbol>(</symbol><feature><location>../implementation_gtk/ev_dynamic_list_imp.xml#f_child_array</location>child_array</feature> <symbol>@</symbol> <local>an_index</local><symbol>)</symbol><dot>.</dot><feature><location>../interface/ev_list_item.xml#f_implementation</location>implementation</feature>
+			<keyword>check</keyword>
+					<local>a_item_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<local>l_list_iter</local> <symbol>:=</symbol> <local>a_item_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_list_item_imp.xml#f_list_iter</location>list_iter</feature>
+			<keyword>check</keyword>
+					<local>l_list_iter</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_selection_select_iter</location>gtk_tree_selection_select_iter</feature> <symbol>(</symbol><local>a_selection</local><symbol>,</symbol> <local>l_list_iter</local><dot>.</dot><feature><include>False</include>item</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_deselect_item</anchor><feature><location>../implementation_gtk/ev_list_imp.xml#f_deselect_item</location>deselect_item</feature> <symbol>(</symbol><local>an_index</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Unselect the item at the one-based </comment><feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_index</location>index</feature><comment>.</comment>
+		<keyword>local</keyword>
+			<local>a_selection</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>a_item_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_list_item_imp.xml</location>EV_LIST_ITEM_IMP</class>
+			<local>l_list_iter</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_gtk_tree_iter_struct.xml</location>EV_GTK_TREE_ITER_STRUCT</class>
+		<keyword>do</keyword>
+			<local>a_selection</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_get_selection</location>gtk_tree_view_get_selection</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>)</symbol>
+			<local>a_item_imp</local> <symbol>?=</symbol> <symbol>(</symbol><feature><location>../implementation_gtk/ev_dynamic_list_imp.xml#f_child_array</location>child_array</feature> <symbol>@</symbol> <local>an_index</local><symbol>)</symbol><dot>.</dot><feature><location>../interface/ev_list_item.xml#f_implementation</location>implementation</feature>
+			<keyword>check</keyword>
+					<local>a_item_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<local>l_list_iter</local> <symbol>:=</symbol> <local>a_item_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_list_item_imp.xml#f_list_iter</location>list_iter</feature>
+			<keyword>check</keyword>
+					<local>l_list_iter</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_selection_unselect_iter</location>gtk_tree_selection_unselect_iter</feature> <symbol>(</symbol><local>a_selection</local><symbol>,</symbol> <local>l_list_iter</local><dot>.</dot><feature><include>False</include>item</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_clear_selection</anchor><feature><location>../implementation_gtk/ev_list_imp.xml#f_clear_selection</location>clear_selection</feature>
+			<comment>--</comment><comment> Clear the selection of the list.</comment>
+		<keyword>local</keyword>
+			<local>a_selection</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>do</keyword>
+			<local>a_selection</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_get_selection</location>gtk_tree_view_get_selection</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_selection_unselect_all</location>gtk_tree_selection_unselect_all</feature> <symbol>(</symbol><local>a_selection</local><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> PND</comment>
+
+	<anchor>f_row_index_from_coords</anchor><feature><location>../implementation_gtk/ev_list_imp.xml#f_row_index_from_coords</location>row_index_from_coords</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Returns the row index at relative coordinate </comment><quoted>a_y</quoted><comment>.</comment>
+		<keyword>local</keyword>
+			<local>a_tree_path</local><symbol>,</symbol> <local>a_tree_column</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>a_success</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<local>a_int_ptr</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>mp</local><symbol>:</symbol> <class><include>False</include>MANAGED_POINTER</class>
+		<keyword>do</keyword>
+			<local>a_success</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_get_path_at_pos</location>gtk_tree_view_get_path_at_pos</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>,</symbol> <number>1</number><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <symbol>$</symbol><local>a_tree_path</local><dot>.</dot><feature><include>False</include>to_pointer</feature><symbol>,</symbol> <symbol>$</symbol><local>a_tree_column</local><dot>.</dot><feature><include>False</include>to_pointer</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature><symbol>)</symbol>
+			<keyword>if</keyword> <local>a_success</local> <keyword>then</keyword>
+				<local>a_int_ptr</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_path_get_indices</location>gtk_tree_path_get_indices</feature> <symbol>(</symbol><local>a_tree_path</local><symbol>)</symbol>
+				<keyword>create</keyword> <local>mp</local><dot>.</dot><feature><include>False</include>share_from_pointer</feature><symbol> </symbol><symbol>(</symbol><local>a_int_ptr</local><symbol>,</symbol> <symbol>{</symbol><class><include>False</include>PLATFORM</class><symbol>}</symbol><dot>.</dot><feature><include>False</include>integer_32_bytes</feature><symbol>)</symbol>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>mp</local><dot>.</dot><feature><include>False</include>read_integer_32</feature><symbol> </symbol><symbol>(</symbol><number>0</number><symbol>)</symbol> <symbol>+</symbol> <number>1</number>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_path_free</location>gtk_tree_path_free</feature> <symbol>(</symbol><local>a_tree_path</local><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_item_from_coords</anchor><feature><location>../implementation_gtk/ev_list_imp.xml#f_item_from_coords</location>item_from_coords</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_pnd_deferred_item.xml</location>EV_PND_DEFERRED_ITEM</class>
+			<comment>--</comment><comment> Returns the row at relative coordinate </comment><quoted>a_y</quoted>
+		<keyword>local</keyword>
+			<local>a_row_index</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+		<keyword>do</keyword>
+			<local>a_row_index</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_list_imp.xml#f_row_index_from_coords</location>row_index_from_coords</feature><symbol> </symbol><symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>)</symbol>
+			<keyword>if</keyword> <local>a_row_index</local> <symbol>&gt;</symbol> <number>0</number> <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>?=</symbol> <feature><location>../implementation_gtk/ev_dynamic_list_imp.xml#f_i_th</location>i_th</feature><symbol> </symbol><symbol>(</symbol><local>a_row_index</local><symbol>)</symbol><dot>.</dot><feature><location>../interface/ev_list_item.xml#f_implementation</location>implementation</feature>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_on_mouse_button_event</anchor><feature><location>../implementation_gtk/ev_list_imp.xml#f_on_mouse_button_event</location>on_mouse_button_event</feature> <symbol>(</symbol><local>a_type</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>a_button</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_x_tilt</local><symbol>,</symbol> <local>a_y_tilt</local><symbol>,</symbol> <local>a_pressure</local><symbol>:</symbol> <class><include>False</include>REAL_64</class><symbol>;</symbol> <local>a_screen_x</local><symbol>,</symbol> <local>a_screen_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Initialize a pick and drop transport.</comment>
+		<keyword>local</keyword>
+			<local>a_row_index</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+		<keyword>do</keyword>
+			<local>a_row_index</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_list_imp.xml#f_row_index_from_coords</location>row_index_from_coords</feature><symbol> </symbol><symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>)</symbol>
+			<keyword>if</keyword> <local>a_row_index</local> <symbol>&gt;</symbol> <number>0</number> <keyword>then</keyword>
+				<feature><location>../implementation_gtk/ev_list_item_list_imp.xml#f_pnd_row_imp</location>pnd_row_imp</feature> <symbol>?=</symbol> <feature><location>../implementation_gtk/ev_dynamic_list_imp.xml#f_i_th</location>i_th</feature><symbol> </symbol><symbol>(</symbol><local>a_row_index</local><symbol>)</symbol><dot>.</dot><feature><location>../interface/ev_list_item.xml#f_implementation</location>implementation</feature>
+				<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../implementation_gtk/ev_list_item_list_imp.xml#f_pnd_row_imp</location>pnd_row_imp</feature> <keyword>as</keyword> l_pnd_row_imp <keyword>and then</keyword> <keyword>not</keyword> <symbol>(</symbol><local>l_pnd_row_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_list_item_imp.xml#f_able_to_transport</location>able_to_transport</feature><symbol> </symbol><symbol>(</symbol><local>a_button</local><symbol>)</symbol> <keyword>or</keyword> <local>l_pnd_row_imp</local><dot>.</dot><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_mode_is_configurable_target_menu</location>mode_is_configurable_target_menu</feature><symbol>)</symbol> <keyword>then</keyword>
+					<feature><location>../implementation_gtk/ev_list_item_list_imp.xml#f_pnd_row_imp</location>pnd_row_imp</feature> <symbol>:=</symbol> <keyword>Void</keyword>
+				<keyword>end</keyword>
+			<keyword>else</keyword>
+				<feature><location>../implementation_gtk/ev_list_item_list_imp.xml#f_pnd_row_imp</location>pnd_row_imp</feature> <symbol>:=</symbol> <keyword>Void</keyword>
+			<keyword>end</keyword>
+			<keyword><location>../implementation_gtk/ev_pick_and_dropable_imp.xml#f_on_mouse_button_event</location>Precursor</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_list_item_list_imp.xml</location>EV_LIST_ITEM_LIST_IMP</class><symbol>}</symbol><symbol> </symbol><symbol>(</symbol><local>a_type</local><symbol>,</symbol> <local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>a_button</local><symbol>,</symbol> <local>a_x_tilt</local><symbol>,</symbol> <local>a_y_tilt</local><symbol>,</symbol> <local>a_pressure</local><symbol>,</symbol> <local>a_screen_x</local><symbol>,</symbol> <local>a_screen_y</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_row_height</anchor><feature><location>../implementation_gtk/ev_list_imp.xml#f_row_height</location>row_height</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Height of rows in </comment><quoted>Current</quoted>
+			<comment>--</comment><comment> (export status </comment><comment>{</comment><comment>NONE</comment><comment>}</comment><comment>)</comment>
+		<keyword>local</keyword>
+			<local>a_column_ptr</local><symbol>,</symbol> <local>a_cell_rend_list</local><symbol>,</symbol> <local>a_cell_rend</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>a_gtk_c_str</local><symbol>:</symbol> <class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class>
+			<local>a_vert_sep</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+		<keyword>do</keyword>
+			<local>a_column_ptr</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_get_column</location>gtk_tree_view_get_column</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>,</symbol> <number>0</number><symbol>)</symbol>
+			<local>a_cell_rend_list</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_column_get_cell_renderers</location>gtk_tree_view_column_get_cell_renderers</feature> <symbol>(</symbol><local>a_column_ptr</local><symbol>)</symbol>
+			<local>a_cell_rend</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_g_list_nth_data</location>g_list_nth_data</feature> <symbol>(</symbol><local>a_cell_rend_list</local><symbol>,</symbol> <number>0</number><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_cell_renderer_get_fixed_size</location>gtk_cell_renderer_get_fixed_size</feature> <symbol>(</symbol><local>a_cell_rend</local><symbol>,</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature><symbol>,</symbol> <symbol>$</symbol><keyword>Result</keyword><dot>.</dot><feature><include>False</include>to_pointer</feature><symbol>)</symbol>
+			<local>a_gtk_c_str</local> <symbol>:=</symbol> <keyword>create</keyword> <symbol>{</symbol><keyword>attached</keyword> <class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_set_with_eiffel_string</location>set_with_eiffel_string</feature><symbol> </symbol><symbol>(</symbol><keyword>once</keyword> &quot;vertical-separator&quot;<symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_widget_style_get_integer</location>gtk_widget_style_get_integer</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>,</symbol> <local>a_gtk_c_str</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_item</location>item</feature><symbol>,</symbol> <symbol>$</symbol><local>a_vert_sep</local><symbol>)</symbol>
+			<keyword>Result</keyword> <symbol>:=</symbol> <keyword>Result</keyword> <symbol>+</symbol> <local>a_vert_sep</local>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_visual_widget</anchor><feature><location>../implementation_gtk/ev_list_imp.xml#f_visual_widget</location>visual_widget</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Pointer to the widget viewed by user.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_list_imp.xml#f_tree_view</location>tree_view</feature>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_any.xml</location>EV_ANY</class><symbol>,</symbol> <class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_interface</anchor><feature><location>../implementation_gtk/ev_list_imp.xml#f_interface</location>interface</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_list.xml</location>EV_LIST</class>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_intermediary_routines.xml</location>EV_INTERMEDIARY_ROUTINES</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_previous_selection</anchor><feature><location>../implementation_gtk/ev_list_imp.xml#f_previous_selection</location>previous_selection</feature><symbol>:</symbol> <class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><class><location>../interface/ev_list_item.xml</location>EV_LIST_ITEM</class><symbol>]</symbol>
+			<comment>--</comment><comment> List of selected items from last selection change</comment>
+
+	<anchor>f_call_selection_action_sequences</anchor><feature><location>../implementation_gtk/ev_list_imp.xml#f_call_selection_action_sequences</location>call_selection_action_sequences</feature>
+			<comment>--</comment><comment> Call appropriate selection and deselection action sequences</comment>
+		<keyword>local</keyword>
+			<local>new_selection</local><symbol>:</symbol> <class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><class><location>../interface/ev_list_item.xml</location>EV_LIST_ITEM</class><symbol>]</symbol>
+			<local>newly_selected_items</local><symbol>:</symbol> <class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><class><location>../implementation_gtk/ev_list_item_imp.xml</location>EV_LIST_ITEM_IMP</class><symbol>]</symbol>
+			<local>an_item</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_list_item_imp.xml</location>EV_LIST_ITEM_IMP</class>
+		<keyword>do</keyword>
+			<local>new_selection</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_list_imp.xml#f_selected_items</location>selected_items</feature>
+			<keyword>create</keyword> <local>newly_selected_items</local><dot>.</dot><feature><include>False</include>make</feature><symbol> </symbol><symbol>(</symbol><number>0</number><symbol>)</symbol>
+			<keyword>from</keyword>
+				<local>new_selection</local><dot>.</dot><feature><include>False</include>start</feature>
+			<keyword>until</keyword>
+				<local>new_selection</local><dot>.</dot><feature><include>False</include>off</feature>
+			<keyword>loop</keyword>
+				<keyword>if</keyword> <keyword>not</keyword> <feature><location>../implementation_gtk/ev_list_imp.xml#f_previous_selection</location>previous_selection</feature><dot>.</dot><feature><include>False</include>has</feature><symbol> </symbol><symbol>(</symbol><local>new_selection</local><dot>.</dot><feature><include>False</include>item</feature><symbol>)</symbol> <keyword>then</keyword>
+					<local>an_item</local> <symbol>?=</symbol> <local>new_selection</local><dot>.</dot><feature><include>False</include>item</feature><dot>.</dot><feature><location>../interface/ev_list_item.xml#f_implementation</location>implementation</feature>
+					<keyword>check</keyword>
+							<local>an_item</local> <symbol>/=</symbol> <keyword>Void</keyword>
+					<keyword>then</keyword>
+					<keyword>end</keyword>
+					<local>newly_selected_items</local><dot>.</dot><feature><include>False</include>extend</feature><symbol> </symbol><symbol>(</symbol><local>an_item</local><symbol>)</symbol>
+				<keyword>end</keyword>
+				<feature><location>../implementation_gtk/ev_list_imp.xml#f_previous_selection</location>previous_selection</feature><dot>.</dot><feature><include>False</include>prune_all</feature><symbol> </symbol><symbol>(</symbol><local>new_selection</local><dot>.</dot><feature><include>False</include>item</feature><symbol>)</symbol>
+				<local>new_selection</local><dot>.</dot><feature><include>False</include>forth</feature>
+			<keyword>end</keyword>
+			<keyword>from</keyword>
+				<feature><location>../implementation_gtk/ev_list_imp.xml#f_previous_selection</location>previous_selection</feature><dot>.</dot><feature><include>False</include>start</feature>
+			<keyword>until</keyword>
+				<feature><location>../implementation_gtk/ev_list_imp.xml#f_previous_selection</location>previous_selection</feature><dot>.</dot><feature><include>False</include>off</feature>
+			<keyword>loop</keyword>
+				<local>an_item</local> <symbol>?=</symbol> <feature><location>../implementation_gtk/ev_list_imp.xml#f_previous_selection</location>previous_selection</feature><dot>.</dot><feature><include>False</include>item</feature><dot>.</dot><feature><location>../interface/ev_list_item.xml#f_implementation</location>implementation</feature>
+				<keyword>check</keyword>
+						<local>an_item</local> <symbol>/=</symbol> <keyword>Void</keyword>
+				<keyword>then</keyword>
+				<keyword>end</keyword>
+				<keyword>if</keyword> <local>an_item</local><dot>.</dot><feature><location>../implementation_interface/ev_list_item_action_sequences_i.xml#f_deselect_actions_internal</location>deselect_actions_internal</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+					<local>an_item</local><dot>.</dot><feature><location>../implementation_interface/ev_list_item_action_sequences_i.xml#f_deselect_actions</location>deselect_actions</feature><dot>.</dot><feature><location>../interface/ev_lite_action_sequence.xml#f_call</location>call</feature><symbol> </symbol><symbol>(</symbol><keyword>Void</keyword><symbol>)</symbol>
+				<keyword>end</keyword>
+				<keyword>if</keyword> <feature><location>../implementation_interface/ev_list_item_list_action_sequences_i.xml#f_deselect_actions_internal</location>deselect_actions_internal</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+					<feature><location>../implementation_interface/ev_list_item_list_action_sequences_i.xml#f_deselect_actions_internal</location>deselect_actions_internal</feature><dot>.</dot><feature><location>../interface/ev_lite_action_sequence.xml#f_call</location>call</feature><symbol> </symbol><symbol>(</symbol><symbol>[</symbol><local>an_item</local><dot>.</dot><feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature><symbol>]</symbol><symbol>)</symbol>
+				<keyword>end</keyword>
+				<feature><location>../implementation_gtk/ev_list_imp.xml#f_previous_selection</location>previous_selection</feature><dot>.</dot><feature><include>False</include>forth</feature>
+			<keyword>end</keyword>
+			<keyword>from</keyword>
+				<local>newly_selected_items</local><dot>.</dot><feature><include>False</include>start</feature>
+			<keyword>until</keyword>
+				<local>newly_selected_items</local><dot>.</dot><feature><include>False</include>off</feature>
+			<keyword>loop</keyword>
+				<keyword>if</keyword> <local>newly_selected_items</local><dot>.</dot><feature><include>False</include>item</feature><dot>.</dot><feature><location>../implementation_interface/ev_list_item_action_sequences_i.xml#f_select_actions_internal</location>select_actions_internal</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+					<local>newly_selected_items</local><dot>.</dot><feature><include>False</include>item</feature><dot>.</dot><feature><location>../implementation_interface/ev_list_item_action_sequences_i.xml#f_select_actions</location>select_actions</feature><dot>.</dot><feature><location>../interface/ev_lite_action_sequence.xml#f_call</location>call</feature><symbol> </symbol><symbol>(</symbol><keyword>Void</keyword><symbol>)</symbol>
+				<keyword>end</keyword>
+				<keyword>if</keyword> <feature><location>../implementation_interface/ev_list_item_list_action_sequences_i.xml#f_select_actions_internal</location>select_actions_internal</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+					<feature><location>../implementation_interface/ev_list_item_list_action_sequences_i.xml#f_select_actions_internal</location>select_actions_internal</feature><dot>.</dot><feature><location>../interface/ev_lite_action_sequence.xml#f_call</location>call</feature><symbol> </symbol><symbol>(</symbol><symbol>[</symbol><local>newly_selected_items</local><dot>.</dot><feature><include>False</include>item</feature><dot>.</dot><feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature><symbol>]</symbol><symbol>)</symbol>
+				<keyword>end</keyword>
+				<local>newly_selected_items</local><dot>.</dot><feature><include>False</include>forth</feature>
+			<keyword>end</keyword>
+			<feature><location>../implementation_gtk/ev_list_imp.xml#f_previous_selection</location>previous_selection</feature> <symbol>:=</symbol> <local>new_selection</local>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_disable_default_key_processing</anchor><feature><location>../implementation_gtk/ev_list_imp.xml#f_disable_default_key_processing</location>disable_default_key_processing</feature>
+			<comment>--</comment><comment> Ensure default key processing is not performed.</comment>
+		<keyword>do</keyword>
+			<keyword><location>../implementation_interface/ev_list_i.xml#f_disable_default_key_processing</location>Precursor</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_list_i.xml</location>EV_LIST_I</class><symbol>}</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_set_enable_search</location>gtk_tree_view_set_enable_search</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>,</symbol> <keyword>False</keyword><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_tree_view</anchor><feature><location>../implementation_gtk/ev_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Pointer to the view widget used to display the model within </comment><quoted>Current</quoted>
+
+	<anchor>f_pixmaps_size_changed</anchor><feature><location>../implementation_gtk/ev_list_imp.xml#f_pixmaps_size_changed</location>pixmaps_size_changed</feature>
+			<comment>--</comment><comment> The size of the displayed pixmaps has just</comment>
+			<comment>--</comment><comment> changed.</comment>
+		<keyword>do</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_vertical_adjustment_struct</anchor><feature><location>../implementation_gtk/ev_list_imp.xml#f_vertical_adjustment_struct</location>vertical_adjustment_struct</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Pointer to vertical adjustment struct use in the scrollbar.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_range_struct_adjustment</location>gtk_range_struct_adjustment</feature> <symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_scrolled_window_struct_vscrollbar</location>gtk_scrolled_window_struct_vscrollbar</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_list_imp.xml#f_scrollable_area</location>scrollable_area</feature><symbol>)</symbol><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2017, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_gtk/ev_list_imp.xml</location>EV_LIST_IMP</class></system>
+

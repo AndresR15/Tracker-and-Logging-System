@@ -1,0 +1,729 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Vision tree node. GTK+ implementation.&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2017-03-27 13:31:29 -0700 (Mon, 27 Mar 2017) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 100058 $&quot;</string>
+
+<keyword>class</keyword> 
+	<class><location>../implementation_gtk/ev_tree_node_imp.xml</location>EV_TREE_NODE_IMP</class>
+
+<keyword>inherit</keyword>
+	<class><location>../implementation_interface/ev_tree_node_i.xml</location>EV_TREE_NODE_I</class>
+		<keyword>export</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines.xml</location>EV_GTK_DEPENDENT_INTERMEDIARY_ROUTINES</class><symbol>}</symbol> <feature><location>../implementation_interface/ev_tree_node_action_sequences_i.xml#f_expand_actions_internal</location>expand_actions_internal</feature><symbol>,</symbol> <feature><location>../implementation_interface/ev_tree_node_action_sequences_i.xml#f_collapse_actions_internal</location>collapse_actions_internal</feature>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_interface</location>interface</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_reset_pebble_function</location>reset_pebble_function</feature>
+		<keyword>end</keyword>
+
+	<class><location>../implementation_gtk/ev_item_list_imp.xml</location>EV_ITEM_LIST_IMP</class> <symbol>[</symbol><class><location>../interface/ev_tree_node.xml</location>EV_TREE_NODE</class><symbol>]</symbol>
+		<keyword>export</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/ev_tree_imp.xml</location>EV_TREE_IMP</class><symbol>}</symbol> <feature><location>../implementation_gtk/ev_dynamic_list_imp.xml#f_child_array</location>child_array</feature>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_interface</location>interface</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_make</location>make</feature>
+		<keyword>end</keyword>
+
+	<class><location>../implementation_gtk/ev_pnd_deferred_item.xml</location>EV_PND_DEFERRED_ITEM</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_interface</location>interface</feature>
+		<keyword>end</keyword>
+
+<keyword>create</keyword> 
+	<feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_make</location>make</feature>
+
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Initialization</comment>
+
+	<anchor>f_destroy</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_destroy</location>destroy</feature>
+			<comment>--</comment><comment> Clean up </comment><quoted>Current</quoted>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_parent_imp</location>parent_imp</feature> <keyword>as</keyword> l_parent_imp <keyword>then</keyword>
+				<local>l_parent_imp</local><dot>.</dot><feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_prune</location>prune</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature><symbol>)</symbol>
+			<keyword>end</keyword>
+			<feature><location>../implementation_interface/ev_any_i.xml#f_set_is_destroyed</location>set_is_destroyed</feature><symbol> </symbol><symbol>(</symbol><keyword>True</keyword><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_old_make</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_old_make</location>old_make</feature> <symbol>(</symbol><local>an_interface</local><symbol>:</symbol> <keyword>attached</keyword> <keyword>like</keyword> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_interface</location>interface</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Create the tree item.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_interface/ev_any_i.xml#f_assign_interface</location>assign_interface</feature><symbol> </symbol><symbol>(</symbol><local>an_interface</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_make</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_make</location>make</feature>
+			<comment>--</comment><comment> Creation routine and initialization for </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_remove_internal_text</location>remove_internal_text</feature>
+			<keyword><location>../implementation_gtk/ev_dynamic_list_imp.xml#f_make</location>Precursor</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status report</comment>
+
+	<anchor>f_is_selected</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_is_selected</location>is_selected</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is the item selected?</comment>
+		<keyword>local</keyword>
+			<local>a_tree_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_tree_imp.xml</location>EV_TREE_IMP</class>
+		<keyword>do</keyword>
+			<local>a_tree_imp</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_parent_tree_imp</location>parent_tree_imp</feature>
+			<keyword>if</keyword> <local>a_tree_imp</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>a_tree_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_tree_imp.xml#f_selected_item</location>selected_item</feature> <symbol>=</symbol> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_interface</location>interface</feature>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_is_expanded</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_is_expanded</location>is_expanded</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> is the item expanded?</comment>
+		<keyword>local</keyword>
+			<local>a_tree_path</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>par_tree</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_tree_imp.xml</location>EV_TREE_IMP</class>
+			<local>l_list_iter</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_gtk_tree_iter_struct.xml</location>EV_GTK_TREE_ITER_STRUCT</class>
+		<keyword>do</keyword>
+			<local>par_tree</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_parent_tree_imp</location>parent_tree_imp</feature>
+			<keyword>check</keyword>
+					<local>par_tree</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<local>l_list_iter</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_list_iter</location>list_iter</feature>
+			<keyword>check</keyword>
+					<local>l_list_iter</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<local>a_tree_path</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_model_get_path</location>gtk_tree_model_get_path</feature> <symbol>(</symbol><local>par_tree</local><dot>.</dot><feature><location>../implementation_gtk/ev_tree_imp.xml#f_tree_store</location>tree_store</feature><symbol>,</symbol> <local>l_list_iter</local><dot>.</dot><feature><include>False</include>item</feature><symbol>)</symbol>
+			<keyword>Result</keyword> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_row_expanded</location>gtk_tree_view_row_expanded</feature> <symbol>(</symbol><local>par_tree</local><dot>.</dot><feature><location>../implementation_gtk/ev_tree_imp.xml#f_tree_view</location>tree_view</feature><symbol>,</symbol> <local>a_tree_path</local><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_path_free</location>gtk_tree_path_free</feature> <symbol>(</symbol><local>a_tree_path</local><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Measurement</comment>
+
+	<anchor>f_x_position</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_x_position</location>x_position</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Horizontal offset relative to parent </comment><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_x_position</location>x_position</feature><comment> in pixels.</comment>
+		<keyword>local</keyword>
+			<local>l_h_adjust</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>l_tree_imp</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_parent_tree_imp</location>parent_tree_imp</feature>
+		<keyword>do</keyword>
+			<local>l_tree_imp</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_parent_tree_imp</location>parent_tree_imp</feature>
+			<keyword>if</keyword> <local>l_tree_imp</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<local>l_h_adjust</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_scrolled_window_get_hadjustment</location>gtk_scrolled_window_get_hadjustment</feature> <symbol>(</symbol><local>l_tree_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_tree_imp.xml#f_scrollable_area</location>scrollable_area</feature><symbol>)</symbol>
+				<keyword>if</keyword> <local>l_h_adjust</local> <symbol>/=</symbol> <feature><include>False</include>default_pointer</feature> <keyword>then</keyword>
+					<keyword>Result</keyword> <symbol>:=</symbol> <symbol>-</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_adjustment_struct_value</location>gtk_adjustment_struct_value</feature> <symbol>(</symbol><local>l_h_adjust</local><symbol>)</symbol><dot>.</dot><feature><include>False</include>rounded</feature>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_y_position</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_y_position</location>y_position</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Vertical offset relative to parent </comment><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_y_position</location>y_position</feature><comment> in pixels.</comment>
+		<keyword>local</keyword>
+			<local>l_v_adjust</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>l_tree_imp</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_parent_tree_imp</location>parent_tree_imp</feature>
+		<keyword>do</keyword>
+			<local>l_tree_imp</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_parent_tree_imp</location>parent_tree_imp</feature>
+			<keyword>if</keyword> <local>l_tree_imp</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <symbol>(</symbol><feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_index</location>index</feature> <symbol>-</symbol> <number>1</number><symbol>)</symbol> <symbol>*</symbol> <local>l_tree_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_tree_imp.xml#f_row_height</location>row_height</feature>
+				<local>l_v_adjust</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_scrolled_window_get_vadjustment</location>gtk_scrolled_window_get_vadjustment</feature> <symbol>(</symbol><local>l_tree_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_tree_imp.xml#f_scrollable_area</location>scrollable_area</feature><symbol>)</symbol>
+				<keyword>if</keyword> <local>l_v_adjust</local> <symbol>/=</symbol> <feature><include>False</include>default_pointer</feature> <keyword>then</keyword>
+					<keyword>Result</keyword> <symbol>:=</symbol> <keyword>Result</keyword> <symbol>-</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_adjustment_struct_value</location>gtk_adjustment_struct_value</feature> <symbol>(</symbol><local>l_v_adjust</local><symbol>)</symbol><dot>.</dot><feature><include>False</include>rounded</feature>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_screen_x</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_screen_x</location>screen_x</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Horizontal offset relative to screen.</comment>
+		<keyword>local</keyword>
+			<local>l_tree_imp</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_parent_tree_imp</location>parent_tree_imp</feature>
+		<keyword>do</keyword>
+			<local>l_tree_imp</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_parent_tree_imp</location>parent_tree_imp</feature>
+			<keyword>if</keyword> <local>l_tree_imp</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>l_tree_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_widget_imp.xml#f_screen_x</location>screen_x</feature> <symbol>+</symbol> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_x_position</location>x_position</feature>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_screen_y</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_screen_y</location>screen_y</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Vertical offset relative to screen.</comment>
+		<keyword>local</keyword>
+			<local>l_tree_imp</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_parent_tree_imp</location>parent_tree_imp</feature>
+		<keyword>do</keyword>
+			<local>l_tree_imp</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_parent_tree_imp</location>parent_tree_imp</feature>
+			<keyword>if</keyword> <local>l_tree_imp</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>l_tree_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_widget_imp.xml#f_screen_y</location>screen_y</feature> <symbol>+</symbol> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_y_position</location>y_position</feature>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_width</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_width</location>width</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Horizontal size in pixels.</comment>
+		<keyword>local</keyword>
+			<local>l_tree_imp</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_parent_tree_imp</location>parent_tree_imp</feature>
+		<keyword>do</keyword>
+			<local>l_tree_imp</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_parent_tree_imp</location>parent_tree_imp</feature>
+			<keyword>if</keyword> <local>l_tree_imp</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>l_tree_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_widget_imp.xml#f_width</location>width</feature>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_height</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_height</location>height</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Vertical size in pixels.</comment>
+		<keyword>local</keyword>
+			<local>l_tree_imp</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_parent_tree_imp</location>parent_tree_imp</feature>
+		<keyword>do</keyword>
+			<local>l_tree_imp</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_parent_tree_imp</location>parent_tree_imp</feature>
+			<keyword>if</keyword> <local>l_tree_imp</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>l_tree_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_tree_imp.xml#f_row_height</location>row_height</feature>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_minimum_width</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_minimum_width</location>minimum_width</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Minimum horizontal size in pixels.</comment>
+		<keyword>local</keyword>
+			<local>l_tree_imp</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_parent_tree_imp</location>parent_tree_imp</feature>
+		<keyword>do</keyword>
+			<local>l_tree_imp</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_parent_tree_imp</location>parent_tree_imp</feature>
+			<keyword>if</keyword> <local>l_tree_imp</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>l_tree_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_widget_imp.xml#f_minimum_width</location>minimum_width</feature>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_minimum_height</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_minimum_height</location>minimum_height</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Minimum vertical size in pixels.</comment>
+		<keyword>local</keyword>
+			<local>l_tree_imp</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_parent_tree_imp</location>parent_tree_imp</feature>
+		<keyword>do</keyword>
+			<local>l_tree_imp</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_parent_tree_imp</location>parent_tree_imp</feature>
+			<keyword>if</keyword> <local>l_tree_imp</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>l_tree_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_tree_imp.xml#f_row_height</location>row_height</feature>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Status setting</comment>
+
+	<anchor>f_enable_select</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_enable_select</location>enable_select</feature>
+			<comment>--</comment><comment> Select </comment><quoted>Current</quoted><comment> in its parent.</comment>
+		<keyword>local</keyword>
+			<local>a_selection</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>par_tree</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_tree_imp.xml</location>EV_TREE_IMP</class>
+			<local>l_list_iter</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_gtk_tree_iter_struct.xml</location>EV_GTK_TREE_ITER_STRUCT</class>
+		<keyword>do</keyword>
+			<local>par_tree</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_parent_tree_imp</location>parent_tree_imp</feature>
+			<keyword>if</keyword> <local>par_tree</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<local>l_list_iter</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_list_iter</location>list_iter</feature>
+				<keyword>check</keyword>
+						<local>l_list_iter</local> <symbol>/=</symbol> <keyword>Void</keyword>
+				<keyword>then</keyword>
+				<keyword>end</keyword>
+				<local>a_selection</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_get_selection</location>gtk_tree_view_get_selection</feature> <symbol>(</symbol><local>par_tree</local><dot>.</dot><feature><location>../implementation_gtk/ev_tree_imp.xml#f_tree_view</location>tree_view</feature><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_selection_select_iter</location>gtk_tree_selection_select_iter</feature> <symbol>(</symbol><local>a_selection</local><symbol>,</symbol> <local>l_list_iter</local><dot>.</dot><feature><include>False</include>item</feature><symbol>)</symbol>
+				<local>par_tree</local><dot>.</dot><feature><location>../implementation_gtk/ev_tree_imp.xml#f_ensure_item_visible</location>ensure_item_visible</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_disable_select</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_disable_select</location>disable_select</feature>
+			<comment>--</comment><comment> Disable selection of </comment><quoted>Current</quoted><comment> in its parent.</comment>
+		<keyword>local</keyword>
+			<local>a_selection</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>par_tree</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_tree_imp.xml</location>EV_TREE_IMP</class>
+			<local>l_list_iter</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_gtk_tree_iter_struct.xml</location>EV_GTK_TREE_ITER_STRUCT</class>
+		<keyword>do</keyword>
+			<local>par_tree</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_parent_tree_imp</location>parent_tree_imp</feature>
+			<keyword>if</keyword> <local>par_tree</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<local>l_list_iter</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_list_iter</location>list_iter</feature>
+				<keyword>check</keyword>
+						<local>l_list_iter</local> <symbol>/=</symbol> <keyword>Void</keyword>
+				<keyword>then</keyword>
+				<keyword>end</keyword>
+				<local>a_selection</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_get_selection</location>gtk_tree_view_get_selection</feature> <symbol>(</symbol><local>par_tree</local><dot>.</dot><feature><location>../implementation_gtk/ev_tree_imp.xml#f_tree_view</location>tree_view</feature><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_selection_unselect_iter</location>gtk_tree_selection_unselect_iter</feature> <symbol>(</symbol><local>a_selection</local><symbol>,</symbol> <local>l_list_iter</local><dot>.</dot><feature><include>False</include>item</feature><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_set_expand</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_set_expand</location>set_expand</feature> <symbol>(</symbol><local>a_flag</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class><symbol>)</symbol>
+			<comment>--</comment><comment> Expand the item if </comment><quoted>flag</quoted><comment>, collapse it otherwise.</comment>
+		<keyword>local</keyword>
+			<local>a_tree_path</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>par_tree</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_tree_imp.xml</location>EV_TREE_IMP</class>
+			<local>a_success</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<local>l_list_iter</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_gtk_tree_iter_struct.xml</location>EV_GTK_TREE_ITER_STRUCT</class>
+		<keyword>do</keyword>
+			<local>par_tree</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_parent_tree_imp</location>parent_tree_imp</feature>
+			<keyword>check</keyword>
+					<local>par_tree</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<local>l_list_iter</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_list_iter</location>list_iter</feature>
+			<keyword>check</keyword>
+					<local>l_list_iter</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<local>a_tree_path</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_model_get_path</location>gtk_tree_model_get_path</feature> <symbol>(</symbol><local>par_tree</local><dot>.</dot><feature><location>../implementation_gtk/ev_tree_imp.xml#f_tree_store</location>tree_store</feature><symbol>,</symbol> <local>l_list_iter</local><dot>.</dot><feature><include>False</include>item</feature><symbol>)</symbol>
+			<keyword>if</keyword> <local>a_flag</local> <keyword>then</keyword>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_expand_to_path</location>gtk_tree_view_expand_to_path</feature> <symbol>(</symbol><local>par_tree</local><dot>.</dot><feature><location>../implementation_gtk/ev_tree_imp.xml#f_tree_view</location>tree_view</feature><symbol>,</symbol> <local>a_tree_path</local><symbol>)</symbol>
+			<keyword>else</keyword>
+				<local>a_success</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_collapse_row</location>gtk_tree_view_collapse_row</feature> <symbol>(</symbol><local>par_tree</local><dot>.</dot><feature><location>../implementation_gtk/ev_tree_imp.xml#f_tree_view</location>tree_view</feature><symbol>,</symbol> <local>a_tree_path</local><symbol>)</symbol>
+			<keyword>end</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_path_free</location>gtk_tree_path_free</feature> <symbol>(</symbol><local>a_tree_path</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_set_text</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_set_text</location>set_text</feature> <symbol>(</symbol><local>a_text</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set 'text' to 'a_text'</comment>
+		<keyword>local</keyword>
+			<local>par_tree</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_tree_imp.xml</location>EV_TREE_IMP</class>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_internal_text</location>internal_text</feature> <symbol>:=</symbol> <local>a_text</local><dot>.</dot><feature><include>False</include>as_string_32</feature><dot>.</dot><feature><include>False</include>twin</feature>
+			<local>par_tree</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_parent_tree_imp</location>parent_tree_imp</feature>
+			<keyword>if</keyword> <local>par_tree</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<local>par_tree</local><dot>.</dot><feature><location>../implementation_gtk/ev_tree_imp.xml#f_set_text_on_position</location>set_text_on_position</feature><symbol> </symbol><symbol>(</symbol><keyword>Current</keyword><symbol>,</symbol> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_internal_text</location>internal_text</feature><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> PND</comment>
+
+	<anchor>f_enable_transport</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_enable_transport</location>enable_transport</feature>
+			<comment>--</comment><comment> Enable PND transport</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_is_transport_enabled</location>is_transport_enabled</feature> <symbol>:=</symbol> <keyword>True</keyword>
+			<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_parent_tree_imp</location>parent_tree_imp</feature> <keyword>as</keyword> l_parent_tree_imp <keyword>then</keyword>
+				<local>l_parent_tree_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_tree_imp.xml#f_update_pnd_status</location>update_pnd_status</feature>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_disable_transport</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_disable_transport</location>disable_transport</feature>
+			<comment>--</comment><comment> Disable PND transport</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_is_transport_enabled</location>is_transport_enabled</feature> <symbol>:=</symbol> <keyword>False</keyword>
+			<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_parent_tree_imp</location>parent_tree_imp</feature> <keyword>as</keyword> l_parent_tree_imp <keyword>then</keyword>
+				<local>l_parent_tree_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_tree_imp.xml#f_update_pnd_status</location>update_pnd_status</feature>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_draw_rubber_band</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_draw_rubber_band</location>draw_rubber_band</feature>
+			<comment>--</comment><comment> Erase previously drawn rubber band.</comment>
+			<comment>--</comment><comment> Draw a rubber band between initial pick point and cursor.</comment>
+		<keyword>do</keyword>
+			<keyword>check</keyword>
+				<tag>do_not_call</tag><symbol>:</symbol> <keyword>False</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_erase_rubber_band</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_erase_rubber_band</location>erase_rubber_band</feature>
+			<comment>--</comment><comment> Erase previously drawn rubber band.</comment>
+		<keyword>do</keyword>
+			<keyword>check</keyword>
+				<tag>do_not_call</tag><symbol>:</symbol> <keyword>False</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_enable_capture</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_enable_capture</location>enable_capture</feature>
+			<comment>--</comment><comment> Grab the user input.</comment>
+		<keyword>do</keyword>
+			<keyword>check</keyword>
+				<tag>do_not_call</tag><symbol>:</symbol> <keyword>False</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_disable_capture</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_disable_capture</location>disable_capture</feature>
+			<comment>--</comment><comment> Ungrab the user input.</comment>
+		<keyword>do</keyword>
+			<keyword>check</keyword>
+				<tag>do_not_call</tag><symbol>:</symbol> <keyword>False</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_start_transport</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_start_transport</location>start_transport</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>a_button</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_press</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class><symbol>;</symbol> <local>a_x_tilt</local><symbol>,</symbol> <local>a_y_tilt</local><symbol>,</symbol> <local>a_pressure</local><symbol>:</symbol> <class><include>False</include>REAL_64</class><symbol>;</symbol> <local>a_screen_x</local><symbol>,</symbol> <local>a_screen_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_menu_only</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class><symbol>)</symbol>
+			<comment>--</comment><comment> Start PND transport (not needed)</comment>
+		<keyword>do</keyword>
+			<keyword>check</keyword>
+				<tag>do_not_call</tag><symbol>:</symbol> <keyword>False</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_end_transport</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_end_transport</location>end_transport</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>a_button</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_x_tilt</local><symbol>,</symbol> <local>a_y_tilt</local><symbol>,</symbol> <local>a_pressure</local><symbol>:</symbol> <class><include>False</include>REAL_64</class><symbol>;</symbol> <local>a_screen_x</local><symbol>,</symbol> <local>a_screen_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> End PND transport (not needed)</comment>
+		<keyword>do</keyword>
+			<keyword>check</keyword>
+				<tag>do_not_call</tag><symbol>:</symbol> <keyword>False</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_set_pointer_style</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_set_pointer_style</location>set_pointer_style</feature> <symbol>(</symbol><local>c</local><symbol>:</symbol> <class><location>../interface/ev_pointer_style.xml</location>EV_POINTER_STYLE</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set 'pointer_style' to 'c' (not needed)</comment>
+			<comment>--</comment><comment> Was declared in </comment><class><location>../implementation_gtk/ev_tree_node_imp.xml</location>EV_TREE_NODE_IMP</class><comment> as synonym of </comment><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_internal_set_pointer_style</location>internal_set_pointer_style</feature><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword>check</keyword>
+				<tag>do_not_call</tag><symbol>:</symbol> <keyword>False</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_internal_set_pointer_style</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_internal_set_pointer_style</location>internal_set_pointer_style</feature> <symbol>(</symbol><local>c</local><symbol>:</symbol> <class><location>../interface/ev_pointer_style.xml</location>EV_POINTER_STYLE</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set 'pointer_style' to 'c' (not needed)</comment>
+			<comment>--</comment><comment> Was declared in </comment><class><location>../implementation_gtk/ev_tree_node_imp.xml</location>EV_TREE_NODE_IMP</class><comment> as synonym of </comment><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_set_pointer_style</location>set_pointer_style</feature><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword>check</keyword>
+				<tag>do_not_call</tag><symbol>:</symbol> <keyword>False</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_is_transport_enabled_iterator</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_is_transport_enabled_iterator</location>is_transport_enabled_iterator</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Has 'Current' or a child of 'Current' pnd transport enabled?</comment>
+		<keyword>local</keyword>
+			<local>a_cursor</local><symbol>:</symbol> <class><include>False</include>CURSOR</class>
+			<local>a_tree_node_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_tree_node_imp.xml</location>EV_TREE_NODE_IMP</class>
+			<local>i</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_is_transport_enabled</location>is_transport_enabled</feature> <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <keyword>True</keyword>
+			<keyword>elseif</keyword> <feature><location>../implementation_gtk/ev_dynamic_list_imp.xml#f_count</location>count</feature> <symbol>&gt;</symbol> <number>0</number> <keyword>then</keyword>
+				<keyword>from</keyword>
+					<local>a_cursor</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_dynamic_list_imp.xml#f_child_array</location>child_array</feature><dot>.</dot><feature><include>False</include>cursor</feature>
+					<local>i</local> <symbol>:=</symbol> <number>1</number>
+				<keyword>until</keyword>
+					<local>i</local> <symbol>&gt;</symbol> <feature><location>../implementation_gtk/ev_dynamic_list_imp.xml#f_child_array</location>child_array</feature><dot>.</dot><feature><include>False</include>count</feature> <keyword>or else</keyword> <keyword>Result</keyword>
+				<keyword>loop</keyword>
+					<keyword>if</keyword> <feature><location>../implementation_gtk/ev_dynamic_list_imp.xml#f_child_array</location>child_array</feature><dot>.</dot><feature><include>False</include>i_th</feature><symbol> </symbol><symbol>(</symbol><local>i</local><symbol>)</symbol> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+						<local>a_tree_node_imp</local> <symbol>?=</symbol> <feature><location>../implementation_gtk/ev_dynamic_list_imp.xml#f_child_array</location>child_array</feature><dot>.</dot><feature><include>False</include>i_th</feature><symbol> </symbol><symbol>(</symbol><local>i</local><symbol>)</symbol><dot>.</dot><feature><location>../interface/ev_tree_node.xml#f_implementation</location>implementation</feature>
+						<keyword>check</keyword>
+								<local>a_tree_node_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+						<keyword>end</keyword>
+						<keyword>if</keyword> <local>a_tree_node_imp</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+							<keyword>Result</keyword> <symbol>:=</symbol> <local>a_tree_node_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_is_transport_enabled_iterator</location>is_transport_enabled_iterator</feature>
+						<keyword>end</keyword>
+					<keyword>end</keyword>
+					<local>i</local> <symbol>:=</symbol> <local>i</local> <symbol>+</symbol> <number>1</number>
+				<keyword>end</keyword>
+				<feature><location>../implementation_gtk/ev_dynamic_list_imp.xml#f_child_array</location>child_array</feature><dot>.</dot><feature><include>False</include>go_to</feature><symbol> </symbol><symbol>(</symbol><local>a_cursor</local><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_reset_pebble_function</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_reset_pebble_function</location>reset_pebble_function</feature>
+			<comment>--</comment><comment>Reset pebble_function.</comment>
+		<keyword>local</keyword>
+			<local>l_parent_tree_imp</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_parent_tree_imp</location>parent_tree_imp</feature>
+		<keyword>do</keyword>
+			<local>l_parent_tree_imp</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_parent_tree_imp</location>parent_tree_imp</feature>
+			<keyword>if</keyword> <local>l_parent_tree_imp</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<local>l_parent_tree_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_tree_imp.xml#f_reset_pebble_function</location>reset_pebble_function</feature>
+			<keyword>else</keyword>
+				<keyword><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_reset_pebble_function</location>Precursor</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_tree_imp.xml</location>EV_TREE_IMP</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_able_to_transport</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_able_to_transport</location>able_to_transport</feature> <symbol>(</symbol><local>a_button</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is </comment><quoted>Current</quoted><comment> able to initiate transport with </comment><quoted>a_button</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <symbol>(</symbol><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_mode_is_drag_and_drop</location>mode_is_drag_and_drop</feature> <keyword>and then</keyword> <local>a_button</local> <symbol>=</symbol> <number>1</number><symbol>)</symbol> <keyword>or</keyword> <symbol>(</symbol><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_mode_is_pick_and_drop</location>mode_is_pick_and_drop</feature> <keyword>and then</keyword> <local>a_button</local> <symbol>=</symbol> <number>3</number> <keyword>and then</keyword> <keyword>not</keyword> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_mode_is_configurable_target_menu</location>mode_is_configurable_target_menu</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_ready_for_pnd_menu</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_ready_for_pnd_menu</location>ready_for_pnd_menu</feature> <symbol>(</symbol><local>a_button</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_press</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Will </comment><quoted>Current</quoted><comment> display a menu with button </comment><quoted>a_button</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <symbol>(</symbol><symbol>(</symbol><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_mode_is_target_menu</location>mode_is_target_menu</feature> <keyword>or else</keyword> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_mode_is_configurable_target_menu</location>mode_is_configurable_target_menu</feature><symbol>)</symbol> <keyword>and</keyword> <local>a_button</local> <symbol>=</symbol> <number>3</number><symbol>)</symbol> <keyword>and then</keyword> <keyword>not</keyword> <local>a_press</local>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_set_list_iter</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_set_list_iter</location>set_list_iter</feature> <symbol>(</symbol><local>a_iter</local><symbol>:</symbol> <class><location>../implementation_gtk/ev_gtk_tree_iter_struct.xml</location>EV_GTK_TREE_ITER_STRUCT</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_list_iter</location>list_iter</feature><comment> to </comment><quoted>a_iter</quoted>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_list_iter</location>list_iter</feature> <symbol>:=</symbol> <local>a_iter</local>
+		<keyword>end</keyword>
+
+	<anchor>f_list_iter</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_list_iter</location>list_iter</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_gtk_tree_iter_struct.xml</location>EV_GTK_TREE_ITER_STRUCT</class>
+			<comment>--</comment><comment> Object representing position of </comment><quoted>Current</quoted><comment> in parent tree model</comment>
+
+	<anchor>f_set_parent_imp</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_set_parent_imp</location>set_parent_imp</feature> <symbol>(</symbol><local>par_imp</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_parent_imp</location>parent_imp</feature><symbol>)</symbol>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_parent_imp</location>parent_imp</feature> <symbol>:=</symbol> <local>par_imp</local>
+		<keyword>end</keyword>
+
+	<anchor>f_parent_imp</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_parent_imp</location>parent_imp</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_item_list_imp.xml</location>EV_ITEM_LIST_IMP</class> <symbol>[</symbol><class><location>../interface/ev_tree_node.xml</location>EV_TREE_NODE</class><symbol>]</symbol>
+			<comment>--</comment><comment> The parent of the Current widget</comment>
+			<comment>--</comment><comment> Can be void.</comment>
+
+	<anchor>f_parent_tree_imp</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_parent_tree_imp</location>parent_tree_imp</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_tree_imp.xml</location>EV_TREE_IMP</class>
+		<keyword>local</keyword>
+			<local>l_par_tree</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../implementation_interface/ev_tree_node_i.xml#f_parent_tree_i</location>parent_tree_i</feature>
+		<keyword>do</keyword>
+			<local>l_par_tree</local> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_tree_node_i.xml#f_parent_tree_i</location>parent_tree_i</feature>
+			<keyword>if</keyword> <local>l_par_tree</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>?=</symbol> <local>l_par_tree</local>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_tree_imp.xml</location>EV_TREE_IMP</class><symbol>,</symbol> <class><location>../implementation_gtk/ev_tree_node_imp.xml</location>EV_TREE_NODE_IMP</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_add_item_and_children_to_parent_tree</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_add_item_and_children_to_parent_tree</location>add_item_and_children_to_parent_tree</feature> <symbol>(</symbol><local>a_parent_tree</local><symbol>:</symbol> <class><location>../implementation_gtk/ev_tree_imp.xml</location>EV_TREE_IMP</class><symbol>;</symbol> <local>a_parent_node</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_tree_node_imp.xml</location>EV_TREE_NODE_IMP</class><symbol>;</symbol> <local>a_index</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Used for setting items within parent tree</comment>
+		<keyword>local</keyword>
+			<local>a_tree_iter</local><symbol>:</symbol> <class><location>../implementation_gtk/ev_gtk_tree_iter_struct.xml</location>EV_GTK_TREE_ITER_STRUCT</class>
+			<local>i</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<local>item_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_tree_node_imp.xml</location>EV_TREE_NODE_IMP</class>
+			<local>a_parent_iter</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <local>a_parent_node</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>and then</keyword> <keyword>attached</keyword> <local>a_parent_node</local><dot>.</dot><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_list_iter</location>list_iter</feature> <keyword>as</keyword> l_list_iter <keyword>then</keyword>
+				<local>a_parent_iter</local> <symbol>:=</symbol> <local>l_list_iter</local><dot>.</dot><feature><include>False</include>item</feature>
+			<keyword>end</keyword>
+			<keyword>create</keyword> <local>a_tree_iter</local><dot>.</dot><feature><include>False</include>make</feature>
+			<feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_set_list_iter</location>set_list_iter</feature><symbol> </symbol><symbol>(</symbol><local>a_tree_iter</local><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_store_insert</location>gtk_tree_store_insert</feature> <symbol>(</symbol><local>a_parent_tree</local><dot>.</dot><feature><location>../implementation_gtk/ev_tree_imp.xml#f_tree_store</location>tree_store</feature><symbol>,</symbol> <local>a_tree_iter</local><dot>.</dot><feature><include>False</include>item</feature><symbol>,</symbol> <local>a_parent_iter</local><symbol>,</symbol> <local>a_index</local> <symbol>-</symbol> <number>1</number><symbol>)</symbol>
+			<local>a_parent_tree</local><dot>.</dot><feature><location>../implementation_gtk/ev_tree_imp.xml#f_set_text_on_position</location>set_text_on_position</feature><symbol> </symbol><symbol>(</symbol><keyword>Current</keyword><symbol>,</symbol> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_text</location>text</feature><symbol>)</symbol>
+			<local>a_parent_tree</local><dot>.</dot><feature><location>../implementation_gtk/ev_tree_imp.xml#f_update_row_pixmap</location>update_row_pixmap</feature><symbol> </symbol><symbol>(</symbol><keyword>Current</keyword><symbol>)</symbol>
+			<keyword>from</keyword>
+				<local>i</local> <symbol>:=</symbol> <number>1</number>
+			<keyword>until</keyword>
+				<local>i</local> <symbol>&gt;</symbol> <feature><location>../implementation_gtk/ev_dynamic_list_imp.xml#f_child_array</location>child_array</feature><dot>.</dot><feature><include>False</include>count</feature>
+			<keyword>loop</keyword>
+				<local>item_imp</local> <symbol>?=</symbol> <symbol>(</symbol><feature><location>../implementation_gtk/ev_dynamic_list_imp.xml#f_child_array</location>child_array</feature> <symbol>@</symbol> <local>i</local><symbol>)</symbol><dot>.</dot><feature><location>../interface/ev_tree_node.xml#f_implementation</location>implementation</feature>
+				<keyword>check</keyword>
+						<local>item_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+				<keyword>then</keyword>
+				<keyword>end</keyword>
+				<local>item_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_add_item_and_children_to_parent_tree</location>add_item_and_children_to_parent_tree</feature><symbol> </symbol><symbol>(</symbol><local>a_parent_tree</local><symbol>,</symbol> <keyword>Current</keyword><symbol>,</symbol> <local>i</local><symbol>)</symbol>
+				<local>i</local> <symbol>:=</symbol> <local>i</local> <symbol>+</symbol> <number>1</number>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_tree_imp.xml</location>EV_TREE_IMP</class><symbol>,</symbol> <class><location>../implementation_gtk/ev_tree_node_imp.xml</location>EV_TREE_NODE_IMP</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_update_for_pick_and_drop</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_update_for_pick_and_drop</location>update_for_pick_and_drop</feature> <symbol>(</symbol><local>starting</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class><symbol>)</symbol>
+			<comment>--</comment><comment> Pick and drop status has changed so update appearance of</comment>
+			<comment>--</comment><comment> </comment><quoted>Current</quoted><comment> to reflect available targets.</comment>
+		<keyword>do</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_ensure_expandable</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_ensure_expandable</location>ensure_expandable</feature>
+			<comment>--</comment><comment> Ensure </comment><quoted>Current</quoted><comment> is displayed as expandable.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_insert_i_th</location>insert_i_th</feature><symbol> </symbol><symbol>(</symbol><keyword>create</keyword><symbol> </symbol><symbol>{</symbol><class><location>../interface/ev_tree_item.xml</location>EV_TREE_ITEM</class><symbol>}</symbol><symbol>,</symbol> <number>1</number><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_dynamic_list_imp.xml#f_child_array</location>child_array</feature><dot>.</dot><feature><include>False</include>wipe_out</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_remove_expandable</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_remove_expandable</location>remove_expandable</feature>
+			<comment>--</comment><comment> Ensure </comment><quoted>Current</quoted><comment> is no longer displayed as expandable.</comment>
+		<keyword>local</keyword>
+			<local>l_parent_tree</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_tree_imp.xml</location>EV_TREE_IMP</class>
+		<keyword>do</keyword>
+			<local>l_parent_tree</local> <symbol>?=</symbol> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_parent_imp</location>parent_imp</feature>
+			<keyword>if</keyword> <local>l_parent_tree</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_text</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_text</location>text</feature><symbol>:</symbol> <class><include>False</include>STRING_32</class>
+			<comment>--</comment><comment> Text displayed.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_internal_text</location>internal_text</feature><dot>.</dot><feature><include>False</include>twin</feature>
+		<keyword>ensure then</keyword>
+			<tag>text_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_tooltip</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_tooltip</location>tooltip</feature><symbol>:</symbol> <class><include>False</include>STRING_32</class>
+			<comment>--</comment><comment> Tooltip if any.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_internal_tooltip</location>internal_tooltip</feature> <keyword>as</keyword> l_internal_tooltip <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>l_internal_tooltip</local><dot>.</dot><feature><include>False</include>twin</feature>
+			<keyword>else</keyword>
+				<keyword>create</keyword> <keyword>Result</keyword><dot>.</dot><feature><include>False</include>make_empty</feature>
+			<keyword>end</keyword>
+		<keyword>ensure then</keyword>
+			<tag>tooltip_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_remove_internal_text</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_remove_internal_text</location>remove_internal_text</feature>
+			<comment>--</comment><comment> Make </comment><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_internal_text</location>internal_text</feature><comment> Void</comment>
+		<keyword>do</keyword>
+			<keyword>create</keyword> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_internal_text</location>internal_text</feature><dot>.</dot><feature><include>False</include>make_empty</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_set_internal_text</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_set_internal_text</location>set_internal_text</feature> <symbol>(</symbol><local>a_text</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_internal_text</location>internal_text</feature><comment> to </comment><quoted>a_text</quoted>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_internal_text</location>internal_text</feature> <symbol>:=</symbol> <local>a_text</local><dot>.</dot><feature><include>False</include>as_string_32</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_internal_text</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_internal_text</location>internal_text</feature><symbol>:</symbol> <class><include>False</include>STRING_32</class>
+			<comment>--</comment><comment> Internal representation of </comment><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_text</location>text</feature><comment>.</comment>
+
+	<anchor>f_internal_tooltip</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_internal_tooltip</location>internal_tooltip</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>STRING_32</class>
+			<comment>--</comment><comment> Internal representation of </comment><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_tooltip</location>tooltip</feature><comment>.</comment>
+
+	<anchor>f_set_tooltip</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_set_tooltip</location>set_tooltip</feature> <symbol>(</symbol><local>a_text</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><quoted>a_text</quoted><comment> to </comment><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_tooltip</location>tooltip</feature><comment>.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_internal_tooltip</location>internal_tooltip</feature> <symbol>:=</symbol> <local>a_text</local><dot>.</dot><feature><include>False</include>as_string_32</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_remove_tooltip</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_remove_tooltip</location>remove_tooltip</feature>
+			<comment>--</comment><comment> Remove text of </comment><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_tooltip</location>tooltip</feature><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword>create</keyword> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_internal_tooltip</location>internal_tooltip</feature><dot>.</dot><feature><include>False</include>make_empty</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_set_pixmap</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_set_pixmap</location>set_pixmap</feature> <symbol>(</symbol><local>a_pixmap</local><symbol>:</symbol> <class><location>../interface/ev_pixmap.xml</location>EV_PIXMAP</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set the pixmap for 'Current'.</comment>
+		<keyword>local</keyword>
+			<local>a_pix_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_pixmap_imp.xml</location>EV_PIXMAP_IMP</class>
+			<local>par_tree</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_tree_imp.xml</location>EV_TREE_IMP</class>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_dispose</location>dispose</feature>
+			<local>a_pix_imp</local> <symbol>?=</symbol> <local>a_pixmap</local><dot>.</dot><feature><location>../interface/ev_pixmap.xml#f_implementation</location>implementation</feature>
+			<keyword>check</keyword>
+					<local>a_pix_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_gdk_pixbuf</location>gdk_pixbuf</feature> <symbol>:=</symbol> <local>a_pix_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_drawable_imp.xml#f_pixbuf_from_drawable</location>pixbuf_from_drawable</feature>
+			<local>par_tree</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_parent_tree_imp</location>parent_tree_imp</feature>
+			<keyword>if</keyword> <local>par_tree</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<local>par_tree</local><dot>.</dot><feature><location>../implementation_gtk/ev_tree_imp.xml#f_update_row_pixmap</location>update_row_pixmap</feature><symbol> </symbol><symbol>(</symbol><keyword>Current</keyword><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_pix_width</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_pix_width</location>pix_width</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Height and width of pixmap in Tree.</comment>
+
+	<anchor>f_pix_height</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_pix_height</location>pix_height</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Height and width of pixmap in Tree.</comment>
+
+	<anchor>f_remove_pixmap</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_remove_pixmap</location>remove_pixmap</feature>
+			<comment>--</comment><comment> Remove the pixmap for </comment><quoted>Current</quoted>
+		<keyword>local</keyword>
+			<local>par_tree</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_tree_imp.xml</location>EV_TREE_IMP</class>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_gdk_pixbuf</location>gdk_pixbuf</feature> <symbol>/=</symbol> <feature><include>False</include>default_pointer</feature> <keyword>then</keyword>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_object_unref</location>object_unref</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_gdk_pixbuf</location>gdk_pixbuf</feature><symbol>)</symbol>
+				<feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_gdk_pixbuf</location>gdk_pixbuf</feature> <symbol>:=</symbol> <feature><include>False</include>default_pointer</feature>
+			<keyword>end</keyword>
+			<local>par_tree</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_parent_tree_imp</location>parent_tree_imp</feature>
+			<keyword>if</keyword> <local>par_tree</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<local>par_tree</local><dot>.</dot><feature><location>../implementation_gtk/ev_tree_imp.xml#f_update_row_pixmap</location>update_row_pixmap</feature><symbol> </symbol><symbol>(</symbol><keyword>Current</keyword><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_pixmap</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_pixmap</location>pixmap</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_pixmap.xml</location>EV_PIXMAP</class>
+			<comment>--</comment><comment> Pixmap displayed in 'Current' if any.</comment>
+		<keyword>local</keyword>
+			<local>pix_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_pixmap_imp.xml</location>EV_PIXMAP_IMP</class>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_gdk_pixbuf</location>gdk_pixbuf</feature> <symbol>/=</symbol> <feature><include>False</include>default_pointer</feature> <keyword>then</keyword>
+				<keyword>create</keyword> <keyword>Result</keyword>
+				<local>pix_imp</local> <symbol>?=</symbol> <keyword>Result</keyword><dot>.</dot><feature><location>../interface/ev_pixmap.xml#f_implementation</location>implementation</feature>
+				<keyword>check</keyword>
+						<local>pix_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+				<keyword>then</keyword>
+				<keyword>end</keyword>
+				<local>pix_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_set_pixmap_from_pixbuf</location>set_pixmap_from_pixbuf</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_gdk_pixbuf</location>gdk_pixbuf</feature><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_gdk_pixbuf</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_gdk_pixbuf</location>gdk_pixbuf</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Stored gdk pixbuf data</comment>
+
+	<anchor>f_insert_i_th</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_insert_i_th</location>insert_i_th</feature> <symbol>(</symbol><local>v</local><symbol>:</symbol> <keyword>attached</keyword> <keyword>like</keyword> <feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_item</location>item</feature><symbol>;</symbol> <local>i</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Insert </comment><quoted>v</quoted><comment> at position </comment><quoted>i</quoted><comment>.</comment>
+		<keyword>local</keyword>
+			<local>item_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_tree_node_imp.xml</location>EV_TREE_NODE_IMP</class>
+			<local>par_t_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_tree_imp.xml</location>EV_TREE_IMP</class>
+		<keyword>do</keyword>
+			<local>item_imp</local> <symbol>?=</symbol> <local>v</local><dot>.</dot><feature><location>../interface/ev_tree_node.xml#f_implementation</location>implementation</feature>
+			<keyword>check</keyword>
+					<local>item_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<local>item_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_set_parent_imp</location>set_parent_imp</feature><symbol> </symbol><symbol>(</symbol><keyword>Current</keyword><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_dynamic_list_imp.xml#f_child_array</location>child_array</feature><dot>.</dot><feature><include>False</include>go_i_th</feature><symbol> </symbol><symbol>(</symbol><local>i</local><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_dynamic_list_imp.xml#f_child_array</location>child_array</feature><dot>.</dot><feature><include>False</include>put_left</feature><symbol> </symbol><symbol>(</symbol><local>v</local><symbol>)</symbol>
+			<local>par_t_imp</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_parent_tree_imp</location>parent_tree_imp</feature>
+			<keyword>if</keyword> <local>par_t_imp</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<local>item_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_add_item_and_children_to_parent_tree</location>add_item_and_children_to_parent_tree</feature><symbol> </symbol><symbol>(</symbol><local>par_t_imp</local><symbol>,</symbol> <keyword>Current</keyword><symbol>,</symbol> <local>i</local><symbol>)</symbol>
+				<keyword>if</keyword> <local>item_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_is_transport_enabled_iterator</location>is_transport_enabled_iterator</feature> <keyword>then</keyword>
+					<local>par_t_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_tree_imp.xml#f_update_pnd_connection</location>update_pnd_connection</feature><symbol> </symbol><symbol>(</symbol><keyword>True</keyword><symbol>)</symbol>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_dynamic_list_imp.xml#f_count</location>count</feature> <symbol>=</symbol> <number>1</number> <keyword>and then</keyword> <local>par_t_imp</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<keyword>if</keyword> <feature><location>../implementation_interface/ev_tree_node_action_sequences_i.xml#f_expand_actions_internal</location>expand_actions_internal</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+					<feature><location>../implementation_interface/ev_tree_node_action_sequences_i.xml#f_expand_actions_internal</location>expand_actions_internal</feature><dot>.</dot><feature><include>False</include>block</feature>
+				<keyword>end</keyword>
+				<feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_set_expand</location>set_expand</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_expanded_on_last_item_removal</location>expanded_on_last_item_removal</feature><symbol>)</symbol>
+				<keyword>if</keyword> <feature><location>../implementation_interface/ev_tree_node_action_sequences_i.xml#f_expand_actions_internal</location>expand_actions_internal</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+					<feature><location>../implementation_interface/ev_tree_node_action_sequences_i.xml#f_expand_actions_internal</location>expand_actions_internal</feature><dot>.</dot><feature><include>False</include>resume</feature>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_remove_i_th</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_remove_i_th</location>remove_i_th</feature> <symbol>(</symbol><local>a_position</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Remove item at </comment><quoted>a_position</quoted>
+		<keyword>local</keyword>
+			<local>item_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_tree_node_imp.xml</location>EV_TREE_NODE_IMP</class>
+			<local>par_tree_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_tree_imp.xml</location>EV_TREE_IMP</class>
+			<local>l_list_iter</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_gtk_tree_iter_struct.xml</location>EV_GTK_TREE_ITER_STRUCT</class>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_dynamic_list_imp.xml#f_count</location>count</feature> <symbol>=</symbol> <number>1</number> <keyword>then</keyword>
+				<keyword>if</keyword> <feature><location>../implementation_interface/ev_tree_node_i.xml#f_parent_tree_i</location>parent_tree_i</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+					<feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_expanded_on_last_item_removal</location>expanded_on_last_item_removal</feature> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_is_expanded</location>is_expanded</feature>
+				<keyword>else</keyword>
+					<feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_expanded_on_last_item_removal</location>expanded_on_last_item_removal</feature> <symbol>:=</symbol> <keyword>False</keyword>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+			<local>item_imp</local> <symbol>?=</symbol> <symbol>(</symbol><feature><location>../implementation_gtk/ev_dynamic_list_imp.xml#f_child_array</location>child_array</feature> <symbol>@</symbol> <symbol>(</symbol><local>a_position</local><symbol>)</symbol><symbol>)</symbol><dot>.</dot><feature><location>../interface/ev_tree_node.xml#f_implementation</location>implementation</feature>
+			<keyword>check</keyword>
+					<local>item_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<local>par_tree_imp</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_parent_tree_imp</location>parent_tree_imp</feature>
+			<keyword>if</keyword> <local>par_tree_imp</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<local>l_list_iter</local> <symbol>:=</symbol> <local>item_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_list_iter</location>list_iter</feature>
+				<keyword>check</keyword>
+						<local>l_list_iter</local> <symbol>/=</symbol> <keyword>Void</keyword>
+				<keyword>then</keyword>
+				<keyword>end</keyword>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_store_remove</location>gtk_tree_store_remove</feature> <symbol>(</symbol><local>par_tree_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_tree_imp.xml#f_tree_store</location>tree_store</feature><symbol>,</symbol> <local>l_list_iter</local><dot>.</dot><feature><include>False</include>item</feature><symbol>)</symbol>
+			<keyword>end</keyword>
+			<local>item_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_set_parent_imp</location>set_parent_imp</feature><symbol> </symbol><symbol>(</symbol><keyword>Void</keyword><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_dynamic_list_imp.xml#f_child_array</location>child_array</feature><dot>.</dot><feature><include>False</include>go_i_th</feature><symbol> </symbol><symbol>(</symbol><local>a_position</local><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_dynamic_list_imp.xml#f_child_array</location>child_array</feature><dot>.</dot><feature><include>False</include>remove</feature>
+			<keyword>if</keyword> <local>par_tree_imp</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<local>par_tree_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_tree_imp.xml#f_update_pnd_status</location>update_pnd_status</feature>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_expanded_on_last_item_removal</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_expanded_on_last_item_removal</location>expanded_on_last_item_removal</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Was </comment><quoted>Current</quoted><comment> expanded upon removal of last item</comment>
+	
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Redundant implementation</comment>
+
+	<anchor>f_real_pointed_target</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_real_pointed_target</location>real_pointed_target</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_pick_and_dropable.xml</location>EV_PICK_AND_DROPABLE</class>
+			<comment>--</comment><comment> Default target at mouse position.</comment>
+		<keyword>do</keyword>
+			<keyword>check</keyword>
+				<tag>do_not_call</tag><symbol>:</symbol> <keyword>False</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_dispose</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_dispose</location>dispose</feature>
+			<comment>--</comment><comment> Clean up</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <keyword>not</keyword> <feature><include>False</include>is_in_final_collect</feature> <keyword>and then</keyword> <feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_gdk_pixbuf</location>gdk_pixbuf</feature> <symbol>/=</symbol> <feature><include>False</include>default_pointer</feature> <keyword>then</keyword>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_object_unref</location>object_unref</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_gdk_pixbuf</location>gdk_pixbuf</feature><symbol>)</symbol>
+				<feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_gdk_pixbuf</location>gdk_pixbuf</feature> <symbol>:=</symbol> <feature><include>False</include>default_pointer</feature>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_any.xml</location>EV_ANY</class><symbol>,</symbol> <class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_interface</anchor><feature><location>../implementation_gtk/ev_tree_node_imp.xml#f_interface</location>interface</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_tree_node.xml</location>EV_TREE_NODE</class>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2017, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_gtk/ev_tree_node_imp.xml</location>EV_TREE_NODE_IMP</class></system>
+

@@ -1,0 +1,16 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../mathmodels/value_singleton_links.xml</location>VALUE_SINGLETON</class>
+
+<keyword>Ancestors</keyword>
+	<class><include>False</include>ANY</class>
+
+<keyword>Clients</keyword>
+	<class><location>../mathmodels/value_links.xml</location>VALUE</class>
+	<class><location>../mathmodels/value_singleton_links.xml</location>VALUE_SINGLETON</class>
+
+<keyword>Suppliers</keyword>
+	<class><location>../mathmodels/value_links.xml</location>VALUE</class>
+	<class><location>../mathmodels/value_singleton_links.xml</location>VALUE_SINGLETON</class>
+
+</system>

@@ -1,0 +1,20 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../tracker/remove_container_links.xml</location>REMOVE_CONTAINER</class>
+
+<keyword>Ancestors</keyword>
+	<class><location>../tracker/command_links.xml</location>COMMAND</class><char>*</char>
+
+<keyword>Clients</keyword>
+	<class><location>../tracker/etf_remove_container_links.xml</location>ETF_REMOVE_CONTAINER</class>
+	<class><location>../tracker/remove_container_links.xml</location>REMOVE_CONTAINER</class>
+
+<keyword>Suppliers</keyword>
+	<class><location>../tracker/messages_access_links.xml</location>MESSAGES_ACCESS</class>
+	<class><location>../tracker/phase_container_links.xml</location>PHASE_CONTAINER</class>
+	<class><location>../tracker/remove_container_links.xml</location>REMOVE_CONTAINER</class>
+	<class><location>../tracker/tracker_links.xml</location>TRACKER</class>
+	<class><location>../tracker/tracker_access_links.xml</location>TRACKER_ACCESS</class>
+	<class><location>../mathmodels/value_links.xml</location>VALUE</class>
+
+</system>

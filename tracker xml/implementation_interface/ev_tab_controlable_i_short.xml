@@ -1,0 +1,55 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Vision tab controlable. Implementation interface.&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;select, selectable&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2009-06-10 21:44:06 -0700 (Wed, 10 Jun 2009) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 79201 $&quot;</string>
+
+<keyword>deferred</keyword> <keyword>class</keyword> <keyword>interface</keyword>
+	<class><location>../implementation_interface/ev_tab_controlable_i_short.xml</location>EV_TAB_CONTROLABLE_I</class>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Status report</comment>
+
+	<anchor>f_is_tabable_to</anchor><feature><location>../implementation_interface/ev_tab_controlable_i_short.xml#f_is_tabable_to</location>is_tabable_to</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is Current able to be tabbed to?</comment>
+
+	<anchor>f_is_tabable_from</anchor><feature><location>../implementation_interface/ev_tab_controlable_i_short.xml#f_is_tabable_from</location>is_tabable_from</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is Current able to be tabbed from?</comment>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status setting</comment>
+
+	<anchor>f_enable_tabable_to</anchor><feature><location>../implementation_interface/ev_tab_controlable_i_short.xml#f_enable_tabable_to</location>enable_tabable_to</feature>
+			<comment>--</comment><comment> Make </comment><feature><location>../implementation_interface/ev_tab_controlable_i_short.xml#f_is_tabable_to</location>is_tabable_to</feature><comment> </comment><quoted>True</quoted><comment>.</comment>
+		<keyword>ensure</keyword>
+			<tag>is_tabable_to</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_tab_controlable_i_short.xml#f_is_tabable_to</location>is_tabable_to</feature>
+
+	<anchor>f_disable_tabable_to</anchor><feature><location>../implementation_interface/ev_tab_controlable_i_short.xml#f_disable_tabable_to</location>disable_tabable_to</feature>
+			<comment>--</comment><comment> Make </comment><feature><location>../implementation_interface/ev_tab_controlable_i_short.xml#f_is_tabable_to</location>is_tabable_to</feature><comment> </comment><quoted>False</quoted><comment>.</comment>
+		<keyword>ensure</keyword>
+			<tag>not_is_tabable_to</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../implementation_interface/ev_tab_controlable_i_short.xml#f_is_tabable_to</location>is_tabable_to</feature>
+
+	<anchor>f_enable_tabable_from</anchor><feature><location>../implementation_interface/ev_tab_controlable_i_short.xml#f_enable_tabable_from</location>enable_tabable_from</feature>
+			<comment>--</comment><comment> Make </comment><feature><location>../implementation_interface/ev_tab_controlable_i_short.xml#f_is_tabable_from</location>is_tabable_from</feature><comment> </comment><quoted>True</quoted><comment>.</comment>
+		<keyword>ensure</keyword>
+			<tag>is_tabable_from</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_tab_controlable_i_short.xml#f_is_tabable_from</location>is_tabable_from</feature>
+
+	<anchor>f_disable_tabable_from</anchor><feature><location>../implementation_interface/ev_tab_controlable_i_short.xml#f_disable_tabable_from</location>disable_tabable_from</feature>
+			<comment>--</comment><comment> Make </comment><feature><location>../implementation_interface/ev_tab_controlable_i_short.xml#f_is_tabable_from</location>is_tabable_from</feature><comment> </comment><quoted>False</quoted><comment>.</comment>
+		<keyword>ensure</keyword>
+			<tag>not_is_tabable_from</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../implementation_interface/ev_tab_controlable_i_short.xml#f_is_tabable_from</location>is_tabable_from</feature>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2006, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>356 Storke Road, Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_interface/ev_tab_controlable_i_short.xml</location>EV_TAB_CONTROLABLE_I</class></system>
+

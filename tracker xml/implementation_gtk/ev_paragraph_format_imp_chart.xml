@@ -1,0 +1,36 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../implementation_gtk/ev_paragraph_format_imp_chart.xml</location>EV_PARAGRAPH_FORMAT_IMP</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>implementation_gtk</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Objects that represent paragraph formatting information.&quot;</string>
+	<indexing_tag>create</indexing_tag><symbol>:</symbol> <feature><location>../implementation_gtk/ev_paragraph_format_imp.xml#f_make</location>make</feature>
+
+<keyword>Ancestors</keyword>
+	<class><location>../implementation_interface/ev_paragraph_format_i_chart.xml</location>EV_PARAGRAPH_FORMAT_I</class><char>*</char>
+
+<keyword>Queries</keyword>
+	<feature><location>../implementation_gtk/ev_paragraph_format_imp.xml#f_alignment</location>alignment</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_gtk/ev_paragraph_format_imp.xml#f_bottom_spacing</location>bottom_spacing</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_gtk/ev_paragraph_format_imp.xml#f_is_center_aligned</location>is_center_aligned</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../implementation_interface/ev_any_i.xml#f_is_destroyed</location>is_destroyed</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../implementation_gtk/ev_paragraph_format_imp.xml#f_is_justified</location>is_justified</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../implementation_gtk/ev_paragraph_format_imp.xml#f_is_left_aligned</location>is_left_aligned</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../implementation_gtk/ev_paragraph_format_imp.xml#f_is_right_aligned</location>is_right_aligned</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../implementation_gtk/ev_paragraph_format_imp.xml#f_left_margin</location>left_margin</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_gtk/ev_paragraph_format_imp.xml#f_right_margin</location>right_margin</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_gtk/ev_paragraph_format_imp.xml#f_top_spacing</location>top_spacing</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+
+<keyword>Commands</keyword>
+	<feature><location>../implementation_gtk/ev_paragraph_format_imp.xml#f_enable_center_alignment</location>enable_center_alignment</feature>
+	<feature><location>../implementation_gtk/ev_paragraph_format_imp.xml#f_enable_justification</location>enable_justification</feature>
+	<feature><location>../implementation_gtk/ev_paragraph_format_imp.xml#f_enable_left_alignment</location>enable_left_alignment</feature>
+	<feature><location>../implementation_gtk/ev_paragraph_format_imp.xml#f_enable_right_alignment</location>enable_right_alignment</feature>
+	<feature><location>../implementation_gtk/ev_paragraph_format_imp.xml#f_set_alignment</location>set_alignment</feature> <symbol>(</symbol><local>a_alignment</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_paragraph_format_imp.xml#f_set_bottom_spacing</location>set_bottom_spacing</feature> <symbol>(</symbol><local>a_margin</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_paragraph_format_imp.xml#f_set_left_margin</location>set_left_margin</feature> <symbol>(</symbol><local>a_margin</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_paragraph_format_imp.xml#f_set_right_margin</location>set_right_margin</feature> <symbol>(</symbol><local>a_margin</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_paragraph_format_imp.xml#f_set_top_spacing</location>set_top_spacing</feature> <symbol>(</symbol><local>a_margin</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+
+</system>

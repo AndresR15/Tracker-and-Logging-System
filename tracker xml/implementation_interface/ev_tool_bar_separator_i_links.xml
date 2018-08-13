@@ -1,0 +1,11 @@
+<system>
+<keyword>deferred</keyword> <keyword>class</keyword>
+	<class><location>../implementation_interface/ev_tool_bar_separator_i_links.xml</location>EV_TOOL_BAR_SEPARATOR_I</class>
+
+<keyword>Ancestors</keyword>
+	<class><location>../implementation_interface/ev_item_i_links.xml</location>EV_ITEM_I</class><char>*</char>
+
+<keyword>Descendants</keyword>
+	<class><location>../implementation_gtk/ev_tool_bar_separator_imp_links.xml</location>EV_TOOL_BAR_SEPARATOR_IMP</class>
+
+</system>

@@ -1,0 +1,41 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../interface/ev_application_links.xml</location>EV_APPLICATION</class>
+
+<keyword>Ancestors</keyword>
+	<class><location>../interface/ev_any_links.xml</location>EV_ANY</class><char>*</char>
+	<class><location>../interface/ev_application_action_sequences_links.xml</location>EV_APPLICATION_ACTION_SEQUENCES</class><char>*</char>
+
+<keyword>Descendants</keyword>
+	<class><location>../tracker/etf_gui_links.xml</location>ETF_GUI</class>
+
+<keyword>Clients</keyword>
+	<class><location>../tracker/etf_gui_links.xml</location>ETF_GUI</class>
+	<class><location>../interface/ev_application_links.xml</location>EV_APPLICATION</class>
+	<class><location>../interface/ev_application_handler_links.xml</location>EV_APPLICATION_HANDLER</class>
+	<class><location>../implementation_gtk/ev_application_imp_links.xml</location>EV_APPLICATION_IMP</class>
+	<class><location>../interface/ev_dialog_links.xml</location>EV_DIALOG</class>
+	<class><location>../implementation_interface/ev_dialog_i_links.xml</location>EV_DIALOG_I</class><char>*</char>
+	<class><location>../implementation_interface/ev_dockable_source_i_links.xml</location>EV_DOCKABLE_SOURCE_I</class><char>*</char>
+	<class><location>../implementation_interface/ev_dockable_target_i_links.xml</location>EV_DOCKABLE_TARGET_I</class><char>*</char>
+	<class><location>../interface/ev_shared_application_links.xml</location>EV_SHARED_APPLICATION</class>
+	<class><location>../interface/ev_window_links.xml</location>EV_WINDOW</class>
+
+<keyword>Suppliers</keyword>
+	<class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><generic>G</generic><symbol>]</symbol>
+	<class><include>False</include>BOOLEAN</class>
+	<class><location>../interface/ev_accelerator_links.xml</location>EV_ACCELERATOR</class>
+	<class><location>../interface/ev_any_links.xml</location>EV_ANY</class><char>*</char>
+	<class><location>../interface/ev_application_links.xml</location>EV_APPLICATION</class>
+	<class><location>../interface/ev_application_handler_links.xml</location>EV_APPLICATION_HANDLER</class>
+	<class><location>../implementation_interface/ev_application_i_links.xml</location>EV_APPLICATION_I</class><char>*</char>
+	<class><location>../interface/ev_clipboard_links.xml</location>EV_CLIPBOARD</class>
+	<class><location>../interface/ev_environment_links.xml</location>EV_ENVIRONMENT</class>
+	<class><location>../implementation_interface/ev_environment_i_links.xml</location>EV_ENVIRONMENT_I</class><char>*</char>
+	<class><location>../interface/ev_help_engine_links.xml</location>EV_HELP_ENGINE</class><char>*</char>
+	<class><location>../interface/ev_window_links.xml</location>EV_WINDOW</class>
+	<class><include>False</include>INTEGER_32</class>
+	<class><include>False</include>ISE_SCOOP_RUNTIME</class>
+	<class><include>False</include>LINEAR</class><char>*</char> <symbol>[</symbol><generic>G</generic><symbol>]</symbol>
+
+</system>

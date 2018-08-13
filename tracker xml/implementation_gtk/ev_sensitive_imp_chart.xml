@@ -1,0 +1,25 @@
+<system>
+<keyword>deferred</keyword> <keyword>class</keyword>
+	<class><location>../implementation_gtk/ev_sensitive_imp_chart.xml</location>EV_SENSITIVE_IMP</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>implementation_gtk</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Vision sensitive. GTK+ implementation.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;sensitive&quot;</string>
+
+<keyword>Ancestors</keyword>
+	<class><location>../implementation_interface/ev_sensitive_i_chart.xml</location>EV_SENSITIVE_I</class><char>*</char>
+
+<keyword>Queries</keyword>
+	<feature><location>../implementation_interface/ev_sensitive_i.xml#f_internal_non_sensitive</location>internal_non_sensitive</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../implementation_interface/ev_any_i.xml#f_is_destroyed</location>is_destroyed</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../implementation_gtk/ev_sensitive_imp.xml#f_is_sensitive</location>is_sensitive</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../implementation_interface/ev_sensitive_i.xml#f_user_is_sensitive</location>user_is_sensitive</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+
+<keyword>Commands</keyword>
+	<feature><location>../implementation_gtk/ev_sensitive_imp.xml#f_disable_sensitive</location>disable_sensitive</feature>
+	<feature><location>../implementation_gtk/ev_sensitive_imp.xml#f_enable_sensitive</location>enable_sensitive</feature>
+	<feature><location>../implementation_interface/ev_sensitive_i.xml#f_user_disable_sensitive</location>user_disable_sensitive</feature>
+	<feature><location>../implementation_interface/ev_sensitive_i.xml#f_user_enable_sensitive</location>user_enable_sensitive</feature>
+
+</system>

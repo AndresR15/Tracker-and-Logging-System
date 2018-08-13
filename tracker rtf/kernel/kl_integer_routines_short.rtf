@@ -1,0 +1,158 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "Routines that ought to be in class INTEGER"{\line}
+{\tab}{\cf1 library}{\cf1 :} "Gobo Eiffel Kernel Library"{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 1999-2008, Eric Bezault and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "MIT License"{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2016-05-06 12:15:38 -0700 (Fri, 06 May 2016) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 98678 $"{\line}
+{\line}
+{\b\cf6 class} {\b\cf6 interface}{\line}
+{\tab}{\cf4 KL_INTEGER_ROUTINES}{\line}
+{\line}
+{\b\cf6 create} {\line}
+{\tab}{\cf5 default_create}{\line}
+{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Conversion}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 to_character} {\cf1 (}{\cf5 an_int}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 CHARACTER_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Character whose code is }{\cf5 an_int}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 an_int_large_enough}{\cf1 :} {\cf5 an_int} {\cf1 >=} {\cf5 Platform}{\b\cf1 .}{\cf5 Minimum_character_code}{\line}
+{\tab}{\tab}{\tab}{\cf1 an_int_small_enough}{\cf1 :} {\cf5 an_int} {\cf1 <=} {\cf5 Platform}{\b\cf1 .}{\cf5 Maximum_character_code}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_character_code}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 code} {\cf1 =} {\cf5 an_int}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 to_hexadecimal} {\cf1 (}{\cf5 an_int}{\cf1 :} {\cf4 INTEGER_32}{\cf1 ;} {\cf5 uppercase}{\cf1 :} {\cf4 BOOLEAN}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Hexadecimal representation of }{\cf5 an_int}{\cf3 ;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Return a new string at each call.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 an_int_positive}{\cf1 :} {\cf5 an_int} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 hexadecimal_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_string}{\cf1 :} {\cf5 Any_}{\b\cf1 .}{\cf5 same_types}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 ,} ""{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 to_decimal} {\cf1 (}{\cf5 an_int}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Decimal representation of }{\cf5 an_int}{\cf3 ;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Return a new string at each call.}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 decimal_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_string}{\cf1 :} {\cf5 Any_}{\b\cf1 .}{\cf5 same_types}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 ,} ""{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 to_octal} {\cf1 (}{\cf5 an_int}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Octal representation of }{\cf5 an_int}{\cf3 ;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Return a new string at each call.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 an_int_positive}{\cf1 :} {\cf5 an_int} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 octal_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_string}{\cf1 :} {\cf5 Any_}{\b\cf1 .}{\cf5 same_types}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 ,} ""{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 to_integer} {\cf1 (}{\cf5 an_int}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Return }{\cf5 an_int}{\cf3 ;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  This can be used to force integer manifest constants to}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  be of INTEGER type -- some versions of SmartEiffel use}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the smallest possible INTEGER_* type. A manifest array}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  can thus be forced to be of type ARRAY }{\cf3 [INTEGER]}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf5 an_int}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 to_integer_8} {\cf1 (}{\cf5 an_int}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Convert to INTEGER_8}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 an_int_large_enouh}{\cf1 :} {\cf5 an_int} {\cf1 >=} -128{\line}
+{\tab}{\tab}{\tab}{\cf1 an_int_small_enouh}{\cf1 :} {\cf5 an_int} {\cf1 <=} 127{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Output}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 append_decimal_integer} {\cf1 (}{\cf5 an_int}{\cf1 :} {\cf4 INTEGER_32}{\cf1 ;} {\cf5 a_string}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Append decimal representation of }{\cf5 an_int}{\cf3  to }{\cf5 a_string}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Note: works even when }{\cf5 a_string}{\cf3  is a UC_STRING.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 append_octal_integer} {\cf1 (}{\cf5 an_int}{\cf1 :} {\cf4 INTEGER_32}{\cf1 ;} {\cf5 a_string}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Append octal representation of }{\cf5 an_int}{\cf3  to }{\cf5 a_string}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Note: works even when }{\cf5 a_string}{\cf3  is a UC_STRING.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 an_int_positive}{\cf1 :} {\cf5 an_int} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 append_hexadecimal_integer} {\cf1 (}{\cf5 an_int}{\cf1 :} {\cf4 INTEGER_32}{\cf1 ;} {\cf5 a_string}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 uppercase}{\cf1 :} {\cf4 BOOLEAN}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Append a hexadecimal representation of }{\cf5 an_int}{\cf3  to }{\cf5 a_string}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Note: works even when }{\cf5 a_string}{\cf3  is a UC_STRING.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 an_int_positive}{\cf1 :} {\cf5 an_int} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Operation(s)}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 div} {\cf1 (}{\cf5 x}{\cf1 ,} {\cf5 n}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Integer division of }{\cf5 x}{\cf3  by }{\cf5 n}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Use ISO C99 specification)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 divisible}{\cf1 :} {\cf5 n} {\cf1 /=} 0{\line}
+{\tab}{\tab}{\tab}{\cf1 overflow}{\cf1 :} {\cf5 x} {\cf1 =} {\cf5 Platform}{\b\cf1 .}{\cf5 Minimum_integer} {\b\cf6 implies} {\cf5 n} {\cf1 /=} -1{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\b\cf6 Result} {\cf1 *} {\cf5 n} {\cf1 +} {\cf5 mod}{\cf1  }{\cf1 (}{\cf5 x}{\cf1 ,} {\cf5 n}{\cf1 )} {\cf1 =} {\cf5 x}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 mod} {\cf1 (}{\cf5 x}{\cf1 ,} {\cf5 n}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Reminder of the integer division of }{\cf5 x}{\cf3  by }{\cf5 n}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Use ISO C99 specification)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 divisible}{\cf1 :} {\cf5 n} {\cf1 /=} 0{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition1}{\cf1 :} {\cf5 n} {\cf1 /=} {\cf5 Platform}{\b\cf1 .}{\cf5 Minimum_integer} {\b\cf6 implies} {\b\cf6 Result}{\b\cf1 .}{\cf5 abs} {\cf1 <} {\cf5 n}{\b\cf1 .}{\cf5 abs}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition2}{\cf1 :} {\cf5 n} {\cf1 =} {\cf5 Platform}{\b\cf1 .}{\cf5 Minimum_integer} {\b\cf6 implies} {\b\cf6 Result}{\b\cf1 .}{\cf5 abs} {\cf1 <=} {\cf5 Platform}{\b\cf1 .}{\cf5 Maximum_integer}{\line}
+{\tab}{\tab}{\tab}{\cf1 iso_c99}{\cf1 :} {\b\cf6 Result} {\cf1 /=} 0 {\b\cf6 implies} {\b\cf6 Result}{\b\cf1 .}{\cf5 sign} {\cf1 =} {\cf5 x}{\b\cf1 .}{\cf5 sign}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 power} {\cf1 (}{\cf5 x}{\cf1 ,} {\cf5 n}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Integer }{\cf5 x}{\cf3  to the power of }{\cf5 n}{\cf3  (}{\cf5 x}{\cf3  ^ }{\cf5 n}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 positive_n}{\cf1 :} {\cf5 n} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 zero_power_n}{\cf1 :} {\cf5 x} {\cf1 =} 0 {\b\cf6 and} {\cf5 n} {\cf1 /=} 0 {\b\cf6 implies} {\b\cf6 Result} {\cf1 =} 0{\line}
+{\tab}{\tab}{\tab}{\cf1 x_power_0}{\cf1 :} {\cf5 n} {\cf1 =} 0 {\b\cf6 implies} {\b\cf6 Result} {\cf1 =} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 recursive_definition}{\cf1 :} {\cf5 n} {\cf1 >} 0 {\b\cf6 implies} {\cf1 (}{\b\cf6 Result} {\cf1 =} {\cf5 x} {\cf1 *} {\cf5 power}{\cf1  }{\cf1 (}{\cf5 x}{\cf1 ,} {\cf5 n} {\cf1 -} 1{\cf1 )}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 bit_and} {\cf1 (}{\cf5 m}{\cf1 ,} {\cf5 n}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Bitwise 'and' between }{\cf5 m}{\cf3  and }{\cf5 n}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 bit_or} {\cf1 (}{\cf5 m}{\cf1 ,} {\cf5 n}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Bitwise 'or' between }{\cf5 m}{\cf3  and }{\cf5 n}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 bit_xor} {\cf1 (}{\cf5 m}{\cf1 ,} {\cf5 n}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Bitwise 'xor' between }{\cf5 m}{\cf3  and }{\cf5 n}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 bit_not} {\cf1 (}{\cf5 n}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Bitwise 'not' of }{\cf5 n}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 bit_shift_left} {\cf1 (}{\cf5 m}{\cf1 ,} {\cf5 n}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 m}{\cf3  shifted }{\cf5 n}{\cf3  bits to left;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Note: The new bits added on the right are 0.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 thirty_two_bit_shift}{\cf1 :} 0 {\cf1 <=} {\cf5 n} {\b\cf6 and} {\cf5 n} {\cf1 <} 32{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 bit_shift_right} {\cf1 (}{\cf5 m}{\cf1 ,} {\cf5 n}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 m}{\cf3  shifted }{\cf5 n}{\cf3  bits to right;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Note: If the first bit of }{\cf5 m}{\cf3  is set (i.e. the sign bit), then}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the new bits added on the left are 1; otherwise they are 0.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 thirty_two_bit_shift}{\cf1 :} 0 {\cf1 <=} {\cf5 n} {\b\cf6 and} {\cf5 n} {\cf1 <} 32{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status report}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_even} {\cf1 (}{\cf5 an_int}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 an_int}{\cf3  an even integer?}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf5 an_int} {\cf1 \\\\} 2 {\cf1 =} 0{\cf1 )}{\line}
+}{\tab}{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 KL_INTEGER_ROUTINES}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

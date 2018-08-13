@@ -1,0 +1,36 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;&quot;</string>
+	<indexing_tag>author</indexing_tag><symbol>:</symbol> <string>&quot;&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date$&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision$&quot;</string>
+
+<keyword>class</keyword> 
+	<class><location>../tracker/etf_redo.xml</location>ETF_REDO</class>
+
+<keyword>inherit</keyword>
+	<class><include>False</include>ETF_REDO_INTERFACE</class>
+		<keyword>redefine</keyword>
+			<feature><location>../tracker/etf_redo.xml#f_redo</location>redo</feature>
+		<keyword>end</keyword>
+
+<keyword>create</keyword> 
+	<feature><include>False</include>make</feature>
+
+<keyword>feature</keyword> <comment>--</comment><comment> command</comment>
+
+	<anchor>f_redo</anchor><feature><location>../tracker/etf_redo.xml#f_redo</location>redo</feature>
+		<keyword>do</keyword>
+			<feature><location>../tracker/etf_command.xml#f_model</location>model</feature><dot>.</dot><feature><location>../tracker/tracker.xml#f_set_state</location>set_state</feature><symbol> </symbol><symbol>(</symbol><feature><location>../tracker/etf_command.xml#f_model</location>model</feature><dot>.</dot><feature><location>../tracker/tracker.xml#f_get_state</location>get_state</feature> <symbol>+</symbol> <number>1</number><symbol>)</symbol>
+			<keyword>if</keyword> <feature><location>../tracker/etf_command.xml#f_model</location>model</feature><dot>.</dot><feature><location>../tracker/tracker.xml#f_get_history</location>get_history</feature><dot>.</dot><feature><location>../tracker/history.xml#f_get_record</location>get_record</feature><dot>.</dot><feature><include>False</include>islast</feature> <keyword>or else</keyword> <feature><location>../tracker/etf_command.xml#f_model</location>model</feature><dot>.</dot><feature><location>../tracker/tracker.xml#f_get_history</location>get_history</feature><dot>.</dot><feature><location>../tracker/history.xml#f_get_record</location>get_record</feature><dot>.</dot><feature><include>False</include>count</feature> <symbol>&lt;</symbol> <number>2</number> <keyword>then</keyword>
+				<feature><location>../tracker/etf_command.xml#f_model</location>model</feature><dot>.</dot><feature><location>../tracker/tracker.xml#f_set_error</location>set_error</feature><symbol> </symbol><symbol>(</symbol><feature><location>../tracker/etf_command.xml#f_msg</location>msg</feature><dot>.</dot><feature><location>../tracker/messages_access.xml#f_no_redo</location>No_redo</feature><symbol>)</symbol>
+			<keyword>else</keyword>
+				<feature><location>../tracker/etf_command.xml#f_model</location>model</feature><dot>.</dot><feature><location>../tracker/tracker.xml#f_get_history</location>get_history</feature><dot>.</dot><feature><location>../tracker/history.xml#f_get_record</location>get_record</feature><dot>.</dot><feature><include>False</include>forth</feature>
+				<feature><location>../tracker/etf_command.xml#f_model</location>model</feature><dot>.</dot><feature><location>../tracker/tracker.xml#f_get_history</location>get_history</feature><dot>.</dot><feature><location>../tracker/history.xml#f_get_record</location>get_record</feature><dot>.</dot><feature><include>False</include>item</feature><dot>.</dot><feature><location>../tracker/command.xml#f_redo</location>redo</feature>
+				<feature><location>../tracker/etf_command.xml#f_model</location>model</feature><dot>.</dot><feature><location>../tracker/tracker.xml#f_get_history</location>get_history</feature><dot>.</dot><feature><location>../tracker/history.xml#f_get_record</location>get_record</feature><dot>.</dot><feature><include>False</include>item</feature><dot>.</dot><feature><location>../tracker/command.xml#f_set_state</location>set_state</feature>
+			<keyword>end</keyword>
+			<feature><include>False</include>etf_cmd_container</feature><dot>.</dot><feature><include>False</include>on_change</feature><dot>.</dot><feature><include>False</include>notify</feature><symbol> </symbol><symbol>(</symbol><symbol>[</symbol><keyword>Current</keyword><symbol>]</symbol><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../tracker/etf_redo.xml</location>ETF_REDO</class></system>
+

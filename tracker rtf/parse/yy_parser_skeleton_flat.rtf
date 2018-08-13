@@ -1,0 +1,1441 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "Skeletons for parsers implemented with tables"{\line}
+{\tab}{\cf1 library}{\cf1 :} "Gobo Eiffel Parse Library"{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 2003-2013, Eric Bezault and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "MIT License"{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2016-05-06 12:15:38 -0700 (Fri, 06 May 2016) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 98678 $"{\line}
+{\line}
+{\b\cf6 deferred} {\b\cf6 class} {\line}
+{\tab}{\cf4 YY_PARSER_SKELETON}{\line}
+{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Initialization}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 default_create}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Process instances of classes with no creation clause.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Default: do nothing.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create a new parser.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 yyss} {\cf1 :=} {\cf5 Special_integer_}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 Yyinitial_stack_size}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 yy_create_value_stacks}{\line}
+{\tab}{\tab}{\tab}{\cf5 yy_build_parser_tables}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 error_count}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of errors detected during last parsing}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 generating_type}{\cf1 :} {\cf4 TYPE} {\cf1 [}{\b\cf6 detachable} {\cf4 YY_PARSER_SKELETON}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Type of current object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (type of which it is a direct instance)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 generating_type_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 generator}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Name of current object's generating class}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (base class of the type of which it is a direct instance)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 generator_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 generator_not_empty}{\cf1 :} {\b\cf6 not} {\b\cf6 Result}{\b\cf1 .}{\cf5 is_empty}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 token_name} {\cf1 (}{\cf5 a_token}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Name of token }{\cf5 a_token}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 YY_PARSER_TOKENS}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 YY_PARSER_TOKENS}{\line}
+{\tab}{\tab}{\tab}{\cf1 token_name_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 YY_PARSER_ACTION}{\cf1 \}} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 expected_tokens}{\cf1 :} {\cf4 ARRAY} {\cf1 [}{\cf4 INTEGER_32}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  List of token codes that are a possible input at this stage}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of parsing. (This routine can be called from the error actions}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  %error or from }{\cf5 report_error}{\cf3  in order to build a meaningful}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  error message.)}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 i}{\cf1 ,} {\cf5 nb}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 t}{\cf1 :} {\cf4 ARRAY} {\cf1 [}{\cf4 INTEGER_32}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf5 j}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 nb} {\cf1 :=} {\cf5 yymax_token}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 t}{\b\cf1 .}{\cf5 make_filled}{\cf1  }{\cf1 (}0{\cf1 ,} 1{\cf1 ,} {\cf5 nb} {\cf1 +} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 >} {\cf5 nb}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 is_expected_token}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 j} {\cf1 :=} {\cf5 j} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 t}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 ,} {\cf5 j}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 i} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make_filled}{\cf1  }{\cf1 (}0{\cf1 ,} 1{\cf1 ,} {\cf5 j}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 >} {\cf5 j}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 t}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\cf1 ,} {\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 i} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 expected_tokens_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Any_array_}{\cf1 :} {\cf4 KL_ARRAY_ROUTINES} {\cf1 [}{\b\cf6 detachable} {\cf4 ANY}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Routines that ought to be in class ARRAY}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 KL_IMPORTED_ARRAY_ROUTINES}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 KL_IMPORTED_ARRAY_ROUTINES}{\line}
+{\tab}{\tab}{\tab}{\cf1 any_array_routines_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Array_special_integer_}{\cf1 :} {\cf4 KL_ARRAY_ROUTINES} {\cf1 [}{\b\cf6 detachable} {\cf4 SPECIAL} {\cf1 [}{\cf4 INTEGER_32}{\cf1 ]}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Routines that ought to be in class ARRAY}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 KL_IMPORTED_ARRAY_ROUTINES}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 KL_IMPORTED_ARRAY_ROUTINES}{\line}
+{\tab}{\tab}{\tab}{\cf1 special_integer_array_routines_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Boolean_array_}{\cf1 :} {\cf4 KL_ARRAY_ROUTINES} {\cf1 [}{\cf4 BOOLEAN}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Routines that ought to be in class ARRAY}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 KL_IMPORTED_ARRAY_ROUTINES}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 KL_IMPORTED_ARRAY_ROUTINES}{\line}
+{\tab}{\tab}{\tab}{\cf1 boolean_array_routines_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Detachable_string_array_routines}{\cf1 :} {\cf4 KL_ARRAY_ROUTINES} {\cf1 [}{\b\cf6 detachable} {\cf4 STRING_8}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Routines that ought to be in class ARRAY}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 KL_IMPORTED_ARRAY_ROUTINES}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 KL_IMPORTED_ARRAY_ROUTINES}{\line}
+{\tab}{\tab}{\tab}{\cf1 detachable_string_array_routines_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Integer_}{\cf1 :} {\cf4 KL_INTEGER_ROUTINES}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Routines that ought to be in class INTEGER}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 KL_IMPORTED_INTEGER_ROUTINES}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 KL_IMPORTED_INTEGER_ROUTINES}{\line}
+{\tab}{\tab}{\tab}{\cf1 integer_routines_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Integer_array_}{\cf1 :} {\cf4 KL_ARRAY_ROUTINES} {\cf1 [}{\cf4 INTEGER_32}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Routines that ought to be in class ARRAY}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 KL_IMPORTED_ARRAY_ROUTINES}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 KL_IMPORTED_ARRAY_ROUTINES}{\line}
+{\tab}{\tab}{\tab}{\cf1 integer_array_routines_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Platform}{\cf1 :} {\cf4 KL_PLATFORM}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Platform-dependent properties}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 KL_SHARED_PLATFORM}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 KL_SHARED_PLATFORM}{\line}
+{\tab}{\tab}{\tab}{\cf1 platform_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Special_any_}{\cf1 :} {\cf4 KL_SPECIAL_ROUTINES} {\cf1 [}{\cf4 ANY}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Routines that ought to be in class SPECIAL}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 KL_IMPORTED_SPECIAL_ROUTINES}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 KL_IMPORTED_SPECIAL_ROUTINES}{\line}
+{\tab}{\tab}{\tab}{\cf1 special_any_routines_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Special_boolean_}{\cf1 :} {\cf4 KL_SPECIAL_ROUTINES} {\cf1 [}{\cf4 BOOLEAN}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Routines that ought to be in class SPECIAL}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 KL_IMPORTED_SPECIAL_ROUTINES}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 KL_IMPORTED_SPECIAL_ROUTINES}{\line}
+{\tab}{\tab}{\tab}{\cf1 special_boolean_routines_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Special_character_}{\cf1 :} {\cf4 KL_SPECIAL_ROUTINES} {\cf1 [}{\cf4 CHARACTER_8}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Routines that ought to be in class SPECIAL}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 KL_IMPORTED_SPECIAL_ROUTINES}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 KL_IMPORTED_SPECIAL_ROUTINES}{\line}
+{\tab}{\tab}{\tab}{\cf1 special_character_routines_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Special_integer_}{\cf1 :} {\cf4 KL_SPECIAL_ROUTINES} {\cf1 [}{\cf4 INTEGER_32}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Routines that ought to be in class SPECIAL}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 KL_IMPORTED_SPECIAL_ROUTINES}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 KL_IMPORTED_SPECIAL_ROUTINES}{\line}
+{\tab}{\tab}{\tab}{\cf1 special_integer_routines_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Special_string_}{\cf1 :} {\cf4 KL_SPECIAL_ROUTINES} {\cf1 [}{\cf4 STRING_8}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Routines that ought to be in class SPECIAL}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 KL_IMPORTED_SPECIAL_ROUTINES}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 KL_IMPORTED_SPECIAL_ROUTINES}{\line}
+{\tab}{\tab}{\tab}{\cf1 special_string_routines_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Std}{\cf1 :} {\cf4 KL_STANDARD_FILES}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Standard files}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 KL_SHARED_STANDARD_FILES}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 KL_SHARED_STANDARD_FILES}{\line}
+{\tab}{\tab}{\tab}{\cf1 std_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 String_}{\cf1 :} {\cf4 KL_STRING_ROUTINES}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Routines that ought to be in class STRING}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 KL_IMPORTED_STRING_ROUTINES}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 KL_IMPORTED_STRING_ROUTINES}{\line}
+{\tab}{\tab}{\tab}{\cf1 string_routines_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 String_array_}{\cf1 :} {\cf4 KL_ARRAY_ROUTINES} {\cf1 [}{\b\cf6 detachable} {\cf4 STRING_8}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Routines that ought to be in class ARRAY}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 KL_IMPORTED_ARRAY_ROUTINES}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 KL_IMPORTED_ARRAY_ROUTINES}{\line}
+{\tab}{\tab}{\tab}{\cf1 string_array_routines_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 String_array_routines}{\cf1 :} {\cf4 KL_ARRAY_ROUTINES} {\cf1 [}{\cf4 STRING_8}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Routines that ought to be in class ARRAY}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 KL_IMPORTED_ARRAY_ROUTINES}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 KL_IMPORTED_ARRAY_ROUTINES}{\line}
+{\tab}{\tab}{\tab}{\cf1 string_array_routines_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Comparison}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 deep_equal} {\cf1 (}{\cf5 a}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 ;} {\cf5 b}{\cf1 :} {\b\cf6 like} arg #1{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are }{\cf5 a}{\cf3  and }{\cf5 b}{\cf3  either both void}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  or attached to isomorphic object structures?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a} {\cf1 =} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 =} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 is_deep_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 shallow_implies_deep}{\cf1 :} {\cf5 standard_equal}{\cf1  }{\cf1 (}{\cf5 a}{\cf1 ,} {\cf5 b}{\cf1 )} {\b\cf6 implies} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\cf1 both_or_none_void}{\cf1 :} {\cf1 (}{\cf5 a} {\cf1 =} {\b\cf6 Void}{\cf1 )} {\b\cf6 implies} {\cf1 (}{\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf5 b} {\cf1 =} {\b\cf6 Void}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 same_type}{\cf1 :} {\cf1 (}{\b\cf6 Result} {\b\cf6 and} {\cf1 (}{\cf5 a} {\cf1 /=} {\b\cf6 Void}{\cf1 )}{\cf1 )} {\b\cf6 implies} {\cf1 (}{\cf5 b} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 same_type}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 symmetric}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 deep_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 ,} {\cf5 a}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 equal} {\cf1 (}{\cf5 a}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 ;} {\cf5 b}{\cf1 :} {\b\cf6 like} arg #1{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are }{\cf5 a}{\cf3  and }{\cf5 b}{\cf3  either both void or attached}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to objects considered equal?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a} {\cf1 =} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 =} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf5 a} {\cf1 =} {\b\cf6 Void} {\b\cf6 and} {\cf5 b} {\cf1 =} {\b\cf6 Void}{\cf1 )} {\b\cf6 or else} {\cf1 (}{\cf1 (}{\cf5 a} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and} {\cf5 b} {\cf1 /=} {\b\cf6 Void}{\cf1 )} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 is_deep_equal} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 YY_PARSER_SKELETON}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are }{\cf5 Current}{\cf3  and }{\cf5 other}{\cf3  attached to isomorphic object structures?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 shallow_implies_deep}{\cf1 :} {\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )} {\b\cf6 implies} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\cf1 same_type}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 same_type}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 symmetric}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 other}{\b\cf1 .}{\cf5 is_deep_equal}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_equal} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 YY_PARSER_SKELETON}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 other}{\cf3  attached to an object considered}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  equal to current object?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 symmetric}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 other} {\cf1 ~} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\tab}{\cf1 consistent}{\cf1 :} {\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )} {\b\cf6 implies} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 standard_equal} {\cf1 (}{\cf5 a}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 ;} {\cf5 b}{\cf1 :} {\b\cf6 like} arg #1{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are }{\cf5 a}{\cf3  and }{\cf5 b}{\cf3  either both void or attached to}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  field-by-field identical objects of the same type?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Always uses default object comparison criterion.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a} {\cf1 =} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 =} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf5 a} {\cf1 =} {\b\cf6 Void} {\b\cf6 and} {\cf5 b} {\cf1 =} {\b\cf6 Void}{\cf1 )} {\b\cf6 or else} {\cf1 (}{\cf1 (}{\cf5 a} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and} {\cf5 b} {\cf1 /=} {\b\cf6 Void}{\cf1 )} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 standard_is_equal} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 YY_PARSER_SKELETON}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 other}{\cf3  attached to an object of the same type}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  as current object, and field-by-field identical to it?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 same_type}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 same_type}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 symmetric}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 other}{\b\cf1 .}{\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status report}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 conforms_to} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 ANY}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does type of current object conform to type}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of }{\cf5 other}{\cf3  (as per Eiffel: The Language, chapter 13)?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_suspended}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Has parsing been suspended?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  The next call to }{\cf5 parse}{\cf3  will resume parsing in the state}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  where the parser was when it was suspended. Note that a call}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to }{\cf5 abort}{\cf3  or }{\cf5 accept}{\cf3  will force }{\cf5 parse}{\cf3  to parse from scratch.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Also, note that the result of this query is undefined within}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the calll to }{\cf5 parse}{\cf3 , e.g. when executing semantic actions.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 yy_parsing_status} {\cf1 =} {\cf5 Yysuspended}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 same_type} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 ANY}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is type of current object identical to type of }{\cf5 other}{\cf3 ?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf5 conforms_to}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )} {\b\cf6 and} {\cf5 other}{\b\cf1 .}{\cf5 conforms_to}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 syntax_error}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Has last parsing been unsuccesful?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  This query may return false if errors have been recovered.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Note that the result of this query is undefined within}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the calll to }{\cf5 parse}{\cf3 , e.g. when executing semantic actions.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 yy_parsing_status} {\cf1 =} {\cf5 Yyaborted}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 YY_PARSER_ACTION}{\cf1 \}} {\cf3 --}{\cf3  Status report}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_expected_token} {\cf1 (}{\cf5 a_token}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 a_token}{\cf3  a possible input at this stage of parsing?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (This routine can be called from one of the error actions}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  %error or from }{\cf5 report_error}{\cf3  in order to find out what}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  were the expected tokens when the error occurred.)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_token_positive}{\cf1 :} {\cf5 a_token} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 yystate}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 yyn}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 yychar1}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yyssp} {\cf1 >=} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 yystate} {\cf1 :=} {\cf5 yyss}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yyssp}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 yyn} {\cf1 :=} {\cf5 yypact}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yystate}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yyn} {\cf1 =} {\cf5 yyflag} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yyn} {\cf1 :=} {\cf5 yydefact}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yystate}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yyn} {\cf1 /=} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a_token} {\cf1 =} {\cf5 Yyeof} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yychar1} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a_token} {\cf1 <=} {\cf5 yymax_token} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yychar1} {\cf1 :=} {\cf5 yytranslate}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 a_token}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yychar1} {\cf1 :=} {\cf5 yynsyms}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yyn} {\cf1 :=} {\cf5 yyn} {\cf1 +} {\cf5 yychar1}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf1 (}{\cf5 yyn} {\cf1 <} 0 {\b\cf6 or} {\cf5 yyn} {\cf1 >} {\cf5 yylast}{\cf1 )} {\b\cf6 or else} {\cf5 yycheck}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yyn}{\cf1 )} {\cf1 /=} {\cf5 yychar1} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yyn} {\cf1 :=} {\cf5 yydefact}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yystate}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yyn} {\cf1 /=} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yyn} {\cf1 :=} {\cf5 yytable}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yyn}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yyn} {\cf1 <} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yyn} {\cf1 /=} {\cf5 yyflag} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 yyn} {\cf1 =} {\cf5 yyfinal} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 yyn} {\cf1 /=} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_recovering}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is current parser recovering from a syntax error?}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 yyerrstatus} {\cf1 /=} 0{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Duplication}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 clone} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 )}{\cf1 :} {\b\cf6 like} {\cf5 other}{\line}
+{\tab}{\tab}{\b\cf6 obsolete} "Use `twin' instead. [2017-05-31]"{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Void if }{\cf5 other}{\cf3  is void; otherwise new object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  equal to }{\cf5 other}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  For non-void }{\cf5 other}{\cf3 , }{\cf5 clone}{\cf3  calls }{\cf5 copy}{\cf3 ;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to change copying/cloning semantics, redefine }{\cf5 copy}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 other} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 other}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 equal}{\cf1 :} {\b\cf6 Result} {\cf1 ~} {\cf5 other}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 copy} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 YY_PARSER_SKELETON}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Update current object using fields of object attached}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to }{\cf5 other}{\cf3 , so as to yield equal objects.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 type_identity}{\cf1 :} {\cf5 same_type}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_equal}{\cf1 :} {\b\cf6 Current} {\cf1 ~} {\cf5 other}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 deep_clone} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 )}{\cf1 :} {\b\cf6 like} {\cf5 other}{\line}
+{\tab}{\tab}{\b\cf6 obsolete} "Use `deep_twin' instead. [2017-05-31]"{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Void if }{\cf5 other}{\cf3  is void: otherwise, new object structure}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  recursively duplicated from the one attached to }{\cf5 other}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 other} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 other}{\b\cf1 .}{\cf5 deep_twin}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 deep_equal}{\cf1 :} {\cf5 deep_equal}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 ,} {\b\cf6 Result}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 deep_copy} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 YY_PARSER_SKELETON}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Effect equivalent to that of:}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3 		}{\cf5 copy}{\cf3  (}{\cf5 other}{\cf3  . }{\cf5 deep_twin}{\cf3 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 copy}{\cf1  }{\cf1 (}{\cf5 other}{\b\cf1 .}{\cf5 deep_twin}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 deep_equal}{\cf1 :} {\cf5 deep_equal}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 ,} {\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 deep_twin}{\cf1 :} {\b\cf6 attached} {\cf4 YY_PARSER_SKELETON}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New object structure recursively duplicated from Current.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 deep_twin_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 deep_equal}{\cf1 :} {\cf5 deep_equal}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 ,} {\b\cf6 Result}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 standard_clone} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 )}{\cf1 :} {\b\cf6 like} {\cf5 other}{\line}
+{\tab}{\tab}{\b\cf6 obsolete} "Use `standard_twin' instead. [2017-05-31]"{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Void if }{\cf5 other}{\cf3  is void; otherwise new object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  field-by-field identical to }{\cf5 other}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Always uses default copying semantics.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 other} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 other}{\b\cf1 .}{\cf5 standard_twin}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 equal}{\cf1 :} {\cf5 standard_equal}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 ,} {\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 standard_copy} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 YY_PARSER_SKELETON}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Copy every field of }{\cf5 other}{\cf3  onto corresponding field}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of current object.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 type_identity}{\cf1 :} {\cf5 same_type}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_standard_equal}{\cf1 :} {\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 standard_twin}{\cf1 :} {\b\cf6 attached} {\cf4 YY_PARSER_SKELETON}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New object field-by-field identical to }{\cf5 other}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Always uses default copying semantics.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 standard_twin_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 equal}{\cf1 :} {\cf5 standard_equal}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 ,} {\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 twin}{\cf1 :} {\b\cf6 attached} {\cf4 YY_PARSER_SKELETON}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New object equal to }{\cf5 Current}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 twin}{\cf3  calls }{\cf5 copy}{\cf3 ; to change copying/twinning semantics, redefine }{\cf5 copy}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 twin_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_equal}{\cf1 :} {\b\cf6 Result} {\cf1 ~} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Basic operations}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 abort}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Abort parsing.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do not print error message.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 yy_parsing_status} {\cf1 :=} {\cf5 Yyaborted}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 YY_PARSER}{\line}
+{\tab}{\tab}{\tab}{\cf1 aborted}{\cf1 :} {\cf5 syntax_error}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 accept}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Stop parsing successfully.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 yy_parsing_status} {\cf1 :=} {\cf5 Yyaccepted}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 YY_PARSER}{\line}
+{\tab}{\tab}{\tab}{\cf1 accepted}{\cf1 :} {\b\cf6 not} {\cf5 syntax_error}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 as_attached}{\cf1 :} {\b\cf6 attached} {\cf4 YY_PARSER_SKELETON}{\line}
+{\tab}{\tab}{\b\cf6 obsolete} "Remove calls to this feature. [2017-05-31]"{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Attached version of Current.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Can be used during transitional period to convert}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  non-void-safe classes to void-safe ones.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 clear_all}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Clear temporary objects so that they can be collected}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  by the garbage collector. (This routine is called by}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 parse}{\cf3  before exiting. It can be redefined in descendants.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Clear internal stacks by default.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 clear_stacks}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 clear_stacks}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Clear objects in internal stacks so that they can}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  be collected by the garbage collector.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 yy_clear_value_stacks}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 default}{\cf1 :} {\b\cf6 detachable} {\cf4 YY_PARSER_SKELETON}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Default value of object's type}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 default_pointer}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Default value of type }{\cf5 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Avoid the need to write }{\cf5 p}{\cf3 .}{\cf5 default}{\cf3  for}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  some }{\cf5 p}{\cf3  of type }{\cf5 POINTER}{\cf3 .)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 default_rescue}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Process exception for routines with no Rescue clause.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Default: do nothing.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 do_nothing}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Execute a null action.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 YY_PARSER_ACTION}{\cf1 \}} {\cf3 --}{\cf3  Basic operations}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 clear_token}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Clear the previous lookahead token.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Used in error-recovery rule actions.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 yy_lookahead_needed} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 raise_error}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Raise a syntax error.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Report error using the error action %error associated}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  with current parsing state or }{\cf5 report_error}{\cf3  by default,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  and perform normal error recovery if possible.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 yy_parsing_status} {\cf1 :=} {\cf5 Yyerror_raised}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 recover}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Recover immediately after a parse error.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 yyerrstatus} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\cf5 yy_parsing_status} {\cf1 :=} {\cf5 Yycontinue}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 report_eof_expected_error}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Report that an end-of-file is expected.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (This routine is called by default by }{\cf5 parse}{\cf3  when it detects}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  such syntax error and can be redefined in descendants.)}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 report_error}{\cf1  }{\cf1 (}"parse error"{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 report_error} {\cf1 (}{\cf5 a_message}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Print error message.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (This routine is called by default by }{\cf5 parse}{\cf3  when it}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  detects a syntax error and there is no error action}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  %error available. It can be redefined in descendants.)}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 YY_PARSER}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_message_not_void}{\cf1 :} {\cf5 a_message} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 Std}{\b\cf1 .}{\cf5 Error}{\b\cf1 .}{\cf5 put_string}{\cf1  }{\cf1 (}{\cf5 a_message}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 Std}{\b\cf1 .}{\cf5 Error}{\b\cf1 .}{\cf5 put_new_line}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 suspend}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Suspend parsing.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  The next call to }{\cf5 parse}{\cf3  will resume parsing in the state}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  where the parser was when it was suspended. Note that a call}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to }{\cf5 abort}{\cf3  or }{\cf5 accept}{\cf3  will force }{\cf5 parse}{\cf3  to parse from scratch.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 yy_parsing_status} {\cf1 :=} {\cf5 Yysuspended}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 YY_PARSER}{\line}
+{\tab}{\tab}{\tab}{\cf1 suspended}{\cf1 :} {\cf5 is_suspended}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yy_build_parser_tables}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Build parser tables.}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 yytranslate_not_void}{\cf1 :} {\cf5 yytranslate} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 yyr1_not_void}{\cf1 :} {\cf5 yyr1} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 yydefact_not_void}{\cf1 :} {\cf5 yydefact} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 yydefgoto_not_void}{\cf1 :} {\cf5 yydefgoto} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 yypact_not_void}{\cf1 :} {\cf5 yypact} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 yypgoto_not_void}{\cf1 :} {\cf5 yypgoto} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 yytable_not_void}{\cf1 :} {\cf5 yytable} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 yycheck_not_void}{\cf1 :} {\cf5 yycheck} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yy_character_token_name} {\cf1 (}{\cf5 a_token}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Name of character token }{\cf5 a_token}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 YY_PARSER_TOKENS}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 c}{\cf1 :} {\cf4 CHARACTER_8}{\line}
+{\tab}{\tab}{\tab}{\cf5 i}{\cf1 ,} {\cf5 j}{\cf1 ,} {\cf5 k}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a_token} {\cf1 >=} {\cf5 Platform}{\b\cf1 .}{\cf5 Minimum_character_code} {\b\cf6 and} {\cf5 a_token} {\cf1 <=} {\cf5 Platform}{\b\cf1 .}{\cf5 Maximum_character_code} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 c} {\cf1 :=} {\cf5 Integer_}{\b\cf1 .}{\cf5 to_character}{\cf1  }{\cf1 (}{\cf5 a_token}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 inspect} {\cf5 c}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} '%B' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} "'\\b'"{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} '%F' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} "'\\f'"{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} '%N' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} "'\\n'"{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} '%R' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} "'\\r'"{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} '%T' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} "'\\t'"{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} '%'' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} "'\\''"{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} '"' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} "'\\%"'"{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} ' '{\cf1 ,} '!'{\cf1 ,} '#'{\cf1 ,} '$'{\cf1 ,} '&'{\cf1 ,} '('{\cf1 ..}'~' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}3{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append_character}{\cf1  }{\cf1 (}'%''{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append_character}{\cf1  }{\cf1 (}{\cf5 c}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append_character}{\cf1  }{\cf1 (}'%''{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}6{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append_character}{\cf1  }{\cf1 (}'%''{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append_character}{\cf1  }{\cf1 (}'\\'{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a_token} {\cf1 =} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append_character}{\cf1  }{\cf1 (}'0'{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a_token} {\cf1 <} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append_character}{\cf1  }{\cf1 (}'-'{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 k} {\cf1 :=} {\cf1 -} {\cf5 a_token}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} 4{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 k} {\cf1 :=} {\cf5 a_token}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} 3{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 k} {\cf1 =} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 inspect} {\cf5 k} {\cf1 \\\\} 8{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append_character}{\cf1  }{\cf1 (}'0'{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} 1 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append_character}{\cf1  }{\cf1 (}'1'{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} 2 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append_character}{\cf1  }{\cf1 (}'2'{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} 3 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append_character}{\cf1  }{\cf1 (}'3'{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} 4 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append_character}{\cf1  }{\cf1 (}'4'{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} 5 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append_character}{\cf1  }{\cf1 (}'5'{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} 6 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append_character}{\cf1  }{\cf1 (}'6'{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} 7 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append_character}{\cf1  }{\cf1 (}'7'{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 k} {\cf1 :=} {\cf5 k} {\cf1 //} 8{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 j} {\cf1 :=} {\b\cf6 Result}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 >=} {\cf5 j}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 c} {\cf1 :=} {\b\cf6 Result}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\b\cf6 Result}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 j}{\cf1 )}{\cf1 ,} {\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 c}{\cf1 ,} {\cf5 j}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 i} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 j} {\cf1 :=} {\cf5 j} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append_character}{\cf1  }{\cf1 (}'%''{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} "Unknown token"{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 YY_PARSER_TOKENS}{\line}
+{\tab}{\tab}{\tab}{\cf1 character_token_name_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yy_clear_all}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Clear temporary objects so that they can be collected}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  by the garbage collector. This routine is called by}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 parse}{\cf3  before exiting.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 clear_all}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yy_clear_value_stacks}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Clear objects in semantic value stacks so that}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  they can be collected by the garbage collector.}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yy_create_value_stacks}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create value stacks.}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yy_do_action} {\cf1 (}{\cf5 yy_act}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Execute semantic action.}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yy_do_error_action} {\cf1 (}{\cf5 yy_act}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Execute error action.}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yy_init_value_stacks}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Initialize value stacks.}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yy_lookahead_needed}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is a lookahead token needed?}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yy_parsing_status}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Parsing status}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yy_pop_last_value} {\cf1 (}{\cf5 yystate}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Pop semantic value from stack when in state }{\cf5 yystate}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yy_push_error_value}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Push semantic value associated with token 'error'}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  on top of corresponding value stack.}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yy_push_last_value} {\cf1 (}{\cf5 yychar1}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Push semantic value associated with token }{\cf5 last_token}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (with internal id }{\cf5 yychar1}{\cf3 ) on top of corresponding}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  value stack.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 yychar1_large_enough}{\cf1 :} {\cf5 yychar1} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\tab}{\cf1 yychar1_small_enough}{\cf1 :} {\cf5 yychar1} {\cf1 <} {\cf5 yyntbase}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yy_run_geyacc}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  You must run geyacc to regenerate this class.}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yyarray_subcopy} {\cf1 (}{\cf5 an_array}{\cf1 :} {\cf4 ARRAY} {\cf1 [}{\cf4 INTEGER_32}{\cf1 ]}{\cf1 ;} {\cf5 other}{\cf1 :} {\cf4 ARRAY} {\cf1 [}{\cf4 INTEGER_32}{\cf1 ]}{\cf1 ;} {\cf5 start_pos}{\cf1 ,} {\cf5 end_pos}{\cf1 ,} {\cf5 index_pos}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Copy items of }{\cf5 other}{\cf3  within bounds }{\cf5 start_pos}{\cf3  and }{\cf5 end_pos}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to }{\cf5 an_array}{\cf3  starting at index }{\cf5 index_pos}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 an_array_not_void}{\cf1 :} {\cf5 an_array} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_same}{\cf1 :} {\cf5 an_array} {\cf1 /=} {\cf5 other}{\line}
+{\tab}{\tab}{\tab}{\cf1 start_pos_large_enough}{\cf1 :} {\cf5 start_pos} {\cf1 >=} {\cf5 other}{\b\cf1 .}{\cf5 lower}{\line}
+{\tab}{\tab}{\tab}{\cf1 end_pos_small_enough}{\cf1 :} {\cf5 end_pos} {\cf1 <=} {\cf5 other}{\b\cf1 .}{\cf5 upper}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_bounds}{\cf1 :} {\cf5 start_pos} {\cf1 <=} {\cf5 end_pos} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 index_pos_large_enough}{\cf1 :} {\cf5 index_pos} {\cf1 >=} {\cf5 an_array}{\b\cf1 .}{\cf5 lower}{\line}
+{\tab}{\tab}{\tab}{\cf1 enough_space}{\cf1 :} {\cf1 (}{\cf5 an_array}{\b\cf1 .}{\cf5 upper} {\cf1 -} {\cf5 index_pos}{\cf1 )} {\cf1 >=} {\cf1 (}{\cf5 end_pos} {\cf1 -} {\cf5 start_pos}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 Integer_array_}{\b\cf1 .}{\cf5 subcopy}{\cf1  }{\cf1 (}{\cf5 an_array}{\cf1 ,} {\cf5 other}{\cf1 ,} {\cf5 start_pos}{\cf1 ,} {\cf5 end_pos}{\cf1 ,} {\cf5 index_pos}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yyerrstatus}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of tokens to shift before}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  error messages enabled}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yyfixed_array} {\cf1 (}{\cf5 an_array}{\cf1 :} {\cf4 ARRAY} {\cf1 [}{\cf4 INTEGER_32}{\cf1 ]}{\cf1 )}{\cf1 :} {\cf4 SPECIAL} {\cf1 [}{\cf4 INTEGER_32}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Zero-based array containing items of }{\cf5 an_array}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 an_array_not_void}{\cf1 :} {\cf5 an_array} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 Special_integer_}{\b\cf1 .}{\cf5 to_special}{\cf1  }{\cf1 (}{\cf5 an_array}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 array_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 count_set}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 count} {\cf1 =} {\cf5 an_array}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yyss}{\cf1 :} {\cf4 SPECIAL} {\cf1 [}{\cf4 INTEGER_32}{\cf1 ]}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  State stack}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yyssp}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Top of state stack}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Constants}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Yyaborted}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 102}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Parsing status}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Yyaccepted}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 101}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Parsing status}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Yycontinue}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 104}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Parsing status}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Yydefault}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 2}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Goto constant}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Yydummy}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 2147483647}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  To be inserted in manifest arrays}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  in order to make SE 2.1b1 happy}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Yyeof}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 0}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Grammar-independent constant}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Yyerrhandle}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 5}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Goto constant}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Yyerrlab}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 4}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Goto constant}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Yyerror_raised}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 103}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Parsing status}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Yyerrpop}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 6}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Goto constant}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yyfinal}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Termination state id}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yyflag}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Most negative INTEGER}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Yyinitial_stack_size}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 200}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Initial size of parser's stacks}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Yyinitial_yyvs_size}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 10}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Initial size of parser's stacks}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yylast}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Upper bound of }{\cf5 yytable}{\cf3  and }{\cf5 yycheck}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yymax_token}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Maximum token id}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (upper bound of }{\cf5 yytranslate}{\cf3 .)}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Yynewstate}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 1}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Goto constant}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yynsyms}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yyntbase}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of tokens}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Yyreduce}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 3}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Goto constant}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Yysuspended}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 105}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Parsing status}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Yyterror}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 1}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Grammar-independent constant}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Output}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Io}{\cf1 :} {\cf4 STD_FILES}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Handle to standard file setup}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 set_output_default}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 io_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 out}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New string containing terse printable representation}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of current object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 tagged_out}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 out_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 print} {\cf1 (}{\cf5 o}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Write terse external representation of }{\cf5 o}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  on standard output.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 o} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 Io}{\b\cf1 .}{\cf5 put_string}{\cf1  }{\cf1 (}{\cf5 o}{\b\cf1 .}{\cf5 out}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 tagged_out}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New string containing terse printable representation}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of current object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 tagged_out_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Parsing}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 parse}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Parse input stream.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 syntax_error}{\cf3  to True if}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  parsing has not been successful.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 yystacksize}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 yystate}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 yyn}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 yychar1}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 index}{\cf1 ,} {\cf5 yyss_top}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 yy_goto}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yy_parsing_status} {\cf1 =} {\cf5 Yysuspended} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yystacksize} {\cf1 :=} {\cf5 yy_suspended_yystacksize}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yystate} {\cf1 :=} {\cf5 yy_suspended_yystate}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yyn} {\cf1 :=} {\cf5 yy_suspended_yyn}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yychar1} {\cf1 :=} {\cf5 yy_suspended_yychar1}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 index} {\cf1 :=} {\cf5 yy_suspended_index}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yyss_top} {\cf1 :=} {\cf5 yy_suspended_yyss_top}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_goto} {\cf1 :=} {\cf5 yy_suspended_yy_goto}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_parsing_status} {\cf1 :=} {\cf5 Yycontinue}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yy_goto} {\cf1 =} {\cf5 Yyreduce} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yyn} {\cf1 :=} {\cf5 yyr1}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yyn}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yyss_top} {\cf1 :=} {\cf5 yyss}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yyssp}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 index} {\cf1 :=} {\cf5 yyn} {\cf1 -} {\cf5 yyntbase}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yystate} {\cf1 :=} {\cf5 yypgoto}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 index}{\cf1 )} {\cf1 +} {\cf5 yyss_top}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf1 (}{\cf5 yystate} {\cf1 >=} 0 {\b\cf6 and} {\cf5 yystate} {\cf1 <=} {\cf5 yylast}{\cf1 )} {\b\cf6 and then} {\cf5 yycheck}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yystate}{\cf1 )} {\cf1 =} {\cf5 yyss_top} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yystate} {\cf1 :=} {\cf5 yytable}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yystate}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yystate} {\cf1 :=} {\cf5 yydefgoto}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 index}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_goto} {\cf1 :=} {\cf5 Yynewstate}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 error_count} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_lookahead_needed} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yyerrstatus} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_init_value_stacks}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yyssp} {\cf1 :=} -1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yystacksize} {\cf1 :=} {\cf5 yyss}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_parsing_status} {\cf1 :=} {\cf5 Yycontinue}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_goto} {\cf1 :=} {\cf5 Yynewstate}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 yy_parsing_status} {\cf1 /=} {\cf5 Yycontinue}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 inspect} {\cf5 yy_goto}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf5 Yynewstate} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yyssp} {\cf1 :=} {\cf5 yyssp} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yyssp} {\cf1 >=} {\cf5 yystacksize} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yystacksize} {\cf1 :=} {\cf5 yystacksize} {\cf1 +} {\cf5 Yyinitial_stack_size}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yyss} {\cf1 :=} {\cf5 Special_integer_}{\b\cf1 .}{\cf5 aliased_resized_area}{\cf1  }{\cf1 (}{\cf5 yyss}{\cf1 ,} {\cf5 yystacksize}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 debug} {\cf1 (}"geyacc"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 Std}{\b\cf1 .}{\cf5 Error}{\b\cf1 .}{\cf5 put_string}{\cf1  }{\cf1 (}"Stack (yyss) size increased to "{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 Std}{\b\cf1 .}{\cf5 Error}{\b\cf1 .}{\cf5 put_integer}{\cf1  }{\cf1 (}{\cf5 yystacksize}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 Std}{\b\cf1 .}{\cf5 Error}{\b\cf1 .}{\cf5 put_character}{\cf1  }{\cf1 (}'%N'{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 debug} {\cf1 (}"geyacc"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 Std}{\b\cf1 .}{\cf5 Error}{\b\cf1 .}{\cf5 put_string}{\cf1  }{\cf1 (}"Entering state "{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 Std}{\b\cf1 .}{\cf5 Error}{\b\cf1 .}{\cf5 put_integer}{\cf1  }{\cf1 (}{\cf5 yystate}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 Std}{\b\cf1 .}{\cf5 Error}{\b\cf1 .}{\cf5 put_character}{\cf1  }{\cf1 (}'%N'{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 Special_integer_}{\b\cf1 .}{\cf5 force}{\cf1  }{\cf1 (}{\cf5 yyss}{\cf1 ,} {\cf5 yystate}{\cf1 ,} {\cf5 yyssp}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yyn} {\cf1 :=} {\cf5 yypact}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yystate}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yyn} {\cf1 =} {\cf5 yyflag} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_goto} {\cf1 :=} {\cf5 Yydefault}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yy_lookahead_needed} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 debug} {\cf1 (}"geyacc"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 Std}{\b\cf1 .}{\cf5 Error}{\b\cf1 .}{\cf5 put_string}{\cf1  }{\cf1 (}"Reading a token%N"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 read_token}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_lookahead_needed} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 last_token} {\cf1 >} {\cf5 Yyeof} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 debug} {\cf1 (}"geyacc"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 Std}{\b\cf1 .}{\cf5 Error}{\b\cf1 .}{\cf5 put_string}{\cf1  }{\cf1 (}"Next token is "{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 Std}{\b\cf1 .}{\cf5 Error}{\b\cf1 .}{\cf5 put_integer}{\cf1  }{\cf1 (}{\cf5 last_token}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 Std}{\b\cf1 .}{\cf5 Error}{\b\cf1 .}{\cf5 put_character}{\cf1  }{\cf1 (}'%N'{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 last_token} {\cf1 <=} {\cf5 yymax_token} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yychar1} {\cf1 :=} {\cf5 yytranslate}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 last_token}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yychar1} {\cf1 :=} {\cf5 yynsyms}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yyn} {\cf1 :=} {\cf5 yyn} {\cf1 +} {\cf5 yychar1}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 last_token} {\cf1 =} {\cf5 Yyeof} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 debug} {\cf1 (}"geyacc"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 Std}{\b\cf1 .}{\cf5 Error}{\b\cf1 .}{\cf5 put_string}{\cf1  }{\cf1 (}"Now at end of input.%N"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yychar1} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 debug} {\cf1 (}"geyacc"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 Std}{\b\cf1 .}{\cf5 Error}{\b\cf1 .}{\cf5 put_string}{\cf1  }{\cf1 (}"Error in scanner.%N"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 error_count} {\cf1 :=} {\cf5 error_count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_do_error_action}{\cf1  }{\cf1 (}{\cf5 yystate}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 abort}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yyn} {\cf1 :=} -1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf1 (}{\cf5 yyn} {\cf1 <} 0 {\b\cf6 or} {\cf5 yyn} {\cf1 >} {\cf5 yylast}{\cf1 )} {\b\cf6 or else} {\cf5 yycheck}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yyn}{\cf1 )} {\cf1 /=} {\cf5 yychar1} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_goto} {\cf1 :=} {\cf5 Yydefault}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yyn} {\cf1 :=} {\cf5 yytable}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yyn}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yyn} {\cf1 <} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yyn} {\cf1 =} {\cf5 yyflag} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_goto} {\cf1 :=} {\cf5 Yyerrlab}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yyn} {\cf1 :=} {\cf1 -} {\cf5 yyn}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_goto} {\cf1 :=} {\cf5 Yyreduce}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 yyn} {\cf1 =} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_goto} {\cf1 :=} {\cf5 Yyerrlab}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 yyn} {\cf1 =} {\cf5 yyfinal} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 accept}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 debug} {\cf1 (}"geyacc"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 Std}{\b\cf1 .}{\cf5 Error}{\b\cf1 .}{\cf5 put_string}{\cf1  }{\cf1 (}"Shifting token "{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 Std}{\b\cf1 .}{\cf5 Error}{\b\cf1 .}{\cf5 put_integer}{\cf1  }{\cf1 (}{\cf5 last_token}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 Std}{\b\cf1 .}{\cf5 Error}{\b\cf1 .}{\cf5 put_character}{\cf1  }{\cf1 (}'%N'{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 last_token} {\cf1 >} {\cf5 Yyeof} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_lookahead_needed} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_push_last_value}{\cf1  }{\cf1 (}{\cf5 yychar1}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yyerrstatus} {\cf1 /=} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yyerrstatus} {\cf1 :=} {\cf5 yyerrstatus} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yystate} {\cf1 :=} {\cf5 yyn}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf1 newstate}{\cf1 :} {\cf5 yy_goto} {\cf1 =} {\cf5 Yynewstate}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf5 Yydefault} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yyn} {\cf1 :=} {\cf5 yydefact}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yystate}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yyn} {\cf1 =} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_goto} {\cf1 :=} {\cf5 Yyerrlab}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_goto} {\cf1 :=} {\cf5 Yyreduce}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf5 Yyreduce} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 debug} {\cf1 (}"geyacc"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 Std}{\b\cf1 .}{\cf5 Error}{\b\cf1 .}{\cf5 put_string}{\cf1  }{\cf1 (}"Reducing via rule #"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 Std}{\b\cf1 .}{\cf5 Error}{\b\cf1 .}{\cf5 put_integer}{\cf1  }{\cf1 (}{\cf5 yyn}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 Std}{\b\cf1 .}{\cf5 Error}{\b\cf1 .}{\cf5 put_character}{\cf1  }{\cf1 (}'%N'{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_do_action}{\cf1  }{\cf1 (}{\cf5 yyn}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 inspect} {\cf5 yy_parsing_status}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf5 Yycontinue} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yyn} {\cf1 :=} {\cf5 yyr1}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yyn}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yyss_top} {\cf1 :=} {\cf5 yyss}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yyssp}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 index} {\cf1 :=} {\cf5 yyn} {\cf1 -} {\cf5 yyntbase}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yystate} {\cf1 :=} {\cf5 yypgoto}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 index}{\cf1 )} {\cf1 +} {\cf5 yyss_top}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf1 (}{\cf5 yystate} {\cf1 >=} 0 {\b\cf6 and} {\cf5 yystate} {\cf1 <=} {\cf5 yylast}{\cf1 )} {\b\cf6 and then} {\cf5 yycheck}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yystate}{\cf1 )} {\cf1 =} {\cf5 yyss_top} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yystate} {\cf1 :=} {\cf5 yytable}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yystate}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yystate} {\cf1 :=} {\cf5 yydefgoto}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 index}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_goto} {\cf1 :=} {\cf5 Yynewstate}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf5 Yysuspended} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_suspended_yystacksize} {\cf1 :=} {\cf5 yystacksize}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_suspended_yystate} {\cf1 :=} {\cf5 yystate}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_suspended_yyn} {\cf1 :=} {\cf5 yyn}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_suspended_yychar1} {\cf1 :=} {\cf5 yychar1}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_suspended_index} {\cf1 :=} {\cf5 index}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_suspended_yyss_top} {\cf1 :=} {\cf5 yyss_top}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_suspended_yy_goto} {\cf1 :=} {\cf5 yy_goto}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf5 Yyerror_raised} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_parsing_status} {\cf1 :=} {\cf5 Yycontinue}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_goto} {\cf1 :=} {\cf5 Yyerrlab}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf5 Yyerrlab} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yyerrstatus} {\cf1 =} 3 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 last_token} {\cf1 <=} {\cf5 Yyeof} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 abort}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 debug} {\cf1 (}"geyacc"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 Std}{\b\cf1 .}{\cf5 Error}{\b\cf1 .}{\cf5 put_string}{\cf1  }{\cf1 (}"Discarding token "{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 Std}{\b\cf1 .}{\cf5 Error}{\b\cf1 .}{\cf5 put_integer}{\cf1  }{\cf1 (}{\cf5 last_token}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 Std}{\b\cf1 .}{\cf5 Error}{\b\cf1 .}{\cf5 put_character}{\cf1  }{\cf1 (}'%N'{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_lookahead_needed} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_goto} {\cf1 :=} {\cf5 Yyerrhandle}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yyerrstatus} {\cf1 =} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 error_count} {\cf1 :=} {\cf5 error_count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_do_error_action}{\cf1  }{\cf1 (}{\cf5 yystate}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yyerrstatus} {\cf1 :=} 3{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_goto} {\cf1 :=} {\cf5 Yyerrhandle}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf5 Yyerrhandle} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yyn} {\cf1 :=} {\cf5 yypact}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yystate}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yyn} {\cf1 =} {\cf5 yyflag} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_goto} {\cf1 :=} {\cf5 Yyerrpop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yyn} {\cf1 :=} {\cf5 yyn} {\cf1 +} {\cf5 Yyterror}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf1 (}{\cf5 yyn} {\cf1 <} 0 {\b\cf6 or} {\cf5 yyn} {\cf1 >} {\cf5 yylast}{\cf1 )} {\b\cf6 or else} {\cf5 yycheck}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yyn}{\cf1 )} {\cf1 /=} {\cf5 Yyterror} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_goto} {\cf1 :=} {\cf5 Yyerrpop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yyn} {\cf1 :=} {\cf5 yytable}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yyn}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yyn} {\cf1 <} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yyn} {\cf1 =} {\cf5 yyflag} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_goto} {\cf1 :=} {\cf5 Yyerrpop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yyn} {\cf1 :=} {\cf1 -} {\cf5 yyn}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_goto} {\cf1 :=} {\cf5 Yyreduce}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 yyn} {\cf1 =} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_goto} {\cf1 :=} {\cf5 Yyerrpop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 yyn} {\cf1 =} {\cf5 yyfinal} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 accept}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_push_error_value}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yystate} {\cf1 :=} {\cf5 yyn}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_goto} {\cf1 :=} {\cf5 Yynewstate}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf5 Yyerrpop} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yyssp} {\cf1 =} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 abort}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_pop_last_value}{\cf1  }{\cf1 (}{\cf5 yystate}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yyssp} {\cf1 :=} {\cf5 yyssp} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yystate} {\cf1 :=} {\cf5 yyss}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yyssp}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_goto} {\cf1 :=} {\cf5 Yyerrhandle}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yy_parsing_status} {\cf1 /=} {\cf5 Yysuspended} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 yy_clear_all}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 rescue}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 debug} {\cf1 (}"geyacc"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 Std}{\b\cf1 .}{\cf5 Error}{\b\cf1 .}{\cf5 put_line}{\cf1  }{\cf1 (}"Entering rescue clause of parser"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 abort}{\line}
+{\tab}{\tab}{\tab}{\cf5 yy_clear_all}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Platform}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Operating_environment}{\cf1 :} {\cf4 OPERATING_ENVIRONMENT}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Objects available from the operating system}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 operating_environment_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Retrieval}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 internal_correct_mismatch}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Called from runtime to perform a proper dynamic dispatch on }{\cf5 correct_mismatch}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  from MISMATCH_CORRECTOR.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_msg}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_exc}{\cf1 :} {\cf4 EXCEPTIONS}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf1 \{}{\cf4 MISMATCH_CORRECTOR}{\cf1 \}} {\b\cf6 Current} {\b\cf6 as} l_corrector {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_corrector}{\b\cf1 .}{\cf5 correct_mismatch}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 l_msg}{\b\cf1 .}{\cf5 make_from_string}{\cf1  }{\cf1 (}"Mismatch: "{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 l_exc}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_msg}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 generating_type}{\b\cf1 .}{\cf5 name}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_exc}{\b\cf1 .}{\cf5 raise_retrieval_exception}{\cf1  }{\cf1 (}{\cf5 l_msg}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 YY_PARSER_ACTION}{\cf1 \}} {\cf3 --}{\cf3  Scanning}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 last_token}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Last token read}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 YY_PARSER}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 read_token}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Read a token from input stream.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Make result available in }{\cf5 last_token}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (This routine is called by }{\cf5 parse}{\cf3  when it needs a}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  new token from the input stream.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 YY_PARSER}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Suspended state}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yy_suspended_index}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Local variable of }{\cf5 parse}{\cf3  to be remembered}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  when parsing has been suspended}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yy_suspended_yy_goto}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Local variable of }{\cf5 parse}{\cf3  to be remembered}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  when parsing has been suspended}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yy_suspended_yychar1}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Local variable of }{\cf5 parse}{\cf3  to be remembered}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  when parsing has been suspended}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yy_suspended_yyn}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Local variable of }{\cf5 parse}{\cf3  to be remembered}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  when parsing has been suspended}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yy_suspended_yyss_top}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Local variable of }{\cf5 parse}{\cf3  to be remembered}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  when parsing has been suspended}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yy_suspended_yystacksize}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Local variable of }{\cf5 parse}{\cf3  to be remembered}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  when parsing has been suspended}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yy_suspended_yystate}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Local variable of }{\cf5 parse}{\cf3  to be remembered}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  when parsing has been suspended}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Tables}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yycheck}{\cf1 :} {\cf4 SPECIAL} {\cf1 [}{\cf4 INTEGER_32}{\cf1 ]}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Array indexed in parallel with }{\cf5 yytable}{\cf3 . It}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  indicates, in a roundabout way, the bounds of}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the portion you are trying to examine. Suppose}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  that the portion of }{\cf5 yytable}{\cf3  starts at index}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 p}{\cf3  and the index to be examined within the}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  portion is }{\cf5 i}{\cf3 . Then if }{\cf5 yycheck.item (p+i) /= i}{\cf3 ,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 i}{\cf3  is outside the bounds of what is actually}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  allocated, and the default (from }{\cf5 yydefact}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  or }{\cf5 yydefgoto}{\cf3 ) should be used. Otherwise,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 yytable.item (p+i)}{\cf3  should be used.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yydefact}{\cf1 :} {\cf4 SPECIAL} {\cf1 [}{\cf4 INTEGER_32}{\cf1 ]}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Default rule to reduce in each state,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  when }{\cf5 yytable}{\cf3  doesn't specify something}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  else to do. 0 means the default is an}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  error. Indexed by state id}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yydefgoto}{\cf1 :} {\cf4 SPECIAL} {\cf1 [}{\cf4 INTEGER_32}{\cf1 ]}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Default state to go to after a reduction}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of a rule that generates a variable,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  except when }{\cf5 yytable}{\cf3  specifies something}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  else to do. Indexed by variable id - nb_tokens}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yypact}{\cf1 :} {\cf4 SPECIAL} {\cf1 [}{\cf4 INTEGER_32}{\cf1 ]}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Index in }{\cf5 yytable}{\cf3  of the portion describing}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  a state, indexed by state id. The lookahead}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  token's type is used to index that portion}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to find out what to do. If the value in }{\cf5 yytable}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  is positive, we shift the token and go to that}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  state. If the value is negative, it is minus}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  a rule number to reduce by. If the value is}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  zero, the default action from }{\cf5 yydefact}{\cf3  for}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  that state is used.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yypgoto}{\cf1 :} {\cf4 SPECIAL} {\cf1 [}{\cf4 INTEGER_32}{\cf1 ]}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Index in }{\cf5 yytable}{\cf3  of the portion describing}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  what to do after reducing a rule that derives}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  a variable, indexed by variable id - nb_tokens.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  This portion is indexed by the parser state}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  number }{\cf5 s}{\cf3  as of before the text for this}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  nonterminal was read. The value from }{\cf5 yytable}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  is the state to go to if the corresponding}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  value in }{\cf5 yycheck}{\cf3  is }{\cf5 s}{\cf3 .}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yyr1}{\cf1 :} {\cf4 SPECIAL} {\cf1 [}{\cf4 INTEGER_32}{\cf1 ]}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Symbol number of symbol that each rule derives}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (i.e. left-hand-side of the rule), indexed by}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  rule id}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yytable}{\cf1 :} {\cf4 SPECIAL} {\cf1 [}{\cf4 INTEGER_32}{\cf1 ]}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Filled with portions for different uses, found}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  via }{\cf5 yypact}{\cf3  and }{\cf5 yypgoto}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yytranslate}{\cf1 :} {\cf4 SPECIAL} {\cf1 [}{\cf4 INTEGER_32}{\cf1 ]}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Mapping between lex token numbers and}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  yacc internal token numbers}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yytypes1}{\cf1 :} {\cf4 SPECIAL} {\cf1 [}{\cf4 INTEGER_32}{\cf1 ]}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Array indexed by state id containing the type id}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of the accessing symbol associated with this state}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yytypes2}{\cf1 :} {\cf4 SPECIAL} {\cf1 [}{\cf4 INTEGER_32}{\cf1 ]}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Array indexed by internal token id (from 0 to yyNtbase-1)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  containing the type id of the corresponding token}{\line}
+{\tab}{\line}
+{\b\cf6 invariant}{\line}
+{\tab}{\cf1 yyss_not_void}{\cf1 :} {\cf5 yyss} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\cf1 yytranslate_not_void}{\cf1 :} {\cf5 yytranslate} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\cf1 yyr1_not_void}{\cf1 :} {\cf5 yyr1} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\cf1 yytypes1_not_void}{\cf1 :} {\cf5 yytypes1} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\cf1 yytypes2_not_void}{\cf1 :} {\cf5 yytypes2} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\cf1 yydefact_not_void}{\cf1 :} {\cf5 yydefact} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\cf1 yydefgoto_not_void}{\cf1 :} {\cf5 yydefgoto} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\cf1 yypact_not_void}{\cf1 :} {\cf5 yypact} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\cf1 yypgoto_not_void}{\cf1 :} {\cf5 yypgoto} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\cf1 yytable_not_void}{\cf1 :} {\cf5 yytable} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\cf1 yycheck_not_void}{\cf1 :} {\cf5 yycheck} {\cf1 /=} {\b\cf6 Void}{\line}
+{\line}
+{\tab}{\tab}{\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\cf1 reflexive_equality}{\cf1 :} {\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\cf1 reflexive_conformance}{\cf1 :} {\cf5 conforms_to}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\line}
+{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 YY_PARSER_SKELETON}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

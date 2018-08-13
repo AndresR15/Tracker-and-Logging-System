@@ -1,0 +1,36 @@
+<system>
+<keyword>deferred</keyword> <keyword>class</keyword>
+	<class><location>../interface/ev_action_sequences_links.xml</location>EV_ACTION_SEQUENCES</class>
+
+<keyword>Ancestors</keyword>
+	<class><include>False</include>ANY</class>
+
+<keyword>Descendants</keyword>
+	<class><location>../interface/ev_application_action_sequences_links.xml</location>EV_APPLICATION_ACTION_SEQUENCES</class><char>*</char>
+	<class><location>../interface/ev_button_action_sequences_links.xml</location>EV_BUTTON_ACTION_SEQUENCES</class><char>*</char>
+	<class><location>../interface/ev_combo_box_action_sequences_links.xml</location>EV_COMBO_BOX_ACTION_SEQUENCES</class><char>*</char>
+	<class><location>../interface/ev_dockable_source_action_sequences_links.xml</location>EV_DOCKABLE_SOURCE_ACTION_SEQUENCES</class><char>*</char>
+	<class><location>../interface/ev_dockable_target_action_sequences_links.xml</location>EV_DOCKABLE_TARGET_ACTION_SEQUENCES</class><char>*</char>
+	<class><location>../interface/ev_drawable_action_sequences_links.xml</location>EV_DRAWABLE_ACTION_SEQUENCES</class><char>*</char>
+	<class><location>../interface/ev_gauge_action_sequences_links.xml</location>EV_GAUGE_ACTION_SEQUENCES</class><char>*</char>
+	<class><location>../interface/ev_item_action_sequences_links.xml</location>EV_ITEM_ACTION_SEQUENCES</class><char>*</char>
+	<class><location>../interface/ev_list_item_action_sequences_links.xml</location>EV_LIST_ITEM_ACTION_SEQUENCES</class><char>*</char>
+	<class><location>../interface/ev_list_item_list_action_sequences_links.xml</location>EV_LIST_ITEM_LIST_ACTION_SEQUENCES</class><char>*</char>
+	<class><location>../interface/ev_menu_item_action_sequences_links.xml</location>EV_MENU_ITEM_ACTION_SEQUENCES</class><char>*</char>
+	<class><location>../interface/ev_menu_item_list_action_sequences_links.xml</location>EV_MENU_ITEM_LIST_ACTION_SEQUENCES</class><char>*</char>
+	<class><location>../interface/ev_multi_column_list_action_sequences_links.xml</location>EV_MULTI_COLUMN_LIST_ACTION_SEQUENCES</class><char>*</char>
+	<class><location>../interface/ev_multi_column_list_row_action_sequences_links.xml</location>EV_MULTI_COLUMN_LIST_ROW_ACTION_SEQUENCES</class><char>*</char>
+	<class><location>../interface/ev_notebook_action_sequences_links.xml</location>EV_NOTEBOOK_ACTION_SEQUENCES</class><char>*</char>
+	<class><location>../interface/ev_pick_and_dropable_action_sequences_links.xml</location>EV_PICK_AND_DROPABLE_ACTION_SEQUENCES</class><char>*</char>
+	<class><location>../interface/ev_rich_text_action_sequences_links.xml</location>EV_RICH_TEXT_ACTION_SEQUENCES</class><char>*</char>
+	<class><location>../interface/ev_standard_dialog_action_sequences_links.xml</location>EV_STANDARD_DIALOG_ACTION_SEQUENCES</class><char>*</char>
+	<class><location>../interface/ev_text_component_action_sequences_links.xml</location>EV_TEXT_COMPONENT_ACTION_SEQUENCES</class><char>*</char>
+	<class><location>../interface/ev_text_field_action_sequences_links.xml</location>EV_TEXT_FIELD_ACTION_SEQUENCES</class><char>*</char>
+	<class><location>../interface/ev_titled_window_action_sequences_links.xml</location>EV_TITLED_WINDOW_ACTION_SEQUENCES</class><char>*</char>
+	<class><location>../interface/ev_tool_bar_button_action_sequences_links.xml</location>EV_TOOL_BAR_BUTTON_ACTION_SEQUENCES</class><char>*</char>
+	<class><location>../interface/ev_tree_action_sequences_links.xml</location>EV_TREE_ACTION_SEQUENCES</class><char>*</char>
+	<class><location>../interface/ev_tree_node_action_sequences_links.xml</location>EV_TREE_NODE_ACTION_SEQUENCES</class><char>*</char>
+	<class><location>../interface/ev_widget_action_sequences_links.xml</location>EV_WIDGET_ACTION_SEQUENCES</class><char>*</char>
+	<class><location>../interface/ev_window_action_sequences_links.xml</location>EV_WINDOW_ACTION_SEQUENCES</class><char>*</char>
+
+</system>

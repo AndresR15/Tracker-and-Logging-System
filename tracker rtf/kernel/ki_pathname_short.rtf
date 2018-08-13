@@ -1,0 +1,127 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "Interface for pathnames"{\line}
+{\tab}{\cf1 library}{\cf1 :} "Gobo Eiffel Kernel Library"{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 2001-2011, Eric Bezault and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "MIT License"{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2016-05-06 12:15:38 -0700 (Fri, 06 May 2016) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 98678 $"{\line}
+{\line}
+{\b\cf6 deferred} {\b\cf6 class} {\b\cf6 interface}{\line}
+{\tab}{\cf4 KI_PATHNAME}{\line}
+{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status report}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_relative}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is pathname a relative pathname?}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_current} {\cf1 (}{\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is component at }{\cf5 i}{\cf3 -th position the}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  relative current directory name?}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 i_large_enough}{\cf1 :} {\cf5 i} {\cf1 >=} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 i_small_enough}{\cf1 :} {\cf5 i} {\cf1 <=} {\cf5 count}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_parent} {\cf1 (}{\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is component at }{\cf5 i}{\cf3 -th position the}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  relative parent directory name?}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 i_large_enough}{\cf1 :} {\cf5 i} {\cf1 >=} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 i_small_enough}{\cf1 :} {\cf5 i} {\cf1 <=} {\cf5 count}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_canonical}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is pathname canonical?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (A pathname is canonical if it has no parent directory}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  component except at leading positions, and no current}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  directory component except when it is the only component}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  and the pathname is relative.)}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 item} {\cf1 (}{\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Pathname component at }{\cf5 i}{\cf3 -th position}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 i_large_enough}{\cf1 :} {\cf5 i} {\cf1 >=} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 i_small_enough}{\cf1 :} {\cf5 i} {\cf1 <=} {\cf5 count}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 item_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 item_not_empty}{\cf1 :} {\b\cf6 not} {\b\cf6 Result}{\b\cf1 .}{\cf5 is_empty}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 drive}{\cf1 :} {\b\cf6 detachable} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Drive of pathname if present,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Void otherwise}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 hostname}{\cf1 :} {\b\cf6 detachable} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Hostname of pathname if present,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Void otherwise}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (for example, with UNC we can have: \\\\hostname\\sharename)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 sharename}{\cf1 :} {\b\cf6 detachable} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Sharename of pathname if present,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Void otherwise}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (for example, with UNC we can have: \\\\hostname\\sharename)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 trailing_items} {\cf1 (}{\cf5 a_pathname}{\cf1 :} {\cf4 KI_PATHNAME}{\cf1 )}{\cf1 :} {\cf4 ARRAY} {\cf1 [}{\cf4 STRING_8}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Items in }{\cf5 a_pathname}{\cf3  that are past the last item in }{\cf5 Current}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Useful when }{\cf5 Current}{\cf3  is a subpathname of }{\cf5 a_pathname}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_pathname_not_void}{\cf1 :} {\cf5 a_pathname} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 trailing_items_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 no_void_item}{\cf1 :} {\b\cf6 not} {\cf5 String_array_}{\b\cf1 .}{\cf5 has_void}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 no_empty_item}{\cf1 :} {\b\cf6 not} {\b\cf6 Result}{\b\cf1 .}{\cf5 there_exists}{\cf1  }{\cf1 (}{\b\cf6 agent} {\cf1 \{}{\cf4 STRING_8}{\cf1 \}}{\b\cf1 .}{\cf5 is_empty}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 count}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 count} {\cf1 =} {\cf1 (}{\cf5 a_pathname}{\b\cf1 .}{\cf5 count} {\cf1 -} {\cf5 count}{\cf1 )}{\b\cf1 .}{\cf5 max}{\cf1  }{\cf1 (}0{\cf1 )}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Measurement}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 count}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of components in pathname}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 count_positive}{\cf1 :} {\b\cf6 Result} {\cf1 >=} 0{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Element change}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_canonical}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Make pathname canonical.}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_canonical}{\cf1 :} {\cf5 is_canonical}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Comparison}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 same_pathname} {\cf1 (}{\cf5 a_pathname}{\cf1 :} {\cf4 KI_PATHNAME}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is current pathname considered equal to }{\cf5 other}{\cf3 ?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Use case-sensitive comparison.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_pathname_not_void}{\cf1 :} {\cf5 a_pathname} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 same_case_insensitive} {\cf1 (}{\cf5 a_pathname}{\cf1 :} {\cf4 KI_PATHNAME}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is current pathname considered equal to }{\cf5 other}{\cf3 ?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Use case-insensitive comparison.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_pathname_not_void}{\cf1 :} {\cf5 a_pathname} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_subpathname} {\cf1 (}{\cf5 a_pathname}{\cf1 :} {\cf4 KI_PATHNAME}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is current pathname a subpathname of }{\cf5 other}{\cf3 ?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Use case-sensitive comparison.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_pathname_not_void}{\cf1 :} {\cf5 a_pathname} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_case_insensitive_subpathname} {\cf1 (}{\cf5 a_pathname}{\cf1 :} {\cf4 KI_PATHNAME}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is current pathname a subpathname of }{\cf5 other}{\cf3 ?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Use case-insensitive comparison.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_pathname_not_void}{\cf1 :} {\cf5 a_pathname} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_equal} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 like} {\b\cf6 Current}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is current pathname considered equal to }{\cf5 other}{\cf3 ?}{\line}
+}{\tab}{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 KI_PATHNAME}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

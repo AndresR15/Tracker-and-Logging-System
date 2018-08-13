@@ -1,0 +1,582 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;EiffelVision screen. GTK+ implementation.&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;screen, root, window, visual, top&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2017-03-27 13:31:29 -0700 (Mon, 27 Mar 2017) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 100058 $&quot;</string>
+
+<keyword>class</keyword> 
+	<class><location>../implementation_gtk/ev_screen_imp.xml</location>EV_SCREEN_IMP</class>
+
+<keyword>inherit</keyword>
+	<class><location>../implementation_interface/ev_screen_i.xml</location>EV_SCREEN_I</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_gtk/ev_screen_imp.xml#f_interface</location>interface</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_screen_imp.xml#f_widget_at_mouse_pointer</location>widget_at_mouse_pointer</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_screen_imp.xml#f_virtual_x</location>virtual_x</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_screen_imp.xml#f_virtual_y</location>virtual_y</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_screen_imp.xml#f_virtual_width</location>virtual_width</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_screen_imp.xml#f_virtual_height</location>virtual_height</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_screen_imp.xml#f_monitor_count</location>monitor_count</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_screen_imp.xml#f_monitor_area_from_position</location>monitor_area_from_position</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_screen_imp.xml#f_monitor_area_from_window</location>monitor_area_from_window</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_screen_imp.xml#f_working_area_from_position</location>working_area_from_position</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_screen_imp.xml#f_working_area_from_window</location>working_area_from_window</feature>
+		<keyword>end</keyword>
+
+	<class><location>../implementation_gtk/ev_drawable_imp.xml</location>EV_DRAWABLE_IMP</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_gtk/ev_screen_imp.xml#f_interface</location>interface</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_screen_imp.xml#f_make</location>make</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_screen_imp.xml#f_supports_pixbuf_alpha</location>supports_pixbuf_alpha</feature>
+		<keyword>end</keyword>
+
+	<class><location>../implementation_gtk/ev_gtk_dependent_routines.xml</location>EV_GTK_DEPENDENT_ROUTINES</class>
+
+<keyword>create</keyword> 
+	<feature><location>../implementation_gtk/ev_screen_imp.xml#f_make</location>make</feature>
+
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Initialization</comment>
+
+	<anchor>f_old_make</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_old_make</location>old_make</feature> <symbol>(</symbol><local>an_interface</local><symbol>:</symbol> <keyword>attached</keyword> <keyword>like</keyword> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_interface</location>interface</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Create an empty drawing area.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_interface/ev_any_i.xml#f_assign_interface</location>assign_interface</feature><symbol> </symbol><symbol>(</symbol><local>an_interface</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_make</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_make</location>make</feature>
+			<comment>--</comment><comment> Set up action sequence connections and create graphics context.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_screen_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><include>False</include>do_nothing</feature>
+			<feature><location>../implementation_gtk/ev_screen_imp.xml#f_drawable</location>drawable</feature> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gdk_screen_get_root_window</location>gdk_screen_get_root_window</feature> <symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gdk_screen_get_default</location>gdk_screen_get_default</feature><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_gc</location>gc</feature> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_gc_new</location>gdk_gc_new</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_screen_imp.xml#f_drawable</location>drawable</feature><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_gc_set_subwindow</location>gdk_gc_set_subwindow</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_drawable_imp.xml#f_gc</location>gc</feature><symbol>,</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_include_inferiors_enum</location>gdk_include_inferiors_enum</feature><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_init_default_values</location>init_default_values</feature>
+			<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_device_x_offset</location>device_x_offset</feature> <symbol>:=</symbol> <symbol>-</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_screen_virtual_x</location>screen_virtual_x</feature><dot>.</dot><feature><include>False</include>as_integer_16</feature>
+			<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_device_y_offset</location>device_y_offset</feature> <symbol>:=</symbol> <symbol>-</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_screen_virtual_y</location>screen_virtual_y</feature><dot>.</dot><feature><include>False</include>as_integer_16</feature>
+			<feature><location>../implementation_interface/ev_any_i.xml#f_set_is_initialized</location>set_is_initialized</feature><symbol> </symbol><symbol>(</symbol><keyword>True</keyword><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status report</comment>
+
+	<anchor>f_pointer_position</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_pointer_position</location>pointer_position</feature><symbol>:</symbol> <class><location>../interface/ev_coordinate.xml</location>EV_COORDINATE</class>
+			<comment>--</comment><comment> Position of the screen pointer.</comment>
+		<keyword>local</keyword>
+			<local>l_display_data</local><symbol>:</symbol> <class><include>False</include>TUPLE</class> <symbol>[</symbol><local>a_window</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>;</symbol> <local>a_x</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_mask</local><symbol>:</symbol> <class><include>False</include>NATURAL_32</class><symbol>]</symbol>
+		<keyword>do</keyword>
+			<local>l_display_data</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_retrieve_display_data</location>retrieve_display_data</feature>
+			<keyword>create</keyword> <keyword>Result</keyword><dot>.</dot><feature><location>../interface/ev_coordinate.xml#f_set</location>set</feature><symbol> </symbol><symbol>(</symbol><local>l_display_data</local><dot>.</dot><local>a_x</local><symbol>,</symbol> <local>l_display_data</local><dot>.</dot><local>a_y</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_widget_at_position</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_widget_at_position</location>widget_at_position</feature> <symbol>(</symbol><local>x</local><symbol>,</symbol> <local>y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_widget.xml</location>EV_WIDGET</class>
+			<comment>--</comment><comment> Widget at position ('x', 'y') if any.</comment>
+		<keyword>local</keyword>
+			<local>l_pointer_position</local><symbol>:</symbol> <class><include>False</include>TUPLE</class> <symbol>[</symbol><local>a_window</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>;</symbol> <local>a_x</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_mask</local><symbol>:</symbol> <class><include>False</include>NATURAL_32</class><symbol>]</symbol>
+			<local>l_widget_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_widget_imp.xml</location>EV_WIDGET_IMP</class>
+			<local>l_change</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+		<keyword>do</keyword>
+			<local>l_pointer_position</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_retrieve_display_data</location>retrieve_display_data</feature>
+			<local>l_change</local> <symbol>:=</symbol> <local>l_pointer_position</local><dot>.</dot><local>a_x</local> <symbol>/=</symbol> <local>x</local> <keyword>or else</keyword> <local>l_pointer_position</local><dot>.</dot><local>a_y</local> <symbol>/=</symbol> <local>y</local>
+			<keyword>if</keyword> <local>l_change</local> <keyword>then</keyword>
+				<feature><location>../implementation_gtk/ev_screen_imp.xml#f_set_pointer_position</location>set_pointer_position</feature><symbol> </symbol><symbol>(</symbol><local>x</local><symbol>,</symbol> <local>y</local><symbol>)</symbol>
+			<keyword>end</keyword>
+			<local>l_widget_imp</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_widget_imp_at_pointer_position</location>widget_imp_at_pointer_position</feature>
+			<keyword>if</keyword> <local>l_change</local> <keyword>then</keyword>
+				<feature><location>../implementation_gtk/ev_screen_imp.xml#f_set_pointer_position</location>set_pointer_position</feature><symbol> </symbol><symbol>(</symbol><local>l_pointer_position</local><dot>.</dot><local>a_x</local><symbol>,</symbol> <local>l_pointer_position</local><dot>.</dot><local>a_y</local><symbol>)</symbol>
+			<keyword>end</keyword>
+			<keyword>if</keyword> <local>l_widget_imp</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>l_widget_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_widget_imp.xml#f_interface</location>interface</feature>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_widget_at_mouse_pointer</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_widget_at_mouse_pointer</location>widget_at_mouse_pointer</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_widget.xml</location>EV_WIDGET</class>
+			<comment>--</comment><comment> Widget at mouse pointer if any.</comment>
+		<keyword>local</keyword>
+			<local>l_widget_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_widget_imp.xml</location>EV_WIDGET_IMP</class>
+		<keyword>do</keyword>
+			<local>l_widget_imp</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_widget_imp_at_pointer_position</location>widget_imp_at_pointer_position</feature>
+			<keyword>if</keyword> <local>l_widget_imp</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>l_widget_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_widget_imp.xml#f_interface</location>interface</feature>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_widget_imp_at_pointer_position</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_widget_imp_at_pointer_position</location>widget_imp_at_pointer_position</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_widget_imp.xml</location>EV_WIDGET_IMP</class>
+			<comment>--</comment><comment> Widget implementation at current mouse pointer position (if any)</comment>
+		<keyword>local</keyword>
+			<local>gdkwin</local><symbol>,</symbol> <local>gtkwid</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>l_display_data</local><symbol>:</symbol> <class><include>False</include>TUPLE</class> <symbol>[</symbol><local>a_window</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>;</symbol> <local>a_x</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_mask</local><symbol>:</symbol> <class><include>False</include>NATURAL_32</class><symbol>]</symbol>
+		<keyword>do</keyword>
+			<local>l_display_data</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_retrieve_display_data</location>retrieve_display_data</feature>
+			<local>gdkwin</local> <symbol>:=</symbol> <local>l_display_data</local><dot>.</dot><local>a_window</local>
+			<keyword>if</keyword> <local>gdkwin</local> <symbol>/=</symbol> <feature><include>False</include>default_pointer</feature> <keyword>then</keyword>
+				<keyword>from</keyword>
+					<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_window_get_user_data</location>gdk_window_get_user_data</feature> <symbol>(</symbol><local>gdkwin</local><symbol>,</symbol> <symbol>$</symbol><local>gtkwid</local><dot>.</dot><feature><include>False</include>to_pointer</feature><symbol>)</symbol>
+				<keyword>until</keyword>
+					<keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>or else</keyword> <local>gtkwid</local> <symbol>=</symbol> <feature><include>False</include>default_pointer</feature>
+				<keyword>loop</keyword>
+					<keyword>Result</keyword> <symbol>?=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/ev_gtk_callback_marshal.xml</location>EV_GTK_CALLBACK_MARSHAL</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines.xml#f_c_get_eif_reference_from_object_id</location>c_get_eif_reference_from_object_id</feature> <symbol>(</symbol><local>gtkwid</local><symbol>)</symbol>
+					<local>gtkwid</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_widget_struct_parent</location>gtk_widget_struct_parent</feature> <symbol>(</symbol><local>gtkwid</local><symbol>)</symbol>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_monitor_count</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_monitor_count</location>monitor_count</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Number of monitors used for displaying virtual screen.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_screen_monitor_count</location>screen_monitor_count</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_monitor_area_from_position</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_monitor_area_from_position</location>monitor_area_from_position</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><location>../interface/ev_rectangle.xml</location>EV_RECTANGLE</class>
+			<comment>--</comment><comment> Full area of monitor nearest to coordinates (a_x, a_y)</comment>
+		<keyword>local</keyword>
+			<local>l_mon_num</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<local>l_rect</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>l_x</local><symbol>,</symbol> <local>l_y</local><symbol>,</symbol> <local>l_width</local><symbol>,</symbol> <local>l_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+		<keyword>do</keyword>
+			<local>l_mon_num</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gdk_screen_get_monitor_at_point</location>gdk_screen_get_monitor_at_point</feature> <symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gdk_screen_get_default</location>gdk_screen_get_default</feature><symbol>,</symbol> <local>a_x</local> <symbol>+</symbol> <feature><location>../implementation_gtk/ev_drawable_imp.xml#f_device_x_offset</location>device_x_offset</feature><dot>.</dot><feature><include>False</include>to_integer_32</feature><symbol>,</symbol> <local>a_y</local> <symbol>+</symbol> <feature><location>../implementation_gtk/ev_drawable_imp.xml#f_device_y_offset</location>device_y_offset</feature><dot>.</dot><feature><include>False</include>to_integer_32</feature><symbol>)</symbol>
+			<local>l_rect</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_c_gdk_rectangle_struct_allocate</location>c_gdk_rectangle_struct_allocate</feature>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gdk_screen_get_monitor_geometry</location>gdk_screen_get_monitor_geometry</feature> <symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gdk_screen_get_default</location>gdk_screen_get_default</feature><symbol>,</symbol> <local>l_mon_num</local><symbol>,</symbol> <local>l_rect</local><symbol>)</symbol>
+			<local>l_x</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_rectangle_struct_x</location>gdk_rectangle_struct_x</feature> <symbol>(</symbol><local>l_rect</local><symbol>)</symbol> <symbol>-</symbol> <feature><location>../implementation_gtk/ev_drawable_imp.xml#f_device_x_offset</location>device_x_offset</feature><dot>.</dot><feature><include>False</include>to_integer_32</feature>
+			<local>l_y</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_rectangle_struct_y</location>gdk_rectangle_struct_y</feature> <symbol>(</symbol><local>l_rect</local><symbol>)</symbol> <symbol>-</symbol> <feature><location>../implementation_gtk/ev_drawable_imp.xml#f_device_y_offset</location>device_y_offset</feature><dot>.</dot><feature><include>False</include>to_integer_32</feature>
+			<local>l_width</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_rectangle_struct_width</location>gdk_rectangle_struct_width</feature> <symbol>(</symbol><local>l_rect</local><symbol>)</symbol>
+			<local>l_height</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_rectangle_struct_height</location>gdk_rectangle_struct_height</feature> <symbol>(</symbol><local>l_rect</local><symbol>)</symbol>
+			<local>l_rect</local><dot>.</dot><feature><include>False</include>memory_free</feature>
+			<keyword>create</keyword> <keyword>Result</keyword><dot>.</dot><feature><location>../interface/ev_rectangle.xml#f_make</location>make</feature><symbol> </symbol><symbol>(</symbol><local>l_x</local><symbol>,</symbol> <local>l_y</local><symbol>,</symbol> <local>l_width</local><symbol>,</symbol> <local>l_height</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_monitor_area_from_window</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_monitor_area_from_window</location>monitor_area_from_window</feature> <symbol>(</symbol><local>a_window</local><symbol>:</symbol> <class><location>../interface/ev_window.xml</location>EV_WINDOW</class><symbol>)</symbol><symbol>:</symbol> <class><location>../interface/ev_rectangle.xml</location>EV_RECTANGLE</class>
+			<comment>--</comment><comment> Full area of monitor of which most of </comment><quoted>a_window</quoted><comment> is located.</comment>
+			<comment>--</comment><comment> Returns nearest monitor area if </comment><quoted>a_window</quoted><comment> does not overlap any monitors.</comment>
+		<keyword>local</keyword>
+			<local>l_mon_num</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<local>l_window_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_window_imp.xml</location>EV_WINDOW_IMP</class>
+			<local>l_rect</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>l_x</local><symbol>,</symbol> <local>l_y</local><symbol>,</symbol> <local>l_width</local><symbol>,</symbol> <local>l_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+		<keyword>do</keyword>
+			<local>l_window_imp</local> <symbol>?=</symbol> <local>a_window</local><dot>.</dot><feature><location>../interface/ev_window.xml#f_implementation</location>implementation</feature>
+			<keyword>check</keyword>
+					<local>l_window_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<local>l_mon_num</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gdk_screen_get_monitor_at_window</location>gdk_screen_get_monitor_at_window</feature> <symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gdk_screen_get_default</location>gdk_screen_get_default</feature><symbol>,</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_widget_struct_window</location>gtk_widget_struct_window</feature> <symbol>(</symbol><local>l_window_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>)</symbol><symbol>)</symbol>
+			<local>l_rect</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_c_gdk_rectangle_struct_allocate</location>c_gdk_rectangle_struct_allocate</feature>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gdk_screen_get_monitor_geometry</location>gdk_screen_get_monitor_geometry</feature> <symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gdk_screen_get_default</location>gdk_screen_get_default</feature><symbol>,</symbol> <local>l_mon_num</local><symbol>,</symbol> <local>l_rect</local><symbol>)</symbol>
+			<local>l_x</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_rectangle_struct_x</location>gdk_rectangle_struct_x</feature> <symbol>(</symbol><local>l_rect</local><symbol>)</symbol> <symbol>-</symbol> <feature><location>../implementation_gtk/ev_drawable_imp.xml#f_device_x_offset</location>device_x_offset</feature><dot>.</dot><feature><include>False</include>to_integer_32</feature>
+			<local>l_y</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_rectangle_struct_y</location>gdk_rectangle_struct_y</feature> <symbol>(</symbol><local>l_rect</local><symbol>)</symbol> <symbol>-</symbol> <feature><location>../implementation_gtk/ev_drawable_imp.xml#f_device_y_offset</location>device_y_offset</feature><dot>.</dot><feature><include>False</include>to_integer_32</feature>
+			<local>l_width</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_rectangle_struct_width</location>gdk_rectangle_struct_width</feature> <symbol>(</symbol><local>l_rect</local><symbol>)</symbol>
+			<local>l_height</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_rectangle_struct_height</location>gdk_rectangle_struct_height</feature> <symbol>(</symbol><local>l_rect</local><symbol>)</symbol>
+			<local>l_rect</local><dot>.</dot><feature><include>False</include>memory_free</feature>
+			<keyword>create</keyword> <keyword>Result</keyword><dot>.</dot><feature><location>../interface/ev_rectangle.xml#f_make</location>make</feature><symbol> </symbol><symbol>(</symbol><local>l_x</local><symbol>,</symbol> <local>l_y</local><symbol>,</symbol> <local>l_width</local><symbol>,</symbol> <local>l_height</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_working_area_from_position</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_working_area_from_position</location>working_area_from_position</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><location>../interface/ev_rectangle.xml</location>EV_RECTANGLE</class>
+			<comment>--</comment><comment> Area available for windows of monitor nearest to coordinates (a_x, a_y).</comment>
+			<comment>--</comment><comment> E.g. it should exclude the taskbar if any.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_monitor_area_from_position</location>monitor_area_from_position</feature><symbol> </symbol><symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_working_area_from_window</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_working_area_from_window</location>working_area_from_window</feature> <symbol>(</symbol><local>a_window</local><symbol>:</symbol> <class><location>../interface/ev_window.xml</location>EV_WINDOW</class><symbol>)</symbol><symbol>:</symbol> <class><location>../interface/ev_rectangle.xml</location>EV_RECTANGLE</class>
+			<comment>--</comment><comment> Area available for windows of monitor of which most of </comment><quoted>a_window</quoted><comment> is located.</comment>
+			<comment>--</comment><comment> Returns nearest working area if </comment><quoted>a_window</quoted><comment> does not overlap any monitors.</comment>
+			<comment>--</comment><comment> E.g. it should exclude the taskbar if any.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_monitor_area_from_window</location>monitor_area_from_window</feature><symbol> </symbol><symbol>(</symbol><local>a_window</local><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status setting</comment>
+
+	<anchor>f_set_default_colors</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_set_default_colors</location>set_default_colors</feature>
+			<comment>--</comment><comment> Set foreground and background color to their default values.</comment>
+		<keyword>local</keyword>
+			<local>a_default_colors</local><symbol>:</symbol> <class><location>../interface/ev_stock_colors.xml</location>EV_STOCK_COLORS</class>
+		<keyword>do</keyword>
+			<keyword>create</keyword> <local>a_default_colors</local>
+			<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_set_background_color</location>set_background_color</feature><symbol> </symbol><symbol>(</symbol><local>a_default_colors</local><dot>.</dot><feature><location>../interface/ev_stock_colors.xml#f_default_background_color</location>default_background_color</feature><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_set_foreground_color</location>set_foreground_color</feature><symbol> </symbol><symbol>(</symbol><local>a_default_colors</local><dot>.</dot><feature><location>../interface/ev_stock_colors.xml#f_default_foreground_color</location>default_foreground_color</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Basic operation</comment>
+
+	<anchor>f_redraw</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_redraw</location>redraw</feature>
+			<comment>--</comment><comment> Redraw the entire area.</comment>
+		<keyword>do</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gdk_window_invalidate_rect</location>gdk_window_invalidate_rect</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_screen_imp.xml#f_drawable</location>drawable</feature><symbol>,</symbol> <feature><include>False</include>default_pointer</feature><symbol>,</symbol> <keyword>True</keyword><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gdk_window_process_updates</location>gdk_window_process_updates</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_screen_imp.xml#f_drawable</location>drawable</feature><symbol>,</symbol> <keyword>True</keyword><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_set_pointer_position</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_set_pointer_position</location>set_pointer_position</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set pointer position to (a_x, a_y).</comment>
+		<keyword>local</keyword>
+			<local>a_success_flag</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<local>l_display</local><symbol>,</symbol> <local>l_screen</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>l_gdk_display_warp_pointer_symbol</local><symbol>,</symbol> <local>l_x_test_fake_motion_event_symbol</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>l_x</local><symbol>,</symbol> <local>l_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+		<keyword>do</keyword>
+			<local>l_x</local> <symbol>:=</symbol> <local>a_x</local> <symbol>+</symbol> <feature><location>../implementation_gtk/ev_drawable_imp.xml#f_device_x_offset</location>device_x_offset</feature><dot>.</dot><feature><include>False</include>to_integer_32</feature>
+			<local>l_y</local> <symbol>:=</symbol> <local>a_y</local> <symbol>+</symbol> <feature><location>../implementation_gtk/ev_drawable_imp.xml#f_device_y_offset</location>device_y_offset</feature><dot>.</dot><feature><include>False</include>to_integer_32</feature>
+			<local>l_gdk_display_warp_pointer_symbol</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_gdk_display_warp_pointer_symbol</location>Gdk_display_warp_pointer_symbol</feature>
+			<keyword>if</keyword> <local>l_gdk_display_warp_pointer_symbol</local> <symbol>/=</symbol> <feature><include>False</include>default_pointer</feature> <keyword>then</keyword>
+				<local>l_display</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gdk_display_get_default</location>gdk_display_get_default</feature>
+				<local>l_screen</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gdk_display_get_default_screen</location>gdk_display_get_default_screen</feature> <symbol>(</symbol><local>l_display</local><symbol>)</symbol>
+				<feature><location>../implementation_gtk/ev_screen_imp.xml#f_gdk_display_warp_pointer_call</location>gdk_display_warp_pointer_call</feature><symbol> </symbol><symbol>(</symbol><local>l_gdk_display_warp_pointer_symbol</local><symbol>,</symbol> <local>l_display</local><symbol>,</symbol> <local>l_screen</local><symbol>,</symbol> <local>l_x</local><symbol>,</symbol> <local>l_y</local><symbol>)</symbol>
+			<keyword>else</keyword>
+				<local>l_x_test_fake_motion_event_symbol</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_x_test_fake_motion_event_symbol</location>X_test_fake_motion_event_symbol</feature>
+				<keyword>if</keyword> <local>l_x_test_fake_motion_event_symbol</local> <symbol>/=</symbol> <feature><include>False</include>default_pointer</feature> <keyword>then</keyword>
+					<local>a_success_flag</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_x_test_fake_motion_event_call</location>x_test_fake_motion_event_call</feature><symbol> </symbol><symbol>(</symbol><local>l_x_test_fake_motion_event_symbol</local><symbol>,</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_gdk_x_display</location>gdk_x_display</feature><symbol>,</symbol> <number>-1</number><symbol>,</symbol> <local>l_x</local><symbol>,</symbol> <local>l_y</local><symbol>,</symbol> <number>0</number><symbol>)</symbol>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_use_stored_display_data</location>use_stored_display_data</feature> <keyword>then</keyword>
+				<feature><location>../implementation_gtk/ev_screen_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_update_display_data</location>update_display_data</feature>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_fake_pointer_button_press</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_fake_pointer_button_press</location>fake_pointer_button_press</feature> <symbol>(</symbol><local>a_button</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Fake button </comment><quoted>a_button</quoted><comment> press on pointer.</comment>
+		<keyword>local</keyword>
+			<local>a_success_flag</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<local>l_p_b_press_symbol</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>l_window</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>l_x</local><symbol>,</symbol> <local>l_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<local>l_x_test_fake_button_event_symbol</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>do</keyword>
+			<local>l_p_b_press_symbol</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_gdk_test_simulate_button_symbol</location>Gdk_test_simulate_button_symbol</feature>
+			<keyword>if</keyword> <local>l_p_b_press_symbol</local> <symbol>/=</symbol> <feature><include>False</include>default_pointer</feature> <keyword>then</keyword>
+				<local>l_window</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_window_at_pointer</location>gdk_window_at_pointer</feature> <symbol>(</symbol><symbol>$</symbol><local>l_x</local><dot>.</dot><feature><include>False</include>to_pointer</feature><symbol>,</symbol> <symbol>$</symbol><local>l_y</local><dot>.</dot><feature><include>False</include>to_pointer</feature><symbol>)</symbol>
+				<local>a_success_flag</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_gdk_test_simulate_call</location>gdk_test_simulate_call</feature><symbol> </symbol><symbol>(</symbol><local>l_p_b_press_symbol</local><symbol>,</symbol> <local>l_window</local><symbol>,</symbol> <local>l_x</local><symbol>,</symbol> <local>l_y</local><symbol>,</symbol> <local>a_button</local><symbol>,</symbol> <number>0</number><symbol>,</symbol> <symbol>{</symbol><class><location>../implementation_gtk/ev_gtk_enums.xml</location>EV_GTK_ENUMS</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_enums.xml#f_gdk_button_press_enum</location>gdk_button_press_enum</feature><symbol>)</symbol>
+			<keyword>end</keyword>
+			<keyword>if</keyword> <keyword>not</keyword> <local>a_success_flag</local> <keyword>then</keyword>
+				<local>l_x_test_fake_button_event_symbol</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_x_test_fake_button_event_symbol</location>X_test_fake_button_event_symbol</feature>
+				<keyword>if</keyword> <local>l_x_test_fake_button_event_symbol</local> <symbol>/=</symbol> <feature><include>False</include>default_pointer</feature> <keyword>then</keyword>
+					<local>a_success_flag</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_x_test_fake_key_button_event_call</location>x_test_fake_key_button_event_call</feature><symbol> </symbol><symbol>(</symbol><local>l_x_test_fake_button_event_symbol</local><symbol>,</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_gdk_x_display</location>gdk_x_display</feature><symbol>,</symbol> <local>a_button</local><symbol>,</symbol> <keyword>True</keyword><symbol>,</symbol> <number>0</number><symbol>)</symbol>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_fake_pointer_button_release</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_fake_pointer_button_release</location>fake_pointer_button_release</feature> <symbol>(</symbol><local>a_button</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Fake button </comment><quoted>a_button</quoted><comment> release on pointer.</comment>
+		<keyword>local</keyword>
+			<local>a_success_flag</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<local>l_p_b_release_symbol</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>l_window</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>l_x</local><symbol>,</symbol> <local>l_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<local>l_x_test_fake_button_event_symbol</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>do</keyword>
+			<local>l_p_b_release_symbol</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_gdk_test_simulate_button_symbol</location>Gdk_test_simulate_button_symbol</feature>
+			<keyword>if</keyword> <local>l_p_b_release_symbol</local> <symbol>/=</symbol> <feature><include>False</include>default_pointer</feature> <keyword>then</keyword>
+				<local>l_window</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_window_at_pointer</location>gdk_window_at_pointer</feature> <symbol>(</symbol><symbol>$</symbol><local>l_x</local><dot>.</dot><feature><include>False</include>to_pointer</feature><symbol>,</symbol> <symbol>$</symbol><local>l_y</local><dot>.</dot><feature><include>False</include>to_pointer</feature><symbol>)</symbol>
+				<local>a_success_flag</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_gdk_test_simulate_call</location>gdk_test_simulate_call</feature><symbol> </symbol><symbol>(</symbol><local>l_p_b_release_symbol</local><symbol>,</symbol> <local>l_window</local><symbol>,</symbol> <local>l_x</local><symbol>,</symbol> <local>l_y</local><symbol>,</symbol> <local>a_button</local><symbol>,</symbol> <number>0</number><symbol>,</symbol> <symbol>{</symbol><class><location>../implementation_gtk/ev_gtk_enums.xml</location>EV_GTK_ENUMS</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_enums.xml#f_gdk_button_release_enum</location>gdk_button_release_enum</feature><symbol>)</symbol>
+			<keyword>end</keyword>
+			<keyword>if</keyword> <keyword>not</keyword> <local>a_success_flag</local> <keyword>then</keyword>
+				<local>l_x_test_fake_button_event_symbol</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_x_test_fake_button_event_symbol</location>X_test_fake_button_event_symbol</feature>
+				<keyword>if</keyword> <local>l_x_test_fake_button_event_symbol</local> <symbol>/=</symbol> <feature><include>False</include>default_pointer</feature> <keyword>then</keyword>
+					<local>a_success_flag</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_x_test_fake_key_button_event_call</location>x_test_fake_key_button_event_call</feature><symbol> </symbol><symbol>(</symbol><local>l_x_test_fake_button_event_symbol</local><symbol>,</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_gdk_x_display</location>gdk_x_display</feature><symbol>,</symbol> <local>a_button</local><symbol>,</symbol> <keyword>False</keyword><symbol>,</symbol> <number>0</number><symbol>)</symbol>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_fake_pointer_wheel_up</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_fake_pointer_wheel_up</location>fake_pointer_wheel_up</feature>
+			<comment>--</comment><comment> Simulate the user rotating the mouse wheel up.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_screen_imp.xml#f_fake_pointer_button_press</location>fake_pointer_button_press</feature><symbol> </symbol><symbol>(</symbol><number>4</number><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_fake_pointer_wheel_down</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_fake_pointer_wheel_down</location>fake_pointer_wheel_down</feature>
+			<comment>--</comment><comment> Simulate the user rotating the mouse wheel down.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_screen_imp.xml#f_fake_pointer_button_press</location>fake_pointer_button_press</feature><symbol> </symbol><symbol>(</symbol><number>5</number><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_fake_key_press</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_fake_key_press</location>fake_key_press</feature> <symbol>(</symbol><local>a_key</local><symbol>:</symbol> <class><location>../interface/ev_key.xml</location>EV_KEY</class><symbol>)</symbol>
+			<comment>--</comment><comment> Fake key </comment><quoted>a_key</quoted><comment> press.</comment>
+		<keyword>local</keyword>
+			<local>a_success_flag</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<local>a_key_code</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<local>l_window</local><symbol>,</symbol> <local>l_x_test_fake_key_event_symbol</local><symbol>,</symbol> <local>l_x_keysym_to_keycode_symbol</local><symbol>,</symbol> <local>l_gdk_test_simulate_key_symbol</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>l_x</local><symbol>,</symbol> <local>l_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+		<keyword>do</keyword>
+			<local>l_x_test_fake_key_event_symbol</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_x_test_fake_key_event_symbol</location>X_test_fake_key_event_symbol</feature>
+			<keyword>if</keyword> <local>l_x_test_fake_key_event_symbol</local> <symbol>/=</symbol> <feature><include>False</include>default_pointer</feature> <keyword>then</keyword>
+				<local>l_x_keysym_to_keycode_symbol</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_x_keysym_to_keycode_symbol</location>X_keysym_to_keycode_symbol</feature>
+				<keyword>if</keyword> <local>l_x_keysym_to_keycode_symbol</local> <symbol>/=</symbol> <feature><include>False</include>default_pointer</feature> <keyword>then</keyword>
+					<local>a_key_code</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_x_keysym_to_keycode_call</location>x_keysym_to_keycode_call</feature><symbol> </symbol><symbol>(</symbol><local>l_x_keysym_to_keycode_symbol</local><symbol>,</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_gdk_x_display</location>gdk_x_display</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_key_conversion</location>Key_conversion</feature><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_code_to_gtk</location>key_code_to_gtk</feature><symbol> </symbol><symbol>(</symbol><local>a_key</local><dot>.</dot><feature><location>../interface/ev_key.xml#f_code</location>code</feature><symbol>)</symbol><dot>.</dot><feature><include>False</include>to_integer_32</feature><symbol>)</symbol>
+					<local>a_success_flag</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_x_test_fake_key_button_event_call</location>x_test_fake_key_button_event_call</feature><symbol> </symbol><symbol>(</symbol><local>l_x_test_fake_key_event_symbol</local><symbol>,</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_gdk_x_display</location>gdk_x_display</feature><symbol>,</symbol> <local>a_key_code</local><symbol>,</symbol> <keyword>True</keyword><symbol>,</symbol> <number>0</number><symbol>)</symbol>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+			<keyword>if</keyword> <keyword>not</keyword> <local>a_success_flag</local> <keyword>then</keyword>
+				<local>a_key_code</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_key_conversion</location>Key_conversion</feature><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_code_to_gtk</location>key_code_to_gtk</feature><symbol> </symbol><symbol>(</symbol><local>a_key</local><dot>.</dot><feature><location>../interface/ev_key.xml#f_code</location>code</feature><symbol>)</symbol><dot>.</dot><feature><include>False</include>to_integer_32</feature>
+				<local>l_gdk_test_simulate_key_symbol</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_gdk_test_simulate_key_symbol</location>Gdk_test_simulate_key_symbol</feature>
+				<keyword>if</keyword> <local>l_gdk_test_simulate_key_symbol</local> <symbol>/=</symbol> <feature><include>False</include>default_pointer</feature> <keyword>then</keyword>
+					<local>l_window</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_window_at_pointer</location>gdk_window_at_pointer</feature> <symbol>(</symbol><symbol>$</symbol><local>l_x</local><dot>.</dot><feature><include>False</include>to_pointer</feature><symbol>,</symbol> <symbol>$</symbol><local>l_y</local><dot>.</dot><feature><include>False</include>to_pointer</feature><symbol>)</symbol>
+					<local>a_success_flag</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_gdk_test_simulate_call</location>gdk_test_simulate_call</feature><symbol> </symbol><symbol>(</symbol><local>l_gdk_test_simulate_key_symbol</local><symbol>,</symbol> <local>l_window</local><symbol>,</symbol> <local>l_x</local><symbol>,</symbol> <local>l_y</local><symbol>,</symbol> <local>a_key_code</local><symbol>,</symbol> <number>0</number><symbol>,</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_key_press_enum</location>gdk_key_press_enum</feature><symbol>)</symbol>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_fake_key_release</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_fake_key_release</location>fake_key_release</feature> <symbol>(</symbol><local>a_key</local><symbol>:</symbol> <class><location>../interface/ev_key.xml</location>EV_KEY</class><symbol>)</symbol>
+			<comment>--</comment><comment> Fake key </comment><quoted>a_key</quoted><comment> release.</comment>
+		<keyword>local</keyword>
+			<local>a_success_flag</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<local>a_key_code</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<local>l_window</local><symbol>,</symbol> <local>l_x_test_fake_key_event_symbol</local><symbol>,</symbol> <local>l_x_keysym_to_keycode_symbol</local><symbol>,</symbol> <local>l_gdk_test_simulate_key_symbol</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>l_x</local><symbol>,</symbol> <local>l_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+		<keyword>do</keyword>
+			<local>l_x_test_fake_key_event_symbol</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_x_test_fake_key_event_symbol</location>X_test_fake_key_event_symbol</feature>
+			<keyword>if</keyword> <local>l_x_test_fake_key_event_symbol</local> <symbol>/=</symbol> <feature><include>False</include>default_pointer</feature> <keyword>then</keyword>
+				<local>l_x_keysym_to_keycode_symbol</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_x_keysym_to_keycode_symbol</location>X_keysym_to_keycode_symbol</feature>
+				<keyword>if</keyword> <local>l_x_keysym_to_keycode_symbol</local> <symbol>/=</symbol> <feature><include>False</include>default_pointer</feature> <keyword>then</keyword>
+					<local>a_key_code</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_x_keysym_to_keycode_call</location>x_keysym_to_keycode_call</feature><symbol> </symbol><symbol>(</symbol><local>l_x_keysym_to_keycode_symbol</local><symbol>,</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_gdk_x_display</location>gdk_x_display</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_key_conversion</location>Key_conversion</feature><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_code_to_gtk</location>key_code_to_gtk</feature><symbol> </symbol><symbol>(</symbol><local>a_key</local><dot>.</dot><feature><location>../interface/ev_key.xml#f_code</location>code</feature><symbol>)</symbol><dot>.</dot><feature><include>False</include>to_integer_32</feature><symbol>)</symbol>
+					<local>a_success_flag</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_x_test_fake_key_button_event_call</location>x_test_fake_key_button_event_call</feature><symbol> </symbol><symbol>(</symbol><local>l_x_test_fake_key_event_symbol</local><symbol>,</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_gdk_x_display</location>gdk_x_display</feature><symbol>,</symbol> <local>a_key_code</local><symbol>,</symbol> <keyword>False</keyword><symbol>,</symbol> <number>0</number><symbol>)</symbol>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+			<keyword>if</keyword> <keyword>not</keyword> <local>a_success_flag</local> <keyword>then</keyword>
+				<local>a_key_code</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_key_conversion</location>Key_conversion</feature><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_key_conversion.xml#f_key_code_to_gtk</location>key_code_to_gtk</feature><symbol> </symbol><symbol>(</symbol><local>a_key</local><dot>.</dot><feature><location>../interface/ev_key.xml#f_code</location>code</feature><symbol>)</symbol><dot>.</dot><feature><include>False</include>to_integer_32</feature>
+				<local>l_gdk_test_simulate_key_symbol</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_gdk_test_simulate_key_symbol</location>Gdk_test_simulate_key_symbol</feature>
+				<keyword>if</keyword> <local>l_gdk_test_simulate_key_symbol</local> <symbol>/=</symbol> <feature><include>False</include>default_pointer</feature> <keyword>then</keyword>
+					<local>l_window</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_window_at_pointer</location>gdk_window_at_pointer</feature> <symbol>(</symbol><symbol>$</symbol><local>l_x</local><dot>.</dot><feature><include>False</include>to_pointer</feature><symbol>,</symbol> <symbol>$</symbol><local>l_y</local><dot>.</dot><feature><include>False</include>to_pointer</feature><symbol>)</symbol>
+					<local>a_success_flag</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_gdk_test_simulate_call</location>gdk_test_simulate_call</feature><symbol> </symbol><symbol>(</symbol><local>l_gdk_test_simulate_key_symbol</local><symbol>,</symbol> <local>l_window</local><symbol>,</symbol> <local>l_x</local><symbol>,</symbol> <local>l_y</local><symbol>,</symbol> <local>a_key_code</local><symbol>,</symbol> <number>0</number><symbol>,</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_key_release_enum</location>gdk_key_release_enum</feature><symbol>)</symbol>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_key_conversion</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_key_conversion</location>Key_conversion</feature><symbol>:</symbol> <class><location>../implementation_gtk/ev_gtk_key_conversion.xml</location>EV_GTK_KEY_CONVERSION</class>
+			<comment>--</comment><comment> Utilities for converting X key codes.</comment>
+		<keyword>once</keyword>
+			<keyword>create</keyword> <keyword>Result</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Measurement</comment>
+
+	<anchor>f_horizontal_resolution</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_horizontal_resolution</location>horizontal_resolution</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Number of logical pixels per inch along horizontal axis</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gdk_screen_get_resolution</location>gdk_screen_get_resolution</feature> <symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gdk_screen_get_default</location>gdk_screen_get_default</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_vertical_resolution</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_vertical_resolution</location>vertical_resolution</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Number of logical pixels per inch along vertical axis</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gdk_screen_get_resolution</location>gdk_screen_get_resolution</feature> <symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gdk_screen_get_default</location>gdk_screen_get_default</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_height</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_height</location>height</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Vertical size in pixels.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_screen_height</location>screen_height</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_width</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_width</location>width</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Horizontal size in pixels.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_screen_width</location>screen_width</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_virtual_x</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_virtual_x</location>virtual_x</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> X position of virtual screen in main display coordinates</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_screen_virtual_x</location>screen_virtual_x</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_virtual_y</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_virtual_y</location>virtual_y</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Y position of virtual screen in main display coordinates</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_screen_virtual_y</location>screen_virtual_y</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_virtual_height</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_virtual_height</location>virtual_height</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Virtual height of screen</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_screen_virtual_height</location>screen_virtual_height</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_virtual_width</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_virtual_width</location>virtual_width</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Virtual width of screen</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_screen_virtual_width</location>screen_virtual_width</feature>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Externals (XTEST extension)</comment>
+
+	<anchor>f_gdk_test_simulate_button_symbol</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_gdk_test_simulate_button_symbol</location>Gdk_test_simulate_button_symbol</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Symbol for </comment><quoted>gdk_test_simulate_button</quoted>
+		<keyword>once</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_symbol_from_symbol_name</location>symbol_from_symbol_name</feature><symbol> </symbol><symbol>(</symbol>&quot;gdk_test_simulate_button&quot;<symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_x_test_fake_button_event_symbol</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_x_test_fake_button_event_symbol</location>X_test_fake_button_event_symbol</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Symbol for </comment><quoted>XTestFakeButtonEvent</quoted>
+		<keyword>once</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_symbol_from_symbol_name</location>symbol_from_symbol_name</feature><symbol> </symbol><symbol>(</symbol>&quot;XTestFakeButtonEvent&quot;<symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_x_test_fake_key_event_symbol</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_x_test_fake_key_event_symbol</location>X_test_fake_key_event_symbol</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Symbol for </comment><quoted>XTestFakeKeyEvent</quoted>
+		<keyword>once</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_symbol_from_symbol_name</location>symbol_from_symbol_name</feature><symbol> </symbol><symbol>(</symbol>&quot;XTestFakeKeyEvent&quot;<symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_x_test_fake_motion_event_symbol</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_x_test_fake_motion_event_symbol</location>X_test_fake_motion_event_symbol</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Symbol for </comment><quoted>XTestFakeMotionEvent</quoted>
+		<keyword>once</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_symbol_from_symbol_name</location>symbol_from_symbol_name</feature><symbol> </symbol><symbol>(</symbol>&quot;XTestFakeMotionEvent&quot;<symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_gdk_test_simulate_key_symbol</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_gdk_test_simulate_key_symbol</location>Gdk_test_simulate_key_symbol</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Symbol for </comment><quoted>gdk_test_simulate_key</quoted>
+		<keyword>once</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_symbol_from_symbol_name</location>symbol_from_symbol_name</feature><symbol> </symbol><symbol>(</symbol>&quot;gdk_test_simulate_key&quot;<symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_gdk_display_warp_pointer_symbol</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_gdk_display_warp_pointer_symbol</location>Gdk_display_warp_pointer_symbol</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Symbol for </comment><quoted>gdk_display_warp_pointer</quoted><comment>.</comment>
+		<keyword>once</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_symbol_from_symbol_name</location>symbol_from_symbol_name</feature><symbol> </symbol><symbol>(</symbol>&quot;gdk_display_warp_pointer&quot;<symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_gdk_test_simulate_call</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_gdk_test_simulate_call</location>gdk_test_simulate_call</feature> <symbol>(</symbol><local>a_function</local><symbol>,</symbol> <local>a_window</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>;</symbol> <local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_button</local><symbol>,</symbol> <local>a_modifiers</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_press_release</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+		<keyword>external</keyword>
+			&quot;C inline use &lt;ev_gtk.h&gt;&quot;
+		<keyword>alias</keyword>
+			&quot;return (FUNCTION_CAST(gboolean, (GdkWindow*, gint, gint, guint, GdkModifierType, GdkEventType)) $a_function) ((GdkWindow*) $a_window, (gint) $a_x, (gint) $a_y, (guint) $a_button, (GdkModifierType) $a_modifiers, (GdkEventType) $a_press_release)&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_gdk_display_warp_pointer_call</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_gdk_display_warp_pointer_call</location>gdk_display_warp_pointer_call</feature> <symbol>(</symbol><local>a_function</local><symbol>,</symbol> <local>a_display</local><symbol>,</symbol> <local>a_screen</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>;</symbol> <local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+		<keyword>external</keyword>
+			&quot;C inline use &lt;ev_gtk.h&gt;&quot;
+		<keyword>alias</keyword>
+			&quot;(FUNCTION_CAST(void, (GdkDisplay*, GdkScreen*, gint, gint)) $a_function) ((GdkDisplay*) $a_display, (GdkScreen*) $a_screen, (gint) $a_x, (gint) $a_y)&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_x_keysym_to_keycode_symbol</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_x_keysym_to_keycode_symbol</location>X_keysym_to_keycode_symbol</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Symbol for </comment><quoted>x_keysym_to_keycode</quoted><comment>.</comment>
+		<keyword>once</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_symbol_from_symbol_name</location>symbol_from_symbol_name</feature><symbol> </symbol><symbol>(</symbol>&quot;XKeysymToKeycode&quot;<symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_x_keysym_to_keycode_call</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_x_keysym_to_keycode_call</location>x_keysym_to_keycode_call</feature> <symbol>(</symbol><local>a_function</local><symbol>,</symbol> <local>a_display</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>;</symbol> <local>a_keycode</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+		<keyword>external</keyword>
+			&quot;C inline use &lt;ev_gtk.h&gt;&quot;
+		<keyword>alias</keyword>
+			&quot;return (FUNCTION_CAST(EIF_INTEGER, (EIF_POINTER, EIF_INTEGER)) $a_function) ((EIF_POINTER) $a_display, (EIF_INTEGER) $a_keycode)&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_x_test_fake_key_button_event_call</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_x_test_fake_key_button_event_call</location>x_test_fake_key_button_event_call</feature> <symbol>(</symbol><local>a_function</local><symbol>,</symbol> <local>a_display</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>;</symbol> <local>a_keycode_or_button</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_is_press</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class><symbol>;</symbol> <local>a_delay</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+		<keyword>external</keyword>
+			&quot;C inline use &lt;ev_gtk.h&gt;&quot;
+		<keyword>alias</keyword>
+			&quot;return (FUNCTION_CAST(EIF_BOOLEAN, (EIF_POINTER, EIF_INTEGER, EIF_BOOLEAN, EIF_INTEGER)) $a_function) ((EIF_POINTER) $a_display, (EIF_INTEGER) $a_keycode_or_button, (EIF_BOOLEAN) $a_is_press, (EIF_INTEGER) $a_delay)&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_x_test_fake_motion_event_call</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_x_test_fake_motion_event_call</location>x_test_fake_motion_event_call</feature> <symbol>(</symbol><local>a_function</local><symbol>,</symbol> <local>a_display</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>;</symbol> <local>a_scr_num</local><symbol>,</symbol> <local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>a_delay</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+		<keyword>external</keyword>
+			&quot;C inline use &lt;ev_gtk.h&gt;&quot;
+		<keyword>alias</keyword>
+			&quot;return (FUNCTION_CAST(EIF_BOOLEAN, (EIF_POINTER, EIF_INTEGER, EIF_INTEGER, EIF_INTEGER, EIF_INTEGER)) $a_function) ((EIF_POINTER) $a_display, (EIF_INTEGER) $a_scr_num, (EIF_INTEGER) $a_x, (EIF_INTEGER) $a_x, (EIF_INTEGER) $a_delay)&quot;
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_supports_pixbuf_alpha</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_supports_pixbuf_alpha</location>supports_pixbuf_alpha</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Does drawable support direct GdkPixbuf alpha blending?</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <keyword>False</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_gdk_x_display</anchor><keyword>frozen</keyword> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_gdk_x_display</location>gdk_x_display</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>local</keyword>
+			<local>l_symbol</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>do</keyword>
+			<local>l_symbol</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_gdk_x11_display_get_xdisplay_symbol</location>Gdk_x11_display_get_xdisplay_symbol</feature>
+			<keyword>if</keyword> <local>l_symbol</local> <symbol>/=</symbol> <feature><include>False</include>default_pointer</feature> <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_gdk_x11_display_get_xdisplay_call</location>gdk_x11_display_get_xdisplay_call</feature><symbol> </symbol><symbol>(</symbol><local>l_symbol</local><symbol>,</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gdk_display_get_default</location>gdk_display_get_default</feature><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_gdk_x11_display_get_xdisplay_symbol</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_gdk_x11_display_get_xdisplay_symbol</location>Gdk_x11_display_get_xdisplay_symbol</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Symbol for </comment><quoted>gdk_x11_display_get_xdisplay</quoted><comment>.</comment>
+		<keyword>once</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_symbol_from_symbol_name</location>symbol_from_symbol_name</feature><symbol> </symbol><symbol>(</symbol>&quot;gdk_x11_display_get_xdisplay&quot;<symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_gdk_x11_display_get_xdisplay_call</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_gdk_x11_display_get_xdisplay_call</location>gdk_x11_display_get_xdisplay_call</feature> <symbol>(</symbol><local>a_function</local><symbol>,</symbol> <local>a_display</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>external</keyword>
+			&quot;C inline use &lt;ev_gtk.h&gt;&quot;
+		<keyword>alias</keyword>
+			&quot;return (FUNCTION_CAST(EIF_POINTER, (GdkDisplay*)) $a_function) ((GdkDisplay*) $a_display)&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_app_implementation</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_app_implementation</location>App_implementation</feature><symbol>:</symbol> <class><location>../implementation_gtk/ev_application_imp.xml</location>EV_APPLICATION_IMP</class>
+			<comment>--</comment><comment> Return the instance of EV_APPLICATION_IMP.</comment>
+		<keyword>local</keyword>
+			<local>l_result</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_application_imp.xml</location>EV_APPLICATION_IMP</class>
+		<keyword>once</keyword>
+			<local>l_result</local> <symbol>?=</symbol> <symbol>(</symbol><keyword>create</keyword><symbol> </symbol><symbol>{</symbol><class><location>../interface/ev_environment.xml</location>EV_ENVIRONMENT</class><symbol>}</symbol><symbol>)</symbol><dot>.</dot><feature><location>../interface/ev_environment.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_environment_i.xml#f_application_i</location>application_i</feature>
+			<keyword>check</keyword>
+					<local>l_result</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <local>l_result</local>
+		<keyword>end</keyword>
+
+	<anchor>f_flush</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_flush</location>flush</feature>
+			<comment>--</comment><comment> Force all queued draw to be called.</comment>
+		<keyword>do</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_update_if_needed</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_update_if_needed</location>update_if_needed</feature>
+			<comment>--</comment><comment> Update </comment><quoted>Current</quoted><comment> if needed</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_device_x_offset</location>device_x_offset</feature> <symbol>:=</symbol> <symbol>-</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_screen_virtual_x</location>screen_virtual_x</feature><dot>.</dot><feature><include>False</include>as_integer_16</feature>
+			<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_device_y_offset</location>device_y_offset</feature> <symbol>:=</symbol> <symbol>-</symbol> <feature><location>../implementation_gtk/ev_screen_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_screen_virtual_y</location>screen_virtual_y</feature><dot>.</dot><feature><include>False</include>as_integer_16</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_destroy</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_destroy</location>destroy</feature>
+			<comment>--</comment><comment> Destroy underlying native toolkit objects.</comment>
+			<comment>--</comment><comment> Render </comment><quoted>Current</quoted><comment> unusable.</comment>
+			<comment>--</comment><comment> Any feature calls after a call to destroy are</comment>
+			<comment>--</comment><comment> invalid.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_screen_imp.xml#f_dispose</location>dispose</feature>
+			<feature><location>../implementation_interface/ev_any_i.xml#f_set_is_destroyed</location>set_is_destroyed</feature><symbol> </symbol><symbol>(</symbol><keyword>True</keyword><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_dispose</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_dispose</location>dispose</feature>
+			<comment>--</comment><comment> Cleanup</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_drawable_imp.xml#f_gc</location>gc</feature> <symbol>/=</symbol> <feature><include>False</include>default_pointer</feature> <keyword>then</keyword>
+				<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_gdk_gc_unref</location>gdk_gc_unref</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_drawable_imp.xml#f_gc</location>gc</feature><symbol>)</symbol>
+				<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_gc</location>gc</feature> <symbol>:=</symbol> <feature><include>False</include>default_pointer</feature>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_drawable</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_drawable</location>drawable</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Pointer to the screen (root window)</comment>
+
+	<anchor>f_mask</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_mask</location>mask</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Mask of </comment><quoted>Current</quoted><comment>, which is always NULL</comment>
+		<keyword>do</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_any.xml</location>EV_ANY</class><symbol>,</symbol> <class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_interface</anchor><feature><location>../implementation_gtk/ev_screen_imp.xml#f_interface</location>interface</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_screen.xml</location>EV_SCREEN</class>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2017, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_gtk/ev_screen_imp.xml</location>EV_SCREEN_IMP</class></system>
+

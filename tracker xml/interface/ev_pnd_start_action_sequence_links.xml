@@ -1,0 +1,20 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../interface/ev_pnd_start_action_sequence_links.xml</location>EV_PND_START_ACTION_SEQUENCE</class>
+
+<keyword>Ancestors</keyword>
+	<class><location>../interface/ev_action_sequence_links.xml</location>EV_ACTION_SEQUENCE</class><char>*</char> <symbol>[</symbol><generic>EVENT_DATA</generic> <symbol>-&gt;</symbol> <class><include>False</include>TUPLE</class> <keyword>create</keyword> <feature><include>False</include>default_create</feature> <keyword>end</keyword><symbol>]</symbol>
+
+<keyword>Clients</keyword>
+	<class><location>../implementation_gtk/ev_list_item_list_imp_links.xml</location>EV_LIST_ITEM_LIST_IMP</class><char>*</char>
+	<class><location>../implementation_gtk/ev_multi_column_list_imp_links.xml</location>EV_MULTI_COLUMN_LIST_IMP</class>
+	<class><location>../implementation_interface/ev_pick_and_dropable_action_sequences_i_links.xml</location>EV_PICK_AND_DROPABLE_ACTION_SEQUENCES_I</class><char>*</char>
+	<class><location>../implementation_gtk/ev_pick_and_dropable_imp_links.xml</location>EV_PICK_AND_DROPABLE_IMP</class><char>*</char>
+	<class><location>../interface/ev_pnd_start_action_sequence_links.xml</location>EV_PND_START_ACTION_SEQUENCE</class>
+	<class><location>../implementation_gtk/ev_tree_imp_links.xml</location>EV_TREE_IMP</class>
+
+<keyword>Suppliers</keyword>
+	<class><location>../interface/ev_pnd_start_action_sequence_links.xml</location>EV_PND_START_ACTION_SEQUENCE</class>
+	<class><include>False</include>PROCEDURE</class> <symbol>[</symbol><generic>OPEN_ARGS</generic> <symbol>-&gt;</symbol> <keyword>detachable</keyword> <class><include>False</include>TUPLE</class> <keyword>create</keyword> <feature><include>False</include>default_create</feature> <keyword>end</keyword><symbol>]</symbol>
+
+</system>

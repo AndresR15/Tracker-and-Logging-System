@@ -1,0 +1,29 @@
+<system>
+<keyword>deferred</keyword> <keyword>class</keyword>
+	<class><location>../implementation_interface/ev_widget_action_sequences_i_chart.xml</location>EV_WIDGET_ACTION_SEQUENCES_I</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>implementation_interface</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Action sequences for EV_WIDGET_I.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;event, action, sequence&quot;</string>
+
+<keyword>Ancestors</keyword>
+	<class><include>False</include>ANY</class>
+
+<keyword>Action sequences</keyword>
+	<feature><location>../implementation_interface/ev_widget_action_sequences_i.xml#f_file_drop_actions</location>file_drop_actions</feature><symbol>:</symbol> <class><location>../interface/ev_lite_action_sequence_chart.xml</location>EV_LITE_ACTION_SEQUENCE</class> <symbol>[</symbol><class><include>False</include>LIST</class> <symbol>[</symbol><class><include>False</include>STRING_32</class><symbol>]</symbol><symbol>]</symbol>
+	<feature><location>../implementation_interface/ev_widget_action_sequences_i.xml#f_focus_in_actions</location>focus_in_actions</feature><symbol>:</symbol> <class><location>../interface/ev_notify_action_sequence_chart.xml</location>EV_NOTIFY_ACTION_SEQUENCE</class>
+	<feature><location>../implementation_interface/ev_widget_action_sequences_i.xml#f_focus_out_actions</location>focus_out_actions</feature><symbol>:</symbol> <class><location>../interface/ev_notify_action_sequence_chart.xml</location>EV_NOTIFY_ACTION_SEQUENCE</class>
+	<feature><location>../implementation_interface/ev_widget_action_sequences_i.xml#f_key_press_actions</location>key_press_actions</feature><symbol>:</symbol> <class><location>../interface/ev_key_action_sequence_chart.xml</location>EV_KEY_ACTION_SEQUENCE</class>
+	<feature><location>../implementation_interface/ev_widget_action_sequences_i.xml#f_key_press_string_actions</location>key_press_string_actions</feature><symbol>:</symbol> <class><location>../interface/ev_key_string_action_sequence_chart.xml</location>EV_KEY_STRING_ACTION_SEQUENCE</class>
+	<feature><location>../implementation_interface/ev_widget_action_sequences_i.xml#f_key_release_actions</location>key_release_actions</feature><symbol>:</symbol> <class><location>../interface/ev_key_action_sequence_chart.xml</location>EV_KEY_ACTION_SEQUENCE</class>
+	<feature><location>../implementation_interface/ev_widget_action_sequences_i.xml#f_mouse_wheel_actions</location>mouse_wheel_actions</feature><symbol>:</symbol> <class><location>../interface/ev_integer_action_sequence_chart.xml</location>EV_INTEGER_ACTION_SEQUENCE</class>
+	<feature><location>../implementation_interface/ev_widget_action_sequences_i.xml#f_pointer_button_press_actions</location>pointer_button_press_actions</feature><symbol>:</symbol> <class><location>../interface/ev_pointer_button_action_sequence_chart.xml</location>EV_POINTER_BUTTON_ACTION_SEQUENCE</class>
+	<feature><location>../implementation_interface/ev_widget_action_sequences_i.xml#f_pointer_button_release_actions</location>pointer_button_release_actions</feature><symbol>:</symbol> <class><location>../interface/ev_pointer_button_action_sequence_chart.xml</location>EV_POINTER_BUTTON_ACTION_SEQUENCE</class>
+	<feature><location>../implementation_interface/ev_widget_action_sequences_i.xml#f_pointer_double_press_actions</location>pointer_double_press_actions</feature><symbol>:</symbol> <class><location>../interface/ev_pointer_button_action_sequence_chart.xml</location>EV_POINTER_BUTTON_ACTION_SEQUENCE</class>
+	<feature><location>../implementation_interface/ev_widget_action_sequences_i.xml#f_pointer_enter_actions</location>pointer_enter_actions</feature><symbol>:</symbol> <class><location>../interface/ev_notify_action_sequence_chart.xml</location>EV_NOTIFY_ACTION_SEQUENCE</class>
+	<feature><location>../implementation_interface/ev_widget_action_sequences_i.xml#f_pointer_leave_actions</location>pointer_leave_actions</feature><symbol>:</symbol> <class><location>../interface/ev_notify_action_sequence_chart.xml</location>EV_NOTIFY_ACTION_SEQUENCE</class>
+	<feature><location>../implementation_interface/ev_widget_action_sequences_i.xml#f_pointer_motion_actions</location>pointer_motion_actions</feature><symbol>:</symbol> <class><location>../interface/ev_pointer_motion_action_sequence_chart.xml</location>EV_POINTER_MOTION_ACTION_SEQUENCE</class>
+	<feature><location>../implementation_interface/ev_widget_action_sequences_i.xml#f_resize_actions</location>resize_actions</feature><symbol>:</symbol> <class><location>../interface/ev_geometry_action_sequence_chart.xml</location>EV_GEOMETRY_ACTION_SEQUENCE</class>
+
+</system>

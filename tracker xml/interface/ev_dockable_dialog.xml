@@ -1,0 +1,73 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Dialogs that are created by the Vision2 docking mechanism when</string>
+		<string>an EV_DOCKABLE_SOURCE is dropped while not over a valid EV_DOCKABLE_TARGET.</string>
+		<string>The transported component will be inserted into </string><string>Current</string><string>, and when </string><string>Current</string>
+		<string>is destroyed, it will be restored back to its original position before the</string>
+		<string>transport began.</string>
+	<string>]</string><string>&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2009-06-03 17:11:49 -0700 (Wed, 03 Jun 2009) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 79073 $&quot;</string>
+
+<keyword>class</keyword> 
+	<class><location>../interface/ev_dockable_dialog.xml</location>EV_DOCKABLE_DIALOG</class>
+
+<keyword>inherit</keyword>
+	<class><location>../interface/ev_dialog.xml</location>EV_DIALOG</class>
+		<keyword>export</keyword>
+			<symbol>{</symbol><class><include>False</include>ANY</class><symbol>}</symbol> <feature><location>../interface/ev_window_action_sequences.xml#f_close_request_actions</location>close_request_actions</feature>
+		<keyword>end</keyword>
+
+<keyword>create</keyword> 
+	<feature><location>../interface/ev_any.xml#f_default_create</location>default_create</feature>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_original_parent</anchor><feature><location>../interface/ev_dockable_dialog.xml#f_original_parent</location>original_parent</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_dockable_target.xml</location>EV_DOCKABLE_TARGET</class>
+			<comment>--</comment><comment> Original parent of </comment><feature><location>../interface/ev_container.xml#f_item</location>item</feature><comment> before it was</comment>
+			<comment>--</comment><comment> dragged out.</comment>
+
+	<anchor>f_original_parent_index</anchor><feature><location>../interface/ev_dockable_dialog.xml#f_original_parent_index</location>original_parent_index</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Original index of </comment><feature><location>../interface/ev_container.xml#f_item</location>item</feature><comment> in parent before it was</comment>
+			<comment>--</comment><comment> dragged out.</comment>
+
+	<anchor>f_expansion_was_disabled</anchor><feature><location>../interface/ev_dockable_dialog.xml#f_expansion_was_disabled</location>expansion_was_disabled</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Was </comment><feature><location>../interface/ev_container.xml#f_item</location>item</feature><comment> originally disabled in </comment><feature><location>../interface/ev_dockable_dialog.xml#f_original_parent</location>original_parent</feature><comment>? This</comment>
+			<comment>--</comment><comment> may only be True if </comment><feature><location>../interface/ev_dockable_dialog.xml#f_original_parent</location>original_parent</feature><comment> is an EV_BOX.</comment>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_dockable_source_i.xml</location>EV_DOCKABLE_SOURCE_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_set_original_parent</anchor><feature><location>../interface/ev_dockable_dialog.xml#f_set_original_parent</location>set_original_parent</feature> <symbol>(</symbol><local>an_original_parent</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../interface/ev_dockable_dialog.xml#f_original_parent</location>original_parent</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>an_original_parent</quoted><comment> to </comment><feature><location>../interface/ev_dockable_dialog.xml#f_original_parent</location>original_parent</feature><comment>.</comment>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_dockable_dialog.xml#f_original_parent</location>original_parent</feature> <symbol>:=</symbol> <local>an_original_parent</local>
+		<keyword>end</keyword>
+
+	<anchor>f_set_original_parent_index</anchor><feature><location>../interface/ev_dockable_dialog.xml#f_set_original_parent_index</location>set_original_parent_index</feature> <symbol>(</symbol><local>an_index</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>an_index</quoted><comment> to </comment><feature><location>../interface/ev_dockable_dialog.xml#f_original_parent_index</location>original_parent_index</feature><comment>.</comment>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_dockable_dialog.xml#f_original_parent_index</location>original_parent_index</feature> <symbol>:=</symbol> <local>an_index</local>
+		<keyword>end</keyword>
+
+	<anchor>f_set_expansion_was_disabled</anchor><feature><location>../interface/ev_dockable_dialog.xml#f_set_expansion_was_disabled</location>set_expansion_was_disabled</feature>
+			<comment>--</comment><comment> Assign </comment><quoted>True</quoted><comment> to </comment><feature><location>../interface/ev_dockable_dialog.xml#f_expansion_was_disabled</location>expansion_was_disabled</feature><comment>.</comment>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_dockable_dialog.xml#f_expansion_was_disabled</location>expansion_was_disabled</feature> <symbol>:=</symbol> <keyword>True</keyword>
+		<keyword>end</keyword>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2006, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>356 Storke Road, Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../interface/ev_dockable_dialog.xml</location>EV_DOCKABLE_DIALOG</class></system>
+

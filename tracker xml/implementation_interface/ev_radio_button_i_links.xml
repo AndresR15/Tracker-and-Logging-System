@@ -1,0 +1,20 @@
+<system>
+<keyword>deferred</keyword> <keyword>class</keyword>
+	<class><location>../implementation_interface/ev_radio_button_i_links.xml</location>EV_RADIO_BUTTON_I</class>
+
+<keyword>Ancestors</keyword>
+	<class><location>../implementation_interface/ev_button_i_links.xml</location>EV_BUTTON_I</class><char>*</char>
+	<class><location>../implementation_interface/ev_radio_peer_i_links.xml</location>EV_RADIO_PEER_I</class><char>*</char>
+	<class><location>../implementation_interface/ev_selectable_i_links.xml</location>EV_SELECTABLE_I</class><char>*</char>
+
+<keyword>Descendants</keyword>
+	<class><location>../implementation_gtk/ev_radio_button_imp_links.xml</location>EV_RADIO_BUTTON_IMP</class>
+
+<keyword>Clients</keyword>
+	<class><location>../implementation_interface/ev_radio_button_i_links.xml</location>EV_RADIO_BUTTON_I</class><char>*</char>
+
+<keyword>Suppliers</keyword>
+	<class><location>../implementation_interface/ev_radio_button_i_links.xml</location>EV_RADIO_BUTTON_I</class><char>*</char>
+	<class><location>../interface/ev_text_alignment_constants_links.xml</location>EV_TEXT_ALIGNMENT_CONSTANTS</class>
+
+</system>

@@ -1,0 +1,23 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Summary description for </string><symbol>{</symbol><class><location>../tracker/stwl_out_short.xml</location>STWL_OUT</class><symbol>}</symbol><string>.&quot;</string>
+	<indexing_tag>author</indexing_tag><symbol>:</symbol> <string>&quot;Andres Rojas&quot;</string>
+
+<keyword>class</keyword> <keyword>interface</keyword>
+	<class><location>../tracker/stwl_out_short.xml</location>STWL_OUT</class> <symbol>[</symbol><generic>G</generic> <symbol>-&gt;</symbol> <keyword>attached</keyword> <class><include>False</include>COMPARABLE</class><symbol>]</symbol>
+
+<keyword>create</keyword> 
+	<feature><location>../tracker/stwl_out_short.xml#f_make</location>make</feature>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Constructor</comment>
+
+	<anchor>f_make</anchor><feature><location>../tracker/stwl_out_short.xml#f_make</location>make</feature> <symbol>(</symbol><local>new_list</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../tracker/stwl_out_short.xml#f_list</location>list</feature><symbol>)</symbol>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Output</comment>
+
+	<anchor>f_out</anchor><feature><location>../tracker/stwl_out_short.xml#f_out</location>out</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+			<comment>--</comment><comment> New string containing terse printable representation</comment>
+			<comment>--</comment><comment> of current object</comment>
+	
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../tracker/stwl_out_short.xml</location>STWL_OUT</class></system>
+

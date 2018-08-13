@@ -1,0 +1,26 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../implementation_gtk/ev_region_imp_chart.xml</location>EV_REGION_IMP</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>implementation_gtk</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Gtk Implementation for EV_REGION&quot;</string>
+	<indexing_tag>create</indexing_tag><symbol>:</symbol> <feature><location>../implementation_gtk/ev_region_imp.xml#f_make</location>make</feature>
+
+<keyword>Ancestors</keyword>
+	<class><include>False</include>DISPOSABLE</class><char>*</char>
+	<class><location>../implementation_interface/ev_region_i_chart.xml</location>EV_REGION_I</class><char>*</char>
+
+<keyword>Queries</keyword>
+	<feature><location>../implementation_gtk/ev_region_imp.xml#f_exclusive_or</location>exclusive_or</feature> <symbol>(</symbol><local>a_region</local><symbol>:</symbol> <class><location>../interface/ev_region_chart.xml</location>EV_REGION</class><symbol>)</symbol><symbol>:</symbol> <class><location>../interface/ev_region_chart.xml</location>EV_REGION</class>
+	<feature><location>../implementation_gtk/ev_region_imp.xml#f_intersect</location>intersect</feature> <symbol>(</symbol><local>a_region</local><symbol>:</symbol> <class><location>../interface/ev_region_chart.xml</location>EV_REGION</class><symbol>)</symbol><symbol>:</symbol> <class><location>../interface/ev_region_chart.xml</location>EV_REGION</class>
+	<feature><location>../implementation_interface/ev_any_i.xml#f_is_destroyed</location>is_destroyed</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../implementation_gtk/ev_region_imp.xml#f_subtract</location>subtract</feature> <symbol>(</symbol><local>a_region</local><symbol>:</symbol> <class><location>../interface/ev_region_chart.xml</location>EV_REGION</class><symbol>)</symbol><symbol>:</symbol> <class><location>../interface/ev_region_chart.xml</location>EV_REGION</class>
+	<feature><location>../implementation_gtk/ev_region_imp.xml#f_union</location>union</feature> <symbol>(</symbol><local>a_region</local><symbol>:</symbol> <class><location>../interface/ev_region_chart.xml</location>EV_REGION</class><symbol>)</symbol><symbol>:</symbol> <class><location>../interface/ev_region_chart.xml</location>EV_REGION</class>
+
+<keyword>Commands</keyword>
+	<feature><location>../implementation_gtk/ev_region_imp.xml#f_copy_region</location>copy_region</feature> <symbol>(</symbol><local>other</local><symbol>:</symbol> <class><location>../interface/ev_region_chart.xml</location>EV_REGION</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_region_imp.xml#f_offset</location>offset</feature> <symbol>(</symbol><local>a_horizontal_offset</local><symbol>,</symbol> <local>a_vertical_offset</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_region_imp.xml#f_set_rectangle</location>set_rectangle</feature> <symbol>(</symbol><local>a_rectangle</local><symbol>:</symbol> <class><location>../interface/ev_rectangle_chart.xml</location>EV_RECTANGLE</class><symbol>)</symbol>
+
+</system>

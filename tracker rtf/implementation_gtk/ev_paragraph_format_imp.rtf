@@ -1,0 +1,200 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "Objects that represent paragraph formatting information."{\line}
+{\tab}{\cf1 legal}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 status}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2017-03-27 13:31:29 -0700 (Mon, 27 Mar 2017) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 100058 $"{\line}
+{\line}
+{\b\cf6 class} {\line}
+{\tab}{\cf4 EV_PARAGRAPH_FORMAT_IMP}{\line}
+{\line}
+{\b\cf6 inherit}{\line}
+{\tab}{\cf4 EV_PARAGRAPH_FORMAT_I}{\line}
+{\line}
+{\b\cf6 create} {\line}
+{\tab}{\cf5 make}{\line}
+{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Initialization}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 old_make} {\cf1 (}{\cf5 an_interface}{\cf1 :} {\b\cf6 attached} {\b\cf6 like} {\cf5 interface}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create paragraph format}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 assign_interface}{\cf1  }{\cf1 (}{\cf5 an_interface}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do nothing}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_is_initialized}{\cf1  }{\cf1 (}{\b\cf6 True}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status report}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 alignment}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Current alignment. See EV_PARAGRAPH_CONSTANTS}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  for possible values.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_left_aligned}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 Current}{\cf3  left aligned?}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 alignment} {\cf1 =} {\cf1 \{}{\cf4 EV_PARAGRAPH_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 alignment_left}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_center_aligned}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 Current}{\cf3  center aligned?}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 alignment} {\cf1 =} {\cf1 \{}{\cf4 EV_PARAGRAPH_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 alignment_center}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_right_aligned}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 Current}{\cf3  right aligned?}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 alignment} {\cf1 =} {\cf1 \{}{\cf4 EV_PARAGRAPH_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 alignment_right}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_justified}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 Current}{\cf3  justified?}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 alignment} {\cf1 =} {\cf1 \{}{\cf4 EV_PARAGRAPH_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 alignment_justified}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 left_margin}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Left margin between border and text in pixels}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 right_margin}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Right margin between line end and border in pixels}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 top_spacing}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Spacing between top of paragraph and previous line in pixels.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 bottom_spacing}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Spacing between bottom of paragraph and next line in pixels.}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status setting}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 enable_left_alignment}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Ensure }{\cf5 is_left_aligned}{\cf3  is }{\cf5 True}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_alignment}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 EV_PARAGRAPH_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 alignment_left}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 enable_center_alignment}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Ensure }{\cf5 is_center_aligned}{\cf3  is }{\cf5 True}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_alignment}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 EV_PARAGRAPH_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 alignment_center}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 enable_right_alignment}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Ensure }{\cf5 is_right_aligned}{\cf3  is }{\cf5 True}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_alignment}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 EV_PARAGRAPH_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 alignment_right}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 enable_justification}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Ensure }{\cf5 is_justified}{\cf3  is }{\cf5 True}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_alignment}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 EV_PARAGRAPH_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 alignment_justified}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_alignment} {\cf1 (}{\cf5 a_alignment}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 alignment}{\cf3  to }{\cf5 a_alignment}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 alignment} {\cf1 :=} {\cf5 a_alignment}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_left_margin} {\cf1 (}{\cf5 a_margin}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 left_margin}{\cf3  to }{\cf5 a_margin}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 left_margin} {\cf1 :=} {\cf5 a_margin}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_right_margin} {\cf1 (}{\cf5 a_margin}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 right_margin}{\cf3  to }{\cf5 a_margin}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 right_margin} {\cf1 :=} {\cf5 a_margin}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_top_spacing} {\cf1 (}{\cf5 a_margin}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 top_spacing}{\cf3  to }{\cf5 a_margin}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 top_spacing} {\cf1 :=} {\cf5 a_margin}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_bottom_spacing} {\cf1 (}{\cf5 a_margin}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 bottom_spacing}{\cf3  to }{\cf5 a_margin}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 bottom_spacing} {\cf1 :=} {\cf5 a_margin}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_RICH_TEXT_IMP}{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 new_paragraph_tag_from_applicable_attributes} {\cf1 (}{\cf5 applicable_attributes}{\cf1 :} {\cf4 EV_PARAGRAPH_FORMAT_RANGE_INFORMATION}{\cf1 )}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 propname}{\cf1 :} {\cf4 EV_GTK_C_STRING}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_text_tag_new} {\cf1 (}{\cf5 default_pointer}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 applicable_attributes}{\b\cf1 .}{\cf5 alignment} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 propname} {\cf1 :=} {\b\cf6 create} {\cf1 \{}{\b\cf6 attached} {\cf4 EV_GTK_C_STRING}{\cf1 \}}{\b\cf1 .}{\cf5 set_with_eiffel_string}{\cf1  }{\cf1 (}"justification"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 inspect} {\cf5 alignment}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf1 \{}{\cf4 EV_PARAGRAPH_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 alignment_left} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 g_object_set_integer} {\cf1 (}{\b\cf6 Result}{\cf1 ,} {\cf5 propname}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_justify_left_enum}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf1 \{}{\cf4 EV_PARAGRAPH_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 alignment_center} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 g_object_set_integer} {\cf1 (}{\b\cf6 Result}{\cf1 ,} {\cf5 propname}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_justify_center_enum}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf1 \{}{\cf4 EV_PARAGRAPH_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 alignment_right} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 g_object_set_integer} {\cf1 (}{\b\cf6 Result}{\cf1 ,} {\cf5 propname}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_justify_right_enum}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf1 \{}{\cf4 EV_PARAGRAPH_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 alignment_justified} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 g_object_set_integer} {\cf1 (}{\b\cf6 Result}{\cf1 ,} {\cf5 propname}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_justify_fill_enum}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 applicable_attributes}{\b\cf1 .}{\cf5 left_margin} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 propname} {\cf1 :=} {\b\cf6 create} {\cf1 \{}{\b\cf6 attached} {\cf4 EV_GTK_C_STRING}{\cf1 \}}{\b\cf1 .}{\cf5 set_with_eiffel_string}{\cf1  }{\cf1 (}"left-margin"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 g_object_set_integer} {\cf1 (}{\b\cf6 Result}{\cf1 ,} {\cf5 propname}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 left_margin}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 applicable_attributes}{\b\cf1 .}{\cf5 right_margin} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 propname} {\cf1 :=} {\b\cf6 create} {\cf1 \{}{\b\cf6 attached} {\cf4 EV_GTK_C_STRING}{\cf1 \}}{\b\cf1 .}{\cf5 set_with_eiffel_string}{\cf1  }{\cf1 (}"right-margin"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 g_object_set_integer} {\cf1 (}{\b\cf6 Result}{\cf1 ,} {\cf5 propname}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 right_margin}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 applicable_attributes}{\b\cf1 .}{\cf5 top_spacing} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 propname} {\cf1 :=} {\b\cf6 create} {\cf1 \{}{\b\cf6 attached} {\cf4 EV_GTK_C_STRING}{\cf1 \}}{\b\cf1 .}{\cf5 set_with_eiffel_string}{\cf1  }{\cf1 (}"pixels-above-lines"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 g_object_set_integer} {\cf1 (}{\b\cf6 Result}{\cf1 ,} {\cf5 propname}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 top_spacing}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 applicable_attributes}{\b\cf1 .}{\cf5 bottom_spacing} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 propname} {\cf1 :=} {\b\cf6 create} {\cf1 \{}{\b\cf6 attached} {\cf4 EV_GTK_C_STRING}{\cf1 \}}{\b\cf1 .}{\cf5 set_with_eiffel_string}{\cf1  }{\cf1 (}"pixels-below-lines"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 g_object_set_integer} {\cf1 (}{\b\cf6 Result}{\cf1 ,} {\cf5 propname}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 bottom_spacing}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 dummy_paragraph_format_range_information}{\cf1 :} {\cf4 EV_PARAGRAPH_FORMAT_RANGE_INFORMATION}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make_with_flags}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 EV_PARAGRAPH_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 alignment} {\cf1 |} {\cf1 \{}{\cf4 EV_PARAGRAPH_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 left_margin} {\cf1 |} {\cf1 \{}{\cf4 EV_PARAGRAPH_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 right_margin} {\cf1 |} {\cf1 \{}{\cf4 EV_PARAGRAPH_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 top_spacing} {\cf1 |} {\cf1 \{}{\cf4 EV_PARAGRAPH_CONSTANTS}{\cf1 \}}{\b\cf1 .}{\cf5 bottom_spacing}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 destroy}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Clean up }{\cf5 Current}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_is_destroyed}{\cf1  }{\cf1 (}{\b\cf6 True}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 note}{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 1984-2017, Eiffel Software and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"{\line}
+{\tab}{\cf1 source}{\cf1 :} "[{\line}
+{\tab}{\tab}Eiffel Software{\line}
+{\tab}{\tab}5949 Hollister Ave., Goleta, CA 93117 USA{\line}
+{\tab}{\tab}Telephone 805-685-1006, Fax 805-685-6869{\line}
+{\tab}{\tab}Website http://www.eiffel.com{\line}
+{\tab}{\tab}Customer support http://support.eiffel.com{\line}
+{\tab}]"{\line}
+{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 EV_PARAGRAPH_FORMAT_IMP}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

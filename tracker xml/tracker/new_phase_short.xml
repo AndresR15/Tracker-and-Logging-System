@@ -1,0 +1,37 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Summary description for </string><symbol>{</symbol><class><location>../tracker/new_phase_short.xml</location>NEW_PHASE</class><symbol>}</symbol><string>.&quot;</string>
+	<indexing_tag>author</indexing_tag><symbol>:</symbol> <string>&quot;&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date$&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision$&quot;</string>
+
+<keyword>class</keyword> <keyword>interface</keyword>
+	<class><location>../tracker/new_phase_short.xml</location>NEW_PHASE</class>
+
+<keyword>create</keyword> 
+	<feature><location>../tracker/new_phase_short.xml#f_make</location>make</feature>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Initialization</comment>
+
+	<anchor>f_make</anchor><feature><location>../tracker/new_phase_short.xml#f_make</location>make</feature> <symbol>(</symbol><local>pid</local><symbol>:</symbol> <class><include>False</include>STRING_8</class><symbol>;</symbol> <local>pname</local><symbol>:</symbol> <class><include>False</include>STRING_8</class><symbol>;</symbol> <local>cap</local><symbol>:</symbol> <class><include>False</include>INTEGER_64</class><symbol>;</symbol> <local>mats</local><symbol>:</symbol> <class><include>False</include>ARRAY</class> <symbol>[</symbol><class><include>False</include>INTEGER_64</class><symbol>]</symbol><symbol>)</symbol>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Attributes</comment>
+
+	<anchor>f_p_id</anchor><feature><location>../tracker/new_phase_short.xml#f_p_id</location>p_id</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+
+	<anchor>f_p_name</anchor><feature><location>../tracker/new_phase_short.xml#f_p_name</location>p_name</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+
+	<anchor>f_capacity</anchor><feature><location>../tracker/new_phase_short.xml#f_capacity</location>capacity</feature><symbol>:</symbol> <class><include>False</include>INTEGER_64</class>
+
+	<anchor>f_expected_mats</anchor><feature><location>../tracker/new_phase_short.xml#f_expected_mats</location>expected_mats</feature><symbol>:</symbol> <class><include>False</include>ARRAY</class> <symbol>[</symbol><class><include>False</include>INTEGER_64</class><symbol>]</symbol>
+	
+<keyword>feature</keyword> 
+
+	<anchor>f_execute</anchor><feature><location>../tracker/new_phase_short.xml#f_execute</location>execute</feature>
+
+	<anchor>f_undo</anchor><feature><location>../tracker/new_phase_short.xml#f_undo</location>undo</feature>
+
+	<anchor>f_redo</anchor><feature><location>../tracker/new_phase_short.xml#f_redo</location>redo</feature>
+	
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../tracker/new_phase_short.xml</location>NEW_PHASE</class></system>
+

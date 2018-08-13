@@ -1,0 +1,369 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "A default business model."{\line}
+{\tab}{\cf1 author}{\cf1 :} "Andres Rojas and Victor Vavan"{\line}
+{\line}
+{\b\cf6 class} {\line}
+{\tab}{\cf4 TRACKER}{\line}
+{\line}
+{\b\cf6 inherit}{\line}
+{\tab}{\cf4 ANY}{\line}
+{\tab}{\tab}{\b\cf6 redefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 out}{\line}
+{\tab}{\tab}{\b\cf6 end}{\line}
+{\line}
+{\b\cf6 create} {\cf1 \{}{\cf4 TRACKER_ACCESS}{\cf1 \}}{\line}
+{\tab}{\cf5 make}{\line}
+{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Initialization}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Initialization for }{\cf5 Current}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 list}{\cf1 :} {\cf4 STRING_TABLE} {\cf1 [}{\cf4 PHASE}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf5 zero}{\cf1 :} {\cf4 VALUE}{\line}
+{\tab}{\tab}{\tab}{\cf5 er_msg}{\cf1 :} {\cf4 MESSAGES_ACCESS}{\line}
+{\tab}{\tab}{\tab}{\cf5 nt}{\cf1 :} {\cf4 NEW_TRACKER}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 zero}{\b\cf1 .}{\cf5 make_from_int}{\cf1  }{\cf1 (}0{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 list}{\b\cf1 .}{\cf5 make_equal_caseless}{\cf1  }{\cf1 (}10{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 sorted_phases}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 sorted_conts}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\cf5 phases} {\cf1 :=} {\cf5 list}{\line}
+{\tab}{\tab}{\tab}{\cf5 error} {\cf1 :=} {\cf5 er_msg}{\b\cf1 .}{\cf5 Ok}{\line}
+{\tab}{\tab}{\tab}{\cf5 active} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\cf5 state} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\cf5 cursor_state} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\cf5 max_phase_rad} {\cf1 :=} {\cf5 zero}{\line}
+{\tab}{\tab}{\tab}{\cf5 max_cont_rad} {\cf1 :=} {\cf5 zero}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 history}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 nt}{\b\cf1 .}{\cf5 make_init}{\cf1  }{\cf1 (}{\cf5 max_phase_rad}{\cf1 ,} {\cf5 max_cont_rad}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 history}{\b\cf1 .}{\cf5 add_to_record}{\cf1  }{\cf1 (}{\cf5 nt}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 TRACKER}{\cf1 \}} {\cf3 --}{\cf3  model attributes}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 phases}{\cf1 :} {\cf4 STRING_TABLE} {\cf1 [}{\cf4 PHASE}{\cf1 ]}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 sorted_phases}{\cf1 :} {\cf4 SORTED_TWO_WAY_LIST} {\cf1 [}{\cf4 PHASE}{\cf1 ]}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 sorted_conts}{\cf1 :} {\cf4 SORTED_TWO_WAY_LIST} {\cf1 [}{\cf4 PHASE_CONTAINER}{\cf1 ]}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 error}{\cf1 :} {\cf4 STRING_8}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 active}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 max_phase_rad}{\cf1 :} {\cf4 VALUE}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 max_cont_rad}{\cf1 :} {\cf4 VALUE}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 state}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 cursor_state}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 history}{\cf1 :} {\cf4 HISTORY}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 msg}{\cf1 :} {\cf4 MESSAGES_ACCESS}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  model operations}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 new_phase} {\cf1 (}{\cf5 pid}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 phase_name}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 capacity}{\cf1 :} {\cf4 INTEGER_64}{\cf1 ;} {\cf5 expected_materials}{\cf1 :} {\cf4 ARRAY} {\cf1 [}{\cf4 INTEGER_64}{\cf1 ]}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_pid}{\cf1 :} {\cf5 valid_string}{\cf1  }{\cf1 (}{\cf5 pid}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_phase_name}{\cf1 :} {\cf5 valid_string}{\cf1  }{\cf1 (}{\cf5 phase_name}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 positive_capacity}{\cf1 :} {\cf5 capacity}{\b\cf1 .}{\cf5 to_double} {\cf1 >} 0.0{\line}
+{\tab}{\tab}{\tab}{\cf1 expected_materials_non_empty}{\cf1 :} {\cf5 expected_materials}{\b\cf1 .}{\cf5 count} {\cf1 >} 0{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 new_p}{\cf1 :} {\cf4 PHASE}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 new_p}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 pid}{\cf1 ,} {\cf5 phase_name}{\cf1 ,} {\cf5 capacity}{\cf1 ,} {\cf5 expected_materials}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 phases}{\b\cf1 .}{\cf5 extend}{\cf1  }{\cf1 (}{\cf5 new_p}{\cf1 ,} {\cf5 pid}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 sorted_phases}{\b\cf1 .}{\cf5 extend}{\cf1  }{\cf1 (}{\cf5 new_p}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_error}{\cf1  }{\cf1 (}{\cf5 msg}{\b\cf1 .}{\cf5 Ok}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 new_tracker} {\cf1 (}{\cf5 max_p_rad}{\cf1 ,} {\cf5 max_c_rad}{\cf1 :} {\cf4 VALUE}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 positive_values}{\cf1 :} {\cf5 max_p_rad}{\b\cf1 .}{\cf5 as_double} {\cf1 >=} 0.0 {\b\cf6 and then} {\cf5 max_c_rad}{\b\cf1 .}{\cf5 as_double} {\cf1 >=} 0.0{\line}
+{\tab}{\tab}{\tab}{\cf1 tracker_not_active}{\cf1 :} {\b\cf6 not} {\cf5 is_active}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_error}{\cf1  }{\cf1 (}{\cf5 msg}{\b\cf1 .}{\cf5 Ok}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 max_phase_rad} {\cf1 :=} {\cf5 max_p_rad}{\line}
+{\tab}{\tab}{\tab}{\cf5 max_cont_rad} {\cf1 :=} {\cf5 max_c_rad}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_error}{\cf1  }{\cf1 (}{\cf5 msg}{\b\cf1 .}{\cf5 Ok}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 new_container} {\cf1 (}{\cf5 cid}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 cont_spec}{\cf1 :} {\cf4 TUPLE} {\cf1 [}{\cf5 m}{\cf1 :} {\cf4 INTEGER_64}{\cf1 ;} {\cf5 rad}{\cf1 :} {\cf4 VALUE}{\cf1 ]}{\cf1 ;} {\cf5 pid}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 cont_not_in_use}{\cf1 :} {\b\cf6 not} {\cf5 cid_exists}{\cf1  }{\cf1 (}{\cf5 cid}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 cont}{\cf1 :} {\cf4 PHASE_CONTAINER}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 cont}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 cid}{\cf1 ,} {\cf5 cont_spec}{\b\cf1 .}{\cf5 m}{\cf1 ,} {\cf5 cont_spec}{\b\cf1 .}{\cf5 rad}{\cf1 ,} {\cf5 pid}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 phases} {\cf1 [}{\cf5 pid}{\cf1 ]} {\b\cf6 as} p {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 p}{\b\cf1 .}{\cf5 add_container}{\cf1  }{\cf1 (}{\cf5 cont}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 sorted_conts}{\b\cf1 .}{\cf5 extend}{\cf1  }{\cf1 (}{\cf5 cont}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 set_error}{\cf1  }{\cf1 (}{\cf5 msg}{\b\cf1 .}{\cf5 Ok}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 remove_phase} {\cf1 (}{\cf5 phase_id}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  removes a phase from the tracker}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3 	require}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3 		phase_exists: get_phases.has (phase_id)}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 phases} {\cf1 [}{\cf5 phase_id}{\cf1 ]} {\b\cf6 as} p {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 sorted_phases}{\b\cf1 .}{\cf5 prune_all}{\cf1  }{\cf1 (}{\cf5 p}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 phases}{\b\cf1 .}{\cf5 remove}{\cf1  }{\cf1 (}{\cf5 phase_id}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_error}{\cf1  }{\cf1 (}{\cf5 msg}{\b\cf1 .}{\cf5 Ok}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 phase_removed}{\cf1 :} {\b\cf6 not} {\cf1 (}{\cf5 phases}{\b\cf1 .}{\cf5 has_key}{\cf1  }{\cf1 (}{\cf5 phase_id}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 remove_container} {\cf1 (}{\cf5 cid}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  removes a container from the tracker}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 cur_phase}{\cf1 :} {\cf4 PHASE}{\line}
+{\tab}{\tab}{\tab}{\cf5 cur_cont}{\cf1 :} {\cf4 PHASE_CONTAINER}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 cur_phase} {\cf1 :=} {\cf5 get_phase_containing_cid}{\cf1  }{\cf1 (}{\cf5 cid}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 cur_cont} {\cf1 :=} {\cf5 get_container}{\cf1  }{\cf1 (}{\cf5 cid}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 cur_phase} {\b\cf6 as} p {\b\cf6 and then} {\b\cf6 attached} {\cf5 cur_cont} {\b\cf6 as} c {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 sorted_conts}{\b\cf1 .}{\cf5 prune_all}{\cf1  }{\cf1 (}{\cf5 c}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 p}{\b\cf1 .}{\cf5 remove_container}{\cf1  }{\cf1 (}{\cf5 cid}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_error}{\cf1  }{\cf1 (}{\cf5 msg}{\b\cf1 .}{\cf5 Ok}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 move_container} {\cf1 (}{\cf5 cid}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 pid1}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 pid2}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  moves a container from a source phase to a target phase}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 temp_cont}{\cf1 :} {\cf4 PHASE_CONTAINER}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 get_container}{\cf1  }{\cf1 (}{\cf5 cid}{\cf1 )} {\b\cf6 as} cont {\b\cf6 and then} {\b\cf6 attached} {\cf5 phases} {\cf1 [}{\cf5 pid1}{\cf1 ]} {\b\cf6 as} p1 {\b\cf6 and then} {\b\cf6 attached} {\cf5 phases} {\cf1 [}{\cf5 pid2}{\cf1 ]} {\b\cf6 as} p2 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 temp_cont} {\cf1 :=} {\cf5 cont}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 p1}{\b\cf1 .}{\cf5 remove_container}{\cf1  }{\cf1 (}{\cf5 cid}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 p2}{\b\cf1 .}{\cf5 add_container}{\cf1  }{\cf1 (}{\cf5 temp_cont}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 cont}{\b\cf1 .}{\cf5 set_pid}{\cf1  }{\cf1 (}{\cf5 pid2}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_error}{\cf1  }{\cf1 (}{\cf5 msg}{\b\cf1 .}{\cf5 Ok}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 container_exists}{\cf1 :} {\cf5 cid_exists}{\cf1  }{\cf1 (}{\cf5 cid}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 cid_in_phase_attached}{\cf1 :} {\b\cf6 attached} {\cf5 get_phase_containing_cid}{\cf1  }{\cf1 (}{\cf5 cid}{\cf1 )} {\b\cf6 as} pc{\line}
+{\tab}{\tab}{\tab}{\cf1 cont_is_in_target_phase}{\cf1 :} {\cf5 pc}{\b\cf1 .}{\cf5 get_pid} {\cf1 ~} {\cf5 pid2}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 store_error} {\cf1 (}{\cf5 new_msg}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  stores the state of error into history}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 e}{\cf1 :} {\cf4 ERROR}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 error} {\cf1 :=} {\cf5 new_msg}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 e}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 error}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 history}{\b\cf1 .}{\cf5 add_to_record}{\cf1  }{\cf1 (}{\cf5 e}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  setters}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_error} {\cf1 (}{\cf5 init_msg}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 error} {\cf1 :=} {\cf5 init_msg}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_state} {\cf1 (}{\cf5 new_state}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  sets both the state and the cursor state to state}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 state} {\cf1 :=} {\cf5 new_state}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_cursor_state}{\cf1  }{\cf1 (}{\cf5 state}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_cursor_state} {\cf1 (}{\cf5 cur_state}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3 		require}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3 			cursor_state_not_over: cur_state <= get_state}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 cursor_state} {\cf1 :=} {\cf5 cur_state}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  getter}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 get_phases}{\cf1 :} {\cf4 STRING_TABLE} {\cf1 [}{\cf4 PHASE}{\cf1 ]}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 phases}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 get_history}{\cf1 :} {\cf4 HISTORY}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 history}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 get_state}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 state}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 get_cursor_state}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 cursor_state}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 get_max_cont_rad}{\cf1 :} {\cf4 VALUE}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 max_cont_rad}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 get_max_phase_rad}{\cf1 :} {\cf4 VALUE}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 max_phase_rad}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  error checks}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_active}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  are there any containers in the system}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 sorted_conts}{\b\cf1 .}{\cf5 count} {\cf1 >} 0{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 valid_string} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  does the string start with A-Z, a-z or 0-9?}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\b\cf6 not} {\cf5 s}{\b\cf1 .}{\cf5 is_empty}{\cf1 )} {\b\cf6 and then} {\cf1 (}{\cf5 s} {\cf1 [}1{\cf1 ]}{\b\cf1 .}{\cf5 is_alpha_numeric}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 under_capacity} {\cf1 (}{\cf5 pid}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  can the phase handle another container?}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 get_phases}{\b\cf1 .}{\cf5 has}{\cf1  }{\cf1 (}{\cf5 pid}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 get_phases}{\b\cf1 .}{\cf5 at}{\cf1  }{\cf1 (}{\cf5 pid}{\cf1 )} {\b\cf6 as} p {\b\cf6 and} {\b\cf6 attached} {\cf5 get_phases}{\b\cf1 .}{\cf5 at}{\cf1  }{\cf1 (}{\cf5 pid}{\cf1 )} {\b\cf6 as} gp {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 p}{\b\cf1 .}{\cf5 get_containers}{\b\cf1 .}{\cf5 count}{\cf1 )}{\b\cf1 .}{\cf5 to_integer_64} {\cf1 <} {\cf1 (}{\cf5 gp}{\b\cf1 .}{\cf5 get_capacity}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 cont_gt_max_phase_rad} {\cf1 (}{\cf5 rad}{\cf1 :} {\cf4 VALUE}{\cf1 ;} {\cf5 pid}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  is the total container radiation greater than the maximum phase radiation?}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 sum}{\cf1 :} {\cf4 VALUE}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 sum}{\b\cf1 .}{\cf5 make_from_int}{\cf1  }{\cf1 (}0{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 phases} {\cf1 [}{\cf5 pid}{\cf1 ]} {\b\cf6 as} conts {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 across}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 conts}{\b\cf1 .}{\cf5 get_containers} {\b\cf6 as} cc{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 sum} {\cf1 :=} {\cf5 sum} {\cf1 +} {\cf5 cc}{\b\cf1 .}{\cf5 item}{\b\cf1 .}{\cf5 get_rad}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 sum} {\cf1 :=} {\cf5 sum} {\cf1 +} {\cf5 rad}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 sum} {\cf1 >} {\cf5 max_phase_rad} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 phase_expects_mat} {\cf1 (}{\cf5 mat}{\cf1 :} {\cf4 INTEGER_64}{\cf1 ;} {\cf5 pid}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  does the phase expect this container material?}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 phases} {\cf1 [}{\cf5 pid}{\cf1 ]} {\b\cf6 as} p {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 across}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 p}{\b\cf1 .}{\cf5 get_mats} {\b\cf6 as} cm{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 cm}{\b\cf1 .}{\cf5 item} {\cf1 =} {\cf5 mat} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  error checks}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 cid_exists} {\cf1 (}{\cf5 cid}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 across}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 phases} {\b\cf6 as} p{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Result} {\b\cf6 or else} {\cf1 (}{\cf5 p}{\b\cf1 .}{\cf5 item}{\b\cf1 .}{\cf5 get_containers}{\b\cf1 .}{\cf5 has}{\cf1  }{\cf1 (}{\cf5 cid}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  queries}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 get_phase_containing_cid} {\cf1 (}{\cf5 cid}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\b\cf6 detachable} {\cf4 PHASE}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 across}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 phases} {\b\cf6 as} cursor{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 cursor}{\b\cf1 .}{\cf5 item}{\b\cf1 .}{\cf5 get_containers}{\b\cf1 .}{\cf5 has}{\cf1  }{\cf1 (}{\cf5 cid}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 cursor}{\b\cf1 .}{\cf5 item}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 get_container} {\cf1 (}{\cf5 cid}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\b\cf6 detachable} {\cf4 PHASE_CONTAINER}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 across}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 phases} {\b\cf6 as} cursor{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 cursor}{\b\cf1 .}{\cf5 item}{\b\cf1 .}{\cf5 get_containers}{\b\cf1 .}{\cf5 has}{\cf1  }{\cf1 (}{\cf5 cid}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 cursor}{\b\cf1 .}{\cf5 item}{\b\cf1 .}{\cf5 get_containers} {\cf1 [}{\cf5 cid}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 out}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New string containing terse printable representation}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of current object}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 stwl_c}{\cf1 :} {\cf4 STWL_OUT} {\cf1 [}{\cf4 PHASE_CONTAINER}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf5 stwl_p}{\cf1 :} {\cf4 STWL_OUT} {\cf1 [}{\cf4 PHASE}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf5 er_msg}{\cf1 :} {\cf4 MESSAGES_ACCESS}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make_from_string}{\cf1  }{\cf1 (}"  state "{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append_integer}{\cf1  }{\cf1 (}{\cf5 state}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 cursor_state} {\cf1 /=} {\cf5 state} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}" (to "{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append_integer}{\cf1  }{\cf1 (}{\cf5 cursor_state}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}")"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}" " {\cf1 +} {\cf5 error}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf1 (}{\cf5 error} {\cf1 =} {\cf5 er_msg}{\b\cf1 .}{\cf5 Ok}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}"%N  max_phase_radiation: "{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 max_phase_rad}{\b\cf1 .}{\cf5 out}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}", max_container_radiation: "{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 max_cont_rad}{\b\cf1 .}{\cf5 out}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}"%N  phases: pid->name:capacity,count,radiation"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 sorted_phases}{\b\cf1 .}{\cf5 is_empty} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}"%N"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 stwl_p}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 sorted_phases}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 stwl_p}{\b\cf1 .}{\cf5 out}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}"%N  containers: cid->pid->material,radioactivity"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 sorted_conts}{\b\cf1 .}{\cf5 is_empty} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}"%N"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 stwl_c}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 sorted_conts}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 stwl_c}{\b\cf1 .}{\cf5 out}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  misc}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 reset}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Reset model state.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 make}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 TRACKER}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

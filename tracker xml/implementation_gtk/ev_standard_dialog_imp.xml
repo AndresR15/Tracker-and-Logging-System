@@ -1,0 +1,159 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Vision standard dialog. GTK+ implementation.&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2016-09-27 08:50:48 -0700 (Tue, 27 Sep 2016) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 99192 $&quot;</string>
+
+<keyword>deferred</keyword> <keyword>class</keyword> 
+	<class><location>../implementation_gtk/ev_standard_dialog_imp.xml</location>EV_STANDARD_DIALOG_IMP</class>
+
+<keyword>inherit</keyword>
+	<class><location>../implementation_interface/ev_standard_dialog_i.xml</location>EV_STANDARD_DIALOG_I</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_gtk/ev_standard_dialog_imp.xml#f_interface</location>interface</feature>
+		<keyword>end</keyword>
+
+	<class><location>../implementation_gtk/ev_gtk_window_imp.xml</location>EV_GTK_WINDOW_IMP</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_gtk/ev_standard_dialog_imp.xml#f_interface</location>interface</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_standard_dialog_imp.xml#f_default_wm_decorations</location>default_wm_decorations</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_standard_dialog_imp.xml#f_blocking_condition</location>blocking_condition</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_standard_dialog_imp.xml#f_show_modal_to_window</location>show_modal_to_window</feature>
+		<keyword>end</keyword>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_title</anchor><feature><location>../implementation_gtk/ev_standard_dialog_imp.xml#f_title</location>title</feature><symbol>:</symbol> <class><include>False</include>STRING_32</class>
+			<comment>--</comment><comment> Title of dialog shown in title bar.</comment>
+		<keyword>local</keyword>
+			<local>a_cs</local><symbol>:</symbol> <class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class>
+		<keyword>do</keyword>
+			<local>a_cs</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_reusable_gtk_c_string</location>Reusable_gtk_c_string</feature>
+			<local>a_cs</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_share_from_pointer</location>share_from_pointer</feature><symbol> </symbol><symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_window_struct_title</location>gtk_window_struct_title</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>)</symbol><symbol>)</symbol>
+			<keyword>Result</keyword> <symbol>:=</symbol> <local>a_cs</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_string</location>string</feature>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status report</comment>
+
+	<anchor>f_selected_button</anchor><feature><location>../implementation_gtk/ev_standard_dialog_imp.xml#f_selected_button</location>selected_button</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>IMMUTABLE_STRING_32</class>
+			<comment>--</comment><comment> Label of the last clicked button.</comment>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status setting</comment>
+
+	<anchor>f_show_modal_to_window</anchor><feature><location>../implementation_gtk/ev_standard_dialog_imp.xml#f_show_modal_to_window</location>show_modal_to_window</feature> <symbol>(</symbol><local>a_window</local><symbol>:</symbol> <class><location>../interface/ev_window.xml</location>EV_WINDOW</class><symbol>)</symbol>
+			<comment>--</comment><comment> Show </comment><quoted>Current</quoted><comment> modal with respect to </comment><quoted>a_window</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_standard_dialog_imp.xml#f_user_clicked_ok</location>user_clicked_ok</feature> <symbol>:=</symbol> <keyword>False</keyword>
+			<feature><location>../implementation_gtk/ev_standard_dialog_imp.xml#f_selected_button</location>selected_button</feature> <symbol>:=</symbol> <keyword>Void</keyword>
+			<keyword><location>../implementation_gtk/ev_gtk_window_imp.xml#f_show_modal_to_window</location>Precursor</keyword><symbol> </symbol><symbol>(</symbol><local>a_window</local><symbol>)</symbol>
+			<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../implementation_gtk/ev_standard_dialog_imp.xml#f_selected_button</location>selected_button</feature> <keyword>as</keyword> l_selected_button <keyword>then</keyword>
+				<keyword>if</keyword> <local>l_selected_button</local><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_interface/ev_standard_dialog_i.xml#f_internal_accept</location>internal_accept</feature><symbol>)</symbol> <keyword>then</keyword>
+					<feature><location>../implementation_interface/ev_standard_dialog_action_sequences_i.xml#f_ok_actions</location>ok_actions</feature><dot>.</dot><feature><location>../interface/ev_lite_action_sequence.xml#f_call</location>call</feature><symbol> </symbol><symbol>(</symbol><keyword>Void</keyword><symbol>)</symbol>
+				<keyword>elseif</keyword> <feature><location>../interface/ev_dialog_names.xml#f_ev_cancel</location>Ev_cancel</feature><dot>.</dot><feature><include>False</include>same_string_general</feature><symbol> </symbol><symbol>(</symbol><local>l_selected_button</local><symbol>)</symbol> <keyword>then</keyword>
+					<feature><location>../implementation_interface/ev_standard_dialog_action_sequences_i.xml#f_cancel_actions</location>cancel_actions</feature><dot>.</dot><feature><location>../interface/ev_lite_action_sequence.xml#f_call</location>call</feature><symbol> </symbol><symbol>(</symbol><keyword>Void</keyword><symbol>)</symbol>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_set_title</anchor><feature><location>../implementation_gtk/ev_standard_dialog_imp.xml#f_set_title</location>set_title</feature> <symbol>(</symbol><local>a_title</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set the title of the dialog.</comment>
+		<keyword>local</keyword>
+			<local>a_cs</local><symbol>:</symbol> <class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class>
+		<keyword>do</keyword>
+			<local>a_cs</local> <symbol>:=</symbol> <keyword>create</keyword> <symbol>{</symbol><keyword>attached</keyword> <class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_set_with_eiffel_string</location>set_with_eiffel_string</feature><symbol> </symbol><symbol>(</symbol><local>a_title</local><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_window_set_title</location>gtk_window_set_title</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>,</symbol> <local>a_cs</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_item</location>item</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_gtk_widget_imp.xml</location>EV_GTK_WIDGET_IMP</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_on_key_event</anchor><feature><location>../implementation_gtk/ev_standard_dialog_imp.xml#f_on_key_event</location>on_key_event</feature> <symbol>(</symbol><local>a_key</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_key.xml</location>EV_KEY</class><symbol>;</symbol> <local>a_key_string</local><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>STRING_32</class><symbol>;</symbol> <local>a_key_press</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class><symbol>)</symbol>
+			<comment>--</comment><comment> </comment><quoted>a_key</quoted><comment> has either been pressed or released</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <local>a_key</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<keyword>if</keyword> <local>a_key</local><dot>.</dot><feature><location>../interface/ev_key.xml#f_code</location>code</feature> <symbol>=</symbol> <symbol>{</symbol><class><location>../interface/ev_key_constants.xml</location>EV_KEY_CONSTANTS</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_key_constants.xml#f_key_escape</location>key_escape</feature> <keyword>then</keyword>
+					<feature><location>../implementation_gtk/ev_standard_dialog_imp.xml#f_on_cancel</location>on_cancel</feature>
+				<keyword>else</keyword>
+					<keyword>if</keyword> <local>a_key</local><dot>.</dot><feature><location>../interface/ev_key.xml#f_code</location>code</feature> <symbol>=</symbol> <symbol>{</symbol><class><location>../interface/ev_key_constants.xml</location>EV_KEY_CONSTANTS</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_key_constants.xml#f_key_enter</location>key_enter</feature> <keyword>then</keyword>
+						<feature><location>../implementation_gtk/ev_standard_dialog_imp.xml#f_on_ok</location>on_ok</feature>
+					<keyword>end</keyword>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_user_can_resize</anchor><feature><location>../implementation_gtk/ev_standard_dialog_imp.xml#f_user_can_resize</location>User_can_resize</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class> <symbol>=</symbol> <keyword>False</keyword>
+			<comment>--</comment><comment> By default the user cannot resize standard dialogs.</comment>
+
+	<anchor>f_blocking_condition</anchor><feature><location>../implementation_gtk/ev_standard_dialog_imp.xml#f_blocking_condition</location>blocking_condition</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Condition which causes blocking to cease if enabled.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_any_i.xml#f_is_destroyed</location>is_destroyed</feature> <keyword>or else</keyword> <feature><location>../implementation_gtk/ev_standard_dialog_imp.xml#f_selected_button</location>selected_button</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>or else</keyword> <feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_any_i.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_enable_closeable</anchor><feature><location>../implementation_gtk/ev_standard_dialog_imp.xml#f_enable_closeable</location>enable_closeable</feature>
+			<comment>--</comment><comment> Set the window to be closeable by the user</comment>
+		<keyword>local</keyword>
+			<local>close_fct</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+		<keyword>do</keyword>
+			<local>close_fct</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_func_close_enum</location>gdk_func_close_enum</feature>
+			<local>close_fct</local> <symbol>:=</symbol> <local>close_fct</local><dot>.</dot><feature><include>False</include>bit_or</feature><symbol> </symbol><symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_func_move_enum</location>gdk_func_move_enum</feature><symbol>)</symbol>
+			<local>close_fct</local> <symbol>:=</symbol> <local>close_fct</local><dot>.</dot><feature><include>False</include>bit_or</feature><symbol> </symbol><symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_func_resize_enum</location>gdk_func_resize_enum</feature><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_window_set_functions</location>gdk_window_set_functions</feature> <symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_widget_struct_window</location>gtk_widget_struct_window</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>)</symbol><symbol>,</symbol> <local>close_fct</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_call_close_request_actions</anchor><feature><location>../implementation_gtk/ev_standard_dialog_imp.xml#f_call_close_request_actions</location>call_close_request_actions</feature>
+			<comment>--</comment><comment> Call </comment><feature><location>../implementation_gtk/ev_standard_dialog_imp.xml#f_on_cancel</location>on_cancel</feature><comment> if user wants to quit dialog.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_standard_dialog_imp.xml#f_on_cancel</location>on_cancel</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_user_clicked_ok</anchor><feature><location>../implementation_gtk/ev_standard_dialog_imp.xml#f_user_clicked_ok</location>user_clicked_ok</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Has the user explicitly cancelled the dialog.</comment>
+
+	<anchor>f_default_wm_decorations</anchor><feature><location>../implementation_gtk/ev_standard_dialog_imp.xml#f_default_wm_decorations</location>default_wm_decorations</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Default Window Manager decorations of </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_decor_all_enum</location>gdk_decor_all_enum</feature>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_any.xml</location>EV_ANY</class><symbol>,</symbol> <class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_interface</anchor><feature><location>../implementation_gtk/ev_standard_dialog_imp.xml#f_interface</location>interface</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_standard_dialog.xml</location>EV_STANDARD_DIALOG</class>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_intermediary_routines.xml</location>EV_INTERMEDIARY_ROUTINES</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_on_ok</anchor><feature><location>../implementation_gtk/ev_standard_dialog_imp.xml#f_on_ok</location>on_ok</feature>
+			<comment>--</comment><comment> Close window and call action sequence.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_standard_dialog_imp.xml#f_user_clicked_ok</location>user_clicked_ok</feature> <symbol>:=</symbol> <keyword>True</keyword>
+			<feature><location>../implementation_gtk/ev_standard_dialog_imp.xml#f_selected_button</location>selected_button</feature> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_standard_dialog_i.xml#f_internal_accept</location>internal_accept</feature>
+			<feature><location>../implementation_gtk/ev_gtk_window_imp.xml#f_hide</location>hide</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_on_cancel</anchor><feature><location>../implementation_gtk/ev_standard_dialog_imp.xml#f_on_cancel</location>on_cancel</feature>
+			<comment>--</comment><comment> Close window and call action sequence.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_standard_dialog_imp.xml#f_selected_button</location>selected_button</feature> <symbol>:=</symbol> <feature><location>../interface/ev_dialog_names.xml#f_ev_cancel</location>Ev_cancel</feature>
+			<feature><location>../implementation_gtk/ev_gtk_window_imp.xml#f_hide</location>hide</feature>
+		<keyword>end</keyword>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2014, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_gtk/ev_standard_dialog_imp.xml</location>EV_STANDARD_DIALOG_IMP</class></system>
+

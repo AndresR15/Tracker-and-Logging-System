@@ -1,0 +1,169 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "UTF-16 encoding routines"{\line}
+{\tab}{\cf1 library}{\cf1 :} "Gobo Eiffel Kernel Library"{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 2002, Eric Bezault and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "MIT License"{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2016-05-06 12:15:38 -0700 (Fri, 06 May 2016) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 98678 $"{\line}
+{\line}
+{\b\cf6 class} {\b\cf6 interface}{\line}
+{\tab}{\cf4 UC_UTF16_ROUTINES}{\line}
+{\line}
+{\b\cf6 create} {\line}
+{\tab}{\cf5 default_create}{\line}
+{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status report}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 valid_utf16} {\cf1 (}{\cf5 a_string}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are the bytes in }{\cf5 a_string}{\cf3  a valid UTF-16 encoding?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  'a_string' has one byte per character.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Default to big endian when no BOM.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_is_string}{\cf1 :} {\cf5 Any_}{\b\cf1 .}{\cf5 same_types}{\cf1  }{\cf1 (}{\cf5 a_string}{\cf1 ,} ""{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 empty_is_true}{\cf1 :} {\cf5 a_string}{\b\cf1 .}{\cf5 count} {\cf1 =} 0 {\b\cf6 implies} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\cf1 utf16_even_count}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf1 (}{\cf1 (}{\cf5 a_string}{\b\cf1 .}{\cf5 count} {\cf1 \\\\} 2{\cf1 )} {\cf1 =} 0{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 valid_utf16be} {\cf1 (}{\cf5 a_string}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are the bytes in }{\cf5 a_string}{\cf3  valid UTF-16BE?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  'a_string' has one byte per character.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_is_string}{\cf1 :} {\cf5 Any_}{\b\cf1 .}{\cf5 same_types}{\cf1  }{\cf1 (}{\cf5 a_string}{\cf1 ,} ""{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 empty_is_true}{\cf1 :} {\cf5 a_string}{\b\cf1 .}{\cf5 count} {\cf1 =} 0 {\b\cf6 implies} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\cf1 utf16_even_count}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf1 (}{\cf1 (}{\cf5 a_string}{\b\cf1 .}{\cf5 count} {\cf1 \\\\} 2{\cf1 )} {\cf1 =} 0{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 valid_utf16le} {\cf1 (}{\cf5 a_string}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are the bytes in }{\cf5 a_string}{\cf3  valid UTF-16LE?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  'a_string' has one byte per character.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_is_string}{\cf1 :} {\cf5 Any_}{\b\cf1 .}{\cf5 same_types}{\cf1  }{\cf1 (}{\cf5 a_string}{\cf1 ,} ""{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 empty_is_true}{\cf1 :} {\cf5 a_string}{\b\cf1 .}{\cf5 count} {\cf1 =} 0 {\b\cf6 implies} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\cf1 utf16_even_count}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf1 (}{\cf1 (}{\cf5 a_string}{\b\cf1 .}{\cf5 count} {\cf1 \\\\} 2{\cf1 )} {\cf1 =} 0{\cf1 )}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Endian-ness detection}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Bom_be}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  BOM in big-endian format}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 bom_be_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 two_bytes}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 count} {\cf1 =} 2{\line}
+{\tab}{\tab}{\tab}{\cf1 first_byte}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 item_code}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} {\cf5 Hex_fe}{\line}
+{\tab}{\tab}{\tab}{\cf1 second_byte}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 item_code}{\cf1  }{\cf1 (}2{\cf1 )} {\cf1 =} {\cf5 Hex_ff}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 Bom_le}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  BOM in little-endian format}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 bom_le_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 two_bytes}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 count} {\cf1 =} 2{\line}
+{\tab}{\tab}{\tab}{\cf1 first_byte}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 item_code}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} {\cf5 Hex_ff}{\line}
+{\tab}{\tab}{\tab}{\cf1 second_byte}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 item_code}{\cf1  }{\cf1 (}2{\cf1 )} {\cf1 =} {\cf5 Hex_fe}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_endian_detection_character_most_first} {\cf1 (}{\cf5 first}{\cf1 ,} {\cf5 second}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do the two bytes }{\cf5 first}{\cf3  and }{\cf5 second}{\cf3  represent the character}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  0xFEFF with }{\cf5 first}{\cf3  being the most significant byte?}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_byte_is_byte}{\cf1 :} {\cf5 is_byte}{\cf1  }{\cf1 (}{\cf5 first}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_byte_is_byte}{\cf1 :} {\cf5 is_byte}{\cf1  }{\cf1 (}{\cf5 second}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf5 is_endian_detection_character}{\cf1  }{\cf1 (}{\cf5 first}{\cf1 ,} {\cf5 second}{\cf1 )} {\b\cf6 and} {\cf1 (}{\cf5 first} {\cf1 =} {\cf5 Hex_fe}{\cf1 )}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_endian_detection_character_least_first} {\cf1 (}{\cf5 first}{\cf1 ,} {\cf5 second}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do the two bytes }{\cf5 first}{\cf3  and }{\cf5 second}{\cf3  represent the character}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  0xFEFF with }{\cf5 first}{\cf3  being the least significant byte?}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_byte_is_byte}{\cf1 :} {\cf5 is_byte}{\cf1  }{\cf1 (}{\cf5 first}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_byte_is_byte}{\cf1 :} {\cf5 is_byte}{\cf1  }{\cf1 (}{\cf5 second}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf5 is_endian_detection_character}{\cf1  }{\cf1 (}{\cf5 first}{\cf1 ,} {\cf5 second}{\cf1 )} {\b\cf6 and} {\cf1 (}{\cf5 first} {\cf1 =} {\cf5 Hex_ff}{\cf1 )}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_endian_detection_character} {\cf1 (}{\cf5 a_byte}{\cf1 ,} {\cf5 other_byte}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Can these two bytes represent ZERO WIDTH NON-BREAKING SPACE?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (It has to be unicode character 0xFEFF, because 0xFFFE is not a valid character.)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_byte_is_byte}{\cf1 :} {\cf5 is_byte}{\cf1  }{\cf1 (}{\cf5 a_byte}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_byte_is_byte}{\cf1 :} {\cf5 is_byte}{\cf1  }{\cf1 (}{\cf5 other_byte}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf5 a_byte}{\b\cf1 .}{\cf5 min}{\cf1  }{\cf1 (}{\cf5 other_byte}{\cf1 )} {\cf1 =} {\cf5 Hex_fe} {\b\cf6 and} {\cf5 a_byte}{\b\cf1 .}{\cf5 max}{\cf1  }{\cf1 (}{\cf5 other_byte}{\cf1 )} {\cf1 =} {\cf5 Hex_ff}{\cf1 )}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Surrogate}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_surrogate} {\cf1 (}{\cf5 a_most}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is this a high surrogate byte?}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 byte}{\cf1 :} {\cf5 is_byte}{\cf1  }{\cf1 (}{\cf5 a_most}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_high_surrogate} {\cf1 (}{\cf5 a_most}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is this a high surrogate byte?}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 byte}{\cf1 :} {\cf5 is_byte}{\cf1  }{\cf1 (}{\cf5 a_most}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_low_surrogate} {\cf1 (}{\cf5 a_most}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is this a low surrogate byte?}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 byte}{\cf1 :} {\cf5 is_byte}{\cf1  }{\cf1 (}{\cf5 a_most}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 least_10_bits} {\cf1 (}{\cf5 msb}{\cf1 ,} {\cf5 lsb}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  UTF16 least 10 bytes of a byte pair}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 msb_byte}{\cf1 :} {\cf5 is_byte}{\cf1  }{\cf1 (}{\cf5 msb}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 lsb_byte}{\cf1 :} {\cf5 is_byte}{\cf1  }{\cf1 (}{\cf5 lsb}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 surrogate}{\cf1 :} {\cf5 is_surrogate}{\cf1  }{\cf1 (}{\cf5 msb}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 ten_bits}{\cf1 :} {\b\cf6 Result} {\cf1 >=} 0 {\b\cf6 and} {\b\cf6 Result} {\cf1 <} {\cf5 Hex_400}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 surrogate} {\cf1 (}{\cf5 a_high_10}{\cf1 :} {\cf4 INTEGER_32}{\cf1 ;} {\cf5 a_low_10}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Supplementary code point from high and low values}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 high_10}{\cf1 :} {\cf5 a_high_10} {\cf1 >=} 0 {\b\cf6 and} {\cf5 a_high_10} {\cf1 <} 1024{\line}
+{\tab}{\tab}{\tab}{\cf1 low_10}{\cf1 :} {\cf5 a_low_10} {\cf1 >=} 0 {\b\cf6 and} {\cf5 a_low_10} {\cf1 <} 1024{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 more_than_16bits}{\cf1 :} {\b\cf6 Result} {\cf1 >=} {\cf5 Hex_10000}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 surrogate_from_bytes} {\cf1 (}{\cf5 a_high_most}{\cf1 ,} {\cf5 a_high_least}{\cf1 ,} {\cf5 a_low_most}{\cf1 ,} {\cf5 a_low_least}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Supplementary code point from bytes}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 surrogate_high}{\cf1 :} {\cf5 is_high_surrogate}{\cf1  }{\cf1 (}{\cf5 a_high_most}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 high_least_byte}{\cf1 :} {\cf5 is_byte}{\cf1  }{\cf1 (}{\cf5 a_high_least}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 surrogate_low}{\cf1 :} {\cf5 is_low_surrogate}{\cf1  }{\cf1 (}{\cf5 a_low_most}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 low_least_byte}{\cf1 :} {\cf5 is_byte}{\cf1  }{\cf1 (}{\cf5 a_low_least}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 more_than_16bits}{\cf1 :} {\b\cf6 Result} {\cf1 >=} {\cf5 Hex_10000}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_byte} {\cf1 (}{\cf5 a}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 a}{\cf3  a byte?}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf5 a} {\cf1 >=} 0 {\b\cf6 and} {\cf5 a} {\cf1 <} {\cf5 Hex_100}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 supplementary_to_high_surrogate} {\cf1 (}{\cf5 a_code}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  High surrogate for }{\cf5 a_code}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 code_high_enough}{\cf1 :} {\cf5 a_code} {\cf1 >} {\cf5 Maximum_bmp_character_code}{\line}
+{\tab}{\tab}{\tab}{\cf1 code_low_enough}{\cf1 :} {\cf5 a_code} {\cf1 <=} {\cf5 Maximum_unicode_character_code}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 high_surrogate}{\cf1 :} {\b\cf6 Result} {\cf1 >=} 256 {\cf1 *} {\cf5 Hex_d8}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_too_big}{\cf1 :} {\b\cf6 Result} {\cf1 <} 256 {\cf1 *} {\cf5 Hex_dc}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 supplementary_to_low_surrogate} {\cf1 (}{\cf5 a_code}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Low surrogate for }{\cf5 a_code}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 code_high_enough}{\cf1 :} {\cf5 a_code} {\cf1 >} {\cf5 Maximum_bmp_character_code}{\line}
+{\tab}{\tab}{\tab}{\cf1 code_low_enough}{\cf1 :} {\cf5 a_code} {\cf1 <=} {\cf5 Maximum_unicode_character_code}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 low_surrogate}{\cf1 :} {\b\cf6 Result} {\cf1 >=} 256 {\cf1 *} {\cf5 Hex_dc}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_too_big}{\cf1 :} {\b\cf6 Result} {\cf1 <} 256 {\cf1 *} {\cf5 Hex_e0}{\line}
+}{\tab}{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 UC_UTF16_ROUTINES}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

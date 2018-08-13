@@ -1,0 +1,24 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../interface/ev_png_format_chart.xml</location>EV_PNG_FORMAT</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>interface</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Portable Network Graphics (PNG) Graphical Format Abstraction used by </string><symbol>{</symbol><class><location>../interface/ev_pixmap_chart.xml</location>EV_PIXMAP</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_pixmap.xml#f_save_to_named_file</location>save_to_named_file</feature><string>&quot;</string>
+
+<keyword>Ancestors</keyword>
+	<class><location>../interface/ev_graphical_format_chart.xml</location>EV_GRAPHICAL_FORMAT</class><char>*</char>
+
+<keyword>Queries</keyword>
+	<feature><location>../interface/ev_graphical_format.xml#f_color_mode</location>color_mode</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_graphical_format.xml#f_scale_height</location>scale_height</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_graphical_format.xml#f_scale_width</location>scale_width</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+
+<keyword>Commands</keyword>
+	<feature><location>../interface/ev_graphical_format.xml#f_set_greyscale</location>set_greyscale</feature>
+	<feature><location>../interface/ev_graphical_format.xml#f_set_paletted</location>set_paletted</feature>
+	<feature><location>../interface/ev_graphical_format.xml#f_set_scale_height</location>set_scale_height</feature> <symbol>(</symbol><local>a_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../interface/ev_graphical_format.xml#f_set_scale_width</location>set_scale_width</feature> <symbol>(</symbol><local>a_width</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../interface/ev_graphical_format.xml#f_set_truecolor</location>set_truecolor</feature>
+
+</system>

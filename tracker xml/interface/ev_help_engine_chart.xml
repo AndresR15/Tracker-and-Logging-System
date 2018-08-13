@@ -1,0 +1,16 @@
+<system>
+<keyword>deferred</keyword> <keyword>class</keyword>
+	<class><location>../interface/ev_help_engine_chart.xml</location>EV_HELP_ENGINE</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>interface</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Objects that process help requests according to a given help context.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;help&quot;</string>
+
+<keyword>Ancestors</keyword>
+	<class><include>False</include>ANY</class>
+
+<keyword>Commands</keyword>
+	<feature><location>../interface/ev_help_engine.xml#f_show</location>show</feature> <symbol>(</symbol><local>a_help_context</local><symbol>:</symbol> <class><location>../interface/ev_help_context_chart.xml</location>EV_HELP_CONTEXT</class><symbol>)</symbol>
+
+</system>

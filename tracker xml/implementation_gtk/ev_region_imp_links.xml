@@ -1,0 +1,22 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../implementation_gtk/ev_region_imp_links.xml</location>EV_REGION_IMP</class>
+
+<keyword>Ancestors</keyword>
+	<class><include>False</include>DISPOSABLE</class><char>*</char>
+	<class><location>../implementation_interface/ev_region_i_links.xml</location>EV_REGION_I</class><char>*</char>
+
+<keyword>Clients</keyword>
+	<class><location>../implementation_gtk/ev_drawable_imp_links.xml</location>EV_DRAWABLE_IMP</class><char>*</char>
+	<class><location>../interface/ev_region_links.xml</location>EV_REGION</class>
+	<class><location>../implementation_gtk/ev_region_imp_links.xml</location>EV_REGION_IMP</class>
+
+<keyword>Suppliers</keyword>
+	<class><location>../interface/ev_rectangle_links.xml</location>EV_RECTANGLE</class>
+	<class><location>../interface/ev_region_links.xml</location>EV_REGION</class>
+	<class><location>../implementation_gtk/ev_region_imp_links.xml</location>EV_REGION_IMP</class>
+	<class><location>../implementation_gtk/gtk_links.xml</location>GTK</class>
+	<class><location>../implementation_gtk/gtk2_links.xml</location>GTK2</class>
+	<class><include>False</include>POINTER</class>
+
+</system>

@@ -1,0 +1,79 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "Abstraction for objects whos position can be set."{\line}
+{\tab}{\cf1 legal}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 status}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 keywords}{\cf1 :} "position, width, height"{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2009-06-03 17:11:49 -0700 (Wed, 03 Jun 2009) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 79073 $"{\line}
+{\line}
+{\b\cf6 deferred} {\b\cf6 class} {\b\cf6 interface}{\line}
+{\tab}{\cf4 EV_POSITIONABLE}{\line}
+{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status setting}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_x_position} {\cf1 (}{\cf5 a_x}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Assign }{\cf5 a_x}{\cf3  to }{\cf5 x_position}{\cf3  in pixels.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 x_position_assigned}{\cf1 :} {\cf5 x_position} {\cf1 =} {\cf5 a_x}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 set_y_position} {\cf1 (}{\cf5 a_y}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Assign }{\cf5 a_y}{\cf3  to }{\cf5 y_position}{\cf3  in pixels.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 y_position_assigned}{\cf1 :} {\cf5 y_position} {\cf1 =} {\cf5 a_y}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 set_position} {\cf1 (}{\cf5 a_x}{\cf1 ,} {\cf5 a_y}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Assign }{\cf5 a_x}{\cf3  to }{\cf5 x_position}{\cf3  and }{\cf5 a_y}{\cf3  to }{\cf5 y_position}{\cf3  in pixels.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 set_width} {\cf1 (}{\cf5 a_width}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Assign }{\cf5 a_width}{\cf3  to }{\cf5 width}{\cf3  in pixels.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_width_positive_or_zero}{\cf1 :} {\cf5 a_width} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 width_assigned}{\cf1 :} {\cf5 width} {\cf1 =} {\cf5 minimum_width} {\b\cf6 or else} {\cf5 width} {\cf1 =} {\cf5 a_width}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 set_height} {\cf1 (}{\cf5 a_height}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Assign }{\cf5 a_height}{\cf3  to }{\cf5 height}{\cf3  in pixels.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_height_positive_or_zero}{\cf1 :} {\cf5 a_height} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 height_assigned}{\cf1 :} {\cf5 height} {\cf1 =} {\cf5 minimum_height} {\b\cf6 or else} {\cf5 height} {\cf1 =} {\cf5 a_height}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 set_size} {\cf1 (}{\cf5 a_width}{\cf1 ,} {\cf5 a_height}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Assign }{\cf5 a_width}{\cf3  to }{\cf5 width}{\cf3  and }{\cf5 a_height}{\cf3  to }{\cf5 height}{\cf3  in pixels.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_width_positive_or_zero}{\cf1 :} {\cf5 a_width} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\tab}{\cf1 a_height_positive_or_zero}{\cf1 :} {\cf5 a_height} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 width_assigned}{\cf1 :} {\cf5 width} {\cf1 =} {\cf5 minimum_width} {\b\cf6 or else} {\cf5 width} {\cf1 =} {\cf5 a_width}{\line}
+{\tab}{\tab}{\tab}{\cf1 height_assigned}{\cf1 :} {\cf5 height} {\cf1 =} {\cf5 minimum_height} {\b\cf6 or else} {\cf5 height} {\cf1 =} {\cf5 a_height}{\line}
+}{\tab}{\line}
+{\b\cf6 note}{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 1984-2006, Eiffel Software and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"{\line}
+{\tab}{\cf1 source}{\cf1 :} "[{\line}
+{\tab}{\tab}Eiffel Software{\line}
+{\tab}{\tab}356 Storke Road, Goleta, CA 93117 USA{\line}
+{\tab}{\tab}Telephone 805-685-1006, Fax 805-685-6869{\line}
+{\tab}{\tab}Website http://www.eiffel.com{\line}
+{\tab}{\tab}Customer support http://support.eiffel.com{\line}
+{\tab}]"{\line}
+{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 EV_POSITIONABLE}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

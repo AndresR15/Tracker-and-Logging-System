@@ -1,0 +1,101 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;EiffelVision pixmap. Implementation interface.&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;drawable, primitives, figures, buffer, bitmap, picture&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2016-09-27 08:50:48 -0700 (Tue, 27 Sep 2016) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 99192 $&quot;</string>
+
+<keyword>deferred</keyword> <keyword>class</keyword> <keyword>interface</keyword>
+	<class><location>../implementation_interface/ev_pixmap_i_short.xml</location>EV_PIXMAP_I</class>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Initialization</comment>
+
+	<anchor>f_read_from_named_path</anchor><feature><location>../implementation_interface/ev_pixmap_i_short.xml#f_read_from_named_path</location>read_from_named_path</feature> <symbol>(</symbol><local>file_path</local><symbol>:</symbol> <class><include>False</include>PATH</class><symbol>)</symbol>
+			<comment>--</comment><comment> Load pixmap data from the file named </comment><quoted>file_path</quoted><comment>.</comment>
+			<comment>--</comment><comment> Exceptions: &quot;Unable to retrieve icon information&quot;</comment>
+		<keyword>require</keyword>
+			<tag>file_path_not_void</tag><symbol>:</symbol> <local>file_path</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>file_path_not_empty</tag><symbol>:</symbol> <keyword>not</keyword> <local>file_path</local><dot>.</dot><feature><include>False</include>is_empty</feature>
+
+	<anchor>f_set_with_default</anchor><feature><location>../implementation_interface/ev_pixmap_i_short.xml#f_set_with_default</location>set_with_default</feature>
+			<comment>--</comment><comment> Initialize the pixmap with the default</comment>
+			<comment>--</comment><comment> pixmap (Vision2 logo)</comment>
+			<comment>--</comment>
+			<comment>--</comment><comment> Exceptions &quot;Unable to retrieve icon information&quot;</comment>
+
+	<anchor>f_set_size</anchor><feature><location>../implementation_interface/ev_pixmap_i_short.xml#f_set_size</location>set_size</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set the size of the pixmap to </comment><quoted>a_x</quoted><comment> by </comment><quoted>a_y</quoted><comment> pixels.</comment>
+		<keyword>require</keyword>
+			<tag>x_coordinate_valid</tag><symbol>:</symbol> <local>a_x</local> <symbol>&gt;</symbol> <number>0</number>
+			<tag>y_coordinate_valid</tag><symbol>:</symbol> <local>a_y</local> <symbol>&gt;</symbol> <number>0</number>
+
+	<anchor>f_reset_for_buffering</anchor><feature><location>../implementation_interface/ev_pixmap_i_short.xml#f_reset_for_buffering</location>reset_for_buffering</feature> <symbol>(</symbol><local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Resets the size of the pixmap without keeping original image or clearing background.</comment>
+		<keyword>require</keyword>
+			<tag>width_valid</tag><symbol>:</symbol> <local>a_width</local> <symbol>&gt;</symbol> <number>0</number>
+			<tag>height_valid</tag><symbol>:</symbol> <local>a_height</local> <symbol>&gt;</symbol> <number>0</number>
+
+	<anchor>f_stretch</anchor><feature><location>../implementation_interface/ev_pixmap_i_short.xml#f_stretch</location>stretch</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Stretch the image to fit in size </comment><quoted>a_x</quoted><comment> by </comment><quoted>a_y</quoted><comment> pixels.</comment>
+		<keyword>require</keyword>
+			<tag>x_coordinate_valid</tag><symbol>:</symbol> <local>a_x</local> <symbol>&gt;</symbol> <number>0</number>
+			<tag>y_coordinate_valid</tag><symbol>:</symbol> <local>a_y</local> <symbol>&gt;</symbol> <number>0</number>
+
+	<anchor>f_save_to_named_path</anchor><feature><location>../implementation_interface/ev_pixmap_i_short.xml#f_save_to_named_path</location>save_to_named_path</feature> <symbol>(</symbol><local>a_format</local><symbol>:</symbol> <class><location>../interface/ev_graphical_format_short.xml</location>EV_GRAPHICAL_FORMAT</class><symbol>;</symbol> <local>a_filepath</local><symbol>:</symbol> <class><include>False</include>PATH</class><symbol>)</symbol>
+			<comment>--</comment><comment> Save </comment><quoted>Current</quoted><comment> to </comment><quoted>a_filepath</quoted><comment> in </comment><quoted>a_format</quoted><comment> format.</comment>
+		<keyword>require</keyword>
+			<tag>a_format_not_void</tag><symbol>:</symbol> <local>a_format</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>a_filepath_not_void</tag><symbol>:</symbol> <local>a_filepath</local> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_set_mask</anchor><feature><location>../implementation_interface/ev_pixmap_i_short.xml#f_set_mask</location>set_mask</feature> <symbol>(</symbol><local>a_mask</local><symbol>:</symbol> <class><location>../interface/ev_bitmap_short.xml</location>EV_BITMAP</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>a_mask</quoted><comment> to </comment><quoted>pixmap</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>mask_not_void</tag><symbol>:</symbol> <local>a_mask</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>mask_same_dimensions</tag><symbol>:</symbol> <local>a_mask</local><dot>.</dot><feature><location>../interface/ev_bitmap_short.xml#f_width</location>width</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_drawable_i_short.xml#f_width</location>width</feature> <keyword>and then</keyword> <local>a_mask</local><dot>.</dot><feature><location>../interface/ev_bitmap_short.xml#f_height</location>height</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_drawable_i_short.xml#f_height</location>height</feature>
+
+	<anchor>f_init_from_pointer_style</anchor><feature><location>../implementation_interface/ev_pixmap_i_short.xml#f_init_from_pointer_style</location>init_from_pointer_style</feature> <symbol>(</symbol><local>a_pointer_style</local><symbol>:</symbol> <class><location>../interface/ev_pointer_style_short.xml</location>EV_POINTER_STYLE</class><symbol>)</symbol>
+			<comment>--</comment><comment> Initialize from </comment><quoted>a_pointer_style</quoted>
+		<keyword>require</keyword>
+			<tag>not_void</tag><symbol>:</symbol> <local>a_pointer_style</local> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_init_from_pixel_buffer</anchor><feature><location>../implementation_interface/ev_pixmap_i_short.xml#f_init_from_pixel_buffer</location>init_from_pixel_buffer</feature> <symbol>(</symbol><local>a_pixel_buffer</local><symbol>:</symbol> <class><location>../interface/ev_pixel_buffer_short.xml</location>EV_PIXEL_BUFFER</class><symbol>)</symbol>
+			<comment>--</comment><comment> Initialize from </comment><quoted>a_pixel_buffer</quoted>
+		<keyword>require</keyword>
+			<tag>not_void</tag><symbol>:</symbol> <local>a_pixel_buffer</local> <symbol>/=</symbol> <keyword>Void</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Query</comment>
+
+	<anchor>f_is_file_name_valid</anchor><feature><location>../implementation_interface/ev_pixmap_i_short.xml#f_is_file_name_valid</location>is_file_name_valid</feature> <symbol>(</symbol><local>a_file_name</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is </comment><quoted>a_file_name</quoted><comment> valid?</comment>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_raw_image_data</anchor><feature><location>../implementation_interface/ev_pixmap_i_short.xml#f_raw_image_data</location>raw_image_data</feature><symbol>:</symbol> <class><location>../interface/ev_raw_image_data_short.xml</location>EV_RAW_IMAGE_DATA</class>
+			<comment>--</comment><comment> RGBA representation of </comment><quoted>Current</quoted><comment>.</comment>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Basic operations</comment>
+
+	<anchor>f_flush</anchor><feature><location>../implementation_interface/ev_pixmap_i_short.xml#f_flush</location>flush</feature>
+			<comment>--</comment><comment> Execute any delayed calls to </comment><feature><location>../implementation_interface/ev_drawable_action_sequences_i_short.xml#f_expose_actions</location>expose_actions</feature><comment> without waiting</comment>
+			<comment>--</comment><comment> for next idle.</comment>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Duplication</comment>
+
+	<anchor>f_copy_pixmap</anchor><feature><location>../implementation_interface/ev_pixmap_i_short.xml#f_copy_pixmap</location>copy_pixmap</feature> <symbol>(</symbol><local>other</local><symbol>:</symbol> <class><location>../interface/ev_pixmap_short.xml</location>EV_PIXMAP</class><symbol>)</symbol>
+			<comment>--</comment><comment> Update </comment><quoted>Current</quoted><comment> to have same appearence as </comment><quoted>other</quoted><comment>.</comment>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2014, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_interface/ev_pixmap_i_short.xml</location>EV_PIXMAP_I</class></system>
+

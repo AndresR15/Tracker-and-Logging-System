@@ -1,0 +1,36 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Objects that ...&quot;</string>
+	<indexing_tag>author</indexing_tag><symbol>:</symbol> <string>&quot;&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2013-05-20 16:15:17 -0700 (Mon, 20 May 2013) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 92557 $&quot;</string>
+
+<keyword>deferred</keyword> <keyword>class</keyword> 
+	<class><location>../implementation_interface/ev_bitmap_i.xml</location>EV_BITMAP_I</class>
+
+<keyword>inherit</keyword>
+	<class><location>../implementation_interface/ev_drawable_i.xml</location>EV_DRAWABLE_I</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_interface/ev_bitmap_i.xml#f_interface</location>interface</feature>
+		<keyword>end</keyword>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Status Setting</comment>
+
+	<anchor>f_set_size</anchor><feature><location>../implementation_interface/ev_bitmap_i.xml#f_set_size</location>set_size</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set the size of the pixmap to </comment><quoted>a_x</quoted><comment> by </comment><quoted>a_y</quoted><comment> pixels.</comment>
+		<keyword>require</keyword>
+			<tag>x_coordinate_valid</tag><symbol>:</symbol> <local>a_x</local> <symbol>&gt;</symbol> <number>0</number>
+			<tag>y_coordinate_valid</tag><symbol>:</symbol> <local>a_y</local> <symbol>&gt;</symbol> <number>0</number>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> 
+
+	<anchor>f_interface</anchor><feature><location>../implementation_interface/ev_bitmap_i.xml#f_interface</location>interface</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_bitmap.xml</location>EV_BITMAP</class>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_interface/ev_bitmap_i.xml</location>EV_BITMAP_I</class></system>
+

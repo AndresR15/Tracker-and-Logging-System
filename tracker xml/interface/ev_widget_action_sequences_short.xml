@@ -1,0 +1,95 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Action sequences for EV_WIDGET.&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;event, action, sequence&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;Generated!&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;Generated!&quot;</string>
+
+<keyword>deferred</keyword> <keyword>class</keyword> <keyword>interface</keyword>
+	<class><location>../interface/ev_widget_action_sequences_short.xml</location>EV_WIDGET_ACTION_SEQUENCES</class>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Event handling</comment>
+
+	<anchor>f_file_drop_actions</anchor><feature><location>../interface/ev_widget_action_sequences_short.xml#f_file_drop_actions</location>file_drop_actions</feature><symbol>:</symbol> <class><location>../interface/ev_lite_action_sequence_short.xml</location>EV_LITE_ACTION_SEQUENCE</class> <symbol>[</symbol><class><include>False</include>LIST</class> <symbol>[</symbol><class><include>False</include>STRING_32</class><symbol>]</symbol><symbol>]</symbol>
+			<comment>--</comment><comment> Actions to be performed when an OS file drop is performed on </comment><quoted>Current</quoted><comment>.</comment>
+
+	<anchor>f_pointer_motion_actions</anchor><feature><location>../interface/ev_widget_action_sequences_short.xml#f_pointer_motion_actions</location>pointer_motion_actions</feature><symbol>:</symbol> <class><location>../interface/ev_pointer_motion_action_sequence_short.xml</location>EV_POINTER_MOTION_ACTION_SEQUENCE</class>
+			<comment>--</comment><comment> Actions to be performed when screen pointer moves.</comment>
+		<keyword>ensure</keyword>
+			<tag>not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_pointer_button_press_actions</anchor><feature><location>../interface/ev_widget_action_sequences_short.xml#f_pointer_button_press_actions</location>pointer_button_press_actions</feature><symbol>:</symbol> <class><location>../interface/ev_pointer_button_action_sequence_short.xml</location>EV_POINTER_BUTTON_ACTION_SEQUENCE</class>
+			<comment>--</comment><comment> Actions to be performed when screen pointer button is pressed.</comment>
+		<keyword>ensure</keyword>
+			<tag>not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_pointer_double_press_actions</anchor><feature><location>../interface/ev_widget_action_sequences_short.xml#f_pointer_double_press_actions</location>pointer_double_press_actions</feature><symbol>:</symbol> <class><location>../interface/ev_pointer_button_action_sequence_short.xml</location>EV_POINTER_BUTTON_ACTION_SEQUENCE</class>
+			<comment>--</comment><comment> Actions to be performed when screen pointer is double clicked.</comment>
+		<keyword>ensure</keyword>
+			<tag>not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_pointer_button_release_actions</anchor><feature><location>../interface/ev_widget_action_sequences_short.xml#f_pointer_button_release_actions</location>pointer_button_release_actions</feature><symbol>:</symbol> <class><location>../interface/ev_pointer_button_action_sequence_short.xml</location>EV_POINTER_BUTTON_ACTION_SEQUENCE</class>
+			<comment>--</comment><comment> Actions to be performed when screen pointer button is released.</comment>
+		<keyword>ensure</keyword>
+			<tag>not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_pointer_enter_actions</anchor><feature><location>../interface/ev_widget_action_sequences_short.xml#f_pointer_enter_actions</location>pointer_enter_actions</feature><symbol>:</symbol> <class><location>../interface/ev_notify_action_sequence_short.xml</location>EV_NOTIFY_ACTION_SEQUENCE</class>
+			<comment>--</comment><comment> Actions to be performed when screen pointer enters widget.</comment>
+		<keyword>ensure</keyword>
+			<tag>not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_pointer_leave_actions</anchor><feature><location>../interface/ev_widget_action_sequences_short.xml#f_pointer_leave_actions</location>pointer_leave_actions</feature><symbol>:</symbol> <class><location>../interface/ev_notify_action_sequence_short.xml</location>EV_NOTIFY_ACTION_SEQUENCE</class>
+			<comment>--</comment><comment> Actions to be performed when screen pointer leaves widget.</comment>
+		<keyword>ensure</keyword>
+			<tag>not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_mouse_wheel_actions</anchor><feature><location>../interface/ev_widget_action_sequences_short.xml#f_mouse_wheel_actions</location>mouse_wheel_actions</feature><symbol>:</symbol> <class><location>../interface/ev_integer_action_sequence_short.xml</location>EV_INTEGER_ACTION_SEQUENCE</class>
+			<comment>--</comment><comment> Actions to be performed when mouse wheel is rotated.</comment>
+		<keyword>ensure</keyword>
+			<tag>not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_key_press_actions</anchor><feature><location>../interface/ev_widget_action_sequences_short.xml#f_key_press_actions</location>key_press_actions</feature><symbol>:</symbol> <class><location>../interface/ev_key_action_sequence_short.xml</location>EV_KEY_ACTION_SEQUENCE</class>
+			<comment>--</comment><comment> Actions to be performed when a keyboard key is pressed.</comment>
+		<keyword>ensure</keyword>
+			<tag>not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_key_press_string_actions</anchor><feature><location>../interface/ev_widget_action_sequences_short.xml#f_key_press_string_actions</location>key_press_string_actions</feature><symbol>:</symbol> <class><location>../interface/ev_key_string_action_sequence_short.xml</location>EV_KEY_STRING_ACTION_SEQUENCE</class>
+			<comment>--</comment><comment> Actions to be performed when a keyboard press generates a displayable character.</comment>
+		<keyword>ensure</keyword>
+			<tag>not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_key_release_actions</anchor><feature><location>../interface/ev_widget_action_sequences_short.xml#f_key_release_actions</location>key_release_actions</feature><symbol>:</symbol> <class><location>../interface/ev_key_action_sequence_short.xml</location>EV_KEY_ACTION_SEQUENCE</class>
+			<comment>--</comment><comment> Actions to be performed when a keyboard key is released.</comment>
+		<keyword>ensure</keyword>
+			<tag>not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_focus_in_actions</anchor><feature><location>../interface/ev_widget_action_sequences_short.xml#f_focus_in_actions</location>focus_in_actions</feature><symbol>:</symbol> <class><location>../interface/ev_notify_action_sequence_short.xml</location>EV_NOTIFY_ACTION_SEQUENCE</class>
+			<comment>--</comment><comment> Actions to be performed when keyboard focus is gained.</comment>
+		<keyword>ensure</keyword>
+			<tag>not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_focus_out_actions</anchor><feature><location>../interface/ev_widget_action_sequences_short.xml#f_focus_out_actions</location>focus_out_actions</feature><symbol>:</symbol> <class><location>../interface/ev_notify_action_sequence_short.xml</location>EV_NOTIFY_ACTION_SEQUENCE</class>
+			<comment>--</comment><comment> Actions to be performed when keyboard focus is lost.</comment>
+		<keyword>ensure</keyword>
+			<tag>not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_resize_actions</anchor><feature><location>../interface/ev_widget_action_sequences_short.xml#f_resize_actions</location>resize_actions</feature><symbol>:</symbol> <class><location>../interface/ev_geometry_action_sequence_short.xml</location>EV_GEOMETRY_ACTION_SEQUENCE</class>
+			<comment>--</comment><comment> Actions to be performed when size changes.</comment>
+		<keyword>ensure</keyword>
+			<tag>not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2014, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../interface/ev_widget_action_sequences_short.xml</location>EV_WIDGET_ACTION_SEQUENCES</class></system>
+

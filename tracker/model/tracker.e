@@ -122,7 +122,7 @@ feature -- model operations
 	remove_container (cid: STRING)
 			-- removes a container from the tracker
 		require
-			container_exists:
+			container_exists: cid_exists(cid)
 		local
 			cur_phase: PHASE
 			cur_cont: PHASE_CONTAINER
@@ -138,6 +138,10 @@ feature -- model operations
 
 	move_container (cid: STRING; pid1: STRING; pid2: STRING)
 			-- moves a container from a source phase to a target phase
+		require
+			container_exists: 	cid_exists(cid)
+			phase1_exists: 	get_phases.has(pid1)
+			phase2_exists:	get_phases.has(pid2)
 		local
 			temp_cont: PHASE_CONTAINER
 		do
@@ -278,8 +282,6 @@ feature -- error checks
 			end
 		end
 
-feature -- error checks
-
 	cid_exists (cid: STRING): BOOLEAN
 		do
 			Result := False
@@ -289,6 +291,7 @@ feature -- error checks
 				Result := Result or else (p.item.get_containers.has (cid))
 			end
 		end
+
 
 feature -- queries
 

@@ -1,0 +1,141 @@
+<system>
+<keyword>deferred</keyword> <keyword>class</keyword>
+	<class><location>../implementation_gtk/ev_drawable_imp_chart.xml</location>EV_DRAWABLE_IMP</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>implementation_gtk</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;EiffelVision drawable. GTK implementation.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;figures, primitives, drawing, line, point, ellipse&quot;</string>
+
+<keyword>Ancestors</keyword>
+	<class><include>False</include>DISPOSABLE</class><char>*</char>
+	<class><location>../interface/ev_drawable_constants_chart.xml</location>EV_DRAWABLE_CONSTANTS</class>
+	<class><location>../implementation_interface/ev_drawable_i_chart.xml</location>EV_DRAWABLE_I</class><char>*</char>
+	<class><include>False</include>MATH_CONST</class>
+	<class><include>False</include>PLATFORM</class>
+
+<keyword>Queries</keyword>
+	<feature><include>False</include>arc_cosine</feature> <symbol>(</symbol><local>v</local><symbol>:</symbol> <class><include>False</include>REAL_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>REAL_32</class>
+	<feature><include>False</include>arc_sine</feature> <symbol>(</symbol><local>v</local><symbol>:</symbol> <class><include>False</include>REAL_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>REAL_32</class>
+	<feature><include>False</include>arc_tangent</feature> <symbol>(</symbol><local>v</local><symbol>:</symbol> <class><include>False</include>REAL_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>REAL_32</class>
+	<feature><location>../implementation_interface/ev_colorizable_i.xml#f_background_color</location>background_color</feature><symbol>:</symbol> <class><location>../interface/ev_color_chart.xml</location>EV_COLOR</class>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_background_color_internal</location>background_color_internal</feature><symbol>:</symbol> <class><location>../interface/ev_color_chart.xml</location>EV_COLOR</class>
+	<feature><include>False</include>boolean_bits</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>boolean_bytes</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>ceiling</feature> <symbol>(</symbol><local>v</local><symbol>:</symbol> <class><include>False</include>REAL_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>REAL_32</class>
+	<feature><include>False</include>Character_32_bits</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Character_32_bytes</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Character_8_bits</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Character_8_bytes</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_clip_area</location>clip_area</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_rectangle_chart.xml</location>EV_RECTANGLE</class>
+	<feature><include>False</include>cosine</feature> <symbol>(</symbol><local>v</local><symbol>:</symbol> <class><include>False</include>REAL_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>REAL_32</class>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_dashed_line_style</location>dashed_line_style</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_drawing_mode</location>drawing_mode</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_drawable_constants.xml#f_drawing_mode_and</location>Drawing_mode_and</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_drawable_constants.xml#f_drawing_mode_copy</location>Drawing_mode_copy</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_drawable_constants.xml#f_drawing_mode_invert</location>Drawing_mode_invert</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_drawable_constants.xml#f_drawing_mode_or</location>Drawing_mode_or</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_drawable_constants.xml#f_drawing_mode_xor</location>Drawing_mode_xor</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Euler</feature><symbol>:</symbol> <class><include>False</include>REAL_64</class>
+	<feature><include>False</include>exp</feature> <symbol>(</symbol><local>x</local><symbol>:</symbol> <class><include>False</include>REAL_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>REAL_32</class>
+	<feature><include>False</include>floor</feature> <symbol>(</symbol><local>v</local><symbol>:</symbol> <class><include>False</include>REAL_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>REAL_32</class>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_font</location>font</feature><symbol>:</symbol> <class><location>../interface/ev_font_chart.xml</location>EV_FONT</class>
+	<feature><location>../implementation_interface/ev_colorizable_i.xml#f_foreground_color</location>foreground_color</feature><symbol>:</symbol> <class><location>../interface/ev_color_chart.xml</location>EV_COLOR</class>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_foreground_color_internal</location>foreground_color_internal</feature><symbol>:</symbol> <class><location>../interface/ev_color_chart.xml</location>EV_COLOR</class>
+	<feature><include>False</include>Integer_16_bits</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Integer_16_bytes</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Integer_32_bits</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Integer_32_bytes</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Integer_64_bits</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Integer_64_bytes</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Integer_8_bits</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Integer_8_bytes</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>is_64_bits</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../implementation_interface/ev_any_i.xml#f_is_destroyed</location>is_destroyed</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><include>False</include>is_dotnet</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><include>False</include>Is_little_endian</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><include>False</include>is_mac</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><include>False</include>is_scoop_capable</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><include>False</include>is_thread_capable</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><include>False</include>is_unix</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><include>False</include>is_vms</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><include>False</include>is_vxworks</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><include>False</include>is_windows</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_line_width</location>line_width</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>log</feature> <symbol>(</symbol><local>v</local><symbol>:</symbol> <class><include>False</include>REAL_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>REAL_32</class>
+	<feature><include>False</include>log10</feature> <symbol>(</symbol><local>v</local><symbol>:</symbol> <class><include>False</include>REAL_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>REAL_32</class>
+	<feature><include>False</include>log_2</feature> <symbol>(</symbol><local>v</local><symbol>:</symbol> <class><include>False</include>REAL_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>REAL_32</class>
+	<feature><include>False</include>Natural_16_bits</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Natural_16_bytes</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Natural_32_bits</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Natural_32_bytes</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Natural_64_bits</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Natural_64_bytes</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Natural_8_bits</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Natural_8_bytes</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_pango_layout_set_ellipsize_symbol</location>Pango_layout_set_ellipsize_symbol</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+	<feature><include>False</include>Pi</feature><symbol>:</symbol> <class><include>False</include>REAL_64</class>
+	<feature><include>False</include>Pi_2</feature><symbol>:</symbol> <class><include>False</include>REAL_64</class>
+	<feature><include>False</include>Pi_4</feature><symbol>:</symbol> <class><include>False</include>REAL_64</class>
+	<feature><include>False</include>pointer_bits</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>pointer_bytes</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>rabs</feature> <symbol>(</symbol><local>v</local><symbol>:</symbol> <class><include>False</include>REAL_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>REAL_32</class>
+	<feature><include>False</include>Real_32_bits</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Real_32_bytes</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Real_64_bits</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Real_64_bytes</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>sine</feature> <symbol>(</symbol><local>v</local><symbol>:</symbol> <class><include>False</include>REAL_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>REAL_32</class>
+	<feature><include>False</include>sqrt</feature> <symbol>(</symbol><local>v</local><symbol>:</symbol> <class><include>False</include>REAL_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>REAL_32</class>
+	<feature><include>False</include>Sqrt2</feature><symbol>:</symbol> <class><include>False</include>REAL_64</class>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_sub_pixmap</location>sub_pixmap</feature> <symbol>(</symbol><local>area</local><symbol>:</symbol> <class><location>../interface/ev_rectangle_chart.xml</location>EV_RECTANGLE</class><symbol>)</symbol><symbol>:</symbol> <class><location>../interface/ev_pixmap_chart.xml</location>EV_PIXMAP</class>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_supports_pixbuf_alpha</location>supports_pixbuf_alpha</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><include>False</include>tangent</feature> <symbol>(</symbol><local>v</local><symbol>:</symbol> <class><include>False</include>REAL_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>REAL_32</class>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_tile</location>tile</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_pixmap_chart.xml</location>EV_PIXMAP</class>
+	<feature><location>../interface/ev_drawable_constants.xml#f_valid_drawing_mode</location>valid_drawing_mode</feature> <symbol>(</symbol><local>a_mode</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+
+<keyword>Commands</keyword>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_clear</location>clear</feature>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_clear_rectangle</location>clear_rectangle</feature> <symbol>(</symbol><local>x</local><symbol>,</symbol> <local>y</local><symbol>,</symbol> <local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_disable_dashed_line_style</location>disable_dashed_line_style</feature>
+	<feature><include>False</include>dispose</feature>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_draw_arc</location>draw_arc</feature> <symbol>(</symbol><local>x</local><symbol>,</symbol> <local>y</local><symbol>,</symbol> <local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_start_angle</local><symbol>,</symbol> <local>an_aperture</local><symbol>:</symbol> <class><include>False</include>REAL_32</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_draw_ellipse</location>draw_ellipse</feature> <symbol>(</symbol><local>x</local><symbol>,</symbol> <local>y</local><symbol>,</symbol> <local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_draw_ellipsed_text</location>draw_ellipsed_text</feature> <symbol>(</symbol><local>x</local><symbol>,</symbol> <local>y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_text</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>;</symbol> <local>clipping_width</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_draw_ellipsed_text_top_left</location>draw_ellipsed_text_top_left</feature> <symbol>(</symbol><local>x</local><symbol>,</symbol> <local>y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_text</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>;</symbol> <local>clipping_width</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_draw_full_pixmap</location>draw_full_pixmap</feature> <symbol>(</symbol><local>x</local><symbol>,</symbol> <local>y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_pixmap</local><symbol>:</symbol> <class><location>../interface/ev_pixmap_chart.xml</location>EV_PIXMAP</class><symbol>;</symbol> <local>x_src</local><symbol>,</symbol> <local>y_src</local><symbol>,</symbol> <local>src_width</local><symbol>,</symbol> <local>src_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_draw_pie_slice</location>draw_pie_slice</feature> <symbol>(</symbol><local>x</local><symbol>,</symbol> <local>y</local><symbol>,</symbol> <local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_start_angle</local><symbol>,</symbol> <local>an_aperture</local><symbol>:</symbol> <class><include>False</include>REAL_32</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_draw_pixmap</location>draw_pixmap</feature> <symbol>(</symbol><local>x</local><symbol>,</symbol> <local>y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_pixmap</local><symbol>:</symbol> <class><location>../interface/ev_pixmap_chart.xml</location>EV_PIXMAP</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_draw_point</location>draw_point</feature> <symbol>(</symbol><local>x</local><symbol>,</symbol> <local>y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_draw_polyline</location>draw_polyline</feature> <symbol>(</symbol><local>points</local><symbol>:</symbol> <class><include>False</include>ARRAY</class> <symbol>[</symbol><class><location>../interface/ev_coordinate_chart.xml</location>EV_COORDINATE</class><symbol>]</symbol><symbol>;</symbol> <local>is_closed</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_draw_rectangle</location>draw_rectangle</feature> <symbol>(</symbol><local>x</local><symbol>,</symbol> <local>y</local><symbol>,</symbol> <local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_draw_rotated_text</location>draw_rotated_text</feature> <symbol>(</symbol><local>x</local><symbol>,</symbol> <local>y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>angle</local><symbol>:</symbol> <class><include>False</include>REAL_32</class><symbol>;</symbol> <local>a_text</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_draw_segment</location>draw_segment</feature> <symbol>(</symbol><local>x1</local><symbol>,</symbol> <local>y1</local><symbol>,</symbol> <local>x2</local><symbol>,</symbol> <local>y2</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_interface/ev_drawable_i.xml#f_draw_straight_line</location>draw_straight_line</feature> <symbol>(</symbol><local>x1</local><symbol>,</symbol> <local>y1</local><symbol>,</symbol> <local>x2</local><symbol>,</symbol> <local>y2</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_draw_sub_pixel_buffer</location>draw_sub_pixel_buffer</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_pixel_buffer</local><symbol>:</symbol> <class><location>../interface/ev_pixel_buffer_chart.xml</location>EV_PIXEL_BUFFER</class><symbol>;</symbol> <local>area</local><symbol>:</symbol> <class><location>../interface/ev_rectangle_chart.xml</location>EV_RECTANGLE</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_draw_sub_pixmap</location>draw_sub_pixmap</feature> <symbol>(</symbol><local>x</local><symbol>,</symbol> <local>y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_pixmap</local><symbol>:</symbol> <class><location>../interface/ev_pixmap_chart.xml</location>EV_PIXMAP</class><symbol>;</symbol> <local>area</local><symbol>:</symbol> <class><location>../interface/ev_rectangle_chart.xml</location>EV_RECTANGLE</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_draw_text</location>draw_text</feature> <symbol>(</symbol><local>x</local><symbol>,</symbol> <local>y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_text</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_draw_text_internal</location>draw_text_internal</feature> <symbol>(</symbol><local>x</local><symbol>,</symbol> <local>y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_text</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>;</symbol> <local>draw_from_baseline</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class><symbol>;</symbol> <local>a_width</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_angle</local><symbol>:</symbol> <class><include>False</include>REAL_32</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_draw_text_top_left</location>draw_text_top_left</feature> <symbol>(</symbol><local>x</local><symbol>,</symbol> <local>y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_text</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_enable_dashed_line_style</location>enable_dashed_line_style</feature>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_fill_ellipse</location>fill_ellipse</feature> <symbol>(</symbol><local>x</local><symbol>,</symbol> <local>y</local><symbol>,</symbol> <local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_fill_pie_slice</location>fill_pie_slice</feature> <symbol>(</symbol><local>x</local><symbol>,</symbol> <local>y</local><symbol>,</symbol> <local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_start_angle</local><symbol>,</symbol> <local>an_aperture</local><symbol>:</symbol> <class><include>False</include>REAL_32</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_fill_polygon</location>fill_polygon</feature> <symbol>(</symbol><local>points</local><symbol>:</symbol> <class><include>False</include>ARRAY</class> <symbol>[</symbol><class><location>../interface/ev_coordinate_chart.xml</location>EV_COORDINATE</class><symbol>]</symbol><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_fill_rectangle</location>fill_rectangle</feature> <symbol>(</symbol><local>x</local><symbol>,</symbol> <local>y</local><symbol>,</symbol> <local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_pango_layout_set_ellipsize_call</location>pango_layout_set_ellipsize_call</feature> <symbol>(</symbol><local>a_function</local><symbol>,</symbol> <local>a_layout</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>;</symbol> <local>a_ellipsize_mode</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_interface/ev_drawable_i.xml#f_redraw</location>redraw</feature>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_remove_clipping</location>remove_clipping</feature>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_remove_tile</location>remove_tile</feature>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_set_background_color</location>set_background_color</feature> <symbol>(</symbol><local>a_color</local><symbol>:</symbol> <class><location>../interface/ev_color_chart.xml</location>EV_COLOR</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_set_clip_area</location>set_clip_area</feature> <symbol>(</symbol><local>an_area</local><symbol>:</symbol> <class><location>../interface/ev_rectangle_chart.xml</location>EV_RECTANGLE</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_set_clip_region</location>set_clip_region</feature> <symbol>(</symbol><local>a_region</local><symbol>:</symbol> <class><location>../interface/ev_region_chart.xml</location>EV_REGION</class><symbol>)</symbol>
+	<feature><location>../implementation_interface/ev_colorizable_i.xml#f_set_default_colors</location>set_default_colors</feature>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_set_drawing_mode</location>set_drawing_mode</feature> <symbol>(</symbol><local>a_mode</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_set_font</location>set_font</feature> <symbol>(</symbol><local>a_font</local><symbol>:</symbol> <class><location>../interface/ev_font_chart.xml</location>EV_FONT</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_set_foreground_color</location>set_foreground_color</feature> <symbol>(</symbol><local>a_color</local><symbol>:</symbol> <class><location>../interface/ev_color_chart.xml</location>EV_COLOR</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_set_line_width</location>set_line_width</feature> <symbol>(</symbol><local>a_width</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_set_tile</location>set_tile</feature> <symbol>(</symbol><local>a_pixmap</local><symbol>:</symbol> <class><location>../interface/ev_pixmap_chart.xml</location>EV_PIXMAP</class><symbol>)</symbol>
+
+<keyword>Constraints</keyword>
+	<tag>gc not void</tag>
+
+</system>

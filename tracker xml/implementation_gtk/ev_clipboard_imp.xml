@@ -1,0 +1,125 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Objects that allow access to the operating %Nsystem clipboard.&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2017-03-27 13:31:29 -0700 (Mon, 27 Mar 2017) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 100058 $&quot;</string>
+
+<keyword>class</keyword> 
+	<class><location>../implementation_gtk/ev_clipboard_imp.xml</location>EV_CLIPBOARD_IMP</class>
+
+<keyword>inherit</keyword>
+	<class><location>../implementation_interface/ev_clipboard_i.xml</location>EV_CLIPBOARD_I</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_gtk/ev_clipboard_imp.xml#f_interface</location>interface</feature>
+		<keyword>end</keyword>
+
+	<class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_gtk/ev_clipboard_imp.xml#f_interface</location>interface</feature>
+		<keyword>end</keyword>
+
+<keyword>create</keyword> 
+	<feature><location>../implementation_gtk/ev_clipboard_imp.xml#f_make</location>make</feature>
+
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Initialization</comment>
+
+	<anchor>f_old_make</anchor><feature><location>../implementation_gtk/ev_clipboard_imp.xml#f_old_make</location>old_make</feature> <symbol>(</symbol><local>an_interface</local><symbol>:</symbol> <keyword>attached</keyword> <keyword>like</keyword> <feature><location>../implementation_gtk/ev_clipboard_imp.xml#f_interface</location>interface</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Create </comment><quoted>Current</quoted><comment> with interface </comment><quoted>an_interface</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_interface/ev_any_i.xml#f_assign_interface</location>assign_interface</feature><symbol> </symbol><symbol>(</symbol><local>an_interface</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_make</anchor><feature><location>../implementation_gtk/ev_clipboard_imp.xml#f_make</location>make</feature>
+			<comment>--</comment><comment> initialize </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>local</keyword>
+			<local>cs</local><symbol>:</symbol> <class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class>
+		<keyword>do</keyword>
+			<local>cs</local> <symbol>:=</symbol> <keyword>create</keyword> <symbol>{</symbol><keyword>attached</keyword> <class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_set_with_eiffel_string</location>set_with_eiffel_string</feature><symbol> </symbol><symbol>(</symbol><keyword>once</keyword> &quot;CLIPBOARD&quot;<symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_clipboard_imp.xml#f_clipboard</location>clipboard</feature> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_clipboard_get</location>gtk_clipboard_get</feature> <symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_atom_intern</location>gdk_atom_intern</feature> <symbol>(</symbol><local>cs</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_item</location>item</feature><symbol>,</symbol> <number>1</number><symbol>)</symbol><symbol>)</symbol>
+			<local>cs</local> <symbol>:=</symbol> <keyword>create</keyword> <symbol>{</symbol><keyword>attached</keyword> <class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_set_with_eiffel_string</location>set_with_eiffel_string</feature><symbol> </symbol><symbol>(</symbol><keyword>once</keyword> &quot;PRIMARY&quot;<symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_clipboard_imp.xml#f_primary</location>primary</feature> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_clipboard_get</location>gtk_clipboard_get</feature> <symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_atom_intern</location>gdk_atom_intern</feature> <symbol>(</symbol><local>cs</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_item</location>item</feature><symbol>,</symbol> <number>1</number><symbol>)</symbol><symbol>)</symbol>
+			<feature><location>../implementation_interface/ev_any_i.xml#f_set_is_initialized</location>set_is_initialized</feature><symbol> </symbol><symbol>(</symbol><keyword>True</keyword><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_has_text</anchor><feature><location>../implementation_gtk/ev_clipboard_imp.xml#f_has_text</location>has_text</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Does the clipboard currently contain text?</comment>
+		<keyword>do</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/ev_gtk_callback_marshal.xml</location>EV_GTK_CALLBACK_MARSHAL</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_callback_marshal.xml#f_c_ev_gtk_callback_marshal_set_is_enabled</location>c_ev_gtk_callback_marshal_set_is_enabled</feature> <symbol>(</symbol><keyword>False</keyword><symbol>)</symbol>
+			<keyword>Result</keyword> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_clipboard_wait_is_text_available</location>gtk_clipboard_wait_is_text_available</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_clipboard_imp.xml#f_clipboard</location>clipboard</feature><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/ev_gtk_callback_marshal.xml</location>EV_GTK_CALLBACK_MARSHAL</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_callback_marshal.xml#f_c_ev_gtk_callback_marshal_set_is_enabled</location>c_ev_gtk_callback_marshal_set_is_enabled</feature> <symbol>(</symbol><keyword>True</keyword><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_text</anchor><feature><location>../implementation_gtk/ev_clipboard_imp.xml#f_text</location>text</feature><symbol>:</symbol> <class><include>False</include>STRING_32</class>
+			<comment>--</comment><comment> </comment><quoted>Result</quoted><comment> is current clipboard content.</comment>
+		<keyword>local</keyword>
+			<local>utf8_string</local><symbol>:</symbol> <class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class>
+			<local>text_ptr</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>do</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/ev_gtk_callback_marshal.xml</location>EV_GTK_CALLBACK_MARSHAL</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_callback_marshal.xml#f_c_ev_gtk_callback_marshal_set_is_enabled</location>c_ev_gtk_callback_marshal_set_is_enabled</feature> <symbol>(</symbol><keyword>False</keyword><symbol>)</symbol>
+			<local>text_ptr</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_clipboard_wait_for_text</location>gtk_clipboard_wait_for_text</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_clipboard_imp.xml#f_clipboard</location>clipboard</feature><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/ev_gtk_callback_marshal.xml</location>EV_GTK_CALLBACK_MARSHAL</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_callback_marshal.xml#f_c_ev_gtk_callback_marshal_set_is_enabled</location>c_ev_gtk_callback_marshal_set_is_enabled</feature> <symbol>(</symbol><keyword>True</keyword><symbol>)</symbol>
+			<keyword>if</keyword> <local>text_ptr</local> <symbol>/=</symbol> <feature><include>False</include>default_pointer</feature> <keyword>then</keyword>
+				<keyword>create</keyword> <local>utf8_string</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_make_from_pointer</location>make_from_pointer</feature><symbol> </symbol><symbol>(</symbol><local>text_ptr</local><symbol>)</symbol>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>utf8_string</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_string</location>string</feature>
+				<local>utf8_string</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_set_with_eiffel_string</location>set_with_eiffel_string</feature><symbol> </symbol><symbol>(</symbol><keyword>once</keyword> &quot;&quot;<symbol>)</symbol>
+			<keyword>else</keyword>
+				<keyword>create</keyword> <keyword>Result</keyword><dot>.</dot><feature><include>False</include>make_empty</feature>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status Setting</comment>
+
+	<anchor>f_set_text</anchor><feature><location>../implementation_gtk/ev_clipboard_imp.xml#f_set_text</location>set_text</feature> <symbol>(</symbol><local>a_text</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>a_text</quoted><comment> to clipboard.</comment>
+		<keyword>local</keyword>
+			<local>a_cs</local><symbol>:</symbol> <class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class>
+		<keyword>do</keyword>
+			<local>a_cs</local> <symbol>:=</symbol> <keyword>create</keyword> <symbol>{</symbol><keyword>attached</keyword> <class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_set_with_eiffel_string</location>set_with_eiffel_string</feature><symbol> </symbol><symbol>(</symbol><local>a_text</local><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_clipboard_set_text</location>gtk_clipboard_set_text</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_clipboard_imp.xml#f_clipboard</location>clipboard</feature><symbol>,</symbol> <local>a_cs</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_item</location>item</feature><symbol>,</symbol> <local>a_cs</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_string_length</location>string_length</feature><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_clipboard_set_text</location>gtk_clipboard_set_text</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_clipboard_imp.xml#f_primary</location>primary</feature><symbol>,</symbol> <local>a_cs</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_item</location>item</feature><symbol>,</symbol> <local>a_cs</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_string_length</location>string_length</feature><symbol>)</symbol>
+			<local>a_cs</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_set_with_eiffel_string</location>set_with_eiffel_string</feature><symbol> </symbol><symbol>(</symbol><keyword>once</keyword> &quot;&quot;<symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_text_component_imp.xml</location>EV_TEXT_COMPONENT_IMP</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_clipboard</anchor><feature><location>../implementation_gtk/ev_clipboard_imp.xml#f_clipboard</location>clipboard</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Pointer to the CLIPBOARD Gtk clipboard</comment>
+	
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_primary</anchor><feature><location>../implementation_gtk/ev_clipboard_imp.xml#f_primary</location>primary</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Pointer to the PRIMARY Gtk clipboard</comment>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> 
+
+	<anchor>f_destroy</anchor><feature><location>../implementation_gtk/ev_clipboard_imp.xml#f_destroy</location>destroy</feature>
+			<comment>--</comment><comment> Destroy </comment><quoted>Current</quoted>
+		<keyword>do</keyword>
+			<feature><location>../implementation_interface/ev_any_i.xml#f_set_is_destroyed</location>set_is_destroyed</feature><symbol> </symbol><symbol>(</symbol><keyword>True</keyword><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_any.xml</location>EV_ANY</class><symbol>,</symbol> <class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_interface</anchor><feature><location>../implementation_gtk/ev_clipboard_imp.xml#f_interface</location>interface</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_clipboard.xml</location>EV_CLIPBOARD</class>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2017, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_gtk/ev_clipboard_imp.xml</location>EV_CLIPBOARD_IMP</class></system>
+

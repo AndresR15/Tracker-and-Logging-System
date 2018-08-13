@@ -1,0 +1,148 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "Filesystem's directories"{\line}
+{\tab}{\cf1 library}{\cf1 :} "Gobo Eiffel Kernel Library"{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 1999-2016, Eric Bezault and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "MIT License"{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2017-04-11 11:34:55 -0700 (Tue, 11 Apr 2017) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 100137 $"{\line}
+{\line}
+{\b\cf6 class} {\b\cf6 interface}{\line}
+{\tab}{\cf4 KL_DIRECTORY}{\line}
+{\line}
+{\b\cf6 create} {\line}
+{\tab}{\cf5 make}{\line}
+{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 name}{\cf1 :} {\cf4 STRING_8}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Directory name;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Note: If }{\cf5 name}{\cf3  is a UC_STRING or descendant, then}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the bytes of its associated UTF unicode encoding will}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  be used.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 last_entry}{\cf1 :} {\cf4 STRING_8}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Last entry (file or subdirectory name) read}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Note: this query returns the new object after}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  each call to }{\cf5 read_entry}{\cf3 .)}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 filenames}{\cf1 :} {\b\cf6 detachable} {\cf4 ARRAY} {\cf1 [}{\cf4 STRING_8}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Names of readable files in current directory;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Void if current directory could not be searched}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 directory_names}{\cf1 :} {\b\cf6 detachable} {\cf4 ARRAY} {\cf1 [}{\cf4 STRING_8}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Names of readable subdirectories in current directory;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Void if current directory could not be searched}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Do not include parent and current directory names.)}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status report}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_open_read}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Has directory been opened in read mode?}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 end_of_input}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Have all entries been read?}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 exists}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does directory physically exist on disk?}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_readable}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Can directory be opened in read mode?}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_empty}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does current directory contain no entry apart from}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the parent and current directory entries?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Return False if not able to open current directory.}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Basic operations}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 open_read}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Try to open directory in read mode. Set }{\cf5 is_open_read}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to true and is ready to read first entry in directory}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  if operation was successful.}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 close}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Close directory if it is closable,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  let it open otherwise.}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 create_directory}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create current directory on disk.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do nothing if the directory could not}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  be created, if it already existed or if}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 name}{\cf3  is a nested directory name and}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the parent directory does not exist.}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 recursive_create_directory}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create current directory on disk.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create its parent directories if they do not exist yet.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do nothing if the directory could not be created,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  if it already existed or }{\cf5 name}{\cf3  is a nested directory}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  name and its parent directory does not exist and}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  could not be created.}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 delete}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Delete current directory.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do nothing if the directory could not}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  be deleted, if it did not exist or if}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  it is not empty.}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 recursive_delete}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Delete current directory, its files}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  and its subdirectories recursively.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do nothing if the directory could not}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  be deleted, if it did not exist.}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 recursive_copy_directory} {\cf1 (}{\cf5 new_name}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Copy recursively current directory to }{\cf5 new_name}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do nothing if the directory could not be copied,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  if it did not exist, or if }{\cf5 new_name}{\cf3  already existed.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 new_name}{\cf3  should follow the pathname convention}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of the underlying platform. For pathname conversion}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  use KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Iteration}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 do_all} {\cf1 (}{\cf5 an_action}{\cf1 :} {\cf4 PROCEDURE} {\cf1 [}{\cf4 STRING_8}{\cf1 ]}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Apply }{\cf5 an_action}{\cf3  to every entry in the directory.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do nothing if current directory could not be searched.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Semantics not guaranteed if }{\cf5 an_action}{\cf3  changes the contents of the directory.)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 do_if} {\cf1 (}{\cf5 an_action}{\cf1 :} {\cf4 PROCEDURE} {\cf1 [}{\cf4 STRING_8}{\cf1 ]}{\cf1 ;} {\cf5 a_test}{\cf1 :} {\cf4 FUNCTION} {\cf1 [}{\cf4 STRING_8}{\cf1 ,} {\cf4 BOOLEAN}{\cf1 ]}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Apply }{\cf5 an_action}{\cf3  to every entry in the directory that satisfies }{\cf5 a_test}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do nothing if current directory could not be searched.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Semantics not guaranteed if }{\cf5 an_action}{\cf3  changes the contents of the directory.)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 there_exists} {\cf1 (}{\cf5 a_test}{\cf1 :} {\cf4 FUNCTION} {\cf1 [}{\cf4 STRING_8}{\cf1 ,} {\cf4 BOOLEAN}{\cf1 ]}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 a_test}{\cf3  true for at least one entry in the directory?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  False if current directory could not be searched.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Semantics not guaranteed if }{\cf5 an_action}{\cf3  changes the contents of the directory.)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 for_all} {\cf1 (}{\cf5 a_test}{\cf1 :} {\cf4 FUNCTION} {\cf1 [}{\cf4 STRING_8}{\cf1 ,} {\cf4 BOOLEAN}{\cf1 ]}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 a_test}{\cf3  true for all entries in the directory?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  False if current directory could not be searched.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Semantics not guaranteed if }{\cf5 an_action}{\cf3  changes the contents of the directory.)}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Input}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 read_entry}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Read next entry in directory.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Make result available in }{\cf5 last_entry}{\cf3 .}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 unread_entry} {\cf1 (}{\cf5 an_entry}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Put }{\cf5 an_entry}{\cf3  back in input stream.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  This entry will be read first by the next}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  call to a read routine.}{\line}
+}{\tab}{\line}
+{\b\cf6 invariant}{\line}
+{\tab}{\cf1 string_name_is_string}{\cf1 :} {\cf5 Any_}{\b\cf1 .}{\cf5 same_types}{\cf1  }{\cf1 (}{\cf5 string_name}{\cf1 ,} ""{\cf1 )}{\line}
+{\tab}{\cf1 valid_entry_buffer}{\cf1 :} {\cf5 valid_entry_buffer}{\cf1  }{\cf1 (}{\cf5 entry_buffer}{\cf1 )}{\line}
+{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 KL_DIRECTORY}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

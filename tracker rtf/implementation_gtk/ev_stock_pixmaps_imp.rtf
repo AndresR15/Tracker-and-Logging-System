@@ -1,0 +1,329 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "Facilities for accessing default pixmaps."{\line}
+{\tab}{\cf1 legal}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 status}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 keywords}{\cf1 :} "pixmap, default"{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2013-11-19 17:00:03 -0800 (Tue, 19 Nov 2013) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 93461 $"{\line}
+{\line}
+{\b\cf6 class} {\line}
+{\tab}{\cf4 EV_STOCK_PIXMAPS_IMP}{\line}
+{\line}
+{\b\cf6 inherit}{\line}
+{\tab}{\cf4 EV_ANY_HANDLER}{\line}
+{\line}
+{\b\cf6 create} {\line}
+{\tab}{\cf5 default_create}{\line}
+{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 information_pixel_buffer}{\cf1 :} {\cf4 EV_PIXEL_BUFFER}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Pixel buffer symbolizing a piece of information.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 pixmap_from_stock_id}{\cf1  }{\cf1 (}{\b\cf6 create} {\cf1 \{}{\cf4 EV_GTK_C_STRING}{\cf1 \}}{\b\cf1 .}{\cf5 set_with_eiffel_string}{\cf1  }{\cf1 (}"gtk-dialog-info"{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 error_pixel_buffer}{\cf1 :} {\cf4 EV_PIXEL_BUFFER}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Pixel buffer symbolizing an error.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 pixmap_from_stock_id}{\cf1  }{\cf1 (}{\b\cf6 create} {\cf1 \{}{\cf4 EV_GTK_C_STRING}{\cf1 \}}{\b\cf1 .}{\cf5 set_with_eiffel_string}{\cf1  }{\cf1 (}"gtk-dialog-error"{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 warning_pixel_buffer}{\cf1 :} {\cf4 EV_PIXEL_BUFFER}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Pixel buffer symbolizing a warning.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 pixmap_from_stock_id}{\cf1  }{\cf1 (}{\b\cf6 create} {\cf1 \{}{\cf4 EV_GTK_C_STRING}{\cf1 \}}{\b\cf1 .}{\cf5 set_with_eiffel_string}{\cf1  }{\cf1 (}"gtk-dialog-warning"{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 question_pixel_buffer}{\cf1 :} {\cf4 EV_PIXEL_BUFFER}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Pixel buffer symbolizing a question.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 pixmap_from_stock_id}{\cf1  }{\cf1 (}{\b\cf6 create} {\cf1 \{}{\cf4 EV_GTK_C_STRING}{\cf1 \}}{\b\cf1 .}{\cf5 set_with_eiffel_string}{\cf1  }{\cf1 (}"gtk-dialog-question"{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 information_pixmap}{\cf1 :} {\cf4 EV_PIXMAP}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Pixmap symbolizing a piece of information.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 create} {\cf1 \{}{\b\cf6 attached} {\cf4 EV_PIXMAP}{\cf1 \}}{\b\cf1 .}{\cf5 make_with_pixel_buffer}{\cf1  }{\cf1 (}{\cf5 pixmap_from_stock_id}{\cf1  }{\cf1 (}{\b\cf6 create} {\cf1 \{}{\cf4 EV_GTK_C_STRING}{\cf1 \}}{\b\cf1 .}{\cf5 set_with_eiffel_string}{\cf1  }{\cf1 (}"gtk-dialog-info"{\cf1 )}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 error_pixmap}{\cf1 :} {\cf4 EV_PIXMAP}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Pixmap symbolizing an error.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 create} {\cf1 \{}{\b\cf6 attached} {\cf4 EV_PIXMAP}{\cf1 \}}{\b\cf1 .}{\cf5 make_with_pixel_buffer}{\cf1  }{\cf1 (}{\cf5 pixmap_from_stock_id}{\cf1  }{\cf1 (}{\b\cf6 create} {\cf1 \{}{\cf4 EV_GTK_C_STRING}{\cf1 \}}{\b\cf1 .}{\cf5 set_with_eiffel_string}{\cf1  }{\cf1 (}"gtk-dialog-error"{\cf1 )}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 warning_pixmap}{\cf1 :} {\cf4 EV_PIXMAP}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Pixmap symbolizing a warning.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 create} {\cf1 \{}{\b\cf6 attached} {\cf4 EV_PIXMAP}{\cf1 \}}{\b\cf1 .}{\cf5 make_with_pixel_buffer}{\cf1  }{\cf1 (}{\cf5 pixmap_from_stock_id}{\cf1  }{\cf1 (}{\b\cf6 create} {\cf1 \{}{\cf4 EV_GTK_C_STRING}{\cf1 \}}{\b\cf1 .}{\cf5 set_with_eiffel_string}{\cf1  }{\cf1 (}"gtk-dialog-warning"{\cf1 )}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 question_pixmap}{\cf1 :} {\cf4 EV_PIXMAP}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Pixmap symbolizing a question.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 create} {\cf1 \{}{\b\cf6 attached} {\cf4 EV_PIXMAP}{\cf1 \}}{\b\cf1 .}{\cf5 make_with_pixel_buffer}{\cf1  }{\cf1 (}{\cf5 pixmap_from_stock_id}{\cf1  }{\cf1 (}{\b\cf6 create} {\cf1 \{}{\cf4 EV_GTK_C_STRING}{\cf1 \}}{\b\cf1 .}{\cf5 set_with_eiffel_string}{\cf1  }{\cf1 (}"gtk-dialog-question"{\cf1 )}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 collate_pixmap}{\cf1 :} {\cf4 EV_PIXMAP}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Pixmap symbolizing collated printing.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 pixmap_imp}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_PIXMAP_IMP}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\cf5 pixmap_imp} {\cf1 ?=} {\b\cf6 Result}{\b\cf1 .}{\cf5 implementation}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 pixmap_imp} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 pixmap_imp}{\b\cf1 .}{\cf5 set_from_xpm_data}{\cf1  }{\cf1 (}{\cf5 collate_pixmap_xpm}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 no_collate_pixmap}{\cf1 :} {\cf4 EV_PIXMAP}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Pixmap symbolizing non collated printing.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 pixmap_imp}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_PIXMAP_IMP}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\cf5 pixmap_imp} {\cf1 ?=} {\b\cf6 Result}{\b\cf1 .}{\cf5 implementation}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 pixmap_imp} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 pixmap_imp}{\b\cf1 .}{\cf5 set_from_xpm_data}{\cf1  }{\cf1 (}{\cf5 no_collate_pixmap_xpm}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 landscape_pixmap}{\cf1 :} {\cf4 EV_PIXMAP}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Pixmap symbolizing landscape printing.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 pixmap_imp}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_PIXMAP_IMP}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\cf5 pixmap_imp} {\cf1 ?=} {\b\cf6 Result}{\b\cf1 .}{\cf5 implementation}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 pixmap_imp} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 pixmap_imp}{\b\cf1 .}{\cf5 set_from_xpm_data}{\cf1  }{\cf1 (}{\cf5 landscape_pixmap_xpm}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 portrait_pixmap}{\cf1 :} {\cf4 EV_PIXMAP}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Pixmap symbolizing portrait printing.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 pixmap_imp}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_PIXMAP_IMP}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\cf5 pixmap_imp} {\cf1 ?=} {\b\cf6 Result}{\b\cf1 .}{\cf5 implementation}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 pixmap_imp} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 pixmap_imp}{\b\cf1 .}{\cf5 set_from_xpm_data}{\cf1  }{\cf1 (}{\cf5 portrait_pixmap_xpm}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 default_window_icon}{\cf1 :} {\cf4 EV_PIXMAP}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Pixmap used as default icon for new windows.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 pixmap_imp}{\cf1 :} {\cf4 EV_PIXMAP_I}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\cf5 pixmap_imp} {\cf1 :=} {\b\cf6 Result}{\b\cf1 .}{\cf5 implementation}{\line}
+{\tab}{\tab}{\tab}{\cf5 pixmap_imp}{\b\cf1 .}{\cf5 set_with_default}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 pixmap_from_stock_id} {\cf1 (}{\cf5 a_stock_id}{\cf1 :} {\cf4 EV_GTK_C_STRING}{\cf1 )}{\cf1 :} {\cf4 EV_PIXEL_BUFFER}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Retrieve pixmap from gtk stock id}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_cs}{\cf1 :} {\cf4 EV_GTK_C_STRING}{\line}
+{\tab}{\tab}{\tab}{\cf5 pixbuf_imp}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_PIXEL_BUFFER_IMP}{\line}
+{\tab}{\tab}{\tab}{\cf5 retried}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 retried} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 a_cs} {\cf1 :=} {\cf5 a_stock_id}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 pixbuf_imp} {\cf1 ?=} {\b\cf6 Result}{\b\cf1 .}{\cf5 implementation}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 pixbuf_imp} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 pixbuf_imp}{\b\cf1 .}{\cf5 set_from_stock_id}{\cf1  }{\cf1 (}{\cf5 a_cs}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 rescue}{\line}
+{\tab}{\tab}{\tab}{\cf5 retried} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 retry}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_ANY_HANDLER}{\cf1 ,} {\cf4 EV_ANY_I}{\cf1 \}} {\cf3 --}{\cf3  Externals}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 information_pixmap_xpm}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C | %"ev_c_util.h%""{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"information_pixmap_xpm"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 error_pixmap_xpm}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C | %"ev_c_util.h%""{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"error_pixmap_xpm"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 warning_pixmap_xpm}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C | %"ev_c_util.h%""{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"warning_pixmap_xpm"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 question_pixmap_xpm}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C | %"ev_c_util.h%""{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"question_pixmap_xpm"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 collate_pixmap_xpm}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C | %"ev_c_util.h%""{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"collate_pixmap_xpm"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 no_collate_pixmap_xpm}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C | %"ev_c_util.h%""{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"no_collate_pixmap_xpm"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 landscape_pixmap_xpm}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C | %"ev_c_util.h%""{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"landscape_pixmap_xpm"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 portrait_pixmap_xpm}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C | %"ev_c_util.h%""{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"portrait_pixmap_xpm"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 busy_cursor_xpm}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C | %"ev_c_util.h%""{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"busy_cursor_xpm"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 crosshair_cursor_xpm}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C | %"ev_c_util.h%""{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"crosshair_cursor_xpm"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 help_cursor_xpm}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C | %"ev_c_util.h%""{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"help_cursor_xpm"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 ibeam_cursor_xpm}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C | %"ev_c_util.h%""{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"ibeam_cursor_xpm"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 no_cursor_xpm}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C | %"ev_c_util.h%""{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"no_cursor_xpm"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 sizeall_cursor_xpm}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C | %"ev_c_util.h%""{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"sizeall_cursor_xpm"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 sizenesw_cursor_xpm}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C | %"ev_c_util.h%""{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"sizenesw_cursor_xpm"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 sizens_cursor_xpm}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C | %"ev_c_util.h%""{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"sizens_cursor_xpm"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 sizenwse_cursor_xpm}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C | %"ev_c_util.h%""{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"sizenwse_cursor_xpm"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 sizewe_cursor_xpm}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C | %"ev_c_util.h%""{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"sizewe_cursor_xpm"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 standard_cursor_xpm}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C | %"ev_c_util.h%""{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"standard_cursor_xpm"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 uparrow_cursor_xpm}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C | %"ev_c_util.h%""{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"uparrow_cursor_xpm"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 wait_cursor_xpm}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C | %"ev_c_util.h%""{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"wait_cursor_xpm"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 note}{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 1984-2013, Eiffel Software and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"{\line}
+{\tab}{\cf1 source}{\cf1 :} "[{\line}
+{\tab}{\tab}Eiffel Software{\line}
+{\tab}{\tab}5949 Hollister Ave., Goleta, CA 93117 USA{\line}
+{\tab}{\tab}Telephone 805-685-1006, Fax 805-685-6869{\line}
+{\tab}{\tab}Website http://www.eiffel.com{\line}
+{\tab}{\tab}Customer support http://support.eiffel.com{\line}
+{\tab}]"{\line}
+{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 EV_STOCK_PIXMAPS_IMP}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

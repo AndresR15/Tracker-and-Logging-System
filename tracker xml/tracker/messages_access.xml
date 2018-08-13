@@ -1,0 +1,57 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Summary description for </string><symbol>{</symbol><class><location>../tracker/messages_access.xml</location>MESSAGES_ACCESS</class><symbol>}</symbol><string>.&quot;</string>
+	<indexing_tag>author</indexing_tag><symbol>:</symbol> <string>&quot;Andres Rojas and Victor Vavan&quot;</string>
+
+<keyword>expanded</keyword> <keyword>class</keyword> 
+	<class><location>../tracker/messages_access.xml</location>MESSAGES_ACCESS</class>
+
+<keyword>create</keyword> 
+	<feature><include>False</include>default_create</feature>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Constant Messages</comment>
+
+	<anchor>f_ok</anchor><feature><location>../tracker/messages_access.xml#f_ok</location>Ok</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class> <symbol>=</symbol> &quot;ok&quot;
+
+	<anchor>f_in_use</anchor><feature><location>../tracker/messages_access.xml#f_in_use</location>In_use</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class> <symbol>=</symbol> &quot;e1: current tracker is in use&quot;
+
+	<anchor>f_non_neg_phase_rad</anchor><feature><location>../tracker/messages_access.xml#f_non_neg_phase_rad</location>Non_neg_phase_rad</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class> <symbol>=</symbol> &quot;e2: max phase radiation must be non-negative value&quot;
+
+	<anchor>f_non_neg_container_rad</anchor><feature><location>../tracker/messages_access.xml#f_non_neg_container_rad</location>Non_neg_container_rad</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class> <symbol>=</symbol> &quot;e3: max container radiation must be non-negative value&quot;
+
+	<anchor>f_container_lt_phase</anchor><feature><location>../tracker/messages_access.xml#f_container_lt_phase</location>Container_lt_phase</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class> <symbol>=</symbol> &quot;e4: max container must not be more than max phase radiation&quot;
+
+	<anchor>f_invalid_name_id</anchor><feature><location>../tracker/messages_access.xml#f_invalid_name_id</location>Invalid_name_id</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class> <symbol>=</symbol> &quot;e5: identifiers/names must start with A-Z, a-z or 0..9&quot;
+
+	<anchor>f_phase_id_in_use</anchor><feature><location>../tracker/messages_access.xml#f_phase_id_in_use</location>Phase_id_in_use</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class> <symbol>=</symbol> &quot;e6: phase identifier already exists&quot;
+
+	<anchor>f_phase_cap_invalid</anchor><feature><location>../tracker/messages_access.xml#f_phase_cap_invalid</location>Phase_cap_invalid</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class> <symbol>=</symbol> &quot;e7: phase capacity must be a positive integer&quot;
+
+	<anchor>f_material_missing</anchor><feature><location>../tracker/messages_access.xml#f_material_missing</location>Material_missing</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class> <symbol>=</symbol> &quot;e8: there must be at least one expected material for this phase&quot;
+
+	<anchor>f_phase_id_non_existent</anchor><feature><location>../tracker/messages_access.xml#f_phase_id_non_existent</location>Phase_id_non_existent</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class> <symbol>=</symbol> &quot;e9: phase identifier not in the system&quot;
+
+	<anchor>f_cont_id_in_tracker</anchor><feature><location>../tracker/messages_access.xml#f_cont_id_in_tracker</location>Cont_id_in_tracker</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class> <symbol>=</symbol> &quot;e10: this container identifier already in tracker&quot;
+
+	<anchor>f_cont_exceeds_cap</anchor><feature><location>../tracker/messages_access.xml#f_cont_exceeds_cap</location>Cont_exceeds_cap</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class> <symbol>=</symbol> &quot;e11: this container will exceed phase capacity&quot;
+
+	<anchor>f_cont_exceeds_rad</anchor><feature><location>../tracker/messages_access.xml#f_cont_exceeds_rad</location>Cont_exceeds_rad</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class> <symbol>=</symbol> &quot;e12: this container will exceed phase safe radiation&quot;
+
+	<anchor>f_material_unexpected</anchor><feature><location>../tracker/messages_access.xml#f_material_unexpected</location>Material_unexpected</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class> <symbol>=</symbol> &quot;e13: phase does not expect this container material&quot;
+
+	<anchor>f_cont_exceeds_rad_cap</anchor><feature><location>../tracker/messages_access.xml#f_cont_exceeds_rad_cap</location>Cont_exceeds_rad_cap</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class> <symbol>=</symbol> &quot;e14: container radiation capacity exceeded&quot;
+
+	<anchor>f_cont_id_not_in_tracker</anchor><feature><location>../tracker/messages_access.xml#f_cont_id_not_in_tracker</location>Cont_id_not_in_tracker</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class> <symbol>=</symbol> &quot;e15: this container identifier not in tracker&quot;
+
+	<anchor>f_diff_phase_id</anchor><feature><location>../tracker/messages_access.xml#f_diff_phase_id</location>Diff_phase_id</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class> <symbol>=</symbol> &quot;e16: source and target phase identifier must be different&quot;
+
+	<anchor>f_cont_id_not_in_source</anchor><feature><location>../tracker/messages_access.xml#f_cont_id_not_in_source</location>Cont_id_not_in_source</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class> <symbol>=</symbol> &quot;e17: this container identifier is not in the source phase&quot;
+
+	<anchor>f_cont_rad_non_negative</anchor><feature><location>../tracker/messages_access.xml#f_cont_rad_non_negative</location>Cont_rad_non_negative</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class> <symbol>=</symbol> &quot;e18: this container radiation must not be negative&quot;
+
+	<anchor>f_no_undo</anchor><feature><location>../tracker/messages_access.xml#f_no_undo</location>No_undo</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class> <symbol>=</symbol> &quot;e19: there is no more to undo&quot;
+
+	<anchor>f_no_redo</anchor><feature><location>../tracker/messages_access.xml#f_no_redo</location>No_redo</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class> <symbol>=</symbol> &quot;e20: there is no more to redo&quot;
+	
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../tracker/messages_access.xml</location>MESSAGES_ACCESS</class></system>
+

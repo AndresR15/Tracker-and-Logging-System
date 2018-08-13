@@ -1,0 +1,226 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "Eiffel Vision gauge. GTK+ implementation."{\line}
+{\tab}{\cf1 legal}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 status}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2017-03-27 13:31:29 -0700 (Mon, 27 Mar 2017) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 100058 $"{\line}
+{\line}
+{\b\cf6 deferred} {\b\cf6 class} {\line}
+{\tab}{\cf4 EV_GAUGE_IMP}{\line}
+{\line}
+{\b\cf6 inherit}{\line}
+{\tab}{\cf4 EV_GAUGE_I}{\line}
+{\tab}{\tab}{\b\cf6 redefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 interface}{\line}
+{\tab}{\tab}{\b\cf6 end}{\line}
+{\line}
+{\tab}{\cf4 EV_PRIMITIVE_IMP}{\line}
+{\tab}{\tab}{\b\cf6 redefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 interface}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 make}{\line}
+{\tab}{\tab}{\b\cf6 end}{\line}
+{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Initialization}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 old_make} {\cf1 (}{\cf5 an_interface}{\cf1 :} {\b\cf6 attached} {\b\cf6 like} {\cf5 interface}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create the horizontal scroll bar.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 assign_interface}{\cf1  }{\cf1 (}{\cf5 an_interface}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Creation routine and initialization for }{\cf5 Current}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf1 Precursor} {\cf1 \{}{\cf4 EV_PRIMITIVE_IMP}{\cf1 \}}{\line}
+{\tab}{\tab}{\tab}{\cf5 ev_gauge_imp_initialize}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_widget_set_redraw_on_allocate} {\cf1 (}{\cf5 c_object}{\cf1 ,} {\b\cf6 True}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 ev_gauge_imp_initialize}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Initialize without calling precursor.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 value_range}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}0{\cf1 ,} 100{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 value_range}{\b\cf1 .}{\cf5 change_actions}{\b\cf1 .}{\cf5 extend}{\cf1  }{\cf1 (}{\b\cf6 agent} {\cf5 set_range}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 real_signal_connect}{\cf1  }{\cf1 (}{\cf5 adjustment}{\cf1 ,} {\b\cf6 once} "value-changed"{\cf1 ,} {\b\cf6 agent} {\cf5 App_implementation}{\b\cf1 .}{\cf5 gtk_marshal}{\b\cf1 .}{\cf5 on_gauge_value_changed_intermediary}{\cf1  }{\cf1 (}{\cf5 c_object}{\cf1 )}{\cf1 ,} {\b\cf6 Void}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_range}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 value}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Current value of the gauge.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_adjustment_struct_value} {\cf1 (}{\cf5 adjustment}{\cf1 )}{\b\cf1 .}{\cf5 rounded}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 step}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Value by which }{\cf5 value}{\cf3  is increased after }{\cf5 step_forward}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_adjustment_struct_step_increment} {\cf1 (}{\cf5 adjustment}{\cf1 )}{\b\cf1 .}{\cf5 rounded}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 leap}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Value by which }{\cf5 value}{\cf3  is increased after }{\cf5 leap_forward}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_adjustment_struct_page_increment} {\cf1 (}{\cf5 adjustment}{\cf1 )}{\b\cf1 .}{\cf5 rounded}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 page_size}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Size of slider.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_adjustment_struct_page_size} {\cf1 (}{\cf5 adjustment}{\cf1 )}{\b\cf1 .}{\cf5 rounded}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status setting}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 step_forward}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Increment }{\cf5 value}{\cf3  by }{\cf5 step}{\cf3  if possible.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_value}{\cf1  }{\cf1 (}{\cf5 value_range}{\b\cf1 .}{\cf5 upper}{\b\cf1 .}{\cf5 min}{\cf1  }{\cf1 (}{\cf5 value} {\cf1 +} {\cf5 step}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 step_backward}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Decrement }{\cf5 value}{\cf3  by }{\cf5 step}{\cf3  if possible.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_value}{\cf1  }{\cf1 (}{\cf5 value_range}{\b\cf1 .}{\cf5 lower}{\b\cf1 .}{\cf5 max}{\cf1  }{\cf1 (}{\cf5 value} {\cf1 -} {\cf5 step}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 leap_forward}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Increment }{\cf5 value}{\cf3  by }{\cf5 leap}{\cf3  if possible.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_value}{\cf1  }{\cf1 (}{\cf5 value_range}{\b\cf1 .}{\cf5 upper}{\b\cf1 .}{\cf5 min}{\cf1  }{\cf1 (}{\cf5 value} {\cf1 +} {\cf5 leap}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 leap_backward}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Decrement }{\cf5 value}{\cf3  by }{\cf5 leap}{\cf3  if possible.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_value}{\cf1  }{\cf1 (}{\cf5 value_range}{\b\cf1 .}{\cf5 lower}{\b\cf1 .}{\cf5 max}{\cf1  }{\cf1 (}{\cf5 value} {\cf1 -} {\cf5 leap}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Element change}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_value} {\cf1 (}{\cf5 a_value}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 value}{\cf3  to }{\cf5 a_value}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 internal_set_value}{\cf1  }{\cf1 (}{\cf5 a_value}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure then}{\line}
+{\tab}{\tab}{\tab}{\cf1 step_same}{\cf1 :} {\cf5 step} {\cf1 =} {\b\cf6 old} {\cf5 step}{\line}
+{\tab}{\tab}{\tab}{\cf1 leap_same}{\cf1 :} {\cf5 leap} {\cf1 =} {\b\cf6 old} {\cf5 leap}{\line}
+{\tab}{\tab}{\tab}{\cf1 range_same}{\cf1 :} {\cf5 value_range}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 value_range}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_step} {\cf1 (}{\cf5 a_step}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 step}{\cf3  to }{\cf5 a_step}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 step} {\cf1 /=} {\cf5 a_step} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 set_gtk_adjustment_struct_step_increment} {\cf1 (}{\cf5 adjustment}{\cf1 ,} {\cf5 a_step}{\b\cf1 .}{\cf5 to_real}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_adjustment_changed} {\cf1 (}{\cf5 adjustment}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure then}{\line}
+{\tab}{\tab}{\tab}{\cf1 value_same}{\cf1 :} {\cf5 value} {\cf1 =} {\b\cf6 old} {\cf5 value}{\line}
+{\tab}{\tab}{\tab}{\cf1 leap_same}{\cf1 :} {\cf5 leap} {\cf1 =} {\b\cf6 old} {\cf5 leap}{\line}
+{\tab}{\tab}{\tab}{\cf1 range_same}{\cf1 :} {\cf5 value_range}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 value_range}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_leap} {\cf1 (}{\cf5 a_leap}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 leap}{\cf3  to }{\cf5 a_leap}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 leap} {\cf1 /=} {\cf5 a_leap} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 set_gtk_adjustment_struct_upper} {\cf1 (}{\cf5 adjustment}{\cf1 ,} {\cf5 value_range}{\b\cf1 .}{\cf5 upper}{\b\cf1 .}{\cf5 to_real}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 set_gtk_adjustment_struct_page_increment} {\cf1 (}{\cf5 adjustment}{\cf1 ,} {\cf5 a_leap}{\b\cf1 .}{\cf5 to_real}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_adjustment_changed} {\cf1 (}{\cf5 adjustment}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_range}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Update widget range from }{\cf5 value_range}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 temp_value}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 temp_value} {\cf1 :=} {\cf5 value}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 temp_value} {\cf1 >} {\cf5 value_range}{\b\cf1 .}{\cf5 upper} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 temp_value} {\cf1 :=} {\cf5 value_range}{\b\cf1 .}{\cf5 upper}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 temp_value} {\cf1 <} {\cf5 value_range}{\b\cf1 .}{\cf5 lower} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 temp_value} {\cf1 :=} {\cf5 value_range}{\b\cf1 .}{\cf5 lower}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 set_gtk_adjustment_struct_lower} {\cf1 (}{\cf5 adjustment}{\cf1 ,} {\cf5 value_range}{\b\cf1 .}{\cf5 lower}{\b\cf1 .}{\cf5 to_real}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 internal_set_upper}{\line}
+{\tab}{\tab}{\tab}{\cf5 internal_set_value}{\cf1  }{\cf1 (}{\cf5 temp_value}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_adjustment_changed} {\cf1 (}{\cf5 adjustment}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_ANY}{\cf1 ,} {\cf4 EV_ANY_I}{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 interface}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_GAUGE}{\line}
+{\tab}{\tab}{\b\cf6 note}{\line}
+{\tab}{\tab}{\tab}option: stable{\line}
+{\tab}{\tab}{\b\cf6 attribute}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 internal_set_upper}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set the upper value of the adjustment struct}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 set_gtk_adjustment_struct_upper} {\cf1 (}{\cf5 adjustment}{\cf1 ,} {\cf5 value_range}{\b\cf1 .}{\cf5 upper}{\b\cf1 .}{\cf5 to_real}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 adjustment}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Pointer to GtkAdjustment of gauge.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 adjustment_internal} {\cf1 =} {\cf5 default_pointer} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 adjustment_internal} {\cf1 :=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_adjustment_new} {\cf1 (}{\cf1 \{}{\cf4 REAL_32}{\cf1 \}} 0.0{\cf1 ,} {\cf1 \{}{\cf4 REAL_32}{\cf1 \}} 0.0{\cf1 ,} {\cf1 \{}{\cf4 REAL_32}{\cf1 \}} 100.0{\cf1 ,} {\cf1 \{}{\cf4 REAL_32}{\cf1 \}} 1.0{\cf1 ,} {\cf1 \{}{\cf4 REAL_32}{\cf1 \}} 10.0{\cf1 ,} {\cf1 \{}{\cf4 REAL_32}{\cf1 \}} 0.0{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 adjustment_internal}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 adjustment_set}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\cf5 default_pointer}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 adjustment_internal}{\cf1 :} {\cf4 POINTER}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Once per object store for }{\cf5 adjustment}{\cf3 .}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 old_value}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Value of }{\cf5 value}{\cf3  when last "value-changed" signal occurred.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 internal_set_value} {\cf1 (}{\cf5 a_value}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 value}{\cf3  to }{\cf5 a_value}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 value} {\cf1 /=} {\cf5 a_value} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_adjustment_set_value} {\cf1 (}{\cf5 adjustment}{\cf1 ,} {\cf5 a_value}{\b\cf1 .}{\cf5 to_real}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 is_displayed} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 refresh_now}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_INTERMEDIARY_ROUTINES}{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 value_changed_handler}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Called when }{\cf5 value}{\cf3  changes.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 change_actions_internal} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 change_actions_internal}{\b\cf1 .}{\cf5 call}{\cf1  }{\cf1 (}{\cf1 [}{\cf5 value}{\cf1 ]}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 note}{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 1984-2017, Eiffel Software and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"{\line}
+{\tab}{\cf1 source}{\cf1 :} "[{\line}
+{\tab}{\tab}Eiffel Software{\line}
+{\tab}{\tab}5949 Hollister Ave., Goleta, CA 93117 USA{\line}
+{\tab}{\tab}Telephone 805-685-1006, Fax 805-685-6869{\line}
+{\tab}{\tab}Website http://www.eiffel.com{\line}
+{\tab}{\tab}Customer support http://support.eiffel.com{\line}
+{\tab}]"{\line}
+{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 EV_GAUGE_IMP}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

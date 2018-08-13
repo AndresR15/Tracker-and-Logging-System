@@ -1,0 +1,114 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;A default business model.&quot;</string>
+	<indexing_tag>author</indexing_tag><symbol>:</symbol> <string>&quot;Andres Rojas and Victor Vavan&quot;</string>
+
+<keyword>class</keyword> <keyword>interface</keyword>
+	<class><location>../tracker/tracker_short.xml</location>TRACKER</class>
+
+<keyword>create</keyword> <symbol>{</symbol><class><location>../tracker/tracker_access_short.xml</location>TRACKER_ACCESS</class><symbol>}</symbol>
+	<feature><location>../tracker/tracker_short.xml#f_make</location>make</feature>
+
+<keyword>feature</keyword> <comment>--</comment><comment> model operations</comment>
+
+	<anchor>f_new_phase</anchor><feature><location>../tracker/tracker_short.xml#f_new_phase</location>new_phase</feature> <symbol>(</symbol><local>pid</local><symbol>:</symbol> <class><include>False</include>STRING_8</class><symbol>;</symbol> <local>phase_name</local><symbol>:</symbol> <class><include>False</include>STRING_8</class><symbol>;</symbol> <local>capacity</local><symbol>:</symbol> <class><include>False</include>INTEGER_64</class><symbol>;</symbol> <local>expected_materials</local><symbol>:</symbol> <class><include>False</include>ARRAY</class> <symbol>[</symbol><class><include>False</include>INTEGER_64</class><symbol>]</symbol><symbol>)</symbol>
+		<keyword>require</keyword>
+			<tag>valid_pid</tag><symbol>:</symbol> <feature><location>../tracker/tracker_short.xml#f_valid_string</location>valid_string</feature><symbol> </symbol><symbol>(</symbol><local>pid</local><symbol>)</symbol>
+			<tag>valid_phase_name</tag><symbol>:</symbol> <feature><location>../tracker/tracker_short.xml#f_valid_string</location>valid_string</feature><symbol> </symbol><symbol>(</symbol><local>phase_name</local><symbol>)</symbol>
+			<tag>positive_capacity</tag><symbol>:</symbol> <local>capacity</local><dot>.</dot><feature><include>False</include>to_double</feature> <symbol>&gt;</symbol> <number>0.0</number>
+			<tag>expected_materials_non_empty</tag><symbol>:</symbol> <local>expected_materials</local><dot>.</dot><feature><include>False</include>count</feature> <symbol>&gt;</symbol> <number>0</number>
+
+	<anchor>f_new_tracker</anchor><feature><location>../tracker/tracker_short.xml#f_new_tracker</location>new_tracker</feature> <symbol>(</symbol><local>max_p_rad</local><symbol>,</symbol> <local>max_c_rad</local><symbol>:</symbol> <class><location>../mathmodels/value_short.xml</location>VALUE</class><symbol>)</symbol>
+		<keyword>require</keyword>
+			<tag>positive_values</tag><symbol>:</symbol> <local>max_p_rad</local><dot>.</dot><feature><location>../mathmodels/value_short.xml#f_as_double</location>as_double</feature> <symbol>&gt;=</symbol> <number>0.0</number> <keyword>and then</keyword> <local>max_c_rad</local><dot>.</dot><feature><location>../mathmodels/value_short.xml#f_as_double</location>as_double</feature> <symbol>&gt;=</symbol> <number>0.0</number>
+			<tag>tracker_not_active</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../tracker/tracker_short.xml#f_is_active</location>is_active</feature>
+
+	<anchor>f_new_container</anchor><feature><location>../tracker/tracker_short.xml#f_new_container</location>new_container</feature> <symbol>(</symbol><local>cid</local><symbol>:</symbol> <class><include>False</include>STRING_8</class><symbol>;</symbol> <local>cont_spec</local><symbol>:</symbol> <class><include>False</include>TUPLE</class> <symbol>[</symbol><local>m</local><symbol>:</symbol> <class><include>False</include>INTEGER_64</class><symbol>;</symbol> <local>rad</local><symbol>:</symbol> <class><location>../mathmodels/value_short.xml</location>VALUE</class><symbol>]</symbol><symbol>;</symbol> <local>pid</local><symbol>:</symbol> <class><include>False</include>STRING_8</class><symbol>)</symbol>
+		<keyword>require</keyword>
+			<tag>cont_not_in_use</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../tracker/tracker_short.xml#f_cid_exists</location>cid_exists</feature><symbol> </symbol><symbol>(</symbol><local>cid</local><symbol>)</symbol>
+
+	<anchor>f_remove_phase</anchor><feature><location>../tracker/tracker_short.xml#f_remove_phase</location>remove_phase</feature> <symbol>(</symbol><local>phase_id</local><symbol>:</symbol> <class><include>False</include>STRING_8</class><symbol>)</symbol>
+			<comment>--</comment><comment> removes a phase from the tracker</comment>
+			<comment>--</comment><comment>	require</comment>
+			<comment>--</comment><comment>		phase_exists: get_phases.has (phase_id)</comment>
+		<keyword>ensure</keyword>
+			<tag>phase_removed</tag><symbol>:</symbol> <keyword>not</keyword> <symbol>(</symbol><feature><location>../tracker/tracker_short.xml#f_phases</location>phases</feature><dot>.</dot><feature><include>False</include>has_key</feature><symbol> </symbol><symbol>(</symbol><local>phase_id</local><symbol>)</symbol><symbol>)</symbol>
+
+	<anchor>f_remove_container</anchor><feature><location>../tracker/tracker_short.xml#f_remove_container</location>remove_container</feature> <symbol>(</symbol><local>cid</local><symbol>:</symbol> <class><include>False</include>STRING_8</class><symbol>)</symbol>
+			<comment>--</comment><comment> removes a container from the tracker</comment>
+
+	<anchor>f_move_container</anchor><feature><location>../tracker/tracker_short.xml#f_move_container</location>move_container</feature> <symbol>(</symbol><local>cid</local><symbol>:</symbol> <class><include>False</include>STRING_8</class><symbol>;</symbol> <local>pid1</local><symbol>:</symbol> <class><include>False</include>STRING_8</class><symbol>;</symbol> <local>pid2</local><symbol>:</symbol> <class><include>False</include>STRING_8</class><symbol>)</symbol>
+			<comment>--</comment><comment> moves a container from a source phase to a target phase</comment>
+		<keyword>ensure</keyword>
+			<tag>container_exists</tag><symbol>:</symbol> <feature><location>../tracker/tracker_short.xml#f_cid_exists</location>cid_exists</feature><symbol> </symbol><symbol>(</symbol><local>cid</local><symbol>)</symbol>
+			<tag>cid_in_phase_attached</tag><symbol>:</symbol> <keyword>attached</keyword> <feature><location>../tracker/tracker_short.xml#f_get_phase_containing_cid</location>get_phase_containing_cid</feature><symbol> </symbol><symbol>(</symbol><local>cid</local><symbol>)</symbol> <keyword>as</keyword> pc
+			<tag>cont_is_in_target_phase</tag><symbol>:</symbol> <local>pc</local><dot>.</dot><feature><location>../tracker/phase_short.xml#f_get_pid</location>get_pid</feature> <symbol>~</symbol> <local>pid2</local>
+
+	<anchor>f_store_error</anchor><feature><location>../tracker/tracker_short.xml#f_store_error</location>store_error</feature> <symbol>(</symbol><local>new_msg</local><symbol>:</symbol> <class><include>False</include>STRING_8</class><symbol>)</symbol>
+			<comment>--</comment><comment> stores the state of error into history</comment>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> setters</comment>
+
+	<anchor>f_set_error</anchor><feature><location>../tracker/tracker_short.xml#f_set_error</location>set_error</feature> <symbol>(</symbol><local>init_msg</local><symbol>:</symbol> <class><include>False</include>STRING_8</class><symbol>)</symbol>
+
+	<anchor>f_set_state</anchor><feature><location>../tracker/tracker_short.xml#f_set_state</location>set_state</feature> <symbol>(</symbol><local>new_state</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> sets both the state and the cursor state to state</comment>
+
+	<anchor>f_set_cursor_state</anchor><feature><location>../tracker/tracker_short.xml#f_set_cursor_state</location>set_cursor_state</feature> <symbol>(</symbol><local>cur_state</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment>		require</comment>
+			<comment>--</comment><comment>			cursor_state_not_over: cur_state &lt;= get_state</comment>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> getter</comment>
+
+	<anchor>f_get_phases</anchor><feature><location>../tracker/tracker_short.xml#f_get_phases</location>get_phases</feature><symbol>:</symbol> <class><include>False</include>STRING_TABLE</class> <symbol>[</symbol><class><location>../tracker/phase_short.xml</location>PHASE</class><symbol>]</symbol>
+
+	<anchor>f_get_history</anchor><feature><location>../tracker/tracker_short.xml#f_get_history</location>get_history</feature><symbol>:</symbol> <class><location>../tracker/history_short.xml</location>HISTORY</class>
+
+	<anchor>f_get_state</anchor><feature><location>../tracker/tracker_short.xml#f_get_state</location>get_state</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+
+	<anchor>f_get_cursor_state</anchor><feature><location>../tracker/tracker_short.xml#f_get_cursor_state</location>get_cursor_state</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+
+	<anchor>f_get_max_cont_rad</anchor><feature><location>../tracker/tracker_short.xml#f_get_max_cont_rad</location>get_max_cont_rad</feature><symbol>:</symbol> <class><location>../mathmodels/value_short.xml</location>VALUE</class>
+
+	<anchor>f_get_max_phase_rad</anchor><feature><location>../tracker/tracker_short.xml#f_get_max_phase_rad</location>get_max_phase_rad</feature><symbol>:</symbol> <class><location>../mathmodels/value_short.xml</location>VALUE</class>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> error checks</comment>
+
+	<anchor>f_is_active</anchor><feature><location>../tracker/tracker_short.xml#f_is_active</location>is_active</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> are there any containers in the system</comment>
+
+	<anchor>f_valid_string</anchor><feature><location>../tracker/tracker_short.xml#f_valid_string</location>valid_string</feature> <symbol>(</symbol><local>s</local><symbol>:</symbol> <class><include>False</include>STRING_8</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> does the string start with A-Z, a-z or 0-9?</comment>
+
+	<anchor>f_under_capacity</anchor><feature><location>../tracker/tracker_short.xml#f_under_capacity</location>under_capacity</feature> <symbol>(</symbol><local>pid</local><symbol>:</symbol> <class><include>False</include>STRING_8</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> can the phase handle another container?</comment>
+		<keyword>require</keyword>
+				<feature><location>../tracker/tracker_short.xml#f_get_phases</location>get_phases</feature><dot>.</dot><feature><include>False</include>has</feature><symbol> </symbol><symbol>(</symbol><local>pid</local><symbol>)</symbol>
+
+	<anchor>f_cont_gt_max_phase_rad</anchor><feature><location>../tracker/tracker_short.xml#f_cont_gt_max_phase_rad</location>cont_gt_max_phase_rad</feature> <symbol>(</symbol><local>rad</local><symbol>:</symbol> <class><location>../mathmodels/value_short.xml</location>VALUE</class><symbol>;</symbol> <local>pid</local><symbol>:</symbol> <class><include>False</include>STRING_8</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> is the total container radiation greater than the maximum phase radiation?</comment>
+
+	<anchor>f_phase_expects_mat</anchor><feature><location>../tracker/tracker_short.xml#f_phase_expects_mat</location>phase_expects_mat</feature> <symbol>(</symbol><local>mat</local><symbol>:</symbol> <class><include>False</include>INTEGER_64</class><symbol>;</symbol> <local>pid</local><symbol>:</symbol> <class><include>False</include>STRING_8</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> does the phase expect this container material?</comment>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> error checks</comment>
+
+	<anchor>f_cid_exists</anchor><feature><location>../tracker/tracker_short.xml#f_cid_exists</location>cid_exists</feature> <symbol>(</symbol><local>cid</local><symbol>:</symbol> <class><include>False</include>STRING_8</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> queries</comment>
+
+	<anchor>f_get_phase_containing_cid</anchor><feature><location>../tracker/tracker_short.xml#f_get_phase_containing_cid</location>get_phase_containing_cid</feature> <symbol>(</symbol><local>cid</local><symbol>:</symbol> <class><include>False</include>STRING_8</class><symbol>)</symbol><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../tracker/phase_short.xml</location>PHASE</class>
+
+	<anchor>f_get_container</anchor><feature><location>../tracker/tracker_short.xml#f_get_container</location>get_container</feature> <symbol>(</symbol><local>cid</local><symbol>:</symbol> <class><include>False</include>STRING_8</class><symbol>)</symbol><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../tracker/phase_container_short.xml</location>PHASE_CONTAINER</class>
+
+	<anchor>f_out</anchor><feature><location>../tracker/tracker_short.xml#f_out</location>out</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+			<comment>--</comment><comment> New string containing terse printable representation</comment>
+			<comment>--</comment><comment> of current object</comment>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> misc</comment>
+
+	<anchor>f_reset</anchor><feature><location>../tracker/tracker_short.xml#f_reset</location>reset</feature>
+			<comment>--</comment><comment> Reset model state.</comment>
+	
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../tracker/tracker_short.xml</location>TRACKER</class></system>
+

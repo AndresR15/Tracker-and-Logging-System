@@ -1,0 +1,23 @@
+<system>
+<keyword>deferred</keyword> <keyword>class</keyword>
+	<class><location>../implementation_gtk/ev_gtk_widget_imp_chart.xml</location>EV_GTK_WIDGET_IMP</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>implementation_gtk</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Objects that ...&quot;</string>
+
+<keyword>Ancestors</keyword>
+	<class><location>../implementation_gtk/ev_any_imp_chart.xml</location>EV_ANY_IMP</class><char>*</char>
+
+<keyword>Queries</keyword>
+	<feature><include>False</include>id_freed</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><include>False</include>id_object</feature> <symbol>(</symbol><local>an_id</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>IDENTIFIED</class>
+	<feature><location>../implementation_gtk/ev_gtk_widget_imp.xml#f_is_displayed</location>is_displayed</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../implementation_gtk/ev_gtk_widget_imp.xml#f_is_show_requested</location>is_show_requested</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+	<feature><include>False</include>object_id</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+
+<keyword>Commands</keyword>
+	<feature><include>False</include>free_id</feature>
+
+</system>

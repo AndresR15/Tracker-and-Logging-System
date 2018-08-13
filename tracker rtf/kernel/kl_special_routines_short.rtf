@@ -1,0 +1,120 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "Routines that ought to be in class SPECIAL. A special object is a zero-based indexed sequence of values, equipped with features put, item and count."{\line}
+{\tab}{\cf1 library}{\cf1 :} "Gobo Eiffel Kernel Library"{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 2003-2015, Eric Bezault and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "MIT License"{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2016-05-06 12:15:38 -0700 (Fri, 06 May 2016) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 98678 $"{\line}
+{\line}
+{\b\cf6 class} {\b\cf6 interface}{\line}
+{\tab}{\cf4 KL_SPECIAL_ROUTINES} {\cf1 [}G{\cf1 ]}{\line}
+{\line}
+{\b\cf6 create} {\line}
+{\tab}{\cf5 default_create}{\line}
+{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Initialization}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make} {\cf1 (}{\cf5 n}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 SPECIAL} {\cf1 [}G{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create a new special object being able to contain }{\cf5 n}{\cf3  items.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 non_negative_n}{\cf1 :} {\cf5 n} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 special_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 capacity_set}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 capacity} {\cf1 =} {\cf5 n}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 make_filled} {\cf1 (}{\cf5 v}{\cf1 :} G{\cf1 ;} {\cf5 n}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 SPECIAL} {\cf1 [}G{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create a special object for }{\cf5 n}{\cf3  entries initialized with }{\cf5 v}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 non_negative_argument}{\cf1 :} {\cf5 n} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 special_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 capacity_set}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 capacity} {\cf1 =} {\cf5 n}{\line}
+{\tab}{\tab}{\tab}{\cf1 count_set}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 count} {\cf1 =} {\cf5 n}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 make_from_array} {\cf1 (}{\cf5 an_array}{\cf1 :} {\cf4 ARRAY} {\cf1 [}G{\cf1 ]}{\cf1 )}{\cf1 :} {\cf4 SPECIAL} {\cf1 [}G{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create a new special object with items from }{\cf5 an_array}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 an_array_not_void}{\cf1 :} {\cf5 an_array} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 special_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 count_set}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 count} {\cf1 =} {\cf5 an_array}{\b\cf1 .}{\cf5 count}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Conversion}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 to_special} {\cf1 (}{\cf5 an_array}{\cf1 :} {\cf4 ARRAY} {\cf1 [}G{\cf1 ]}{\cf1 )}{\cf1 :} {\cf4 SPECIAL} {\cf1 [}G{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Fixed array filled with items from }{\cf5 an_array}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  The fixed array and }{\cf5 an_array}{\cf3  may share}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  internal data and/or }{\cf5 an_array}{\cf3  may be altered.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Use }{\cf5 make_from_array}{\cf3  if this is a concern.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 an_array_not_void}{\cf1 :} {\cf5 an_array} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 special_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 count_set}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 count} {\cf1 >=} {\cf5 an_array}{\b\cf1 .}{\cf5 count}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status report}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 has} {\cf1 (}{\cf5 an_array}{\cf1 :} {\cf4 SPECIAL} {\cf1 [}G{\cf1 ]}{\cf1 ;} {\cf5 v}{\cf1 :} G{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does }{\cf5 v}{\cf3  appear in }{\cf5 an_array}{\cf3 ?}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 an_array_not_void}{\cf1 :} {\cf5 an_array} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Element change}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 force} {\cf1 (}{\cf5 a_array}{\cf1 :} {\cf4 SPECIAL} {\cf1 [}G{\cf1 ]}{\cf1 ;} {\cf5 v}{\cf1 :} G{\cf1 ;} {\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  If }{\cf5 i}{\cf3  is equal to }{\cf5 a_array.count}{\cf3  increase }{\cf5 a_array.count}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  by one and insert }{\cf5 v}{\cf3  at index }{\cf5 a_array.count}{\cf3 ,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  otherwise replace }{\cf5 i}{\cf3 -th item by }{\cf5 v}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_array_not_void}{\cf1 :} {\cf5 a_array} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 i_large_enough}{\cf1 :} {\cf5 i} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\tab}{\cf1 i_small_enough}{\cf1 :} {\cf5 i} {\cf1 <} {\cf5 a_array}{\b\cf1 .}{\cf5 capacity}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_full}{\cf1 :} {\cf5 i} {\cf1 =} {\cf5 a_array}{\b\cf1 .}{\cf5 count} {\b\cf6 implies} {\cf5 a_array}{\b\cf1 .}{\cf5 count} {\cf1 <} {\cf5 a_array}{\b\cf1 .}{\cf5 capacity}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 keep_head} {\cf1 (}{\cf5 an_array}{\cf1 :} {\cf4 SPECIAL} {\cf1 [}G{\cf1 ]}{\cf1 ;} {\cf5 n}{\cf1 :} {\cf4 INTEGER_32}{\cf1 ;} {\cf5 a_old_count}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Keep the first }{\cf5 n}{\cf3  entries of }{\cf5 an_array}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 non_negative_argument}{\cf1 :} {\cf5 n} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\tab}{\cf1 less_than_count}{\cf1 :} {\cf5 n} {\cf1 <=} {\cf5 a_old_count}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_old_count}{\cf1 :} {\cf5 a_old_count} {\cf1 <=} {\cf5 an_array}{\b\cf1 .}{\cf5 capacity}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 kept}{\cf1 :} {\cf5 an_array}{\b\cf1 .}{\cf5 same_items}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 an_array}{\b\cf1 .}{\cf5 twin}{\cf1 ,} 0{\cf1 ,} 0{\cf1 ,} {\cf5 n}{\cf1 )}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Resizing}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 aliased_resized_area} {\cf1 (}{\cf5 an_array}{\cf1 :} {\cf4 SPECIAL} {\cf1 [}G{\cf1 ]}{\cf1 ;} {\cf5 n}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 SPECIAL} {\cf1 [}G{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Try to resize }{\cf5 an_array}{\cf3  so that it can contain }{\cf5 n}{\cf3  items.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do not lose any previously entered items.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Note: the returned special object might be }{\cf5 an_array}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  or a newly created special object where items from}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 an_array}{\cf3  have been copied to.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 an_array_not_void}{\cf1 :} {\cf5 an_array} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 n_large_enough}{\cf1 :} {\cf5 n} {\cf1 >=} {\cf5 an_array}{\b\cf1 .}{\cf5 capacity}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 special_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 count_set}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 capacity} {\cf1 =} {\cf5 n}{\line}
+{\tab}{\tab}{\tab}{\cf1 preserved}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 same_items}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 an_array}{\b\cf1 .}{\cf5 twin}{\cf1 ,} 0{\cf1 ,} 0{\cf1 ,} {\cf5 n}{\b\cf1 .}{\cf5 min}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 an_array}{\b\cf1 .}{\cf5 count}{\cf1 )}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 aliased_resized_area_with_default} {\cf1 (}{\cf5 an_array}{\cf1 :} {\cf4 SPECIAL} {\cf1 [}G{\cf1 ]}{\cf1 ;} {\cf5 a_default_value}{\cf1 :} G{\cf1 ;} {\cf5 n}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 SPECIAL} {\cf1 [}G{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Try to resize }{\cf5 an_array}{\cf3  with a count of }{\cf5 n}{\cf3 , if not}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  possible a new copy. Non yet initialized entries are set to }{\cf5 a_default_value}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 an_array_not_void}{\cf1 :} {\cf5 an_array} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 n_large_enough}{\cf1 :} {\cf5 n} {\cf1 >=} {\cf5 an_array}{\b\cf1 .}{\cf5 capacity}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 special_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 new_count}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 count} {\cf1 =} {\cf5 n}{\line}
+{\tab}{\tab}{\tab}{\cf1 new_capacity}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 capacity} {\cf1 =} {\cf5 n}{\line}
+{\tab}{\tab}{\tab}{\cf1 preserved}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 same_items}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 an_array}{\b\cf1 .}{\cf5 twin}{\cf1 ,} 0{\cf1 ,} 0{\cf1 ,} {\cf5 n}{\b\cf1 .}{\cf5 min}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 an_array}{\b\cf1 .}{\cf5 count}{\cf1 )}{\cf1 )}{\line}
+}{\tab}{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 KL_SPECIAL_ROUTINES}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

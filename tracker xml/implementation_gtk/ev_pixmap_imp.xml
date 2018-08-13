@@ -1,0 +1,551 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;EiffelVision pixmap, GTK implementation.&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;drawable, primitives, figures, buffer, bitmap, picture&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2017-03-27 13:31:29 -0700 (Mon, 27 Mar 2017) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 100058 $&quot;</string>
+
+<keyword>class</keyword> 
+	<class><location>../implementation_gtk/ev_pixmap_imp.xml</location>EV_PIXMAP_IMP</class>
+
+<keyword>inherit</keyword>
+	<class><location>../implementation_interface/ev_pixmap_i.xml</location>EV_PIXMAP_I</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_interface</location>interface</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_flush</location>flush</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_save_to_named_path</location>save_to_named_path</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_init_expose_actions</location>init_expose_actions</feature>
+		<keyword>end</keyword>
+
+	<class><location>../implementation_gtk/ev_drawable_imp.xml</location>EV_DRAWABLE_IMP</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_interface</location>interface</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_old_make</location>old_make</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_width</location>width</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_height</location>height</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_destroy</location>destroy</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_drawable</location>drawable</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_corruptable_onscreen</location>Corruptable_onscreen</feature>
+		<keyword>end</keyword>
+
+	<class><location>../implementation_gtk/ev_primitive_imp.xml</location>EV_PRIMITIVE_IMP</class>
+		<keyword>undefine</keyword>
+			<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_foreground_color_internal</location>foreground_color_internal</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_background_color_internal</location>background_color_internal</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_set_foreground_color</location>set_foreground_color</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_set_background_color</location>set_background_color</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_needs_event_box</location>needs_event_box</feature>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_interface</location>interface</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_width</location>width</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_height</location>height</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_destroy</location>destroy</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_dispose</location>dispose</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_make</location>make</feature>
+		<keyword>end</keyword>
+
+<keyword>create</keyword> 
+	<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_make</location>make</feature>
+
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Initialization</comment>
+
+	<anchor>f_needs_event_box</anchor><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_needs_event_box</location>needs_event_box</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Does </comment><quoted>a_widget</quoted><comment> need an event box?</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <keyword>True</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_old_make</anchor><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_old_make</location>old_make</feature> <symbol>(</symbol><local>an_interface</local><symbol>:</symbol> <keyword>attached</keyword> <keyword>like</keyword> <feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_interface</location>interface</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Create a gtk pixmap of size (1 * 1) with no mask.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_interface/ev_any_i.xml#f_assign_interface</location>assign_interface</feature><symbol> </symbol><symbol>(</symbol><local>an_interface</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_make</anchor><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_make</location>make</feature>
+			<comment>--</comment><comment> Initialize </comment><quoted>Current</quoted>
+		<keyword>local</keyword>
+			<local>gdkpix</local><symbol>,</symbol> <local>gdkmask</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>l_app_imp</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_any_imp.xml#f_set_c_object</location>set_c_object</feature><symbol> </symbol><symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_image_new</location>gtk_image_new</feature><symbol>)</symbol>
+			<keyword><location>../implementation_gtk/ev_primitive_imp.xml#f_make</location>Precursor</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_primitive_imp.xml</location>EV_PRIMITIVE_IMP</class><symbol>}</symbol>
+			<local>l_app_imp</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature>
+			<local>gdkpix</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_pixmap_new</location>gdk_pixmap_new</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature><symbol>,</symbol> <number>1</number><symbol>,</symbol> <number>1</number><symbol>,</symbol> <local>l_app_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_best_available_color_depth</location>best_available_color_depth</feature><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_set_pixmap</location>set_pixmap</feature><symbol> </symbol><symbol>(</symbol><local>gdkpix</local><symbol>,</symbol> <local>gdkmask</local><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_gc</location>gc</feature> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_gc_new</location>gdk_gc_new</feature> <symbol>(</symbol><local>gdkpix</local><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_gc_set_foreground</location>gdk_gc_set_foreground</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_drawable_imp.xml#f_gc</location>gc</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_drawable_imp.xml#f_fg_color</location>Fg_color</feature><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_gc_set_background</location>gdk_gc_set_background</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_drawable_imp.xml#f_gc</location>gc</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_drawable_imp.xml#f_bg_color</location>Bg_color</feature><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_init_default_values</location>init_default_values</feature>
+			<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_clear_rectangle</location>clear_rectangle</feature><symbol> </symbol><symbol>(</symbol><number>0</number><symbol>,</symbol> <number>0</number><symbol>,</symbol> <number>1</number><symbol>,</symbol> <number>1</number><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_init_from_pointer_style</anchor><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_init_from_pointer_style</location>init_from_pointer_style</feature> <symbol>(</symbol><local>a_pointer_style</local><symbol>:</symbol> <class><location>../interface/ev_pointer_style.xml</location>EV_POINTER_STYLE</class><symbol>)</symbol>
+			<comment>--</comment><comment> Initialize from </comment><quoted>a_pointer_style</quoted>
+		<keyword>local</keyword>
+			<local>a_pointer_style_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_pointer_style_imp.xml</location>EV_POINTER_STYLE_IMP</class>
+			<local>l_pixbuf</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>do</keyword>
+			<local>a_pointer_style_imp</local> <symbol>?=</symbol> <local>a_pointer_style</local><dot>.</dot><feature><location>../interface/ev_pointer_style.xml#f_implementation</location>implementation</feature>
+			<keyword>check</keyword>
+					<local>a_pointer_style_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<keyword>if</keyword> <local>a_pointer_style_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_pointer_style_imp.xml#f_predefined_cursor_code</location>predefined_cursor_code</feature> <symbol>&gt;</symbol> <number>0</number> <keyword>then</keyword>
+				<keyword>inspect</keyword> <local>a_pointer_style_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_pointer_style_imp.xml#f_predefined_cursor_code</location>predefined_cursor_code</feature>
+				<keyword>when</keyword> <symbol>{</symbol><class><location>../interface/ev_pointer_style_constants.xml</location>EV_POINTER_STYLE_CONSTANTS</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_pointer_style_constants.xml#f_busy_cursor</location>busy_cursor</feature> <keyword>then</keyword>
+					<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_set_from_xpm_data</location>set_from_xpm_data</feature><symbol> </symbol><symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/ev_stock_pixmaps_imp.xml</location>EV_STOCK_PIXMAPS_IMP</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_stock_pixmaps_imp.xml#f_busy_cursor_xpm</location>busy_cursor_xpm</feature><symbol>)</symbol>
+				<keyword>when</keyword> <symbol>{</symbol><class><location>../interface/ev_pointer_style_constants.xml</location>EV_POINTER_STYLE_CONSTANTS</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_pointer_style_constants.xml#f_wait_cursor</location>wait_cursor</feature> <keyword>then</keyword>
+					<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_set_from_xpm_data</location>set_from_xpm_data</feature><symbol> </symbol><symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/ev_stock_pixmaps_imp.xml</location>EV_STOCK_PIXMAPS_IMP</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_stock_pixmaps_imp.xml#f_wait_cursor_xpm</location>wait_cursor_xpm</feature><symbol>)</symbol>
+				<keyword>when</keyword> <symbol>{</symbol><class><location>../interface/ev_pointer_style_constants.xml</location>EV_POINTER_STYLE_CONSTANTS</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_pointer_style_constants.xml#f_crosshair_cursor</location>crosshair_cursor</feature> <keyword>then</keyword>
+					<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_set_from_xpm_data</location>set_from_xpm_data</feature><symbol> </symbol><symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/ev_stock_pixmaps_imp.xml</location>EV_STOCK_PIXMAPS_IMP</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_stock_pixmaps_imp.xml#f_crosshair_cursor_xpm</location>crosshair_cursor_xpm</feature><symbol>)</symbol>
+				<keyword>when</keyword> <symbol>{</symbol><class><location>../interface/ev_pointer_style_constants.xml</location>EV_POINTER_STYLE_CONSTANTS</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_pointer_style_constants.xml#f_help_cursor</location>help_cursor</feature> <keyword>then</keyword>
+					<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_set_from_xpm_data</location>set_from_xpm_data</feature><symbol> </symbol><symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/ev_stock_pixmaps_imp.xml</location>EV_STOCK_PIXMAPS_IMP</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_stock_pixmaps_imp.xml#f_help_cursor_xpm</location>help_cursor_xpm</feature><symbol>)</symbol>
+				<keyword>when</keyword> <symbol>{</symbol><class><location>../interface/ev_pointer_style_constants.xml</location>EV_POINTER_STYLE_CONSTANTS</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_pointer_style_constants.xml#f_ibeam_cursor</location>ibeam_cursor</feature> <keyword>then</keyword>
+					<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_set_from_xpm_data</location>set_from_xpm_data</feature><symbol> </symbol><symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/ev_stock_pixmaps_imp.xml</location>EV_STOCK_PIXMAPS_IMP</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_stock_pixmaps_imp.xml#f_ibeam_cursor_xpm</location>ibeam_cursor_xpm</feature><symbol>)</symbol>
+				<keyword>when</keyword> <symbol>{</symbol><class><location>../interface/ev_pointer_style_constants.xml</location>EV_POINTER_STYLE_CONSTANTS</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_pointer_style_constants.xml#f_no_cursor</location>no_cursor</feature> <keyword>then</keyword>
+					<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_set_from_xpm_data</location>set_from_xpm_data</feature><symbol> </symbol><symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/ev_stock_pixmaps_imp.xml</location>EV_STOCK_PIXMAPS_IMP</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_stock_pixmaps_imp.xml#f_no_cursor_xpm</location>no_cursor_xpm</feature><symbol>)</symbol>
+				<keyword>when</keyword> <symbol>{</symbol><class><location>../interface/ev_pointer_style_constants.xml</location>EV_POINTER_STYLE_CONSTANTS</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_pointer_style_constants.xml#f_sizeall_cursor</location>sizeall_cursor</feature> <keyword>then</keyword>
+					<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_set_from_xpm_data</location>set_from_xpm_data</feature><symbol> </symbol><symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/ev_stock_pixmaps_imp.xml</location>EV_STOCK_PIXMAPS_IMP</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_stock_pixmaps_imp.xml#f_sizeall_cursor_xpm</location>sizeall_cursor_xpm</feature><symbol>)</symbol>
+				<keyword>when</keyword> <symbol>{</symbol><class><location>../interface/ev_pointer_style_constants.xml</location>EV_POINTER_STYLE_CONSTANTS</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_pointer_style_constants.xml#f_sizenesw_cursor</location>sizenesw_cursor</feature> <keyword>then</keyword>
+					<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_set_from_xpm_data</location>set_from_xpm_data</feature><symbol> </symbol><symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/ev_stock_pixmaps_imp.xml</location>EV_STOCK_PIXMAPS_IMP</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_stock_pixmaps_imp.xml#f_sizenesw_cursor_xpm</location>sizenesw_cursor_xpm</feature><symbol>)</symbol>
+				<keyword>when</keyword> <symbol>{</symbol><class><location>../interface/ev_pointer_style_constants.xml</location>EV_POINTER_STYLE_CONSTANTS</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_pointer_style_constants.xml#f_sizens_cursor</location>sizens_cursor</feature> <keyword>then</keyword>
+					<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_set_from_xpm_data</location>set_from_xpm_data</feature><symbol> </symbol><symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/ev_stock_pixmaps_imp.xml</location>EV_STOCK_PIXMAPS_IMP</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_stock_pixmaps_imp.xml#f_sizens_cursor_xpm</location>sizens_cursor_xpm</feature><symbol>)</symbol>
+				<keyword>when</keyword> <symbol>{</symbol><class><location>../interface/ev_pointer_style_constants.xml</location>EV_POINTER_STYLE_CONSTANTS</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_pointer_style_constants.xml#f_sizenwse_cursor</location>sizenwse_cursor</feature> <keyword>then</keyword>
+					<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_set_from_xpm_data</location>set_from_xpm_data</feature><symbol> </symbol><symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/ev_stock_pixmaps_imp.xml</location>EV_STOCK_PIXMAPS_IMP</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_stock_pixmaps_imp.xml#f_sizenwse_cursor_xpm</location>sizenwse_cursor_xpm</feature><symbol>)</symbol>
+				<keyword>when</keyword> <symbol>{</symbol><class><location>../interface/ev_pointer_style_constants.xml</location>EV_POINTER_STYLE_CONSTANTS</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_pointer_style_constants.xml#f_sizewe_cursor</location>sizewe_cursor</feature> <keyword>then</keyword>
+					<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_set_from_xpm_data</location>set_from_xpm_data</feature><symbol> </symbol><symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/ev_stock_pixmaps_imp.xml</location>EV_STOCK_PIXMAPS_IMP</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_stock_pixmaps_imp.xml#f_sizewe_cursor_xpm</location>sizewe_cursor_xpm</feature><symbol>)</symbol>
+				<keyword>when</keyword> <symbol>{</symbol><class><location>../interface/ev_pointer_style_constants.xml</location>EV_POINTER_STYLE_CONSTANTS</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_pointer_style_constants.xml#f_uparrow_cursor</location>uparrow_cursor</feature> <keyword>then</keyword>
+					<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_set_from_xpm_data</location>set_from_xpm_data</feature><symbol> </symbol><symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/ev_stock_pixmaps_imp.xml</location>EV_STOCK_PIXMAPS_IMP</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_stock_pixmaps_imp.xml#f_uparrow_cursor_xpm</location>uparrow_cursor_xpm</feature><symbol>)</symbol>
+				<keyword>when</keyword> <symbol>{</symbol><class><location>../interface/ev_pointer_style_constants.xml</location>EV_POINTER_STYLE_CONSTANTS</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_pointer_style_constants.xml#f_standard_cursor</location>standard_cursor</feature> <keyword>then</keyword>
+					<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_set_from_xpm_data</location>set_from_xpm_data</feature><symbol> </symbol><symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/ev_stock_pixmaps_imp.xml</location>EV_STOCK_PIXMAPS_IMP</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_stock_pixmaps_imp.xml#f_standard_cursor_xpm</location>standard_cursor_xpm</feature><symbol>)</symbol>
+				<keyword>else</keyword>
+					<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_set_size</location>set_size</feature><symbol> </symbol><symbol>(</symbol><local>a_pointer_style</local><dot>.</dot><feature><location>../interface/ev_pointer_style.xml#f_width</location>width</feature><symbol>,</symbol> <local>a_pointer_style</local><dot>.</dot><feature><location>../interface/ev_pointer_style.xml#f_height</location>height</feature><symbol>)</symbol>
+					<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_clear</location>clear</feature>
+				<keyword>end</keyword>
+			<keyword>else</keyword>
+				<local>l_pixbuf</local> <symbol>:=</symbol> <local>a_pointer_style_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_pointer_style_imp.xml#f_gdk_pixbuf</location>gdk_pixbuf</feature>
+				<keyword>if</keyword> <local>l_pixbuf</local> <symbol>/=</symbol> <feature><include>False</include>default_pointer</feature> <keyword>then</keyword>
+					<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_set_pixmap_from_pixbuf</location>set_pixmap_from_pixbuf</feature><symbol> </symbol><symbol>(</symbol><local>a_pointer_style_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_pointer_style_imp.xml#f_gdk_pixbuf</location>gdk_pixbuf</feature><symbol>)</symbol>
+				<keyword>else</keyword>
+					<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_set_size</location>set_size</feature><symbol> </symbol><symbol>(</symbol><local>a_pointer_style</local><dot>.</dot><feature><location>../interface/ev_pointer_style.xml#f_width</location>width</feature><symbol>,</symbol> <local>a_pointer_style</local><dot>.</dot><feature><location>../interface/ev_pointer_style.xml#f_height</location>height</feature><symbol>)</symbol>
+					<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_clear</location>clear</feature>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_init_from_pixel_buffer</anchor><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_init_from_pixel_buffer</location>init_from_pixel_buffer</feature> <symbol>(</symbol><local>a_pixel_buffer</local><symbol>:</symbol> <class><location>../interface/ev_pixel_buffer.xml</location>EV_PIXEL_BUFFER</class><symbol>)</symbol>
+			<comment>--</comment><comment> Initialize from </comment><quoted>a_pixel_buffer</quoted>
+		<keyword>local</keyword>
+			<local>l_pixel_buffer_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_pixel_buffer_imp.xml</location>EV_PIXEL_BUFFER_IMP</class>
+		<keyword>do</keyword>
+			<local>l_pixel_buffer_imp</local> <symbol>?=</symbol> <local>a_pixel_buffer</local><dot>.</dot><feature><location>../interface/ev_pixel_buffer.xml#f_implementation</location>implementation</feature>
+			<keyword>check</keyword>
+					<local>l_pixel_buffer_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_set_pixmap_from_pixbuf</location>set_pixmap_from_pixbuf</feature><symbol> </symbol><symbol>(</symbol><local>l_pixel_buffer_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_pixel_buffer_imp.xml#f_gdk_pixbuf</location>gdk_pixbuf</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Drawing operations</comment>
+
+	<anchor>f_redraw</anchor><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_redraw</location>redraw</feature>
+			<comment>--</comment><comment> Force </comment><quoted>Current</quoted><comment> to redraw itself.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_update_if_needed</location>update_if_needed</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_flush</anchor><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_flush</location>flush</feature>
+			<comment>--</comment><comment> Ensure that the appearance of </comment><quoted>Current</quoted><comment> is updated on screen</comment>
+			<comment>--</comment><comment> immediately. Any changes that have not yet been reflected will</comment>
+			<comment>--</comment><comment> become visible.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_widget_imp.xml#f_refresh_now</location>refresh_now</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_update_if_needed</anchor><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_update_if_needed</location>update_if_needed</feature>
+			<comment>--</comment><comment> Update </comment><quoted>Current</quoted><comment> if needed.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_gtk_widget_imp.xml#f_is_displayed</location>is_displayed</feature> <keyword>then</keyword>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_widget_queue_draw</location>gtk_widget_queue_draw</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_visual_widget</location>visual_widget</feature><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Measurement</comment>
+
+	<anchor>f_width</anchor><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_width</location>width</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Width of the pixmap in pixels.</comment>
+		<keyword>local</keyword>
+			<local>a_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+		<keyword>do</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gdk_drawable_get_size</location>gdk_drawable_get_size</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_drawable</location>drawable</feature><symbol>,</symbol> <symbol>$</symbol><keyword>Result</keyword><symbol>,</symbol> <symbol>$</symbol><local>a_y</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_height</anchor><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_height</location>height</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> height of the pixmap.</comment>
+		<keyword>local</keyword>
+			<local>a_x</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+		<keyword>do</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gdk_drawable_get_size</location>gdk_drawable_get_size</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_drawable</location>drawable</feature><symbol>,</symbol> <symbol>$</symbol><local>a_x</local><symbol>,</symbol> <symbol>$</symbol><keyword>Result</keyword><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Element change</comment>
+
+	<anchor>f_read_from_named_path</anchor><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_read_from_named_path</location>read_from_named_path</feature> <symbol>(</symbol><local>file_path</local><symbol>:</symbol> <class><include>False</include>PATH</class><symbol>)</symbol>
+			<comment>--</comment><comment> Attempt to load pixmap data from a file specified by </comment><quoted>file_name</quoted><comment>.</comment>
+		<keyword>local</keyword>
+			<local>a_cs</local><symbol>:</symbol> <class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class>
+			<local>g_error</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>filepixbuf</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>do</keyword>
+			<keyword>create</keyword> <local>a_cs</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_make_from_path</location>make_from_path</feature><symbol> </symbol><symbol>(</symbol><local>file_path</local><symbol>)</symbol>
+			<local>filepixbuf</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_pixbuf_new_from_file</location>gdk_pixbuf_new_from_file</feature> <symbol>(</symbol><local>a_cs</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_item</location>item</feature><symbol>,</symbol> <symbol>$</symbol><local>g_error</local><symbol>)</symbol>
+			<keyword>if</keyword> <local>g_error</local> <symbol>/=</symbol> <feature><include>False</include>default_pointer</feature> <keyword>then</keyword>
+				<symbol>(</symbol><keyword>create</keyword><symbol> </symbol><symbol>{</symbol><class><include>False</include>EXCEPTIONS</class><symbol>}</symbol><symbol>)</symbol><dot>.</dot><feature><include>False</include>raise</feature><symbol> </symbol><symbol>(</symbol>&quot;Could not load image file.&quot;<symbol>)</symbol>
+			<keyword>else</keyword>
+				<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_set_pixmap_from_pixbuf</location>set_pixmap_from_pixbuf</feature><symbol> </symbol><symbol>(</symbol><local>filepixbuf</local><symbol>)</symbol>
+			<keyword>end</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_object_unref</location>object_unref</feature> <symbol>(</symbol><local>filepixbuf</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_set_with_default</anchor><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_set_with_default</location>set_with_default</feature>
+			<comment>--</comment><comment> Initialize the pixmap with the default</comment>
+			<comment>--</comment><comment> pixmap (Vision2 logo)</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_set_from_xpm_data</location>set_from_xpm_data</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_default_pixmap_xpm</location>default_pixmap_xpm</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_stretch</anchor><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_stretch</location>stretch</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Stretch the image to fit in size </comment><quoted>a_x</quoted><comment> by </comment><quoted>a_y</quoted><comment>.</comment>
+		<keyword>local</keyword>
+			<local>a_gdkpixbuf</local><symbol>,</symbol> <local>scaled_pixbuf</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>a_scale_type</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<local>l_width</local><symbol>,</symbol> <local>l_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+		<keyword>do</keyword>
+			<local>l_width</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_width</location>width</feature>
+			<local>l_height</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_height</location>height</feature>
+			<keyword>if</keyword> <local>l_width</local> <symbol>/=</symbol> <local>a_x</local> <keyword>or else</keyword> <local>l_height</local> <symbol>/=</symbol> <local>a_y</local> <keyword>then</keyword>
+				<local>a_gdkpixbuf</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_drawable_imp.xml#f_pixbuf_from_drawable</location>pixbuf_from_drawable</feature>
+				<keyword>if</keyword> <local>l_width</local> <symbol>&lt;=</symbol> <number>16</number> <keyword>and then</keyword> <local>l_height</local> <symbol>&lt;=</symbol> <number>16</number> <keyword>then</keyword>
+					<local>a_scale_type</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gdk_interp_nearest</location>gdk_interp_nearest</feature>
+				<keyword>else</keyword>
+					<local>a_scale_type</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gdk_interp_bilinear</location>gdk_interp_bilinear</feature>
+				<keyword>end</keyword>
+				<local>scaled_pixbuf</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gdk_pixbuf_scale_simple</location>gdk_pixbuf_scale_simple</feature> <symbol>(</symbol><local>a_gdkpixbuf</local><symbol>,</symbol> <local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>a_scale_type</local><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_object_unref</location>object_unref</feature> <symbol>(</symbol><local>a_gdkpixbuf</local><symbol>)</symbol>
+				<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_set_pixmap_from_pixbuf</location>set_pixmap_from_pixbuf</feature><symbol> </symbol><symbol>(</symbol><local>scaled_pixbuf</local><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_object_unref</location>object_unref</feature> <symbol>(</symbol><local>scaled_pixbuf</local><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_set_size</anchor><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_set_size</location>set_size</feature> <symbol>(</symbol><local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set the size of the pixmap to </comment><quoted>a_width</quoted><comment> by </comment><quoted>a_height</quoted><comment>.</comment>
+		<keyword>local</keyword>
+			<local>oldpix</local><symbol>,</symbol> <local>oldmask</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>l_width</local><symbol>,</symbol> <local>l_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<local>pixgc</local><symbol>,</symbol> <local>maskgc</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>loc_default_pointer</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>do</keyword>
+			<local>l_width</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_width</location>width</feature>
+			<local>l_height</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_height</location>height</feature>
+			<keyword>if</keyword> <local>l_width</local> <symbol>/=</symbol> <local>a_width</local> <keyword>or else</keyword> <local>l_height</local> <symbol>/=</symbol> <local>a_height</local> <keyword>then</keyword>
+				<local>oldpix</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_pixmap_ref</location>gdk_pixmap_ref</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_drawable</location>drawable</feature><symbol>)</symbol>
+				<keyword>if</keyword> <feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_mask</location>mask</feature> <symbol>/=</symbol> <local>loc_default_pointer</local> <keyword>then</keyword>
+					<local>oldmask</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_pixmap_ref</location>gdk_pixmap_ref</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_mask</location>mask</feature><symbol>)</symbol>
+				<keyword>end</keyword>
+				<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_drawable</location>drawable</feature> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_pixmap_new</location>gdk_pixmap_new</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature><symbol>,</symbol> <local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>,</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_best_available_color_depth</location>best_available_color_depth</feature><symbol>)</symbol>
+				<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_clear_rectangle</location>clear_rectangle</feature><symbol> </symbol><symbol>(</symbol><number>0</number><symbol>,</symbol> <number>0</number><symbol>,</symbol> <local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>)</symbol>
+				<local>pixgc</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_gc_new</location>gdk_gc_new</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_drawable</location>drawable</feature><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_gc_set_clip_mask</location>gdk_gc_set_clip_mask</feature> <symbol>(</symbol><local>pixgc</local><symbol>,</symbol> <local>oldmask</local><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_gc_set_clip_origin</location>gdk_gc_set_clip_origin</feature> <symbol>(</symbol><local>pixgc</local><symbol>,</symbol> <number>0</number><symbol>,</symbol> <number>0</number><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gdk_draw_drawable</location>gdk_draw_drawable</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_drawable</location>drawable</feature><symbol>,</symbol> <local>pixgc</local><symbol>,</symbol> <local>oldpix</local><symbol>,</symbol> <number>0</number><symbol>,</symbol> <number>0</number><symbol>,</symbol> <number>0</number><symbol>,</symbol> <number>0</number><symbol>,</symbol> <local>l_width</local><symbol>,</symbol> <local>l_height</local><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_gc_unref</location>gdk_gc_unref</feature> <symbol>(</symbol><local>pixgc</local><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_pixmap_unref</location>gdk_pixmap_unref</feature> <symbol>(</symbol><local>oldpix</local><symbol>)</symbol>
+				<keyword>if</keyword> <local>oldmask</local> <symbol>/=</symbol> <local>loc_default_pointer</local> <keyword>then</keyword>
+					<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_mask</location>mask</feature> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_pixmap_new</location>gdk_pixmap_new</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature><symbol>,</symbol> <local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>,</symbol> <feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_monochrome_color_depth</location>Monochrome_color_depth</feature><symbol>)</symbol>
+					<local>maskgc</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_gc_new</location>gdk_gc_new</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_mask</location>mask</feature><symbol>)</symbol>
+					<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_gc_set_foreground</location>gdk_gc_set_foreground</feature> <symbol>(</symbol><local>maskgc</local><symbol>,</symbol> <feature><location>../implementation_gtk/ev_drawable_imp.xml#f_bg_color</location>Bg_color</feature><symbol>)</symbol>
+					<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_draw_rectangle</location>gdk_draw_rectangle</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_mask</location>mask</feature><symbol>,</symbol> <local>maskgc</local><symbol>,</symbol> <number>1</number><symbol>,</symbol> <number>0</number><symbol>,</symbol> <number>0</number><symbol>,</symbol> <local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>)</symbol>
+					<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gdk_draw_drawable</location>gdk_draw_drawable</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_mask</location>mask</feature><symbol>,</symbol> <local>maskgc</local><symbol>,</symbol> <local>oldmask</local><symbol>,</symbol> <number>0</number><symbol>,</symbol> <number>0</number><symbol>,</symbol> <number>0</number><symbol>,</symbol> <number>0</number><symbol>,</symbol> <local>l_width</local><symbol>,</symbol> <local>l_height</local><symbol>)</symbol>
+					<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_gc_unref</location>gdk_gc_unref</feature> <symbol>(</symbol><local>maskgc</local><symbol>)</symbol>
+					<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_pixmap_unref</location>gdk_pixmap_unref</feature> <symbol>(</symbol><local>oldmask</local><symbol>)</symbol>
+				<keyword>end</keyword>
+				<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_set_pixmap</location>set_pixmap</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_drawable</location>drawable</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_mask</location>mask</feature><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_reset_for_buffering</anchor><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_reset_for_buffering</location>reset_for_buffering</feature> <symbol>(</symbol><local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Resets the size of the pixmap without keeping original image or clearing background.</comment>
+		<keyword>local</keyword>
+			<local>gdkpix</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <local>a_width</local> <symbol>/=</symbol> <feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_width</location>width</feature> <keyword>or else</keyword> <local>a_height</local> <symbol>/=</symbol> <feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_height</location>height</feature> <keyword>then</keyword>
+				<local>gdkpix</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_pixmap_new</location>gdk_pixmap_new</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature><symbol>,</symbol> <local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>,</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_best_available_color_depth</location>best_available_color_depth</feature><symbol>)</symbol>
+				<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_set_pixmap</location>set_pixmap</feature><symbol> </symbol><symbol>(</symbol><local>gdkpix</local><symbol>,</symbol> <feature><include>False</include>default_pointer</feature><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_set_mask</anchor><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_set_mask</location>set_mask</feature> <symbol>(</symbol><local>a_mask</local><symbol>:</symbol> <class><location>../interface/ev_bitmap.xml</location>EV_BITMAP</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set the GdkBitmap used for masking </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>local</keyword>
+			<local>a_mask_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_bitmap_imp.xml</location>EV_BITMAP_IMP</class>
+		<keyword>do</keyword>
+			<local>a_mask_imp</local> <symbol>?=</symbol> <local>a_mask</local><dot>.</dot><feature><location>../interface/ev_bitmap.xml#f_implementation</location>implementation</feature>
+			<keyword>check</keyword>
+					<local>a_mask_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_copy_from_gdk_data</location>copy_from_gdk_data</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_drawable</location>drawable</feature><symbol>,</symbol> <local>a_mask_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_bitmap_imp.xml#f_drawable</location>drawable</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_width</location>width</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_height</location>height</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_raw_image_data</anchor><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_raw_image_data</location>raw_image_data</feature><symbol>:</symbol> <class><location>../interface/ev_raw_image_data.xml</location>EV_RAW_IMAGE_DATA</class>
+			<comment>--</comment><comment> RGBA representation of </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>local</keyword>
+			<local>a_gdkimage</local><symbol>,</symbol> <local>a_visual</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>a_visual_type</local><symbol>,</symbol> <local>a_pixel</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<local>a_color</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>a_color_map</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>a_width</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<local>array_offset</local><symbol>,</symbol> <local>array_size</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<local>array_area</local><symbol>:</symbol> <class><include>False</include>SPECIAL</class> <symbol>[</symbol><class><include>False</include>NATURAL_8</class><symbol>]</symbol>
+			<local>color_struct_size</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+		<keyword>do</keyword>
+			<keyword>create</keyword> <keyword>Result</keyword><dot>.</dot><feature><location>../interface/ev_raw_image_data.xml#f_make_with_alpha_zero</location>make_with_alpha_zero</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_width</location>width</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_height</location>height</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><location>../interface/ev_raw_image_data.xml#f_set_originating_pixmap</location>set_originating_pixmap</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature><symbol>)</symbol>
+			<local>a_gdkimage</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_image_get</location>gdk_image_get</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_drawable</location>drawable</feature><symbol>,</symbol> <number>0</number><symbol>,</symbol> <number>0</number><symbol>,</symbol> <feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_width</location>width</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_height</location>height</feature><symbol>)</symbol>
+			<keyword>from</keyword>
+				<local>a_width</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_width</location>width</feature> <symbol>*</symbol> <number>4</number>
+				<local>a_color_map</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gdk_screen_get_rgb_colormap</location>gdk_screen_get_rgb_colormap</feature> <symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gdk_screen_get_default</location>gdk_screen_get_default</feature><symbol>)</symbol>
+				<local>a_visual</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_colormap_get_visual</location>gdk_colormap_get_visual</feature> <symbol>(</symbol><local>a_color_map</local><symbol>)</symbol>
+				<local>a_visual_type</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_visual_struct_type</location>gdk_visual_struct_type</feature> <symbol>(</symbol><local>a_visual</local><symbol>)</symbol>
+				<local>a_color</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_c_gdk_color_struct_allocate</location>c_gdk_color_struct_allocate</feature>
+				<local>array_size</local> <symbol>:=</symbol> <local>a_width</local> <symbol>*</symbol> <feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_height</location>height</feature>
+				<local>array_area</local> <symbol>:=</symbol> <keyword>Result</keyword><dot>.</dot><feature><include>False</include>area</feature>
+				<local>color_struct_size</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_c_gdk_color_struct_size</location>c_gdk_color_struct_size</feature>
+			<keyword>until</keyword>
+				<local>array_offset</local> <symbol>=</symbol> <local>array_size</local>
+			<keyword>loop</keyword>
+				<local>a_pixel</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_image_get_pixel</location>gdk_image_get_pixel</feature> <symbol>(</symbol><local>a_gdkimage</local><symbol>,</symbol> <symbol>(</symbol><local>array_offset</local> <symbol>\\</symbol> <symbol>(</symbol><local>a_width</local><symbol>)</symbol> <symbol>//</symbol> <number>4</number><symbol>)</symbol><symbol>,</symbol> <symbol>(</symbol><symbol>(</symbol><local>array_offset</local><symbol>)</symbol> <symbol>//</symbol> <local>a_width</local><symbol>)</symbol><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gdk_colormap_query_color</location>gdk_colormap_query_color</feature> <symbol>(</symbol><local>a_color_map</local><symbol>,</symbol> <local>a_pixel</local><symbol>,</symbol> <local>a_color</local><symbol>)</symbol>
+				<local>array_area</local><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_color_struct_red</location>gdk_color_struct_red</feature> <symbol>(</symbol><local>a_color</local><symbol>)</symbol> <symbol>//</symbol> <number>256</number><symbol>)</symbol><dot>.</dot><feature><include>False</include>to_natural_8</feature><symbol>,</symbol> <local>array_offset</local><symbol>)</symbol>
+				<local>array_area</local><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_color_struct_green</location>gdk_color_struct_green</feature> <symbol>(</symbol><local>a_color</local><symbol>)</symbol> <symbol>//</symbol> <number>256</number><symbol>)</symbol><dot>.</dot><feature><include>False</include>to_natural_8</feature><symbol>,</symbol> <local>array_offset</local> <symbol>+</symbol> <number>1</number><symbol>)</symbol>
+				<local>array_area</local><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_color_struct_blue</location>gdk_color_struct_blue</feature> <symbol>(</symbol><local>a_color</local><symbol>)</symbol> <symbol>//</symbol> <number>256</number><symbol>)</symbol><dot>.</dot><feature><include>False</include>to_natural_8</feature><symbol>,</symbol> <local>array_offset</local> <symbol>+</symbol> <number>2</number><symbol>)</symbol>
+				<local>array_area</local><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><number>255</number><symbol>,</symbol> <local>array_offset</local> <symbol>+</symbol> <number>3</number><symbol>)</symbol>
+				<local>array_offset</local> <symbol>:=</symbol> <local>array_offset</local> <symbol>+</symbol> <number>4</number>
+			<keyword>end</keyword>
+			<local>a_color</local><dot>.</dot><feature><include>False</include>memory_free</feature>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_image_destroy</location>gdk_image_destroy</feature> <symbol>(</symbol><local>a_gdkimage</local><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Duplication</comment>
+
+	<anchor>f_copy_pixmap</anchor><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_copy_pixmap</location>copy_pixmap</feature> <symbol>(</symbol><local>other</local><symbol>:</symbol> <class><location>../interface/ev_pixmap.xml</location>EV_PIXMAP</class><symbol>)</symbol>
+			<comment>--</comment><comment> Update </comment><quoted>Current</quoted><comment> to have same appearance as </comment><quoted>other</quoted><comment>.</comment>
+			<comment>--</comment><comment> (So as to satisfy </comment><feature><include>False</include>is_equal</feature><comment>.)</comment>
+		<keyword>local</keyword>
+			<local>other_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_pixmap_imp.xml</location>EV_PIXMAP_IMP</class>
+		<keyword>do</keyword>
+			<local>other_imp</local> <symbol>?=</symbol> <local>other</local><dot>.</dot><feature><location>../interface/ev_pixmap.xml#f_implementation</location>implementation</feature>
+			<keyword>check</keyword>
+					<local>other_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_copy_from_gdk_data</location>copy_from_gdk_data</feature><symbol> </symbol><symbol>(</symbol><local>other_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_drawable</location>drawable</feature><symbol>,</symbol> <local>other_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_mask</location>mask</feature><symbol>,</symbol> <local>other_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_width</location>width</feature><symbol>,</symbol> <local>other_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_height</location>height</feature><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_internal_xpm_data</location>internal_xpm_data</feature> <symbol>:=</symbol> <local>other_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_internal_xpm_data</location>internal_xpm_data</feature>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>,</symbol> <class><location>../implementation_gtk/ev_gtk_dependent_application_imp.xml</location>EV_GTK_DEPENDENT_APPLICATION_IMP</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_set_pixmap_from_pixbuf</anchor><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_set_pixmap_from_pixbuf</location>set_pixmap_from_pixbuf</feature> <symbol>(</symbol><local>a_pixbuf</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>)</symbol>
+			<comment>--</comment><comment> Construct </comment><quoted>Current</quoted><comment> from GdkPixbuf </comment><quoted>a_pixbuf</quoted>
+		<keyword>local</keyword>
+			<local>a_gdkpix</local><symbol>,</symbol> <local>a_gdkmask</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>do</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_pixbuf_render_pixmap_and_mask</location>gdk_pixbuf_render_pixmap_and_mask</feature> <symbol>(</symbol><local>a_pixbuf</local><symbol>,</symbol> <symbol>$</symbol><local>a_gdkpix</local><symbol>,</symbol> <symbol>$</symbol><local>a_gdkmask</local><symbol>,</symbol> <number>127</number><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_set_pixmap</location>set_pixmap</feature><symbol> </symbol><symbol>(</symbol><local>a_gdkpix</local><symbol>,</symbol> <local>a_gdkmask</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_copy_from_gdk_data</anchor><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_copy_from_gdk_data</location>copy_from_gdk_data</feature> <symbol>(</symbol><local>a_src_pix</local><symbol>,</symbol> <local>a_src_mask</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>;</symbol> <local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Update </comment><quoted>Current</quoted><comment> to use passed gdk pixmap data.</comment>
+		<keyword>local</keyword>
+			<local>gdkpix</local><symbol>,</symbol> <local>gdkmask</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>pixgc</local><symbol>,</symbol> <local>maskgc</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>do</keyword>
+			<local>gdkpix</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_pixmap_new</location>gdk_pixmap_new</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature><symbol>,</symbol> <local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>,</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_best_available_color_depth</location>best_available_color_depth</feature><symbol>)</symbol>
+			<local>pixgc</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_gc_new</location>gdk_gc_new</feature> <symbol>(</symbol><local>gdkpix</local><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gdk_draw_drawable</location>gdk_draw_drawable</feature> <symbol>(</symbol><local>gdkpix</local><symbol>,</symbol> <local>pixgc</local><symbol>,</symbol> <local>a_src_pix</local><symbol>,</symbol> <number>0</number><symbol>,</symbol> <number>0</number><symbol>,</symbol> <number>0</number><symbol>,</symbol> <number>0</number><symbol>,</symbol> <local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_gc_unref</location>gdk_gc_unref</feature> <symbol>(</symbol><local>pixgc</local><symbol>)</symbol>
+			<keyword>if</keyword> <local>a_src_mask</local> <symbol>/=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature> <keyword>then</keyword>
+				<local>gdkmask</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_pixmap_new</location>gdk_pixmap_new</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature><symbol>,</symbol> <local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>,</symbol> <feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_monochrome_color_depth</location>Monochrome_color_depth</feature><symbol>)</symbol>
+				<local>maskgc</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_gc_new</location>gdk_gc_new</feature> <symbol>(</symbol><local>gdkmask</local><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gdk_draw_drawable</location>gdk_draw_drawable</feature> <symbol>(</symbol><local>gdkmask</local><symbol>,</symbol> <local>maskgc</local><symbol>,</symbol> <local>a_src_mask</local><symbol>,</symbol> <number>0</number><symbol>,</symbol> <number>0</number><symbol>,</symbol> <number>0</number><symbol>,</symbol> <number>0</number><symbol>,</symbol> <local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_gc_unref</location>gdk_gc_unref</feature> <symbol>(</symbol><local>maskgc</local><symbol>)</symbol>
+			<keyword>end</keyword>
+			<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_set_pixmap</location>set_pixmap</feature><symbol> </symbol><symbol>(</symbol><local>gdkpix</local><symbol>,</symbol> <local>gdkmask</local><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_drawable</anchor><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_drawable</location>drawable</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Pointer to the GdkPixmap image data.</comment>
+
+	<anchor>f_mask</anchor><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_mask</location>mask</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Pointer to the GdkBitmap used for masking.</comment>
+
+	<anchor>f_corruptable_onscreen</anchor><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_corruptable_onscreen</location>Corruptable_onscreen</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class> <symbol>=</symbol> <keyword>False</keyword>
+			<comment>--</comment><comment> Is drawable corruptable onscreen?</comment>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_gtk_dependent_application_imp.xml</location>EV_GTK_DEPENDENT_APPLICATION_IMP</class><symbol>,</symbol> <class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_internal_xpm_data</anchor><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_internal_xpm_data</location>internal_xpm_data</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Pointer to the appropriate XPM image used for the default stock cursor if any</comment>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_stock_pixmaps_imp.xml</location>EV_STOCK_PIXMAPS_IMP</class><symbol>,</symbol> <class><location>../implementation_gtk/ev_pixmapable_imp.xml</location>EV_PIXMAPABLE_IMP</class><symbol>,</symbol> <class><location>../implementation_gtk/ev_pixel_buffer_imp.xml</location>EV_PIXEL_BUFFER_IMP</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_set_pixmap</anchor><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_set_pixmap</location>set_pixmap</feature> <symbol>(</symbol><local>gdkpix</local><symbol>,</symbol> <local>gdkmask</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set the GtkPixmap using Gdk pixmap data and mask.</comment>
+		<keyword>do</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_image_set_from_pixmap</location>gtk_image_set_from_pixmap</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_visual_widget</location>visual_widget</feature><symbol>,</symbol> <local>gdkpix</local><symbol>,</symbol> <local>gdkmask</local><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_drawable</location>drawable</feature> <symbol>:=</symbol> <local>gdkpix</local>
+			<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_mask</location>mask</feature> <symbol>:=</symbol> <local>gdkmask</local>
+			<keyword>if</keyword> <local>gdkpix</local> <symbol>/=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature> <keyword>then</keyword>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_pixmap_unref</location>gdk_pixmap_unref</feature> <symbol>(</symbol><local>gdkpix</local><symbol>)</symbol>
+			<keyword>end</keyword>
+			<keyword>if</keyword> <local>gdkmask</local> <symbol>/=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature> <keyword>then</keyword>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_pixmap_unref</location>gdk_pixmap_unref</feature> <symbol>(</symbol><local>gdkmask</local><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_set_from_xpm_data</anchor><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_set_from_xpm_data</location>set_from_xpm_data</feature> <symbol>(</symbol><local>a_xpm_data</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>)</symbol>
+			<comment>--</comment><comment> Pixmap symbolizing a piece of information.</comment>
+		<keyword>require</keyword>
+			<tag>xpm_data_not_null</tag><symbol>:</symbol> <local>a_xpm_data</local> <symbol>/=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature>
+		<keyword>local</keyword>
+			<local>gdkpix</local><symbol>,</symbol> <local>gdkmask</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_internal_xpm_data</location>internal_xpm_data</feature> <symbol>:=</symbol> <local>a_xpm_data</local>
+			<local>gdkpix</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_pixmap_create_from_xpm_d</location>gdk_pixmap_create_from_xpm_d</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_default_gdk_window</location>default_gdk_window</feature><symbol>,</symbol> <symbol>$</symbol><local>gdkmask</local><dot>.</dot><feature><include>False</include>to_pointer</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature><symbol>,</symbol> <local>a_xpm_data</local><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_set_pixmap</location>set_pixmap</feature><symbol> </symbol><symbol>(</symbol><local>gdkpix</local><symbol>,</symbol> <local>gdkmask</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_set_from_stock_id</anchor><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_set_from_stock_id</location>set_from_stock_id</feature> <symbol>(</symbol><local>a_stock_id</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>)</symbol>
+			<comment>--</comment><comment> Pixmap symbolizing a piece of information</comment>
+		<keyword>require</keyword>
+			<tag>a_stock_id_not_null</tag><symbol>:</symbol> <local>a_stock_id</local> <symbol>/=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature>
+		<keyword>local</keyword>
+			<local>stock_pixbuf</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>do</keyword>
+			<local>stock_pixbuf</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_widget_render_icon</location>gtk_widget_render_icon</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>,</symbol> <local>a_stock_id</local><symbol>,</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_icon_size_dialog_enum</location>gtk_icon_size_dialog_enum</feature><symbol>,</symbol> <feature><include>False</include>default_pointer</feature><symbol>)</symbol>
+			<keyword>if</keyword> <local>stock_pixbuf</local> <symbol>/=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature> <keyword>then</keyword>
+				<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_set_pixmap_from_pixbuf</location>set_pixmap_from_pixbuf</feature><symbol> </symbol><symbol>(</symbol><local>stock_pixbuf</local><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_object_unref</location>object_unref</feature> <symbol>(</symbol><local>stock_pixbuf</local><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_intermediary_routines.xml</location>EV_INTERMEDIARY_ROUTINES</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_call_expose_actions</anchor><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_call_expose_actions</location>call_expose_actions</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Call the expose actions for the drawing area.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_interface/ev_drawable_action_sequences_i.xml#f_expose_actions_internal</location>expose_actions_internal</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<feature><location>../implementation_interface/ev_drawable_action_sequences_i.xml#f_expose_actions_internal</location>expose_actions_internal</feature><dot>.</dot><feature><location>../interface/ev_lite_action_sequence.xml#f_call</location>call</feature><symbol> </symbol><symbol>(</symbol><symbol>[</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>]</symbol><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_init_expose_actions</anchor><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_init_expose_actions</location>init_expose_actions</feature> <symbol>(</symbol><local>a_expose_actions</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../implementation_interface/ev_drawable_action_sequences_i.xml#f_expose_actions</location>expose_actions</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Initialize </comment><quoted>a_expose_actions</quoted><comment> accordingly to the current widget.</comment>
+			<comment>--</comment><comment> Attach to GTK &quot;expose-event&quot; signal.</comment>
+		<keyword>local</keyword>
+			<local>l_app_imp</local><symbol>:</symbol> <class><location>../implementation_gtk/ev_application_imp.xml</location>EV_APPLICATION_IMP</class>
+		<keyword>do</keyword>
+			<local>l_app_imp</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature>
+			<local>l_app_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_gtk_marshal</location>gtk_marshal</feature><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_callback_marshal.xml#f_signal_connect</location>signal_connect</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_visual_widget</location>visual_widget</feature><symbol>,</symbol> <keyword>create</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_set_with_eiffel_string</location>set_with_eiffel_string</feature><symbol> </symbol><symbol>(</symbol><keyword>once</keyword> &quot;expose-event&quot;<symbol>)</symbol><symbol>,</symbol> <keyword>agent</keyword> <local>l_app_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_gtk_marshal</location>gtk_marshal</feature><dot>.</dot><feature><location>../implementation_gtk/ev_intermediary_routines.xml#f_create_expose_actions_intermediary</location>create_expose_actions_intermediary</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>,</symbol> <symbol>?</symbol><symbol>,</symbol> <symbol>?</symbol><symbol>,</symbol> <symbol>?</symbol><symbol>,</symbol> <symbol>?</symbol><symbol>)</symbol><symbol>,</symbol> <local>l_app_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_gtk_marshal</location>gtk_marshal</feature><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_callback_marshal.xml#f_expose_translate_agent</location>Expose_translate_agent</feature><symbol>,</symbol> <keyword>False</keyword><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_save_to_named_path</anchor><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_save_to_named_path</location>save_to_named_path</feature> <symbol>(</symbol><local>a_format</local><symbol>:</symbol> <class><location>../interface/ev_graphical_format.xml</location>EV_GRAPHICAL_FORMAT</class><symbol>;</symbol> <local>a_file_path</local><symbol>:</symbol> <class><include>False</include>PATH</class><symbol>)</symbol>
+			<comment>--</comment><comment> Save </comment><quoted>Current</quoted><comment> in </comment><quoted>a_format</quoted><comment> to </comment><quoted>a_file_path</quoted>
+		<keyword>local</keyword>
+			<local>a_gdkpixbuf</local><symbol>,</symbol> <local>stretched_pixbuf</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>a_gerror</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>a_handle</local><symbol>,</symbol> <local>a_filetype</local><symbol>:</symbol> <class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_environment.xml#f_writeable_pixbuf_formats</location>Writeable_pixbuf_formats</feature><dot>.</dot><feature><include>False</include>has</feature><symbol> </symbol><symbol>(</symbol><local>a_format</local><dot>.</dot><feature><location>../interface/ev_graphical_format.xml#f_file_extension</location>file_extension</feature><dot>.</dot><feature><include>False</include>as_upper</feature><symbol>)</symbol> <keyword>then</keyword>
+				<local>a_gdkpixbuf</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_drawable_imp.xml#f_pixbuf_from_drawable</location>pixbuf_from_drawable</feature>
+				<keyword>create</keyword> <local>a_handle</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_make_from_path</location>make_from_path</feature><symbol> </symbol><symbol>(</symbol><local>a_file_path</local><symbol>)</symbol>
+				<local>a_filetype</local> <symbol>:=</symbol> <keyword>create</keyword> <symbol>{</symbol><keyword>attached</keyword> <class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_set_with_eiffel_string</location>set_with_eiffel_string</feature><symbol> </symbol><symbol>(</symbol><local>a_format</local><dot>.</dot><feature><location>../interface/ev_graphical_format.xml#f_file_extension</location>file_extension</feature><symbol>)</symbol>
+				<keyword>if</keyword> <local>a_format</local><dot>.</dot><feature><location>../interface/ev_graphical_format.xml#f_scale_width</location>scale_width</feature> <symbol>&gt;</symbol> <number>0</number> <keyword>and then</keyword> <local>a_format</local><dot>.</dot><feature><location>../interface/ev_graphical_format.xml#f_scale_height</location>scale_height</feature> <symbol>&gt;</symbol> <number>0</number> <keyword>then</keyword>
+					<local>stretched_pixbuf</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gdk_pixbuf_scale_simple</location>gdk_pixbuf_scale_simple</feature> <symbol>(</symbol><local>a_gdkpixbuf</local><symbol>,</symbol> <local>a_format</local><dot>.</dot><feature><location>../interface/ev_graphical_format.xml#f_scale_width</location>scale_width</feature><symbol>,</symbol> <local>a_format</local><dot>.</dot><feature><location>../interface/ev_graphical_format.xml#f_scale_height</location>scale_height</feature><symbol>,</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gdk_interp_bilinear</location>gdk_interp_bilinear</feature><symbol>)</symbol>
+					<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_object_unref</location>object_unref</feature> <symbol>(</symbol><local>a_gdkpixbuf</local><symbol>)</symbol>
+					<local>a_gdkpixbuf</local> <symbol>:=</symbol> <local>stretched_pixbuf</local>
+				<keyword>end</keyword>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gdk_pixbuf_save</location>gdk_pixbuf_save</feature> <symbol>(</symbol><local>a_gdkpixbuf</local><symbol>,</symbol> <local>a_handle</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_item</location>item</feature><symbol>,</symbol> <local>a_filetype</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_item</location>item</feature><symbol>,</symbol> <symbol>$</symbol><local>a_gerror</local><symbol>)</symbol>
+				<keyword>if</keyword> <local>a_gerror</local> <symbol>/=</symbol> <feature><include>False</include>default_pointer</feature> <keyword>then</keyword>
+					<symbol>(</symbol><keyword>create</keyword><symbol> </symbol><symbol>{</symbol><class><include>False</include>EXCEPTIONS</class><symbol>}</symbol><symbol>)</symbol><dot>.</dot><feature><include>False</include>raise</feature><symbol> </symbol><symbol>(</symbol>&quot;Could not save image file.&quot;<symbol>)</symbol>
+				<keyword>end</keyword>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_object_unref</location>object_unref</feature> <symbol>(</symbol><local>a_gdkpixbuf</local><symbol>)</symbol>
+			<keyword>else</keyword>
+				<keyword><location>../implementation_interface/ev_pixmap_i.xml#f_save_to_named_path</location>Precursor</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_pixmap_i.xml</location>EV_PIXMAP_I</class><symbol>}</symbol><symbol> </symbol><symbol>(</symbol><local>a_format</local><symbol>,</symbol> <local>a_file_path</local><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_destroy</anchor><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_destroy</location>destroy</feature>
+			<comment>--</comment><comment> Destroy the pixmap and resources.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_set_pixmap</location>set_pixmap</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature><symbol>)</symbol>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_drawable_imp.xml#f_gc</location>gc</feature> <symbol>/=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature> <keyword>then</keyword>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_gc_unref</location>gdk_gc_unref</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_drawable_imp.xml#f_gc</location>gc</feature><symbol>)</symbol>
+				<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_gc</location>gc</feature> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature>
+			<keyword>end</keyword>
+			<keyword><location>../implementation_gtk/ev_widget_imp.xml#f_destroy</location>Precursor</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_primitive_imp.xml</location>EV_PRIMITIVE_IMP</class><symbol>}</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_dispose</anchor><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_dispose</location>dispose</feature>
+			<comment>--</comment><comment> Clear up resources if needed in object disposal.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_drawable_imp.xml#f_gc</location>gc</feature> <symbol>/=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature> <keyword>then</keyword>
+				<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_gdk_gc_unref</location>gdk_gc_unref</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_drawable_imp.xml#f_gc</location>gc</feature><symbol>)</symbol>
+				<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_gc</location>gc</feature> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature>
+			<keyword>end</keyword>
+			<keyword><location>../implementation_gtk/ev_any_imp.xml#f_dispose</location>Precursor</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_primitive_imp.xml</location>EV_PRIMITIVE_IMP</class><symbol>}</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Externals</comment>
+
+	<anchor>f_default_pixmap_xpm</anchor><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_default_pixmap_xpm</location>default_pixmap_xpm</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>external</keyword>
+			&quot;C | %&quot;ev_c_util.h%&quot;&quot;
+		<keyword>alias</keyword>
+			&quot;default_pixmap_xpm&quot;
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Constants</comment>
+
+	<anchor>f_monochrome_color_depth</anchor><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_monochrome_color_depth</location>Monochrome_color_depth</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class> <symbol>=</symbol> <number>1</number>
+			<comment>--</comment><comment> Black and White color depth (for mask).</comment>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_any.xml</location>EV_ANY</class><symbol>,</symbol> <class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_interface</anchor><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_interface</location>interface</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_pixmap.xml</location>EV_PIXMAP</class>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2017, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_gtk/ev_pixmap_imp.xml</location>EV_PIXMAP_IMP</class></system>
+

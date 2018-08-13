@@ -1,0 +1,132 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Vision radio peer. GTK+ implementation.&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2013-05-30 14:33:11 -0700 (Thu, 30 May 2013) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 92653 $&quot;</string>
+
+<keyword>deferred</keyword> <keyword>class</keyword> 
+	<class><location>../implementation_gtk/ev_radio_peer_imp.xml</location>EV_RADIO_PEER_IMP</class>
+
+<keyword>inherit</keyword>
+	<class><location>../implementation_interface/ev_radio_peer_i.xml</location>EV_RADIO_PEER_I</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_gtk/ev_radio_peer_imp.xml#f_interface</location>interface</feature>
+		<keyword>end</keyword>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Status report</comment>
+
+	<anchor>f_peers</anchor><feature><location>../implementation_gtk/ev_radio_peer_imp.xml#f_peers</location>peers</feature><symbol>:</symbol> <class><include>False</include>LINKED_LIST</class> <symbol>[</symbol><keyword>attached</keyword> <keyword>like</keyword> <feature><location>../implementation_gtk/ev_radio_peer_imp.xml#f_interface</location>interface</feature><symbol>]</symbol>
+			<comment>--</comment><comment> List of all radio items in the group </comment><quoted>Current</quoted><comment> is in.</comment>
+		<keyword>local</keyword>
+			<local>cur</local><symbol>,</symbol> <local>wid_obj</local><symbol>,</symbol> <local>l_null</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>peer_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_radio_peer_imp.xml</location>EV_RADIO_PEER_IMP</class>
+			<local>l_interface</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../implementation_gtk/ev_radio_peer_imp.xml#f_interface</location>interface</feature>
+		<keyword>do</keyword>
+			<keyword>create</keyword> <keyword>Result</keyword><dot>.</dot><feature><include>False</include>make</feature>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_radio_peer_imp.xml#f_radio_group</location>radio_group</feature> <symbol>=</symbol> <local>l_null</local> <keyword>or else</keyword> <feature><location>../implementation_gtk/ev_radio_peer_imp.xml#f_widget_object</location>widget_object</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_radio_peer_imp.xml#f_radio_group</location>radio_group</feature><symbol>)</symbol> <symbol>=</symbol> <local>l_null</local> <keyword>then</keyword>
+				<keyword>Result</keyword><dot>.</dot><feature><include>False</include>extend</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature><symbol>)</symbol>
+			<keyword>else</keyword>
+				<keyword>from</keyword>
+					<local>cur</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_radio_peer_imp.xml#f_radio_group</location>radio_group</feature>
+				<keyword>until</keyword>
+					<local>cur</local> <symbol>=</symbol> <local>l_null</local>
+				<keyword>loop</keyword>
+					<local>wid_obj</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_radio_peer_imp.xml#f_widget_object</location>widget_object</feature><symbol> </symbol><symbol>(</symbol><local>cur</local><symbol>)</symbol>
+					<keyword>if</keyword> <local>wid_obj</local> <symbol>/=</symbol> <feature><include>False</include>default_pointer</feature> <keyword>then</keyword>
+						<local>peer_imp</local> <symbol>?=</symbol> <feature><location>../implementation_gtk/ev_radio_peer_imp.xml#f_eif_object_from_c</location>eif_object_from_c</feature><symbol> </symbol><symbol>(</symbol><local>wid_obj</local><symbol>)</symbol>
+						<keyword>if</keyword> <local>peer_imp</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+							<local>l_interface</local> <symbol>?=</symbol> <local>peer_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_radio_peer_imp.xml#f_interface</location>interface</feature>
+							<keyword>check</keyword>
+									<local>l_interface</local> <symbol>/=</symbol> <keyword>Void</keyword>
+							<keyword>then</keyword>
+							<keyword>end</keyword>
+							<keyword>Result</keyword><dot>.</dot><feature><include>False</include>extend</feature><symbol> </symbol><symbol>(</symbol><local>l_interface</local><symbol>)</symbol>
+						<keyword>end</keyword>
+					<keyword>end</keyword>
+					<local>cur</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gslist_struct_next</location>gslist_struct_next</feature> <symbol>(</symbol><local>cur</local><symbol>)</symbol>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_selected_peer</anchor><feature><location>../implementation_gtk/ev_radio_peer_imp.xml#f_selected_peer</location>selected_peer</feature><symbol>:</symbol> <keyword>attached</keyword> <keyword>like</keyword> <feature><location>../implementation_gtk/ev_radio_peer_imp.xml#f_interface</location>interface</feature>
+			<comment>--</comment><comment> Radio item that is currently selected.</comment>
+		<keyword>local</keyword>
+			<local>cur</local><symbol>,</symbol> <local>wid_obj</local><symbol>,</symbol> <local>l_null</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>peer_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_radio_peer_imp.xml</location>EV_RADIO_PEER_IMP</class>
+			<local>l_result</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../implementation_gtk/ev_radio_peer_imp.xml#f_interface</location>interface</feature>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_radio_peer_imp.xml#f_radio_group</location>radio_group</feature> <symbol>=</symbol> <local>l_null</local> <keyword>or else</keyword> <feature><location>../implementation_gtk/ev_radio_peer_imp.xml#f_widget_object</location>widget_object</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_radio_peer_imp.xml#f_radio_group</location>radio_group</feature><symbol>)</symbol> <symbol>=</symbol> <local>l_null</local> <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature>
+			<keyword>else</keyword>
+				<keyword>from</keyword>
+					<local>cur</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_radio_peer_imp.xml#f_radio_group</location>radio_group</feature>
+				<keyword>until</keyword>
+					<local>cur</local> <symbol>=</symbol> <local>l_null</local> <keyword>or else</keyword> <local>l_result</local> <symbol>/=</symbol> <keyword>Void</keyword>
+				<keyword>loop</keyword>
+					<local>wid_obj</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_radio_peer_imp.xml#f_widget_object</location>widget_object</feature><symbol> </symbol><symbol>(</symbol><local>cur</local><symbol>)</symbol>
+					<keyword>if</keyword> <local>wid_obj</local> <symbol>/=</symbol> <local>l_null</local> <keyword>then</keyword>
+						<local>peer_imp</local> <symbol>?=</symbol> <feature><location>../implementation_gtk/ev_radio_peer_imp.xml#f_eif_object_from_c</location>eif_object_from_c</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_radio_peer_imp.xml#f_widget_object</location>widget_object</feature><symbol> </symbol><symbol>(</symbol><local>cur</local><symbol>)</symbol><symbol>)</symbol>
+						<keyword>if</keyword> <local>peer_imp</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>and then</keyword> <local>peer_imp</local><dot>.</dot><feature><location>../implementation_interface/ev_radio_peer_i.xml#f_is_selected</location>is_selected</feature> <keyword>then</keyword>
+							<local>l_result</local> <symbol>?=</symbol> <local>peer_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_radio_peer_imp.xml#f_interface</location>interface</feature>
+						<keyword>end</keyword>
+					<keyword>end</keyword>
+					<local>cur</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gslist_struct_next</location>gslist_struct_next</feature> <symbol>(</symbol><local>cur</local><symbol>)</symbol>
+				<keyword>end</keyword>
+				<keyword>check</keyword>
+						<local>l_result</local> <symbol>/=</symbol> <keyword>Void</keyword>
+				<keyword>then</keyword>
+				<keyword>end</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>l_result</local>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_eif_object_from_c</anchor><feature><location>../implementation_gtk/ev_radio_peer_imp.xml#f_eif_object_from_c</location>eif_object_from_c</feature> <symbol>(</symbol><local>a_c_object</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>)</symbol><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_any_imp.xml</location>EV_ANY_IMP</class>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_c_object</anchor><feature><location>../implementation_gtk/ev_radio_peer_imp.xml#f_c_object</location>c_object</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_visual_widget</anchor><feature><location>../implementation_gtk/ev_radio_peer_imp.xml#f_visual_widget</location>visual_widget</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_widget_object</anchor><feature><location>../implementation_gtk/ev_radio_peer_imp.xml#f_widget_object</location>widget_object</feature> <symbol>(</symbol><local>a_list</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Returns c_object relative to a_list data.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gslist_struct_data</location>gslist_struct_data</feature> <symbol>(</symbol><local>a_list</local><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_radio_group</anchor><feature><location>../implementation_gtk/ev_radio_peer_imp.xml#f_radio_group</location>radio_group</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Reference to front of radio group. *GSList.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_any.xml</location>EV_ANY</class><symbol>,</symbol> <class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_interface</anchor><feature><location>../implementation_gtk/ev_radio_peer_imp.xml#f_interface</location>interface</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_radio_peer.xml</location>EV_RADIO_PEER</class>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2013, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_gtk/ev_radio_peer_imp.xml</location>EV_RADIO_PEER_IMP</class></system>
+

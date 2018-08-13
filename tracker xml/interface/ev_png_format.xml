@@ -1,0 +1,43 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Portable Network Graphics (PNG) Graphical Format Abstraction used by </string><symbol>{</symbol><class><location>../interface/ev_pixmap.xml</location>EV_PIXMAP</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_pixmap.xml#f_save_to_named_file</location>save_to_named_file</feature><string>&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2013-01-11 10:28:37 -0800 (Fri, 11 Jan 2013) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 90517 $&quot;</string>
+
+<keyword>class</keyword> 
+	<class><location>../interface/ev_png_format.xml</location>EV_PNG_FORMAT</class>
+
+<keyword>inherit</keyword>
+	<class><location>../interface/ev_graphical_format.xml</location>EV_GRAPHICAL_FORMAT</class>
+
+<keyword>create</keyword> 
+	<feature><include>False</include>default_create</feature>
+
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_pixmap_i.xml</location>EV_PIXMAP_I</class><symbol>}</symbol> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_file_extension</anchor><feature><location>../interface/ev_png_format.xml#f_file_extension</location>File_extension</feature><symbol>:</symbol> <class><include>False</include>STRING_32</class>
+			<comment>--</comment><comment> Three character file extension associated with format.</comment>
+		<keyword>once</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <symbol>{</symbol><class><include>False</include>STRING_32</class><symbol>}</symbol>&quot;png&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_save</anchor><feature><location>../interface/ev_png_format.xml#f_save</location>save</feature> <symbol>(</symbol><local>raw_image_data</local><symbol>:</symbol> <class><location>../interface/ev_raw_image_data.xml</location>EV_RAW_IMAGE_DATA</class><symbol>;</symbol> <local>a_filepath</local><symbol>:</symbol> <class><include>False</include>PATH</class><symbol>)</symbol>
+			<comment>--</comment><comment> Save </comment><quoted>raw_image_data</quoted><comment> to file </comment><quoted>a_filepath</quoted><comment> in PNG format.</comment>
+		<keyword>do</keyword>
+		<keyword>end</keyword>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2012, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../interface/ev_png_format.xml</location>EV_PNG_FORMAT</class></system>
+

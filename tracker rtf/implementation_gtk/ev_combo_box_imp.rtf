@@ -1,0 +1,369 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "EiffelVision combo box, gtk implementation."{\line}
+{\tab}{\cf1 legal}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 status}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2017-03-27 13:31:29 -0700 (Mon, 27 Mar 2017) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 100058 $"{\line}
+{\line}
+{\b\cf6 class} {\line}
+{\tab}{\cf4 EV_COMBO_BOX_IMP}{\line}
+{\line}
+{\b\cf6 inherit}{\line}
+{\tab}{\cf4 EV_COMBO_BOX_I}{\line}
+{\tab}{\tab}{\b\cf6 undefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 wipe_out}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 call_pebble_function}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 reset_pebble_function}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 return_actions}{\line}
+{\tab}{\tab}{\b\cf6 redefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 interface}{\line}
+{\tab}{\tab}{\b\cf6 end}{\line}
+{\line}
+{\tab}{\cf4 EV_TEXT_FIELD_IMP}{\line}
+{\tab}{\tab}{\b\cf6 undefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 needs_event_box}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 pre_pick_steps}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 post_drop_steps}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 call_pebble_function}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 reset_pebble_function}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 enable_transport}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 hide_border}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 pebble_source}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 ready_for_pnd_menu}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 able_to_transport}{\line}
+{\tab}{\tab}{\b\cf6 redefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 make}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 old_make}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 interface}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 needs_event_box}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 has_focus}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 on_focus_changed}{\line}
+{\tab}{\tab}{\b\cf6 end}{\line}
+{\line}
+{\tab}{\cf4 EV_LIST_ITEM_LIST_IMP}{\line}
+{\tab}{\tab}{\b\cf6 undefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_default_colors}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 visual_widget}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 destroy}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 on_key_event}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 on_focus_changed}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 has_focus}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_focus}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 background_color_pointer}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 foreground_color_pointer}{\line}
+{\tab}{\tab}{\b\cf6 redefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 make}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 needs_event_box}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 old_make}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 interface}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 insert_i_th}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 call_selection_action_sequences}{\line}
+{\tab}{\tab}{\b\cf6 end}{\line}
+{\line}
+{\tab}{\cf4 EV_KEY_CONSTANTS}{\line}
+{\line}
+{\b\cf6 create} {\line}
+{\tab}{\cf5 make}{\line}
+{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Initialization}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 needs_event_box}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does }{\cf5 a_widget}{\cf3  need an event box?}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 old_make} {\cf1 (}{\cf5 an_interface}{\cf1 :} {\b\cf6 attached} {\b\cf6 like} {\cf5 interface}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create a combo-box.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 assign_interface}{\cf1  }{\cf1 (}{\cf5 an_interface}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Initialization}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 call_selection_action_sequences}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Call the appropriate selection action sequences}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_selected_item}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_LIST_ITEM}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_previous_selected_item_imp}{\cf1 ,} {\cf5 l_selected_item_imp}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_LIST_ITEM_IMP}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_selected_item} {\cf1 :=} {\cf5 selected_item}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_previous_selected_item_imp} {\cf1 :=} {\cf5 previous_selected_item_imp}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 is_list_shown} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_combo_box_popdown} {\cf1 (}{\cf5 container_widget}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_selected_item} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_selected_item_imp} {\cf1 ?=} {\cf5 l_selected_item}{\b\cf1 .}{\cf5 implementation}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_selected_item_imp} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_selected_item_imp}{\b\cf1 .}{\cf5 select_actions_internal} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_selected_item_imp}{\b\cf1 .}{\cf5 select_actions}{\b\cf1 .}{\cf5 call}{\cf1  }{\cf1 (}{\b\cf6 Void}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 select_actions_internal} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 select_actions_internal}{\b\cf1 .}{\cf5 call}{\cf1  }{\cf1 (}{\b\cf6 Void}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_previous_selected_item_imp} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_previous_selected_item_imp}{\b\cf1 .}{\cf5 deselect_actions_internal} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_previous_selected_item_imp}{\b\cf1 .}{\cf5 deselect_actions}{\b\cf1 .}{\cf5 call}{\cf1  }{\cf1 (}{\b\cf6 Void}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 deselect_actions_internal} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 deselect_actions_internal}{\b\cf1 .}{\cf5 call}{\cf1  }{\cf1 (}{\b\cf6 Void}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 previous_selected_item_imp} {\cf1 :=} {\cf5 l_selected_item_imp}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_selected_item_imp} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 on_change_actions}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 previous_selected_item_imp}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_LIST_ITEM_IMP}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Item that was selected previously.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Connect action sequences to signals.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_cell_renderer}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_attribute}{\cf1 :} {\cf4 EV_GTK_C_STRING}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_cs}{\cf1 :} {\cf4 EV_GTK_C_STRING}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_vbox}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_focus_list}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_vbox} {\cf1 :=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_vbox_new} {\cf1 (}{\b\cf6 False}{\cf1 ,} 0{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_c_object}{\cf1  }{\cf1 (}{\cf5 a_vbox}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 container_widget} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_combo_box_entry_new}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_widget_show} {\cf1 (}{\cf5 container_widget}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_box_pack_start} {\cf1 (}{\cf5 a_vbox}{\cf1 ,} {\cf5 container_widget}{\cf1 ,} {\b\cf6 False}{\cf1 ,} {\b\cf6 False}{\cf1 ,} 0{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 entry_widget} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_combo_box_get_entry} {\cf1 (}{\cf5 container_widget}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_focus_list} {\cf1 :=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 g_list_append} {\cf1 (}{\cf5 default_pointer}{\cf1 ,} {\cf5 entry_widget}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_container_set_focus_chain} {\cf1 (}{\cf5 container_widget}{\cf1 ,} {\cf5 a_focus_list}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 g_list_free} {\cf1 (}{\cf5 a_focus_list}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 real_signal_connect}{\cf1  }{\cf1 (}{\cf5 container_widget}{\cf1 ,} {\b\cf6 once} "realize"{\cf1 ,} {\b\cf6 agent} {\cf5 App_implementation}{\b\cf1 .}{\cf5 gtk_marshal}{\b\cf1 .}{\cf5 on_combo_box_toggle_button_event}{\cf1  }{\cf1 (}{\cf5 internal_id}{\cf1 ,} 1{\cf1 )}{\cf1 ,} {\b\cf6 Void}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 retrieve_toggle_button_signal_connection_id} {\cf1 :=} {\cf5 last_signal_connection_id}{\line}
+{\tab}{\tab}{\tab}{\cf1 Precursor} {\cf1 \{}{\cf4 EV_LIST_ITEM_LIST_IMP}{\cf1 \}}{\line}
+{\tab}{\tab}{\tab}{\cf5 align_text_left}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_combo_box_set_model} {\cf1 (}{\cf5 container_widget}{\cf1 ,} {\cf5 list_store}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_cs} {\cf1 :=} {\b\cf6 create} {\cf1 \{}{\b\cf6 attached} {\cf4 EV_GTK_C_STRING}{\cf1 \}}{\b\cf1 .}{\cf5 set_with_eiffel_string}{\cf1  }{\cf1 (}{\b\cf6 once} "v2combobox"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_widget_set_name} {\cf1 (}{\cf5 container_widget}{\cf1 ,} {\cf5 a_cs}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_combo_box_entry_set_text_column} {\cf1 (}{\cf5 container_widget}{\cf1 ,} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_cell_layout_clear} {\cf1 (}{\cf5 container_widget}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_cell_renderer} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_cell_renderer_text_new}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_cell_layout_pack_start} {\cf1 (}{\cf5 container_widget}{\cf1 ,} {\cf5 a_cell_renderer}{\cf1 ,} {\b\cf6 True}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_cell_layout_reorder} {\cf1 (}{\cf5 container_widget}{\cf1 ,} {\cf5 a_cell_renderer}{\cf1 ,} 0{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_attribute} {\cf1 :=} {\b\cf6 create} {\cf1 \{}{\b\cf6 attached} {\cf4 EV_GTK_C_STRING}{\cf1 \}}{\b\cf1 .}{\cf5 set_with_eiffel_string}{\cf1  }{\cf1 (}{\b\cf6 once} "text"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_cell_layout_set_attribute} {\cf1 (}{\cf5 container_widget}{\cf1 ,} {\cf5 a_cell_renderer}{\cf1 ,} {\cf5 a_attribute}{\b\cf1 .}{\cf5 item}{\cf1 ,} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_cell_renderer} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_cell_renderer_pixbuf_new}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_cell_layout_pack_start} {\cf1 (}{\cf5 container_widget}{\cf1 ,} {\cf5 a_cell_renderer}{\cf1 ,} {\b\cf6 False}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_cell_layout_reorder} {\cf1 (}{\cf5 container_widget}{\cf1 ,} {\cf5 a_cell_renderer}{\cf1 ,} 0{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_attribute} {\cf1 :=} {\b\cf6 create} {\cf1 \{}{\b\cf6 attached} {\cf4 EV_GTK_C_STRING}{\cf1 \}}{\b\cf1 .}{\cf5 set_with_eiffel_string}{\cf1  }{\cf1 (}{\b\cf6 once} "pixbuf"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_cell_layout_set_attribute} {\cf1 (}{\cf5 container_widget}{\cf1 ,} {\cf5 a_cell_renderer}{\cf1 ,} {\cf5 a_attribute}{\b\cf1 .}{\cf5 item}{\cf1 ,} 0{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_minimum_width_in_characters}{\cf1  }{\cf1 (}4{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 real_signal_connect}{\cf1  }{\cf1 (}{\cf5 container_widget}{\cf1 ,} {\b\cf6 once} "changed"{\cf1 ,} {\b\cf6 agent} {\cf5 App_implementation}{\b\cf1 .}{\cf5 gtk_marshal}{\b\cf1 .}{\cf5 on_pnd_deferred_item_parent_selection_change}{\cf1  }{\cf1 (}{\cf5 internal_id}{\cf1 )}{\cf1 ,} {\b\cf6 Void}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 initialize_tab_behavior}{\line}
+{\tab}{\tab}{\tab}{\cf5 initialize_hints}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 insert_i_th} {\cf1 (}{\cf5 v}{\cf1 :} {\b\cf6 attached} {\b\cf6 like} {\cf5 item}{\cf1 ;} {\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Insert }{\cf5 v}{\cf3  at position }{\cf5 i}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf1 Precursor} {\cf1 \{}{\cf4 EV_LIST_ITEM_LIST_IMP}{\cf1 \}}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 ,} {\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 count} {\cf1 =} 1 {\b\cf6 and then} {\cf5 v}{\b\cf1 .}{\cf5 is_selectable} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 v}{\b\cf1 .}{\cf5 enable_select}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status report}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 has_focus}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does widget have the keyboard focus?}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 selected_item}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_LIST_ITEM}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Item which is currently selected, for a multiple}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  selection.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_active}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_active} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_combo_box_get_active} {\cf1 (}{\cf5 container_widget}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a_active} {\cf1 >=} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 child_array} {\cf1 @} {\cf1 (}{\cf5 a_active} {\cf1 +} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 selected_items}{\cf1 :} {\cf4 ARRAYED_LIST} {\cf1 [}{\cf4 EV_LIST_ITEM}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  List of all the selected items. Used for list_item.is_selected implementation.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_selected_item}{\cf1 :} {\b\cf6 like} {\cf5 selected_item}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}0{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_selected_item} {\cf1 :=} {\cf5 selected_item}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_selected_item} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 extend}{\cf1  }{\cf1 (}{\cf5 l_selected_item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 select_item} {\cf1 (}{\cf5 an_index}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Select an item at the one-based }{\cf5 index}{\cf3  of the list.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_combo_box_set_active} {\cf1 (}{\cf5 container_widget}{\cf1 ,} {\cf5 an_index} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 deselect_item} {\cf1 (}{\cf5 an_index}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Unselect the item at the one-based }{\cf5 index}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_combo_box_set_active} {\cf1 (}{\cf5 container_widget}{\cf1 ,} -1{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 clear_selection}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Clear the item selection of }{\cf5 Current}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_combo_box_set_active} {\cf1 (}{\cf5 container_widget}{\cf1 ,} -1{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status setting}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_maximum_text_length} {\cf1 (}{\cf5 len}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set the length of the longest text size in characters that }{\cf5 Current}{\cf3  can display.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_entry_set_max_length} {\cf1 (}{\cf5 entry_widget}{\cf1 ,} {\cf5 len}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 on_focus_changed} {\cf1 (}{\cf5 a_has_focus}{\cf1 :} {\cf4 BOOLEAN}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Focus for }{\cf5 Current}{\cf3  has changed'.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_toggle}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_popup}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_POPUP_WINDOW_IMP}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a_has_focus} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 is_list_shown} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 is_list_shown} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 list_hidden_actions_internal} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 list_hidden_actions_internal}{\b\cf1 .}{\cf5 call}{\cf1  }{\cf1 (}{\b\cf6 Void}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_popup} {\cf1 ?=} {\cf5 top_level_window_imp}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_popup} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\cf5 l_popup}{\b\cf1 .}{\cf5 is_show_requested} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_popup}{\b\cf1 .}{\cf5 grab_keyboard_and_mouse}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 has_focus} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf1 Precursor} {\cf1 \{}{\cf4 EV_TEXT_FIELD_IMP}{\cf1 \}}{\cf1  }{\cf1 (}{\cf5 a_has_focus}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 return_combo_toggle}{\cf1  }{\cf1 (}{\cf5 container_widget}{\cf1 ,} {\cf1 $}{\cf5 a_toggle}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a_toggle} {\cf1 /=} {\cf5 default_pointer} {\b\cf6 and then} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_toggle_button_get_active} {\cf1 (}{\cf5 a_toggle}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 is_list_shown} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 has_focus} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf1 Precursor} {\cf1 \{}{\cf4 EV_TEXT_FIELD_IMP}{\cf1 \}}{\cf1  }{\cf1 (}{\cf5 a_has_focus}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_list_shown}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is combo list current shown?}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 retrieve_toggle_button_signal_connection_id}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Signal connection id used when finding the toggle button of }{\cf5 Current}{\cf3 .}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_GTK_DEPENDENT_INTERMEDIARY_ROUTINES}{\cf1 \}} {\cf3 --}{\cf3  Event handling}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 retrieve_toggle_button}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Retrieve the toggle button from the GtkComboBox structure.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_toggle}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 return_combo_toggle}{\cf1  }{\cf1 (}{\cf5 container_widget}{\cf1 ,} {\cf1 $}{\cf5 a_toggle}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 toggle_button_set}{\cf1 :} {\cf5 a_toggle} {\cf1 /=} {\cf5 default_pointer}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_widget_set_usize} {\cf1 (}{\cf5 a_toggle}{\cf1 ,} -1{\cf1 ,} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_widget_unset_flags} {\cf1 (}{\cf5 a_toggle}{\cf1 ,} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_can_focus_enum}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 real_signal_connect}{\cf1  }{\cf1 (}{\cf5 a_toggle}{\cf1 ,} {\b\cf6 once} "toggled"{\cf1 ,} {\b\cf6 agent} {\cf5 App_implementation}{\b\cf1 .}{\cf5 gtk_marshal}{\b\cf1 .}{\cf5 on_combo_box_toggle_button_event}{\cf1  }{\cf1 (}{\cf5 internal_id}{\cf1 ,} 2{\cf1 )}{\cf1 ,} {\b\cf6 Void}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 g_signal_handler_disconnect} {\cf1 (}{\cf5 container_widget}{\cf1 ,} {\cf5 retrieve_toggle_button_signal_connection_id}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 retrieve_toggle_button_signal_connection_id} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 toggle_button_toggled}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  The toggle button has been toggled.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_toggle}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 return_combo_toggle}{\cf1  }{\cf1 (}{\cf5 container_widget}{\cf1 ,} {\cf1 $}{\cf5 a_toggle}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a_toggle} {\cf1 /=} {\cf5 default_pointer} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_toggle_button_get_active} {\cf1 (}{\cf5 a_toggle}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 has_focus} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 is_list_shown} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 drop_down_actions_internal} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 drop_down_actions_internal}{\b\cf1 .}{\cf5 call}{\cf1  }{\cf1 (}{\b\cf6 Void}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_combo_box_popdown} {\cf1 (}{\cf5 container_widget}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 has_focus} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 is_list_shown} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 list_hidden_actions_internal} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 list_hidden_actions_internal}{\b\cf1 .}{\cf5 call}{\cf1  }{\cf1 (}{\b\cf6 Void}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Externals}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 return_combo_toggle} {\cf1 (}{\cf5 a_combo}{\cf1 :} {\cf4 POINTER}{\cf1 ;} {\cf5 a_toggle_button}{\cf1 :} {\cf4 TYPED_POINTER} {\cf1 [}{\cf4 POINTER}{\cf1 ]}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C inline use %"ev_c_util.h%""{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"[{\line}
+{\tab}{\tab}{\tab}{\tab}\{{\line}
+{\tab}{\tab}{\tab}{\tab}gtk_container_forall (GTK_CONTAINER ($a_combo), (GtkCallback) c_gtk_return_combo_toggle, (GtkWidget**) $a_toggle_button);{\line}
+{\tab}{\tab}{\tab}{\tab}\}{\line}
+{\tab}{\tab}{\tab}]"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_LIST_ITEM_IMP}{\cf1 ,} {\cf4 EV_INTERMEDIARY_ROUTINES}{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 container_widget}{\cf1 :} {\cf4 POINTER}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Gtk combo struct}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 pixmaps_size_changed}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  The size of the displayed pixmaps has just}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  changed.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_ANY}{\cf1 ,} {\cf4 EV_ANY_I}{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 interface}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_COMBO_BOX}{\line}
+{\tab}{\tab}{\b\cf6 note}{\line}
+{\tab}{\tab}{\tab}option: stable{\line}
+{\tab}{\tab}{\b\cf6 attribute}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 note}{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 1984-2017, Eiffel Software and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"{\line}
+{\tab}{\cf1 source}{\cf1 :} "[{\line}
+{\tab}{\tab}Eiffel Software{\line}
+{\tab}{\tab}5949 Hollister Ave., Goleta, CA 93117 USA{\line}
+{\tab}{\tab}Telephone 805-685-1006, Fax 805-685-6869{\line}
+{\tab}{\tab}Website http://www.eiffel.com{\line}
+{\tab}{\tab}Customer support http://support.eiffel.com{\line}
+{\tab}]"{\line}
+{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 EV_COMBO_BOX_IMP}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

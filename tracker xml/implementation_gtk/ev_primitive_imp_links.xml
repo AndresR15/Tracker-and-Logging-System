@@ -1,0 +1,42 @@
+<system>
+<keyword>deferred</keyword> <keyword>class</keyword>
+	<class><location>../implementation_gtk/ev_primitive_imp_links.xml</location>EV_PRIMITIVE_IMP</class>
+
+<keyword>Ancestors</keyword>
+	<class><location>../implementation_interface/ev_primitive_i_links.xml</location>EV_PRIMITIVE_I</class><char>*</char>
+	<class><location>../implementation_gtk/ev_tooltipable_imp_links.xml</location>EV_TOOLTIPABLE_IMP</class><char>*</char>
+	<class><location>../implementation_gtk/ev_widget_imp_links.xml</location>EV_WIDGET_IMP</class><char>*</char>
+
+<keyword>Descendants</keyword>
+	<class><location>../implementation_gtk/ev_button_imp_links.xml</location>EV_BUTTON_IMP</class>
+	<class><location>../implementation_gtk/ev_drawing_area_imp_links.xml</location>EV_DRAWING_AREA_IMP</class>
+	<class><location>../implementation_gtk/ev_gauge_imp_links.xml</location>EV_GAUGE_IMP</class><char>*</char>
+	<class><location>../implementation_gtk/ev_label_imp_links.xml</location>EV_LABEL_IMP</class>
+	<class><location>../implementation_gtk/ev_list_item_list_imp_links.xml</location>EV_LIST_ITEM_LIST_IMP</class><char>*</char>
+	<class><location>../implementation_gtk/ev_multi_column_list_imp_links.xml</location>EV_MULTI_COLUMN_LIST_IMP</class>
+	<class><location>../implementation_gtk/ev_pixmap_imp_links.xml</location>EV_PIXMAP_IMP</class>
+	<class><location>../implementation_gtk/ev_separator_imp_links.xml</location>EV_SEPARATOR_IMP</class><char>*</char>
+	<class><location>../implementation_gtk/ev_text_component_imp_links.xml</location>EV_TEXT_COMPONENT_IMP</class><char>*</char>
+	<class><location>../implementation_gtk/ev_tool_bar_imp_links.xml</location>EV_TOOL_BAR_IMP</class>
+	<class><location>../implementation_gtk/ev_tree_imp_links.xml</location>EV_TREE_IMP</class>
+
+<keyword>Clients</keyword>
+	<class><location>../implementation_gtk/ev_button_imp_links.xml</location>EV_BUTTON_IMP</class>
+	<class><location>../implementation_gtk/ev_drawing_area_imp_links.xml</location>EV_DRAWING_AREA_IMP</class>
+	<class><location>../implementation_gtk/ev_gauge_imp_links.xml</location>EV_GAUGE_IMP</class><char>*</char>
+	<class><location>../implementation_gtk/ev_label_imp_links.xml</location>EV_LABEL_IMP</class>
+	<class><location>../implementation_gtk/ev_list_item_list_imp_links.xml</location>EV_LIST_ITEM_LIST_IMP</class><char>*</char>
+	<class><location>../implementation_gtk/ev_multi_column_list_imp_links.xml</location>EV_MULTI_COLUMN_LIST_IMP</class>
+	<class><location>../implementation_gtk/ev_pixmap_imp_links.xml</location>EV_PIXMAP_IMP</class>
+	<class><location>../implementation_gtk/ev_primitive_imp_links.xml</location>EV_PRIMITIVE_IMP</class><char>*</char>
+	<class><location>../implementation_gtk/ev_text_component_imp_links.xml</location>EV_TEXT_COMPONENT_IMP</class><char>*</char>
+	<class><location>../implementation_gtk/ev_tool_bar_imp_links.xml</location>EV_TOOL_BAR_IMP</class>
+	<class><location>../implementation_gtk/ev_tree_imp_links.xml</location>EV_TREE_IMP</class>
+
+<keyword>Suppliers</keyword>
+	<class><location>../implementation_gtk/ev_primitive_imp_links.xml</location>EV_PRIMITIVE_IMP</class><char>*</char>
+	<class><location>../implementation_gtk/ev_widget_imp_links.xml</location>EV_WIDGET_IMP</class><char>*</char>
+	<class><location>../implementation_gtk/gtk_links.xml</location>GTK</class>
+	<class><include>False</include>INTEGER_32</class>
+
+</system>

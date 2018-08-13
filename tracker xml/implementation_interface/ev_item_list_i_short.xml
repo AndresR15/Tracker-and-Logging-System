@@ -1,0 +1,32 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Vision item list. Implementation interface.&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;item, list&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2012-05-02 22:50:26 -0700 (Wed, 02 May 2012) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 88680 $&quot;</string>
+
+<keyword>deferred</keyword> <keyword>class</keyword> <keyword>interface</keyword>
+	<class><location>../implementation_interface/ev_item_list_i_short.xml</location>EV_ITEM_LIST_I</class> <symbol>[</symbol><generic>G</generic> <symbol>-&gt;</symbol> <class><location>../interface/ev_item_short.xml</location>EV_ITEM</class><symbol>]</symbol>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_item_by_data</anchor><feature><location>../implementation_interface/ev_item_list_i_short.xml#f_item_by_data</location>item_by_data</feature> <symbol>(</symbol><local>data</local><symbol>:</symbol> <class><include>False</include>ANY</class><symbol>)</symbol><symbol>:</symbol> <keyword>detachable</keyword> <keyword>like</keyword> <feature><location>../implementation_interface/ev_dynamic_list_i_short.xml#f_item</location>item</feature>
+			<comment>--</comment><comment> First item with </comment><quoted>data</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>data_not_void</tag><symbol>:</symbol> <local>data</local> <symbol>/=</symbol> <keyword>Void</keyword>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2012, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_interface/ev_item_list_i_short.xml</location>EV_ITEM_LIST_I</class></system>
+

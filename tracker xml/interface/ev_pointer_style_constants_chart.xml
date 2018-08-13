@@ -1,0 +1,31 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../interface/ev_pointer_style_constants_chart.xml</location>EV_POINTER_STYLE_CONSTANTS</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>interface</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Pointer sytle constants&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;pixmap, cursor, default, pointer style&quot;</string>
+
+<keyword>Ancestors</keyword>
+	<class><include>False</include>ANY</class>
+
+<keyword>Queries</keyword>
+	<feature><location>../interface/ev_pointer_style_constants.xml#f_busy_cursor</location>Busy_cursor</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_pointer_style_constants.xml#f_crosshair_cursor</location>Crosshair_cursor</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_pointer_style_constants.xml#f_header_sizewe_cursor</location>Header_sizewe_cursor</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_pointer_style_constants.xml#f_help_cursor</location>Help_cursor</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_pointer_style_constants.xml#f_hyperlink_cursor</location>Hyperlink_cursor</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_pointer_style_constants.xml#f_ibeam_cursor</location>Ibeam_cursor</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_pointer_style_constants.xml#f_is_valid</location>is_valid</feature> <symbol>(</symbol><local>a_integer</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_pointer_style_constants.xml#f_no_cursor</location>No_cursor</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_pointer_style_constants.xml#f_sizeall_cursor</location>Sizeall_cursor</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_pointer_style_constants.xml#f_sizenesw_cursor</location>Sizenesw_cursor</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_pointer_style_constants.xml#f_sizens_cursor</location>Sizens_cursor</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_pointer_style_constants.xml#f_sizenwse_cursor</location>Sizenwse_cursor</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_pointer_style_constants.xml#f_sizewe_cursor</location>Sizewe_cursor</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_pointer_style_constants.xml#f_standard_cursor</location>Standard_cursor</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_pointer_style_constants.xml#f_uparrow_cursor</location>Uparrow_cursor</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_pointer_style_constants.xml#f_wait_cursor</location>Wait_cursor</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+
+</system>

@@ -1,0 +1,281 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Vision window. Implementation interface.&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2014-05-15 21:58:04 -0700 (Thu, 15 May 2014) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 95082 $&quot;</string>
+
+<keyword>deferred</keyword> <keyword>class</keyword> 
+	<class><location>../implementation_interface/ev_window_i.xml</location>EV_WINDOW_I</class>
+
+<keyword>inherit</keyword>
+	<class><location>../implementation_interface/ev_cell_i.xml</location>EV_CELL_I</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_interface/ev_window_i.xml#f_interface</location>interface</feature><symbol>,</symbol>
+			<feature><location>../implementation_interface/ev_window_i.xml#f_update_for_pick_and_drop</location>update_for_pick_and_drop</feature>
+		<keyword>end</keyword>
+
+	<class><location>../implementation_interface/ev_positionable_i.xml</location>EV_POSITIONABLE_I</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_interface/ev_window_i.xml#f_interface</location>interface</feature>
+		<keyword>end</keyword>
+
+	<class><location>../implementation_interface/ev_window_action_sequences_i.xml</location>EV_WINDOW_ACTION_SEQUENCES_I</class>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_upper_bar</anchor><feature><location>../implementation_interface/ev_window_i.xml#f_upper_bar</location>upper_bar</feature><symbol>:</symbol> <class><location>../interface/ev_vertical_box.xml</location>EV_VERTICAL_BOX</class>
+			<comment>--</comment><comment> Room at top of </comment><quoted>Current</quoted><comment>. (Example use: toolbars.)</comment>
+			<comment>--</comment><comment> Positioned below menu bar.</comment>
+
+	<anchor>f_lower_bar</anchor><feature><location>../implementation_interface/ev_window_i.xml#f_lower_bar</location>lower_bar</feature><symbol>:</symbol> <class><location>../interface/ev_vertical_box.xml</location>EV_VERTICAL_BOX</class>
+			<comment>--</comment><comment> Room at bottom of </comment><quoted>Current</quoted><comment>. (Example use: statusbar.)</comment>
+
+	<anchor>f_maximum_width</anchor><feature><location>../implementation_interface/ev_window_i.xml#f_maximum_width</location>maximum_width</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Maximum width that </comment><quoted>Current</quoted><comment> can take.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_maximum_height</anchor><feature><location>../implementation_interface/ev_window_i.xml#f_maximum_height</location>maximum_height</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Maximum height that </comment><quoted>Current</quoted><comment> can take.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_internal_maximum_width</anchor><feature><location>../implementation_interface/ev_window_i.xml#f_internal_maximum_width</location>internal_maximum_width</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Maximum width that </comment><quoted>Current</quoted><comment> can take.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_window_i.xml#f_maximum_width</location>maximum_width</feature>
+			<keyword>if</keyword> <keyword>Result</keyword> <symbol>&lt;</symbol> <feature><location>../implementation_interface/ev_positioned_i.xml#f_minimum_width</location>minimum_width</feature> <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_positioned_i.xml#f_minimum_width</location>minimum_width</feature>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_internal_maximum_height</anchor><feature><location>../implementation_interface/ev_window_i.xml#f_internal_maximum_height</location>internal_maximum_height</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Maximum height that </comment><quoted>Current</quoted><comment> can take.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_window_i.xml#f_maximum_height</location>maximum_height</feature>
+			<keyword>if</keyword> <keyword>Result</keyword> <symbol>&lt;</symbol> <feature><location>../implementation_interface/ev_positioned_i.xml#f_minimum_height</location>minimum_height</feature> <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_positioned_i.xml#f_minimum_height</location>minimum_height</feature>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_title</anchor><feature><location>../implementation_interface/ev_window_i.xml#f_title</location>title</feature><symbol>:</symbol> <class><include>False</include>STRING_32</class>
+			<comment>--</comment><comment> Application name to be displayed by the window manager.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_user_can_resize</anchor><feature><location>../implementation_interface/ev_window_i.xml#f_user_can_resize</location>user_can_resize</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Can the user resize?</comment>
+
+	<anchor>f_has</anchor><feature><location>../implementation_interface/ev_window_i.xml#f_has</location>has</feature> <symbol>(</symbol><local>v</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../implementation_interface/ev_container_i.xml#f_item</location>item</feature><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Does structure include </comment><quoted>v</quoted><comment>?</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <local>v</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_container_i.xml#f_item</location>item</feature> <symbol>=</symbol> <local>v</local> <keyword>or else</keyword> <feature><location>../implementation_interface/ev_window_i.xml#f_lower_bar</location>lower_bar</feature> <symbol>=</symbol> <local>v</local> <keyword>or else</keyword> <feature><location>../implementation_interface/ev_window_i.xml#f_upper_bar</location>upper_bar</feature> <symbol>=</symbol> <local>v</local>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_menu_bar</anchor><feature><location>../implementation_interface/ev_window_i.xml#f_menu_bar</location>menu_bar</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_menu_bar.xml</location>EV_MENU_BAR</class>
+			<comment>--</comment><comment> Horizontal bar at top of client area that contains menu's.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_is_border_enabled</anchor><feature><location>../implementation_interface/ev_window_i.xml#f_is_border_enabled</location>is_border_enabled</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is a border displayed around </comment><quoted>Current</quoted><comment>?</comment>
+			<comment>--</comment><comment> Always return </comment><quoted>True</quoted><comment> if </comment><feature><location>../implementation_interface/ev_window_i.xml#f_user_can_resize</location>user_can_resize</feature><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_window_i.xml#f_internal_is_border_enabled</location>internal_is_border_enabled</feature> <keyword>or else</keyword> <feature><location>../implementation_interface/ev_window_i.xml#f_user_can_resize</location>user_can_resize</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_accelerator_list</anchor><feature><location>../implementation_interface/ev_window_i.xml#f_accelerator_list</location>accelerator_list</feature><symbol>:</symbol> <class><location>../interface/ev_accelerator_list.xml</location>EV_ACCELERATOR_LIST</class>
+			<comment>--</comment><comment> Key combination shortcuts associated with this window.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_interface/ev_window_i.xml#f_accelerators_internal</location>accelerators_internal</feature> <symbol>=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<keyword>create</keyword> <feature><location>../implementation_interface/ev_window_i.xml#f_accelerators_internal</location>accelerators_internal</feature>
+				<feature><location>../implementation_interface/ev_window_i.xml#f_accelerators_internal</location>accelerators_internal</feature><dot>.</dot><feature><include>False</include>compare_objects</feature>
+			<keyword>end</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_window_i.xml#f_accelerators_internal</location>accelerators_internal</feature>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_window.xml</location>EV_WINDOW</class><symbol>}</symbol> <comment>--</comment><comment> Accelerators</comment>
+
+	<anchor>f_connect_accelerator</anchor><feature><location>../implementation_interface/ev_window_i.xml#f_connect_accelerator</location>connect_accelerator</feature> <symbol>(</symbol><local>an_accel</local><symbol>:</symbol> <class><location>../interface/ev_accelerator.xml</location>EV_ACCELERATOR</class><symbol>)</symbol>
+			<comment>--</comment><comment> Connect key combination </comment><quoted>an_accel</quoted><comment> to this window.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_disconnect_accelerator</anchor><feature><location>../implementation_interface/ev_window_i.xml#f_disconnect_accelerator</location>disconnect_accelerator</feature> <symbol>(</symbol><local>an_accel</local><symbol>:</symbol> <class><location>../interface/ev_accelerator.xml</location>EV_ACCELERATOR</class><symbol>)</symbol>
+			<comment>--</comment><comment> Disconnect key combination </comment><quoted>an_accel</quoted><comment> from this window.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status setting</comment>
+
+	<anchor>f_disable_user_resize</anchor><feature><location>../implementation_interface/ev_window_i.xml#f_disable_user_resize</location>disable_user_resize</feature>
+			<comment>--</comment><comment> Forbid the resize of the window.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_enable_user_resize</anchor><feature><location>../implementation_interface/ev_window_i.xml#f_enable_user_resize</location>enable_user_resize</feature>
+			<comment>--</comment><comment> Allow the resize of the window.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_forbid_resize</anchor><feature><location>../implementation_interface/ev_window_i.xml#f_forbid_resize</location>forbid_resize</feature>
+			<comment>--</comment><comment> Forbid the resize of the window.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_allow_resize</anchor><feature><location>../implementation_interface/ev_window_i.xml#f_allow_resize</location>allow_resize</feature>
+			<comment>--</comment><comment> Allow the resize of the window.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_set_maximum_width</anchor><feature><location>../implementation_interface/ev_window_i.xml#f_set_maximum_width</location>set_maximum_width</feature> <symbol>(</symbol><local>value</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Make </comment><quoted>value</quoted><comment> the new </comment><feature><location>../implementation_interface/ev_window_i.xml#f_maximum_width</location>maximum_width</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>large_enough</tag><symbol>:</symbol> <local>value</local> <symbol>&gt;=</symbol> <number>0</number>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>maximum_width_set</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_window_i.xml#f_maximum_width</location>maximum_width</feature> <symbol>=</symbol> <local>value</local>
+		<keyword>end</keyword>
+
+	<anchor>f_set_maximum_height</anchor><feature><location>../implementation_interface/ev_window_i.xml#f_set_maximum_height</location>set_maximum_height</feature> <symbol>(</symbol><local>value</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Make </comment><quoted>value</quoted><comment> the new </comment><feature><location>../implementation_interface/ev_window_i.xml#f_maximum_height</location>maximum_height</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>large_enough</tag><symbol>:</symbol> <local>value</local> <symbol>&gt;=</symbol> <number>0</number>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>maximum_height_set</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_window_i.xml#f_maximum_height</location>maximum_height</feature> <symbol>=</symbol> <local>value</local>
+		<keyword>end</keyword>
+
+	<anchor>f_set_maximum_size</anchor><feature><location>../implementation_interface/ev_window_i.xml#f_set_maximum_size</location>set_maximum_size</feature> <symbol>(</symbol><local>mw</local><symbol>,</symbol> <local>mh</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Make </comment><quoted>mw</quoted><comment> the new minimum_width and </comment><quoted>mh</quoted><comment> the new</comment>
+			<comment>--</comment><comment> minimum_height.</comment>
+		<keyword>require</keyword>
+			<tag>valid_width</tag><symbol>:</symbol> <local>mw</local> <symbol>&gt;=</symbol> <feature><location>../implementation_interface/ev_positioned_i.xml#f_minimum_width</location>minimum_width</feature>
+			<tag>valid_height</tag><symbol>:</symbol> <local>mh</local> <symbol>&gt;=</symbol> <feature><location>../implementation_interface/ev_positioned_i.xml#f_minimum_height</location>minimum_height</feature>
+		<keyword>do</keyword>
+			<feature><location>../implementation_interface/ev_window_i.xml#f_set_maximum_width</location>set_maximum_width</feature><symbol> </symbol><symbol>(</symbol><local>mw</local><symbol>)</symbol>
+			<feature><location>../implementation_interface/ev_window_i.xml#f_set_maximum_height</location>set_maximum_height</feature><symbol> </symbol><symbol>(</symbol><local>mh</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_set_title</anchor><feature><location>../implementation_interface/ev_window_i.xml#f_set_title</location>set_title</feature> <symbol>(</symbol><local>txt</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol>
+			<comment>--</comment><comment> Make </comment><quoted>txt</quoted><comment> the new title.</comment>
+		<keyword>require</keyword>
+			<tag>valid_title</tag><symbol>:</symbol> <local>txt</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_set_menu_bar</anchor><feature><location>../implementation_interface/ev_window_i.xml#f_set_menu_bar</location>set_menu_bar</feature> <symbol>(</symbol><local>a_menu_bar</local><symbol>:</symbol> <class><location>../interface/ev_menu_bar.xml</location>EV_MENU_BAR</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><feature><location>../implementation_interface/ev_window_i.xml#f_menu_bar</location>menu_bar</feature><comment> to </comment><quoted>a_menu_bar</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>no_menu_bar_assigned</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_window_i.xml#f_menu_bar</location>menu_bar</feature> <symbol>=</symbol> <keyword>Void</keyword>
+			<tag>a_menu_bar_not_void</tag><symbol>:</symbol> <local>a_menu_bar</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>assigned</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_window_i.xml#f_menu_bar</location>menu_bar</feature> <symbol>=</symbol> <local>a_menu_bar</local>
+		<keyword>end</keyword>
+
+	<anchor>f_remove_menu_bar</anchor><feature><location>../implementation_interface/ev_window_i.xml#f_remove_menu_bar</location>remove_menu_bar</feature>
+			<comment>--</comment><comment> Set </comment><feature><location>../implementation_interface/ev_window_i.xml#f_menu_bar</location>menu_bar</feature><comment> to </comment><quoted>Void</quoted><comment>.</comment>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>menu_bar_void</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_window_i.xml#f_menu_bar</location>menu_bar</feature> <symbol>=</symbol> <keyword>Void</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_lock_update</anchor><feature><location>../implementation_interface/ev_window_i.xml#f_lock_update</location>lock_update</feature>
+			<comment>--</comment><comment> Lock updates for this window on certain platforms until</comment>
+			<comment>--</comment><comment> </comment><feature><location>../implementation_interface/ev_window_i.xml#f_unlock_update</location>unlock_update</feature><comment> is called.</comment>
+		<keyword>do</keyword>
+			<symbol>(</symbol><keyword>create</keyword><symbol> </symbol><symbol>{</symbol><class><location>../interface/ev_environment.xml</location>EV_ENVIRONMENT</class><symbol>}</symbol><symbol>)</symbol><dot>.</dot><feature><location>../interface/ev_environment.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_environment_i.xml#f_application_i</location>application_i</feature><dot>.</dot><feature><location>../implementation_interface/ev_application_i.xml#f_set_locked_window</location>set_locked_window</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_interface/ev_window_i.xml#f_interface</location>interface</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_unlock_update</anchor><feature><location>../implementation_interface/ev_window_i.xml#f_unlock_update</location>unlock_update</feature>
+			<comment>--</comment><comment> Unlock updates for this window on certain platforms.</comment>
+		<keyword>do</keyword>
+			<symbol>(</symbol><keyword>create</keyword><symbol> </symbol><symbol>{</symbol><class><location>../interface/ev_environment.xml</location>EV_ENVIRONMENT</class><symbol>}</symbol><symbol>)</symbol><dot>.</dot><feature><location>../interface/ev_environment.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_environment_i.xml#f_application_i</location>application_i</feature><dot>.</dot><feature><location>../implementation_interface/ev_application_i.xml#f_set_locked_window</location>set_locked_window</feature><symbol> </symbol><symbol>(</symbol><keyword>Void</keyword><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_enable_border</anchor><feature><location>../implementation_interface/ev_window_i.xml#f_enable_border</location>enable_border</feature>
+			<comment>--</comment><comment> Ensure a border is displayed around </comment><quoted>Current</quoted>
+			<comment>--</comment><comment> and set </comment><feature><location>../implementation_interface/ev_window_i.xml#f_internal_is_border_enabled</location>internal_is_border_enabled</feature><comment> to </comment><quoted>True</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_interface/ev_window_i.xml#f_internal_is_border_enabled</location>internal_is_border_enabled</feature> <symbol>:=</symbol> <keyword>True</keyword>
+			<feature><location>../implementation_interface/ev_window_i.xml#f_internal_enable_border</location>internal_enable_border</feature>
+		<keyword>ensure</keyword>
+			<tag>is_border_enabled</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_window_i.xml#f_is_border_enabled</location>is_border_enabled</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_disable_border</anchor><feature><location>../implementation_interface/ev_window_i.xml#f_disable_border</location>disable_border</feature>
+			<comment>--</comment><comment> Ensure no border is displayed around </comment><quoted>Current</quoted>
+			<comment>--</comment><comment> and set </comment><feature><location>../implementation_interface/ev_window_i.xml#f_internal_is_border_enabled</location>internal_is_border_enabled</feature><comment> to </comment><quoted>False</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_interface/ev_window_i.xml#f_internal_is_border_enabled</location>internal_is_border_enabled</feature> <symbol>:=</symbol> <keyword>False</keyword>
+			<feature><location>../implementation_interface/ev_window_i.xml#f_internal_disable_border</location>internal_disable_border</feature>
+		<keyword>ensure</keyword>
+			<tag>border_disabled</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../implementation_interface/ev_window_i.xml#f_user_can_resize</location>user_can_resize</feature> <keyword>implies</keyword> <keyword>not</keyword> <feature><location>../implementation_interface/ev_window_i.xml#f_is_border_enabled</location>is_border_enabled</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_show_relative_to_window</anchor><feature><location>../implementation_interface/ev_window_i.xml#f_show_relative_to_window</location>show_relative_to_window</feature> <symbol>(</symbol><local>a_parent</local><symbol>:</symbol> <class><location>../interface/ev_window.xml</location>EV_WINDOW</class><symbol>)</symbol>
+			<comment>--</comment><comment> Show </comment><quoted>Current</quoted><comment> with respect to </comment><quoted>a_parent</quoted><comment>.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_accel_list</anchor><feature><location>../implementation_interface/ev_window_i.xml#f_accel_list</location>accel_list</feature><symbol>:</symbol> <class><include>False</include>HASH_TABLE</class> <symbol>[</symbol><class><location>../interface/ev_accelerator.xml</location>EV_ACCELERATOR</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>]</symbol>
+			<comment>--</comment><comment> Lookup table for accelerator access.</comment>
+	
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_internal_disable_border</anchor><feature><location>../implementation_interface/ev_window_i.xml#f_internal_disable_border</location>internal_disable_border</feature>
+			<comment>--</comment><comment> Ensure no border is displayed around </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_internal_enable_border</anchor><feature><location>../implementation_interface/ev_window_i.xml#f_internal_enable_border</location>internal_enable_border</feature>
+			<comment>--</comment><comment> Ensure a border is displayed around </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_internal_is_border_enabled</anchor><feature><location>../implementation_interface/ev_window_i.xml#f_internal_is_border_enabled</location>internal_is_border_enabled</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_accelerators_internal</anchor><feature><location>../implementation_interface/ev_window_i.xml#f_accelerators_internal</location>accelerators_internal</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_accelerator_list.xml</location>EV_ACCELERATOR_LIST</class>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_update_for_pick_and_drop</anchor><feature><location>../implementation_interface/ev_window_i.xml#f_update_for_pick_and_drop</location>update_for_pick_and_drop</feature> <symbol>(</symbol><local>starting</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class><symbol>)</symbol>
+			<comment>--</comment><comment> Pick and drop status has changed so notify </comment><quoted>item_imp</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword><location>../implementation_interface/ev_cell_i.xml#f_update_for_pick_and_drop</location>Precursor</keyword><symbol> </symbol><symbol>(</symbol><local>starting</local><symbol>)</symbol>
+			<feature><location>../implementation_interface/ev_window_i.xml#f_upper_bar</location>upper_bar</feature><dot>.</dot><feature><location>../interface/ev_vertical_box.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_widget_list_i.xml#f_update_for_pick_and_drop</location>update_for_pick_and_drop</feature><symbol> </symbol><symbol>(</symbol><local>starting</local><symbol>)</symbol>
+			<feature><location>../implementation_interface/ev_window_i.xml#f_lower_bar</location>lower_bar</feature><dot>.</dot><feature><location>../interface/ev_vertical_box.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_widget_list_i.xml#f_update_for_pick_and_drop</location>update_for_pick_and_drop</feature><symbol> </symbol><symbol>(</symbol><local>starting</local><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_any.xml</location>EV_ANY</class><symbol>,</symbol> <class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_interface</anchor><feature><location>../implementation_interface/ev_window_i.xml#f_interface</location>interface</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_window.xml</location>EV_WINDOW</class>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2014, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_interface/ev_window_i.xml</location>EV_WINDOW_I</class></system>
+

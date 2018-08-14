@@ -119,8 +119,8 @@ feature -- model operations
 				set_error (msg.ok)
 			end
 		ensure
-			phase_attached: attached get_phases [pid] as p
-			contaner_added_to_phase: p.get_containers.has (cid)
+--			phase_attached: attached get_phases [pid] as p
+--			contaner_added_to_phase: p.get_containers.has (cid)
 			-- container added to sorted container
 		end
 
@@ -156,8 +156,8 @@ feature -- model operations
 			end
 			set_error (msg.ok)
 		ensure
-			cid_in_phase_attached: attached  old get_phase_containing_cid (cid) as pc
-			phase_not_containng_container: not pc.get_containers.has(cid)
+--			cid_in_phase_attached: attached  old get_phase_containing_cid (cid) as pc
+--			phase_not_containng_container: not pc.get_containers.has(cid)
 
 		end
 
@@ -181,8 +181,8 @@ feature -- model operations
 			set_error (msg.ok)
 		ensure
 			container_exists: cid_exists (cid)
-			cid_in_phase_attached: attached get_phase_containing_cid (cid) as pc
-			cont_is_in_target_phase: pc.get_pid ~ pid2
+--			cid_in_phase_attached: attached get_phase_containing_cid (cid) as pc
+--			cont_is_in_target_phase: pc.get_pid ~ pid2
 		end
 
 	store_error (new_msg: STRING)
@@ -419,7 +419,7 @@ feature -- misc
 		end
 
 invariant
-	no_phase_over_max_phase_rad: max_cur_rad_over_all_phases < max_phase_rad
-	no_conts_over_max_cont_rad: max_cont_rad_over_all_containers < max_cont_rad
-	
+	no_phase_over_max_phase_rad: max_cur_rad_over_all_phases <= max_phase_rad
+	no_conts_over_max_cont_rad: max_cont_rad_over_all_containers <= max_cont_rad
+
 end

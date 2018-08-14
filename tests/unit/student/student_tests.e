@@ -44,16 +44,18 @@ feature
 			model_access: TRACKER_ACCESS
 			model: TRACKER
 			six: VALUE
+			zero: VALUE
 			one: INTEGER_64
 		do
 			comment("t2: Tests the container removal function")
 			model := model_access.m
 			create six.make_from_int (6)
+			create zero.make_from_int (0)
 			one := 1
 			check attached model as m then
-				m.new_tracker (m.get_max_phase_rad, m.get_max_cont_rad)
+				m.new_tracker (six, six)
 				m.new_phase ("pid1", "packing", 2, <<1>>)
-				m.new_container ("cid1", [one, six], "pid1")
+				m.new_container ("cid1", [one, zero], "pid1")
 				m.remove_container ("cid1")
 				Result := not m.cid_exists ("cid1")
 			end

@@ -41,21 +41,21 @@ feature -- Attributes
 	switch: INTEGER
 			-- Running mode of ETF application.
 		do
-			Result := 2
+			Result := 1
 
 		end
 
 feature -- Tests
 
---	add_tests
---			-- test classes to be run in unit_test mode
---		require
---			switch = unit_test
---		do
---			add_test (create {STUDENT_TESTS}.make)
---			show_browser
---			run_espec
---		end
+	add_tests
+			-- test classes to be run in unit_test mode
+		require
+			switch = unit_test
+		do
+			add_test (create {STUDENT_TESTS}.make)
+			show_browser
+			run_espec
+		end
 
 feature -- Constructor
 
@@ -78,7 +78,7 @@ feature -- Constructor
 				inspect switch
 				when unit_test then
 					if argument_count = 0 then
-						-- add_tests
+						 add_tests
 						show_browser
 						run_espec
 					else

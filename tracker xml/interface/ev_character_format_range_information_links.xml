@@ -1,0 +1,20 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../interface/ev_character_format_range_information_links.xml</location>EV_CHARACTER_FORMAT_RANGE_INFORMATION</class>
+
+<keyword>Ancestors</keyword>
+	<class><include>False</include>ANY</class>
+	<class><location>../interface/ev_character_format_constants_links.xml</location>EV_CHARACTER_FORMAT_CONSTANTS</class>
+
+<keyword>Clients</keyword>
+	<class><location>../implementation_gtk/ev_character_format_imp_links.xml</location>EV_CHARACTER_FORMAT_IMP</class>
+	<class><location>../interface/ev_character_format_range_information_links.xml</location>EV_CHARACTER_FORMAT_RANGE_INFORMATION</class>
+	<class><location>../implementation_gtk/ev_rich_text_imp_links.xml</location>EV_RICH_TEXT_IMP</class>
+
+<keyword>Suppliers</keyword>
+	<class><include>False</include>BOOLEAN</class>
+	<class><location>../interface/ev_character_format_constants_links.xml</location>EV_CHARACTER_FORMAT_CONSTANTS</class>
+	<class><location>../interface/ev_character_format_range_information_links.xml</location>EV_CHARACTER_FORMAT_RANGE_INFORMATION</class>
+	<class><include>False</include>INTEGER_32</class>
+
+</system>

@@ -1,0 +1,29 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../interface/ev_font_constants_chart.xml</location>EV_FONT_CONSTANTS</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>interface</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Facilities used by and for ues with EV_FONT.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;character, face, size, family, weight, shape, bold, italic&quot;</string>
+
+<keyword>Ancestors</keyword>
+	<class><include>False</include>ANY</class>
+
+<keyword>Queries</keyword>
+	<feature><location>../interface/ev_font_constants.xml#f_family_modern</location>Family_modern</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_font_constants.xml#f_family_roman</location>Family_roman</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_font_constants.xml#f_family_sans</location>Family_sans</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_font_constants.xml#f_family_screen</location>Family_screen</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_font_constants.xml#f_family_typewriter</location>Family_typewriter</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_font_constants.xml#f_shape_italic</location>Shape_italic</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_font_constants.xml#f_shape_regular</location>Shape_regular</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_font_constants.xml#f_valid_family</location>valid_family</feature> <symbol>(</symbol><local>a_family</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_font_constants.xml#f_valid_shape</location>valid_shape</feature> <symbol>(</symbol><local>a_shape</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_font_constants.xml#f_valid_weight</location>valid_weight</feature> <symbol>(</symbol><local>a_weight</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_font_constants.xml#f_weight_black</location>Weight_black</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_font_constants.xml#f_weight_bold</location>Weight_bold</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_font_constants.xml#f_weight_regular</location>Weight_regular</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_font_constants.xml#f_weight_thin</location>Weight_thin</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+
+</system>

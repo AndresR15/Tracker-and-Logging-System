@@ -1,0 +1,904 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "Objects that represent cases that will throw exception"{\line}
+{\tab}{\cf1 author}{\cf1 :} "Software Engineering Lab, York University"{\line}
+{\line}
+{\b\cf6 class} {\line}
+{\tab}{\cf4 ES_VIOLATION_CASE}{\line}
+{\line}
+{\b\cf6 create} {\line}
+{\tab}{\cf5 make}{\cf1 ,}{\line}
+{\tab}{\cf5 make_with_tag}{\line}
+{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Initialization}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 default_create}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Process instances of classes with no creation clause.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Default: do nothing.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 expected_tag_name}{\cf1 :} {\cf4 STRING_8}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_violation_case}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is this a violation test case of a boolean test case?}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make} {\cf1 (}{\cf5 name}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 c}{\cf1 :} {\cf4 ROUTINE}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create Current.}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from } {\cf4 ES_TEST_CASE}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 True}{\line}
+{\tab}{\tab}{\b\cf6 require else}{\line}
+{\tab}{\tab}{\tab}{\cf1 make_pre_c}{\cf1 :} {\cf5 c} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 make_pre_name}{\cf1 :} {\cf5 name} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 case} {\cf1 :=} {\cf5 c}{\line}
+{\tab}{\tab}{\tab}{\cf5 case_name} {\cf1 :=} {\cf5 name}{\line}
+{\tab}{\tab}{\tab}{\cf5 violation_tag} {\cf1 :=} ""{\line}
+{\tab}{\tab}{\tab}{\cf5 expected_tag_name} {\cf1 :=} "NONE"{\line}
+{\tab}{\tab}{\tab}{\cf5 bookmark_name} {\cf1 :=} ""{\line}
+{\tab}{\tab}{\b\cf6 ensure then}{\line}
+{\tab}{\tab}{\tab}{\cf1 make_post_case}{\cf1 :} {\cf5 case} {\cf1 =} {\cf5 c}{\line}
+{\tab}{\tab}{\tab}{\cf1 make_post_case_name}{\cf1 :} {\cf5 case_name} {\cf1 =} {\cf5 name}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make_with_tag} {\cf1 (}{\cf5 name}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 c}{\cf1 :} {\cf4 ROUTINE}{\cf1 ;} {\cf5 expected_tag}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create Current.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 make_pre_c}{\cf1 :} {\cf5 c} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 make_pre_name}{\cf1 :} {\cf5 name} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 case} {\cf1 :=} {\cf5 c}{\line}
+{\tab}{\tab}{\tab}{\cf5 case_name} {\cf1 :=} {\cf5 name}{\line}
+{\tab}{\tab}{\tab}{\cf5 violation_tag} {\cf1 :=} ""{\line}
+{\tab}{\tab}{\tab}{\cf5 expected_tag_name} {\cf1 :=} {\cf5 expected_tag}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\cf5 bookmark_name} {\cf1 :=} ""{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 run}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Run and try to catch the exception.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 error}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 error} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 attached} {\cf5 case} {\b\cf6 as} c{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 c}{\b\cf1 .}{\cf5 apply}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 passed} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 rescue}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 equal}{\cf1  }{\cf1 (}{\cf5 tag_name}{\cf1 ,} {\cf5 expected_tag_name}{\cf1 )} {\b\cf6 or} {\cf5 equal}{\cf1  }{\cf1 (}{\cf5 expected_tag_name}{\cf1 ,} "NONE"{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 passed} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 contract_violated} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 attached} {\cf5 exception_trace} {\b\cf6 as} et{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 violation_tag} {\cf1 :=} {\cf5 et}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 violation_type} {\cf1 :=} {\cf5 exception}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 error} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 retry}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 ES_HTML_GEN}{\cf1 ,} {\cf4 ES_TEST}{\cf1 \}} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 bookmark_name}{\cf1 :} {\cf4 STRING_8}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ES_TEST_CASE}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 case}{\cf1 :} {\cf4 ROUTINE}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ES_TEST_CASE}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 case_name}{\cf1 :} {\cf4 STRING_8}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ES_TEST_CASE}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 contract_violated}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ES_TEST_CASE}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 passed}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ES_TEST_CASE}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 violation_tag}{\cf1 :} {\cf4 STRING_8}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ES_TEST_CASE}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 violation_type}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ES_TEST_CASE}{\cf3 )}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Check_instruction}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 7}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Exception code for violated check}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEP_CONST}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Class_invariant}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 6}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Exception code for violated class invariant}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEP_CONST}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Com_exception}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 28}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Exception code for a COM error.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEP_CONST}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Create_on_deferred}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 17}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create on deferred}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEP_CONST}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Developer_exception}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 24}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Exception code for developer exception}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEP_CONST}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Dollar_applied_to_melted_feature}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 26}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  $ applied to melted feature}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEP_CONST}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Eiffel_runtime_fatal_error}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 25}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Eiffel run-time fatal error}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEP_CONST}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Eiffel_runtime_panic}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 13}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Eiffel run-time panic}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEP_CONST}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Exception_in_signal_handler}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 20}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Exception in signal handler}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEP_CONST}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Exception_manager}{\cf1 :} {\cf4 EXCEPTION_MANAGER}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Exception manager}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEPTION_MANAGER_FACTORY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf1 \{}{\cf4 ISE_EXCEPTION_MANAGER}{\cf1 \}} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 EXCEPTION_MANAGER_FACTORY}{\line}
+{\tab}{\tab}{\tab}{\cf1 exception_manager_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 External_exception}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 18}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Exception code for operating system error}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  which does not set the }{\cf5 errno}{\cf3  variable}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Unix-specific)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEP_CONST}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Floating_point_exception}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 5}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Exception code for floating point exception}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEP_CONST}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 generating_type}{\cf1 :} {\cf4 TYPE} {\cf1 [}{\b\cf6 detachable} {\cf4 ES_VIOLATION_CASE}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Type of current object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (type of which it is a direct instance)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 generating_type_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 generator}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Name of current object's generating class}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (base class of the type of which it is a direct instance)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 generator_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 generator_not_empty}{\cf1 :} {\b\cf6 not} {\b\cf6 Result}{\b\cf1 .}{\cf5 is_empty}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Incorrect_inspect_value}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 9}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Exception code for inspect value which is not one}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of the inspect constants, if there is no Else_part}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEP_CONST}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Io_exception}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 21}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Exception code for I/O error}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEP_CONST}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Loop_invariant}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 11}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Exception code for violated loop invariant}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEP_CONST}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Loop_variant}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 10}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Exception code for non-decreased loop variant}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEP_CONST}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 No_more_memory}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 2}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Exception code for failed memory allocation}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEP_CONST}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Number_of_codes}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 31}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  How many codes are there to represent exceptions?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEP_CONST}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Old_exception}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 30}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Old exception code.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEP_CONST}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Operating_system_exception}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 22}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Exception code for operating system error}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  which sets the }{\cf5 errno}{\cf3  variable}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Unix-specific)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEP_CONST}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Out_of_memory}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 15}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Out of memory (cannot be ignored)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEP_CONST}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Postcondition}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 4}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Exception code for violated postcondition}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEP_CONST}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Precondition}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 3}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Exception code for violated precondition}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEP_CONST}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rescue_exception}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 14}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Exception code for exception in rescue clause}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEP_CONST}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Resumption_failed}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 16}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Resumption failed (retry did not succeed)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEP_CONST}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Retrieve_exception}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 23}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Exception code for retrieval error}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  may be raised by }{\cf5 retrieved}{\cf3  in }{\cf5 IO_MEDIUM}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEP_CONST}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Routine_failure}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Exception code for failed routine}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEP_CONST}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Runtime_check_exception}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 29}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Exception code for runtime check being violated.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEP_CONST}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Runtime_io_exception}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 27}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Exception code for I/O error raised by runtime functions}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  such as store/retrieve, file access...}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEP_CONST}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Serialization_exception}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 31}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Serialization exception code.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEP_CONST}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Signal_exception}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 12}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Exception code for operating system signal}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEP_CONST}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 valid_code} {\cf1 (}{\cf5 c}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 c}{\cf3  a valid code to represent some kind of exceptions?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEP_CONST}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 c} {\cf1 >=} 1 {\b\cf6 and} {\cf5 c} {\cf1 <=} {\cf5 Number_of_codes}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Void_assigned_to_expanded}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 19}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Exception code for assignment of void value}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to expanded entity}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEP_CONST}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Void_call_target}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 1}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Exception code for feature applied to void reference}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEP_CONST}{\cf3 )}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Comparison}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 deep_equal} {\cf1 (}{\cf5 a}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 ;} {\cf5 b}{\cf1 :} {\b\cf6 like} arg #1{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are }{\cf5 a}{\cf3  and }{\cf5 b}{\cf3  either both void}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  or attached to isomorphic object structures?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a} {\cf1 =} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 =} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 is_deep_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 shallow_implies_deep}{\cf1 :} {\cf5 standard_equal}{\cf1  }{\cf1 (}{\cf5 a}{\cf1 ,} {\cf5 b}{\cf1 )} {\b\cf6 implies} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\cf1 both_or_none_void}{\cf1 :} {\cf1 (}{\cf5 a} {\cf1 =} {\b\cf6 Void}{\cf1 )} {\b\cf6 implies} {\cf1 (}{\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf5 b} {\cf1 =} {\b\cf6 Void}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 same_type}{\cf1 :} {\cf1 (}{\b\cf6 Result} {\b\cf6 and} {\cf1 (}{\cf5 a} {\cf1 /=} {\b\cf6 Void}{\cf1 )}{\cf1 )} {\b\cf6 implies} {\cf1 (}{\cf5 b} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 same_type}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 symmetric}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 deep_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 ,} {\cf5 a}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 equal} {\cf1 (}{\cf5 a}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 ;} {\cf5 b}{\cf1 :} {\b\cf6 like} arg #1{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are }{\cf5 a}{\cf3  and }{\cf5 b}{\cf3  either both void or attached}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to objects considered equal?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a} {\cf1 =} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 =} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf5 a} {\cf1 =} {\b\cf6 Void} {\b\cf6 and} {\cf5 b} {\cf1 =} {\b\cf6 Void}{\cf1 )} {\b\cf6 or else} {\cf1 (}{\cf1 (}{\cf5 a} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and} {\cf5 b} {\cf1 /=} {\b\cf6 Void}{\cf1 )} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 is_deep_equal} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 ES_VIOLATION_CASE}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are }{\cf5 Current}{\cf3  and }{\cf5 other}{\cf3  attached to isomorphic object structures?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 shallow_implies_deep}{\cf1 :} {\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )} {\b\cf6 implies} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\cf1 same_type}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 same_type}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 symmetric}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 other}{\b\cf1 .}{\cf5 is_deep_equal}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_equal} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 ES_VIOLATION_CASE}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 other}{\cf3  attached to an object considered}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  equal to current object?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 symmetric}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 other} {\cf1 ~} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\tab}{\cf1 consistent}{\cf1 :} {\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )} {\b\cf6 implies} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 standard_equal} {\cf1 (}{\cf5 a}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 ;} {\cf5 b}{\cf1 :} {\b\cf6 like} arg #1{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are }{\cf5 a}{\cf3  and }{\cf5 b}{\cf3  either both void or attached to}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  field-by-field identical objects of the same type?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Always uses default object comparison criterion.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a} {\cf1 =} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 =} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf5 a} {\cf1 =} {\b\cf6 Void} {\b\cf6 and} {\cf5 b} {\cf1 =} {\b\cf6 Void}{\cf1 )} {\b\cf6 or else} {\cf1 (}{\cf1 (}{\cf5 a} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and} {\cf5 b} {\cf1 /=} {\b\cf6 Void}{\cf1 )} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 standard_is_equal} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 ES_VIOLATION_CASE}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 other}{\cf3  attached to an object of the same type}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  as current object, and field-by-field identical to it?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 same_type}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 same_type}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 symmetric}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 other}{\b\cf1 .}{\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status report}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 assertion_violation}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is last exception originally due to a violated}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  assertion or non-decreasing variant?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEPTIONS}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 attached} {\cf5 Exception_manager}{\b\cf1 .}{\cf5 last_exception} {\b\cf6 as} l_exception {\b\cf6 and then} {\b\cf6 attached} {\cf1 \{}{\cf4 ASSERTION_VIOLATION}{\cf1 \}} {\cf5 l_exception}{\b\cf1 .}{\cf5 original}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 class_name}{\cf1 :} {\b\cf6 detachable} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Name of the class that includes the recipient}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of original form of last exception}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEPTIONS}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 Exception_manager}{\b\cf1 .}{\cf5 last_exception} {\b\cf6 as} l_exception {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 l_exception}{\b\cf1 .}{\cf5 type_name}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 conforms_to} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 ANY}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does type of current object conform to type}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of }{\cf5 other}{\cf3  (as per Eiffel: The Language, chapter 13)?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 developer_exception_name}{\cf1 :} {\b\cf6 detachable} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Name of last developer-raised exception}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEPTIONS}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 EXCEPTIONS}{\line}
+{\tab}{\tab}{\tab}{\cf1 applicable}{\cf1 :} {\cf5 is_developer_exception}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 Exception_manager}{\b\cf1 .}{\cf5 last_exception} {\b\cf6 as} l_exception {\b\cf6 and then} {\b\cf6 attached} {\cf5 l_exception}{\b\cf1 .}{\cf5 original}{\b\cf1 .}{\cf5 description} {\b\cf6 as} l_des {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 l_des}{\b\cf1 .}{\cf5 as_string_8}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 exception}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Code of last exception that occurred}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEPTIONS}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 Exception_manager}{\b\cf1 .}{\cf5 last_exception} {\b\cf6 as} l_exception {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 l_exception}{\b\cf1 .}{\cf5 code}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 exception_trace}{\cf1 :} {\b\cf6 detachable} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String representation of the exception trace}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEPTIONS}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 Exception_manager}{\b\cf1 .}{\cf5 last_exception} {\b\cf6 as} l_exception {\b\cf6 and then} {\b\cf6 attached} {\cf5 l_exception}{\b\cf1 .}{\cf5 original}{\b\cf1 .}{\cf5 trace} {\b\cf6 as} l_trace {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 l_trace}{\b\cf1 .}{\cf5 as_string_8}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_developer_exception}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is the last exception originally due to}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  a developer exception?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEPTIONS}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 attached} {\cf5 Exception_manager}{\b\cf1 .}{\cf5 last_exception} {\b\cf6 as} l_exception {\b\cf6 and then} {\b\cf6 attached} {\cf1 \{}{\cf4 DEVELOPER_EXCEPTION}{\cf1 \}} {\cf5 l_exception}{\b\cf1 .}{\cf5 original}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_developer_exception_of_name} {\cf1 (}{\cf5 name}{\cf1 :} {\b\cf6 detachable} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is the last exception originally due to a developer}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  exception of name }{\cf5 name}{\cf3 ?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEPTIONS}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 is_developer_exception} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 developer_exception_name} {\cf1 ~} {\cf5 name}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_signal}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is last exception originally due to an external}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  event (operating system signal)?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEPTIONS}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 attached} {\cf5 Exception_manager}{\b\cf1 .}{\cf5 last_exception} {\b\cf6 as} l_exception {\b\cf6 and then} {\b\cf6 attached} {\cf1 \{}{\cf4 OPERATING_SYSTEM_SIGNAL_FAILURE}{\cf1 \}} {\cf5 l_exception}{\b\cf1 .}{\cf5 original}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_system_exception}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is last exception originally due to an}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  external event (operating system error)?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEPTIONS}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 Exception_manager}{\b\cf1 .}{\cf5 last_exception} {\b\cf6 as} l_exception {\b\cf6 and} {\b\cf6 attached} {\cf5 Exception_manager}{\b\cf1 .}{\cf5 exception_from_code}{\cf1  }{\cf1 (}{\cf5 External_exception}{\cf1 )} {\b\cf6 as} l_external {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 l_exception}{\b\cf1 .}{\cf5 original}{\b\cf1 .}{\cf5 conforms_to}{\cf1  }{\cf1 (}{\cf5 l_external}{\cf1 )} {\b\cf6 or else} {\b\cf6 attached} {\cf1 \{}{\cf4 OPERATING_SYSTEM_FAILURE}{\cf1 \}} {\cf5 l_exception}{\b\cf1 .}{\cf5 original}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 meaning} {\cf1 (}{\cf5 except}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\b\cf6 detachable} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  A message in English describing what }{\cf5 except}{\cf3  is}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEPTIONS}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 Exception_manager}{\b\cf1 .}{\cf5 exception_from_code}{\cf1  }{\cf1 (}{\cf5 except}{\cf1 )} {\b\cf6 as} l_exception {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 l_exception}{\b\cf1 .}{\cf5 Tag}{\b\cf1 .}{\cf5 as_string_8}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 original_class_name}{\cf1 :} {\b\cf6 detachable} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Name of the class that includes the recipient}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of original form of last exception}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEPTIONS}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 Exception_manager}{\b\cf1 .}{\cf5 last_exception} {\b\cf6 as} l_exception {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 l_exception}{\b\cf1 .}{\cf5 cause}{\b\cf1 .}{\cf5 original}{\b\cf1 .}{\cf5 type_name}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 original_exception}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Original code of last exception that triggered}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  current exception}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEPTIONS}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 Exception_manager}{\b\cf1 .}{\cf5 last_exception} {\b\cf6 as} l_exception {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 l_exception}{\b\cf1 .}{\cf5 cause}{\b\cf1 .}{\cf5 original}{\b\cf1 .}{\cf5 code}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 original_recipient_name}{\cf1 :} {\b\cf6 detachable} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Name of the routine whose execution was}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  interrupted by original form of last exception}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEPTIONS}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 Exception_manager}{\b\cf1 .}{\cf5 last_exception} {\b\cf6 as} l_exception {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 l_exception}{\b\cf1 .}{\cf5 cause}{\b\cf1 .}{\cf5 original}{\b\cf1 .}{\cf5 recipient_name}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 original_tag_name}{\cf1 :} {\b\cf6 detachable} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Assertion tag for original form of last}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  assertion violation.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEPTIONS}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 Exception_manager}{\b\cf1 .}{\cf5 last_exception} {\b\cf6 as} l_exception {\b\cf6 and then} {\b\cf6 attached} {\cf5 l_exception}{\b\cf1 .}{\cf5 cause}{\b\cf1 .}{\cf5 original}{\b\cf1 .}{\cf5 description} {\b\cf6 as} l_des {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 l_des}{\b\cf1 .}{\cf5 as_string_8}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 recipient_name}{\cf1 :} {\b\cf6 detachable} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Name of the routine whose execution was}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  interrupted by last exception}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEPTIONS}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 Exception_manager}{\b\cf1 .}{\cf5 last_exception} {\b\cf6 as} l_exception {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 l_exception}{\b\cf1 .}{\cf5 recipient_name}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 same_type} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 ANY}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is type of current object identical to type of }{\cf5 other}{\cf3 ?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf5 conforms_to}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )} {\b\cf6 and} {\cf5 other}{\b\cf1 .}{\cf5 conforms_to}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 tag_name}{\cf1 :} {\b\cf6 detachable} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Tag of last violated assertion clause}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEPTIONS}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 Exception_manager}{\b\cf1 .}{\cf5 last_exception} {\b\cf6 as} l_exception {\b\cf6 and then} {\b\cf6 attached} {\cf5 l_exception}{\b\cf1 .}{\cf5 description} {\b\cf6 as} l_des {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 l_des}{\b\cf1 .}{\cf5 as_string_8}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status setting}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 catch} {\cf1 (}{\cf5 code}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Make sure that any exception of code }{\cf5 code}{\cf3  will be}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  caught. This is the default.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEPTIONS}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 Exception_manager}{\b\cf1 .}{\cf5 type_of_code}{\cf1  }{\cf1 (}{\cf5 code}{\cf1 )} {\b\cf6 as} l_type {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 Exception_manager}{\b\cf1 .}{\cf5 catch}{\cf1  }{\cf1 (}{\cf5 l_type}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 die} {\cf1 (}{\cf5 code}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Terminate execution with exit status }{\cf5 code}{\cf3 ,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  without triggering an exception.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEPTIONS}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C use %"eif_except.h%""{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"esdie"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 EXCEPTIONS}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 False}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 ignore} {\cf1 (}{\cf5 code}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Make sure that any exception of code }{\cf5 code}{\cf3  will be}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  ignored. This is not the default.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEPTIONS}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 Exception_manager}{\b\cf1 .}{\cf5 type_of_code}{\cf1  }{\cf1 (}{\cf5 code}{\cf1 )} {\b\cf6 as} l_type {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 Exception_manager}{\b\cf1 .}{\cf5 ignore}{\cf1  }{\cf1 (}{\cf5 l_type}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 message_on_failure}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Print an exception history table}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  in case of failure.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  This is the default.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEPTIONS}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 c_trace_exception}{\cf1  }{\cf1 (}{\b\cf6 True}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 new_die} {\cf1 (}{\cf5 code}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 obsolete} "Use `die'. [2017-05-31]"{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEPTIONS}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C use %"eif_except.h%""{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"esdie"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 EXCEPTIONS}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 False}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 no_message_on_failure}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do not print an exception history table}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  in case of failure.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEPTIONS}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 c_trace_exception}{\cf1  }{\cf1 (}{\b\cf6 False}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 raise} {\cf1 (}{\cf5 name}{\cf1 :} {\b\cf6 detachable} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Raise a developer exception of name }{\cf5 name}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEPTIONS}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_exception}{\cf1 :} {\cf4 DEVELOPER_EXCEPTION}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 l_exception}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_exception}{\b\cf1 .}{\cf5 set_description}{\cf1  }{\cf1 (}{\cf5 name}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_exception}{\b\cf1 .}{\cf5 raise}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 raise_retrieval_exception} {\cf1 (}{\cf5 name}{\cf1 :} {\b\cf6 detachable} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Raise a retrieval exception of name }{\cf5 name}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEPTIONS}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 Exception_manager}{\b\cf1 .}{\cf5 exception_from_code}{\cf1  }{\cf1 (}{\cf5 Serialization_exception}{\cf1 )} {\b\cf6 as} l_exception {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_exception}{\b\cf1 .}{\cf5 set_description}{\cf1  }{\cf1 (}{\cf5 name}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_exception}{\b\cf1 .}{\cf5 raise}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Duplication}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 clone} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 )}{\cf1 :} {\b\cf6 like} {\cf5 other}{\line}
+{\tab}{\tab}{\b\cf6 obsolete} "Use `twin' instead. [2017-05-31]"{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Void if }{\cf5 other}{\cf3  is void; otherwise new object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  equal to }{\cf5 other}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  For non-void }{\cf5 other}{\cf3 , }{\cf5 clone}{\cf3  calls }{\cf5 copy}{\cf3 ;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to change copying/cloning semantics, redefine }{\cf5 copy}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 other} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 other}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 equal}{\cf1 :} {\b\cf6 Result} {\cf1 ~} {\cf5 other}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 copy} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 ES_VIOLATION_CASE}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Update current object using fields of object attached}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to }{\cf5 other}{\cf3 , so as to yield equal objects.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 type_identity}{\cf1 :} {\cf5 same_type}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_equal}{\cf1 :} {\b\cf6 Current} {\cf1 ~} {\cf5 other}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 deep_clone} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 )}{\cf1 :} {\b\cf6 like} {\cf5 other}{\line}
+{\tab}{\tab}{\b\cf6 obsolete} "Use `deep_twin' instead. [2017-05-31]"{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Void if }{\cf5 other}{\cf3  is void: otherwise, new object structure}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  recursively duplicated from the one attached to }{\cf5 other}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 other} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 other}{\b\cf1 .}{\cf5 deep_twin}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 deep_equal}{\cf1 :} {\cf5 deep_equal}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 ,} {\b\cf6 Result}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 deep_copy} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 ES_VIOLATION_CASE}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Effect equivalent to that of:}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3 		}{\cf5 copy}{\cf3  (}{\cf5 other}{\cf3  . }{\cf5 deep_twin}{\cf3 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 copy}{\cf1  }{\cf1 (}{\cf5 other}{\b\cf1 .}{\cf5 deep_twin}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 deep_equal}{\cf1 :} {\cf5 deep_equal}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 ,} {\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 deep_twin}{\cf1 :} {\b\cf6 attached} {\cf4 ES_VIOLATION_CASE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New object structure recursively duplicated from Current.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 deep_twin_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 deep_equal}{\cf1 :} {\cf5 deep_equal}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 ,} {\b\cf6 Result}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 standard_clone} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 )}{\cf1 :} {\b\cf6 like} {\cf5 other}{\line}
+{\tab}{\tab}{\b\cf6 obsolete} "Use `standard_twin' instead. [2017-05-31]"{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Void if }{\cf5 other}{\cf3  is void; otherwise new object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  field-by-field identical to }{\cf5 other}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Always uses default copying semantics.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 other} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 other}{\b\cf1 .}{\cf5 standard_twin}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 equal}{\cf1 :} {\cf5 standard_equal}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 ,} {\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 standard_copy} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 ES_VIOLATION_CASE}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Copy every field of }{\cf5 other}{\cf3  onto corresponding field}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of current object.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 type_identity}{\cf1 :} {\cf5 same_type}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_standard_equal}{\cf1 :} {\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 standard_twin}{\cf1 :} {\b\cf6 attached} {\cf4 ES_VIOLATION_CASE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New object field-by-field identical to }{\cf5 other}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Always uses default copying semantics.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 standard_twin_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 equal}{\cf1 :} {\cf5 standard_equal}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 ,} {\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 twin}{\cf1 :} {\b\cf6 attached} {\cf4 ES_VIOLATION_CASE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New object equal to }{\cf5 Current}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 twin}{\cf3  calls }{\cf5 copy}{\cf3 ; to change copying/twinning semantics, redefine }{\cf5 copy}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 twin_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_equal}{\cf1 :} {\b\cf6 Result} {\cf1 ~} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Basic operations}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 as_attached}{\cf1 :} {\b\cf6 attached} {\cf4 ES_VIOLATION_CASE}{\line}
+{\tab}{\tab}{\b\cf6 obsolete} "Remove calls to this feature. [2017-05-31]"{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Attached version of Current.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Can be used during transitional period to convert}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  non-void-safe classes to void-safe ones.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 default}{\cf1 :} {\b\cf6 detachable} {\cf4 ES_VIOLATION_CASE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Default value of object's type}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 default_pointer}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Default value of type }{\cf5 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Avoid the need to write }{\cf5 p}{\cf3 .}{\cf5 default}{\cf3  for}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  some }{\cf5 p}{\cf3  of type }{\cf5 POINTER}{\cf3 .)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 default_rescue}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Process exception for routines with no Rescue clause.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Default: do nothing.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 do_nothing}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Execute a null action.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 c_trace_exception} {\cf1 (}{\cf5 b}{\cf1 :} {\cf4 BOOLEAN}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EXCEPTIONS}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C use %"eif_except.h%""{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"eetrace"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 ES_HTML_GEN}{\cf1 ,} {\cf4 ES_TEST}{\cf1 \}} {\cf3 --}{\cf3  Basic Operation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_bookmark_name} {\cf1 (}{\cf5 bm}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Prepare HTML tag.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ES_TEST_CASE}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ES_TEST_CASE}{\line}
+{\tab}{\tab}{\tab}{\cf1 bm_valid}{\cf1 :} {\cf5 bm} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 bookmark_name} {\cf1 :=} {\cf5 bm}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_case_name} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set name to }{\cf5 s}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ES_TEST_CASE}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ES_TEST_CASE}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_exists}{\cf1 :} {\cf5 s} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 case_name} {\cf1 :=} {\cf5 s}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ES_TEST_CASE}{\line}
+{\tab}{\tab}{\tab}{\cf1 case_name_set}{\cf1 :} {\cf5 case_name} {\cf1 =} {\cf5 s}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Output}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Io}{\cf1 :} {\cf4 STD_FILES}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Handle to standard file setup}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 set_output_default}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 io_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 out}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New string containing terse printable representation}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of current object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 tagged_out}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 out_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 print} {\cf1 (}{\cf5 o}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Write terse external representation of }{\cf5 o}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  on standard output.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 o} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 Io}{\b\cf1 .}{\cf5 put_string}{\cf1  }{\cf1 (}{\cf5 o}{\b\cf1 .}{\cf5 out}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 tagged_out}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New string containing terse printable representation}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of current object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 tagged_out_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Platform}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Operating_environment}{\cf1 :} {\cf4 OPERATING_ENVIRONMENT}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Objects available from the operating system}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 operating_environment_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Retrieval}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 internal_correct_mismatch}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Called from runtime to perform a proper dynamic dispatch on }{\cf5 correct_mismatch}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  from MISMATCH_CORRECTOR.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_msg}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_exc}{\cf1 :} {\cf4 EXCEPTIONS}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf1 \{}{\cf4 MISMATCH_CORRECTOR}{\cf1 \}} {\b\cf6 Current} {\b\cf6 as} l_corrector {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_corrector}{\b\cf1 .}{\cf5 correct_mismatch}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 l_msg}{\b\cf1 .}{\cf5 make_from_string}{\cf1  }{\cf1 (}"Mismatch: "{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 l_exc}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_msg}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 generating_type}{\b\cf1 .}{\cf5 name}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_exc}{\b\cf1 .}{\cf5 raise_retrieval_exception}{\cf1  }{\cf1 (}{\cf5 l_msg}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 invariant}{\line}
+{\tab}{\tab}{\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\cf1 reflexive_equality}{\cf1 :} {\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\cf1 reflexive_conformance}{\cf1 :} {\cf5 conforms_to}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\line}
+{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 ES_VIOLATION_CASE}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

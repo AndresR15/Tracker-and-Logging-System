@@ -1,0 +1,26 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../interface/ev_character_format_constants_chart.xml</location>EV_CHARACTER_FORMAT_CONSTANTS</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>interface</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> 
+		<string>&quot;Constants for use with and by EV_CHARACTER_FORMAT and</string>
+		<string>EV_CHARACTER_RANGE_INFORMATION&quot;</string>
+
+<keyword>Ancestors</keyword>
+	<class><include>False</include>ANY</class>
+
+<keyword>Queries</keyword>
+	<feature><location>../interface/ev_character_format_constants.xml#f_background_color</location>Background_color</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_character_format_constants.xml#f_color</location>Color</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_character_format_constants.xml#f_effects_striked_out</location>Effects_striked_out</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_character_format_constants.xml#f_effects_underlined</location>Effects_underlined</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_character_format_constants.xml#f_effects_vertical_offset</location>Effects_vertical_offset</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_character_format_constants.xml#f_font_family</location>Font_family</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_character_format_constants.xml#f_font_height</location>Font_height</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_character_format_constants.xml#f_font_shape</location>Font_shape</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_character_format_constants.xml#f_font_weight</location>Font_weight</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_character_format_constants.xml#f_valid_character_format_flag</location>valid_character_format_flag</feature> <symbol>(</symbol><local>a_flag</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+
+</system>

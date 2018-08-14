@@ -1,0 +1,691 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "Interface for file systems"{\line}
+{\tab}{\cf1 library}{\cf1 :} "Gobo Eiffel Kernel Library"{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 2001-2017, Eric Bezault and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "MIT License"{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2017-04-11 11:34:55 -0700 (Tue, 11 Apr 2017) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 100137 $"{\line}
+{\line}
+{\b\cf6 deferred} {\b\cf6 class} {\b\cf6 interface}{\line}
+{\tab}{\cf4 KI_FILE_SYSTEM}{\line}
+{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status report}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_current_file_system}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is file system the file system of the underlying platform?}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  File handling}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_file_readable} {\cf1 (}{\cf5 a_filename}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Can file named }{\cf5 a_filename}{\cf3  be opened in read mode?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_filename}{\cf3  should follow the pathname convention}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of the underlying platform. For pathname conversion}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  use KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_filename_not_void}{\cf1 :} {\cf5 a_filename} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 file_exists} {\cf1 (}{\cf5 a_filename}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does file named }{\cf5 a_filename}{\cf3  physically exist on disk?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_filename}{\cf3  should follow the pathname convention}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of the underlying platform. For pathname conversion}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  use KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_filename_not_void}{\cf1 :} {\cf5 a_filename} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 file_count} {\cf1 (}{\cf5 a_filename}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of bytes in file named }{\cf5 a_filename}{\cf3 ;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Return -1 if the number of bytes was not available,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  if the file did not exist for example.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_filename}{\cf3  should follow the pathname convention}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of the underlying platform. For pathname conversion}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  use KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_filename_not_void}{\cf1 :} {\cf5 a_filename} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_values}{\cf1 :} {\b\cf6 Result} {\cf1 =} -1 {\b\cf6 or} {\b\cf6 Result} {\cf1 >=} 0{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 file_time_stamp} {\cf1 (}{\cf5 a_filename}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Time stamp (number of seconds since 1 January 1970}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  at 00:00:00 UTC) of last modification to file }{\cf5 a_filename}{\cf3 ;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Return -1 if the time stamp was not available, if the}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  file did not exist for example, or if the time stamp}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  didn't fit into an INTEGER. (Use DT_DATE_TIME.make_from_epoch}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to convert this time stamp to a human readable format.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_filename}{\cf3  should follow the pathname convention}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of the underlying platform. For pathname conversion}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  use KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_filename_not_void}{\cf1 :} {\cf5 a_filename} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_values}{\cf1 :} {\b\cf6 Result} {\cf1 =} -1 {\b\cf6 or} {\b\cf6 Result} {\cf1 >=} 0{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 same_physical_file} {\cf1 (}{\cf5 a_filename1}{\cf1 ,} {\cf5 a_filename2}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are files named }{\cf5 a_filename1}{\cf3  and }{\cf5 a_filename2}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the same physical file? Return False if one}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  or both files don't exist. (Return True if}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  it was impossible to determine whether the}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  files were physically the same files.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_filename1}{\cf3  and }{\cf5 a_filename2}{\cf3  should follow}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the pathname convention of the underlying}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  platform. For pathname conversion use}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_filename1_not_void}{\cf1 :} {\cf5 a_filename1} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_filename2_not_void}{\cf1 :} {\cf5 a_filename2} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 same_text_files} {\cf1 (}{\cf5 a_filename1}{\cf1 ,} {\cf5 a_filename2}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do files named }{\cf5 a_filename1}{\cf3  and }{\cf5 a_filename2}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  contain the same number of lines and are these}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  lines equal? Return False if one or both files}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  don't exist or cannot be open in read mode.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_filename1}{\cf3  and }{\cf5 a_filename2}{\cf3  should follow}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the pathname convention of the underlying}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  platform. For pathname conversion use}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_filename1_not_void}{\cf1 :} {\cf5 a_filename1} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_filename2_not_void}{\cf1 :} {\cf5 a_filename2} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 same_binary_files} {\cf1 (}{\cf5 a_filename1}{\cf1 ,} {\cf5 a_filename2}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do files named }{\cf5 a_filename1}{\cf3  and }{\cf5 a_filename2}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  contain the same number of characters and are these}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  characters equal? Return False if one or both files}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  don't exist or cannot be open in read mode.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_filename1}{\cf3  and }{\cf5 a_filename2}{\cf3  should follow}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the pathname convention of the underlying}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  platform. For pathname conversion use}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_filename1_not_void}{\cf1 :} {\cf5 a_filename1} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_filename2_not_void}{\cf1 :} {\cf5 a_filename2} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 rename_file} {\cf1 (}{\cf5 old_name}{\cf1 ,} {\cf5 new_name}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Rename file named }{\cf5 old_name}{\cf3  as }{\cf5 new_name}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do nothing if the file could not be renamed, if}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  it did not exist or if }{\cf5 new_name}{\cf3  is physically}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the same file as current file. Overwrite }{\cf5 new_name}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  if it already existed. (}{\cf5 old_name}{\cf3  and }{\cf5 new_name}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  should follow the pathname convention of the}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  underlying platform. For pathname conversion use}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 old_name_not_void}{\cf1 :} {\cf5 old_name} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 new_name_not_void}{\cf1 :} {\cf5 new_name} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 copy_file} {\cf1 (}{\cf5 old_name}{\cf1 ,} {\cf5 new_name}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Copy file named }{\cf5 old_name}{\cf3  to }{\cf5 new_name}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do nothing if the file could not be copied, if it}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  did not exist or if }{\cf5 new_name}{\cf3  is physically}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the same file as }{\cf5 old_name}{\cf3 . Overwrite }{\cf5 new_name}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  if it already existed. (}{\cf5 old_name}{\cf3  and }{\cf5 new_name}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  should follow the pathname convention of the}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  underlying platform. For pathname conversion use}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 old_name_not_void}{\cf1 :} {\cf5 old_name} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 new_name_not_void}{\cf1 :} {\cf5 new_name} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 concat_files} {\cf1 (}{\cf5 a_target_filename}{\cf1 ,} {\cf5 a_source_filename}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Copy content of file }{\cf5 a_source_filename}{\cf3  to the end of file}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 a_target_filename}{\cf3 . Do nothing if file }{\cf5 a_source_filename}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  does not exist. Create file }{\cf5 a_target_filename}{\cf3  if it does}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  not exist yet. If file }{\cf5 a_source_filename}{\cf3  is physically the}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  same as file }{\cf5 a_target_filename}{\cf3 , then a copy of the file is}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  appended to itself. Do nothing if file }{\cf5 a_target_filename}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  could not be open in append mode or if file }{\cf5 a_source_filename}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  could not be opened in read mode.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_source_filename}{\cf3  and }{\cf5 a_target_filename}{\cf3  should follow}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the pathname convention of the underlying platform. For pathname}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  conversion use KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_target_filename_not_void}{\cf1 :} {\cf5 a_target_filename} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_source_filename_not_void}{\cf1 :} {\cf5 a_source_filename} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 delete_file} {\cf1 (}{\cf5 a_filename}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Delete file named }{\cf5 a_filename}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do nothing if the file could not be}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  deleted or if it did not exist.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_filename}{\cf3  should follow the pathname convention}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of the underlying platform. For pathname conversion}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  use KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_filename_not_void}{\cf1 :} {\cf5 a_filename} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 new_input_file} {\cf1 (}{\cf5 a_name}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 KI_TEXT_INPUT_FILE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New input text file in current file system}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_name}{\cf3  should follow the pathname convention}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of the underlying platform. For pathname conversion}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  use KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_name_not_void}{\cf1 :} {\cf5 a_name} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 input_file_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 name_set}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 name} {\cf1 =} {\cf5 a_name}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_closed}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 is_closed}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 new_output_file} {\cf1 (}{\cf5 a_name}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 KI_TEXT_OUTPUT_FILE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New output text file in current file system}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_name}{\cf3  should follow the pathname convention}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of the underlying platform. For pathname conversion}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  use KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_name_not_void}{\cf1 :} {\cf5 a_name} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 output_file_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 name_set}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 name} {\cf1 =} {\cf5 a_name}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_closed}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 is_closed}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 eol}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Line separator in current file system}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 eol_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 eol_not_empty}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 count} {\cf1 >} 0{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Directory handling}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_directory_readable} {\cf1 (}{\cf5 a_dirname}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Can directory named }{\cf5 a_dirname}{\cf3  be opened in read mode?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_dirname}{\cf3  should follow the pathname convention}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of the underlying platform. For pathname conversion}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  use KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_dirname_not_void}{\cf1 :} {\cf5 a_dirname} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 directory_exists} {\cf1 (}{\cf5 a_dirname}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does directory named }{\cf5 a_dirname}{\cf3  physically exist on disk?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_dirname}{\cf3  should follow the pathname convention}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of the underlying platform. For pathname conversion}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  use KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_dirname_not_void}{\cf1 :} {\cf5 a_dirname} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_directory_empty} {\cf1 (}{\cf5 a_dirname}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does directory named }{\cf5 a_dirname}{\cf3  contain no entry apart}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  from the parent and current directory entries?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Return False if not able to open current directory.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_dirname}{\cf3  should follow the pathname convention}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of the underlying platform. For pathname conversion}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  use KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_dirname_not_void}{\cf1 :} {\cf5 a_dirname} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 create_directory} {\cf1 (}{\cf5 a_dirname}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create a new directory named }{\cf5 a_dirname}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do nothing if the directory could not}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  be created, if it already existed or if}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 a_dirname}{\cf3  is a nested directory name}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  and the parent directory does not exist.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_dirname}{\cf3  should follow the pathname convention}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of the underlying platform. For pathname conversion}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  use KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_dirname_not_void}{\cf1 :} {\cf5 a_dirname} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 recursive_create_directory} {\cf1 (}{\cf5 a_dirname}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create a new directory named }{\cf5 a_dirname}{\cf3  on disk.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create its parent directories if they do not exist yet.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do nothing if the directory could not be created,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  if it already existed or }{\cf5 name}{\cf3  is a nested directory}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  name and its parent directory does not exist and}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  could not be created.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_dirname}{\cf3  should follow the pathname convention}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of the underlying platform. For pathname conversion}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  use KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_dirname_not_void}{\cf1 :} {\cf5 a_dirname} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 delete_directory} {\cf1 (}{\cf5 a_dirname}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Delete directory named }{\cf5 a_dirname}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do nothing if the directory could not be deleted,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  if it did not exist or if it is not empty.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_dirname}{\cf3  should follow the pathname convention}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of the underlying platform. For pathname conversion}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  use KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_dirname_not_void}{\cf1 :} {\cf5 a_dirname} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 recursive_delete_directory} {\cf1 (}{\cf5 a_dirname}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Delete directory named }{\cf5 a_dirname}{\cf3 , its files}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  and its subdirectories recursively. Do nothing if}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the directory could not be deleted, if it did not exist.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_dirname}{\cf3  should follow the pathname convention}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of the underlying platform. For pathname conversion}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  use KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_dirname_not_void}{\cf1 :} {\cf5 a_dirname} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 recursive_copy_directory} {\cf1 (}{\cf5 old_name}{\cf1 ,} {\cf5 new_name}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Copy recursively directory named }{\cf5 old_name}{\cf3  to }{\cf5 new_name}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do nothing if the directory could not be copied,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  if it did not exist, or if }{\cf5 new_name}{\cf3  already existed.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 old_name}{\cf3  and }{\cf5 new_name}{\cf3  should follow the pathname}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  convention of the underlying platform. For pathname}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  conversion use KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 old_name_not_void}{\cf1 :} {\cf5 old_name} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 new_name_not_void}{\cf1 :} {\cf5 new_name} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Working directory}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 cwd}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Name of current working directory;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Return absolute pathname with the naming}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  convention of the underlying file system}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Return a new object at each call.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 KI_FILE_SYSTEM}{\cf3  as synonym of }{\cf5 current_working_directory}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_current_file_system}{\cf1 :} {\cf5 is_current_file_system}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 current_working_directory_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_absolute}{\cf1 :} {\cf5 is_absolute_pathname}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 current_working_directory}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Name of current working directory;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Return absolute pathname with the naming}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  convention of the underlying file system}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Return a new object at each call.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 KI_FILE_SYSTEM}{\cf3  as synonym of }{\cf5 cwd}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_current_file_system}{\cf1 :} {\cf5 is_current_file_system}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 current_working_directory_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_absolute}{\cf1 :} {\cf5 is_absolute_pathname}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 cd} {\cf1 (}{\cf5 a_dirname}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set current working directory to }{\cf5 a_dirname}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do nothing if the current working directory could not}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  be changed or if directory }{\cf5 a_dirname}{\cf3  did not exist.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_dirname}{\cf3  should follow the pathname convention}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of the underlying platform. For pathname conversion}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  use KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 KI_FILE_SYSTEM}{\cf3  as synonym of }{\cf5 set_current_working_directory}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_dirname_not_void}{\cf1 :} {\cf5 a_dirname} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_current_file_system}{\cf1 :} {\cf5 is_current_file_system}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 set_current_working_directory} {\cf1 (}{\cf5 a_dirname}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set current working directory to }{\cf5 a_dirname}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do nothing if the current working directory could not}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  be changed or if directory }{\cf5 a_dirname}{\cf3  did not exist.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_dirname}{\cf3  should follow the pathname convention}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of the underlying platform. For pathname conversion}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  use KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 KI_FILE_SYSTEM}{\cf3  as synonym of }{\cf5 cd}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_dirname_not_void}{\cf1 :} {\cf5 a_dirname} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_current_file_system}{\cf1 :} {\cf5 is_current_file_system}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Pathname handling}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_absolute_pathname} {\cf1 (}{\cf5 a_pathname}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 a_pathname}{\cf3  an absolute pathname?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_pathname}{\cf3  should follow the pathname convention of}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  current file system: Unix convention in KL_UNIX_FILE_SYSTEM,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Windows convention in KL_WINDOWS_FILE_SYSTEM, etc. For pathname}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  conversion use }{\cf5 pathname_from_file_system}{\cf3 .)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_pathname_not_void}{\cf1 :} {\cf5 a_pathname} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_relative}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\b\cf6 not} {\cf5 is_relative_pathname}{\cf1  }{\cf1 (}{\cf5 a_pathname}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_relative_pathname} {\cf1 (}{\cf5 a_pathname}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 a_pathname}{\cf3  a relative pathname (relative}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to the current working directory)?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_pathname}{\cf3  should follow the pathname convention of}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  current file system: Unix convention in KL_UNIX_FILE_SYSTEM,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Windows convention in KL_WINDOWS_FILE_SYSTEM, etc. For pathname}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  conversion use }{\cf5 pathname_from_file_system}{\cf3 .)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_pathname_not_void}{\cf1 :} {\cf5 a_pathname} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_absolute}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\b\cf6 not} {\cf5 is_absolute_pathname}{\cf1  }{\cf1 (}{\cf5 a_pathname}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_root_directory} {\cf1 (}{\cf5 a_dirname}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 a_dirname}{\cf3  a root directory (i.e. it has no parent directory)?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_dirname}{\cf3  should follow the pathname convention of}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  current file system: Unix convention in KL_UNIX_FILE_SYSTEM,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Windows convention in KL_WINDOWS_FILE_SYSTEM, etc. For pathname}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  conversion use }{\cf5 pathname_from_file_system}{\cf3 .)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_dirname_not_void}{\cf1 :} {\cf5 a_dirname} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 same_pathnames} {\cf1 (}{\cf5 a_pathname1}{\cf1 ,} {\cf5 a_pathname2}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are }{\cf5 a_pathname1}{\cf3  and }{\cf5 a_pathname2}{\cf3  considered equal when}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  viewed from the current file system?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_pathname1}{\cf3  and }{\cf5 a_pathname2}{\cf3  should follow}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the pathname convention of the underlying}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  platform. For pathname conversion use}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Note that pathnames may be considered equal when viewed}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  from one file system but not from another. For example}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Windows is case-insensitive, but Unix is case-sensitive.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_pathname1_not_void}{\cf1 :} {\cf5 a_pathname1} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_pathname2_not_void}{\cf1 :} {\cf5 a_pathname2} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 same_canonical_pathnames} {\cf1 (}{\cf5 a_pathname1}{\cf1 ,} {\cf5 a_pathname2}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are the canonical versions of }{\cf5 a_pathname1}{\cf3  and }{\cf5 a_pathname2}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  considered equal when viewed from the current file system?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_pathname1}{\cf3  and }{\cf5 a_pathname2}{\cf3  should follow}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the pathname convention of the underlying}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  platform. For pathname conversion use}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Note that pathnames may be considered equal when viewed}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  from one file system but not from another. For example}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Windows is case-insensitive, but Unix is case-sensitive.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_pathname1_not_void}{\cf1 :} {\cf5 a_pathname1} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_pathname2_not_void}{\cf1 :} {\cf5 a_pathname2} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf5 same_pathnames}{\cf1  }{\cf1 (}{\cf5 canonical_pathname}{\cf1  }{\cf1 (}{\cf5 a_pathname1}{\cf1 )}{\cf1 ,} {\cf5 canonical_pathname}{\cf1  }{\cf1 (}{\cf5 a_pathname2}{\cf1 )}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 same_canonical_absolute_pathnames} {\cf1 (}{\cf5 a_pathname1}{\cf1 ,} {\cf5 a_pathname2}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are the canonical absolute versions of }{\cf5 a_pathname1}{\cf3  and }{\cf5 a_pathname2}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  considered equal when viewed from the current file system?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_pathname1}{\cf3  and }{\cf5 a_pathname2}{\cf3  should follow}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the pathname convention of the underlying}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  platform. For pathname conversion use}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Note that pathnames may be considered equal when viewed}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  from one file system but not from another. For example}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Windows is case-insensitive, but Unix is case-sensitive.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_pathname1_not_void}{\cf1 :} {\cf5 a_pathname1} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_pathname2_not_void}{\cf1 :} {\cf5 a_pathname2} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf5 same_canonical_pathnames}{\cf1  }{\cf1 (}{\cf5 absolute_pathname}{\cf1  }{\cf1 (}{\cf5 a_pathname1}{\cf1 )}{\cf1 ,} {\cf5 absolute_pathname}{\cf1  }{\cf1 (}{\cf5 a_pathname2}{\cf1 )}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_subpathname} {\cf1 (}{\cf5 a_pathname1}{\cf1 ,} {\cf5 a_pathname2}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 a_pathname1}{\cf3  considered as a subpathname of }{\cf5 a_pathname2}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  when viewed from the current file system?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_pathname1}{\cf3  and }{\cf5 a_pathname2}{\cf3  should follow}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the pathname convention of the underlying}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  platform. For pathname conversion use}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Note that pathnames may be considered equal when viewed}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  from one file system but not from another. For example}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Windows is case-insensitive, but Unix is case-sensitive.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_pathname1_not_void}{\cf1 :} {\cf5 a_pathname1} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_pathname2_not_void}{\cf1 :} {\cf5 a_pathname2} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_canonical_subpathname} {\cf1 (}{\cf5 a_pathname1}{\cf1 ,} {\cf5 a_pathname2}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is the canonical version of }{\cf5 a_pathname1}{\cf3  considered as}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  a subpathname of the canonical version of }{\cf5 a_pathname2}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  when viewed from the current file system?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_pathname1}{\cf3  and }{\cf5 a_pathname2}{\cf3  should follow}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the pathname convention of the underlying}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  platform. For pathname conversion use}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Note that pathnames may be considered equal when viewed}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  from one file system but not from another. For example}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Windows is case-insensitive, but Unix is case-sensitive.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_pathname1_not_void}{\cf1 :} {\cf5 a_pathname1} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_pathname2_not_void}{\cf1 :} {\cf5 a_pathname2} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf5 is_subpathname}{\cf1  }{\cf1 (}{\cf5 canonical_pathname}{\cf1  }{\cf1 (}{\cf5 a_pathname1}{\cf1 )}{\cf1 ,} {\cf5 canonical_pathname}{\cf1  }{\cf1 (}{\cf5 a_pathname2}{\cf1 )}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_canonical_absolute_subpathname} {\cf1 (}{\cf5 a_pathname1}{\cf1 ,} {\cf5 a_pathname2}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is the canonical absolute version of }{\cf5 a_pathname1}{\cf3  considered as}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  a subpathname of the canonical absolute version of }{\cf5 a_pathname2}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  when viewed from the current file system?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_pathname1}{\cf3  and }{\cf5 a_pathname2}{\cf3  should follow}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the pathname convention of the underlying}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  platform. For pathname conversion use}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  KI_FILE_SYSTEM.pathname_from_file_system.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Note that pathnames may be considered equal when viewed}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  from one file system but not from another. For example}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Windows is case-insensitive, but Unix is case-sensitive.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_pathname1_not_void}{\cf1 :} {\cf5 a_pathname1} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_pathname2_not_void}{\cf1 :} {\cf5 a_pathname2} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf5 is_canonical_subpathname}{\cf1  }{\cf1 (}{\cf5 absolute_pathname}{\cf1  }{\cf1 (}{\cf5 a_pathname1}{\cf1 )}{\cf1 ,} {\cf5 absolute_pathname}{\cf1  }{\cf1 (}{\cf5 a_pathname2}{\cf1 )}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 basename} {\cf1 (}{\cf5 a_pathname}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Pathname with any leading directory components removed}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_pathname}{\cf3  should follow the pathname convention of}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  current file system: Unix convention in KL_UNIX_FILE_SYSTEM,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Windows convention in KL_WINDOWS_FILE_SYSTEM, etc. The}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  result also follows this pathname convention. For pathname}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  conversion use }{\cf5 pathname_from_file_system}{\cf3 .)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_pathname_not_void}{\cf1 :} {\cf5 a_pathname} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 basename_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_relative}{\cf1 :} {\b\cf6 not} {\cf5 is_root_directory}{\cf1  }{\cf1 (}{\cf5 a_pathname}{\cf1 )} {\b\cf6 implies} {\cf5 is_relative_pathname}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 dirname} {\cf1 (}{\cf5 a_pathname}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Pathname containing only the leading directory components so}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  that 'pathname (dirname (a_pathname), basename (a_pathname))'}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  is equivalent to }{\cf5 a_pathname}{\cf3 ; Return }{\cf5 relative_current_directory}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  when there is no leading directory components in }{\cf5 a_pathname}{\cf3 ;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Return a root directory when }{\cf5 a_pathname}{\cf3  is a root directory}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_pathname}{\cf3  should follow the pathname convention of}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  current file system: Unix convention in KL_UNIX_FILE_SYSTEM,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Windows convention in KL_WINDOWS_FILE_SYSTEM, etc. The}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  result also follows this pathname convention. For pathname}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  conversion use }{\cf5 pathname_from_file_system}{\cf3 .)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_pathname_not_void}{\cf1 :} {\cf5 a_pathname} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 dirname_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 same_relative}{\cf1 :} {\cf5 is_relative_pathname}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 )} {\cf1 =} {\cf5 is_relative_pathname}{\cf1  }{\cf1 (}{\cf5 a_pathname}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 same_absolute}{\cf1 :} {\cf5 is_absolute_pathname}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 )} {\cf1 =} {\cf5 is_absolute_pathname}{\cf1  }{\cf1 (}{\cf5 a_pathname}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 pathname} {\cf1 (}{\cf5 a_dirname}{\cf1 ,} {\cf5 a_pathname}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Pathname made up of relative pathname}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 a_pathname}{\cf3  in directory }{\cf5 a_dirname}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_dirname}{\cf3  and }{\cf5 a_pathname}{\cf3  should follow the pathname convention}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of current file system: Unix convention in KL_UNIX_FILE_SYSTEM,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Windows convention in KL_WINDOWS_FILE_SYSTEM, etc. The}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  result also follows this pathname convention. For pathname}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  conversion use }{\cf5 pathname_from_file_system}{\cf3 .)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_dirname_not_void}{\cf1 :} {\cf5 a_dirname} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_pathname_not_void}{\cf1 :} {\cf5 a_pathname} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_pathname_relative}{\cf1 :} {\cf5 is_relative_pathname}{\cf1  }{\cf1 (}{\cf5 a_pathname}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 pathname_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 same_relative}{\cf1 :} {\cf5 is_relative_pathname}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 )} {\cf1 =} {\cf5 is_relative_pathname}{\cf1  }{\cf1 (}{\cf5 a_dirname}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 same_absolute}{\cf1 :} {\cf5 is_absolute_pathname}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 )} {\cf1 =} {\cf5 is_absolute_pathname}{\cf1  }{\cf1 (}{\cf5 a_dirname}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 append_pathname_to_string} {\cf1 (}{\cf5 a_dirname}{\cf1 ,} {\cf5 a_pathname}{\cf1 ,} {\cf5 a_string}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Append to }{\cf5 a_string}{\cf3  the pathname made up of relative pathname}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 a_pathname}{\cf3  in directory }{\cf5 a_dirname}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_dirname}{\cf3  and }{\cf5 a_pathname}{\cf3  should follow the pathname convention}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of current file system: Unix convention in KL_UNIX_FILE_SYSTEM,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Windows convention in KL_WINDOWS_FILE_SYSTEM, etc. The}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  result also follows this pathname convention. For pathname}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  conversion use }{\cf5 pathname_from_file_system}{\cf3 .)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_dirname_not_void}{\cf1 :} {\cf5 a_dirname} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_pathname_not_void}{\cf1 :} {\cf5 a_pathname} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_pathname_relative}{\cf1 :} {\cf5 is_relative_pathname}{\cf1  }{\cf1 (}{\cf5 a_pathname}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_dirname_same_type}{\cf1 :} {\cf5 a_dirname}{\b\cf1 .}{\cf5 same_type}{\cf1  }{\cf1 (}{\cf5 a_string}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_pathname_same_type}{\cf1 :} {\cf5 a_pathname}{\b\cf1 .}{\cf5 same_type}{\cf1  }{\cf1 (}{\cf5 a_string}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\cf5 a_string} {\cf1 ~} {\b\cf6 old} {\cf5 a_string} {\cf1 +} {\cf5 pathname}{\cf1  }{\cf1 (}{\cf5 a_dirname}{\cf1 ,} {\cf5 a_pathname}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 nested_pathname} {\cf1 (}{\cf5 a_dirname}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 a_pathnames}{\cf1 :} {\cf4 ARRAY} {\cf1 [}{\cf4 STRING_8}{\cf1 ]}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Pathname made up of relative pathnames}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 a_pathnames}{\cf3  in directory }{\cf5 a_dirname}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_dirname}{\cf3  and }{\cf5 a_pathnames}{\cf3  should follow the pathname convention}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of current file system: Unix convention in KL_UNIX_FILE_SYSTEM,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Windows convention in KL_WINDOWS_FILE_SYSTEM, etc. The}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  result also follows this pathname convention. For pathname}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  conversion use }{\cf5 pathname_from_file_system}{\cf3 .)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_dirname_not_void}{\cf1 :} {\cf5 a_dirname} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_pathnames_not_void}{\cf1 :} {\cf5 a_pathnames} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_pathnames_not_empty}{\cf1 :} {\cf5 a_pathnames}{\b\cf1 .}{\cf5 count} {\cf1 >} 0{\line}
+{\tab}{\tab}{\tab}{\cf1 no_void_pathname}{\cf1 :} {\b\cf6 not} {\cf5 String_array_}{\b\cf1 .}{\cf5 has_void}{\cf1  }{\cf1 (}{\cf5 a_pathnames}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 pathname_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 same_relative}{\cf1 :} {\cf5 is_relative_pathname}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 )} {\cf1 =} {\cf5 is_relative_pathname}{\cf1  }{\cf1 (}{\cf5 a_dirname}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 same_absolute}{\cf1 :} {\cf5 is_absolute_pathname}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 )} {\cf1 =} {\cf5 is_absolute_pathname}{\cf1  }{\cf1 (}{\cf5 a_dirname}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 canonical_pathname} {\cf1 (}{\cf5 a_pathname}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Canonical form of }{\cf5 a_pathname}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_pathname}{\cf3  should follow the pathname convention of}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  current file system: Unix convention in KL_UNIX_FILE_SYSTEM,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Windows convention in KL_WINDOWS_FILE_SYSTEM, etc. The}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  result also follows this pathname convention. For pathname}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  conversion use }{\cf5 pathname_from_file_system}{\cf3 .)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_pathname_not_void}{\cf1 :} {\cf5 a_pathname} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 canonical_pathname_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 relative_current_directory}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Relative pathname of current directory}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (The result follows the pathname convention of current}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  file system: Unix convention in KL_UNIX_FILE_SYSTEM,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Windows convention in KL_WINDOWS_FILE_SYSTEM, etc. For}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  pathname conversion use }{\cf5 pathname_from_file_system}{\cf3 .)}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 relative_current_directory_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_relative}{\cf1 :} {\cf5 is_relative_pathname}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 relative_parent_directory}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Relative pathname of current parent directory}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (The result follows the pathname convention of current}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  file system: Unix convention in KL_UNIX_FILE_SYSTEM,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Windows convention in KL_WINDOWS_FILE_SYSTEM, etc. For}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  pathname conversion use }{\cf5 pathname_from_file_system}{\cf3 .)}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 relative_parent_directory_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_relative}{\cf1 :} {\cf5 is_relative_pathname}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 root_directory}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Pathname of current root directory}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (The result follows the pathname convention of current}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  file system: Unix convention in KL_UNIX_FILE_SYSTEM,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Windows convention in KL_WINDOWS_FILE_SYSTEM, etc. For}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  pathname conversion use }{\cf5 pathname_from_file_system}{\cf3 .)}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 root_directory_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_root}{\cf1 :} {\cf5 is_root_directory}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_relative}{\cf1 :} {\b\cf6 not} {\cf5 is_relative_pathname}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 absolute_pathname} {\cf1 (}{\cf5 a_pathname}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Absolute pathname of }{\cf5 a_pathname}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_pathname}{\cf3  should follow the pathname convention of}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  current file system: Unix convention in KL_UNIX_FILE_SYSTEM,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Windows convention in KL_WINDOWS_FILE_SYSTEM, etc. The}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  result also follows this pathname convention. For pathname}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  conversion use }{\cf5 pathname_from_file_system}{\cf3 .)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_pathname_not_void}{\cf1 :} {\cf5 a_pathname} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_current_file_system}{\cf1 :} {\cf5 is_current_file_system}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 absolute_pathname_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_absolute}{\cf1 :} {\cf5 is_absolute_pathname}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 absolute_parent_directory} {\cf1 (}{\cf5 a_pathname}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Absolute pathname of parent directory of }{\cf5 a_pathname}{\cf3 ;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Return }{\cf5 absolute_root_directory}{\cf3  if }{\cf5 a_pathname}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  is a root directory (i.e. has no parent)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_pathname}{\cf3  should follow the pathname convention of}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  current file system: Unix convention in KL_UNIX_FILE_SYSTEM,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Windows convention in KL_WINDOWS_FILE_SYSTEM, etc. The}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  result also follows this pathname convention. For pathname}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  conversion use }{\cf5 pathname_from_file_system}{\cf3 .)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_pathname_not_void}{\cf1 :} {\cf5 a_pathname} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_current_file_system}{\cf1 :} {\cf5 is_current_file_system}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 absolute_parent_directory_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_absolute}{\cf1 :} {\cf5 is_absolute_pathname}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 absolute_root_directory}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Absolute pathname of current root directory}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (The result follows the pathname convention of current}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  file system: Unix convention in KL_UNIX_FILE_SYSTEM,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Windows convention in KL_WINDOWS_FILE_SYSTEM, etc. For}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  pathname conversion use }{\cf5 pathname_from_file_system}{\cf3 .)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_current_file_system}{\cf1 :} {\cf5 is_current_file_system}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 absolute_root_directory_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_root}{\cf1 :} {\cf5 is_root_directory}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_absolute}{\cf1 :} {\cf5 is_absolute_pathname}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 string_to_pathname} {\cf1 (}{\cf5 a_pathname}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 KI_PATHNAME}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Convert string to pathname}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_pathname}{\cf3  should follow the pathname convention of}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  current file system: Unix convention in KL_UNIX_FILE_SYSTEM,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Windows convention in KL_WINDOWS_FILE_SYSTEM, etc. For pathname}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  conversion use }{\cf5 pathname_from_file_system}{\cf3 .)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_pathname_not_void}{\cf1 :} {\cf5 a_pathname} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 string_to_pathname_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 pathname_to_string} {\cf1 (}{\cf5 a_pathname}{\cf1 :} {\cf4 KI_PATHNAME}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Convert pathname to string}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (The result follows the pathname convention of current}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  file system: Unix convention in KL_UNIX_FILE_SYSTEM,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Windows convention in KL_WINDOWS_FILE_SYSTEM, etc. For}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  pathname conversion use }{\cf5 pathname_from_file_system}{\cf3 .)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_pathname_not_void}{\cf1 :} {\cf5 a_pathname} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 pathname_to_string_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 pathname_from_file_system} {\cf1 (}{\cf5 a_pathname}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 a_file_system}{\cf1 :} {\cf4 KI_FILE_SYSTEM}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Pathname using pathname convention of current file system}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Unix convention in KL_UNIX_FILE_SYSTEM, Windows convention}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  in KL_WINDOWS_FILE_SYSTEM, etc.) converted from }{\cf5 a_pathname}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  which should follow the pathname convention of }{\cf5 a_file_system}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_pathname_not_void}{\cf1 :} {\cf5 a_pathname} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_file_system_not_void}{\cf1 :} {\cf5 a_file_system} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 pathname_from_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 has_extension} {\cf1 (}{\cf5 a_filename}{\cf1 ,} {\cf5 an_extension}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 an_extension}{\cf3  a file extension of }{\cf5 a_filename}{\cf3 ?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_filename}{\cf3  should follow the pathname convention of}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  current file system: Unix convention in KL_UNIX_FILE_SYSTEM,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Windows convention in KL_WINDOWS_FILE_SYSTEM, etc. For pathname}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  conversion use }{\cf5 pathname_from_file_system}{\cf3 .)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_filename_not_void}{\cf1 :} {\cf5 a_filename} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 an_extension_not_void}{\cf1 :} {\cf5 an_extension} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 extension} {\cf1 (}{\cf5 a_filename}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  File extension of }{\cf5 a_filename}{\cf3  (include the leading '.')}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (}{\cf5 a_filename}{\cf3  should follow the pathname convention of}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  current file system: Unix convention in KL_UNIX_FILE_SYSTEM,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Windows convention in KL_WINDOWS_FILE_SYSTEM, etc. For pathname}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  conversion use }{\cf5 pathname_from_file_system}{\cf3 .)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_filename_not_void}{\cf1 :} {\cf5 a_filename} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 extension_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 exe_extension}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Executable file extension (with the leading '.'}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  if this extension is not empty)}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 exe_extension_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\tab}{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 KI_FILE_SYSTEM}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

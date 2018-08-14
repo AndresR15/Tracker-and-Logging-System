@@ -1,0 +1,30 @@
+<system>
+<keyword>deferred</keyword> <keyword>class</keyword>
+	<class><location>../interface/ev_item_pixmap_scaler_chart.xml</location>EV_ITEM_PIXMAP_SCALER</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>interface</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> 
+		<string>&quot;Objects that may contain pixmapable items whose image size may be adjusted uniformly.</string>
+		<string>For example, calling set_pixmaps_size (24, 24) will ensure that the pixmaps of all items contained</string>
+		<string>will be displayed as 24x24 pixels.&quot;</string>
+
+<keyword>Ancestors</keyword>
+	<class><location>../interface/ev_any_chart.xml</location>EV_ANY</class><char>*</char>
+
+<keyword>Queries</keyword>
+	<feature><location>../interface/ev_any.xml#f_data</location>data</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>ANY</class>
+	<feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_item_pixmap_scaler.xml#f_pixmaps_height</location>pixmaps_height</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_item_pixmap_scaler.xml#f_pixmaps_width</location>pixmaps_width</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+
+<keyword>Commands</keyword>
+	<feature><location>../interface/ev_any.xml#f_copy</location>copy</feature> <symbol>(</symbol><local>other</local><symbol>:</symbol> <symbol>[</symbol><keyword>attached</keyword> <keyword>like</keyword> <keyword>Current</keyword><symbol>]</symbol> <keyword>attached</keyword> <class><location>../interface/ev_item_pixmap_scaler_chart.xml</location>EV_ITEM_PIXMAP_SCALER</class><symbol>)</symbol>
+	<feature><location>../interface/ev_any.xml#f_destroy</location>destroy</feature>
+	<feature><location>../interface/ev_any.xml#f_set_data</location>set_data</feature> <symbol>(</symbol><local>some_data</local><symbol>:</symbol> <symbol>[</symbol><keyword>like</keyword> <feature><location>../interface/ev_any.xml#f_data</location>data</feature><symbol>]</symbol> <keyword>detachable</keyword> <class><include>False</include>ANY</class><symbol>)</symbol>
+	<feature><location>../interface/ev_item_pixmap_scaler.xml#f_set_pixmaps_size</location>set_pixmaps_size</feature> <symbol>(</symbol><local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+
+<keyword>Constraints</keyword>
+	<tag>pixmaps size positive</tag>
+
+</system>

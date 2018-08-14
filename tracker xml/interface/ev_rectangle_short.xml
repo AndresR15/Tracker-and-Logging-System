@@ -1,0 +1,239 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Rectangular areas.&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2014-04-16 16:57:30 -0700 (Wed, 16 Apr 2014) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 94880 $&quot;</string>
+
+<keyword>class</keyword> <keyword>interface</keyword>
+	<class><location>../interface/ev_rectangle_short.xml</location>EV_RECTANGLE</class>
+
+<keyword>create</keyword> 
+	<feature><include>False</include>default_create</feature><symbol>,</symbol>
+	<feature><location>../interface/ev_rectangle_short.xml#f_make</location>make</feature><symbol>,</symbol>
+	<feature><location>../interface/ev_rectangle_short.xml#f_set</location>set</feature>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_x</anchor><feature><location>../interface/ev_rectangle_short.xml#f_x</location>x</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Horizontal position.</comment>
+
+	<anchor>f_y</anchor><feature><location>../interface/ev_rectangle_short.xml#f_y</location>y</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Vertical position.</comment>
+
+	<anchor>f_width</anchor><feature><location>../interface/ev_rectangle_short.xml#f_width</location>width</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Width of </comment><quoted>Current</quoted><comment>.</comment>
+
+	<anchor>f_height</anchor><feature><location>../interface/ev_rectangle_short.xml#f_height</location>height</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Height of </comment><quoted>Current</quoted><comment>.</comment>
+
+	<anchor>f_left</anchor><feature><location>../interface/ev_rectangle_short.xml#f_left</location>left</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Horizontal position of left side</comment>
+
+	<anchor>f_top</anchor><feature><location>../interface/ev_rectangle_short.xml#f_top</location>top</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Vertical position of top.</comment>
+
+	<anchor>f_right</anchor><feature><location>../interface/ev_rectangle_short.xml#f_right</location>right</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment>  Horizontal position of right side.</comment>
+
+	<anchor>f_bottom</anchor><feature><location>../interface/ev_rectangle_short.xml#f_bottom</location>bottom</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Vertical position of bottom.</comment>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status report</comment>
+
+	<anchor>f_has_area</anchor><feature><location>../interface/ev_rectangle_short.xml#f_has_area</location>has_area</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Does </comment><quoted>Current</quoted><comment> have area?</comment>
+
+	<anchor>f_upper_left</anchor><feature><location>../interface/ev_rectangle_short.xml#f_upper_left</location>upper_left</feature><symbol>:</symbol> <class><location>../interface/ev_coordinate_short.xml</location>EV_COORDINATE</class>
+			<comment>--</comment><comment> Upper-left corner of </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>ensure</keyword>
+			<tag>result_exists</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>result_assigned</tag><symbol>:</symbol> <keyword>Result</keyword><dot>.</dot><feature><location>../interface/ev_coordinate_short.xml#f_x</location>x</feature> <symbol>=</symbol> <feature><location>../interface/ev_rectangle_short.xml#f_x</location>x</feature> <keyword>and then</keyword> <keyword>Result</keyword><dot>.</dot><feature><location>../interface/ev_coordinate_short.xml#f_y</location>y</feature> <symbol>=</symbol> <feature><location>../interface/ev_rectangle_short.xml#f_y</location>y</feature>
+
+	<anchor>f_upper_right</anchor><feature><location>../interface/ev_rectangle_short.xml#f_upper_right</location>upper_right</feature><symbol>:</symbol> <class><location>../interface/ev_coordinate_short.xml</location>EV_COORDINATE</class>
+			<comment>--</comment><comment> Upper-right corner of </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>ensure</keyword>
+			<tag>result_exists</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>result_assigned</tag><symbol>:</symbol> <keyword>Result</keyword><dot>.</dot><feature><location>../interface/ev_coordinate_short.xml#f_x</location>x</feature> <symbol>=</symbol> <feature><location>../interface/ev_rectangle_short.xml#f_x</location>x</feature> <symbol>+</symbol> <feature><location>../interface/ev_rectangle_short.xml#f_width</location>width</feature> <keyword>and then</keyword> <keyword>Result</keyword><dot>.</dot><feature><location>../interface/ev_coordinate_short.xml#f_y</location>y</feature> <symbol>=</symbol> <feature><location>../interface/ev_rectangle_short.xml#f_y</location>y</feature>
+
+	<anchor>f_lower_left</anchor><feature><location>../interface/ev_rectangle_short.xml#f_lower_left</location>lower_left</feature><symbol>:</symbol> <class><location>../interface/ev_coordinate_short.xml</location>EV_COORDINATE</class>
+			<comment>--</comment><comment> Lower-left corner of </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>ensure</keyword>
+			<tag>result_exists</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>result_assigned</tag><symbol>:</symbol> <keyword>Result</keyword><dot>.</dot><feature><location>../interface/ev_coordinate_short.xml#f_x</location>x</feature> <symbol>=</symbol> <feature><location>../interface/ev_rectangle_short.xml#f_x</location>x</feature> <keyword>and then</keyword> <keyword>Result</keyword><dot>.</dot><feature><location>../interface/ev_coordinate_short.xml#f_y</location>y</feature> <symbol>=</symbol> <feature><location>../interface/ev_rectangle_short.xml#f_y</location>y</feature> <symbol>+</symbol> <feature><location>../interface/ev_rectangle_short.xml#f_height</location>height</feature>
+
+	<anchor>f_lower_right</anchor><feature><location>../interface/ev_rectangle_short.xml#f_lower_right</location>lower_right</feature><symbol>:</symbol> <class><location>../interface/ev_coordinate_short.xml</location>EV_COORDINATE</class>
+			<comment>--</comment><comment> Lower-right corner of </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>ensure</keyword>
+			<tag>result_exists</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>result_assigned</tag><symbol>:</symbol> <keyword>Result</keyword><dot>.</dot><feature><location>../interface/ev_coordinate_short.xml#f_x</location>x</feature> <symbol>=</symbol> <feature><location>../interface/ev_rectangle_short.xml#f_x</location>x</feature> <symbol>+</symbol> <feature><location>../interface/ev_rectangle_short.xml#f_width</location>width</feature> <keyword>and then</keyword> <keyword>Result</keyword><dot>.</dot><feature><location>../interface/ev_coordinate_short.xml#f_y</location>y</feature> <symbol>=</symbol> <feature><location>../interface/ev_rectangle_short.xml#f_y</location>y</feature> <symbol>+</symbol> <feature><location>../interface/ev_rectangle_short.xml#f_height</location>height</feature>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status report</comment>
+
+	<anchor>f_has</anchor><feature><location>../interface/ev_rectangle_short.xml#f_has</location>has</feature> <symbol>(</symbol><local>c</local><symbol>:</symbol> <class><location>../interface/ev_coordinate_short.xml</location>EV_COORDINATE</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is </comment><quoted>c</quoted><comment> inside </comment><quoted>Current</quoted><comment>?</comment>
+		<keyword>require</keyword>
+			<tag>c_not_void</tag><symbol>:</symbol> <local>c</local> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_has_x_y</anchor><feature><location>../interface/ev_rectangle_short.xml#f_has_x_y</location>has_x_y</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is (</comment><quoted>a_x</quoted><comment>, </comment><quoted>a_y</quoted><comment>) inside </comment><quoted>Current</quoted><comment>?</comment>
+
+	<anchor>f_contains</anchor><feature><location>../interface/ev_rectangle_short.xml#f_contains</location>contains</feature> <symbol>(</symbol><local>other</local><symbol>:</symbol> <keyword>like</keyword> <keyword>Current</keyword><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Does </comment><quoted>Current</quoted><comment> contain </comment><quoted>other</quoted><comment> entirely?</comment>
+
+	<anchor>f_intersects</anchor><feature><location>../interface/ev_rectangle_short.xml#f_intersects</location>intersects</feature> <symbol>(</symbol><local>other</local><symbol>:</symbol> <keyword>like</keyword> <keyword>Current</keyword><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Does </comment><quoted>other</quoted><comment> at least partially overlap </comment><quoted>Current</quoted><comment>?</comment>
+		<keyword>require</keyword>
+			<tag>other_not_void</tag><symbol>:</symbol> <local>other</local> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_intersection</anchor><feature><location>../interface/ev_rectangle_short.xml#f_intersection</location>intersection</feature> <symbol>(</symbol><local>other</local><symbol>:</symbol> <keyword>like</keyword> <keyword>Current</keyword><symbol>)</symbol><symbol>:</symbol> <keyword>like</keyword> <keyword>Current</keyword>
+			<comment>--</comment><comment> Intersection of </comment><quoted>other</quoted><comment> with </comment><quoted>Current</quoted><comment>.</comment>
+			<comment>--</comment><comment> If there is not intersection </comment><quoted>Result</quoted><comment> has default values.</comment>
+		<keyword>require</keyword>
+			<tag>other_not_void</tag><symbol>:</symbol> <local>other</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>result_intersects_if_not_default</tag><symbol>:</symbol> <keyword>Result</keyword><dot>.</dot><feature><location>../interface/ev_rectangle_short.xml#f_width</location>width</feature> <symbol>/=</symbol> <number>0</number> <keyword>or else</keyword> <keyword>Result</keyword><dot>.</dot><feature><location>../interface/ev_rectangle_short.xml#f_height</location>height</feature> <symbol>/=</symbol> <number>0</number> <keyword>implies</keyword> <keyword>Result</keyword><dot>.</dot><feature><location>../interface/ev_rectangle_short.xml#f_intersects</location>intersects</feature><symbol> </symbol><symbol>(</symbol><local>other</local><symbol>)</symbol>
+			<tag>result_default_if_no_intersection</tag><symbol>:</symbol> <keyword>Result</keyword><dot>.</dot><feature><location>../interface/ev_rectangle_short.xml#f_width</location>width</feature> <symbol>=</symbol> <number>0</number> <keyword>or else</keyword> <keyword>Result</keyword><dot>.</dot><feature><location>../interface/ev_rectangle_short.xml#f_height</location>height</feature> <symbol>=</symbol> <number>0</number> <keyword>implies</keyword> <keyword>not</keyword> <keyword>Result</keyword><dot>.</dot><feature><location>../interface/ev_rectangle_short.xml#f_intersects</location>intersects</feature><symbol> </symbol><symbol>(</symbol><local>other</local><symbol>)</symbol>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Element change</comment>
+
+	<anchor>f_include_point</anchor><feature><location>../interface/ev_rectangle_short.xml#f_include_point</location>include_point</feature> <symbol>(</symbol><local>c</local><symbol>:</symbol> <class><location>../interface/ev_coordinate_short.xml</location>EV_COORDINATE</class><symbol>)</symbol>
+			<comment>--</comment><comment> Enlarge so that </comment><quoted>c</quoted><comment> is in </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>c_not_void</tag><symbol>:</symbol> <local>c</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>ensure</keyword>
+			<tag>has_c</tag><symbol>:</symbol> <feature><location>../interface/ev_rectangle_short.xml#f_has</location>has</feature><symbol> </symbol><symbol>(</symbol><local>c</local><symbol>)</symbol>
+
+	<anchor>f_include</anchor><feature><location>../interface/ev_rectangle_short.xml#f_include</location>include</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Enlarge so that </comment><quoted>a_x</quoted><comment>, </comment><quoted>a_y</quoted><comment> is in </comment><quoted>Current</quoted><comment>.</comment>
+
+	<anchor>f_merge</anchor><feature><location>../interface/ev_rectangle_short.xml#f_merge</location>merge</feature> <symbol>(</symbol><local>other</local><symbol>:</symbol> <keyword>like</keyword> <keyword>Current</keyword><symbol>)</symbol>
+			<comment>--</comment><comment> Enlarge </comment><quoted>Current</quoted><comment> so that </comment><quoted>other</quoted><comment> fits inside.</comment>
+		<keyword>require</keyword>
+			<tag>other_not_void</tag><symbol>:</symbol> <local>other</local> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_grow_left</anchor><feature><location>../interface/ev_rectangle_short.xml#f_grow_left</location>grow_left</feature> <symbol>(</symbol><local>i</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Increment size by </comment><quoted>i</quoted><comment> to west.</comment>
+		<keyword>require</keyword>
+				<feature><location>../interface/ev_rectangle_short.xml#f_width</location>width</feature> <symbol>+</symbol> <local>i</local> <symbol>&gt;</symbol> <number>0</number>
+
+	<anchor>f_grow_right</anchor><feature><location>../interface/ev_rectangle_short.xml#f_grow_right</location>grow_right</feature> <symbol>(</symbol><local>i</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Increment size by </comment><quoted>i</quoted><comment> to east.</comment>
+
+	<anchor>f_grow_top</anchor><feature><location>../interface/ev_rectangle_short.xml#f_grow_top</location>grow_top</feature> <symbol>(</symbol><local>i</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Increment size by </comment><quoted>i</quoted><comment> to north.</comment>
+		<keyword>require</keyword>
+				<feature><location>../interface/ev_rectangle_short.xml#f_height</location>height</feature> <symbol>+</symbol> <local>i</local> <symbol>&gt;</symbol> <number>0</number>
+
+	<anchor>f_grow_bottom</anchor><feature><location>../interface/ev_rectangle_short.xml#f_grow_bottom</location>grow_bottom</feature> <symbol>(</symbol><local>i</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Increment size by </comment><quoted>i</quoted><comment> to south.</comment>
+
+	<anchor>f_set_left</anchor><feature><location>../interface/ev_rectangle_short.xml#f_set_left</location>set_left</feature> <symbol>(</symbol><local>i</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>i</quoted><comment> to </comment><feature><location>../interface/ev_rectangle_short.xml#f_left</location>left</feature><comment>.</comment>
+		<keyword>require</keyword>
+				<local>i</local> <symbol>&lt;=</symbol> <feature><location>../interface/ev_rectangle_short.xml#f_right</location>right</feature>
+		<keyword>ensure</keyword>
+			<tag>assigned</tag><symbol>:</symbol> <feature><location>../interface/ev_rectangle_short.xml#f_left</location>left</feature> <symbol>=</symbol> <local>i</local>
+			<tag>right_same</tag><symbol>:</symbol> <feature><location>../interface/ev_rectangle_short.xml#f_right</location>right</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../interface/ev_rectangle_short.xml#f_right</location>right</feature>
+
+	<anchor>f_set_right</anchor><feature><location>../interface/ev_rectangle_short.xml#f_set_right</location>set_right</feature> <symbol>(</symbol><local>i</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>i</quoted><comment> to </comment><feature><location>../interface/ev_rectangle_short.xml#f_right</location>right</feature><comment>.</comment>
+		<keyword>require</keyword>
+				<local>i</local> <symbol>-</symbol> <feature><location>../interface/ev_rectangle_short.xml#f_x</location>x</feature> <symbol>&gt;=</symbol> <number>0</number>
+		<keyword>ensure</keyword>
+			<tag>assigned</tag><symbol>:</symbol> <feature><location>../interface/ev_rectangle_short.xml#f_right</location>right</feature> <symbol>=</symbol> <local>i</local>
+
+	<anchor>f_set_top</anchor><feature><location>../interface/ev_rectangle_short.xml#f_set_top</location>set_top</feature> <symbol>(</symbol><local>i</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>i</quoted><comment> to </comment><feature><location>../interface/ev_rectangle_short.xml#f_top</location>top</feature><comment>.</comment>
+		<keyword>require</keyword>
+				<local>i</local> <symbol>&lt;=</symbol> <feature><location>../interface/ev_rectangle_short.xml#f_bottom</location>bottom</feature>
+		<keyword>ensure</keyword>
+			<tag>assigned</tag><symbol>:</symbol> <feature><location>../interface/ev_rectangle_short.xml#f_top</location>top</feature> <symbol>=</symbol> <local>i</local>
+			<tag>bottom_same</tag><symbol>:</symbol> <feature><location>../interface/ev_rectangle_short.xml#f_bottom</location>bottom</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../interface/ev_rectangle_short.xml#f_bottom</location>bottom</feature>
+
+	<anchor>f_set_bottom</anchor><feature><location>../interface/ev_rectangle_short.xml#f_set_bottom</location>set_bottom</feature> <symbol>(</symbol><local>i</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>i</quoted><comment> to </comment><feature><location>../interface/ev_rectangle_short.xml#f_bottom</location>bottom</feature><comment>.</comment>
+		<keyword>require</keyword>
+				<local>i</local> <symbol>-</symbol> <feature><location>../interface/ev_rectangle_short.xml#f_y</location>y</feature> <symbol>&gt;=</symbol> <number>0</number>
+		<keyword>ensure</keyword>
+			<tag>assigned</tag><symbol>:</symbol> <feature><location>../interface/ev_rectangle_short.xml#f_bottom</location>bottom</feature> <symbol>=</symbol> <local>i</local>
+
+	<anchor>f_set_x</anchor><feature><location>../interface/ev_rectangle_short.xml#f_set_x</location>set_x</feature> <symbol>(</symbol><local>new_x</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>new_x</quoted><comment> to </comment><feature><location>../interface/ev_rectangle_short.xml#f_x</location>x</feature><comment>.</comment>
+		<keyword>ensure</keyword>
+			<tag>x_set</tag><symbol>:</symbol> <feature><location>../interface/ev_rectangle_short.xml#f_x</location>x</feature> <symbol>=</symbol> <local>new_x</local>
+
+	<anchor>f_set_y</anchor><feature><location>../interface/ev_rectangle_short.xml#f_set_y</location>set_y</feature> <symbol>(</symbol><local>new_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>new_y</quoted><comment> to </comment><feature><location>../interface/ev_rectangle_short.xml#f_y</location>y</feature><comment>.</comment>
+		<keyword>ensure</keyword>
+			<tag>y_set</tag><symbol>:</symbol> <feature><location>../interface/ev_rectangle_short.xml#f_y</location>y</feature> <symbol>=</symbol> <local>new_y</local>
+
+	<anchor>f_set_width</anchor><feature><location>../interface/ev_rectangle_short.xml#f_set_width</location>set_width</feature> <symbol>(</symbol><local>new_width</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>new_width</quoted><comment> to 'width'.</comment>
+		<keyword>require</keyword>
+			<tag>new_width_positive</tag><symbol>:</symbol> <local>new_width</local> <symbol>&gt;=</symbol> <number>0</number>
+		<keyword>ensure</keyword>
+			<tag>width_assigned</tag><symbol>:</symbol> <feature><location>../interface/ev_rectangle_short.xml#f_width</location>width</feature> <symbol>=</symbol> <local>new_width</local>
+
+	<anchor>f_set_height</anchor><feature><location>../interface/ev_rectangle_short.xml#f_set_height</location>set_height</feature> <symbol>(</symbol><local>new_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>new_height</quoted><comment> to </comment><feature><location>../interface/ev_rectangle_short.xml#f_height</location>height</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>new_height_positive</tag><symbol>:</symbol> <local>new_height</local> <symbol>&gt;=</symbol> <number>0</number>
+		<keyword>ensure</keyword>
+			<tag>height_assigned</tag><symbol>:</symbol> <feature><location>../interface/ev_rectangle_short.xml#f_height</location>height</feature> <symbol>=</symbol> <local>new_height</local>
+
+	<anchor>f_resize</anchor><feature><location>../interface/ev_rectangle_short.xml#f_resize</location>resize</feature> <symbol>(</symbol><local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Resize to </comment><quoted>a_width</quoted><comment> and </comment><quoted>a_height</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>a_width_positive</tag><symbol>:</symbol> <local>a_width</local> <symbol>&gt;=</symbol> <number>0</number>
+			<tag>a_height_positive</tag><symbol>:</symbol> <local>a_height</local> <symbol>&gt;=</symbol> <number>0</number>
+		<keyword>ensure</keyword>
+			<tag>width_assigned</tag><symbol>:</symbol> <feature><location>../interface/ev_rectangle_short.xml#f_width</location>width</feature> <symbol>=</symbol> <local>a_width</local>
+			<tag>height_assigned</tag><symbol>:</symbol> <feature><location>../interface/ev_rectangle_short.xml#f_height</location>height</feature> <symbol>=</symbol> <local>a_height</local>
+
+	<anchor>f_move</anchor><feature><location>../interface/ev_rectangle_short.xml#f_move</location>move</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Move to </comment><quoted>a_x</quoted><comment> and </comment><quoted>a_y</quoted><comment>.</comment>
+		<keyword>ensure</keyword>
+			<tag>x_assigned</tag><symbol>:</symbol> <feature><location>../interface/ev_rectangle_short.xml#f_x</location>x</feature> <symbol>=</symbol> <local>a_x</local>
+			<tag>y_assigned</tag><symbol>:</symbol> <feature><location>../interface/ev_rectangle_short.xml#f_y</location>y</feature> <symbol>=</symbol> <local>a_y</local>
+
+	<anchor>f_move_and_resize</anchor><feature><location>../interface/ev_rectangle_short.xml#f_move_and_resize</location>move_and_resize</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Move to </comment><quoted>a_x</quoted><comment> and </comment><quoted>a_y</quoted><comment> and resize to </comment><quoted>a_width</quoted><comment> and </comment><quoted>a_height</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>a_width_positive</tag><symbol>:</symbol> <local>a_width</local> <symbol>&gt;=</symbol> <number>0</number>
+			<tag>a_height_positive</tag><symbol>:</symbol> <local>a_height</local> <symbol>&gt;=</symbol> <number>0</number>
+		<keyword>ensure</keyword>
+			<tag>x_assigned</tag><symbol>:</symbol> <feature><location>../interface/ev_rectangle_short.xml#f_x</location>x</feature> <symbol>=</symbol> <local>a_x</local>
+			<tag>y_assigned</tag><symbol>:</symbol> <feature><location>../interface/ev_rectangle_short.xml#f_y</location>y</feature> <symbol>=</symbol> <local>a_y</local>
+			<tag>width_assigned</tag><symbol>:</symbol> <feature><location>../interface/ev_rectangle_short.xml#f_width</location>width</feature> <symbol>=</symbol> <local>a_width</local>
+			<tag>height_assigned</tag><symbol>:</symbol> <feature><location>../interface/ev_rectangle_short.xml#f_height</location>height</feature> <symbol>=</symbol> <local>a_height</local>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Output</comment>
+
+	<anchor>f_debug_output</anchor><feature><location>../interface/ev_rectangle_short.xml#f_debug_output</location>debug_output</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+			<comment>--</comment><comment> Return readable string.</comment>
+			<comment>--</comment><comment> Was declared in </comment><class><location>../interface/ev_rectangle_short.xml</location>EV_RECTANGLE</class><comment> as synonym of </comment><feature><location>../interface/ev_rectangle_short.xml#f_out</location>out</feature><comment>.</comment>
+
+	<anchor>f_out</anchor><feature><location>../interface/ev_rectangle_short.xml#f_out</location>out</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+			<comment>--</comment><comment> Return readable string.</comment>
+			<comment>--</comment><comment> Was declared in </comment><class><location>../interface/ev_rectangle_short.xml</location>EV_RECTANGLE</class><comment> as synonym of </comment><feature><location>../interface/ev_rectangle_short.xml#f_debug_output</location>debug_output</feature><comment>.</comment>
+	
+<keyword>invariant</keyword>
+	<tag>width_positive</tag><symbol>:</symbol> <feature><location>../interface/ev_rectangle_short.xml#f_width</location>width</feature> <symbol>&gt;=</symbol> <number>0</number>
+	<tag>height_positive</tag><symbol>:</symbol> <feature><location>../interface/ev_rectangle_short.xml#f_height</location>height</feature> <symbol>&gt;=</symbol> <number>0</number>
+
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2014, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../interface/ev_rectangle_short.xml</location>EV_RECTANGLE</class></system>
+

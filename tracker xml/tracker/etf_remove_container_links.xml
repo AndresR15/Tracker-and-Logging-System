@@ -1,0 +1,24 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../tracker/etf_remove_container_links.xml</location>ETF_REMOVE_CONTAINER</class>
+
+<keyword>Ancestors</keyword>
+	<class><include>False</include>ETF_REMOVE_CONTAINER_INTERFACE</class><char>*</char>
+
+<keyword>Clients</keyword>
+	<class><include>False</include>ETF_INPUT_HANDLER_INTERFACE</class><char>*</char>
+	<class><location>../tracker/etf_remove_container_links.xml</location>ETF_REMOVE_CONTAINER</class>
+
+<keyword>Suppliers</keyword>
+	<class><include>False</include>BOOLEAN</class>
+	<class><location>../tracker/error_links.xml</location>ERROR</class>
+	<class><include>False</include>ETF_ABSTRACT_UI_INTERFACE</class><char>*</char>
+	<class><include>False</include>ETF_EVENT</class> <symbol>[</symbol><generic>G</generic> <symbol>-&gt;</symbol> <class><include>False</include>TUPLE</class><symbol>]</symbol>
+	<class><location>../tracker/etf_remove_container_links.xml</location>ETF_REMOVE_CONTAINER</class>
+	<class><location>../tracker/history_links.xml</location>HISTORY</class>
+	<class><include>False</include>INTEGER_32</class>
+	<class><location>../tracker/messages_access_links.xml</location>MESSAGES_ACCESS</class>
+	<class><location>../tracker/remove_container_links.xml</location>REMOVE_CONTAINER</class>
+	<class><location>../tracker/tracker_links.xml</location>TRACKER</class>
+
+</system>

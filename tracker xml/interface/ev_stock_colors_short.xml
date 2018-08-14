@@ -1,0 +1,184 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Facilities for accessing standardized colors.&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;color, default&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2012-05-15 13:11:05 -0700 (Tue, 15 May 2012) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 88739 $&quot;</string>
+
+<keyword>class</keyword> <keyword>interface</keyword>
+	<class><location>../interface/ev_stock_colors_short.xml</location>EV_STOCK_COLORS</class>
+
+<keyword>create</keyword> 
+	<feature><include>False</include>default_create</feature>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_white</anchor><feature><location>../interface/ev_stock_colors_short.xml#f_white</location>White</feature><symbol>:</symbol> <class><location>../interface/ev_color_short.xml</location>EV_COLOR</class>
+			<comment>--</comment><comment> White.</comment>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_black</anchor><feature><location>../interface/ev_stock_colors_short.xml#f_black</location>Black</feature><symbol>:</symbol> <class><location>../interface/ev_color_short.xml</location>EV_COLOR</class>
+			<comment>--</comment><comment> Black.</comment>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_grey</anchor><feature><location>../interface/ev_stock_colors_short.xml#f_grey</location>Grey</feature><symbol>:</symbol> <class><location>../interface/ev_color_short.xml</location>EV_COLOR</class>
+			<comment>--</comment><comment> Grey.</comment>
+			<comment>--</comment><comment> Was declared in </comment><class><location>../interface/ev_stock_colors_short.xml</location>EV_STOCK_COLORS</class><comment> as synonym of </comment><feature><location>../interface/ev_stock_colors_short.xml#f_gray</location>Gray</feature><comment>.</comment>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_gray</anchor><feature><location>../interface/ev_stock_colors_short.xml#f_gray</location>Gray</feature><symbol>:</symbol> <class><location>../interface/ev_color_short.xml</location>EV_COLOR</class>
+			<comment>--</comment><comment> Grey.</comment>
+			<comment>--</comment><comment> Was declared in </comment><class><location>../interface/ev_stock_colors_short.xml</location>EV_STOCK_COLORS</class><comment> as synonym of </comment><feature><location>../interface/ev_stock_colors_short.xml#f_grey</location>Grey</feature><comment>.</comment>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_dark_grey</anchor><feature><location>../interface/ev_stock_colors_short.xml#f_dark_grey</location>Dark_grey</feature><symbol>:</symbol> <class><location>../interface/ev_color_short.xml</location>EV_COLOR</class>
+			<comment>--</comment><comment> Dark grey.</comment>
+			<comment>--</comment><comment> Was declared in </comment><class><location>../interface/ev_stock_colors_short.xml</location>EV_STOCK_COLORS</class><comment> as synonym of </comment><feature><location>../interface/ev_stock_colors_short.xml#f_dark_gray</location>Dark_gray</feature><comment>.</comment>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_dark_gray</anchor><feature><location>../interface/ev_stock_colors_short.xml#f_dark_gray</location>Dark_gray</feature><symbol>:</symbol> <class><location>../interface/ev_color_short.xml</location>EV_COLOR</class>
+			<comment>--</comment><comment> Dark grey.</comment>
+			<comment>--</comment><comment> Was declared in </comment><class><location>../interface/ev_stock_colors_short.xml</location>EV_STOCK_COLORS</class><comment> as synonym of </comment><feature><location>../interface/ev_stock_colors_short.xml#f_dark_grey</location>Dark_grey</feature><comment>.</comment>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_blue</anchor><feature><location>../interface/ev_stock_colors_short.xml#f_blue</location>Blue</feature><symbol>:</symbol> <class><location>../interface/ev_color_short.xml</location>EV_COLOR</class>
+			<comment>--</comment><comment> Blue.</comment>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_dark_blue</anchor><feature><location>../interface/ev_stock_colors_short.xml#f_dark_blue</location>Dark_blue</feature><symbol>:</symbol> <class><location>../interface/ev_color_short.xml</location>EV_COLOR</class>
+			<comment>--</comment><comment> Dark blue.</comment>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_cyan</anchor><feature><location>../interface/ev_stock_colors_short.xml#f_cyan</location>Cyan</feature><symbol>:</symbol> <class><location>../interface/ev_color_short.xml</location>EV_COLOR</class>
+			<comment>--</comment><comment> Cyan.</comment>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_dark_cyan</anchor><feature><location>../interface/ev_stock_colors_short.xml#f_dark_cyan</location>Dark_cyan</feature><symbol>:</symbol> <class><location>../interface/ev_color_short.xml</location>EV_COLOR</class>
+			<comment>--</comment><comment> Dark cyan.</comment>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_green</anchor><feature><location>../interface/ev_stock_colors_short.xml#f_green</location>Green</feature><symbol>:</symbol> <class><location>../interface/ev_color_short.xml</location>EV_COLOR</class>
+			<comment>--</comment><comment> Green.</comment>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_dark_green</anchor><feature><location>../interface/ev_stock_colors_short.xml#f_dark_green</location>Dark_green</feature><symbol>:</symbol> <class><location>../interface/ev_color_short.xml</location>EV_COLOR</class>
+			<comment>--</comment><comment> Dark green.</comment>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_yellow</anchor><feature><location>../interface/ev_stock_colors_short.xml#f_yellow</location>Yellow</feature><symbol>:</symbol> <class><location>../interface/ev_color_short.xml</location>EV_COLOR</class>
+			<comment>--</comment><comment> Yellow.</comment>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_dark_yellow</anchor><feature><location>../interface/ev_stock_colors_short.xml#f_dark_yellow</location>Dark_yellow</feature><symbol>:</symbol> <class><location>../interface/ev_color_short.xml</location>EV_COLOR</class>
+			<comment>--</comment><comment> Dark yellow.</comment>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_red</anchor><feature><location>../interface/ev_stock_colors_short.xml#f_red</location>Red</feature><symbol>:</symbol> <class><location>../interface/ev_color_short.xml</location>EV_COLOR</class>
+			<comment>--</comment><comment> Red.</comment>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_dark_red</anchor><feature><location>../interface/ev_stock_colors_short.xml#f_dark_red</location>Dark_red</feature><symbol>:</symbol> <class><location>../interface/ev_color_short.xml</location>EV_COLOR</class>
+			<comment>--</comment><comment> Dark red.</comment>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_magenta</anchor><feature><location>../interface/ev_stock_colors_short.xml#f_magenta</location>Magenta</feature><symbol>:</symbol> <class><location>../interface/ev_color_short.xml</location>EV_COLOR</class>
+			<comment>--</comment><comment> Magenta.</comment>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_dark_magenta</anchor><feature><location>../interface/ev_stock_colors_short.xml#f_dark_magenta</location>Dark_magenta</feature><symbol>:</symbol> <class><location>../interface/ev_color_short.xml</location>EV_COLOR</class>
+			<comment>--</comment><comment> Dark magenta.</comment>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_color_dialog</anchor><feature><location>../interface/ev_stock_colors_short.xml#f_color_dialog</location>color_dialog</feature><symbol>:</symbol> <class><location>../interface/ev_color_short.xml</location>EV_COLOR</class>
+			<comment>--</comment><comment> Used for dialog box background.</comment>
+			<comment>--</comment><comment> Name: &quot;color dialog&quot;.</comment>
+			<comment>--</comment><comment> Was declared in </comment><class><location>../interface/ev_stock_colors_short.xml</location>EV_STOCK_COLORS</class><comment> as synonym of </comment><feature><location>../interface/ev_stock_colors_short.xml#f_color_3d_face</location>color_3d_face</feature><comment>.</comment>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_color_3d_face</anchor><feature><location>../interface/ev_stock_colors_short.xml#f_color_3d_face</location>color_3d_face</feature><symbol>:</symbol> <class><location>../interface/ev_color_short.xml</location>EV_COLOR</class>
+			<comment>--</comment><comment> Used for dialog box background.</comment>
+			<comment>--</comment><comment> Name: &quot;color dialog&quot;.</comment>
+			<comment>--</comment><comment> Was declared in </comment><class><location>../interface/ev_stock_colors_short.xml</location>EV_STOCK_COLORS</class><comment> as synonym of </comment><feature><location>../interface/ev_stock_colors_short.xml#f_color_dialog</location>color_dialog</feature><comment>.</comment>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_color_3d_highlight</anchor><feature><location>../interface/ev_stock_colors_short.xml#f_color_3d_highlight</location>color_3d_highlight</feature><symbol>:</symbol> <class><location>../interface/ev_color_short.xml</location>EV_COLOR</class>
+			<comment>--</comment><comment> Used for 3D-effects (light color)</comment>
+			<comment>--</comment><comment> Name &quot;color highlight&quot;</comment>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_color_3d_shadow</anchor><feature><location>../interface/ev_stock_colors_short.xml#f_color_3d_shadow</location>color_3d_shadow</feature><symbol>:</symbol> <class><location>../interface/ev_color_short.xml</location>EV_COLOR</class>
+			<comment>--</comment><comment> Used for 3D-effects (dark color)</comment>
+			<comment>--</comment><comment> Name &quot;color shadow&quot;</comment>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_color_read_only</anchor><feature><location>../interface/ev_stock_colors_short.xml#f_color_read_only</location>color_read_only</feature><symbol>:</symbol> <class><location>../interface/ev_color_short.xml</location>EV_COLOR</class>
+			<comment>--</comment><comment> Used for background of editable when read-only.</comment>
+			<comment>--</comment><comment> Name: &quot;color read only&quot;.</comment>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_color_read_write</anchor><feature><location>../interface/ev_stock_colors_short.xml#f_color_read_write</location>color_read_write</feature><symbol>:</symbol> <class><location>../interface/ev_color_short.xml</location>EV_COLOR</class>
+			<comment>--</comment><comment> Used for background of editable when write/write enabled.</comment>
+			<comment>--</comment><comment> Name: &quot;color read write&quot;.</comment>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_default_background_color</anchor><feature><location>../interface/ev_stock_colors_short.xml#f_default_background_color</location>default_background_color</feature><symbol>:</symbol> <class><location>../interface/ev_color_short.xml</location>EV_COLOR</class>
+			<comment>--</comment><comment> Used for background of most widgets.</comment>
+			<comment>--</comment><comment> Name: &quot;default background&quot;.</comment>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_default_foreground_color</anchor><feature><location>../interface/ev_stock_colors_short.xml#f_default_foreground_color</location>default_foreground_color</feature><symbol>:</symbol> <class><location>../interface/ev_color_short.xml</location>EV_COLOR</class>
+			<comment>--</comment><comment> Used for foreground of most widgets.</comment>
+			<comment>--</comment><comment> Name: &quot;default foreground&quot;.</comment>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Basic operations</comment>
+
+	<anchor>f_all_colors</anchor><feature><location>../interface/ev_stock_colors_short.xml#f_all_colors</location>All_colors</feature><symbol>:</symbol> <class><include>False</include>LINKED_LIST</class> <symbol>[</symbol><class><location>../interface/ev_color_short.xml</location>EV_COLOR</class><symbol>]</symbol>
+			<comment>--</comment><comment> A list of all the basic colors.</comment>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>all_colors_included</tag><symbol>:</symbol> <keyword>Result</keyword><dot>.</dot><feature><include>False</include>count</feature> <symbol>=</symbol> <number>16</number>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2012, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../interface/ev_stock_colors_short.xml</location>EV_STOCK_COLORS</class></system>
+

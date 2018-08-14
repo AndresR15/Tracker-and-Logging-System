@@ -1,0 +1,135 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "HTML report generator. For TEST_SUITE."{\line}
+{\tab}{\cf1 author}{\cf1 :} "Software Engineering Lab, York University"{\line}
+{\line}
+{\b\cf6 class} {\line}
+{\tab}{\cf4 ES_HTML_GEN_SUITE}{\line}
+{\line}
+{\b\cf6 inherit}{\line}
+{\tab}{\cf4 ES_HTML_GEN}{\line}
+{\line}
+{\b\cf6 create} {\line}
+{\tab}{\cf5 make}{\line}
+{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Creation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make} {\cf1 (}{\cf5 name}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 file_name}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 classes}{\cf1 :} {\cf4 LINKED_LIST} {\cf1 [}{\cf4 ES_TEST}{\cf1 ]}{\cf1 ;} {\cf5 show_err}{\cf1 :} {\cf4 BOOLEAN}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Сreate HTML file.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 make_gen}{\cf1  }{\cf1 (}{\cf5 name}{\cf1 ,} {\cf5 file_name}{\cf1 ,} {\cf5 show_err}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 test_classes} {\cf1 :=} {\cf5 classes}{\line}
+{\tab}{\tab}{\tab}{\cf5 write_html_report}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 write_html_report}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Write HTML file.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 write_summary}{\cf1  }{\cf1 (}{\cf5 output_file_name}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 get_statistics}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Collect statistics information.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 one_test}{\cf1 :} {\cf4 ES_TEST}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 attached} {\cf5 test_classes} {\b\cf6 as} tc{\line}
+{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 number_of_boolean} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 number_passed_boolean} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 number_of_violation} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 number_passed_violation} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 number_of_tests} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 number_passed_tests} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 tc}{\b\cf1 .}{\cf5 start}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 tc}{\b\cf1 .}{\cf5 after}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 one_test} {\cf1 :=} {\cf5 tc}{\b\cf1 .}{\cf5 item}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 attached} {\cf5 one_test}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 one_test}{\b\cf1 .}{\cf5 cases} {\b\cf6 as} cases1 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 cases1}{\b\cf1 .}{\cf5 start}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 cases1}{\b\cf1 .}{\cf5 after}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 attached} {\cf5 cases1}{\b\cf1 .}{\cf5 item} {\b\cf6 as} item1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 item1}{\b\cf1 .}{\cf5 is_violation_case} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 item1}{\b\cf1 .}{\cf5 passed} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 number_passed_violation} {\cf1 :=} {\cf5 number_passed_violation} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 number_passed_tests} {\cf1 :=} {\cf5 number_passed_tests} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 number_of_violation} {\cf1 :=} {\cf5 number_of_violation} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 item1}{\b\cf1 .}{\cf5 passed} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 number_passed_boolean} {\cf1 :=} {\cf5 number_passed_boolean} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 number_passed_tests} {\cf1 :=} {\cf5 number_passed_tests} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 number_of_boolean} {\cf1 :=} {\cf5 number_of_boolean} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 number_of_tests} {\cf1 :=} {\cf5 number_of_tests} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 cases1}{\b\cf1 .}{\cf5 forth}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 tc}{\b\cf1 .}{\cf5 forth}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 write_summary_details}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Write results for all cases into the HTML file.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 one_test}{\cf1 :} {\cf4 ES_TEST}{\line}
+{\tab}{\tab}{\tab}{\cf5 counter}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 test_classes} {\b\cf6 as} t {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 across}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 t} {\b\cf6 as} i{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 counter} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 one_test} {\cf1 :=} {\cf5 i}{\b\cf1 .}{\cf5 item}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 counter} {\cf1 :=} {\cf5 counter} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 output_file}{\b\cf1 .}{\cf5 putstring}{\cf1  }{\cf1 (}"<tr><td bgcolor=%"#008080%" align=%"center%"><font color=%"#FFCC00%"><b>Test"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 output_file}{\b\cf1 .}{\cf5 putint}{\cf1  }{\cf1 (}{\cf5 counter}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 output_file}{\b\cf1 .}{\cf5 putstring}{\cf1  }{\cf1 (}"</b></font></td>%N<td bgcolor=%"#008080%" align=%"center%" colspan=%"2%"><font color=%"#FFCC00%">"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 one_test} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 one_test}{\b\cf1 .}{\cf5 name} {\b\cf6 as} tn1 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 output_file}{\b\cf1 .}{\cf5 putstring}{\cf1  }{\cf1 (}{\cf5 tn1}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 output_file}{\b\cf1 .}{\cf5 putstring}{\cf1  }{\cf1 (}"</font></td></tr>"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 one_test}{\b\cf1 .}{\cf5 cases} {\b\cf6 as} cases1 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 across}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 cases1} {\b\cf6 as} c{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 write_one_case_details}{\cf1  }{\cf1 (}{\cf5 c}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Attributes}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 test_classes}{\cf1 :} {\cf4 LINKED_LIST} {\cf1 [}{\cf4 ES_TEST}{\cf1 ]}}{\line}
+{\tab}{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 ES_HTML_GEN_SUITE}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

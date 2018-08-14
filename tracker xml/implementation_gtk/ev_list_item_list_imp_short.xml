@@ -1,0 +1,102 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;EiffelVision list item list, gtk implementation&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2016-09-27 08:50:48 -0700 (Tue, 27 Sep 2016) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 99192 $&quot;</string>
+
+<keyword>deferred</keyword> <keyword>class</keyword> <keyword>interface</keyword>
+	<class><location>../implementation_gtk/ev_list_item_list_imp_short.xml</location>EV_LIST_ITEM_LIST_IMP</class>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_selected_items</anchor><feature><location>../implementation_gtk/ev_list_item_list_imp_short.xml#f_selected_items</location>selected_items</feature><symbol>:</symbol> <class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><class><location>../interface/ev_list_item_short.xml</location>EV_LIST_ITEM</class><symbol>]</symbol>
+			<comment>--</comment><comment> </comment><quoted>Result is all items currently selected in </quoted><comment>Current'.</comment>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status report</comment>
+
+	<anchor>f_item_from_coords</anchor><feature><location>../implementation_gtk/ev_list_item_list_imp_short.xml#f_item_from_coords</location>item_from_coords</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_pnd_deferred_item_short.xml</location>EV_PND_DEFERRED_ITEM</class>
+			<comment>--</comment><comment> Retrieve the Current row from </comment><quoted>a_y</quoted><comment> coordinate</comment>
+
+	<anchor>f_update_pnd_status</anchor><feature><location>../implementation_gtk/ev_list_item_list_imp_short.xml#f_update_pnd_status</location>update_pnd_status</feature>
+			<comment>--</comment><comment> Update PND status of list and its children.</comment>
+
+	<anchor>f_update_pnd_connection</anchor><feature><location>../implementation_gtk/ev_list_item_list_imp_short.xml#f_update_pnd_connection</location>update_pnd_connection</feature> <symbol>(</symbol><local>a_enable</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class><symbol>)</symbol>
+			<comment>--</comment><comment> Update the PND connection of </comment><quoted>Current</quoted><comment> if needed.</comment>
+
+	<anchor>f_pre_pick_steps</anchor><feature><location>../implementation_gtk/ev_list_item_list_imp_short.xml#f_pre_pick_steps</location>pre_pick_steps</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>a_screen_x</local><symbol>,</symbol> <local>a_screen_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Steps to perform before transport initiated.</comment>
+
+	<anchor>f_post_drop_steps</anchor><feature><location>../implementation_gtk/ev_list_item_list_imp_short.xml#f_post_drop_steps</location>post_drop_steps</feature> <symbol>(</symbol><local>a_button</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Steps to perform once an attempted drop has happened.</comment>
+
+	<anchor>f_row_height</anchor><feature><location>../implementation_gtk/ev_list_item_list_imp_short.xml#f_row_height</location>row_height</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Height of rows in </comment><quoted>Current</quoted>
+
+	<anchor>f_pebble_source</anchor><feature><location>../implementation_gtk/ev_list_item_list_imp_short.xml#f_pebble_source</location>pebble_source</feature><symbol>:</symbol> <class><location>../interface/ev_pick_and_dropable_short.xml</location>EV_PICK_AND_DROPABLE</class>
+			<comment>--</comment><comment> Source of pebble, used for widgets with deferred PND implementation</comment>
+			<comment>--</comment><comment> such as EV_TREE and EV_MULTI_COLUMN_LIST.</comment>
+
+	<anchor>f_able_to_transport</anchor><feature><location>../implementation_gtk/ev_list_item_list_imp_short.xml#f_able_to_transport</location>able_to_transport</feature> <symbol>(</symbol><local>a_button</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is list or row able to transport PND data using </comment><quoted>a_button</quoted><comment>.</comment>
+
+	<anchor>f_ready_for_pnd_menu</anchor><feature><location>../implementation_gtk/ev_list_item_list_imp_short.xml#f_ready_for_pnd_menu</location>ready_for_pnd_menu</feature> <symbol>(</symbol><local>a_button</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_press</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is list or row able to display PND menu using </comment><quoted>a_button</quoted>
+
+	<anchor>f_pnd_row_imp</anchor><feature><location>../implementation_gtk/ev_list_item_list_imp_short.xml#f_pnd_row_imp</location>pnd_row_imp</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_list_item_imp_short.xml</location>EV_LIST_ITEM_IMP</class>
+			<comment>--</comment><comment> Implementation object of the current row if in PND transport.</comment>
+
+	<anchor>f_temp_pebble</anchor><feature><location>../implementation_gtk/ev_list_item_list_imp_short.xml#f_temp_pebble</location>temp_pebble</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>ANY</class>
+
+	<anchor>f_temp_pebble_function</anchor><feature><location>../implementation_gtk/ev_list_item_list_imp_short.xml#f_temp_pebble_function</location>temp_pebble_function</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>FUNCTION</class> <symbol>[</symbol><keyword>detachable</keyword> <class><include>False</include>ANY</class><symbol>]</symbol>
+			<comment>--</comment><comment> Returns data to be transported by PND mechanism.</comment>
+
+	<anchor>f_temp_accept_cursor</anchor><feature><location>../implementation_gtk/ev_list_item_list_imp_short.xml#f_temp_accept_cursor</location>temp_accept_cursor</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_pointer_style_short.xml</location>EV_POINTER_STYLE</class>
+
+	<anchor>f_temp_deny_cursor</anchor><feature><location>../implementation_gtk/ev_list_item_list_imp_short.xml#f_temp_deny_cursor</location>temp_deny_cursor</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_pointer_style_short.xml</location>EV_POINTER_STYLE</class>
+
+	<anchor>f_call_pebble_function</anchor><feature><location>../implementation_gtk/ev_list_item_list_imp_short.xml#f_call_pebble_function</location>call_pebble_function</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>a_screen_x</local><symbol>,</symbol> <local>a_screen_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><feature><location>../implementation_interface/ev_pick_and_dropable_i_short.xml#f_pebble</location>pebble</feature><comment> using </comment><feature><location>../implementation_interface/ev_pick_and_dropable_i_short.xml#f_pebble_function</location>pebble_function</feature><comment> if present.</comment>
+
+	<anchor>f_reset_pebble_function</anchor><feature><location>../implementation_gtk/ev_list_item_list_imp_short.xml#f_reset_pebble_function</location>reset_pebble_function</feature>
+			<comment>--</comment><comment> Reset </comment><feature><location>../implementation_interface/ev_pick_and_dropable_i_short.xml#f_pebble_function</location>pebble_function</feature><comment>.</comment>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status setting</comment>
+
+	<anchor>f_select_item</anchor><feature><location>../implementation_gtk/ev_list_item_list_imp_short.xml#f_select_item</location>select_item</feature> <symbol>(</symbol><local>an_index</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Select item at one based index, </comment><quoted>an_index</quoted><comment>.</comment>
+
+	<anchor>f_deselect_item</anchor><feature><location>../implementation_gtk/ev_list_item_list_imp_short.xml#f_deselect_item</location>deselect_item</feature> <symbol>(</symbol><local>an_index</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Deselect item at one based index, </comment><quoted>an_index</quoted><comment>.</comment>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Insertion</comment>
+
+	<anchor>f_set_text_on_position</anchor><feature><location>../implementation_gtk/ev_list_item_list_imp_short.xml#f_set_text_on_position</location>set_text_on_position</feature> <symbol>(</symbol><local>a_row</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_text</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set cell text at (a_column, a_row) to </comment><quoted>a_text</quoted><comment>.</comment>
+
+	<anchor>f_g_value_string_struct</anchor><feature><location>../implementation_gtk/ev_list_item_list_imp_short.xml#f_g_value_string_struct</location>G_value_string_struct</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Optimization for GValue struct access</comment>
+
+	<anchor>f_set_row_pixmap</anchor><feature><location>../implementation_gtk/ev_list_item_list_imp_short.xml#f_set_row_pixmap</location>set_row_pixmap</feature> <symbol>(</symbol><local>a_row</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_pixmap</local><symbol>:</symbol> <class><location>../interface/ev_pixmap_short.xml</location>EV_PIXMAP</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set row </comment><quoted>a_row</quoted><comment> pixmap to </comment><quoted>a_pixmap</quoted><comment>.</comment>
+
+	<anchor>f_remove_row_pixmap</anchor><feature><location>../implementation_gtk/ev_list_item_list_imp_short.xml#f_remove_row_pixmap</location>remove_row_pixmap</feature> <symbol>(</symbol><local>a_row</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set row </comment><quoted>a_row</quoted><comment> pixmap to </comment><quoted>a_pixmap</quoted><comment>.</comment>
+
+	<anchor>f_insert_i_th</anchor><feature><location>../implementation_gtk/ev_list_item_list_imp_short.xml#f_insert_i_th</location>insert_i_th</feature> <symbol>(</symbol><local>v</local><symbol>:</symbol> <keyword>attached</keyword> <keyword>like</keyword> <feature><location>../implementation_interface/ev_dynamic_list_i_short.xml#f_item</location>item</feature><symbol>;</symbol> <local>i</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Insert </comment><quoted>v</quoted><comment> at position </comment><quoted>i</quoted><comment>.</comment>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2015, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_gtk/ev_list_item_list_imp_short.xml</location>EV_LIST_ITEM_LIST_IMP</class></system>
+

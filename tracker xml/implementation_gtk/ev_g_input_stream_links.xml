@@ -1,0 +1,16 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../implementation_gtk/ev_g_input_stream_links.xml</location>EV_G_INPUT_STREAM</class>
+
+<keyword>Ancestors</keyword>
+	<class><include>False</include>DISPOSABLE</class><char>*</char>
+
+<keyword>Clients</keyword>
+	<class><location>../implementation_gtk/ev_g_input_stream_links.xml</location>EV_G_INPUT_STREAM</class>
+	<class><location>../implementation_gtk/ev_pixel_buffer_imp_links.xml</location>EV_PIXEL_BUFFER_IMP</class>
+
+<keyword>Suppliers</keyword>
+	<class><location>../implementation_gtk/ev_g_input_stream_links.xml</location>EV_G_INPUT_STREAM</class>
+	<class><include>False</include>MANAGED_POINTER</class>
+
+</system>

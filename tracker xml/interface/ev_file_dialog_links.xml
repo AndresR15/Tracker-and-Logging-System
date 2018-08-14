@@ -1,0 +1,20 @@
+<system>
+<keyword>deferred</keyword> <keyword>class</keyword>
+	<class><location>../interface/ev_file_dialog_links.xml</location>EV_FILE_DIALOG</class>
+
+<keyword>Ancestors</keyword>
+	<class><location>../interface/ev_standard_dialog_links.xml</location>EV_STANDARD_DIALOG</class><char>*</char>
+
+<keyword>Clients</keyword>
+	<class><location>../interface/ev_file_dialog_links.xml</location>EV_FILE_DIALOG</class><char>*</char>
+
+<keyword>Suppliers</keyword>
+	<class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><generic>G</generic><symbol>]</symbol>
+	<class><include>False</include>BOOLEAN</class>
+	<class><location>../interface/ev_file_dialog_links.xml</location>EV_FILE_DIALOG</class><char>*</char>
+	<class><location>../implementation_interface/ev_file_dialog_i_links.xml</location>EV_FILE_DIALOG_I</class><char>*</char>
+	<class><include>False</include>INTEGER_32</class>
+	<class><include>False</include>PATH</class>
+	<class><include>False</include>STRING_32</class>
+
+</system>

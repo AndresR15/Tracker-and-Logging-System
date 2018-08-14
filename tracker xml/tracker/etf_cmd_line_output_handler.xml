@@ -1,0 +1,67 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;An output handler for the command-line mode of ETF.&quot;</string>
+	<indexing_tag>author</indexing_tag><symbol>:</symbol> <string>&quot;JSO and Jackie Wang&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date$&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision$&quot;</string>
+
+<keyword>class</keyword> 
+	<class><location>../tracker/etf_cmd_line_output_handler.xml</location>ETF_CMD_LINE_OUTPUT_HANDLER</class>
+
+<keyword>inherit</keyword>
+	<class><include>False</include>ETF_OUTPUT_HANDLER_INTERFACE</class>
+		<keyword>redefine</keyword>
+			<feature><location>../tracker/etf_cmd_line_output_handler.xml#f_make</location>make</feature><symbol>,</symbol>
+			<feature><location>../tracker/etf_cmd_line_output_handler.xml#f_log_command</location>log_command</feature>
+		<keyword>end</keyword>
+
+<keyword>create</keyword> 
+	<feature><location>../tracker/etf_cmd_line_output_handler.xml#f_make</location>make</feature>
+
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Initialization</comment>
+
+	<anchor>f_make</anchor><feature><location>../tracker/etf_cmd_line_output_handler.xml#f_make</location>make</feature>
+			<comment>--</comment><comment> Initialization for </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>local</keyword>
+			<local>m_access</local><symbol>:</symbol> <class><location>../tracker/tracker_access.xml</location>TRACKER_ACCESS</class>
+		<keyword>do</keyword>
+			<keyword><location>file#f_feature</location>Precursor</keyword>
+			<feature><location>../tracker/etf_cmd_line_output_handler.xml#f_model</location>model</feature> <symbol>:=</symbol> <local>m_access</local><dot>.</dot><feature><location>../tracker/tracker_access.xml#f_m</location>M</feature>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Queries</comment>
+
+	<anchor>f_model</anchor><feature><location>../tracker/etf_cmd_line_output_handler.xml#f_model</location>model</feature><symbol>:</symbol> <class><location>../tracker/tracker.xml</location>TRACKER</class>
+
+	<anchor>f_model_state</anchor><feature><location>../tracker/etf_cmd_line_output_handler.xml#f_model_state</location>model_state</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+			<comment>--</comment><comment> Return a string representation of current model state</comment>
+		<keyword>do</keyword>
+			<keyword>create</keyword> <keyword>Result</keyword><dot>.</dot><feature><include>False</include>make_empty</feature>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>append</feature><symbol> </symbol><symbol>(</symbol><feature><location>../tracker/etf_cmd_line_output_handler.xml#f_model</location>model</feature><dot>.</dot><feature><location>../tracker/tracker.xml#f_out</location>out</feature><symbol>)</symbol>
+			<keyword>Result</keyword><dot>.</dot><feature><include>False</include>append</feature><symbol> </symbol><symbol>(</symbol>&quot;%N&quot;<symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Log to 'output'</comment>
+
+	<anchor>f_log_model_state</anchor><feature><location>../tracker/etf_cmd_line_output_handler.xml#f_log_model_state</location>log_model_state</feature>
+			<comment>--</comment><comment> Log current model state to 'output'</comment>
+		<keyword>do</keyword>
+			<feature><include>False</include>output</feature> <symbol>:=</symbol> <feature><location>../tracker/etf_cmd_line_output_handler.xml#f_model_state</location>model_state</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_log_command</anchor><feature><location>../tracker/etf_cmd_line_output_handler.xml#f_log_command</location>log_command</feature> <symbol>(</symbol><local>a_cmd</local><symbol>:</symbol> <class><location>../tracker/etf_command.xml</location>ETF_COMMAND</class><symbol>)</symbol>
+			<comment>--</comment><comment> Log the effect of 'a_cmd' to 'output'</comment>
+		<keyword>local</keyword>
+			<local>l_command_name</local><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+		<keyword>do</keyword>
+			<local>l_command_name</local> <symbol>:=</symbol> &quot;-&gt;&quot; <symbol>+</symbol> <local>a_cmd</local><dot>.</dot><feature><include>False</include>out</feature> <symbol>+</symbol> &quot;%N&quot;
+			<keyword>if</keyword> <local>a_cmd</local><dot>.</dot><feature><include>False</include>etf_cmd_message</feature><dot>.</dot><feature><include>False</include>count</feature> <symbol>=</symbol> <number>0</number> <keyword>then</keyword>
+				<feature><include>False</include>output</feature> <symbol>:=</symbol> <feature><include>False</include>output</feature> <symbol>+</symbol> <local>l_command_name</local>
+				<feature><include>False</include>output</feature><dot>.</dot><feature><include>False</include>append</feature><symbol> </symbol><symbol>(</symbol><feature><location>../tracker/etf_cmd_line_output_handler.xml#f_model_state</location>model_state</feature><symbol>)</symbol>
+			<keyword>else</keyword>
+				<feature><include>False</include>output</feature> <symbol>:=</symbol> <feature><include>False</include>output</feature> <symbol>+</symbol> <local>l_command_name</local> <symbol>+</symbol> &quot;  Error: &quot; <symbol>+</symbol> <local>a_cmd</local><dot>.</dot><feature><include>False</include>etf_cmd_message</feature>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../tracker/etf_cmd_line_output_handler.xml</location>ETF_CMD_LINE_OUTPUT_HANDLER</class></system>
+

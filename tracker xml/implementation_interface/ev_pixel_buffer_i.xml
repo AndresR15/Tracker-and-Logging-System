@@ -1,0 +1,196 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Implementation interface for EV_PIXEL_BUFFER.&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;drawable, primitives, figures, buffer, bitmap, picture&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2017-05-03 08:56:14 -0700 (Wed, 03 May 2017) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 100317 $&quot;</string>
+
+<keyword>deferred</keyword> <keyword>class</keyword> 
+	<class><location>../implementation_interface/ev_pixel_buffer_i.xml</location>EV_PIXEL_BUFFER_I</class>
+
+<keyword>inherit</keyword>
+	<class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_interface</location>interface</feature>
+		<keyword>end</keyword>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Initialization</comment>
+
+	<anchor>f_make_with_size</anchor><feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_make_with_size</location>make_with_size</feature> <symbol>(</symbol><local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Make Current with size.</comment>
+		<keyword>require</keyword>
+			<tag>width_valid</tag><symbol>:</symbol> <local>a_width</local> <symbol>&gt;</symbol> <number>0</number>
+			<tag>height_valid</tag><symbol>:</symbol> <local>a_height</local> <symbol>&gt;</symbol> <number>0</number>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_make_with_pixmap</anchor><feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_make_with_pixmap</location>make_with_pixmap</feature> <symbol>(</symbol><local>a_pixmap</local><symbol>:</symbol> <class><location>../interface/ev_pixmap.xml</location>EV_PIXMAP</class><symbol>)</symbol>
+			<comment>--</comment><comment> Create with </comment><quoted>a_pixmap</quoted><comment>'s image data.</comment>
+		<keyword>require</keyword>
+			<tag>not_void</tag><symbol>:</symbol> <local>a_pixmap</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Command</comment>
+
+	<anchor>f_set_with_named_path</anchor><feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_set_with_named_path</location>set_with_named_path</feature> <symbol>(</symbol><local>a_file_name</local><symbol>:</symbol> <class><include>False</include>PATH</class><symbol>)</symbol>
+			<comment>--</comment><comment> Load pixel data from </comment><quoted>a_file_name</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>a_file_name_valid</tag><symbol>:</symbol> <local>a_file_name</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>and then</keyword> <keyword>not</keyword> <local>a_file_name</local><dot>.</dot><feature><include>False</include>is_empty</feature>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_set_with_pointer</anchor><feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_set_with_pointer</location>set_with_pointer</feature> <symbol>(</symbol><local>a_pointer</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>;</symbol> <local>a_size</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Load pixel data from </comment><quoted>a_pointer</quoted>
+			<comment>--</comment><comment> </comment><quoted>a_size</quoted><comment>: size in bytes</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_save_to_named_path</anchor><feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_save_to_named_path</location>save_to_named_path</feature> <symbol>(</symbol><local>a_file_name</local><symbol>:</symbol> <class><include>False</include>PATH</class><symbol>)</symbol>
+			<comment>--</comment><comment> Save pixel data to file </comment><quoted>a_file_name</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>a_file_name_valid</tag><symbol>:</symbol> <local>a_file_name</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>and then</keyword> <keyword>not</keyword> <local>a_file_name</local><dot>.</dot><feature><include>False</include>is_empty</feature>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_save_to_pointer</anchor><feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_save_to_pointer</location>save_to_pointer</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>MANAGED_POINTER</class>
+			<comment>--</comment><comment> Save pixel data to </comment><quoted>a_pointer</quoted>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_stretched</anchor><feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_stretched</location>stretched</feature> <symbol>(</symbol><local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><location>../interface/ev_pixel_buffer.xml</location>EV_PIXEL_BUFFER</class>
+			<comment>--</comment><comment> Stretched copy of </comment><quoted>Current</quoted><comment> of dimension </comment><quoted>a_width</quoted><comment> x </comment><quoted>a_height</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>a_width_positive</tag><symbol>:</symbol> <local>a_width</local> <symbol>&gt;</symbol> <number>0</number>
+			<tag>a_height_positive</tag><symbol>:</symbol> <local>a_height</local> <symbol>&gt;</symbol> <number>0</number>
+			<tag>not_locked</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_is_locked</location>is_locked</feature>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>result_width_set</tag><symbol>:</symbol> <keyword>Result</keyword><dot>.</dot><feature><location>../interface/ev_pixel_buffer.xml#f_width</location>width</feature> <symbol>=</symbol> <local>a_width</local>
+			<tag>result_height_set</tag><symbol>:</symbol> <keyword>Result</keyword><dot>.</dot><feature><location>../interface/ev_pixel_buffer.xml#f_height</location>height</feature> <symbol>=</symbol> <local>a_height</local>
+		<keyword>end</keyword>
+
+	<anchor>f_sub_pixmap</anchor><feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_sub_pixmap</location>sub_pixmap</feature> <symbol>(</symbol><local>a_rect</local><symbol>:</symbol> <class><location>../interface/ev_rectangle.xml</location>EV_RECTANGLE</class><symbol>)</symbol><symbol>:</symbol> <class><location>../interface/ev_pixmap.xml</location>EV_PIXMAP</class>
+			<comment>--</comment><comment> Create a new sub pixmap from Current.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_sub_pixel_buffer</anchor><feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_sub_pixel_buffer</location>sub_pixel_buffer</feature> <symbol>(</symbol><local>a_rect</local><symbol>:</symbol> <class><location>../interface/ev_rectangle.xml</location>EV_RECTANGLE</class><symbol>)</symbol><symbol>:</symbol> <class><location>../interface/ev_pixel_buffer.xml</location>EV_PIXEL_BUFFER</class>
+			<comment>--</comment><comment> Create a new sub pixel buffer object.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_draw_pixel_buffer_with_x_y</anchor><feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_draw_pixel_buffer_with_x_y</location>draw_pixel_buffer_with_x_y</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_pixel_buffer</local><symbol>:</symbol> <class><location>../interface/ev_pixel_buffer.xml</location>EV_PIXEL_BUFFER</class><symbol>)</symbol>
+			<comment>--</comment><comment> Draw </comment><quoted>a_pixel_buffer</quoted><comment> at </comment><quoted>a_x</quoted><comment>, </comment><quoted>a_y</quoted><comment>.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_draw_text</anchor><feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_draw_text</location>draw_text</feature> <symbol>(</symbol><local>a_text</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>;</symbol> <local>a_font</local><symbol>:</symbol> <class><location>../interface/ev_font.xml</location>EV_FONT</class><symbol>;</symbol> <local>a_point</local><symbol>:</symbol> <class><location>../interface/ev_coordinate.xml</location>EV_COORDINATE</class><symbol>)</symbol>
+			<comment>--</comment><comment> Draw </comment><quoted>a_text</quoted><comment> with </comment><quoted>a_font</quoted><comment> at </comment><quoted>a_rect</quoted><comment>.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_lock</anchor><feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_lock</location>lock</feature>
+			<comment>--</comment><comment> Lock buffer for pixel iteration.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_is_locked</location>is_locked</feature> <symbol>:=</symbol> <keyword>True</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_unlock</anchor><feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_unlock</location>unlock</feature>
+			<comment>--</comment><comment> Unlock buffer from pixel iteration.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_is_locked</location>is_locked</feature> <symbol>:=</symbol> <keyword>False</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_pixel_buffer_pixel.xml</location>EV_PIXEL_BUFFER_PIXEL</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_get_pixel</anchor><feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_get_pixel</location>get_pixel</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>:</symbol> <class><include>False</include>NATURAL_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+			<comment>--</comment><comment> Get the platform dependent pixel value at </comment><quoted>a_x</quoted><comment>, </comment><quoted>a_y</quoted><comment> (zero based for speed)</comment>
+		<keyword>require</keyword>
+			<tag>a_x_valid</tag><symbol>:</symbol> <local>a_x</local> <symbol>&lt;</symbol> <feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_width</location>width</feature><dot>.</dot><feature><include>False</include>as_natural_32</feature>
+			<tag>a_y_valid</tag><symbol>:</symbol> <local>a_y</local> <symbol>&lt;=</symbol> <feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_height</location>height</feature><dot>.</dot><feature><include>False</include>as_natural_32</feature>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_set_pixel</anchor><feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_set_pixel</location>set_pixel</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>rgba</local><symbol>:</symbol> <class><include>False</include>NATURAL_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set the platform dependent pixel value at </comment><quoted>a_x</quoted><comment>, </comment><quoted>a_y</quoted><comment> (zero based for speed) to </comment><quoted>rgba</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>a_x_valid</tag><symbol>:</symbol> <local>a_x</local> <symbol>&lt;</symbol> <feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_width</location>width</feature><dot>.</dot><feature><include>False</include>as_natural_32</feature>
+			<tag>a_y_valid</tag><symbol>:</symbol> <local>a_y</local> <symbol>&lt;=</symbol> <feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_height</location>height</feature><dot>.</dot><feature><include>False</include>as_natural_32</feature>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>pixel_set</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_get_pixel</location>get_pixel</feature><symbol> </symbol><symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>)</symbol> <symbol>=</symbol> <local>rgba</local>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Query</comment>
+
+	<anchor>f_is_locked</anchor><feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_is_locked</location>is_locked</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is buffer locked for pixel iteration?</comment>
+
+	<anchor>f_pixel_iterator</anchor><feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_pixel_iterator</location>pixel_iterator</feature><symbol>:</symbol> <class><location>../interface/ev_pixel_buffer_iterator.xml</location>EV_PIXEL_BUFFER_ITERATOR</class>
+			<comment>--</comment><comment> Return a pixel buffer iterator.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_pixel_iterator_internal</location>pixel_iterator_internal</feature> <symbol>=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<keyword>create</keyword> <feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_pixel_iterator_internal</location>pixel_iterator_internal</feature><dot>.</dot><feature><location>../interface/ev_pixel_buffer_iterator.xml#f_make_for_pixel_buffer</location>make_for_pixel_buffer</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature><symbol>)</symbol>
+			<keyword>end</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_pixel_iterator_internal</location>pixel_iterator_internal</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_width</anchor><feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_width</location>width</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Width</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_height</anchor><feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_height</location>height</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Height</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_area</anchor><feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_area</location>area</feature><symbol>:</symbol> <class><location>../interface/ev_rectangle.xml</location>EV_RECTANGLE</class>
+			<comment>--</comment><comment> Dimension of Current as an instance of EV_RECTANGLE.</comment>
+		<keyword>do</keyword>
+			<keyword>create</keyword> <keyword>Result</keyword><dot>.</dot><feature><location>../interface/ev_rectangle.xml#f_make</location>make</feature><symbol> </symbol><symbol>(</symbol><number>0</number><symbol>,</symbol> <number>0</number><symbol>,</symbol> <feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_width</location>width</feature><symbol>,</symbol> <feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_height</location>height</feature><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>definition</tag><symbol>:</symbol> <keyword>Result</keyword><dot>.</dot><feature><location>../interface/ev_rectangle.xml#f_x</location>x</feature> <symbol>=</symbol> <number>0</number> <keyword>and</keyword> <keyword>Result</keyword><dot>.</dot><feature><location>../interface/ev_rectangle.xml#f_y</location>y</feature> <symbol>=</symbol> <number>0</number> <keyword>and</keyword> <keyword>Result</keyword><dot>.</dot><feature><location>../interface/ev_rectangle.xml#f_width</location>width</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_width</location>width</feature> <keyword>and</keyword> <keyword>Result</keyword><dot>.</dot><feature><location>../interface/ev_rectangle.xml#f_height</location>height</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_height</location>height</feature>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_any.xml</location>EV_ANY</class><symbol>,</symbol> <class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_interface</anchor><feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_interface</location>interface</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_pixel_buffer.xml</location>EV_PIXEL_BUFFER</class>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_pixel_iterator_internal</anchor><feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_pixel_iterator_internal</location>pixel_iterator_internal</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_pixel_buffer_iterator.xml</location>EV_PIXEL_BUFFER_ITERATOR</class>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Obsolete</comment>
+
+	<anchor>f_draw_pixel_buffer</anchor><feature><location>../implementation_interface/ev_pixel_buffer_i.xml#f_draw_pixel_buffer</location>draw_pixel_buffer</feature> <symbol>(</symbol><local>a_pixel_buffer</local><symbol>:</symbol> <class><location>../interface/ev_pixel_buffer.xml</location>EV_PIXEL_BUFFER</class><symbol>;</symbol> <local>a_rect</local><symbol>:</symbol> <class><location>../interface/ev_rectangle.xml</location>EV_RECTANGLE</class><symbol>)</symbol>
+		<keyword>obsolete</keyword> &quot;Use draw_pixel_buffer_with_x_y instead [2017-05-31]&quot;
+			<comment>--</comment><comment> Draw </comment><quoted>a_pixel_buffer</quoted><comment> at </comment><quoted>a_rect</quoted><comment>.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2016, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_interface/ev_pixel_buffer_i.xml</location>EV_PIXEL_BUFFER_I</class></system>
+

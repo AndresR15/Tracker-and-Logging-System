@@ -1,0 +1,94 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "Interface for buffers"{\line}
+{\tab}{\cf1 library}{\cf1 :} "Gobo Eiffel Kernel Library"{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 2001-2012, Eric Bezault and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "MIT License"{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2016-05-06 12:15:38 -0700 (Fri, 06 May 2016) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 98678 $"{\line}
+{\line}
+{\b\cf6 deferred} {\b\cf6 class} {\b\cf6 interface}{\line}
+{\tab}{\cf4 KI_BUFFER} {\cf1 [}G{\cf1 ]}{\line}
+{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 item} {\cf1 (}{\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} G{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Item at position }{\cf5 i}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 i_large_enough}{\cf1 :} {\cf5 i} {\cf1 >=} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 i_small_enough}{\cf1 :} {\cf5 i} {\cf1 <=} {\cf5 count}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Measurement}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 count}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of items in buffer}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 count_positive}{\cf1 :} {\b\cf6 Result} {\cf1 >=} 0{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Element change}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 put} {\cf1 (}{\cf5 v}{\cf1 :} G{\cf1 ;} {\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Replace item at position }{\cf5 i}{\cf3  by }{\cf5 v}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 i_large_enough}{\cf1 :} {\cf5 i} {\cf1 >=} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 i_small_enough}{\cf1 :} {\cf5 i} {\cf1 <=} {\cf5 count}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 inserted}{\cf1 :} {\cf5 item}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )} {\cf1 =} {\cf5 v}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 fill_from_stream} {\cf1 (}{\cf5 a_stream}{\cf1 :} {\cf4 KI_INPUT_STREAM} {\cf1 [}G{\cf1 ]}{\cf1 ;} {\cf5 pos}{\cf1 ,} {\cf5 nb}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Fill buffer, starting at position }{\cf5 pos}{\cf3 , with}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  at most }{\cf5 nb}{\cf3  items read from }{\cf5 a_stream}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Return the number of items actually read.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_stream_not_void}{\cf1 :} {\cf5 a_stream} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_stream_open_read}{\cf1 :} {\cf5 a_stream}{\b\cf1 .}{\cf5 is_open_read}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_end_of_input}{\cf1 :} {\b\cf6 not} {\cf5 a_stream}{\b\cf1 .}{\cf5 end_of_input}{\line}
+{\tab}{\tab}{\tab}{\cf1 pos_large_enough}{\cf1 :} {\cf5 pos} {\cf1 >=} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 nb_large_enough}{\cf1 :} {\cf5 nb} {\cf1 >} 0{\line}
+{\tab}{\tab}{\tab}{\cf1 enough_space}{\cf1 :} {\cf1 (}{\cf5 pos} {\cf1 +} {\cf5 nb} {\cf1 -} 1{\cf1 )} {\cf1 <=} {\cf5 count}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 nb_item_read_large_enough}{\cf1 :} {\b\cf6 Result} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\tab}{\cf1 nb_item_read_small_enough}{\cf1 :} {\b\cf6 Result} {\cf1 <=} {\cf5 nb}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_end_of_input}{\cf1 :} {\b\cf6 not} {\cf5 a_stream}{\b\cf1 .}{\cf5 end_of_input} {\b\cf6 implies} {\b\cf6 Result} {\cf1 >} 0{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 move_left} {\cf1 (}{\cf5 old_pos}{\cf1 ,} {\cf5 new_pos}{\cf1 :} {\cf4 INTEGER_32}{\cf1 ;} {\cf5 nb}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Copy }{\cf5 nb}{\cf3  items from }{\cf5 old_pos}{\cf3  to}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 new_pos}{\cf3  in buffer.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 nb_positive}{\cf1 :} {\cf5 nb} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\tab}{\cf1 old_pos_large_enough}{\cf1 :} {\cf5 old_pos} {\cf1 >=} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 enough_characters}{\cf1 :} {\cf1 (}{\cf5 old_pos} {\cf1 +} {\cf5 nb} {\cf1 -} 1{\cf1 )} {\cf1 <=} {\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\cf1 new_pos_large_enough}{\cf1 :} {\cf5 new_pos} {\cf1 >=} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 enough_space}{\cf1 :} {\cf1 (}{\cf5 new_pos} {\cf1 +} {\cf5 nb} {\cf1 -} 1{\cf1 )} {\cf1 <=} {\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\cf1 move_left}{\cf1 :} {\cf5 old_pos} {\cf1 >} {\cf5 new_pos}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 move_right} {\cf1 (}{\cf5 old_pos}{\cf1 ,} {\cf5 new_pos}{\cf1 :} {\cf4 INTEGER_32}{\cf1 ;} {\cf5 nb}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Copy }{\cf5 nb}{\cf3  items from }{\cf5 old_pos}{\cf3  to}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 new_pos}{\cf3  in buffer.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 nb_positive}{\cf1 :} {\cf5 nb} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\tab}{\cf1 old_pos_large_enough}{\cf1 :} {\cf5 old_pos} {\cf1 >=} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 enough_characters}{\cf1 :} {\cf1 (}{\cf5 old_pos} {\cf1 +} {\cf5 nb} {\cf1 -} 1{\cf1 )} {\cf1 <=} {\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\cf1 new_pos_large_enough}{\cf1 :} {\cf5 new_pos} {\cf1 >=} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 enough_space}{\cf1 :} {\cf1 (}{\cf5 new_pos} {\cf1 +} {\cf5 nb} {\cf1 -} 1{\cf1 )} {\cf1 <=} {\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\cf1 move_right}{\cf1 :} {\cf5 old_pos} {\cf1 <} {\cf5 new_pos}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Resizing}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 resize} {\cf1 (}{\cf5 n}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Resize buffer so that it contains }{\cf5 n}{\cf3  items.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do not lose any previously entered items.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 n_large_enough}{\cf1 :} {\cf5 n} {\cf1 >=} {\cf5 count}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 count_set}{\cf1 :} {\cf5 count} {\cf1 =} {\cf5 n}{\line}
+}{\tab}{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 KI_BUFFER}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

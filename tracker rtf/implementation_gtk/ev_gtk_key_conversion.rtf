@@ -1,0 +1,1467 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "Eiffel Vision GTK key conversion. Provides a function%Nfor GTK to vision2 conversion and for vision2 to GTK conversion."{\line}
+{\tab}{\cf1 legal}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 status}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 date}{\cf1 :} "generated"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "generated"{\line}
+{\line}
+{\b\cf6 class} {\line}
+{\tab}{\cf4 EV_GTK_KEY_CONVERSION}{\line}
+{\line}
+{\b\cf6 inherit}{\line}
+{\tab}{\cf4 EV_KEY_CONSTANTS}{\line}
+{\line}
+{\b\cf6 create} {\line}
+{\tab}{\cf5 default_create}{\line}
+{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Conversion}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_code_to_gtk} {\cf1 (}{\cf5 a_key_code}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Corresponding GTK code for }{\cf5 a_key_code}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_key_code_valid}{\cf1 :} {\cf5 valid_key_code}{\cf1  }{\cf1 (}{\cf5 a_key_code}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 V2_to_gtk_table} {\cf1 @} {\cf5 a_key_code}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_code_from_gtk} {\cf1 (}{\cf5 a_gtk_code}{\cf1 :} {\cf4 NATURAL_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Corresponding key code for }{\cf5 a_gtk_code}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_gtk_code_valid}{\cf1 :} {\cf5 valid_gtk_code}{\cf1  }{\cf1 (}{\cf5 a_gtk_code}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 Gtk_to_v2_table}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 a_gtk_code}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Contract support}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 valid_gtk_code} {\cf1 (}{\cf5 a_gtk_code}{\cf1 :} {\cf4 NATURAL_32}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 a_gtk_code}{\cf3  valid?}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 Gtk_to_v2_table}{\b\cf1 .}{\cf5 has}{\cf1  }{\cf1 (}{\cf5 a_gtk_code}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 V2_to_gtk_table}{\cf1 :} {\cf4 ARRAY} {\cf1 [}{\cf4 NATURAL_32}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  GTK keycodes indexed by Vision2 key code.}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make_filled}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 NATURAL_32}{\cf1 \}} 0{\cf1 ,} {\cf5 Key_0}{\cf1 ,} {\cf5 Key_menu}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_0_keysym}{\cf1 ,} {\cf5 Key_0}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_1_keysym}{\cf1 ,} {\cf5 Key_1}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_2_keysym}{\cf1 ,} {\cf5 Key_2}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_3_keysym}{\cf1 ,} {\cf5 Key_3}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_4_keysym}{\cf1 ,} {\cf5 Key_4}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_5_keysym}{\cf1 ,} {\cf5 Key_5}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_6_keysym}{\cf1 ,} {\cf5 Key_6}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_7_keysym}{\cf1 ,} {\cf5 Key_7}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_8_keysym}{\cf1 ,} {\cf5 Key_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_9_keysym}{\cf1 ,} {\cf5 Key_9}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_numpad_0_keysym}{\cf1 ,} {\cf5 Key_numpad_0}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_numpad_1_keysym}{\cf1 ,} {\cf5 Key_numpad_1}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_numpad_2_keysym}{\cf1 ,} {\cf5 Key_numpad_2}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_numpad_3_keysym}{\cf1 ,} {\cf5 Key_numpad_3}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_numpad_4_keysym}{\cf1 ,} {\cf5 Key_numpad_4}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_numpad_5_keysym}{\cf1 ,} {\cf5 Key_numpad_5}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_numpad_6_keysym}{\cf1 ,} {\cf5 Key_numpad_6}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_numpad_7_keysym}{\cf1 ,} {\cf5 Key_numpad_7}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_numpad_8_keysym}{\cf1 ,} {\cf5 Key_numpad_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_numpad_9_keysym}{\cf1 ,} {\cf5 Key_numpad_9}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_numpad_add_keysym}{\cf1 ,} {\cf5 Key_numpad_add}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_numpad_divide_keysym}{\cf1 ,} {\cf5 Key_numpad_divide}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_numpad_multiply_keysym}{\cf1 ,} {\cf5 Key_numpad_multiply}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_num_lock_keysym}{\cf1 ,} {\cf5 Key_num_lock}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_numpad_subtract_keysym}{\cf1 ,} {\cf5 Key_numpad_subtract}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_numpad_decimal_keysym}{\cf1 ,} {\cf5 Key_numpad_decimal}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_f1_keysym}{\cf1 ,} {\cf5 Key_f1}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_f2_keysym}{\cf1 ,} {\cf5 Key_f2}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_f3_keysym}{\cf1 ,} {\cf5 Key_f3}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_f4_keysym}{\cf1 ,} {\cf5 Key_f4}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_f5_keysym}{\cf1 ,} {\cf5 Key_f5}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_f6_keysym}{\cf1 ,} {\cf5 Key_f6}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_f7_keysym}{\cf1 ,} {\cf5 Key_f7}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_f8_keysym}{\cf1 ,} {\cf5 Key_f8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_f9_keysym}{\cf1 ,} {\cf5 Key_f9}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_f10_keysym}{\cf1 ,} {\cf5 Key_f10}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_f11_keysym}{\cf1 ,} {\cf5 Key_f11}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_f12_keysym}{\cf1 ,} {\cf5 Key_f12}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_space_keysym}{\cf1 ,} {\cf5 Key_space}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_back_space_keysym}{\cf1 ,} {\cf5 Key_back_space}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_enter_keysym}{\cf1 ,} {\cf5 Key_enter}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_escape_keysym}{\cf1 ,} {\cf5 Key_escape}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_tab_keysym}{\cf1 ,} {\cf5 Key_tab}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_pause_keysym}{\cf1 ,} {\cf5 Key_pause}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_caps_lock_keysym}{\cf1 ,} {\cf5 Key_caps_lock}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_scroll_lock_keysym}{\cf1 ,} {\cf5 Key_scroll_lock}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_comma_keysym}{\cf1 ,} {\cf5 Key_comma}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_equal_keysym}{\cf1 ,} {\cf5 Key_equal}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_period_keysym}{\cf1 ,} {\cf5 Key_period}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_semicolon_keysym}{\cf1 ,} {\cf5 Key_semicolon}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_open_bracket_keysym}{\cf1 ,} {\cf5 Key_open_bracket}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_close_bracket_keysym}{\cf1 ,} {\cf5 Key_close_bracket}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_slash_keysym}{\cf1 ,} {\cf5 Key_slash}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_backslash_keysym}{\cf1 ,} {\cf5 Key_backslash}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_quote_keysym}{\cf1 ,} {\cf5 Key_quote}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_backquote_keysym}{\cf1 ,} {\cf5 Key_backquote}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_dash_keysym}{\cf1 ,} {\cf5 Key_dash}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_up_keysym}{\cf1 ,} {\cf5 Key_up}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_down_keysym}{\cf1 ,} {\cf5 Key_down}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_left_keysym}{\cf1 ,} {\cf5 Key_left}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_right_keysym}{\cf1 ,} {\cf5 Key_right}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_page_up_keysym}{\cf1 ,} {\cf5 Key_page_up}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_page_down_keysym}{\cf1 ,} {\cf5 Key_page_down}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_home_keysym}{\cf1 ,} {\cf5 Key_home}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_end_keysym}{\cf1 ,} {\cf5 Key_end}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_insert_keysym}{\cf1 ,} {\cf5 Key_insert}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_delete_keysym}{\cf1 ,} {\cf5 Key_delete}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_a_keysym}{\cf1 ,} {\cf5 Key_a}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_b_keysym}{\cf1 ,} {\cf5 Key_b}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_c_keysym}{\cf1 ,} {\cf5 Key_c}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_d_keysym}{\cf1 ,} {\cf5 Key_d}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_e_keysym}{\cf1 ,} {\cf5 Key_e}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_f_keysym}{\cf1 ,} {\cf5 Key_f}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_g_keysym}{\cf1 ,} {\cf5 Key_g}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_h_keysym}{\cf1 ,} {\cf5 Key_h}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_i_keysym}{\cf1 ,} {\cf5 Key_i}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_j_keysym}{\cf1 ,} {\cf5 Key_j}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_k_keysym}{\cf1 ,} {\cf5 Key_k}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_l_keysym}{\cf1 ,} {\cf5 Key_l}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_m_keysym}{\cf1 ,} {\cf5 Key_m}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_n_keysym}{\cf1 ,} {\cf5 Key_n}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_o_keysym}{\cf1 ,} {\cf5 Key_o}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_p_keysym}{\cf1 ,} {\cf5 Key_p}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_q_keysym}{\cf1 ,} {\cf5 Key_q}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_r_keysym}{\cf1 ,} {\cf5 Key_r}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_s_keysym}{\cf1 ,} {\cf5 Key_s}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_t_keysym}{\cf1 ,} {\cf5 Key_t}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_u_keysym}{\cf1 ,} {\cf5 Key_u}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_v_keysym}{\cf1 ,} {\cf5 Key_v}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_w_keysym}{\cf1 ,} {\cf5 Key_w}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_x_keysym}{\cf1 ,} {\cf5 Key_x}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_y_keysym}{\cf1 ,} {\cf5 Key_y}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_z_keysym}{\cf1 ,} {\cf5 Key_z}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_shift_keysym}{\cf1 ,} {\cf5 Key_shift}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_ctrl_keysym}{\cf1 ,} {\cf5 Key_ctrl}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_left_alt_keysym}{\cf1 ,} {\cf5 Key_alt}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_right_alt_keysym}{\cf1 ,} {\cf5 Key_alt}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_left_meta_keysym}{\cf1 ,} {\cf5 Key_left_meta}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_right_meta_keysym}{\cf1 ,} {\cf5 Key_right_meta}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 key_menu_keysym}{\cf1 ,} {\cf5 Key_menu}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Gtk_to_v2_table}{\cf1 :} {\cf4 HASH_TABLE} {\cf1 [}{\cf4 INTEGER_32}{\cf1 ,} {\cf4 NATURAL_32}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Vision2 keycodes indexed by GTK key code.}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}128{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_0}{\cf1 ,} {\cf5 key_0_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_1}{\cf1 ,} {\cf5 key_1_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_2}{\cf1 ,} {\cf5 key_2_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_3}{\cf1 ,} {\cf5 key_3_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_4}{\cf1 ,} {\cf5 key_4_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_5}{\cf1 ,} {\cf5 key_5_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_6}{\cf1 ,} {\cf5 key_6_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_7}{\cf1 ,} {\cf5 key_7_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_8}{\cf1 ,} {\cf5 key_8_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_9}{\cf1 ,} {\cf5 key_9_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_numpad_0}{\cf1 ,} {\cf5 key_numpad_0_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_numpad_1}{\cf1 ,} {\cf5 key_numpad_1_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_numpad_2}{\cf1 ,} {\cf5 key_numpad_2_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_numpad_3}{\cf1 ,} {\cf5 key_numpad_3_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_numpad_4}{\cf1 ,} {\cf5 key_numpad_4_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_numpad_5}{\cf1 ,} {\cf5 key_numpad_5_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_numpad_6}{\cf1 ,} {\cf5 key_numpad_6_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_numpad_7}{\cf1 ,} {\cf5 key_numpad_7_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_numpad_8}{\cf1 ,} {\cf5 key_numpad_8_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_numpad_9}{\cf1 ,} {\cf5 key_numpad_9_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_numpad_add}{\cf1 ,} {\cf5 key_numpad_add_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_numpad_divide}{\cf1 ,} {\cf5 key_numpad_divide_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_numpad_multiply}{\cf1 ,} {\cf5 key_numpad_multiply_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_num_lock}{\cf1 ,} {\cf5 key_num_lock_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_numpad_subtract}{\cf1 ,} {\cf5 key_numpad_subtract_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_numpad_decimal}{\cf1 ,} {\cf5 key_numpad_decimal_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_f1}{\cf1 ,} {\cf5 key_f1_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_f2}{\cf1 ,} {\cf5 key_f2_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_f3}{\cf1 ,} {\cf5 key_f3_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_f4}{\cf1 ,} {\cf5 key_f4_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_f5}{\cf1 ,} {\cf5 key_f5_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_f6}{\cf1 ,} {\cf5 key_f6_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_f7}{\cf1 ,} {\cf5 key_f7_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_f8}{\cf1 ,} {\cf5 key_f8_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_f9}{\cf1 ,} {\cf5 key_f9_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_f10}{\cf1 ,} {\cf5 key_f10_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_f11}{\cf1 ,} {\cf5 key_f11_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_f12}{\cf1 ,} {\cf5 key_f12_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_space}{\cf1 ,} {\cf5 key_space_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_back_space}{\cf1 ,} {\cf5 key_back_space_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_enter}{\cf1 ,} {\cf5 key_enter_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_enter}{\cf1 ,} {\cf5 key_kp_enter_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_escape}{\cf1 ,} {\cf5 key_escape_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_tab}{\cf1 ,} {\cf5 key_tab_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_tab}{\cf1 ,} {\cf5 key_shift_tab_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_pause}{\cf1 ,} {\cf5 key_pause_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_caps_lock}{\cf1 ,} {\cf5 key_caps_lock_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_scroll_lock}{\cf1 ,} {\cf5 key_scroll_lock_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_comma}{\cf1 ,} {\cf5 key_comma_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_equal}{\cf1 ,} {\cf5 key_equal_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_period}{\cf1 ,} {\cf5 key_period_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_semicolon}{\cf1 ,} {\cf5 key_semicolon_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_open_bracket}{\cf1 ,} {\cf5 key_open_bracket_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_close_bracket}{\cf1 ,} {\cf5 key_close_bracket_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_slash}{\cf1 ,} {\cf5 key_slash_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_backslash}{\cf1 ,} {\cf5 key_backslash_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_quote}{\cf1 ,} {\cf5 key_quote_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_backquote}{\cf1 ,} {\cf5 key_backquote_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_dash}{\cf1 ,} {\cf5 key_dash_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_up}{\cf1 ,} {\cf5 key_up_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_up}{\cf1 ,} {\cf5 key_kp_up_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_down}{\cf1 ,} {\cf5 key_down_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_down}{\cf1 ,} {\cf5 key_kp_down_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_left}{\cf1 ,} {\cf5 key_left_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_left}{\cf1 ,} {\cf5 key_kp_left_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_right}{\cf1 ,} {\cf5 key_right_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_right}{\cf1 ,} {\cf5 key_kp_right_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_page_up}{\cf1 ,} {\cf5 key_page_up_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_page_up}{\cf1 ,} {\cf5 key_kp_page_up_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_page_down}{\cf1 ,} {\cf5 key_page_down_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_page_down}{\cf1 ,} {\cf5 key_kp_page_down_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_home}{\cf1 ,} {\cf5 key_home_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_home}{\cf1 ,} {\cf5 key_kp_home_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_end}{\cf1 ,} {\cf5 key_end_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_end}{\cf1 ,} {\cf5 key_kp_end_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_insert}{\cf1 ,} {\cf5 key_insert_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_insert}{\cf1 ,} {\cf5 key_kp_insert_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_delete}{\cf1 ,} {\cf5 key_delete_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_delete}{\cf1 ,} {\cf5 key_kp_delete_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_a}{\cf1 ,} {\cf5 key_a_upper_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_b}{\cf1 ,} {\cf5 key_b_upper_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_c}{\cf1 ,} {\cf5 key_c_upper_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_d}{\cf1 ,} {\cf5 key_d_upper_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_e}{\cf1 ,} {\cf5 key_e_upper_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_f}{\cf1 ,} {\cf5 key_f_upper_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_g}{\cf1 ,} {\cf5 key_g_upper_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_h}{\cf1 ,} {\cf5 key_h_upper_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_i}{\cf1 ,} {\cf5 key_i_upper_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_j}{\cf1 ,} {\cf5 key_j_upper_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_k}{\cf1 ,} {\cf5 key_k_upper_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_l}{\cf1 ,} {\cf5 key_l_upper_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_m}{\cf1 ,} {\cf5 key_m_upper_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_n}{\cf1 ,} {\cf5 key_n_upper_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_o}{\cf1 ,} {\cf5 key_o_upper_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_p}{\cf1 ,} {\cf5 key_p_upper_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_q}{\cf1 ,} {\cf5 key_q_upper_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_r}{\cf1 ,} {\cf5 key_r_upper_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_s}{\cf1 ,} {\cf5 key_s_upper_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_t}{\cf1 ,} {\cf5 key_t_upper_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_u}{\cf1 ,} {\cf5 key_u_upper_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_v}{\cf1 ,} {\cf5 key_v_upper_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_w}{\cf1 ,} {\cf5 key_w_upper_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_x}{\cf1 ,} {\cf5 key_x_upper_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_y}{\cf1 ,} {\cf5 key_y_upper_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_z}{\cf1 ,} {\cf5 key_z_upper_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_a}{\cf1 ,} {\cf5 key_a_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_b}{\cf1 ,} {\cf5 key_b_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_c}{\cf1 ,} {\cf5 key_c_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_d}{\cf1 ,} {\cf5 key_d_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_e}{\cf1 ,} {\cf5 key_e_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_f}{\cf1 ,} {\cf5 key_f_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_g}{\cf1 ,} {\cf5 key_g_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_h}{\cf1 ,} {\cf5 key_h_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_i}{\cf1 ,} {\cf5 key_i_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_j}{\cf1 ,} {\cf5 key_j_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_k}{\cf1 ,} {\cf5 key_k_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_l}{\cf1 ,} {\cf5 key_l_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_m}{\cf1 ,} {\cf5 key_m_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_n}{\cf1 ,} {\cf5 key_n_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_o}{\cf1 ,} {\cf5 key_o_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_p}{\cf1 ,} {\cf5 key_p_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_q}{\cf1 ,} {\cf5 key_q_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_r}{\cf1 ,} {\cf5 key_r_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_s}{\cf1 ,} {\cf5 key_s_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_t}{\cf1 ,} {\cf5 key_t_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_u}{\cf1 ,} {\cf5 key_u_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_v}{\cf1 ,} {\cf5 key_v_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_w}{\cf1 ,} {\cf5 key_w_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_x}{\cf1 ,} {\cf5 key_x_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_y}{\cf1 ,} {\cf5 key_y_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_z}{\cf1 ,} {\cf5 key_z_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_shift}{\cf1 ,} {\cf5 key_shift_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_shift}{\cf1 ,} {\cf5 key_right_shift_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_ctrl}{\cf1 ,} {\cf5 key_ctrl_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_ctrl}{\cf1 ,} {\cf5 key_right_ctrl_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_alt}{\cf1 ,} {\cf5 key_left_alt_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_alt}{\cf1 ,} {\cf5 key_right_alt_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_left_meta}{\cf1 ,} {\cf5 key_left_meta_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_right_meta}{\cf1 ,} {\cf5 key_right_meta_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_backquote}{\cf1 ,} {\cf5 key_tilde_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_1}{\cf1 ,} {\cf5 key_exclamation_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_2}{\cf1 ,} {\cf5 key_at_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_3}{\cf1 ,} {\cf5 key_numbersign_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_4}{\cf1 ,} {\cf5 key_dollar_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_5}{\cf1 ,} {\cf5 key_percent_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_6}{\cf1 ,} {\cf5 key_asciicircum_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_7}{\cf1 ,} {\cf5 key_ampersand_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_8}{\cf1 ,} {\cf5 key_asterisk_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_9}{\cf1 ,} {\cf5 key_parenleft_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_0}{\cf1 ,} {\cf5 key_parenright_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_dash}{\cf1 ,} {\cf5 key_underscore_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_equal}{\cf1 ,} {\cf5 key_plus_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_semicolon}{\cf1 ,} {\cf5 key_colon_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_quote}{\cf1 ,} {\cf5 key_quotedbl_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_comma}{\cf1 ,} {\cf5 key_less_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_period}{\cf1 ,} {\cf5 key_greater_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_slash}{\cf1 ,} {\cf5 key_question_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_open_bracket}{\cf1 ,} {\cf5 key_braceleft_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_close_bracket}{\cf1 ,} {\cf5 key_braceright_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_backslash}{\cf1 ,} {\cf5 key_bar_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 Key_menu}{\cf1 ,} {\cf5 key_menu_keysym}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_ANY_I}{\cf1 \}} {\cf3 --}{\cf3  Externals}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_tilde_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_asciitilde"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_exclamation_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_exclam"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_at_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_at"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_numbersign_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_numbersign"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_dollar_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_dollar"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_percent_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_percent"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_asciicircum_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_asciicircum"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_ampersand_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_ampersand"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_asterisk_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_asterisk"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_parenleft_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_parenleft"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_parenright_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_parenright"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_underscore_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_underscore"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_plus_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_plus"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_colon_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_colon"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_quotedbl_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_quotedbl"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_less_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_less"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_greater_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_greater"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_question_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_question"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_braceleft_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_braceleft"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_braceright_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_braceright"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_bar_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_bar"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_0_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_0"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 key_1_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_1"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_2_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_2"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_3_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_3"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_4_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_4"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_5_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_5"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_6_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_6"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_7_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_7"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_8_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_8"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_9_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_9"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_numpad_0_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_KP_0"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_numpad_1_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_KP_1"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_numpad_2_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_KP_2"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_numpad_3_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_KP_3"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_numpad_4_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_KP_4"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_numpad_5_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_KP_5"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_numpad_6_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_KP_6"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_numpad_7_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_KP_7"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_numpad_8_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_KP_8"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_numpad_9_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_KP_9"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_numpad_add_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_KP_Add"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_numpad_divide_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_KP_Divide"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_numpad_multiply_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_KP_Multiply"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_num_lock_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_Num_Lock"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_numpad_subtract_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_KP_Subtract"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_numpad_decimal_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_KP_Decimal"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_f1_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_F1"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_f2_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_F2"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_f3_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_F3"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_f4_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_F4"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_f5_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_F5"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_f6_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_F6"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_f7_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_F7"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_f8_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_F8"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_f9_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_F9"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_f10_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_F10"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_f11_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_F11"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_f12_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_F12"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_space_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_space"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_back_space_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_BackSpace"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_enter_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_Return"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_kp_enter_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_KP_Enter"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_escape_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_Escape"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_tab_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_Tab"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_shift_tab_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_ISO_Left_Tab"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_pause_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_Pause"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_caps_lock_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_Caps_Lock"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_scroll_lock_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_F23"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_comma_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_comma"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_equal_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_equal"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_period_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_period"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_semicolon_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_semicolon"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_open_bracket_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_bracketleft"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_close_bracket_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_bracketright"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_slash_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_slash"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_backslash_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_backslash"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_quote_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_quoteright"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_backquote_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_quoteleft"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_dash_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_minus"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_up_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_Up"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_kp_up_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_KP_Up"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_down_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_Down"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_kp_down_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_KP_Down"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_left_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_Left"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_kp_left_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_KP_Left"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_right_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_Right"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_kp_right_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_KP_Right"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_page_up_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_Page_Up"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_kp_page_up_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_KP_Page_Up"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_page_down_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_Page_Down"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_kp_page_down_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_KP_Page_Down"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_home_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_Home"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_kp_home_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_KP_Home"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_end_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_End"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_kp_end_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_KP_End"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_insert_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_Insert"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_kp_insert_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_KP_Insert"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_delete_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_Delete"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_kp_delete_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_KP_Delete"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_a_upper_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_A"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_b_upper_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_B"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_c_upper_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_C"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_d_upper_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_D"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_e_upper_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_E"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_f_upper_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_F"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_g_upper_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_G"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_h_upper_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_H"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_i_upper_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_I"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_j_upper_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_J"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_k_upper_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_K"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_l_upper_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_L"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_m_upper_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_M"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_n_upper_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_N"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_o_upper_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_O"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_p_upper_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_P"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_q_upper_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_Q"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_r_upper_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_R"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_s_upper_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_S"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_t_upper_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_T"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_u_upper_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_U"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_v_upper_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_V"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_w_upper_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_W"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_x_upper_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_X"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_y_upper_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_Y"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_z_upper_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_Z"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 key_a_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_a"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_b_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_b"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_c_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_c"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_d_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_d"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_e_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_e"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_f_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_f"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_g_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_g"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_h_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_h"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_i_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_i"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_j_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_j"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_k_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_k"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_l_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_l"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_m_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_m"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_n_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_n"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_o_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_o"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_p_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_p"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_q_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_q"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_r_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_r"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_s_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_s"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_t_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_t"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_u_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_u"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_v_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_v"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_w_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_w"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_x_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_x"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_y_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_y"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_z_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_z"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_shift_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_Shift_L"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_right_shift_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_Shift_R"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_ctrl_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_Control_L"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_right_ctrl_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_Control_R"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_left_meta_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_Meta_L"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_right_meta_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [macro <gdk/gdkkeysyms.h>]"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_Meta_R"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_left_alt_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C macro use <gdk/gdkkeysyms.h>"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_Alt_L"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_right_alt_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C macro use <gdk/gdkkeysyms.h>"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_Alt_R"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 key_menu_keysym}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C macro use <gdk/gdkkeysyms.h>"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"GDK_Menu"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 note}{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 1984-2006, Eiffel Software and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"{\line}
+{\tab}{\cf1 source}{\cf1 :} "[{\line}
+{\tab}{\tab}Eiffel Software{\line}
+{\tab}{\tab}356 Storke Road, Goleta, CA 93117 USA{\line}
+{\tab}{\tab}Telephone 805-685-1006, Fax 805-685-6869{\line}
+{\tab}{\tab}Website http://www.eiffel.com{\line}
+{\tab}{\tab}Customer support http://support.eiffel.com{\line}
+{\tab}]"{\line}
+{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 EV_GTK_KEY_CONVERSION}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

@@ -1,0 +1,199 @@
+<system>
+<keyword>deferred</keyword> <keyword>class</keyword>
+	<class><location>../implementation_interface/ev_application_i_chart.xml</location>EV_APPLICATION_I</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>implementation_interface</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> 
+		<string>&quot;Eiffel Vision application. Implementation interface.</string>
+		<string>See ev_application.e&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;application&quot;</string>
+
+<keyword>Ancestors</keyword>
+	<class><location>../implementation_interface/ev_any_i_chart.xml</location>EV_ANY_I</class><char>*</char>
+	<class><location>../implementation_interface/ev_application_action_sequences_i_chart.xml</location>EV_APPLICATION_ACTION_SEQUENCES_I</class><char>*</char>
+	<class><include>False</include>EXCEPTIONS</class>
+	<class><include>False</include>MEMORY</class>
+
+<keyword>Action sequences</keyword>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_accelerator_actions</location>accelerator_actions</feature> <symbol>(</symbol><local>an_accelerator</local><symbol>:</symbol> <class><location>../interface/ev_accelerator_chart.xml</location>EV_ACCELERATOR</class><symbol>)</symbol><symbol>:</symbol> <class><location>../interface/ev_notify_action_sequence_chart.xml</location>EV_NOTIFY_ACTION_SEQUENCE</class>
+	<feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_cancel_actions</location>cancel_actions</feature><symbol>:</symbol> <class><location>../interface/ev_pnd_action_sequence_chart.xml</location>EV_PND_ACTION_SEQUENCE</class>
+	<feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_destroy_actions</location>destroy_actions</feature><symbol>:</symbol> <class><location>../interface/ev_notify_action_sequence_chart.xml</location>EV_NOTIFY_ACTION_SEQUENCE</class>
+	<feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_drop_actions</location>drop_actions</feature><symbol>:</symbol> <class><location>../interface/ev_pnd_action_sequence_chart.xml</location>EV_PND_ACTION_SEQUENCE</class>
+	<feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_file_drop_actions</location>file_drop_actions</feature><symbol>:</symbol> <class><location>../interface/ev_lite_action_sequence_chart.xml</location>EV_LITE_ACTION_SEQUENCE</class> <symbol>[</symbol><class><location>../interface/ev_widget_chart.xml</location>EV_WIDGET</class><symbol>,</symbol> <class><include>False</include>LIST</class> <symbol>[</symbol><class><include>False</include>STRING_32</class><symbol>]</symbol><symbol>]</symbol>
+	<feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_focus_in_actions</location>focus_in_actions</feature><symbol>:</symbol> <class><location>../interface/ev_lite_action_sequence_chart.xml</location>EV_LITE_ACTION_SEQUENCE</class> <symbol>[</symbol><class><location>../interface/ev_widget_chart.xml</location>EV_WIDGET</class><symbol>]</symbol>
+	<feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_focus_out_actions</location>focus_out_actions</feature><symbol>:</symbol> <class><location>../interface/ev_lite_action_sequence_chart.xml</location>EV_LITE_ACTION_SEQUENCE</class> <symbol>[</symbol><class><location>../interface/ev_widget_chart.xml</location>EV_WIDGET</class><symbol>]</symbol>
+	<feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_idle_actions</location>idle_actions</feature><symbol>:</symbol> <class><location>../interface/ev_notify_action_sequence_chart.xml</location>EV_NOTIFY_ACTION_SEQUENCE</class>
+	<feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_key_press_actions</location>key_press_actions</feature><symbol>:</symbol> <class><location>../interface/ev_lite_action_sequence_chart.xml</location>EV_LITE_ACTION_SEQUENCE</class> <symbol>[</symbol><class><location>../interface/ev_widget_chart.xml</location>EV_WIDGET</class><symbol>,</symbol> <class><location>../interface/ev_key_chart.xml</location>EV_KEY</class><symbol>]</symbol>
+	<feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_key_press_string_actions</location>key_press_string_actions</feature><symbol>:</symbol> <class><location>../interface/ev_lite_action_sequence_chart.xml</location>EV_LITE_ACTION_SEQUENCE</class> <symbol>[</symbol><class><location>../interface/ev_widget_chart.xml</location>EV_WIDGET</class><symbol>,</symbol> <class><include>False</include>STRING_32</class><symbol>]</symbol>
+	<feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_key_release_actions</location>key_release_actions</feature><symbol>:</symbol> <class><location>../interface/ev_lite_action_sequence_chart.xml</location>EV_LITE_ACTION_SEQUENCE</class> <symbol>[</symbol><class><location>../interface/ev_widget_chart.xml</location>EV_WIDGET</class><symbol>,</symbol> <class><location>../interface/ev_key_chart.xml</location>EV_KEY</class><symbol>]</symbol>
+	<feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_mouse_wheel_actions</location>mouse_wheel_actions</feature><symbol>:</symbol> <class><location>../interface/ev_lite_action_sequence_chart.xml</location>EV_LITE_ACTION_SEQUENCE</class> <symbol>[</symbol><class><location>../interface/ev_widget_chart.xml</location>EV_WIDGET</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>]</symbol>
+	<feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_pick_actions</location>pick_actions</feature><symbol>:</symbol> <class><location>../interface/ev_pnd_action_sequence_chart.xml</location>EV_PND_ACTION_SEQUENCE</class>
+	<feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_pnd_motion_actions</location>pnd_motion_actions</feature><symbol>:</symbol> <class><location>../interface/ev_pnd_motion_action_sequence_chart.xml</location>EV_PND_MOTION_ACTION_SEQUENCE</class>
+	<feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_pointer_button_press_actions</location>pointer_button_press_actions</feature><symbol>:</symbol> <class><location>../interface/ev_lite_action_sequence_chart.xml</location>EV_LITE_ACTION_SEQUENCE</class> <symbol>[</symbol><class><location>../interface/ev_widget_chart.xml</location>EV_WIDGET</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>]</symbol>
+	<feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_pointer_button_release_actions</location>pointer_button_release_actions</feature><symbol>:</symbol> <class><location>../interface/ev_lite_action_sequence_chart.xml</location>EV_LITE_ACTION_SEQUENCE</class> <symbol>[</symbol><class><location>../interface/ev_widget_chart.xml</location>EV_WIDGET</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>]</symbol>
+	<feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_pointer_double_press_actions</location>pointer_double_press_actions</feature><symbol>:</symbol> <class><location>../interface/ev_lite_action_sequence_chart.xml</location>EV_LITE_ACTION_SEQUENCE</class> <symbol>[</symbol><class><location>../interface/ev_widget_chart.xml</location>EV_WIDGET</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>]</symbol>
+	<feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_pointer_motion_actions</location>pointer_motion_actions</feature><symbol>:</symbol> <class><location>../interface/ev_lite_action_sequence_chart.xml</location>EV_LITE_ACTION_SEQUENCE</class> <symbol>[</symbol><class><location>../interface/ev_widget_chart.xml</location>EV_WIDGET</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>]</symbol>
+	<feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_post_launch_actions</location>post_launch_actions</feature><symbol>:</symbol> <class><location>../interface/ev_notify_action_sequence_chart.xml</location>EV_NOTIFY_ACTION_SEQUENCE</class>
+	<feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_system_color_change_actions</location>system_color_change_actions</feature><symbol>:</symbol> <class><location>../interface/ev_notify_action_sequence_chart.xml</location>EV_NOTIFY_ACTION_SEQUENCE</class>
+	<feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_theme_changed_actions</location>theme_changed_actions</feature><symbol>:</symbol> <class><location>../interface/ev_notify_action_sequence_chart.xml</location>EV_NOTIFY_ACTION_SEQUENCE</class>
+	<feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_uncaught_exception_actions</location>uncaught_exception_actions</feature><symbol>:</symbol> <class><location>../interface/ev_lite_action_sequence_chart.xml</location>EV_LITE_ACTION_SEQUENCE</class> <symbol>[</symbol><class><include>False</include>EXCEPTION</class><symbol>]</symbol>
+
+<keyword>Queries</keyword>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_action_sequence_call_counter</location>action_sequence_call_counter</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_actions_are_callable</location>actions_are_callable</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_alt_pressed</location>alt_pressed</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><include>False</include>assertion_violation</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature><symbol>:</symbol> <symbol>[</symbol><keyword>attached</keyword> <keyword>like</keyword> <feature><location>../implementation_interface/ev_application_i.xml#f_interface</location>interface</feature><symbol>]</symbol> <keyword>attached</keyword> <class><location>../interface/ev_application_chart.xml</location>EV_APPLICATION</class>
+	<feature><include>False</include>C_memory</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_caps_lock_on</location>caps_lock_on</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_captured_widget</location>captured_widget</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_widget_chart.xml</location>EV_WIDGET</class>
+	<feature><include>False</include>Check_instruction</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>chunk_size</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Class_invariant</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>class_name</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>STRING_8</class>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_clipboard</location>clipboard</feature><symbol>:</symbol> <class><location>../interface/ev_clipboard_chart.xml</location>EV_CLIPBOARD</class>
+	<feature><include>False</include>coalesce_period</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>collecting</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><include>False</include>collection_period</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Com_exception</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_contextual_help_accelerator</location>contextual_help_accelerator</feature><symbol>:</symbol> <class><location>../interface/ev_accelerator_chart.xml</location>EV_ACCELERATOR</class>
+	<feature><include>False</include>Create_on_deferred</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_ctrl_pressed</location>ctrl_pressed</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><include>False</include>Developer_exception</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>developer_exception_name</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>STRING_8</class>
+	<feature><include>False</include>Dollar_applied_to_melted_feature</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Eiffel_memory</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Eiffel_runtime_fatal_error</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Eiffel_runtime_panic</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>exception</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_exception_dialog</location>exception_dialog</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_dialog_chart.xml</location>EV_DIALOG</class>
+	<feature><include>False</include>Exception_in_signal_handler</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Exception_manager</feature><symbol>:</symbol> <class><include>False</include>EXCEPTION_MANAGER</class>
+	<feature><include>False</include>exception_trace</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>STRING_8</class>
+	<feature><include>False</include>External_exception</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Floating_point_exception</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_focused_widget</location>focused_widget</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_widget_chart.xml</location>EV_WIDGET</class>
+	<feature><include>False</include>Full_collector</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>gc_statistics</feature> <symbol>(</symbol><local>collector_type</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>GC_INFO</class>
+	<feature><include>False</include>generation_object_limit</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_help_accelerator</location>help_accelerator</feature><symbol>:</symbol> <class><location>../interface/ev_accelerator_chart.xml</location>EV_ACCELERATOR</class>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_help_engine</location>help_engine</feature><symbol>:</symbol> <class><location>../interface/ev_help_engine_chart.xml</location>EV_HELP_ENGINE</class>
+	<feature><include>False</include>Incorrect_inspect_value</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Incremental_collector</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_interface</location>interface</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_application_chart.xml</location>EV_APPLICATION</class>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_invoke_garbage_collection_when_inactive</location>invoke_garbage_collection_when_inactive</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><include>False</include>Io_exception</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_interface/ev_any_i.xml#f_is_destroyed</location>is_destroyed</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><include>False</include>is_developer_exception</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><include>False</include>is_developer_exception_of_name</feature> <symbol>(</symbol><local>name</local><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>STRING_8</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_is_display_remote</location>is_display_remote</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><include>False</include>is_signal</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><include>False</include>is_system_exception</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_kamikaze_actions</location>kamikaze_actions</feature><symbol>:</symbol> <class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><keyword>separate</keyword> <class><include>False</include>PROCEDURE</class><symbol>]</symbol>
+	<feature><include>False</include>largest_coalesced_block</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_locked_window</location>locked_window</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_window_chart.xml</location>EV_WINDOW</class>
+	<feature><include>False</include>Loop_invariant</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Loop_variant</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>max_mem</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>meaning</feature> <symbol>(</symbol><local>except</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>STRING_8</class>
+	<feature><include>False</include>memory_count_map</feature><symbol>:</symbol> <class><include>False</include>HASH_TABLE</class> <symbol>[</symbol><class><include>False</include>INTEGER_32</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>]</symbol>
+	<feature><include>False</include>memory_map</feature><symbol>:</symbol> <class><include>False</include>HASH_TABLE</class> <symbol>[</symbol><class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><class><include>False</include>ANY</class><symbol>]</symbol><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>]</symbol>
+	<feature><include>False</include>memory_statistics</feature> <symbol>(</symbol><local>memory_type</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>MEM_INFO</class>
+	<feature><include>False</include>memory_threshold</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_new_exception</location>new_exception</feature><symbol>:</symbol> <class><include>False</include>EXCEPTION</class>
+	<feature><include>False</include>No_more_memory</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Number_of_codes</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>objects_instance_of</feature> <symbol>(</symbol><local>an_object</local><symbol>:</symbol> <class><include>False</include>ANY</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>SPECIAL</class> <symbol>[</symbol><class><include>False</include>ANY</class><symbol>]</symbol>
+	<feature><include>False</include>objects_instance_of_type</feature> <symbol>(</symbol><local>a_type_id</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>SPECIAL</class> <symbol>[</symbol><class><include>False</include>ANY</class><symbol>]</symbol>
+	<feature><include>False</include>Old_exception</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Operating_system_exception</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>original_class_name</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>STRING_8</class>
+	<feature><include>False</include>original_exception</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>original_recipient_name</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>STRING_8</class>
+	<feature><include>False</include>original_tag_name</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>STRING_8</class>
+	<feature><include>False</include>Out_of_memory</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_pick_and_drop_source</location>pick_and_drop_source</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_interface/ev_pick_and_dropable_i_chart.xml</location>EV_PICK_AND_DROPABLE_I</class>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_pnd_targets</location>pnd_targets</feature><symbol>:</symbol> <class><include>False</include>HASH_TABLE</class> <symbol>[</symbol><class><include>False</include>INTEGER_32</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>]</symbol>
+	<feature><include>False</include>Postcondition</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Precondition</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>recipient_name</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>STRING_8</class>
+	<feature><include>False</include>referers</feature> <symbol>(</symbol><local>an_object</local><symbol>:</symbol> <class><include>False</include>ANY</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>SPECIAL</class> <symbol>[</symbol><class><include>False</include>ANY</class><symbol>]</symbol>
+	<feature><include>False</include>Rescue_exception</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Resumption_failed</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Retrieve_exception</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Routine_failure</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Runtime_check_exception</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Runtime_io_exception</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>scavenge_zone_size</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Serialization_exception</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_shift_pressed</location>shift_pressed</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_show_exception_dialog</location>Show_exception_dialog</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><include>False</include>Signal_exception</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>tag_name</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>STRING_8</class>
+	<feature><include>False</include>tenure</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_tooltip_delay</location>tooltip_delay</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Total_memory</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_transport_in_progress</location>transport_in_progress</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_try_idle_lock</location>try_idle_lock</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_try_kamikaze_lock</location>try_kamikaze_lock</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_uncaught_exception_actions_called</location>uncaught_exception_actions_called</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><include>False</include>valid_code</feature> <symbol>(</symbol><local>c</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><include>False</include>Void_assigned_to_expanded</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>Void_call_target</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_windows</location>windows</feature><symbol>:</symbol> <class><include>False</include>LINEAR</class> <symbol>[</symbol><class><location>../interface/ev_window_chart.xml</location>EV_WINDOW</class><symbol>]</symbol>
+
+<keyword>Commands</keyword>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_add_idle_action</location>add_idle_action</feature> <symbol>(</symbol><local>a_idle_action</local><symbol>:</symbol> <class><include>False</include>PROCEDURE</class><symbol>)</symbol>
+	<feature><include>False</include>allocate_compact</feature>
+	<feature><include>False</include>allocate_fast</feature>
+	<feature><include>False</include>allocate_tiny</feature>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_call_post_launch_actions</location>call_post_launch_actions</feature>
+	<feature><include>False</include>catch</feature> <symbol>(</symbol><local>code</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><include>False</include>collect</feature>
+	<feature><include>False</include>collection_off</feature>
+	<feature><include>False</include>collection_on</feature>
+	<feature><include>False</include>die</feature> <symbol>(</symbol><local>code</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><include>False</include>disable_time_accounting</feature>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_display_help_for_widget</location>display_help_for_widget</feature> <symbol>(</symbol><local>a_widget</local><symbol>:</symbol> <class><location>../interface/ev_widget_chart.xml</location>EV_WIDGET</class><symbol>)</symbol>
+	<feature><include>False</include>dispose</feature>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_do_once_on_idle</location>do_once_on_idle</feature> <symbol>(</symbol><local>an_action</local><symbol>:</symbol> <keyword>separate</keyword> <class><include>False</include>PROCEDURE</class><symbol>)</symbol>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_enable_contextual_help</location>enable_contextual_help</feature>
+	<feature><include>False</include>enable_time_accounting</feature>
+	<feature><include>False</include>execute_without_collection</feature> <symbol>(</symbol><local>a_action</local><symbol>:</symbol> <class><include>False</include>PROCEDURE</class><symbol>)</symbol>
+	<feature><include>False</include>free</feature> <symbol>(</symbol><local>object</local><symbol>:</symbol> <class><include>False</include>ANY</class><symbol>)</symbol>
+	<feature><include>False</include>full_coalesce</feature>
+	<feature><include>False</include>full_collect</feature>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_idle_lock</location>idle_lock</feature>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_idle_unlock</location>idle_unlock</feature>
+	<feature><include>False</include>ignore</feature> <symbol>(</symbol><local>code</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_increase_action_sequence_call_counter</location>increase_action_sequence_call_counter</feature>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_kamikaze_lock</location>kamikaze_lock</feature>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_kamikaze_unlock</location>kamikaze_unlock</feature>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_make</location>make</feature>
+	<feature><include>False</include>message_on_failure</feature>
+	<feature><include>False</include>no_message_on_failure</feature>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_old_make</location>old_make</feature> <symbol>(</symbol><local>an_interface</local><symbol>:</symbol> <symbol>[</symbol><keyword>attached</keyword> <keyword>like</keyword> <feature><location>../implementation_interface/ev_application_i.xml#f_interface</location>interface</feature><symbol>]</symbol> <keyword>attached</keyword> <class><location>../interface/ev_application_chart.xml</location>EV_APPLICATION</class><symbol>)</symbol>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_on_exception_action</location>on_exception_action</feature> <symbol>(</symbol><local>an_exception</local><symbol>:</symbol> <class><include>False</include>EXCEPTION</class><symbol>)</symbol>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_process_events</location>process_events</feature>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_process_events_until_stopped</location>process_events_until_stopped</feature>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_process_graphical_events</location>process_graphical_events</feature>
+	<feature><include>False</include>raise</feature> <symbol>(</symbol><local>name</local><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>STRING_8</class><symbol>)</symbol>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_raise_default_exception_dialog</location>raise_default_exception_dialog</feature> <symbol>(</symbol><local>a_empty_dialog</local><symbol>:</symbol> <class><location>../interface/ev_dialog_chart.xml</location>EV_DIALOG</class><symbol>;</symbol> <local>an_exception</local><symbol>:</symbol> <class><include>False</include>EXCEPTION</class><symbol>)</symbol>
+	<feature><include>False</include>raise_retrieval_exception</feature> <symbol>(</symbol><local>name</local><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>STRING_8</class><symbol>)</symbol>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_remove_idle_action</location>remove_idle_action</feature> <symbol>(</symbol><local>a_idle_action</local><symbol>:</symbol> <class><include>False</include>PROCEDURE</class><symbol>)</symbol>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_set_captured_widget</location>set_captured_widget</feature> <symbol>(</symbol><local>a_captured_widget</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_widget_chart.xml</location>EV_WIDGET</class><symbol>)</symbol>
+	<feature><include>False</include>set_coalesce_period</feature> <symbol>(</symbol><local>value</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><include>False</include>set_collection_period</feature> <symbol>(</symbol><local>value</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_set_contextual_help_accelerator</location>set_contextual_help_accelerator</feature> <symbol>(</symbol><local>an_accelerator</local><symbol>:</symbol> <class><location>../interface/ev_accelerator_chart.xml</location>EV_ACCELERATOR</class><symbol>)</symbol>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_set_help_accelerator</location>set_help_accelerator</feature> <symbol>(</symbol><local>an_accelerator</local><symbol>:</symbol> <class><location>../interface/ev_accelerator_chart.xml</location>EV_ACCELERATOR</class><symbol>)</symbol>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_set_help_engine</location>set_help_engine</feature> <symbol>(</symbol><local>an_engine</local><symbol>:</symbol> <class><location>../interface/ev_help_engine_chart.xml</location>EV_HELP_ENGINE</class><symbol>)</symbol>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_set_invoke_garbage_collection_when_inactive</location>set_invoke_garbage_collection_when_inactive</feature> <symbol>(</symbol><local>a_enabled</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class><symbol>)</symbol>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_set_locked_window</location>set_locked_window</feature> <symbol>(</symbol><local>a_window</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_window_chart.xml</location>EV_WINDOW</class><symbol>)</symbol>
+	<feature><include>False</include>set_max_mem</feature> <symbol>(</symbol><local>value</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><include>False</include>set_memory_threshold</feature> <symbol>(</symbol><local>value</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_set_tooltip_delay</location>set_tooltip_delay</feature> <symbol>(</symbol><local>a_delay</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_sleep</location>sleep</feature> <symbol>(</symbol><local>msec</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_interface/ev_application_i.xml#f_stop_processing</location>stop_processing</feature>
+
+</system>

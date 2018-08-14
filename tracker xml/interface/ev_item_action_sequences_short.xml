@@ -1,0 +1,42 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Action sequences for EV_ITEM.&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;event, action, sequence&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;Generated!&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;Generated!&quot;</string>
+
+<keyword>deferred</keyword> <keyword>class</keyword> <keyword>interface</keyword>
+	<class><location>../interface/ev_item_action_sequences_short.xml</location>EV_ITEM_ACTION_SEQUENCES</class>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Event handling</comment>
+
+	<anchor>f_pointer_motion_actions</anchor><feature><location>../interface/ev_item_action_sequences_short.xml#f_pointer_motion_actions</location>pointer_motion_actions</feature><symbol>:</symbol> <class><location>../interface/ev_pointer_motion_action_sequence_short.xml</location>EV_POINTER_MOTION_ACTION_SEQUENCE</class>
+			<comment>--</comment><comment> Actions to be performed when screen pointer moves.</comment>
+		<keyword>ensure</keyword>
+			<tag>not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_pointer_button_press_actions</anchor><feature><location>../interface/ev_item_action_sequences_short.xml#f_pointer_button_press_actions</location>pointer_button_press_actions</feature><symbol>:</symbol> <class><location>../interface/ev_pointer_button_action_sequence_short.xml</location>EV_POINTER_BUTTON_ACTION_SEQUENCE</class>
+			<comment>--</comment><comment> Actions to be performed when screen pointer button is pressed.</comment>
+		<keyword>ensure</keyword>
+			<tag>not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_pointer_double_press_actions</anchor><feature><location>../interface/ev_item_action_sequences_short.xml#f_pointer_double_press_actions</location>pointer_double_press_actions</feature><symbol>:</symbol> <class><location>../interface/ev_pointer_button_action_sequence_short.xml</location>EV_POINTER_BUTTON_ACTION_SEQUENCE</class>
+			<comment>--</comment><comment> Actions to be performed when screen pointer is double clicked.</comment>
+		<keyword>ensure</keyword>
+			<tag>not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2014, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../interface/ev_item_action_sequences_short.xml</location>EV_ITEM_ACTION_SEQUENCES</class></system>
+

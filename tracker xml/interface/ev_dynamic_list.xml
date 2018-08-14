@@ -1,0 +1,540 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Multiple Eiffel Vision object containers accessible as list.&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;widget list, item list, container, dynamic, set, any&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2013-05-20 16:15:17 -0700 (Mon, 20 May 2013) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 92557 $&quot;</string>
+
+<keyword>deferred</keyword> <keyword>class</keyword> 
+	<class><location>../interface/ev_dynamic_list.xml</location>EV_DYNAMIC_LIST</class> <symbol>[</symbol><generic>G</generic> <symbol>-&gt;</symbol> <class><location>../interface/ev_containable.xml</location>EV_CONTAINABLE</class><symbol>]</symbol>
+
+<keyword>inherit</keyword>
+	<class><location>../interface/ev_containable.xml</location>EV_CONTAINABLE</class>
+		<keyword>undefine</keyword>
+			<feature><include>False</include>is_equal</feature>
+		<keyword>redefine</keyword>
+			<feature><location>../interface/ev_dynamic_list.xml#f_implementation</location>implementation</feature><symbol>,</symbol>
+			<feature><location>../interface/ev_dynamic_list.xml#f_is_in_default_state</location>is_in_default_state</feature>
+		<keyword>end</keyword>
+
+	<class><include>False</include>DYNAMIC_LIST</class> <symbol>[</symbol><generic>G</generic><symbol>]</symbol>
+		<keyword>rename</keyword>
+			<feature><include>False</include>prune</feature> <keyword>as</keyword> <feature><include>False</include>dl_prune</feature><symbol>,</symbol>
+			<feature><include>False</include>extend</feature> <keyword>as</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_dl_extend</location>dl_extend</feature><symbol>,</symbol>
+			<feature><include>False</include>replace</feature> <keyword>as</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_dl_replace</location>dl_replace</feature><symbol>,</symbol>
+			<feature><include>False</include>force</feature> <keyword>as</keyword> <feature><include>False</include>dl_force</feature><symbol>,</symbol>
+			<feature><include>False</include>put_front</feature> <keyword>as</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_dl_put_front</location>dl_put_front</feature><symbol>,</symbol>
+			<feature><include>False</include>put_right</feature> <keyword>as</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_dl_put_right</location>dl_put_right</feature><symbol>,</symbol>
+			<feature><include>False</include>put_i_th</feature> <keyword>as</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_dl_put_i_th</location>dl_put_i_th</feature><symbol>,</symbol>
+			<feature><include>False</include>put_left</feature> <keyword>as</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_dl_put_left</location>dl_put_left</feature><symbol>,</symbol>
+			<feature><include>False</include>append</feature> <keyword>as</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_dl_append</location>dl_append</feature>
+		<keyword>export</keyword>
+			<symbol>{</symbol>NONE<symbol>}</symbol> <feature><include>False</include>duplicate</feature><symbol>,</symbol> <feature><location>../interface/ev_dynamic_list.xml#f_new_chain</location>new_chain</feature><symbol>,</symbol> <feature><include>False</include>dl_prune</feature>
+			<symbol>{</symbol><class><location>../implementation_interface/ev_dynamic_list_i.xml</location>EV_DYNAMIC_LIST_I</class><symbol>}</symbol> <feature><include>False</include>sequential_index_of</feature>
+			<symbol>{</symbol><class><location>../interface/ev_any_handler.xml</location>EV_ANY_HANDLER</class><symbol>}</symbol> <feature><location>../interface/ev_any.xml#f_default_create</location>default_create</feature>
+		<keyword>undefine</keyword>
+			<feature><include>False</include>changeable_comparison_criterion</feature><symbol>,</symbol>
+			<feature><location>../interface/ev_any.xml#f_default_create</location>default_create</feature><symbol>,</symbol>
+			<feature><location>../interface/ev_dynamic_list.xml#f_move</location>move</feature><symbol>,</symbol>
+			<feature><location>../interface/ev_any.xml#f_copy</location>copy</feature>
+		<keyword>redefine</keyword>
+			<feature><location>../interface/ev_dynamic_list.xml#f_index_of</location>index_of</feature><symbol>,</symbol>
+			<feature><location>../interface/ev_dynamic_list.xml#f_i_th</location>i_th</feature><symbol>,</symbol>
+			<feature><location>../interface/ev_dynamic_list.xml#f_go_i_th</location>go_i_th</feature><symbol>,</symbol>
+			<feature><location>../interface/ev_dynamic_list.xml#f_start</location>start</feature><symbol>,</symbol>
+			<feature><location>../interface/ev_dynamic_list.xml#f_dl_put_i_th</location>dl_put_i_th</feature><symbol>,</symbol>
+			<feature><location>../interface/ev_dynamic_list.xml#f_merge_left</location>merge_left</feature><symbol>,</symbol>
+			<feature><location>../interface/ev_dynamic_list.xml#f_merge_right</location>merge_right</feature><symbol>,</symbol>
+			<feature><location>../interface/ev_dynamic_list.xml#f_dl_put_left</location>dl_put_left</feature><symbol>,</symbol>
+			<feature><location>../interface/ev_dynamic_list.xml#f_dl_append</location>dl_append</feature><symbol>,</symbol>
+			<feature><location>../interface/ev_dynamic_list.xml#f_wipe_out</location>wipe_out</feature><symbol>,</symbol>
+			<feature><location>../interface/ev_dynamic_list.xml#f_swap</location>swap</feature>
+		<keyword>end</keyword>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_item</anchor><feature><location>../interface/ev_dynamic_list.xml#f_item</location>item</feature><symbol>:</symbol> <generic>G</generic>
+			<comment>--</comment><comment> Item at current position.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_dynamic_list.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_item</location>item</feature>
+		<keyword>ensure then</keyword>
+			<tag>not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_dynamic_list.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_item</location>item</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_index</anchor><feature><location>../interface/ev_dynamic_list.xml#f_index</location>index</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Current position.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_dynamic_list.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_index</location>index</feature>
+		<keyword>ensure then</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_dynamic_list.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_index</location>index</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_cursor</anchor><feature><location>../interface/ev_dynamic_list.xml#f_cursor</location>cursor</feature><symbol>:</symbol> <class><location>../interface/ev_dynamic_list_cursor.xml</location>EV_DYNAMIC_LIST_CURSOR</class> <symbol>[</symbol><generic>G</generic><symbol>]</symbol>
+			<comment>--</comment><comment> Current cursor position.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_dynamic_list.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_cursor</location>cursor</feature>
+		<keyword>ensure then</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_dynamic_list.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_cursor</location>cursor</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_i_th</anchor><feature><location>../interface/ev_dynamic_list.xml#f_i_th</location>i_th</feature> <keyword>alias</keyword> <symbol>&quot;</symbol><symbol><location>../interface/ev_dynamic_list.xml#f_i_th</location>[]</symbol><symbol>&quot;</symbol> <symbol>(</symbol><local>i</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <keyword>like</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_item</location>item</feature>
+			<comment>--</comment><comment> Item at </comment><quoted>i</quoted><comment>-th position.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_dynamic_list.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_i_th</location>i_th</feature><symbol> </symbol><symbol>(</symbol><local>i</local><symbol>)</symbol>
+		<keyword>ensure then</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_dynamic_list.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_i_th</location>i_th</feature><symbol> </symbol><symbol>(</symbol><local>i</local><symbol>)</symbol><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_index_of</anchor><feature><location>../interface/ev_dynamic_list.xml#f_index_of</location>index_of</feature> <symbol>(</symbol><local>v</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_item</location>item</feature><symbol>;</symbol> <local>i</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Index of </comment><quoted>i</quoted><comment>th occurrence of </comment><quoted>v</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_dynamic_list.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_index_of</location>index_of</feature><symbol> </symbol><symbol>(</symbol><local>v</local><symbol>,</symbol> <local>i</local><symbol>)</symbol>
+		<keyword>ensure then</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_dynamic_list.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_index_of</location>index_of</feature><symbol> </symbol><symbol>(</symbol><local>v</local><symbol>,</symbol> <local>i</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_retrieve_item_by_data</anchor><feature><location>../interface/ev_dynamic_list.xml#f_retrieve_item_by_data</location>retrieve_item_by_data</feature> <symbol>(</symbol><local>some_data</local><symbol>:</symbol> <class><include>False</include>ANY</class><symbol>;</symbol> <local>should_compare_objects</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class><symbol>)</symbol><symbol>:</symbol> <keyword>detachable</keyword> <generic>G</generic>
+			<comment>--</comment><comment> </comment><quoted>Result</quoted><comment> is first item in </comment><quoted>Current</quoted><comment> with data</comment>
+			<comment>--</comment><comment> matching </comment><quoted>some_data</quoted><comment>. Compare objects if</comment>
+			<comment>--</comment><comment> </comment><quoted>should_compare_objects</quoted><comment> otherwise compare references.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_dynamic_list.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_retrieve_item_by_data</location>retrieve_item_by_data</feature><symbol> </symbol><symbol>(</symbol><local>some_data</local><symbol>,</symbol> <local>should_compare_objects</local><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>not_found_in_empty</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>implies</keyword> <keyword>not</keyword> <feature><include>False</include>is_empty</feature>
+			<tag>index_not_changed</tag><symbol>:</symbol> <keyword>old</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_index</location>index</feature> <symbol>=</symbol> <feature><location>../interface/ev_dynamic_list.xml#f_index</location>index</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_retrieve_items_by_data</anchor><feature><location>../interface/ev_dynamic_list.xml#f_retrieve_items_by_data</location>retrieve_items_by_data</feature> <symbol>(</symbol><local>some_data</local><symbol>:</symbol> <class><include>False</include>ANY</class><symbol>;</symbol> <local>should_compare_objects</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><generic>G</generic><symbol>]</symbol>
+			<comment>--</comment><comment> </comment><quoted>Result</quoted><comment> is all items in </comment><quoted>Current</quoted><comment> with data</comment>
+			<comment>--</comment><comment> matching </comment><quoted>some_data</quoted><comment>. Compare objects if</comment>
+			<comment>--</comment><comment> </comment><quoted>should_compare_objects</quoted><comment> otherwise compare references.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_dynamic_list.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_retrieve_items_by_data</location>retrieve_items_by_data</feature><symbol> </symbol><symbol>(</symbol><local>some_data</local><symbol>,</symbol> <local>should_compare_objects</local><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>not_found_in_empty</tag><symbol>:</symbol> <keyword>not</keyword> <keyword>Result</keyword><dot>.</dot><feature><include>False</include>is_empty</feature> <keyword>implies</keyword> <keyword>not</keyword> <feature><include>False</include>is_empty</feature>
+			<tag>index_not_changed</tag><symbol>:</symbol> <keyword>old</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_index</location>index</feature> <symbol>=</symbol> <feature><location>../interface/ev_dynamic_list.xml#f_index</location>index</feature>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Measurement</comment>
+
+	<anchor>f_count</anchor><feature><location>../interface/ev_dynamic_list.xml#f_count</location>count</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Number of items.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_dynamic_list.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_count</location>count</feature>
+		<keyword>ensure then</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_dynamic_list.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_count</location>count</feature>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status report</comment>
+
+	<anchor>f_valid_cursor</anchor><feature><location>../interface/ev_dynamic_list.xml#f_valid_cursor</location>valid_cursor</feature> <symbol>(</symbol><local>p</local><symbol>:</symbol> <class><include>False</include>CURSOR</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Can the cursor be moved to position </comment><quoted>p</quoted><comment>?</comment>
+			<comment>--</comment><comment> This is True if </comment><quoted>p</quoted><comment> conforms to EV_DYNAMIC_LIST_CURSOR and</comment>
+			<comment>--</comment><comment> if it points to an item, </comment><quoted>Current</quoted><comment> must have it.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_dynamic_list.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_valid_cursor</location>valid_cursor</feature><symbol> </symbol><symbol>(</symbol><local>p</local><symbol>)</symbol>
+		<keyword>ensure then</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_dynamic_list.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_valid_cursor</location>valid_cursor</feature><symbol> </symbol><symbol>(</symbol><local>p</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_full</anchor><feature><location>../interface/ev_dynamic_list.xml#f_full</location>Full</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class> <symbol>=</symbol> <keyword>False</keyword>
+			<comment>--</comment><comment> Is structured filled to capacity? (Answer: no.)</comment>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Cursor movement</comment>
+
+	<anchor>f_start</anchor><feature><location>../interface/ev_dynamic_list.xml#f_start</location>start</feature>
+			<comment>--</comment><comment> Move cursor to first position.</comment>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_dynamic_list.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_start</location>start</feature>
+		<keyword>ensure then</keyword>
+			<tag>empty_implies_after</tag><symbol>:</symbol> <feature><include>False</include>is_empty</feature> <keyword>implies</keyword> <feature><include>False</include>after</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_back</anchor><feature><location>../interface/ev_dynamic_list.xml#f_back</location>back</feature>
+			<comment>--</comment><comment> Move to previous position.</comment>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_dynamic_list.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_back</location>back</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_forth</anchor><feature><location>../interface/ev_dynamic_list.xml#f_forth</location>forth</feature>
+			<comment>--</comment><comment> Move cursor to next position.</comment>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_dynamic_list.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_forth</location>forth</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_go_i_th</anchor><feature><location>../interface/ev_dynamic_list.xml#f_go_i_th</location>go_i_th</feature> <symbol>(</symbol><local>i</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Move cursor to </comment><quoted>i</quoted><comment>-th position.</comment>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_dynamic_list.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_go_i_th</location>go_i_th</feature><symbol> </symbol><symbol>(</symbol><local>i</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_go_to</anchor><feature><location>../interface/ev_dynamic_list.xml#f_go_to</location>go_to</feature> <symbol>(</symbol><local>p</local><symbol>:</symbol> <class><include>False</include>CURSOR</class><symbol>)</symbol>
+			<comment>--</comment><comment> Move cursor to position </comment><quoted>p</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_dynamic_list.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_go_to</location>go_to</feature><symbol> </symbol><symbol>(</symbol><local>p</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_move</anchor><feature><location>../interface/ev_dynamic_list.xml#f_move</location>move</feature> <symbol>(</symbol><local>i</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Move cursor </comment><quoted>i</quoted><comment> positions.</comment>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_dynamic_list.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_move</location>move</feature><symbol> </symbol><symbol>(</symbol><local>i</local><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Element change</comment>
+
+	<anchor>f_append</anchor><feature><location>../interface/ev_dynamic_list.xml#f_append</location>append</feature> <symbol>(</symbol><local>s</local><symbol>:</symbol> <class><include>False</include>SEQUENCE</class> <symbol>[</symbol><keyword>like</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_item</location>item</feature><symbol>]</symbol><symbol>)</symbol>
+			<comment>--</comment><comment> Append a copy of </comment><quoted>s</quoted><comment>. Do not move cursor.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>extendible</tag><symbol>:</symbol> <feature><include>False</include>extendible</feature>
+			<tag>sequence_not_void</tag><symbol>:</symbol> <local>s</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>sequence_not_current</tag><symbol>:</symbol> <local>s</local> <symbol>/=</symbol> <keyword>Current</keyword>
+			<tag>not_parented</tag><symbol>:</symbol> <keyword>not</keyword> <local>s</local><dot>.</dot><feature><include>False</include>there_exists</feature><symbol> </symbol><symbol>(</symbol><keyword>agent</keyword> <symbol>(</symbol><local>v</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_item</location>item</feature><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+						<keyword>do</keyword>
+							<keyword>Result</keyword> <symbol>:=</symbol> <local>v</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>and then</keyword> <local>v</local><dot>.</dot><feature><location>../interface/ev_containable.xml#f_parent</location>parent</feature> <symbol>/=</symbol> <keyword>Void</keyword>
+						<keyword>end</keyword><symbol>)</symbol>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_dynamic_list.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_append</location>append</feature><symbol> </symbol><symbol>(</symbol><local>s</local><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>count_increased</tag><symbol>:</symbol> <keyword>old</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_count</location>count</feature> <symbol>+</symbol> <local>s</local><dot>.</dot><feature><include>False</include>count</feature> <symbol>=</symbol> <feature><location>../interface/ev_dynamic_list.xml#f_count</location>count</feature>
+			<tag>cursor_not_moved</tag><symbol>:</symbol> <symbol>(</symbol><feature><location>../interface/ev_dynamic_list.xml#f_index</location>index</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_index</location>index</feature><symbol>)</symbol> <keyword>or</keyword> <symbol>(</symbol><feature><include>False</include>after</feature> <keyword>and</keyword> <keyword>old</keyword> <feature><include>False</include>after</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_force</anchor><feature><location>../interface/ev_dynamic_list.xml#f_force</location>force</feature> <symbol>(</symbol><local>v</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_item</location>item</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Add </comment><quoted>v</quoted><comment> to end. Do not move cursor.</comment>
+			<comment>--</comment><comment> Was declared in </comment><class><location>../interface/ev_dynamic_list.xml</location>EV_DYNAMIC_LIST</class><comment> as synonym of </comment><feature><location>../interface/ev_dynamic_list.xml#f_extend</location>extend</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>extendible</tag><symbol>:</symbol> <feature><include>False</include>extendible</feature>
+			<tag>v_not_void</tag><symbol>:</symbol> <local>v</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>v_parent_void</tag><symbol>:</symbol> <local>v</local><dot>.</dot><feature><location>../interface/ev_containable.xml#f_parent</location>parent</feature> <symbol>=</symbol> <keyword>Void</keyword>
+			<tag>v_not_current</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_same</location>same</feature><symbol> </symbol><symbol>(</symbol><local>v</local><symbol>)</symbol>
+			<tag>v_not_parent_of_current</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_is_parent_recursive</location>is_parent_recursive</feature><symbol> </symbol><symbol>(</symbol><local>v</local><symbol>)</symbol>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_dynamic_list.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_extend</location>extend</feature><symbol> </symbol><symbol>(</symbol><local>v</local><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>parent_is_current</tag><symbol>:</symbol> <local>v</local><dot>.</dot><feature><location>../interface/ev_containable.xml#f_parent</location>parent</feature> <symbol>=</symbol> <keyword>Current</keyword>
+			<tag>v_is_last</tag><symbol>:</symbol> <local>v</local> <symbol>=</symbol> <feature><include>False</include>last</feature>
+			<tag>count_increased</tag><symbol>:</symbol> <feature><location>../interface/ev_dynamic_list.xml#f_count</location>count</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_count</location>count</feature> <symbol>+</symbol> <number>1</number>
+			<tag>cursor_not_moved</tag><symbol>:</symbol> <symbol>(</symbol><feature><location>../interface/ev_dynamic_list.xml#f_index</location>index</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_index</location>index</feature><symbol>)</symbol> <keyword>or</keyword> <symbol>(</symbol><feature><include>False</include>after</feature> <keyword>and</keyword> <keyword>old</keyword> <feature><include>False</include>after</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_extend</anchor><feature><location>../interface/ev_dynamic_list.xml#f_extend</location>extend</feature> <symbol>(</symbol><local>v</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_item</location>item</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Add </comment><quoted>v</quoted><comment> to end. Do not move cursor.</comment>
+			<comment>--</comment><comment> Was declared in </comment><class><location>../interface/ev_dynamic_list.xml</location>EV_DYNAMIC_LIST</class><comment> as synonym of </comment><feature><location>../interface/ev_dynamic_list.xml#f_force</location>force</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>extendible</tag><symbol>:</symbol> <feature><include>False</include>extendible</feature>
+			<tag>v_not_void</tag><symbol>:</symbol> <local>v</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>v_parent_void</tag><symbol>:</symbol> <local>v</local><dot>.</dot><feature><location>../interface/ev_containable.xml#f_parent</location>parent</feature> <symbol>=</symbol> <keyword>Void</keyword>
+			<tag>v_not_current</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_same</location>same</feature><symbol> </symbol><symbol>(</symbol><local>v</local><symbol>)</symbol>
+			<tag>v_not_parent_of_current</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_is_parent_recursive</location>is_parent_recursive</feature><symbol> </symbol><symbol>(</symbol><local>v</local><symbol>)</symbol>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_dynamic_list.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_extend</location>extend</feature><symbol> </symbol><symbol>(</symbol><local>v</local><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>parent_is_current</tag><symbol>:</symbol> <local>v</local><dot>.</dot><feature><location>../interface/ev_containable.xml#f_parent</location>parent</feature> <symbol>=</symbol> <keyword>Current</keyword>
+			<tag>v_is_last</tag><symbol>:</symbol> <local>v</local> <symbol>=</symbol> <feature><include>False</include>last</feature>
+			<tag>count_increased</tag><symbol>:</symbol> <feature><location>../interface/ev_dynamic_list.xml#f_count</location>count</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_count</location>count</feature> <symbol>+</symbol> <number>1</number>
+			<tag>cursor_not_moved</tag><symbol>:</symbol> <symbol>(</symbol><feature><location>../interface/ev_dynamic_list.xml#f_index</location>index</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_index</location>index</feature><symbol>)</symbol> <keyword>or</keyword> <symbol>(</symbol><feature><include>False</include>after</feature> <keyword>and</keyword> <keyword>old</keyword> <feature><include>False</include>after</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_replace</anchor><feature><location>../interface/ev_dynamic_list.xml#f_replace</location>replace</feature> <symbol>(</symbol><local>v</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_item</location>item</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Replace current item by </comment><quoted>v</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>writable</tag><symbol>:</symbol> <feature><include>False</include>writable</feature>
+			<tag>v_not_void</tag><symbol>:</symbol> <local>v</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>v_parent_void</tag><symbol>:</symbol> <local>v</local><dot>.</dot><feature><location>../interface/ev_containable.xml#f_parent</location>parent</feature> <symbol>=</symbol> <keyword>Void</keyword>
+			<tag>v_not_current</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_same</location>same</feature><symbol> </symbol><symbol>(</symbol><local>v</local><symbol>)</symbol>
+			<tag>v_not_parent_of_current</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_is_parent_recursive</location>is_parent_recursive</feature><symbol> </symbol><symbol>(</symbol><local>v</local><symbol>)</symbol>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_dynamic_list.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_replace</location>replace</feature><symbol> </symbol><symbol>(</symbol><local>v</local><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>parent_is_current</tag><symbol>:</symbol> <local>v</local><dot>.</dot><feature><location>../interface/ev_containable.xml#f_parent</location>parent</feature> <symbol>=</symbol> <keyword>Current</keyword>
+			<tag>item_replaced</tag><symbol>:</symbol> <local>v</local> <symbol>=</symbol> <feature><location>../interface/ev_dynamic_list.xml#f_item</location>item</feature>
+			<tag>not_has_old_item</tag><symbol>:</symbol> <keyword>not</keyword> <feature><include>False</include>has</feature><symbol> </symbol><symbol>(</symbol><keyword>old</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_item</location>item</feature><symbol>)</symbol>
+			<tag>old_item_parent_void</tag><symbol>:</symbol> <symbol>(</symbol><keyword>old</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_item</location>item</feature><symbol>)</symbol><dot>.</dot><feature><location>../interface/ev_containable.xml#f_parent</location>parent</feature> <symbol>=</symbol> <keyword>Void</keyword>
+			<tag>count_same</tag><symbol>:</symbol> <feature><location>../interface/ev_dynamic_list.xml#f_count</location>count</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_count</location>count</feature>
+			<tag>cursor_not_moved</tag><symbol>:</symbol> <feature><location>../interface/ev_dynamic_list.xml#f_index</location>index</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_index</location>index</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_put_front</anchor><feature><location>../interface/ev_dynamic_list.xml#f_put_front</location>put_front</feature> <symbol>(</symbol><local>v</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_item</location>item</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Add </comment><quoted>v</quoted><comment> at beginning. Do not move cursor.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>extendible</tag><symbol>:</symbol> <feature><include>False</include>extendible</feature>
+			<tag>v_not_void</tag><symbol>:</symbol> <local>v</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>v_parent_void</tag><symbol>:</symbol> <local>v</local><dot>.</dot><feature><location>../interface/ev_containable.xml#f_parent</location>parent</feature> <symbol>=</symbol> <keyword>Void</keyword>
+			<tag>v_not_current</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_same</location>same</feature><symbol> </symbol><symbol>(</symbol><local>v</local><symbol>)</symbol>
+			<tag>v_not_parent_of_current</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_is_parent_recursive</location>is_parent_recursive</feature><symbol> </symbol><symbol>(</symbol><local>v</local><symbol>)</symbol>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_dynamic_list.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_put_front</location>put_front</feature><symbol> </symbol><symbol>(</symbol><local>v</local><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>parent_is_current</tag><symbol>:</symbol> <local>v</local><dot>.</dot><feature><location>../interface/ev_containable.xml#f_parent</location>parent</feature> <symbol>=</symbol> <keyword>Current</keyword>
+			<tag>v_is_first</tag><symbol>:</symbol> <local>v</local> <symbol>=</symbol> <feature><include>False</include>first</feature>
+			<tag>count_increased</tag><symbol>:</symbol> <feature><location>../interface/ev_dynamic_list.xml#f_count</location>count</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_count</location>count</feature> <symbol>+</symbol> <number>1</number>
+			<tag>cursor_not_moved</tag><symbol>:</symbol> <symbol>(</symbol><feature><location>../interface/ev_dynamic_list.xml#f_index</location>index</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_index</location>index</feature> <symbol>+</symbol> <number>1</number><symbol>)</symbol> <keyword>or</keyword> <symbol>(</symbol><feature><include>False</include>before</feature> <keyword>and</keyword> <keyword>old</keyword> <feature><include>False</include>before</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_put_right</anchor><feature><location>../interface/ev_dynamic_list.xml#f_put_right</location>put_right</feature> <symbol>(</symbol><local>v</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_item</location>item</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Add </comment><quoted>v</quoted><comment> to right of cursor position. Do not move cursor.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>extendible</tag><symbol>:</symbol> <feature><include>False</include>extendible</feature>
+			<tag>not_after</tag><symbol>:</symbol> <keyword>not</keyword> <feature><include>False</include>after</feature>
+			<tag>v_not_void</tag><symbol>:</symbol> <local>v</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>v_parent_void</tag><symbol>:</symbol> <local>v</local><dot>.</dot><feature><location>../interface/ev_containable.xml#f_parent</location>parent</feature> <symbol>=</symbol> <keyword>Void</keyword>
+			<tag>v_not_current</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_same</location>same</feature><symbol> </symbol><symbol>(</symbol><local>v</local><symbol>)</symbol>
+			<tag>v_not_parent_of_current</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_is_parent_recursive</location>is_parent_recursive</feature><symbol> </symbol><symbol>(</symbol><local>v</local><symbol>)</symbol>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_dynamic_list.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_put_right</location>put_right</feature><symbol> </symbol><symbol>(</symbol><local>v</local><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>parent_is_current</tag><symbol>:</symbol> <local>v</local><dot>.</dot><feature><location>../interface/ev_containable.xml#f_parent</location>parent</feature> <symbol>=</symbol> <keyword>Current</keyword>
+			<tag>v_at_index_plus_one</tag><symbol>:</symbol> <local>v</local> <symbol>=</symbol> <feature><location>../interface/ev_dynamic_list.xml#f_i_th</location>i_th</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_dynamic_list.xml#f_index</location>index</feature> <symbol>+</symbol> <number>1</number><symbol>)</symbol>
+			<tag>count_increased</tag><symbol>:</symbol> <feature><location>../interface/ev_dynamic_list.xml#f_count</location>count</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_count</location>count</feature> <symbol>+</symbol> <number>1</number>
+			<tag>cursor_not_moved</tag><symbol>:</symbol> <feature><location>../interface/ev_dynamic_list.xml#f_index</location>index</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_index</location>index</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_put_left</anchor><feature><location>../interface/ev_dynamic_list.xml#f_put_left</location>put_left</feature> <symbol>(</symbol><local>v</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_item</location>item</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Add </comment><quoted>v</quoted><comment> to the left of cursor position. Do not move cursor.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>extendible</tag><symbol>:</symbol> <feature><include>False</include>extendible</feature>
+			<tag>not_before</tag><symbol>:</symbol> <keyword>not</keyword> <feature><include>False</include>before</feature>
+			<tag>v_not_void</tag><symbol>:</symbol> <local>v</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>v_parent_void</tag><symbol>:</symbol> <local>v</local><dot>.</dot><feature><location>../interface/ev_containable.xml#f_parent</location>parent</feature> <symbol>=</symbol> <keyword>Void</keyword>
+			<tag>v_not_current</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_same</location>same</feature><symbol> </symbol><symbol>(</symbol><local>v</local><symbol>)</symbol>
+			<tag>v_not_parent_of_current</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_is_parent_recursive</location>is_parent_recursive</feature><symbol> </symbol><symbol>(</symbol><local>v</local><symbol>)</symbol>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_dynamic_list.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_put_left</location>put_left</feature><symbol> </symbol><symbol>(</symbol><local>v</local><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>parent_is_current</tag><symbol>:</symbol> <local>v</local><dot>.</dot><feature><location>../interface/ev_containable.xml#f_parent</location>parent</feature> <symbol>=</symbol> <keyword>Current</keyword>
+			<tag>v_at_index_plus_one</tag><symbol>:</symbol> <local>v</local> <symbol>=</symbol> <feature><location>../interface/ev_dynamic_list.xml#f_i_th</location>i_th</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_dynamic_list.xml#f_index</location>index</feature> <symbol>-</symbol> <number>1</number><symbol>)</symbol>
+			<tag>count_increased</tag><symbol>:</symbol> <feature><location>../interface/ev_dynamic_list.xml#f_count</location>count</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_count</location>count</feature> <symbol>+</symbol> <number>1</number>
+			<tag>cursor_not_moved</tag><symbol>:</symbol> <feature><location>../interface/ev_dynamic_list.xml#f_index</location>index</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_index</location>index</feature> <symbol>+</symbol> <number>1</number>
+		<keyword>end</keyword>
+
+	<anchor>f_put_i_th</anchor><feature><location>../interface/ev_dynamic_list.xml#f_put_i_th</location>put_i_th</feature> <symbol>(</symbol><local>v</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_item</location>item</feature><symbol>;</symbol> <local>i</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Replace item at </comment><quoted>i</quoted><comment>-th position by </comment><quoted>v</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>valid_index</tag><symbol>:</symbol> <local>i</local> <symbol>&gt;</symbol> <number>0</number> <keyword>and</keyword> <local>i</local> <symbol>&lt;=</symbol> <feature><location>../interface/ev_dynamic_list.xml#f_count</location>count</feature>
+			<tag>v_not_void</tag><symbol>:</symbol> <local>v</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>v_parent_void</tag><symbol>:</symbol> <local>v</local><dot>.</dot><feature><location>../interface/ev_containable.xml#f_parent</location>parent</feature> <symbol>=</symbol> <keyword>Void</keyword>
+			<tag>v_not_current</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_same</location>same</feature><symbol> </symbol><symbol>(</symbol><local>v</local><symbol>)</symbol>
+			<tag>v_not_parent_of_current</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_is_parent_recursive</location>is_parent_recursive</feature><symbol> </symbol><symbol>(</symbol><local>v</local><symbol>)</symbol>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_dynamic_list.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_put_i_th</location>put_i_th</feature><symbol> </symbol><symbol>(</symbol><local>v</local><symbol>,</symbol> <local>i</local><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>parent_is_current</tag><symbol>:</symbol> <local>v</local><dot>.</dot><feature><location>../interface/ev_containable.xml#f_parent</location>parent</feature> <symbol>=</symbol> <keyword>Current</keyword>
+			<tag>item_replaced</tag><symbol>:</symbol> <local>v</local> <symbol>=</symbol> <feature><location>../interface/ev_dynamic_list.xml#f_i_th</location>i_th</feature><symbol> </symbol><symbol>(</symbol><local>i</local><symbol>)</symbol>
+			<tag>not_has_old_item</tag><symbol>:</symbol> <keyword>not</keyword> <feature><include>False</include>has</feature><symbol> </symbol><symbol>(</symbol><keyword>old</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_i_th</location>i_th</feature><symbol> </symbol><symbol>(</symbol><local>i</local><symbol>)</symbol><symbol>)</symbol>
+			<tag>old_item_parent_void</tag><symbol>:</symbol> <symbol>(</symbol><keyword>old</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_i_th</location>i_th</feature><symbol> </symbol><symbol>(</symbol><local>i</local><symbol>)</symbol><symbol>)</symbol><dot>.</dot><feature><location>../interface/ev_containable.xml#f_parent</location>parent</feature> <symbol>=</symbol> <keyword>Void</keyword>
+			<tag>count_same</tag><symbol>:</symbol> <feature><location>../interface/ev_dynamic_list.xml#f_count</location>count</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_count</location>count</feature>
+			<tag>cursor_not_moved</tag><symbol>:</symbol> <feature><location>../interface/ev_dynamic_list.xml#f_index</location>index</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_index</location>index</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_merge_left</anchor><feature><location>../interface/ev_dynamic_list.xml#f_merge_left</location>merge_left</feature> <symbol>(</symbol><local>other</local><symbol>:</symbol> <keyword>like</keyword> <keyword>Current</keyword><symbol>)</symbol>
+			<comment>--</comment><comment> Merge </comment><quoted>other</quoted><comment> into current structure before cursor</comment>
+			<comment>--</comment><comment> position. Do not move cursor. Empty </comment><quoted>other</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_dynamic_list.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_merge_left</location>merge_left</feature><symbol> </symbol><symbol>(</symbol><local>other</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_merge_right</anchor><feature><location>../interface/ev_dynamic_list.xml#f_merge_right</location>merge_right</feature> <symbol>(</symbol><local>other</local><symbol>:</symbol> <keyword>like</keyword> <keyword>Current</keyword><symbol>)</symbol>
+			<comment>--</comment><comment> Merge </comment><quoted>other</quoted><comment> into current structure after cursor</comment>
+			<comment>--</comment><comment> position. Do not move cursor. Empty </comment><quoted>other</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_dynamic_list.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_merge_right</location>merge_right</feature><symbol> </symbol><symbol>(</symbol><local>other</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_swap</anchor><feature><location>../interface/ev_dynamic_list.xml#f_swap</location>swap</feature> <symbol>(</symbol><local>i</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Exchange_item at </comment><quoted>i</quoted><comment>-th position with item</comment>
+			<comment>--</comment><comment> at cursor position.</comment>
+		<keyword>local</keyword>
+			<local>old_item</local><symbol>,</symbol> <local>new_item</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_item</location>item</feature>
+			<local>old_index</local><symbol>,</symbol> <local>old_index_adjustment</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <local>i</local> <symbol>&lt;</symbol> <feature><location>../interface/ev_dynamic_list.xml#f_index</location>index</feature> <keyword>then</keyword>
+				<local>old_index_adjustment</local> <symbol>:=</symbol> <number>-1</number>
+			<keyword>end</keyword>
+			<local>old_index</local> <symbol>:=</symbol> <feature><location>../interface/ev_dynamic_list.xml#f_index</location>index</feature>
+			<feature><location>../interface/ev_dynamic_list.xml#f_go_i_th</location>go_i_th</feature><symbol> </symbol><symbol>(</symbol><local>i</local><symbol>)</symbol>
+			<local>new_item</local> <symbol>:=</symbol> <feature><location>../interface/ev_dynamic_list.xml#f_item</location>item</feature>
+			<feature><location>../interface/ev_dynamic_list.xml#f_remove</location>remove</feature>
+			<feature><location>../interface/ev_dynamic_list.xml#f_go_i_th</location>go_i_th</feature><symbol> </symbol><symbol>(</symbol><local>old_index</local> <symbol>+</symbol> <local>old_index_adjustment</local><symbol>)</symbol>
+			<local>old_item</local> <symbol>:=</symbol> <feature><location>../interface/ev_dynamic_list.xml#f_item</location>item</feature>
+			<feature><location>../interface/ev_dynamic_list.xml#f_remove</location>remove</feature>
+			<feature><location>../interface/ev_dynamic_list.xml#f_put_left</location>put_left</feature><symbol> </symbol><symbol>(</symbol><local>new_item</local><symbol>)</symbol>
+			<feature><location>../interface/ev_dynamic_list.xml#f_go_i_th</location>go_i_th</feature><symbol> </symbol><symbol>(</symbol><local>i</local><symbol>)</symbol>
+			<feature><location>../interface/ev_dynamic_list.xml#f_put_left</location>put_left</feature><symbol> </symbol><symbol>(</symbol><local>old_item</local><symbol>)</symbol>
+			<feature><location>../interface/ev_dynamic_list.xml#f_go_i_th</location>go_i_th</feature><symbol> </symbol><symbol>(</symbol><local>old_index</local><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Removal</comment>
+
+	<anchor>f_prune</anchor><feature><location>../interface/ev_dynamic_list.xml#f_prune</location>prune</feature> <symbol>(</symbol><local>v</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_item</location>item</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Remove </comment><quoted>v</quoted><comment> if present. Do not move cursor, except if</comment>
+			<comment>--</comment><comment> cursor was on </comment><quoted>v</quoted><comment>, move to right neighbor.</comment>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_dynamic_list.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_prune</location>prune</feature><symbol> </symbol><symbol>(</symbol><local>v</local><symbol>)</symbol>
+		<keyword>ensure then</keyword>
+			<tag>not_has_v</tag><symbol>:</symbol> <keyword>not</keyword> <feature><include>False</include>has</feature><symbol> </symbol><symbol>(</symbol><local>v</local><symbol>)</symbol>
+			<tag>had_item_implies_parent_void</tag><symbol>:</symbol> <keyword>old</keyword> <feature><include>False</include>has</feature><symbol> </symbol><symbol>(</symbol><local>v</local><symbol>)</symbol> <keyword>implies</keyword> <symbol>(</symbol><local>v</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>and then</keyword> <local>v</local><dot>.</dot><feature><location>../interface/ev_containable.xml#f_parent</location>parent</feature> <symbol>=</symbol> <keyword>Void</keyword><symbol>)</symbol>
+			<tag>had_item_implies_count_decreased</tag><symbol>:</symbol> <keyword>old</keyword> <feature><include>False</include>has</feature><symbol> </symbol><symbol>(</symbol><local>v</local><symbol>)</symbol> <keyword>implies</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_count</location>count</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_count</location>count</feature> <symbol>-</symbol> <number>1</number>
+			<tag>had_item_and_was_after_implies_index_decreased</tag><symbol>:</symbol> <symbol>(</symbol><keyword>old</keyword> <feature><include>False</include>after</feature> <keyword>and</keyword> <keyword>old</keyword> <feature><include>False</include>has</feature><symbol> </symbol><symbol>(</symbol><local>v</local><symbol>)</symbol><symbol>)</symbol> <keyword>implies</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_index</location>index</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_index</location>index</feature> <symbol>-</symbol> <number>1</number>
+		<keyword>end</keyword>
+
+	<anchor>f_remove</anchor><feature><location>../interface/ev_dynamic_list.xml#f_remove</location>remove</feature>
+			<comment>--</comment><comment> Remove current item. Move cursor to right neighbor.</comment>
+			<comment>--</comment><comment> (or </comment><feature><include>False</include>after</feature><comment> if no right neighbor).</comment>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_dynamic_list.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_remove</location>remove</feature>
+		<keyword>ensure then</keyword>
+			<tag>v_removed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><include>False</include>has</feature><symbol> </symbol><symbol>(</symbol><keyword>old</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_item</location>item</feature><symbol>)</symbol>
+			<tag>parent_void</tag><symbol>:</symbol> <symbol>(</symbol><keyword>old</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_item</location>item</feature><symbol>)</symbol><dot>.</dot><feature><location>../interface/ev_containable.xml#f_parent</location>parent</feature> <symbol>=</symbol> <keyword>Void</keyword>
+			<tag>count_decreased</tag><symbol>:</symbol> <feature><location>../interface/ev_dynamic_list.xml#f_count</location>count</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_count</location>count</feature> <symbol>-</symbol> <number>1</number>
+			<tag>index_same</tag><symbol>:</symbol> <feature><location>../interface/ev_dynamic_list.xml#f_index</location>index</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_index</location>index</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_remove_left</anchor><feature><location>../interface/ev_dynamic_list.xml#f_remove_left</location>remove_left</feature>
+			<comment>--</comment><comment> Remove item to left of cursor position.</comment>
+			<comment>--</comment><comment> Do not move cursor.</comment>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_dynamic_list.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_remove_left</location>remove_left</feature>
+		<keyword>ensure then</keyword>
+			<tag>left_neighbor_removed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><include>False</include>has</feature><symbol> </symbol><symbol>(</symbol><keyword>old</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_i_th</location>i_th</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_dynamic_list.xml#f_index</location>index</feature> <symbol>-</symbol> <number>1</number><symbol>)</symbol><symbol>)</symbol>
+			<tag>parent_void</tag><symbol>:</symbol> <symbol>(</symbol><keyword>old</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_i_th</location>i_th</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_dynamic_list.xml#f_index</location>index</feature> <symbol>-</symbol> <number>1</number><symbol>)</symbol><symbol>)</symbol><dot>.</dot><feature><location>../interface/ev_containable.xml#f_parent</location>parent</feature> <symbol>=</symbol> <keyword>Void</keyword>
+			<tag>index_decreased</tag><symbol>:</symbol> <feature><location>../interface/ev_dynamic_list.xml#f_index</location>index</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_index</location>index</feature> <symbol>-</symbol> <number>1</number>
+		<keyword>end</keyword>
+
+	<anchor>f_remove_right</anchor><feature><location>../interface/ev_dynamic_list.xml#f_remove_right</location>remove_right</feature>
+			<comment>--</comment><comment> Remove item to right of cursor position.</comment>
+			<comment>--</comment><comment> Do not move cursor.</comment>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_dynamic_list.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_remove_right</location>remove_right</feature>
+		<keyword>ensure then</keyword>
+			<tag>right_neighbor_removed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><include>False</include>has</feature><symbol> </symbol><symbol>(</symbol><keyword>old</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_i_th</location>i_th</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_dynamic_list.xml#f_index</location>index</feature> <symbol>+</symbol> <number>1</number><symbol>)</symbol><symbol>)</symbol>
+			<tag>parent_void</tag><symbol>:</symbol> <symbol>(</symbol><keyword>old</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_i_th</location>i_th</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_dynamic_list.xml#f_index</location>index</feature> <symbol>+</symbol> <number>1</number><symbol>)</symbol><symbol>)</symbol><dot>.</dot><feature><location>../interface/ev_containable.xml#f_parent</location>parent</feature> <symbol>=</symbol> <keyword>Void</keyword>
+			<tag>index_same</tag><symbol>:</symbol> <feature><location>../interface/ev_dynamic_list.xml#f_index</location>index</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_index</location>index</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_wipe_out</anchor><feature><location>../interface/ev_dynamic_list.xml#f_wipe_out</location>wipe_out</feature>
+			<comment>--</comment><comment> Remove all items.</comment>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_dynamic_list.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_wipe_out</location>wipe_out</feature>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Contract support</comment>
+
+	<anchor>f_is_in_default_state</anchor><feature><location>../interface/ev_dynamic_list.xml#f_is_in_default_state</location>is_in_default_state</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is </comment><quoted>Current</quoted><comment> in its default state?</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <keyword><location>../interface/ev_any.xml#f_is_in_default_state</location>Precursor</keyword> <symbol>{</symbol><class><location>../interface/ev_containable.xml</location>EV_CONTAINABLE</class><symbol>}</symbol> <keyword>and</keyword> <feature><include>False</include>is_empty</feature> <keyword>and</keyword> <feature><include>False</include>before</feature>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Contract support</comment>
+
+	<anchor>f_is_parent_recursive</anchor><feature><location>../interface/ev_dynamic_list.xml#f_is_parent_recursive</location>is_parent_recursive</feature> <symbol>(</symbol><local>a_list</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_item</location>item</feature><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is </comment><quoted>a_list</quoted><comment> a parent of </comment><quoted>Current</quoted><comment>?</comment>
+		<keyword>require</keyword>
+			<tag>a_list_not_void</tag><symbol>:</symbol> <local>a_list</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_same</anchor><feature><location>../interface/ev_dynamic_list.xml#f_same</location>same</feature> <symbol>(</symbol><local>other</local><symbol>:</symbol> <class><location>../interface/ev_any.xml</location>EV_ANY</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is </comment><quoted>other</quoted><comment> </comment><quoted>Current</quoted><comment>?</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <keyword>Current</keyword> <symbol>=</symbol> <local>other</local>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_dynamic_list.xml</location>EV_DYNAMIC_LIST</class><symbol>}</symbol> <comment>--</comment><comment> Inapplicable</comment>
+
+	<anchor>f_dl_append</anchor><feature><location>../interface/ev_dynamic_list.xml#f_dl_append</location>dl_append</feature> <symbol>(</symbol><local>s</local><symbol>:</symbol> <class><include>False</include>SEQUENCE</class> <symbol>[</symbol><generic>G</generic><symbol>]</symbol><symbol>)</symbol>
+			<comment>--</comment><comment> Append a copy of </comment><quoted>s</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_dynamic_list.xml#f_append</location>append</feature><symbol> </symbol><symbol>(</symbol><local>s</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_dl_extend</anchor><feature><location>../interface/ev_dynamic_list.xml#f_dl_extend</location>dl_extend</feature> <symbol>(</symbol><local>v</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_item</location>item</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Add a new occurrence of </comment><quoted>v</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_dynamic_list.xml#f_extend</location>extend</feature><symbol> </symbol><symbol>(</symbol><local>v</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_dl_replace</anchor><feature><location>../interface/ev_dynamic_list.xml#f_dl_replace</location>dl_replace</feature> <symbol>(</symbol><local>v</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_item</location>item</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Replace current item by </comment><quoted>v</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_dynamic_list.xml#f_replace</location>replace</feature><symbol> </symbol><symbol>(</symbol><local>v</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_dl_put_front</anchor><feature><location>../interface/ev_dynamic_list.xml#f_dl_put_front</location>dl_put_front</feature> <symbol>(</symbol><local>v</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_item</location>item</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Add </comment><quoted>v</quoted><comment> at beginning.</comment>
+			<comment>--</comment><comment> Do not move cursor.</comment>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_dynamic_list.xml#f_put_front</location>put_front</feature><symbol> </symbol><symbol>(</symbol><local>v</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_dl_put_right</anchor><feature><location>../interface/ev_dynamic_list.xml#f_dl_put_right</location>dl_put_right</feature> <symbol>(</symbol><local>v</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_item</location>item</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Add </comment><quoted>v</quoted><comment> to the right of cursor position.</comment>
+			<comment>--</comment><comment> Do not move cursor.</comment>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_dynamic_list.xml#f_put_right</location>put_right</feature><symbol> </symbol><symbol>(</symbol><local>v</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_dl_put_i_th</anchor><feature><location>../interface/ev_dynamic_list.xml#f_dl_put_i_th</location>dl_put_i_th</feature> <symbol>(</symbol><local>v</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_item</location>item</feature><symbol>;</symbol> <local>i</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Put </comment><quoted>v</quoted><comment> at </comment><quoted>i</quoted><comment>-th position.</comment>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_dynamic_list.xml#f_put_i_th</location>put_i_th</feature><symbol> </symbol><symbol>(</symbol><local>v</local><symbol>,</symbol> <local>i</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_dl_put_left</anchor><feature><location>../interface/ev_dynamic_list.xml#f_dl_put_left</location>dl_put_left</feature> <symbol>(</symbol><local>v</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_item</location>item</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Add </comment><quoted>v</quoted><comment> to the left of cursor position.</comment>
+			<comment>--</comment><comment> Do not move cursor.</comment>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_dynamic_list.xml#f_put_left</location>put_left</feature><symbol> </symbol><symbol>(</symbol><local>v</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_new_chain</anchor><feature><location>../interface/ev_dynamic_list.xml#f_new_chain</location>new_chain</feature><symbol>:</symbol> <keyword>like</keyword> <keyword>Current</keyword>
+			<comment>--</comment><comment> A newly created instance of the same type.</comment>
+			<comment>--</comment><comment> This feature may be redefined in descendants so as to</comment>
+			<comment>--</comment><comment> produce an adequately allocated and initialized object.</comment>
+		<keyword>do</keyword>
+			<keyword>check</keyword>
+				<tag>applicable</tag><symbol>:</symbol> <keyword>False</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <keyword>Current</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_dynamic_list.xml</location>EV_DYNAMIC_LIST</class><symbol>}</symbol> <comment>--</comment><comment> Inapplicable</comment>
+
+	<anchor>f_set_extend</anchor><feature><location>../interface/ev_dynamic_list.xml#f_set_extend</location>set_extend</feature> <symbol>(</symbol><local>v</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../interface/ev_dynamic_list.xml#f_item</location>item</feature><symbol>)</symbol>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_dynamic_list.xml#f_extend</location>extend</feature><symbol> </symbol><symbol>(</symbol><local>v</local><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_any.xml</location>EV_ANY</class><symbol>,</symbol> <class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_implementation</anchor><feature><location>../interface/ev_dynamic_list.xml#f_implementation</location>implementation</feature><symbol>:</symbol> <class><location>../implementation_interface/ev_dynamic_list_i.xml</location>EV_DYNAMIC_LIST_I</class> <symbol>[</symbol><generic>G</generic><symbol>]</symbol>
+			<comment>--</comment><comment> Responsible for interaction with native graphics</comment>
+			<comment>--</comment><comment> toolkit.</comment>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2012, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../interface/ev_dynamic_list.xml</location>EV_DYNAMIC_LIST</class></system>
+

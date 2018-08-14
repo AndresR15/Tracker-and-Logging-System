@@ -1,0 +1,70 @@
+<system>
+<keyword>deferred</keyword> <keyword>class</keyword>
+	<class><location>../implementation_interface/ev_dockable_source_i_chart.xml</location>EV_DOCKABLE_SOURCE_I</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>implementation_interface</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Implementation interface for dockable source.&quot;</string>
+
+<keyword>Ancestors</keyword>
+	<class><location>../implementation_interface/ev_any_i_chart.xml</location>EV_ANY_I</class><char>*</char>
+	<class><location>../implementation_interface/ev_dockable_source_action_sequences_i_chart.xml</location>EV_DOCKABLE_SOURCE_ACTION_SEQUENCES_I</class><char>*</char>
+	<class><location>../implementation_interface/ev_shared_transport_i_chart.xml</location>EV_SHARED_TRANSPORT_I</class>
+
+<keyword>Action sequences</keyword>
+	<feature><location>../implementation_interface/ev_dockable_source_action_sequences_i.xml#f_dock_ended_actions</location>dock_ended_actions</feature><symbol>:</symbol> <class><location>../interface/ev_notify_action_sequence_chart.xml</location>EV_NOTIFY_ACTION_SEQUENCE</class>
+	<feature><location>../implementation_interface/ev_dockable_source_action_sequences_i.xml#f_dock_started_actions</location>dock_started_actions</feature><symbol>:</symbol> <class><location>../interface/ev_notify_action_sequence_chart.xml</location>EV_NOTIFY_ACTION_SEQUENCE</class>
+
+<keyword>Queries</keyword>
+	<feature><location>../implementation_interface/ev_dockable_source_i.xml#f_closest_dockable_target</location>closest_dockable_target</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_dockable_target_chart.xml</location>EV_DOCKABLE_TARGET</class>
+	<feature><location>../implementation_interface/ev_shared_transport_i.xml#f_default_accept_cursor</location>Default_accept_cursor</feature><symbol>:</symbol> <class><location>../interface/ev_pointer_style_chart.xml</location>EV_POINTER_STYLE</class>
+	<feature><location>../implementation_interface/ev_shared_transport_i.xml#f_default_deny_cursor</location>Default_deny_cursor</feature><symbol>:</symbol> <class><location>../interface/ev_pointer_style_chart.xml</location>EV_POINTER_STYLE</class>
+	<feature><location>../implementation_interface/ev_shared_transport_i.xml#f_default_pixmaps</location>Default_pixmaps</feature><symbol>:</symbol> <class><location>../interface/ev_stock_pixmaps_chart.xml</location>EV_STOCK_PIXMAPS</class>
+	<feature><location>../implementation_interface/ev_shared_transport_i.xml#f_dockable_dialog_target</location>dockable_dialog_target</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_dockable_dialog_chart.xml</location>EV_DOCKABLE_DIALOG</class>
+	<feature><location>../implementation_interface/ev_dockable_source_i.xml#f_drag_cursor</location>Drag_cursor</feature><symbol>:</symbol> <class><location>../interface/ev_pointer_style_chart.xml</location>EV_POINTER_STYLE</class>
+	<feature><location>../implementation_interface/ev_dockable_source_i.xml#f_get_next_target</location>get_next_target</feature> <symbol>(</symbol><local>a_widget</local><symbol>:</symbol> <class><location>../interface/ev_widget_chart.xml</location>EV_WIDGET</class><symbol>)</symbol><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_dockable_target_chart.xml</location>EV_DOCKABLE_TARGET</class>
+	<feature><location>../implementation_interface/ev_shared_transport_i.xml#f_global_drag_targets</location>Global_drag_targets</feature><symbol>:</symbol> <class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><class><include>False</include>INTEGER_32</class><symbol>]</symbol>
+	<feature><location>../implementation_interface/ev_shared_transport_i.xml#f_global_pnd_targets</location>Global_pnd_targets</feature><symbol>:</symbol> <class><include>False</include>HASH_TABLE</class> <symbol>[</symbol><class><include>False</include>INTEGER_32</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>]</symbol>
+	<feature><location>../implementation_interface/ev_shared_transport_i.xml#f_insert_label</location>Insert_label</feature><symbol>:</symbol> <class><location>../interface/ev_cell_chart.xml</location>EV_CELL</class>
+	<feature><location>../implementation_interface/ev_shared_transport_i.xml#f_insert_label_imp</location>Insert_label_imp</feature><symbol>:</symbol> <class><location>../implementation_interface/ev_cell_i_chart.xml</location>EV_CELL_I</class>
+	<feature><location>../implementation_interface/ev_shared_transport_i.xml#f_insert_sep</location>Insert_sep</feature><symbol>:</symbol> <class><location>../interface/ev_tool_bar_separator_chart.xml</location>EV_TOOL_BAR_SEPARATOR</class>
+	<feature><location>../implementation_interface/ev_shared_transport_i.xml#f_insert_sep_imp</location>Insert_sep_imp</feature><symbol>:</symbol> <class><location>../implementation_interface/ev_tool_bar_separator_i_chart.xml</location>EV_TOOL_BAR_SEPARATOR_I</class>
+	<feature><location>../implementation_interface/ev_shared_transport_i.xml#f_internal_screen</location>Internal_screen</feature><symbol>:</symbol> <class><location>../interface/ev_screen_chart.xml</location>EV_SCREEN</class>
+	<feature><location>../implementation_interface/ev_any_i.xml#f_is_destroyed</location>is_destroyed</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../implementation_interface/ev_dockable_source_i.xml#f_is_dock_executing</location>is_dock_executing</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../implementation_interface/ev_dockable_source_i.xml#f_is_dockable</location>is_dockable</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../implementation_interface/ev_dockable_source_i.xml#f_is_external_docking_enabled</location>is_external_docking_enabled</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../implementation_interface/ev_dockable_source_i.xml#f_is_external_docking_relative</location>is_external_docking_relative</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../implementation_interface/ev_dockable_source_i.xml#f_not_external_docking_enabled</location>not_external_docking_enabled</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../implementation_interface/ev_dockable_source_i.xml#f_not_is_external_docking_relative</location>not_is_external_docking_relative</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../implementation_interface/ev_dockable_source_i.xml#f_original_parent_position</location>original_parent_position</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_interface/ev_shared_transport_i.xml#f_original_x_offset</location>original_x_offset</feature><symbol>:</symbol> <class><include>False</include>INTEGER_16</class>
+	<feature><location>../implementation_interface/ev_shared_transport_i.xml#f_original_y_offset</location>original_y_offset</feature><symbol>:</symbol> <class><include>False</include>INTEGER_16</class>
+	<feature><location>../implementation_interface/ev_shared_transport_i.xml#f_originating_source</location>originating_source</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_interface/ev_dockable_source_i_chart.xml</location>EV_DOCKABLE_SOURCE_I</class>
+	<feature><location>../implementation_interface/ev_shared_transport_i.xml#f_pointer_x</location>pointer_x</feature><symbol>:</symbol> <class><include>False</include>INTEGER_16</class>
+	<feature><location>../implementation_interface/ev_shared_transport_i.xml#f_pointer_y</location>pointer_y</feature><symbol>:</symbol> <class><include>False</include>INTEGER_16</class>
+	<feature><location>../implementation_interface/ev_dockable_source_i.xml#f_real_source</location>real_source</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_dockable_source_chart.xml</location>EV_DOCKABLE_SOURCE</class>
+	<feature><location>../implementation_interface/ev_shared_transport_i.xml#f_rubber_band_is_drawn</location>rubber_band_is_drawn</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../implementation_interface/ev_shared_transport_i.xml#f_source_being_docked</location>source_being_docked</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_interface/ev_dockable_source_i_chart.xml</location>EV_DOCKABLE_SOURCE_I</class>
+
+<keyword>Commands</keyword>
+	<feature><location>../implementation_interface/ev_dockable_source_i.xml#f_close_dockable_dialog</location>close_dockable_dialog</feature> <symbol>(</symbol><local>dockable_dialog</local><symbol>:</symbol> <class><location>../interface/ev_dockable_dialog_chart.xml</location>EV_DOCKABLE_DIALOG</class><symbol>)</symbol>
+	<feature><location>../implementation_interface/ev_dockable_source_i.xml#f_complete_dock</location>complete_dock</feature>
+	<feature><location>../implementation_interface/ev_dockable_source_i.xml#f_disable_dockable</location>disable_dockable</feature>
+	<feature><location>../implementation_interface/ev_dockable_source_i.xml#f_disable_external_docking</location>disable_external_docking</feature>
+	<feature><location>../implementation_interface/ev_dockable_source_i.xml#f_disable_external_docking_relative</location>disable_external_docking_relative</feature>
+	<feature><location>../implementation_interface/ev_dockable_source_i.xml#f_enable_dockable</location>enable_dockable</feature>
+	<feature><location>../implementation_interface/ev_dockable_source_i.xml#f_enable_external_docking</location>enable_external_docking</feature>
+	<feature><location>../implementation_interface/ev_dockable_source_i.xml#f_enable_external_docking_relative</location>enable_external_docking_relative</feature>
+	<feature><location>../implementation_interface/ev_dockable_source_i.xml#f_internal_disable_dockable</location>internal_disable_dockable</feature>
+	<feature><location>../implementation_interface/ev_dockable_source_i.xml#f_internal_enable_dockable</location>internal_enable_dockable</feature>
+	<feature><location>../implementation_interface/ev_shared_transport_i.xml#f_remove_insert_label</location>remove_insert_label</feature>
+	<feature><location>../implementation_interface/ev_shared_transport_i.xml#f_remove_insert_sep</location>remove_insert_sep</feature>
+	<feature><location>../implementation_interface/ev_dockable_source_i.xml#f_remove_real_source</location>remove_real_source</feature>
+	<feature><location>../implementation_interface/ev_dockable_source_i.xml#f_set_real_source</location>set_real_source</feature> <symbol>(</symbol><local>dockable_source</local><symbol>:</symbol> <class><location>../interface/ev_dockable_source_chart.xml</location>EV_DOCKABLE_SOURCE</class><symbol>)</symbol>
+
+<keyword>Constraints</keyword>
+	<tag>widget or item source</tag>
+	<tag>dock executing</tag>
+
+</system>

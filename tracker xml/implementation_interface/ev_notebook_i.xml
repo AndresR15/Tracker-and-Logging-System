@@ -1,0 +1,146 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;EiffelVision notebook. Implementation interface.&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2014-05-30 14:06:37 -0700 (Fri, 30 May 2014) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 95208 $&quot;</string>
+
+<keyword>deferred</keyword> <keyword>class</keyword> 
+	<class><location>../implementation_interface/ev_notebook_i.xml</location>EV_NOTEBOOK_I</class>
+
+<keyword>inherit</keyword>
+	<class><location>../implementation_interface/ev_widget_list_i.xml</location>EV_WIDGET_LIST_I</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_interface/ev_notebook_i.xml#f_interface</location>interface</feature>
+		<keyword>end</keyword>
+
+	<class><location>../implementation_interface/ev_fontable_i.xml</location>EV_FONTABLE_I</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_interface/ev_notebook_i.xml#f_interface</location>interface</feature>
+		<keyword>end</keyword>
+
+	<class><location>../implementation_interface/ev_notebook_action_sequences_i.xml</location>EV_NOTEBOOK_ACTION_SEQUENCES_I</class>
+
+	<class><location>../implementation_interface/ev_item_pixmap_scaler_i.xml</location>EV_ITEM_PIXMAP_SCALER_I</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_interface/ev_notebook_i.xml#f_interface</location>interface</feature>
+		<keyword>end</keyword>
+
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_notebook.xml</location>EV_NOTEBOOK</class><symbol>}</symbol> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_item_text</anchor><feature><location>../implementation_interface/ev_notebook_i.xml#f_item_text</location>item_text</feature> <symbol>(</symbol><local>an_item</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_item</location>item</feature><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>STRING_32</class>
+			<comment>--</comment><comment> Label of </comment><quoted>an_item</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>interface_has_an_item</tag><symbol>:</symbol> <keyword>attached</keyword> <local>an_item</local> <keyword>and then</keyword> <feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature><dot>.</dot><feature><include>False</include>has</feature><symbol> </symbol><symbol>(</symbol><local>an_item</local><symbol>)</symbol>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_item_tab</anchor><feature><location>../implementation_interface/ev_notebook_i.xml#f_item_tab</location>item_tab</feature> <symbol>(</symbol><local>an_item</local><symbol>:</symbol> <class><location>../interface/ev_widget.xml</location>EV_WIDGET</class><symbol>)</symbol><symbol>:</symbol> <class><location>../interface/ev_notebook_tab.xml</location>EV_NOTEBOOK_TAB</class>
+			<comment>--</comment><comment> Tab associated with </comment><quoted>an_item</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>has_an_item</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_has</location>has</feature><symbol> </symbol><symbol>(</symbol><local>an_item</local><symbol>)</symbol>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status report</comment>
+
+	<anchor>f_selected_item</anchor><feature><location>../implementation_interface/ev_notebook_i.xml#f_selected_item</location>selected_item</feature><symbol>:</symbol> <keyword>detachable</keyword> <keyword>like</keyword> <feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_item</location>item</feature>
+			<comment>--</comment><comment> Page displayed topmost.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_selected_item_index</anchor><feature><location>../implementation_interface/ev_notebook_i.xml#f_selected_item_index</location>selected_item_index</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Index of </comment><feature><location>../implementation_interface/ev_notebook_i.xml#f_selected_item</location>selected_item</feature><comment>.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_tab_position</anchor><feature><location>../implementation_interface/ev_notebook_i.xml#f_tab_position</location>tab_position</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Position of tabs.</comment>
+			<comment>--</comment><comment> One of </comment><quoted>Tab_left</quoted><comment>, </comment><quoted>Tab_right</quoted><comment>, </comment><quoted>Tab_top</quoted><comment> or </comment><quoted>Tab_bottom</quoted><comment>.</comment>
+			<comment>--</comment><comment> Default: </comment><quoted>Tab_top</quoted>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_pointed_tab_index</anchor><feature><location>../implementation_interface/ev_notebook_i.xml#f_pointed_tab_index</location>pointed_tab_index</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Index of tab currently under mouse pointer, or 0 if none.</comment>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>result_valid</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>&gt;=</symbol> <number>0</number> <keyword>and</keyword> <keyword>Result</keyword> <symbol>&lt;=</symbol> <feature><location>../implementation_interface/ev_container_i.xml#f_count</location>count</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_tab_index_at_screen_position</anchor><feature><location>../implementation_interface/ev_notebook_i.xml#f_tab_index_at_screen_position</location>tab_index_at_screen_position</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Index of tab currently at screen position (a_x, a_y), or 0 if none.</comment>
+		<keyword>local</keyword>
+			<local>l_screen</local><symbol>:</symbol> <class><location>../interface/ev_screen.xml</location>EV_SCREEN</class>
+			<local>l_old_cursor</local><symbol>:</symbol> <class><location>../interface/ev_coordinate.xml</location>EV_COORDINATE</class>
+		<keyword>do</keyword>
+			<keyword>create</keyword> <local>l_screen</local>
+			<local>l_old_cursor</local> <symbol>:=</symbol> <local>l_screen</local><dot>.</dot><feature><location>../interface/ev_screen.xml#f_pointer_position</location>pointer_position</feature>
+			<local>l_screen</local><dot>.</dot><feature><location>../interface/ev_screen.xml#f_set_pointer_position</location>set_pointer_position</feature><symbol> </symbol><symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>)</symbol>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_notebook_i.xml#f_pointed_tab_index</location>pointed_tab_index</feature>
+			<local>l_screen</local><dot>.</dot><feature><location>../interface/ev_screen.xml#f_set_pointer_position</location>set_pointer_position</feature><symbol> </symbol><symbol>(</symbol><local>l_old_cursor</local><dot>.</dot><feature><location>../interface/ev_coordinate.xml#f_x</location>x</feature><symbol>,</symbol> <local>l_old_cursor</local><dot>.</dot><feature><location>../interface/ev_coordinate.xml#f_y</location>y</feature><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>result_valid</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>&gt;=</symbol> <number>0</number> <keyword>and</keyword> <keyword>Result</keyword> <symbol>&lt;=</symbol> <feature><location>../implementation_interface/ev_container_i.xml#f_count</location>count</feature>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_notebook.xml</location>EV_NOTEBOOK</class><symbol>}</symbol> <comment>--</comment><comment> Status setting</comment>
+
+	<anchor>f_set_tab_position</anchor><feature><location>../implementation_interface/ev_notebook_i.xml#f_set_tab_position</location>set_tab_position</feature> <symbol>(</symbol><local>a_tab_position</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Display tabs at </comment><quoted>a_tab_position</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>a_position_within_range</tag><symbol>:</symbol> <local>a_tab_position</local> <symbol>=</symbol> <feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature><dot>.</dot><feature><location>../interface/ev_notebook.xml#f_tab_left</location>Tab_left</feature> <keyword>or</keyword> <local>a_tab_position</local> <symbol>=</symbol> <feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature><dot>.</dot><feature><location>../interface/ev_notebook.xml#f_tab_right</location>Tab_right</feature> <keyword>or</keyword> <local>a_tab_position</local> <symbol>=</symbol> <feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature><dot>.</dot><feature><location>../interface/ev_notebook.xml#f_tab_bottom</location>Tab_bottom</feature> <keyword>or</keyword> <local>a_tab_position</local> <symbol>=</symbol> <feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature><dot>.</dot><feature><location>../interface/ev_notebook.xml#f_tab_top</location>Tab_top</feature>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_select_item</anchor><feature><location>../implementation_interface/ev_notebook_i.xml#f_select_item</location>select_item</feature> <symbol>(</symbol><local>an_item</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_item</location>item</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Display </comment><quoted>an_item</quoted><comment> above all others.</comment>
+		<keyword>require</keyword>
+			<tag>interface_has_an_item</tag><symbol>:</symbol> <keyword>attached</keyword> <local>an_item</local> <keyword>and then</keyword> <feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature><dot>.</dot><feature><include>False</include>has</feature><symbol> </symbol><symbol>(</symbol><local>an_item</local><symbol>)</symbol>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>item_selected</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_notebook_i.xml#f_selected_item</location>selected_item</feature> <symbol>=</symbol> <local>an_item</local>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_notebook.xml</location>EV_NOTEBOOK</class><symbol>}</symbol> <comment>--</comment><comment> Element change</comment>
+
+	<anchor>f_set_item_text</anchor><feature><location>../implementation_interface/ev_notebook_i.xml#f_set_item_text</location>set_item_text</feature> <symbol>(</symbol><local>an_item</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_item</location>item</feature><symbol>;</symbol> <local>a_text</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>a_text</quoted><comment> to the label for </comment><quoted>an_item</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>interface_has_an_item</tag><symbol>:</symbol> <keyword>attached</keyword> <local>an_item</local> <keyword>and then</keyword> <feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature><dot>.</dot><feature><include>False</include>has</feature><symbol> </symbol><symbol>(</symbol><local>an_item</local><symbol>)</symbol>
+			<tag>a_text_not_void</tag><symbol>:</symbol> <local>a_text</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_any.xml</location>EV_ANY</class><symbol>,</symbol> <class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_interface</anchor><feature><location>../implementation_interface/ev_notebook_i.xml#f_interface</location>interface</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_notebook.xml</location>EV_NOTEBOOK</class>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>invariant</keyword>
+	<tag>tab_position_within_range</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_any_i.xml#f_is_usable</location>is_usable</feature> <keyword>implies</keyword> <feature><location>../implementation_interface/ev_notebook_i.xml#f_tab_position</location>tab_position</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature><dot>.</dot><feature><location>../interface/ev_notebook.xml#f_tab_left</location>Tab_left</feature> <keyword>or</keyword> <feature><location>../implementation_interface/ev_notebook_i.xml#f_tab_position</location>tab_position</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature><dot>.</dot><feature><location>../interface/ev_notebook.xml#f_tab_right</location>Tab_right</feature> <keyword>or</keyword> <feature><location>../implementation_interface/ev_notebook_i.xml#f_tab_position</location>tab_position</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature><dot>.</dot><feature><location>../interface/ev_notebook.xml#f_tab_bottom</location>Tab_bottom</feature> <keyword>or</keyword> <feature><location>../implementation_interface/ev_notebook_i.xml#f_tab_position</location>tab_position</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature><dot>.</dot><feature><location>../interface/ev_notebook.xml#f_tab_top</location>Tab_top</feature>
+	<tag>selected_item_not_void</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_any_i.xml#f_is_usable</location>is_usable</feature> <keyword>and</keyword> <feature><location>../implementation_interface/ev_container_i.xml#f_count</location>count</feature> <symbol>&gt;</symbol> <number>0</number> <keyword>implies</keyword> <feature><location>../implementation_interface/ev_notebook_i.xml#f_selected_item</location>selected_item</feature> <symbol>/=</symbol> <keyword>Void</keyword>
+	<tag>selected_item_index_within_range</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_any_i.xml#f_is_usable</location>is_usable</feature> <keyword>and</keyword> <feature><location>../implementation_interface/ev_container_i.xml#f_count</location>count</feature> <symbol>&gt;</symbol> <number>0</number> <keyword>implies</keyword> <symbol>(</symbol><feature><location>../implementation_interface/ev_notebook_i.xml#f_selected_item_index</location>selected_item_index</feature> <symbol>&gt;=</symbol> <feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature><dot>.</dot><feature><location>../interface/ev_dynamic_list.xml#f_index_of</location>index_of</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature><dot>.</dot><feature><include>False</include>first</feature><symbol>,</symbol> <number>1</number><symbol>)</symbol> <keyword>and</keyword> <feature><location>../implementation_interface/ev_notebook_i.xml#f_selected_item_index</location>selected_item_index</feature> <symbol>&lt;=</symbol> <feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature><dot>.</dot><feature><location>../interface/ev_dynamic_list.xml#f_index_of</location>index_of</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature><dot>.</dot><feature><include>False</include>last</feature><symbol>,</symbol> <number>1</number><symbol>)</symbol><symbol>)</symbol>
+	<tag>selected_item_is_i_th_of_selected_item_index</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_any_i.xml#f_is_usable</location>is_usable</feature> <keyword>and</keyword> <feature><location>../implementation_interface/ev_container_i.xml#f_count</location>count</feature> <symbol>&gt;</symbol> <number>0</number> <keyword>implies</keyword> <feature><location>../implementation_interface/ev_notebook_i.xml#f_selected_item</location>selected_item</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature><dot>.</dot><feature><location>../interface/ev_dynamic_list.xml#f_i_th</location>i_th</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_interface/ev_notebook_i.xml#f_selected_item_index</location>selected_item_index</feature><symbol>)</symbol>
+	<tag>selected_item_index_is_index_of_selected_item</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_any_i.xml#f_is_usable</location>is_usable</feature> <keyword>and</keyword> <feature><location>../implementation_interface/ev_container_i.xml#f_count</location>count</feature> <symbol>&gt;</symbol> <number>0</number> <keyword>implies</keyword> <keyword>attached</keyword> <feature><location>../implementation_interface/ev_notebook_i.xml#f_selected_item</location>selected_item</feature> <keyword>as</keyword> l_selected_item <keyword>and then</keyword> <feature><location>../implementation_interface/ev_notebook_i.xml#f_selected_item_index</location>selected_item_index</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature><dot>.</dot><feature><location>../interface/ev_dynamic_list.xml#f_index_of</location>index_of</feature><symbol> </symbol><symbol>(</symbol><local>l_selected_item</local><symbol>,</symbol> <number>1</number><symbol>)</symbol>
+
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2014, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_interface/ev_notebook_i.xml</location>EV_NOTEBOOK_I</class></system>
+

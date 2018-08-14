@@ -1,0 +1,33 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../interface/ev_character_format_range_information_chart.xml</location>EV_CHARACTER_FORMAT_RANGE_INFORMATION</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>interface</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> 
+		<string>&quot;Objects that provide information for a range of characters in an EV_RICH_TEXT.</string>
+		<string>Depending on the query applied to </string><string>Current</string><string>, the values of all attributes are used in different</string>
+		<string>fashions, sometimes to indicate which fields of an EV_CHARACTER_FORMAT are valid, or have a particular</string>
+		<string>property. The applicable features in EV_RICH_TEXT which use </string><string>Current</string><string> provide full descriptions.&quot;</string>
+	<indexing_tag>create</indexing_tag><symbol>:</symbol> <feature><location>../interface/ev_character_format_range_information.xml#f_make_with_flags</location>make_with_flags</feature>
+
+<keyword>Ancestors</keyword>
+	<class><include>False</include>ANY</class>
+	<class><location>../interface/ev_character_format_constants_chart.xml</location>EV_CHARACTER_FORMAT_CONSTANTS</class>
+
+<keyword>Queries</keyword>
+	<feature><location>../interface/ev_character_format_range_information.xml#f_background_color</location>background_color</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_character_format_range_information.xml#f_color</location>color</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_character_format_range_information.xml#f_effects_striked_out</location>effects_striked_out</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_character_format_range_information.xml#f_effects_underlined</location>effects_underlined</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_character_format_range_information.xml#f_effects_vertical_offset</location>effects_vertical_offset</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_character_format_range_information.xml#f_font_family</location>font_family</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_character_format_range_information.xml#f_font_height</location>font_height</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_character_format_range_information.xml#f_font_shape</location>font_shape</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_character_format_range_information.xml#f_font_weight</location>font_weight</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_character_format_constants.xml#f_valid_character_format_flag</location>valid_character_format_flag</feature> <symbol>(</symbol><local>a_flag</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+
+<keyword>Commands</keyword>
+	<feature><location>../interface/ev_character_format_range_information.xml#f_make_with_flags</location>make_with_flags</feature> <symbol>(</symbol><local>flags</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+
+</system>

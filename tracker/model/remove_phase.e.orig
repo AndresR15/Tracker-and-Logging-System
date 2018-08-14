@@ -1,0 +1,77 @@
+note
+	description: "Summary description for {REMOVE_PHASE}."
+	author: ""
+	date: "$Date$"
+	revision: "$Revision$"
+
+class
+	REMOVE_PHASE
+
+inherit
+
+	COMMAND
+
+create
+	make
+
+feature -- Initialization
+
+	make (pid: STRING)
+		local
+			tracker_access: TRACKER_ACCESS
+		do
+			track := tracker_access.m
+			p_id := pid
+			state := track.get_state
+<<<<<<< HEAD
+			if attached track.get_phases.at (pid) as prev_phase then
+				p_name := prev_phase.get_name
+				p_cap := prev_phase.get_capacity
+				p_materials := prev_phase.get_mats
+			else
+				p_name := ""
+				p_cap := 0
+				p_materials := <<>>
+			end
+=======
+			prev_phase := track.get_phases.at (pid)
+>>>>>>> 6f5e76730fce4117efca585924e0e4d10f6d9b43
+			msg := m_a.ok
+		end
+
+feature -- Attributes
+
+	p_id: STRING
+<<<<<<< HEAD
+	p_name: STRING
+	p_cap: INTEGER_64
+	p_materials: ARRAY[INTEGER_64]
+=======
+
+	prev_phase: detachable PHASE
+>>>>>>> 6f5e76730fce4117efca585924e0e4d10f6d9b43
+
+feature
+
+	execute
+		do
+			track.remove_phase (p_id)
+		end
+
+	undo
+		do
+<<<<<<< HEAD
+			track.new_phase (p_id, p_name, p_cap, p_materials)
+=======
+			if attached prev_phase as p_p then
+				track.new_phase (p_id, p_p.get_name, p_p.get_capacity, p_p.get_mats)
+			end
+>>>>>>> 6f5e76730fce4117efca585924e0e4d10f6d9b43
+		end
+
+	redo
+		do
+			execute
+		end
+
+end

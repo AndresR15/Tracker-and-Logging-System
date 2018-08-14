@@ -1,0 +1,121 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "A default business model."{\line}
+{\tab}{\cf1 author}{\cf1 :} "Andres Rojas and Victor Vavan"{\line}
+{\line}
+{\b\cf6 class} {\b\cf6 interface}{\line}
+{\tab}{\cf4 TRACKER}{\line}
+{\line}
+{\b\cf6 create} {\cf1 \{}{\cf4 TRACKER_ACCESS}{\cf1 \}}{\line}
+{\tab}{\cf5 make}{\line}
+{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  model operations}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 new_phase} {\cf1 (}{\cf5 pid}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 phase_name}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 capacity}{\cf1 :} {\cf4 INTEGER_64}{\cf1 ;} {\cf5 expected_materials}{\cf1 :} {\cf4 ARRAY} {\cf1 [}{\cf4 INTEGER_64}{\cf1 ]}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_pid}{\cf1 :} {\cf5 valid_string}{\cf1  }{\cf1 (}{\cf5 pid}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_phase_name}{\cf1 :} {\cf5 valid_string}{\cf1  }{\cf1 (}{\cf5 phase_name}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 positive_capacity}{\cf1 :} {\cf5 capacity}{\b\cf1 .}{\cf5 to_double} {\cf1 >} 0.0{\line}
+{\tab}{\tab}{\tab}{\cf1 expected_materials_non_empty}{\cf1 :} {\cf5 expected_materials}{\b\cf1 .}{\cf5 count} {\cf1 >} 0{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 new_tracker} {\cf1 (}{\cf5 max_p_rad}{\cf1 ,} {\cf5 max_c_rad}{\cf1 :} {\cf4 VALUE}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 positive_values}{\cf1 :} {\cf5 max_p_rad}{\b\cf1 .}{\cf5 as_double} {\cf1 >=} 0.0 {\b\cf6 and then} {\cf5 max_c_rad}{\b\cf1 .}{\cf5 as_double} {\cf1 >=} 0.0{\line}
+{\tab}{\tab}{\tab}{\cf1 tracker_not_active}{\cf1 :} {\b\cf6 not} {\cf5 is_active}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 new_container} {\cf1 (}{\cf5 cid}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 cont_spec}{\cf1 :} {\cf4 TUPLE} {\cf1 [}{\cf5 m}{\cf1 :} {\cf4 INTEGER_64}{\cf1 ;} {\cf5 rad}{\cf1 :} {\cf4 VALUE}{\cf1 ]}{\cf1 ;} {\cf5 pid}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 cont_not_in_use}{\cf1 :} {\b\cf6 not} {\cf5 cid_exists}{\cf1  }{\cf1 (}{\cf5 cid}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 remove_phase} {\cf1 (}{\cf5 phase_id}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  removes a phase from the tracker}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3 	require}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3 		phase_exists: get_phases.has (phase_id)}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 phase_removed}{\cf1 :} {\b\cf6 not} {\cf1 (}{\cf5 phases}{\b\cf1 .}{\cf5 has_key}{\cf1  }{\cf1 (}{\cf5 phase_id}{\cf1 )}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 remove_container} {\cf1 (}{\cf5 cid}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  removes a container from the tracker}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 move_container} {\cf1 (}{\cf5 cid}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 pid1}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 pid2}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  moves a container from a source phase to a target phase}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 container_exists}{\cf1 :} {\cf5 cid_exists}{\cf1  }{\cf1 (}{\cf5 cid}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 cid_in_phase_attached}{\cf1 :} {\b\cf6 attached} {\cf5 get_phase_containing_cid}{\cf1  }{\cf1 (}{\cf5 cid}{\cf1 )} {\b\cf6 as} pc{\line}
+{\tab}{\tab}{\tab}{\cf1 cont_is_in_target_phase}{\cf1 :} {\cf5 pc}{\b\cf1 .}{\cf5 get_pid} {\cf1 ~} {\cf5 pid2}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 store_error} {\cf1 (}{\cf5 new_msg}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  stores the state of error into history}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  setters}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_error} {\cf1 (}{\cf5 init_msg}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 set_state} {\cf1 (}{\cf5 new_state}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  sets both the state and the cursor state to state}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 set_cursor_state} {\cf1 (}{\cf5 cur_state}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3 		require}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3 			cursor_state_not_over: cur_state <= get_state}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  getter}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 get_phases}{\cf1 :} {\cf4 STRING_TABLE} {\cf1 [}{\cf4 PHASE}{\cf1 ]}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 get_history}{\cf1 :} {\cf4 HISTORY}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 get_state}{\cf1 :} {\cf4 INTEGER_32}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 get_cursor_state}{\cf1 :} {\cf4 INTEGER_32}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 get_max_cont_rad}{\cf1 :} {\cf4 VALUE}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 get_max_phase_rad}{\cf1 :} {\cf4 VALUE}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  error checks}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_active}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  are there any containers in the system}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 valid_string} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  does the string start with A-Z, a-z or 0-9?}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 under_capacity} {\cf1 (}{\cf5 pid}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  can the phase handle another container?}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 get_phases}{\b\cf1 .}{\cf5 has}{\cf1  }{\cf1 (}{\cf5 pid}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 cont_gt_max_phase_rad} {\cf1 (}{\cf5 rad}{\cf1 :} {\cf4 VALUE}{\cf1 ;} {\cf5 pid}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  is the total container radiation greater than the maximum phase radiation?}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 phase_expects_mat} {\cf1 (}{\cf5 mat}{\cf1 :} {\cf4 INTEGER_64}{\cf1 ;} {\cf5 pid}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  does the phase expect this container material?}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  error checks}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 cid_exists} {\cf1 (}{\cf5 cid}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  queries}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 get_phase_containing_cid} {\cf1 (}{\cf5 cid}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\b\cf6 detachable} {\cf4 PHASE}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 get_container} {\cf1 (}{\cf5 cid}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\b\cf6 detachable} {\cf4 PHASE_CONTAINER}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 out}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New string containing terse printable representation}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of current object}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  misc}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 reset}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Reset model state.}{\line}
+}{\tab}{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 TRACKER}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

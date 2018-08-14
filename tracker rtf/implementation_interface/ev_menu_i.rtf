@@ -1,0 +1,110 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "Eiffel Vision menu. Implementation interface."{\line}
+{\tab}{\cf1 legal}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 status}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2009-06-10 21:44:06 -0700 (Wed, 10 Jun 2009) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 79201 $"{\line}
+{\line}
+{\b\cf6 deferred} {\b\cf6 class} {\line}
+{\tab}{\cf4 EV_MENU_I}{\line}
+{\line}
+{\b\cf6 inherit}{\line}
+{\tab}{\cf4 EV_MENU_ITEM_I}{\line}
+{\tab}{\tab}{\b\cf6 redefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 interface}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 parent}{\line}
+{\tab}{\tab}{\b\cf6 end}{\line}
+{\line}
+{\tab}{\cf4 EV_MENU_ITEM_LIST_I}{\line}
+{\tab}{\tab}{\b\cf6 redefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 interface}{\line}
+{\tab}{\tab}{\b\cf6 end}{\line}
+{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 parent}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_MENU_ITEM_LIST}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Item list containing }{\cf5 Current}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 parent_imp} {\b\cf6 as} l_parent_imp {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 ?=} {\cf5 l_parent_imp}{\b\cf1 .}{\cf5 interface}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Basic operations}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 show}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Pop up on the current pointer position.}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 show_at} {\cf1 (}{\cf5 a_widget}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_WIDGET}{\cf1 ;} {\cf5 a_x}{\cf1 ,} {\cf5 a_y}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Pop up on }{\cf5 a_x}{\cf3 , }{\cf5 a_y}{\cf3  relative to the top-left corner}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of }{\cf5 a_widget}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_MENU}{\cf1 \}} {\cf3 --}{\cf3  Contract support}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 one_radio_item_selected_per_separator}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is there at most one selected radio item between}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  consecutive separators?}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 separator}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_MENU_SEPARATOR}{\line}
+{\tab}{\tab}{\tab}{\cf5 checked_radio_items}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 radio_item}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_RADIO_MENU_ITEM}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_cursor}{\cf1 :} {\cf4 CURSOR}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_cursor} {\cf1 :=} {\cf5 cursor}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 start}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 index} {\cf1 =} {\cf5 count} {\cf1 +} 1 {\b\cf6 or} {\b\cf6 not} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 separator} {\cf1 ?=} {\cf5 item}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 separator} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 checked_radio_items} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 radio_item} {\cf1 ?=} {\cf5 item}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 radio_item} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\cf5 radio_item}{\b\cf1 .}{\cf5 is_selected} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 checked_radio_items} {\cf1 :=} {\cf5 checked_radio_items} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 checked_radio_items} {\cf1 >} 1 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 forth}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 go_to}{\cf1  }{\cf1 (}{\cf5 a_cursor}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 index_not_changed}{\cf1 :} {\cf5 index} {\cf1 =} {\b\cf6 old} {\cf5 index}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_ANY}{\cf1 ,} {\cf4 EV_ANY_I}{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 interface}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_MENU}{\line}
+{\tab}{\tab}{\b\cf6 note}{\line}
+{\tab}{\tab}{\tab}option: stable{\line}
+{\tab}{\tab}{\b\cf6 attribute}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 note}{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 1984-2006, Eiffel Software and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"{\line}
+{\tab}{\cf1 source}{\cf1 :} "[{\line}
+{\tab}{\tab}Eiffel Software{\line}
+{\tab}{\tab}356 Storke Road, Goleta, CA 93117 USA{\line}
+{\tab}{\tab}Telephone 805-685-1006, Fax 805-685-6869{\line}
+{\tab}{\tab}Website http://www.eiffel.com{\line}
+{\tab}{\tab}Customer support http://support.eiffel.com{\line}
+{\tab}]"{\line}
+{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 EV_MENU_I}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

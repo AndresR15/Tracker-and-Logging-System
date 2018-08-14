@@ -1,0 +1,613 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "[{\line}
+{\tab}{\tab}Objects that represent the implementation interface for rich text widgets.{\line}
+{\tab}]"{\line}
+{\tab}{\cf1 legal}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 status}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2014-04-17 15:19:54 -0700 (Thu, 17 Apr 2014) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 94888 $"{\line}
+{\line}
+{\b\cf6 deferred} {\b\cf6 class} {\line}
+{\tab}{\cf4 EV_RICH_TEXT_I}{\line}
+{\line}
+{\b\cf6 inherit}{\line}
+{\tab}{\cf4 EV_TEXT_I}{\line}
+{\tab}{\tab}{\b\cf6 redefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 interface}{\line}
+{\tab}{\tab}{\b\cf6 end}{\line}
+{\line}
+{\tab}{\cf4 EV_RICH_TEXT_ACTION_SEQUENCES_I}{\line}
+{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status report}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 character_format} {\cf1 (}{\cf5 caret_index}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 EV_CHARACTER_FORMAT}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 Result}{\cf3  is character format at caret position }{\cf5 caret_index}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_character_index}{\cf1 :} {\cf5 caret_index} {\cf1 >=} 1 {\b\cf6 and} {\cf5 caret_index} {\cf1 <=} {\cf5 text_length} {\cf1 +} 1{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 text_not_changed}{\cf1 :} {\cf5 text}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 text}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 caret_not_moved}{\cf1 :} {\cf5 caret_position} {\cf1 =} {\b\cf6 old} {\cf5 caret_position}{\line}
+{\tab}{\tab}{\tab}{\cf1 selection_not_changed}{\cf1 :} {\b\cf6 old} {\cf5 has_selection} {\cf1 =} {\cf5 has_selection} {\b\cf6 and} {\cf5 has_selection} {\b\cf6 implies} {\b\cf6 old} {\cf5 start_selection} {\cf1 =} {\cf5 start_selection} {\b\cf6 and} {\b\cf6 old} {\cf5 end_selection} {\cf1 =} {\cf5 end_selection}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 selected_character_format}{\cf1 :} {\cf4 EV_CHARACTER_FORMAT}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 Result}{\cf3  is character format of current selection.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  If more than one format is contained in the selection, }{\cf5 Result}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  is the first of these formats.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 has_selection}{\cf1 :} {\cf5 has_selection}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 text_not_changed}{\cf1 :} {\cf5 text}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 text}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 caret_not_moved}{\cf1 :} {\cf5 caret_position} {\cf1 =} {\b\cf6 old} {\cf5 caret_position}{\line}
+{\tab}{\tab}{\tab}{\cf1 selection_not_changed}{\cf1 :} {\b\cf6 old} {\cf5 has_selection} {\cf1 =} {\cf5 has_selection} {\b\cf6 and} {\cf5 has_selection} {\b\cf6 implies} {\b\cf6 old} {\cf5 start_selection} {\cf1 =} {\cf5 start_selection} {\b\cf6 and} {\b\cf6 old} {\cf5 end_selection} {\cf1 =} {\cf5 end_selection}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 paragraph_format} {\cf1 (}{\cf5 caret_index}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 EV_PARAGRAPH_FORMAT}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 Result}{\cf3  is paragraph_format at caret position }{\cf5 caret_index}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_character_index}{\cf1 :} {\cf5 caret_index} {\cf1 >=} 1 {\b\cf6 and} {\cf5 caret_index} {\cf1 <=} {\cf5 text_length} {\cf1 +} 1{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 text_not_changed}{\cf1 :} {\cf5 text}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 text}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 caret_not_moved}{\cf1 :} {\cf5 caret_position} {\cf1 =} {\b\cf6 old} {\cf5 caret_position}{\line}
+{\tab}{\tab}{\tab}{\cf1 selection_not_changed}{\cf1 :} {\b\cf6 old} {\cf5 has_selection} {\cf1 =} {\cf5 has_selection} {\b\cf6 and} {\cf5 has_selection} {\b\cf6 implies} {\b\cf6 old} {\cf5 start_selection} {\cf1 =} {\cf5 start_selection} {\b\cf6 and} {\b\cf6 old} {\cf5 end_selection} {\cf1 =} {\cf5 end_selection}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 selected_paragraph_format}{\cf1 :} {\cf4 EV_PARAGRAPH_FORMAT}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 Result}{\cf3  is paragraph format of current selection.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  If more than one format is contained in the selection, }{\cf5 Result}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  is the first of these formats.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 has_selection}{\cf1 :} {\cf5 has_selection}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 text_not_changed}{\cf1 :} {\cf5 text}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 text}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 caret_not_moved}{\cf1 :} {\cf5 caret_position} {\cf1 =} {\b\cf6 old} {\cf5 caret_position}{\line}
+{\tab}{\tab}{\tab}{\cf1 selection_not_changed}{\cf1 :} {\b\cf6 old} {\cf5 has_selection} {\cf1 =} {\cf5 has_selection} {\b\cf6 and} {\cf5 has_selection} {\b\cf6 implies} {\b\cf6 old} {\cf5 start_selection} {\cf1 =} {\cf5 start_selection} {\b\cf6 and} {\b\cf6 old} {\cf5 end_selection} {\cf1 =} {\cf5 end_selection}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 character_format_contiguous} {\cf1 (}{\cf5 start_index}{\cf1 ,} {\cf5 end_index}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is formatting from caret position }{\cf5 start_index}{\cf3  to }{\cf5 end_index}{\cf3  contiguous?}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_character_index}{\cf1 :} {\cf5 start_index} {\cf1 >=} 1 {\b\cf6 and} {\cf5 end_index} {\cf1 <=} {\cf5 text_length} {\cf1 +} 1 {\b\cf6 and} {\cf5 start_index} {\cf1 <=} {\cf5 end_index}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 text_not_changed}{\cf1 :} {\cf5 text}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 text}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 caret_not_moved}{\cf1 :} {\cf5 caret_position} {\cf1 =} {\b\cf6 old} {\cf5 caret_position}{\line}
+{\tab}{\tab}{\tab}{\cf1 selection_not_changed}{\cf1 :} {\b\cf6 old} {\cf5 has_selection} {\cf1 =} {\cf5 has_selection} {\b\cf6 and} {\cf5 has_selection} {\b\cf6 implies} {\b\cf6 old} {\cf5 start_selection} {\cf1 =} {\cf5 start_selection} {\b\cf6 and} {\b\cf6 old} {\cf5 end_selection} {\cf1 =} {\cf5 end_selection}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 paragraph_format_contiguous} {\cf1 (}{\cf5 start_position}{\cf1 ,} {\cf5 end_position}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is paragraph formatting from caret_position }{\cf5 start_position}{\cf3  to }{\cf5 end_position}{\cf3  contiguous?}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_character_index}{\cf1 :} {\cf5 start_position} {\cf1 >=} 1 {\b\cf6 and} {\cf5 end_position} {\cf1 <=} {\cf5 text_length} {\cf1 +} 1 {\b\cf6 and} {\cf5 start_position} {\cf1 <=} {\cf5 end_position}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 text_not_changed}{\cf1 :} {\cf5 text}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 text}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 caret_not_moved}{\cf1 :} {\cf5 caret_position} {\cf1 =} {\b\cf6 old} {\cf5 caret_position}{\line}
+{\tab}{\tab}{\tab}{\cf1 selection_not_changed}{\cf1 :} {\b\cf6 old} {\cf5 has_selection} {\cf1 =} {\cf5 has_selection} {\b\cf6 and} {\cf5 has_selection} {\b\cf6 implies} {\b\cf6 old} {\cf5 start_selection} {\cf1 =} {\cf5 start_selection} {\b\cf6 and} {\b\cf6 old} {\cf5 end_selection} {\cf1 =} {\cf5 end_selection}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 character_format_range_information} {\cf1 (}{\cf5 start_index}{\cf1 ,} {\cf5 end_index}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 EV_CHARACTER_FORMAT_RANGE_INFORMATION}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Formatting range information from caret position }{\cf5 start_index}{\cf3  to }{\cf5 end_index}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  All attributes in }{\cf5 Result}{\cf3  are set to }{\cf5 True}{\cf3  if they remain consitent from }{\cf5 start_index}{\cf3  to}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf5 end_index}{\cf3  and }{\cf5 False}{\cf3  otherwise.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 Result}{\cf3  is a snapshot of }{\cf5 Current}{\cf3 , and does not remain consistent as the contents}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  are subsequently changed.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_character_index}{\cf1 :} {\cf5 start_index} {\cf1 >=} 1 {\b\cf6 and} {\cf5 end_index} {\cf1 <=} {\cf5 text_length} {\cf1 +} 1 {\b\cf6 and} {\cf5 start_index} {\cf1 <=} {\cf5 end_index}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 text_not_changed}{\cf1 :} {\cf5 text}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 text}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 caret_not_moved}{\cf1 :} {\cf5 caret_position} {\cf1 =} {\b\cf6 old} {\cf5 caret_position}{\line}
+{\tab}{\tab}{\tab}{\cf1 selection_not_changed}{\cf1 :} {\b\cf6 old} {\cf5 has_selection} {\cf1 =} {\cf5 has_selection} {\b\cf6 and} {\cf5 has_selection} {\b\cf6 implies} {\b\cf6 old} {\cf5 start_selection} {\cf1 =} {\cf5 start_selection} {\b\cf6 and} {\b\cf6 old} {\cf5 end_selection} {\cf1 =} {\cf5 end_selection}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 paragraph_format_range_information} {\cf1 (}{\cf5 start_position}{\cf1 ,} {\cf5 end_position}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 EV_PARAGRAPH_FORMAT_RANGE_INFORMATION}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Formatting range information from caret position }{\cf5 start_position}{\cf3  to }{\cf5 end_position}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  All attributes in }{\cf5 Result}{\cf3  are set to }{\cf5 True}{\cf3  if they remain consitent from }{\cf5 start_position}{\cf3  to}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf5 end_position}{\cf3  and }{\cf5 False}{\cf3  otherwise.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 Result}{\cf3  is a snapshot of }{\cf5 Current}{\cf3 , and does not remain consistent as the contents}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  are subsequently changed.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_character_index}{\cf1 :} {\cf5 start_position} {\cf1 >=} 1 {\b\cf6 and} {\cf5 end_position} {\cf1 <=} {\cf5 text_length} {\cf1 +} 1 {\b\cf6 and} {\cf5 start_position} {\cf1 <=} {\cf5 end_position}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 text_not_changed}{\cf1 :} {\cf5 text}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 text}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 caret_not_moved}{\cf1 :} {\cf5 caret_position} {\cf1 =} {\b\cf6 old} {\cf5 caret_position}{\line}
+{\tab}{\tab}{\tab}{\cf1 selection_not_changed}{\cf1 :} {\b\cf6 old} {\cf5 has_selection} {\cf1 =} {\cf5 has_selection} {\b\cf6 and} {\cf5 has_selection} {\b\cf6 implies} {\b\cf6 old} {\cf5 start_selection} {\cf1 =} {\cf5 start_selection} {\b\cf6 and} {\b\cf6 old} {\cf5 end_selection} {\cf1 =} {\cf5 end_selection}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 buffer_locked_in_format_mode}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is buffered formatting underway?}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 buffer_locked_in_append_mode}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is buffered appending underway?}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 index_from_position} {\cf1 (}{\cf5 an_x_position}{\cf1 ,} {\cf5 a_y_position}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Index of character closest to position }{\cf5 x_position}{\cf3 , }{\cf5 y_position}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 position_valid}{\cf1 :} {\cf5 an_x_position} {\cf1 >=} 0 {\b\cf6 and} {\cf5 an_x_position} {\cf1 <=} {\cf5 width} {\b\cf6 and} {\cf5 a_y_position} {\cf1 >=} 0 {\b\cf6 and} {\cf5 a_y_position} {\cf1 <=} {\cf5 height}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 index_valid}{\cf1 :} {\b\cf6 Result} {\cf1 >=} 1 {\b\cf6 and} {\b\cf6 Result} {\cf1 <=} {\cf5 text_length}{\line}
+{\tab}{\tab}{\tab}{\cf1 text_not_changed}{\cf1 :} {\cf5 text}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 text}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 caret_not_moved}{\cf1 :} {\cf5 caret_position} {\cf1 =} {\b\cf6 old} {\cf5 caret_position}{\line}
+{\tab}{\tab}{\tab}{\cf1 selection_not_changed}{\cf1 :} {\b\cf6 old} {\cf5 has_selection} {\cf1 =} {\cf5 has_selection} {\b\cf6 and} {\cf5 has_selection} {\b\cf6 implies} {\b\cf6 old} {\cf5 start_selection} {\cf1 =} {\cf5 start_selection} {\b\cf6 and} {\b\cf6 old} {\cf5 end_selection} {\cf1 =} {\cf5 end_selection}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 position_from_index} {\cf1 (}{\cf5 an_index}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 EV_COORDINATE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Position of character at index }{\cf5 an_index}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 index_valid}{\cf1 :} {\cf5 an_index} {\cf1 >=} 1 {\b\cf6 and} {\cf5 an_index} {\cf1 <=} {\cf5 text_length}{\line}
+{\tab}{\tab}{\tab}{\cf1 character_displayed}{\cf1 :} {\cf5 character_displayed}{\cf1  }{\cf1 (}{\cf5 an_index}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 position_valid}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 x} {\cf1 >=} 0 {\b\cf6 and} {\b\cf6 Result}{\b\cf1 .}{\cf5 x} {\cf1 <=} {\cf5 width} {\b\cf6 and} {\b\cf6 Result}{\b\cf1 .}{\cf5 y} {\cf1 >=} 0 {\b\cf6 and} {\b\cf6 Result}{\b\cf1 .}{\cf5 y} {\cf1 <=} {\cf5 height}{\line}
+{\tab}{\tab}{\tab}{\cf1 text_not_changed}{\cf1 :} {\cf5 text}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 text}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 caret_not_moved}{\cf1 :} {\cf5 caret_position} {\cf1 =} {\b\cf6 old} {\cf5 caret_position}{\line}
+{\tab}{\tab}{\tab}{\cf1 selection_not_changed}{\cf1 :} {\b\cf6 old} {\cf5 has_selection} {\cf1 =} {\cf5 has_selection} {\b\cf6 and} {\cf5 has_selection} {\b\cf6 implies} {\b\cf6 old} {\cf5 start_selection} {\cf1 =} {\cf5 start_selection} {\b\cf6 and} {\b\cf6 old} {\cf5 end_selection} {\cf1 =} {\cf5 end_selection}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 character_displayed} {\cf1 (}{\cf5 an_index}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is character }{\cf5 an_index}{\cf3  currently visible in }{\cf5 Current}{\cf3 ?}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 index_valid}{\cf1 :} {\cf5 an_index} {\cf1 >=} 1 {\b\cf6 and} {\cf5 an_index} {\cf1 <=} {\cf5 text_length}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 text_not_changed}{\cf1 :} {\cf5 text}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 text}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 caret_not_moved}{\cf1 :} {\cf5 caret_position} {\cf1 =} {\b\cf6 old} {\cf5 caret_position}{\line}
+{\tab}{\tab}{\tab}{\cf1 selection_not_changed}{\cf1 :} {\b\cf6 old} {\cf5 has_selection} {\cf1 =} {\cf5 has_selection} {\b\cf6 and} {\cf5 has_selection} {\b\cf6 implies} {\b\cf6 old} {\cf5 start_selection} {\cf1 =} {\cf5 start_selection} {\b\cf6 and} {\b\cf6 old} {\cf5 end_selection} {\cf1 =} {\cf5 end_selection}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 tab_positions}{\cf1 :} {\cf4 EV_ACTIVE_LIST} {\cf1 [}{\cf4 INTEGER_32}{\cf1 ]}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Width of each tab position in pixels, from left to right.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  All tab positions not included use }{\cf5 tab_width}{\cf3 .}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 tab_width}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Default width in pixels of each tab in }{\cf5 Current}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_positive}{\cf1 :} {\b\cf6 Result} {\cf1 >} 0{\line}
+{\tab}{\tab}{\tab}{\cf1 text_not_changed}{\cf1 :} {\cf5 text}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 text}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 caret_not_moved}{\cf1 :} {\cf5 caret_position} {\cf1 =} {\b\cf6 old} {\cf5 caret_position}{\line}
+{\tab}{\tab}{\tab}{\cf1 selection_not_changed}{\cf1 :} {\b\cf6 old} {\cf5 has_selection} {\cf1 =} {\cf5 has_selection} {\b\cf6 and} {\cf5 has_selection} {\b\cf6 implies} {\b\cf6 old} {\cf5 start_selection} {\cf1 =} {\cf5 start_selection} {\b\cf6 and} {\b\cf6 old} {\cf5 end_selection} {\cf1 =} {\cf5 end_selection}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_ANY}{\cf1 ,} {\cf4 EV_ANY_I}{\cf1 ,} {\cf4 EV_RICH_TEXT_BUFFERING_STRUCTURES_I}{\cf1 \}} {\cf3 --}{\cf3  Status setting}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_current_format} {\cf1 (}{\cf5 format}{\cf1 :} {\cf4 EV_CHARACTER_FORMAT}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  apply }{\cf5 format}{\cf3  to current caret position, applicable}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to next typed characters.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 format_not_void}{\cf1 :} {\cf5 format} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 text_not_changed}{\cf1 :} {\cf5 text}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 text}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 caret_not_moved}{\cf1 :} {\cf5 caret_position} {\cf1 =} {\b\cf6 old} {\cf5 caret_position}{\line}
+{\tab}{\tab}{\tab}{\cf1 selection_not_changed}{\cf1 :} {\b\cf6 old} {\cf5 has_selection} {\cf1 =} {\cf5 has_selection} {\b\cf6 and} {\cf5 has_selection} {\b\cf6 implies} {\b\cf6 old} {\cf5 start_selection} {\cf1 =} {\cf5 start_selection} {\b\cf6 and} {\b\cf6 old} {\cf5 end_selection} {\cf1 =} {\cf5 end_selection}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 format_region} {\cf1 (}{\cf5 start_position}{\cf1 ,} {\cf5 end_position}{\cf1 :} {\cf4 INTEGER_32}{\cf1 ;} {\cf5 format}{\cf1 :} {\cf4 EV_CHARACTER_FORMAT}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Apply }{\cf5 format}{\cf3  to all characters between the caret positions }{\cf5 start_position}{\cf3  and }{\cf5 end_position}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Formatting is applied immediately.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_positions}{\cf1 :} {\cf5 start_position} {\cf1 <} {\cf5 end_position} {\b\cf6 and} {\cf5 start_position} {\cf1 >=} 1 {\b\cf6 and} {\cf5 end_position} {\cf1 <=} {\cf5 text_length} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 format_not_void}{\cf1 :} {\cf5 format} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 text_not_changed}{\cf1 :} {\cf5 text}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 text}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 caret_not_moved}{\cf1 :} {\cf5 caret_position} {\cf1 =} {\b\cf6 old} {\cf5 caret_position}{\line}
+{\tab}{\tab}{\tab}{\cf1 selection_not_changed}{\cf1 :} {\b\cf6 old} {\cf5 has_selection} {\cf1 =} {\cf5 has_selection} {\b\cf6 and} {\cf5 has_selection} {\b\cf6 implies} {\b\cf6 old} {\cf5 start_selection} {\cf1 =} {\cf5 start_selection} {\b\cf6 and} {\b\cf6 old} {\cf5 end_selection} {\cf1 =} {\cf5 end_selection}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 format_paragraph} {\cf1 (}{\cf5 start_position}{\cf1 ,} {\cf5 end_position}{\cf1 :} {\cf4 INTEGER_32}{\cf1 ;} {\cf5 format}{\cf1 :} {\cf4 EV_PARAGRAPH_FORMAT}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Apply paragraph formatting }{\cf5 format}{\cf3  to caret positions }{\cf5 start_position}{\cf3 , }{\cf5 end_position}{\cf3  inclusive.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Formatting applies to complete lines as separated by new line characters that }{\cf5 start_position}{\cf3  and}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 end_position}{\cf3  fall on.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_positions}{\cf1 :} {\cf5 start_position} {\cf1 <=} {\cf5 end_position} {\b\cf6 and} {\cf5 start_position} {\cf1 >=} 1 {\b\cf6 and} {\cf5 end_position} {\cf1 <=} {\cf5 text_length} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 format_not_void}{\cf1 :} {\cf5 format} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 text_not_changed}{\cf1 :} {\cf5 text}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 text}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 caret_not_moved}{\cf1 :} {\cf5 caret_position} {\cf1 =} {\b\cf6 old} {\cf5 caret_position}{\line}
+{\tab}{\tab}{\tab}{\cf1 selection_not_changed}{\cf1 :} {\b\cf6 old} {\cf5 has_selection} {\cf1 =} {\cf5 has_selection} {\b\cf6 and} {\cf5 has_selection} {\b\cf6 implies} {\b\cf6 old} {\cf5 start_selection} {\cf1 =} {\cf5 start_selection} {\b\cf6 and} {\b\cf6 old} {\cf5 end_selection} {\cf1 =} {\cf5 end_selection}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 modify_region} {\cf1 (}{\cf5 start_position}{\cf1 ,} {\cf5 end_position}{\cf1 :} {\cf4 INTEGER_32}{\cf1 ;} {\cf5 format}{\cf1 :} {\cf4 EV_CHARACTER_FORMAT}{\cf1 ;} {\cf5 applicable_attributes}{\cf1 :} {\cf4 EV_CHARACTER_FORMAT_RANGE_INFORMATION}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Modify formatting from }{\cf5 start_position}{\cf3  to }{\cf5 end_position}{\cf3  applying all attributes of }{\cf5 format}{\cf3  that are set to}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 True}{\cf3  within }{\cf5 applicable_attributes}{\cf3 , ignoring others.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 applicable_attributes_not_void}{\cf1 :} {\cf5 applicable_attributes} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_positions}{\cf1 :} {\cf5 start_position} {\cf1 <} {\cf5 end_position} {\b\cf6 and} {\cf5 start_position} {\cf1 >=} 1 {\b\cf6 and} {\cf5 end_position} {\cf1 <=} {\cf5 text_length} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 format_not_void}{\cf1 :} {\cf5 format} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 text_not_changed}{\cf1 :} {\cf5 text}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 text}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 caret_not_moved}{\cf1 :} {\cf5 caret_position} {\cf1 =} {\b\cf6 old} {\cf5 caret_position}{\line}
+{\tab}{\tab}{\tab}{\cf1 selection_not_changed}{\cf1 :} {\b\cf6 old} {\cf5 has_selection} {\cf1 =} {\cf5 has_selection} {\b\cf6 and} {\cf5 has_selection} {\b\cf6 implies} {\b\cf6 old} {\cf5 start_selection} {\cf1 =} {\cf5 start_selection} {\b\cf6 and} {\b\cf6 old} {\cf5 end_selection} {\cf1 =} {\cf5 end_selection}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 modify_paragraph} {\cf1 (}{\cf5 start_position}{\cf1 ,} {\cf5 end_position}{\cf1 :} {\cf4 INTEGER_32}{\cf1 ;} {\cf5 format}{\cf1 :} {\cf4 EV_PARAGRAPH_FORMAT}{\cf1 ;} {\cf5 applicable_attributes}{\cf1 :} {\cf4 EV_PARAGRAPH_FORMAT_RANGE_INFORMATION}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Modify paragraph formatting }{\cf5 format}{\cf3  from caret positions }{\cf5 start_position}{\cf3  to }{\cf5 end_position}{\cf3  inclusive.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Formatting applies to complete lines as separated by new line characters that }{\cf5 start_position}{\cf3  and}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 end_position}{\cf3  fall on. All attributes of }{\cf5 format}{\cf3  that are set to }{\cf5 True}{\cf3  within }{\cf5 applicable_attributes}{\cf3  are applied.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 applicable_attributes_not_void}{\cf1 :} {\cf5 applicable_attributes} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_positions}{\cf1 :} {\cf5 start_position} {\cf1 <=} {\cf5 end_position} {\b\cf6 and} {\cf5 start_position} {\cf1 >=} 1 {\b\cf6 and} {\cf5 end_position} {\cf1 <=} {\cf5 text_length} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 format_not_void}{\cf1 :} {\cf5 format} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 text_not_changed}{\cf1 :} {\cf5 text}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 text}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 caret_not_moved}{\cf1 :} {\cf5 caret_position} {\cf1 =} {\b\cf6 old} {\cf5 caret_position}{\line}
+{\tab}{\tab}{\tab}{\cf1 selection_not_changed}{\cf1 :} {\b\cf6 old} {\cf5 has_selection} {\cf1 =} {\cf5 has_selection} {\b\cf6 and} {\cf5 has_selection} {\b\cf6 implies} {\b\cf6 old} {\cf5 start_selection} {\cf1 =} {\cf5 start_selection} {\b\cf6 and} {\b\cf6 old} {\cf5 end_selection} {\cf1 =} {\cf5 end_selection}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 buffered_format} {\cf1 (}{\cf5 start_position}{\cf1 ,} {\cf5 end_position}{\cf1 :} {\cf4 INTEGER_32}{\cf1 ;} {\cf5 format}{\cf1 :} {\cf4 EV_CHARACTER_FORMAT}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Apply a character format }{\cf5 format}{\cf3  from caret positions }{\cf5 start_position}{\cf3  to }{\cf5 end_position}{\cf3  to}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  format buffer. Call }{\cf5 flush_buffer}{\cf3  to apply buffered contents to }{\cf5 Current}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 format}{\cf3  is not cloned internally and when buffer is flushed, its reference is}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  used. Therefore, you must not modify }{\cf5 format}{\cf3  externally after passing to}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  this procedure, otherwise all buffered appends that referenced the same }{\cf5 format}{\cf3  object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  will use its current value.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_positions}{\cf1 :} {\cf5 start_position} {\cf1 <=} {\cf5 end_position} {\b\cf6 and} {\cf5 start_position} {\cf1 >=} 1 {\b\cf6 and} {\cf5 end_position} {\cf1 <=} {\cf5 text_length} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 format_not_void}{\cf1 :} {\cf5 format} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 text_not_changed}{\cf1 :} {\cf5 text}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 text}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 buffer_locked_for_format}{\cf1 :} {\cf5 buffer_locked_in_format_mode}{\line}
+{\tab}{\tab}{\tab}{\cf1 caret_not_moved}{\cf1 :} {\cf5 caret_position} {\cf1 =} {\b\cf6 old} {\cf5 caret_position}{\line}
+{\tab}{\tab}{\tab}{\cf1 selection_not_changed}{\cf1 :} {\b\cf6 old} {\cf5 has_selection} {\cf1 =} {\cf5 has_selection} {\b\cf6 and} {\cf5 has_selection} {\b\cf6 implies} {\b\cf6 old} {\cf5 start_selection} {\cf1 =} {\cf5 start_selection} {\b\cf6 and} {\b\cf6 old} {\cf5 end_selection} {\cf1 =} {\cf5 end_selection}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 buffered_append} {\cf1 (}{\cf5 a_text}{\cf1 :} {\cf4 READABLE_STRING_GENERAL}{\cf1 ;} {\cf5 format}{\cf1 :} {\cf4 EV_CHARACTER_FORMAT}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Append }{\cf5 a_text}{\cf3  with format }{\cf5 format}{\cf3  to append buffer.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  To render buffer to }{\cf5 Current}{\cf3 , call }{\cf5 flush_buffer}{\cf3  which replaces current content,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  or }{\cf5 flush_buffer_to}{\cf3  which inserts the formatted text.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 format}{\cf3  is not cloned internally and when buffer is flushed, its reference is}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  used. Therefore, you must not modify }{\cf5 format}{\cf3  externally after passing to}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  this procedure, otherwise all buffered appends that referenced the same }{\cf5 format}{\cf3  object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  will use its current value.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_text_not_void}{\cf1 :} {\cf5 a_text} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 format_not_void}{\cf1 :} {\cf5 format} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 buffer_not_locked_for_format}{\cf1 :} {\b\cf6 not} {\cf5 buffer_locked_in_format_mode}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 text_not_changed}{\cf1 :} {\cf5 text}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 text}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 buffer_locked_for_append}{\cf1 :} {\cf5 buffer_locked_in_append_mode}{\line}
+{\tab}{\tab}{\tab}{\cf1 caret_not_moved}{\cf1 :} {\cf5 caret_position} {\cf1 =} {\b\cf6 old} {\cf5 caret_position}{\line}
+{\tab}{\tab}{\tab}{\cf1 selection_not_changed}{\cf1 :} {\b\cf6 old} {\cf5 has_selection} {\cf1 =} {\cf5 has_selection} {\b\cf6 and} {\cf5 has_selection} {\b\cf6 implies} {\b\cf6 old} {\cf5 start_selection} {\cf1 =} {\cf5 start_selection} {\b\cf6 and} {\b\cf6 old} {\cf5 end_selection} {\cf1 =} {\cf5 end_selection}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 flush_buffer}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Flush contents of buffer.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  If }{\cf5 buffer_locked_for_append}{\cf3  then replace contents of }{\cf5 Current}{\cf3  with buffer contents.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  If }{\cf5 buffer_locked_for_format}{\cf3  then apply buffered formatting to contents of }{\cf5 Current}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 buffer_not_locked}{\cf1 :} {\b\cf6 not} {\cf5 buffer_locked_in_append_mode} {\b\cf6 and} {\b\cf6 not} {\cf5 buffer_locked_in_format_mode}{\line}
+{\tab}{\tab}{\tab}{\cf1 caret_consistent}{\cf1 :} {\cf1 (}{\b\cf6 old} {\cf5 buffer_locked_in_append_mode} {\b\cf6 implies} {\cf5 caret_position} {\cf1 =} 1{\cf1 )} {\b\cf6 or} {\b\cf6 old} {\cf5 buffer_locked_in_format_mode} {\b\cf6 implies} {\cf1 (}{\cf5 caret_position} {\cf1 =} {\b\cf6 old} {\cf5 caret_position}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 unselected}{\cf1 :} {\b\cf6 not} {\cf5 has_selection}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 flush_buffer_to} {\cf1 (}{\cf5 start_position}{\cf1 ,} {\cf5 end_position}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Replace contents of current from caret position }{\cf5 start_position}{\cf3  to }{\cf5 end_position}{\cf3  with}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  contents of buffer, since it was last flushed. If }{\cf5 start_position}{\cf3  and }{\cf5 end_position}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  are equal, insert the contents of the buffer at caret position }{\cf5 start_position}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 buffer_locked_for_append}{\cf1 :} {\cf5 buffer_locked_in_append_mode}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 start_position} {\cf1 >=} 1 {\b\cf6 and} {\cf5 end_position} {\cf1 <=} {\cf5 text_length} {\cf1 +} 1 {\b\cf6 and} {\cf5 start_position} {\cf1 <=} {\cf5 end_position}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 buffer_locked_for_append}{\cf1 :} {\b\cf6 not} {\cf5 buffer_locked_in_append_mode}{\line}
+{\tab}{\tab}{\tab}{\cf1 caret_consistent}{\cf1 :} {\b\cf6 old} {\cf5 caret_position} {\cf1 <=} {\cf5 text_length} {\cf1 +} 1 {\b\cf6 implies} {\cf5 caret_position} {\cf1 =} {\b\cf6 old} {\cf5 caret_position}{\line}
+{\tab}{\tab}{\tab}{\cf1 unselected}{\cf1 :} {\b\cf6 not} {\cf5 has_selection}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_tab_width} {\cf1 (}{\cf5 a_width}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Assign }{\cf5 a_width}{\cf3  in pixels to }{\cf5 tab_width}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 width_positive}{\cf1 :} {\cf5 a_width} {\cf1 >} 0{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 tab_width_set}{\cf1 :} {\cf5 tab_width} {\cf1 =} {\cf5 a_width}{\line}
+{\tab}{\tab}{\tab}{\cf1 text_not_changed}{\cf1 :} {\cf5 text}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 text}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 caret_not_moved}{\cf1 :} {\cf5 caret_position} {\cf1 =} {\b\cf6 old} {\cf5 caret_position}{\line}
+{\tab}{\tab}{\tab}{\cf1 selection_not_changed}{\cf1 :} {\b\cf6 old} {\cf5 has_selection} {\cf1 =} {\cf5 has_selection} {\b\cf6 and} {\cf5 has_selection} {\b\cf6 implies} {\b\cf6 old} {\cf5 start_selection} {\cf1 =} {\cf5 start_selection} {\b\cf6 and} {\b\cf6 old} {\cf5 end_selection} {\cf1 =} {\cf5 end_selection}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 save_to_named_path} {\cf1 (}{\cf5 a_filename}{\cf1 :} {\cf4 PATH}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Save }{\cf5 text}{\cf3  and formatting of }{\cf5 Current}{\cf3  to file }{\cf5 a_filename}{\cf3  in RTF format.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 filename_not_void}{\cf1 :} {\cf5 a_filename} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_text_length}{\cf1 ,} {\cf5 current_lower_line_index}{\cf1 ,} {\cf5 last_counter}{\cf1 ,} {\cf5 last_paragraph_change}{\cf1 ,} {\cf5 current_paragraph_index}{\cf1 ,} {\cf5 counter}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_text}{\cf1 :} {\b\cf6 like} {\cf5 text}{\line}
+{\tab}{\tab}{\tab}{\cf5 current_format}{\cf1 :} {\cf4 EV_CHARACTER_FORMAT_I}{\line}
+{\tab}{\tab}{\tab}{\cf5 buffer}{\cf1 :} {\cf4 EV_RICH_TEXT_BUFFERING_STRUCTURES_I}{\line}
+{\tab}{\tab}{\tab}{\cf5 text_file}{\cf1 :} {\cf4 RAW_FILE}{\line}
+{\tab}{\tab}{\tab}{\cf5 paragraph_indexes}{\cf1 :} {\b\cf6 detachable} {\cf4 ARRAYED_LIST} {\cf1 [}{\cf4 INTEGER_32}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf5 paragraph_formats}{\cf1 :} {\b\cf6 detachable} {\cf4 ARRAYED_LIST} {\cf1 [}{\cf4 STRING_32}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf5 paragraphs_exhausted}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf5 last_load_value}{\cf1 ,} {\cf5 current_load_value}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 buffer}{\b\cf1 .}{\cf5 set_rich_text}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_text} {\cf1 :=} {\cf5 text}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_text_length} {\cf1 :=} {\cf5 l_text}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\cf5 initialize_for_saving}{\line}
+{\tab}{\tab}{\tab}{\cf5 buffer}{\b\cf1 .}{\cf5 generate_paragraph_information}{\cf1  }{\cf1 (}{\cf5 l_text}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 paragraph_indexes} {\cf1 :=} {\cf5 buffer}{\b\cf1 .}{\cf5 paragraph_start_indexes}{\line}
+{\tab}{\tab}{\tab}{\cf5 paragraph_formats} {\cf1 :=} {\cf5 buffer}{\b\cf1 .}{\cf5 paragraph_formats}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 paragraph_formats} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 paragraph_indexes} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 current_lower_line_index} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\cf5 last_paragraph_change} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\cf5 buffer}{\b\cf1 .}{\cf5 internal_text}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 paragraph_formats}{\b\cf1 .}{\cf5 i_th}{\cf1  }{\cf1 (}{\cf5 current_lower_line_index}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 paragraph_formats}{\b\cf1 .}{\cf5 count} {\cf1 =} 1 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 paragraphs_exhausted} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 current_lower_line_index} {\cf1 :=} {\cf5 current_lower_line_index} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 counter} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 last_counter} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 counter} {\cf1 >=} {\cf5 l_text_length}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 current_format} {\cf1 :=} {\cf5 internal_character_format}{\cf1  }{\cf1 (}{\cf5 counter} {\cf1 +} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 counter} {\cf1 :=} {\cf5 next_change_of_character}{\cf1  }{\cf1 (}{\cf5 counter}{\cf1 ,} {\cf5 l_text_length} {\cf1 +} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 counter} {\cf1 >} {\cf5 current_paragraph_index} {\b\cf6 and} {\b\cf6 not} {\cf5 paragraphs_exhausted} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 current_paragraph_index} {\cf1 :=} {\cf5 paragraph_indexes}{\b\cf1 .}{\cf5 i_th}{\cf1  }{\cf1 (}{\cf5 current_lower_line_index}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 current_paragraph_index} {\cf1 /=} {\cf5 last_counter} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 buffer}{\b\cf1 .}{\cf5 append_text_for_rtf}{\cf1  }{\cf1 (}{\cf5 l_text}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}{\cf5 last_counter}{\cf1 ,} {\cf5 current_paragraph_index} {\cf1 -} 1{\cf1 )}{\cf1 ,} {\cf5 current_format}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 last_counter} {\cf1 :=} {\cf5 current_paragraph_index}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 current_lower_line_index} {\cf1 +} 1 {\cf1 >} {\cf5 paragraph_formats}{\b\cf1 .}{\cf5 count} {\b\cf6 or else} {\cf5 paragraph_indexes}{\b\cf1 .}{\cf5 i_th}{\cf1  }{\cf1 (}{\cf5 current_lower_line_index}{\cf1 )} {\cf1 >=} {\cf5 counter}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 buffer}{\b\cf1 .}{\cf5 internal_text}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 paragraph_formats}{\b\cf1 .}{\cf5 i_th}{\cf1  }{\cf1 (}{\cf5 current_lower_line_index}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 current_lower_line_index} {\cf1 :=} {\cf5 current_lower_line_index} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 current_paragraph_index} {\cf1 :=} {\cf5 paragraph_indexes}{\b\cf1 .}{\cf5 i_th}{\cf1  }{\cf1 (}{\cf5 current_lower_line_index}{\cf1 )}{\b\cf1 .}{\cf5 min}{\cf1  }{\cf1 (}{\cf5 counter}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 buffer}{\b\cf1 .}{\cf5 append_text_for_rtf}{\cf1  }{\cf1 (}{\cf5 l_text}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}{\cf5 paragraph_indexes}{\b\cf1 .}{\cf5 i_th}{\cf1  }{\cf1 (}{\cf5 current_lower_line_index} {\cf1 -} 1{\cf1 )}{\cf1 ,} {\cf5 current_paragraph_index} {\cf1 -} 1{\cf1 )}{\cf1 ,} {\cf5 current_format}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 last_counter} {\cf1 :=} {\cf5 current_paragraph_index}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 counter} {\cf1 >} {\cf5 paragraph_indexes}{\b\cf1 .}{\cf5 i_th}{\cf1  }{\cf1 (}{\cf5 current_lower_line_index}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 current_lower_line_index} {\cf1 :=} {\cf5 current_lower_line_index} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 current_lower_line_index} {\cf1 >} {\cf5 paragraph_indexes}{\b\cf1 .}{\cf5 count} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 paragraphs_exhausted} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 buffer}{\b\cf1 .}{\cf5 internal_text}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 paragraph_formats}{\b\cf1 .}{\cf5 i_th}{\cf1  }{\cf1 (}{\cf5 paragraph_formats}{\b\cf1 .}{\cf5 count}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 last_counter} {\cf1 <} {\cf5 counter} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 buffer}{\b\cf1 .}{\cf5 append_text_for_rtf}{\cf1  }{\cf1 (}{\cf5 l_text}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}{\cf5 last_counter}{\cf1 ,} {\cf5 counter} {\cf1 -} 1{\cf1 )}{\cf1 ,} {\cf5 current_format}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 last_counter} {\cf1 :=} {\cf5 counter}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 buffer}{\b\cf1 .}{\cf5 append_text_for_rtf}{\cf1  }{\cf1 (}{\cf5 l_text}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}{\cf5 last_counter}{\cf1 ,} {\cf1 (}{\cf5 counter} {\cf1 -} 1{\cf1 )}{\b\cf1 .}{\cf5 min}{\cf1  }{\cf1 (}{\cf5 l_text}{\b\cf1 .}{\cf5 count}{\cf1 )}{\cf1 )}{\cf1 ,} {\cf5 current_format}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 last_counter} {\cf1 :=} {\cf5 counter}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 file_access_actions_internal} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 current_load_value} {\cf1 :=} {\cf1 (}{\cf5 counter} {\cf1 *} 100{\cf1 )} {\cf1 //} {\cf1 (}{\cf5 l_text_length} {\cf1 +} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 current_load_value} {\cf1 /=} {\cf5 last_load_value} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 last_load_value} {\cf1 :=} {\cf5 current_load_value}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 file_access_actions_internal}{\b\cf1 .}{\cf5 call}{\cf1  }{\cf1 (}{\cf1 [}{\cf5 current_load_value}{\cf1 ]}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 counter_set_to_length_plus_one}{\cf1 :} {\cf5 counter} {\cf1 =} {\cf5 l_text_length} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 buffer}{\b\cf1 .}{\cf5 generate_complete_rtf_from_buffering}{\line}
+{\tab}{\tab}{\tab}{\cf5 complete_saving}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 text_file}{\b\cf1 .}{\cf5 make_with_path}{\cf1  }{\cf1 (}{\cf5 a_filename}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 text_file}{\b\cf1 .}{\cf5 open_write}{\line}
+{\tab}{\tab}{\tab}{\cf5 text_file}{\b\cf1 .}{\cf5 put_string}{\cf1  }{\cf1 (}{\cf5 buffer}{\b\cf1 .}{\cf5 internal_text}{\b\cf1 .}{\cf5 as_string_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 text_file}{\b\cf1 .}{\cf5 close}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 text_not_changed}{\cf1 :} {\cf5 text}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 text}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 caret_not_moved}{\cf1 :} {\cf5 caret_position} {\cf1 =} {\b\cf6 old} {\cf5 caret_position}{\line}
+{\tab}{\tab}{\tab}{\cf1 selection_not_changed}{\cf1 :} {\b\cf6 old} {\cf5 has_selection} {\cf1 =} {\cf5 has_selection} {\b\cf6 and} {\cf5 has_selection} {\b\cf6 implies} {\b\cf6 old} {\cf5 start_selection} {\cf1 =} {\cf5 start_selection} {\b\cf6 and} {\b\cf6 old} {\cf5 end_selection} {\cf1 =} {\cf5 end_selection}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_with_named_path} {\cf1 (}{\cf5 a_filename}{\cf1 :} {\cf4 PATH}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 text}{\cf3  and formatting of }{\cf5 Current}{\cf3  from file }{\cf5 a_filename}{\cf3  in RTF format.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 filename_not_void}{\cf1 :} {\cf5 a_filename} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 text_file}{\cf1 :} {\cf4 RAW_FILE}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_text}{\cf1 :} {\b\cf6 detachable} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf5 buffer}{\cf1 :} {\cf4 EV_RICH_TEXT_BUFFERING_STRUCTURES_I}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 initialize_for_loading}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 text_file}{\b\cf1 .}{\cf5 make_with_path}{\cf1  }{\cf1 (}{\cf5 a_filename}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 text_file}{\b\cf1 .}{\cf5 open_read}{\line}
+{\tab}{\tab}{\tab}{\cf5 text_file}{\b\cf1 .}{\cf5 read_stream}{\cf1  }{\cf1 (}{\cf5 text_file}{\b\cf1 .}{\cf5 count}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_text} {\cf1 :=} {\cf5 text_file}{\b\cf1 .}{\cf5 last_string}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_text} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 text_file}{\b\cf1 .}{\cf5 close}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 buffer}{\b\cf1 .}{\cf5 set_rich_text}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 buffer}{\b\cf1 .}{\cf5 set_with_rtf}{\cf1  }{\cf1 (}{\cf5 l_text}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 last_load_successful} {\cf1 :=} {\cf5 buffer}{\b\cf1 .}{\cf5 last_load_successful}{\line}
+{\tab}{\tab}{\tab}{\cf5 complete_loading}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_caret_position}{\cf1  }{\cf1 (}1{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 caret_reset_if_successful}{\cf1 :} {\cf5 last_load_successful} {\b\cf6 implies} {\cf5 caret_position} {\cf1 =} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 unselected_if_successful}{\cf1 :} {\cf5 last_load_successful} {\b\cf6 implies} {\b\cf6 not} {\cf5 has_selection}{\line}
+{\tab}{\tab}{\tab}{\cf1 text_not_changed_if_failed}{\cf1 :} {\b\cf6 not} {\cf5 last_load_successful} {\b\cf6 implies} {\b\cf6 old} {\cf5 text}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 text}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 caret_not_moved_if_failed}{\cf1 :} {\b\cf6 not} {\cf5 last_load_successful} {\b\cf6 implies} {\cf5 caret_position} {\cf1 =} {\b\cf6 old} {\cf5 caret_position}{\line}
+{\tab}{\tab}{\tab}{\cf1 selection_not_changed_if_failed}{\cf1 :} {\b\cf6 not} {\cf5 last_load_successful} {\b\cf6 implies} {\cf1 (}{\b\cf6 old} {\cf5 has_selection} {\cf1 =} {\cf5 has_selection} {\b\cf6 and} {\cf5 has_selection} {\b\cf6 implies} {\b\cf6 old} {\cf5 start_selection} {\cf1 =} {\cf5 start_selection} {\b\cf6 and} {\b\cf6 old} {\cf5 end_selection} {\cf1 =} {\cf5 end_selection}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 last_load_successful}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Did last call to }{\cf5 set_with_named_file}{\cf3  complete succesfully?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  If an invalid RTF file is passed, }{\cf5 Result}{\cf3  is }{\cf5 False}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 Result}{\cf3  is undefined if }{\cf5 set_with_named_file}{\cf3  not called.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 next_change_of_character} {\cf1 (}{\cf5 current_pos}{\cf1 :} {\cf4 INTEGER_32}{\cf1 ;} {\cf5 maximum_caret_pos}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 Result}{\cf3  is caret position at next change of character from }{\cf5 current_pos}{\cf3 ,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  checking maximum caret position }{\cf5 maximum_caret_pos}{\cf3 . By passing }{\cf5 maximum_caret_pos}{\cf3  as}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  an argument, it prevents querying from the rich text constantly as it can be}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  precomputed instead.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_position}{\cf1 :} {\cf5 current_pos} {\cf1 <} {\cf5 maximum_caret_pos}{\line}
+{\tab}{\tab}{\tab}{\cf1 maximum_pos_valid}{\cf1 :} {\cf5 maximum_caret_pos} {\cf1 <=} {\cf5 text_length} {\cf1 +} 1{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 counter}{\cf1 ,} {\cf5 last_false_pos}{\cf1 ,} {\cf5 current_step}{\cf1 ,} {\cf5 value_finder}{\cf1 ,} {\cf5 last_contiguous_position}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 counter} {\cf1 :=} {\cf5 current_pos}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 current_step} {\cf1 :=} {\cf5 Default_step}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 value_finder} {\cf1 :=} {\cf5 Default_step}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 last_false_pos} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 (}{\cf5 last_contiguous_position} {\cf1 -} {\cf5 last_false_pos}{\cf1 )}{\b\cf1 .}{\cf5 abs} {\cf1 =} 1 {\b\cf6 or} {\cf5 counter} {\cf1 =} {\cf5 maximum_caret_pos}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 counter} {\cf1 +} {\cf5 current_step} {\cf1 <=} {\cf5 maximum_caret_pos} {\b\cf6 and then} {\cf5 internal_character_format_contiguous}{\cf1  }{\cf1 (}{\cf5 counter}{\cf1 ,} {\cf5 counter} {\cf1 +} {\cf5 current_step}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 last_contiguous_position} {\cf1 :=} {\cf5 current_step}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 value_finder} {\cf1 =} {\cf5 Default_step} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 counter} {\cf1 :=} {\cf1 (}{\cf5 counter} {\cf1 +} {\cf5 Default_step} {\cf1 -} 1{\cf1 )}{\b\cf1 .}{\cf5 min}{\cf1  }{\cf1 (}{\cf5 maximum_caret_pos}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 current_step} {\cf1 :=} {\cf5 Default_step}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 value_finder} {\cf1 :=} {\cf5 value_finder} {\cf1 //} 2{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 current_step} {\cf1 :=} {\cf5 current_step} {\cf1 +} {\cf5 value_finder}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 last_false_pos} {\cf1 :=} {\cf5 current_step}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 value_finder} {\cf1 :=} {\cf5 value_finder} {\cf1 //} 2{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 current_step} {\cf1 :=} {\cf5 current_step} {\cf1 -} {\cf5 value_finder}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 counter} {\cf1 +} {\cf5 last_contiguous_position}{\cf1 )}{\b\cf1 .}{\cf5 min}{\cf1  }{\cf1 (}{\cf5 maximum_caret_pos}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_valid}{\cf1 :} {\b\cf6 Result} {\cf1 <=} {\cf5 maximum_caret_pos}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Default_step}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Default step used when buffering into RTF.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 internal_character_format_contiguous} {\cf1 (}{\cf5 start_index}{\cf1 ,} {\cf5 end_index}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is formatting from caret position }{\cf5 start_index}{\cf3  to }{\cf5 end_index}{\cf3  contiguous?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Internal version which permits optimizations as caret position and selection}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  does not need to be restored.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_character_index}{\cf1 :} {\cf5 start_index} {\cf1 >=} 1 {\b\cf6 and} {\cf5 end_index} {\cf1 <=} {\cf5 text_length} {\cf1 +} 1 {\b\cf6 and} {\cf5 start_index} {\cf1 <=} {\cf5 end_index}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 internal_character_format} {\cf1 (}{\cf5 pos}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 EV_CHARACTER_FORMAT_I}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 Result}{\cf3  is character format at position }{\cf5 pos}{\cf3 . On some platforms}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  this may be optimized to take the selected character format and therefore}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  should only be used by }{\cf5 next_change_of_character}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_character_index}{\cf1 :} {\cf5 pos} {\cf1 >=} 1 {\b\cf6 and} {\cf5 pos} {\cf1 <=} {\cf5 text_length} {\cf1 +} 1{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 internal_paragraph_format_contiguous} {\cf1 (}{\cf5 start_position}{\cf1 ,} {\cf5 end_position}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is paragraph formatting from caret_position }{\cf5 start_position}{\cf3  to }{\cf5 end_position}{\cf3  contiguous?}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_character_index}{\cf1 :} {\cf5 start_position} {\cf1 >=} 1 {\b\cf6 and} {\cf5 end_position} {\cf1 <=} {\cf5 text_length} {\cf1 +} 1 {\b\cf6 and} {\cf5 start_position} {\cf1 <=} {\cf5 end_position}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 internal_paragraph_format} {\cf1 (}{\cf5 caret_index}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 EV_PARAGRAPH_FORMAT}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 Result}{\cf3  is paragraph_format at caret position }{\cf5 caret_index}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_character_index}{\cf1 :} {\cf5 caret_index} {\cf1 >=} 1 {\b\cf6 and} {\cf5 caret_index} {\cf1 <=} {\cf5 text_length} {\cf1 +} 1{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 initialize_for_saving}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Initialize }{\cf5 Current}{\cf3  for save operations, by performing}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  optimizations that prevent the control from slowing down due to}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  unecessary optimizations.}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 complete_saving}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Restore }{\cf5 Current}{\cf3  back to its default state before last call}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to }{\cf5 initialize_for_saving}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 initialize_for_loading}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Initialize }{\cf5 Current}{\cf3  for load operations, by performing}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  optimizations that prevent the control from slowing down due to}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  unecessary optimizations.}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 complete_loading}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Restore }{\cf5 Current}{\cf3  back to its default state before last call}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to }{\cf5 initialize_for_loading}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 font_char_set} {\cf1 (}{\cf5 a_font}{\cf1 :} {\cf4 EV_FONT}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 Result}{\cf3  is char set of font }{\cf5 a_font}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_font_not_void}{\cf1 :} {\cf5 a_font} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 update_tab_positions} {\cf1 (}{\cf5 value}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Update tab widths based on contents of }{\cf5 tab_positions}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_ANY}{\cf1 ,} {\cf4 EV_ANY_I}{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 interface}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_RICH_TEXT}{\line}
+{\tab}{\tab}{\b\cf6 note}{\line}
+{\tab}{\tab}{\tab}option: stable{\line}
+{\tab}{\tab}{\b\cf6 attribute}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 note}{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 1984-2013, Eiffel Software and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"{\line}
+{\tab}{\cf1 source}{\cf1 :} "[{\line}
+{\tab}{\tab}Eiffel Software{\line}
+{\tab}{\tab}5949 Hollister Ave., Goleta, CA 93117 USA{\line}
+{\tab}{\tab}Telephone 805-685-1006, Fax 805-685-6869{\line}
+{\tab}{\tab}Website http://www.eiffel.com{\line}
+{\tab}{\tab}Customer support http://support.eiffel.com{\line}
+{\tab}]"{\line}
+{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 EV_RICH_TEXT_I}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

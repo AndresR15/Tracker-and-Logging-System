@@ -1,0 +1,652 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Vision window. GTK+ implementation.&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2017-03-27 13:31:29 -0700 (Mon, 27 Mar 2017) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 100058 $&quot;</string>
+
+<keyword>class</keyword> 
+	<class><location>../implementation_gtk/ev_window_imp.xml</location>EV_WINDOW_IMP</class>
+
+<keyword>inherit</keyword>
+	<class><location>../implementation_interface/ev_window_i.xml</location>EV_WINDOW_I</class>
+		<keyword>undefine</keyword>
+			<feature><location>../implementation_gtk/ev_container_imp.xml#f_propagate_foreground_color</location>propagate_foreground_color</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_container_imp.xml#f_propagate_background_color</location>propagate_background_color</feature>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_gtk/ev_window_imp.xml#f_interface</location>interface</feature>
+		<keyword>end</keyword>
+
+	<class><location>../implementation_gtk/ev_cell_imp.xml</location>EV_CELL_IMP</class>
+		<keyword>undefine</keyword>
+			<feature><location>../implementation_gtk/ev_gtk_window_imp.xml#f_x_position</location>x_position</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_gtk_window_imp.xml#f_y_position</location>y_position</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_gtk_window_imp.xml#f_screen_x</location>screen_x</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_gtk_window_imp.xml#f_screen_y</location>screen_y</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_gtk_widget_imp.xml#f_minimum_width</location>minimum_width</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_gtk_widget_imp.xml#f_minimum_height</location>minimum_height</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_gtk_window_imp.xml#f_width</location>width</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_gtk_window_imp.xml#f_height</location>height</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_window_imp.xml#f_show</location>show</feature><symbol>,</symbol>
+			<feature><location>../implementation_interface/ev_window_i.xml#f_has</location>has</feature><symbol>,</symbol>
+			<feature><location>../implementation_interface/ev_window_i.xml#f_update_for_pick_and_drop</location>update_for_pick_and_drop</feature>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_gtk/ev_window_imp.xml#f_interface</location>interface</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_window_imp.xml#f_make</location>make</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_window_imp.xml#f_old_make</location>old_make</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_window_imp.xml#f_on_size_allocate</location>on_size_allocate</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_window_imp.xml#f_hide</location>hide</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_window_imp.xml#f_on_widget_mapped</location>on_widget_mapped</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_window_imp.xml#f_on_widget_unmapped</location>on_widget_unmapped</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_window_imp.xml#f_destroy</location>destroy</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_window_imp.xml#f_has_focus</location>has_focus</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_window_imp.xml#f_on_focus_changed</location>on_focus_changed</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_window_imp.xml#f_container_widget</location>container_widget</feature>
+		<keyword>end</keyword>
+
+	<class><location>../implementation_gtk/ev_gtk_window_imp.xml</location>EV_GTK_WINDOW_IMP</class>
+		<keyword>undefine</keyword>
+			<feature><location>../implementation_gtk/ev_window_imp.xml#f_make</location>make</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_window_imp.xml#f_destroy</location>destroy</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_widget_imp.xml#f_parent_imp</location>parent_imp</feature>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_gtk/ev_window_imp.xml#f_interface</location>interface</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_window_imp.xml#f_has_focus</location>has_focus</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_window_imp.xml#f_on_size_allocate</location>on_size_allocate</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_window_imp.xml#f_show</location>show</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_window_imp.xml#f_hide</location>hide</feature>
+		<keyword>end</keyword>
+
+<keyword>create</keyword> 
+	<feature><location>../implementation_gtk/ev_window_imp.xml#f_make</location>make</feature>
+
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Initialization</comment>
+
+	<anchor>f_old_make</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_old_make</location>old_make</feature> <symbol>(</symbol><local>an_interface</local><symbol>:</symbol> <keyword>attached</keyword> <keyword>like</keyword> <feature><location>../implementation_gtk/ev_window_imp.xml#f_interface</location>interface</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Create the window.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_interface/ev_any_i.xml#f_assign_interface</location>assign_interface</feature><symbol> </symbol><symbol>(</symbol><local>an_interface</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_new_gtk_window</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_new_gtk_window</location>new_gtk_window</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Return a new gtk window object for </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_window_new</location>gtk_window_new</feature> <symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_window_toplevel_enum</location>gtk_window_toplevel_enum</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_make</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_make</location>make</feature>
+			<comment>--</comment><comment> Create the vertical box </comment><feature><location>../implementation_gtk/ev_window_imp.xml#f_vbox</location>vbox</feature><comment> and horizontal box </comment><feature><location>../implementation_gtk/ev_window_imp.xml#f_container_widget</location>container_widget</feature>
+			<comment>--</comment><comment> to put in the window.</comment>
+			<comment>--</comment><comment> The </comment><feature><location>../implementation_gtk/ev_window_imp.xml#f_vbox</location>vbox</feature><comment> will be able to contain the menu bar, the </comment><feature><location>../implementation_gtk/ev_window_imp.xml#f_container_widget</location>container_widget</feature>
+			<comment>--</comment><comment> and the status bar.</comment>
+			<comment>--</comment><comment> The </comment><feature><location>../implementation_gtk/ev_window_imp.xml#f_container_widget</location>container_widget</feature><comment> will contain the child of the window.</comment>
+		<keyword>local</keyword>
+			<local>app_imp</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature>
+			<local>l_gtk_marshal</local><symbol>:</symbol> <class><location>../implementation_gtk/ev_gtk_callback_marshal.xml</location>EV_GTK_CALLBACK_MARSHAL</class>
+			<local>l_c_object</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>do</keyword>
+			<feature><location>../implementation_interface/ev_any_i.xml#f_set_is_initialized</location>set_is_initialized</feature><symbol> </symbol><symbol>(</symbol><keyword>False</keyword><symbol>)</symbol>
+			<local>app_imp</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature>
+			<feature><location>../implementation_gtk/ev_any_imp.xml#f_set_c_object</location>set_c_object</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_window_imp.xml#f_new_gtk_window</location>new_gtk_window</feature><symbol>)</symbol>
+			<local>l_c_object</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature>
+			<keyword>create</keyword> <feature><location>../implementation_interface/ev_window_i.xml#f_accel_list</location>accel_list</feature><dot>.</dot><feature><include>False</include>make</feature><symbol> </symbol><symbol>(</symbol><number>10</number><symbol>)</symbol>
+			<keyword>create</keyword> <feature><location>../implementation_interface/ev_window_i.xml#f_upper_bar</location>upper_bar</feature>
+			<keyword>create</keyword> <feature><location>../implementation_interface/ev_window_i.xml#f_lower_bar</location>lower_bar</feature>
+			<feature><location>../implementation_gtk/ev_window_imp.xml#f_maximum_width</location>maximum_width</feature> <symbol>:=</symbol> <number>32000</number>
+			<feature><location>../implementation_gtk/ev_window_imp.xml#f_maximum_height</location>maximum_height</feature> <symbol>:=</symbol> <number>32000</number>
+			<local>l_gtk_marshal</local> <symbol>:=</symbol> <local>app_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_gtk_marshal</location>gtk_marshal</feature>
+			<feature><location>../implementation_gtk/ev_window_imp.xml#f_initialize_client_area</location>initialize_client_area</feature>
+			<local>l_gtk_marshal</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_callback_marshal.xml#f_signal_connect</location>signal_connect</feature><symbol> </symbol><symbol>(</symbol><local>l_c_object</local><symbol>,</symbol> <local>app_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_event_strings.xml#f_set_focus_event_string</location>Set_focus_event_string</feature><symbol>,</symbol> <keyword>agent</keyword> <local>l_gtk_marshal</local><dot>.</dot><feature><location>../implementation_gtk/ev_intermediary_routines.xml#f_on_set_focus_event_intermediary</location>on_set_focus_event_intermediary</feature><symbol> </symbol><symbol>(</symbol><feature><include>False</include>internal_id</feature><symbol>,</symbol> <symbol>?</symbol><symbol>)</symbol><symbol>,</symbol> <local>l_gtk_marshal</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_callback_marshal.xml#f_set_focus_event_translate_agent</location>Set_focus_event_translate_agent</feature><symbol>,</symbol> <keyword>True</keyword><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_window_set_default_size</location>gtk_window_set_default_size</feature> <symbol>(</symbol><local>l_c_object</local><symbol>,</symbol> <number>1</number><symbol>,</symbol> <number>1</number><symbol>)</symbol>
+			<keyword><location>../implementation_gtk/ev_cell_imp.xml#f_make</location>Precursor</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_cell_imp.xml</location>EV_CELL_IMP</class><symbol>}</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_window_set_decorations</location>gdk_window_set_decorations</feature> <symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_widget_struct_window</location>gtk_widget_struct_window</feature> <symbol>(</symbol><local>l_c_object</local><symbol>)</symbol><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_window_imp.xml#f_default_wm_decorations</location>default_wm_decorations</feature><symbol>)</symbol>
+			<feature><location>../implementation_interface/ev_window_i.xml#f_internal_is_border_enabled</location>internal_is_border_enabled</feature> <symbol>:=</symbol> <keyword>True</keyword>
+			<feature><location>../implementation_gtk/ev_gtk_window_imp.xml#f_configure_event_pending</location>configure_event_pending</feature> <symbol>:=</symbol> <keyword>True</keyword>
+			<feature><location>../implementation_interface/ev_window_i.xml#f_user_can_resize</location>user_can_resize</feature> <symbol>:=</symbol> <keyword>True</keyword>
+			<feature><location>../implementation_interface/ev_any_i.xml#f_set_is_initialized</location>set_is_initialized</feature><symbol> </symbol><symbol>(</symbol><keyword>True</keyword><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_has_focus</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_has_focus</location>has_focus</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Does </comment><quoted>Current</quoted><comment> have the keyboard focus?</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_window_imp.xml#f_internal_has_focus</location>internal_has_focus</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_maximum_width</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_maximum_width</location>maximum_width</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Maximum width that application wishes widget</comment>
+			<comment>--</comment><comment> instance to have.</comment>
+
+	<anchor>f_maximum_height</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_maximum_height</location>maximum_height</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Maximum height that application wishes widget</comment>
+			<comment>--</comment><comment> instance to have.</comment>
+
+	<anchor>f_title</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_title</location>title</feature><symbol>:</symbol> <class><include>False</include>STRING_32</class>
+			<comment>--</comment><comment> Application name to be displayed by</comment>
+			<comment>--</comment><comment> the window manager.</comment>
+		<keyword>local</keyword>
+			<local>p</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>a_cs</local><symbol>:</symbol> <class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class>
+		<keyword>do</keyword>
+			<local>p</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_window_struct_title</location>gtk_window_struct_title</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>)</symbol>
+			<keyword>if</keyword> <local>p</local> <symbol>/=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature> <keyword>then</keyword>
+				<keyword>create</keyword> <local>a_cs</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_share_from_pointer</location>share_from_pointer</feature><symbol> </symbol><symbol>(</symbol><local>p</local><symbol>)</symbol>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>a_cs</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_string</location>string</feature>
+				<keyword>if</keyword> <keyword>Result</keyword><dot>.</dot><feature><include>False</include>same_string_general</feature><symbol> </symbol><symbol>(</symbol>&quot;%T&quot;<symbol>)</symbol> <keyword>then</keyword>
+					<keyword>create</keyword> <keyword>Result</keyword><dot>.</dot><feature><include>False</include>make_empty</feature>
+				<keyword>end</keyword>
+			<keyword>else</keyword>
+				<keyword>create</keyword> <keyword>Result</keyword><dot>.</dot><feature><include>False</include>make_empty</feature>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_menu_bar</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_menu_bar</location>menu_bar</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_menu_bar.xml</location>EV_MENU_BAR</class>
+			<comment>--</comment><comment> Horizontal bar at top of client area that contains menu's.</comment>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status setting</comment>
+
+	<anchor>f_add_transient_child</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_add_transient_child</location>add_transient_child</feature> <symbol>(</symbol><local>a_child</local><symbol>:</symbol> <class><location>../implementation_gtk/ev_gtk_window_imp.xml</location>EV_GTK_WINDOW_IMP</class><symbol>)</symbol>
+			<comment>--</comment><comment> Add </comment><quoted>a_child</quoted><comment> as transient child for </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>a_child_not_void</tag><symbol>:</symbol> <local>a_child</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>do</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_window_set_transient_for</location>gtk_window_set_transient_for</feature> <symbol>(</symbol><local>a_child</local><dot>.</dot><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_remove_transient_child</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_remove_transient_child</location>remove_transient_child</feature> <symbol>(</symbol><local>a_child</local><symbol>:</symbol> <class><location>../implementation_gtk/ev_gtk_window_imp.xml</location>EV_GTK_WINDOW_IMP</class><symbol>)</symbol>
+			<comment>--</comment><comment> Remove </comment><quoted>a_child</quoted><comment> as transient child for </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>a_child_not_void</tag><symbol>:</symbol> <local>a_child</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>do</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_window_set_transient_for</location>gtk_window_set_transient_for</feature> <symbol>(</symbol><local>a_child</local><dot>.</dot><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>,</symbol> <feature><include>False</include>default_pointer</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_internal_disable_border</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_internal_disable_border</location>internal_disable_border</feature>
+			<comment>--</comment><comment> Ensure no border is displayed around </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>local</keyword>
+			<local>l_decor</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<local>l_x</local><symbol>,</symbol> <local>l_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+		<keyword>do</keyword>
+			<local>l_x</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_gtk_window_imp.xml#f_x_position</location>x_position</feature>
+			<local>l_y</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_gtk_window_imp.xml#f_y_position</location>y_position</feature>
+			<local>l_decor</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_gtk_window_imp.xml#f_default_wm_decorations</location>default_wm_decorations</feature><dot>.</dot><feature><include>False</include>bit_and</feature><symbol> </symbol><symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_decor_border_enum</location>gdk_decor_border_enum</feature><dot>.</dot><feature><include>False</include>bit_not</feature><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_window_set_decorations</location>gdk_window_set_decorations</feature> <symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_widget_struct_window</location>gtk_widget_struct_window</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>)</symbol><symbol>,</symbol> <local>l_decor</local><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_gtk_window_imp.xml#f_set_position</location>set_position</feature><symbol> </symbol><symbol>(</symbol><local>l_x</local><symbol>,</symbol> <local>l_y</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_internal_enable_border</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_internal_enable_border</location>internal_enable_border</feature>
+			<comment>--</comment><comment> Ensure a border is displayed around </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>local</keyword>
+			<local>l_decor</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+		<keyword>do</keyword>
+			<local>l_decor</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_gtk_window_imp.xml#f_default_wm_decorations</location>default_wm_decorations</feature><dot>.</dot><feature><include>False</include>bit_or</feature><symbol> </symbol><symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_decor_border_enum</location>gdk_decor_border_enum</feature><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_window_set_decorations</location>gdk_window_set_decorations</feature> <symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_widget_struct_window</location>gtk_widget_struct_window</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>)</symbol><symbol>,</symbol> <local>l_decor</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_disable_user_resize_called</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_disable_user_resize_called</location>disable_user_resize_called</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Has </comment><feature><location>../implementation_gtk/ev_window_imp.xml#f_disable_user_resize</location>disable_user_resize</feature><comment> been called?</comment>
+
+	<anchor>f_disable_user_resize</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_disable_user_resize</location>disable_user_resize</feature>
+			<comment>--</comment><comment> Forbid the resize of the window.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_window_imp.xml#f_disable_user_resize_called</location>disable_user_resize_called</feature> <symbol>:=</symbol> <keyword>True</keyword>
+			<feature><location>../implementation_interface/ev_window_i.xml#f_user_can_resize</location>user_can_resize</feature> <symbol>:=</symbol> <keyword>False</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_gtk_widget_imp.xml#f_is_displayed</location>is_displayed</feature> <keyword>then</keyword>
+				<feature><location>../implementation_gtk/ev_gtk_window_imp.xml#f_forbid_resize</location>forbid_resize</feature>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_enable_user_resize</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_enable_user_resize</location>enable_user_resize</feature>
+			<comment>--</comment><comment> Allow the resize of the window.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <keyword>not</keyword> <feature><location>../implementation_interface/ev_window_i.xml#f_user_can_resize</location>user_can_resize</feature> <keyword>then</keyword>
+				<feature><location>../implementation_gtk/ev_window_imp.xml#f_disable_user_resize_called</location>disable_user_resize_called</feature> <symbol>:=</symbol> <keyword>False</keyword>
+				<feature><location>../implementation_interface/ev_window_i.xml#f_user_can_resize</location>user_can_resize</feature> <symbol>:=</symbol> <keyword>True</keyword>
+				<keyword>if</keyword> <feature><location>../implementation_gtk/ev_gtk_widget_imp.xml#f_is_displayed</location>is_displayed</feature> <keyword>then</keyword>
+					<feature><location>../implementation_gtk/ev_window_imp.xml#f_allow_resize</location>allow_resize</feature>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_allow_resize</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_allow_resize</location>allow_resize</feature>
+			<comment>--</comment><comment> Allow the resize of the window.</comment>
+		<keyword>local</keyword>
+			<local>l_geometry</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>do</keyword>
+			<local>l_geometry</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_c_gdk_geometry_struct_allocate</location>c_gdk_geometry_struct_allocate</feature>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_set_gdk_geometry_struct_max_width</location>set_gdk_geometry_struct_max_width</feature> <symbol>(</symbol><local>l_geometry</local><symbol>,</symbol> <feature><location>../implementation_gtk/ev_window_imp.xml#f_maximum_width</location>maximum_width</feature><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_set_gdk_geometry_struct_max_height</location>set_gdk_geometry_struct_max_height</feature> <symbol>(</symbol><local>l_geometry</local><symbol>,</symbol> <feature><location>../implementation_gtk/ev_window_imp.xml#f_maximum_height</location>maximum_height</feature><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_set_gdk_geometry_struct_min_width</location>set_gdk_geometry_struct_min_width</feature> <symbol>(</symbol><local>l_geometry</local><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_widget_imp.xml#f_minimum_width</location>minimum_width</feature><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_set_gdk_geometry_struct_min_height</location>set_gdk_geometry_struct_min_height</feature> <symbol>(</symbol><local>l_geometry</local><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_widget_imp.xml#f_minimum_height</location>minimum_height</feature><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_window_set_geometry_hints</location>gtk_window_set_geometry_hints</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature><symbol>,</symbol> <local>l_geometry</local><symbol>,</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_hint_max_size_enum</location>gdk_hint_max_size_enum</feature> <symbol>|</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_hint_min_size_enum</location>gdk_hint_min_size_enum</feature><symbol>)</symbol>
+			<local>l_geometry</local><dot>.</dot><feature><include>False</include>memory_free</feature>
+			<feature><location>../implementation_gtk/ev_window_imp.xml#f_internal_enable_border</location>internal_enable_border</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_show</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_show</location>show</feature>
+			<comment>--</comment><comment> Map the Window to the screen.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <keyword>not</keyword> <feature><location>../implementation_gtk/ev_gtk_widget_imp.xml#f_is_show_requested</location>is_show_requested</feature> <keyword>then</keyword>
+				<feature><location>../implementation_gtk/ev_window_imp.xml#f_call_show_actions</location>call_show_actions</feature> <symbol>:=</symbol> <keyword>True</keyword>
+				<keyword>if</keyword> <feature><location>../implementation_gtk/ev_window_imp.xml#f_disable_user_resize_called</location>disable_user_resize_called</feature> <keyword>then</keyword>
+					<keyword>if</keyword> <keyword>not</keyword> <feature><location>../implementation_interface/ev_window_i.xml#f_user_can_resize</location>user_can_resize</feature> <keyword>then</keyword>
+						<feature><location>../implementation_gtk/ev_gtk_window_imp.xml#f_forbid_resize</location>forbid_resize</feature>
+					<keyword>else</keyword>
+						<feature><location>../implementation_gtk/ev_window_imp.xml#f_allow_resize</location>allow_resize</feature>
+					<keyword>end</keyword>
+				<keyword>end</keyword>
+				<keyword><location>../implementation_gtk/ev_gtk_window_imp.xml#f_show</location>Precursor</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_gtk_window_imp.xml</location>EV_GTK_WINDOW_IMP</class><symbol>}</symbol>
+			<keyword>end</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_gtk_window_imp.xml#f_blocking_window</location>blocking_window</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<feature><location>../implementation_gtk/ev_gtk_window_imp.xml#f_set_blocking_window</location>set_blocking_window</feature><symbol> </symbol><symbol>(</symbol><keyword>Void</keyword><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_call_show_actions</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_call_show_actions</location>call_show_actions</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Should the show actions be called?</comment>
+
+	<anchor>f_call_hide_actions</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_call_hide_actions</location>call_hide_actions</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Should the hide actions be called?</comment>
+
+	<anchor>f_hide</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_hide</location>hide</feature>
+			<comment>--</comment><comment> Unmap the Window from the screen.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_gtk_widget_imp.xml#f_is_show_requested</location>is_show_requested</feature> <keyword>then</keyword>
+				<feature><location>../implementation_gtk/ev_window_imp.xml#f_call_hide_actions</location>call_hide_actions</feature> <symbol>:=</symbol> <keyword>True</keyword>
+				<feature><location>../implementation_gtk/ev_pick_and_dropable_imp.xml#f_disable_capture</location>disable_capture</feature>
+				<keyword><location>../implementation_gtk/ev_gtk_window_imp.xml#f_hide</location>Precursor</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_gtk_window_imp.xml</location>EV_GTK_WINDOW_IMP</class><symbol>}</symbol>
+				<keyword>if</keyword> <feature><location>../implementation_gtk/ev_window_imp.xml#f_disable_user_resize_called</location>disable_user_resize_called</feature> <keyword>then</keyword>
+					<feature><location>../implementation_gtk/ev_window_imp.xml#f_allow_resize</location>allow_resize</feature>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Element change</comment>
+
+	<anchor>f_set_maximum_width</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_set_maximum_width</location>set_maximum_width</feature> <symbol>(</symbol><local>a_max_width</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><feature><location>../implementation_gtk/ev_window_imp.xml#f_maximum_width</location>maximum_width</feature><comment> to </comment><quoted>a_max_width</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_window_imp.xml#f_internal_set_maximum_size</location>internal_set_maximum_size</feature><symbol> </symbol><symbol>(</symbol><local>a_max_width</local><symbol>,</symbol> <feature><location>../implementation_gtk/ev_window_imp.xml#f_maximum_height</location>maximum_height</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_set_maximum_height</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_set_maximum_height</location>set_maximum_height</feature> <symbol>(</symbol><local>a_max_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><feature><location>../implementation_gtk/ev_window_imp.xml#f_maximum_height</location>maximum_height</feature><comment> to </comment><quoted>a_max_height</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_window_imp.xml#f_internal_set_maximum_size</location>internal_set_maximum_size</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_window_imp.xml#f_maximum_width</location>maximum_width</feature><symbol>,</symbol> <local>a_max_height</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_set_title</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_set_title</location>set_title</feature> <symbol>(</symbol><local>new_title</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><feature><location>../implementation_gtk/ev_window_imp.xml#f_title</location>title</feature><comment> to </comment><quoted>new_title</quoted><comment>.</comment>
+		<keyword>local</keyword>
+			<local>a_cs</local><symbol>:</symbol> <class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <local>new_title</local><dot>.</dot><feature><include>False</include>is_empty</feature> <keyword>then</keyword>
+				<local>a_cs</local> <symbol>:=</symbol> <keyword>create</keyword> <symbol>{</symbol><keyword>attached</keyword> <class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_set_with_eiffel_string</location>set_with_eiffel_string</feature><symbol> </symbol><symbol>(</symbol>&quot;%T&quot;<symbol>)</symbol>
+			<keyword>else</keyword>
+				<local>a_cs</local> <symbol>:=</symbol> <keyword>create</keyword> <symbol>{</symbol><keyword>attached</keyword> <class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_set_with_eiffel_string</location>set_with_eiffel_string</feature><symbol> </symbol><symbol>(</symbol><local>new_title</local><symbol>)</symbol>
+			<keyword>end</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_window_set_title</location>gtk_window_set_title</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>,</symbol> <local>a_cs</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_item</location>item</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_set_menu_bar</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_set_menu_bar</location>set_menu_bar</feature> <symbol>(</symbol><local>a_menu_bar</local><symbol>:</symbol> <class><location>../interface/ev_menu_bar.xml</location>EV_MENU_BAR</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><feature><location>../implementation_gtk/ev_window_imp.xml#f_menu_bar</location>menu_bar</feature><comment> to </comment><quoted>a_menu_bar</quoted><comment>.</comment>
+		<keyword>local</keyword>
+			<local>mb_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_menu_bar_imp.xml</location>EV_MENU_BAR_IMP</class>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_window_imp.xml#f_menu_bar</location>menu_bar</feature> <symbol>:=</symbol> <local>a_menu_bar</local>
+			<local>mb_imp</local> <symbol>?=</symbol> <local>a_menu_bar</local><dot>.</dot><feature><location>../interface/ev_menu_bar.xml#f_implementation</location>implementation</feature>
+			<keyword>check</keyword>
+					<local>mb_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<local>mb_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_menu_bar_imp.xml#f_set_parent_window_imp</location>set_parent_window_imp</feature><symbol> </symbol><symbol>(</symbol><keyword>Current</keyword><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_box_pack_start</location>gtk_box_pack_start</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_window_imp.xml#f_vbox</location>vbox</feature><symbol>,</symbol> <local>mb_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_menu_item_list_imp.xml#f_list_widget</location>list_widget</feature><symbol>,</symbol> <keyword>False</keyword><symbol>,</symbol> <keyword>True</keyword><symbol>,</symbol> <number>0</number><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_box_reorder_child</location>gtk_box_reorder_child</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_window_imp.xml#f_vbox</location>vbox</feature><symbol>,</symbol> <local>mb_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_menu_item_list_imp.xml#f_list_widget</location>list_widget</feature><symbol>,</symbol> <number>0</number><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_remove_menu_bar</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_remove_menu_bar</location>remove_menu_bar</feature>
+			<comment>--</comment><comment> Set </comment><feature><location>../implementation_gtk/ev_window_imp.xml#f_menu_bar</location>menu_bar</feature><comment> to </comment><quoted>Void</quoted><comment>.</comment>
+		<keyword>local</keyword>
+			<local>mb_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_menu_bar_imp.xml</location>EV_MENU_BAR_IMP</class>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../implementation_gtk/ev_window_imp.xml#f_menu_bar</location>menu_bar</feature> <keyword>as</keyword> l_menu_bar <keyword>then</keyword>
+				<local>mb_imp</local> <symbol>?=</symbol> <local>l_menu_bar</local><dot>.</dot><feature><location>../interface/ev_menu_bar.xml#f_implementation</location>implementation</feature>
+				<keyword>check</keyword>
+						<local>mb_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+				<keyword>then</keyword>
+				<keyword>end</keyword>
+				<local>mb_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_menu_bar_imp.xml#f_remove_parent_window</location>remove_parent_window</feature>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_container_remove</location>gtk_container_remove</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_window_imp.xml#f_vbox</location>vbox</feature><symbol>,</symbol> <local>mb_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_menu_item_list_imp.xml#f_list_widget</location>list_widget</feature><symbol>)</symbol>
+			<keyword>end</keyword>
+			<feature><location>../implementation_gtk/ev_window_imp.xml#f_menu_bar</location>menu_bar</feature> <symbol>:=</symbol> <keyword>Void</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Accelerators</comment>
+
+	<anchor>f_connect_accelerator</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_connect_accelerator</location>connect_accelerator</feature> <symbol>(</symbol><local>an_accel</local><symbol>:</symbol> <class><location>../interface/ev_accelerator.xml</location>EV_ACCELERATOR</class><symbol>)</symbol>
+			<comment>--</comment><comment> Connect key combination </comment><quoted>an_accel</quoted><comment> to this window.</comment>
+		<keyword>local</keyword>
+			<local>acc_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_accelerator_imp.xml</location>EV_ACCELERATOR_IMP</class>
+			<local>a_property</local><symbol>,</symbol> <local>a_origin</local><symbol>,</symbol> <local>a_value</local><symbol>:</symbol> <class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class>
+			<local>l_override_key</local><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>STRING_8</class>
+		<keyword>do</keyword>
+			<local>acc_imp</local> <symbol>?=</symbol> <local>an_accel</local><dot>.</dot><feature><location>../interface/ev_accelerator.xml#f_implementation</location>implementation</feature>
+			<keyword>check</keyword>
+					<local>acc_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<feature><location>../implementation_interface/ev_window_i.xml#f_accel_list</location>accel_list</feature><dot>.</dot><feature><include>False</include>put</feature><symbol> </symbol><symbol>(</symbol><local>an_accel</local><symbol>,</symbol> <local>acc_imp</local><dot>.</dot><feature><location>../implementation_interface/ev_accelerator_i.xml#f_hash_code</location>hash_code</feature><symbol>)</symbol>
+			<keyword>if</keyword> <local>acc_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_accelerator_imp.xml#f_key</location>key</feature><dot>.</dot><feature><location>../interface/ev_key.xml#f_code</location>code</feature> <symbol>=</symbol> <symbol>{</symbol><class><location>../interface/ev_key_constants.xml</location>EV_KEY_CONSTANTS</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_key_constants.xml#f_key_f10</location>key_f10</feature> <keyword>then</keyword>
+				<local>l_override_key</local> <symbol>:=</symbol> <keyword>once</keyword> &quot;F10&quot;
+			<keyword>elseif</keyword> <local>acc_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_accelerator_imp.xml#f_key</location>key</feature><dot>.</dot><feature><location>../interface/ev_key.xml#f_code</location>code</feature> <symbol>=</symbol> <symbol>{</symbol><class><location>../interface/ev_key_constants.xml</location>EV_KEY_CONSTANTS</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_key_constants.xml#f_key_f11</location>key_f11</feature> <keyword>then</keyword>
+				<local>l_override_key</local> <symbol>:=</symbol> <keyword>once</keyword> &quot;F11&quot;
+			<keyword>elseif</keyword> <local>acc_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_accelerator_imp.xml#f_key</location>key</feature><dot>.</dot><feature><location>../interface/ev_key.xml#f_code</location>code</feature> <symbol>=</symbol> <symbol>{</symbol><class><location>../interface/ev_key_constants.xml</location>EV_KEY_CONSTANTS</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_key_constants.xml#f_key_f12</location>key_f12</feature> <keyword>then</keyword>
+				<local>l_override_key</local> <symbol>:=</symbol> <keyword>once</keyword> &quot;F12&quot;
+			<keyword>end</keyword>
+			<keyword>if</keyword> <local>l_override_key</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<local>a_property</local> <symbol>:=</symbol> <keyword>create</keyword> <symbol>{</symbol><keyword>attached</keyword> <class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_set_with_eiffel_string</location>set_with_eiffel_string</feature><symbol> </symbol><symbol>(</symbol><keyword>once</keyword> &quot;gtk-menu-bar-accel&quot;<symbol>)</symbol>
+				<local>a_value</local> <symbol>:=</symbol> <keyword>create</keyword> <symbol>{</symbol><keyword>attached</keyword> <class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_set_with_eiffel_string</location>set_with_eiffel_string</feature><symbol> </symbol><symbol>(</symbol><keyword>once</keyword> &quot;&lt;Shift&gt;&lt;Control&gt;&lt;Mod1&gt;&lt;Mod2&gt;&lt;Mod3&gt;&lt;Mod4&gt;&lt;Mod5&gt;&quot; <symbol>+</symbol> <local>l_override_key</local><symbol>)</symbol>
+				<local>a_origin</local> <symbol>:=</symbol> <keyword>create</keyword> <symbol>{</symbol><keyword>attached</keyword> <class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_set_with_eiffel_string</location>set_with_eiffel_string</feature><symbol> </symbol><symbol>(</symbol><keyword>once</keyword> &quot;Vision2&quot;<symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_settings_set_string_property</location>gtk_settings_set_string_property</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_dependent_application_imp.xml#f_default_gtk_settings</location>Default_gtk_settings</feature><symbol>,</symbol> <local>a_property</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_item</location>item</feature><symbol>,</symbol> <local>a_value</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_item</location>item</feature><symbol>,</symbol> <local>a_origin</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_item</location>item</feature><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_disconnect_accelerator</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_disconnect_accelerator</location>disconnect_accelerator</feature> <symbol>(</symbol><local>an_accel</local><symbol>:</symbol> <class><location>../interface/ev_accelerator.xml</location>EV_ACCELERATOR</class><symbol>)</symbol>
+			<comment>--</comment><comment> Disconnect key combination </comment><quoted>an_accel</quoted><comment> from this window.</comment>
+		<keyword>local</keyword>
+			<local>acc_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_accelerator_imp.xml</location>EV_ACCELERATOR_IMP</class>
+		<keyword>do</keyword>
+			<local>acc_imp</local> <symbol>?=</symbol> <local>an_accel</local><dot>.</dot><feature><location>../interface/ev_accelerator.xml#f_implementation</location>implementation</feature>
+			<keyword>check</keyword>
+					<local>acc_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<feature><location>../implementation_interface/ev_window_i.xml#f_accel_list</location>accel_list</feature><dot>.</dot><feature><include>False</include>remove</feature><symbol> </symbol><symbol>(</symbol><local>acc_imp</local><dot>.</dot><feature><location>../implementation_interface/ev_accelerator_i.xml#f_hash_code</location>hash_code</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_any_imp.xml</location>EV_ANY_IMP</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_destroy</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_destroy</location>destroy</feature>
+			<comment>--</comment><comment> Destroy </comment><quoted>Current</quoted>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_pick_and_dropable_imp.xml#f_disable_capture</location>disable_capture</feature>
+			<feature><location>../implementation_gtk/ev_window_imp.xml#f_hide</location>hide</feature>
+			<keyword><location>../implementation_gtk/ev_container_imp.xml#f_destroy</location>Precursor</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_cell_imp.xml</location>EV_CELL_IMP</class><symbol>}</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_application_imp.xml</location>EV_APPLICATION_IMP</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_on_widget_mapped</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_on_widget_mapped</location>on_widget_mapped</feature>
+			<comment>--</comment><comment> </comment><quoted>Current</quoted><comment> has been mapped to the screen.</comment>
+		<keyword>do</keyword>
+			<keyword><location>../implementation_gtk/ev_widget_imp.xml#f_on_widget_mapped</location>Precursor</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_interface/ev_window_action_sequences_i.xml#f_show_actions_internal</location>show_actions_internal</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>and</keyword> <feature><location>../implementation_gtk/ev_window_imp.xml#f_call_show_actions</location>call_show_actions</feature> <keyword>then</keyword>
+				<feature><location>../implementation_interface/ev_window_action_sequences_i.xml#f_show_actions_internal</location>show_actions_internal</feature><dot>.</dot><feature><location>../interface/ev_lite_action_sequence.xml#f_call</location>call</feature><symbol> </symbol><symbol>(</symbol><keyword>Void</keyword><symbol>)</symbol>
+			<keyword>end</keyword>
+			<feature><location>../implementation_gtk/ev_window_imp.xml#f_call_show_actions</location>call_show_actions</feature> <symbol>:=</symbol> <keyword>False</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_on_widget_unmapped</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_on_widget_unmapped</location>on_widget_unmapped</feature>
+			<comment>--</comment><comment> </comment><quoted>Current</quoted><comment> has been unmapped from the screen.</comment>
+		<keyword>do</keyword>
+			<keyword><location>../implementation_gtk/ev_widget_imp.xml#f_on_widget_unmapped</location>Precursor</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_interface/ev_window_action_sequences_i.xml#f_hide_actions_internal</location>hide_actions_internal</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<feature><location>../implementation_interface/ev_window_action_sequences_i.xml#f_hide_actions_internal</location>hide_actions_internal</feature><dot>.</dot><feature><location>../interface/ev_lite_action_sequence.xml#f_call</location>call</feature><symbol> </symbol><symbol>(</symbol><keyword>Void</keyword><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_internal_has_focus</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_internal_has_focus</location>internal_has_focus</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Does </comment><quoted>Current</quoted><comment> have the keyboard focus?</comment>
+
+	<anchor>f_internal_set_maximum_size</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_internal_set_maximum_size</location>internal_set_maximum_size</feature> <symbol>(</symbol><local>a_max_width</local><symbol>,</symbol> <local>a_max_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set maximum width and height of </comment><quoted>Current</quoted><comment> to </comment><quoted>a_max_width</quoted><comment> and </comment><quoted>a_max_height</quoted><comment>.</comment>
+		<keyword>local</keyword>
+			<local>l_geometry</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>do</keyword>
+			<local>l_geometry</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_c_gdk_geometry_struct_allocate</location>c_gdk_geometry_struct_allocate</feature>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_set_gdk_geometry_struct_max_width</location>set_gdk_geometry_struct_max_width</feature> <symbol>(</symbol><local>l_geometry</local><symbol>,</symbol> <local>a_max_width</local><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_set_gdk_geometry_struct_max_height</location>set_gdk_geometry_struct_max_height</feature> <symbol>(</symbol><local>l_geometry</local><symbol>,</symbol> <local>a_max_height</local><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_window_set_geometry_hints</location>gtk_window_set_geometry_hints</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature><symbol>,</symbol> <local>l_geometry</local><symbol>,</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_hint_max_size_enum</location>gdk_hint_max_size_enum</feature><symbol>)</symbol>
+			<local>l_geometry</local><dot>.</dot><feature><include>False</include>memory_free</feature>
+			<feature><location>../implementation_gtk/ev_window_imp.xml#f_maximum_width</location>maximum_width</feature> <symbol>:=</symbol> <local>a_max_width</local>
+			<feature><location>../implementation_gtk/ev_window_imp.xml#f_maximum_height</location>maximum_height</feature> <symbol>:=</symbol> <local>a_max_height</local>
+		<keyword>end</keyword>
+
+	<anchor>f_previously_focused_widget</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_previously_focused_widget</location>previously_focused_widget</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Widget that was previously focused within </comment><quoted>Current</quoted><comment>.</comment>
+
+	<anchor>f_set_focused_widget</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_set_focused_widget</location>set_focused_widget</feature> <symbol>(</symbol><local>a_widget</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_widget_imp.xml</location>EV_WIDGET_IMP</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set currently focused widget to </comment><quoted>a_widget</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <local>a_widget</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<feature><location>../implementation_gtk/ev_window_imp.xml#f_previously_focused_widget</location>previously_focused_widget</feature> <symbol>:=</symbol> <local>a_widget</local><dot>.</dot><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature>
+			<keyword>else</keyword>
+				<feature><location>../implementation_gtk/ev_window_imp.xml#f_previously_focused_widget</location>previously_focused_widget</feature> <symbol>:=</symbol> <feature><include>False</include>default_pointer</feature>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_previous_x_position</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_previous_x_position</location>previous_x_position</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Positions of previously set x and y coordinates of </comment><quoted>Current</quoted><comment>.</comment>
+
+	<anchor>f_previous_y_position</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_previous_y_position</location>previous_y_position</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Positions of previously set x and y coordinates of </comment><quoted>Current</quoted><comment>.</comment>
+
+	<anchor>f_client_area</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_client_area</location>client_area</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Pointer to the widget that is treated as the main holder of the client area within the window.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_initialize_client_area</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_initialize_client_area</location>initialize_client_area</feature>
+			<comment>--</comment><comment> Initialize the client area of 'Current'.</comment>
+		<keyword>local</keyword>
+			<local>bar_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_vertical_box_imp.xml</location>EV_VERTICAL_BOX_IMP</class>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_window_imp.xml#f_vbox</location>vbox</feature> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_vbox_new</location>gtk_vbox_new</feature> <symbol>(</symbol><keyword>False</keyword><symbol>,</symbol> <number>0</number><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_widget_show</location>gtk_widget_show</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_window_imp.xml#f_vbox</location>vbox</feature><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_container_add</location>gtk_container_add</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_window_imp.xml#f_client_area</location>client_area</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_window_imp.xml#f_vbox</location>vbox</feature><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_window_imp.xml#f_container_widget</location>container_widget</feature> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_hbox_new</location>gtk_hbox_new</feature> <symbol>(</symbol><keyword>False</keyword><symbol>,</symbol> <number>0</number><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_widget_show</location>gtk_widget_show</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_window_imp.xml#f_container_widget</location>container_widget</feature><symbol>)</symbol>
+			<local>bar_imp</local> <symbol>?=</symbol> <feature><location>../implementation_interface/ev_window_i.xml#f_upper_bar</location>upper_bar</feature><dot>.</dot><feature><location>../interface/ev_vertical_box.xml#f_implementation</location>implementation</feature>
+			<keyword>check</keyword>
+					<local>bar_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_box_pack_start</location>gtk_box_pack_start</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_window_imp.xml#f_vbox</location>vbox</feature><symbol>,</symbol> <local>bar_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>,</symbol> <keyword>False</keyword><symbol>,</symbol> <keyword>True</keyword><symbol>,</symbol> <number>0</number><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_box_pack_start</location>gtk_box_pack_start</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_window_imp.xml#f_vbox</location>vbox</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_window_imp.xml#f_container_widget</location>container_widget</feature><symbol>,</symbol> <keyword>True</keyword><symbol>,</symbol> <keyword>True</keyword><symbol>,</symbol> <number>0</number><symbol>)</symbol>
+			<local>bar_imp</local> <symbol>?=</symbol> <feature><location>../implementation_interface/ev_window_i.xml#f_lower_bar</location>lower_bar</feature><dot>.</dot><feature><location>../interface/ev_vertical_box.xml#f_implementation</location>implementation</feature>
+			<keyword>check</keyword>
+					<local>bar_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_box_pack_start</location>gtk_box_pack_start</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_window_imp.xml#f_vbox</location>vbox</feature><symbol>,</symbol> <local>bar_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>,</symbol> <keyword>False</keyword><symbol>,</symbol> <keyword>True</keyword><symbol>,</symbol> <number>0</number><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_window_oids</location>window_oids</feature><dot>.</dot><feature><include>False</include>extend</feature><symbol> </symbol><symbol>(</symbol><feature><include>False</include>internal_id</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_intermediary_routines.xml</location>EV_INTERMEDIARY_ROUTINES</class><symbol>,</symbol> <class><location>../implementation_gtk/ev_application_imp.xml</location>EV_APPLICATION_IMP</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_on_size_allocate</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_on_size_allocate</location>on_size_allocate</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> GdkEventConfigure event occurred.</comment>
+		<keyword>local</keyword>
+			<local>l_x_pos</local><symbol>,</symbol> <local>l_y_pos</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+		<keyword>do</keyword>
+			<local>l_x_pos</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_gtk_window_imp.xml#f_x_position</location>x_position</feature>
+			<local>l_y_pos</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_gtk_window_imp.xml#f_y_position</location>y_position</feature>
+			<keyword><location>../implementation_gtk/ev_gtk_window_imp.xml#f_on_size_allocate</location>Precursor</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_gtk_window_imp.xml</location>EV_GTK_WINDOW_IMP</class><symbol>}</symbol><symbol> </symbol><symbol>(</symbol><local>l_x_pos</local><symbol>,</symbol> <local>l_y_pos</local><symbol>,</symbol> <local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>)</symbol>
+			<keyword><location>../implementation_gtk/ev_widget_imp.xml#f_on_size_allocate</location>Precursor</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_cell_imp.xml</location>EV_CELL_IMP</class><symbol>}</symbol><symbol> </symbol><symbol>(</symbol><local>l_x_pos</local><symbol>,</symbol> <local>l_y_pos</local><symbol>,</symbol> <local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>)</symbol>
+			<keyword>if</keyword> <local>l_x_pos</local> <symbol>/=</symbol> <feature><location>../implementation_gtk/ev_window_imp.xml#f_previous_x_position</location>previous_x_position</feature> <keyword>or else</keyword> <local>l_y_pos</local> <symbol>/=</symbol> <feature><location>../implementation_gtk/ev_window_imp.xml#f_previous_y_position</location>previous_y_position</feature> <keyword>then</keyword>
+				<feature><location>../implementation_gtk/ev_window_imp.xml#f_previous_x_position</location>previous_x_position</feature> <symbol>:=</symbol> <local>l_x_pos</local>
+				<feature><location>../implementation_gtk/ev_window_imp.xml#f_previous_y_position</location>previous_y_position</feature> <symbol>:=</symbol> <local>l_y_pos</local>
+				<keyword>if</keyword> <feature><location>../implementation_interface/ev_window_action_sequences_i.xml#f_move_actions_internal</location>move_actions_internal</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+					<feature><location>../implementation_interface/ev_window_action_sequences_i.xml#f_move_actions_internal</location>move_actions_internal</feature><dot>.</dot><feature><location>../interface/ev_lite_action_sequence.xml#f_call</location>call</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_gtk_marshal</location>gtk_marshal</feature><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_callback_marshal.xml#f_dimension_tuple</location>dimension_tuple</feature><symbol> </symbol><symbol>(</symbol><local>l_x_pos</local><symbol>,</symbol> <local>l_y_pos</local><symbol>,</symbol> <local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>)</symbol><symbol>)</symbol>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_call_window_state_event</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_call_window_state_event</location>call_window_state_event</feature> <symbol>(</symbol><local>a_changed_mask</local><symbol>,</symbol> <local>a_new_state</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Call either minimize, maximize or restore actions for window</comment>
+		<keyword>do</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_on_set_focus_event</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_on_set_focus_event</location>on_set_focus_event</feature> <symbol>(</symbol><local>a_widget_ptr</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>)</symbol>
+			<comment>--</comment><comment> The focus of a widget has changed within </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>local</keyword>
+			<local>l_previously_focused_widget</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_widget_imp.xml</location>EV_WIDGET_IMP</class>
+			<local>a_widget</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_widget_imp.xml</location>EV_WIDGET_IMP</class>
+		<keyword>do</keyword>
+			<local>a_widget</local> <symbol>?=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_eif_object_from_gtk_object</location>eif_object_from_gtk_object</feature><symbol> </symbol><symbol>(</symbol><local>a_widget_ptr</local><symbol>)</symbol>
+			<local>l_previously_focused_widget</local> <symbol>?=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_eif_object_from_gtk_object</location>eif_object_from_gtk_object</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_window_imp.xml#f_previously_focused_widget</location>previously_focused_widget</feature><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_window_imp.xml#f_set_focused_widget</location>set_focused_widget</feature><symbol> </symbol><symbol>(</symbol><local>a_widget</local><symbol>)</symbol>
+			<keyword>if</keyword> <local>a_widget</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<local>a_widget</local><dot>.</dot><feature><location>../implementation_gtk/ev_widget_imp.xml#f_on_focus_changed</location>on_focus_changed</feature><symbol> </symbol><symbol>(</symbol><keyword>True</keyword><symbol>)</symbol>
+			<keyword>end</keyword>
+			<keyword>if</keyword> <local>l_previously_focused_widget</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>and then</keyword> <local>l_previously_focused_widget</local> <symbol>/=</symbol> <local>a_widget</local> <keyword>then</keyword>
+				<local>l_previously_focused_widget</local><dot>.</dot><feature><location>../implementation_gtk/ev_widget_imp.xml#f_on_focus_changed</location>on_focus_changed</feature><symbol> </symbol><symbol>(</symbol><keyword>False</keyword><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_gtk_window_imp.xml</location>EV_GTK_WINDOW_IMP</class><symbol>,</symbol> <class><location>../implementation_gtk/ev_pick_and_dropable_imp.xml</location>EV_PICK_AND_DROPABLE_IMP</class><symbol>,</symbol> <class><location>../implementation_gtk/ev_application_imp.xml</location>EV_APPLICATION_IMP</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_modal_window_count</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_modal_window_count</location>modal_window_count</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Number of windows modal to current.</comment>
+
+	<anchor>f_increase_modal_window_count</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_increase_modal_window_count</location>increase_modal_window_count</feature>
+			<comment>--</comment><comment> Increase modal window count.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_window_imp.xml#f_modal_window_count</location>modal_window_count</feature> <symbol>=</symbol> <number>0</number> <keyword>then</keyword>
+				<feature><location>../implementation_gtk/ev_window_imp.xml#f_disallow_window_manager_focus</location>disallow_window_manager_focus</feature>
+			<keyword>end</keyword>
+			<feature><location>../implementation_gtk/ev_window_imp.xml#f_modal_window_count</location>modal_window_count</feature> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_window_imp.xml#f_modal_window_count</location>modal_window_count</feature> <symbol>+</symbol> <number>1</number>
+		<keyword>end</keyword>
+
+	<anchor>f_decrease_modal_window_count</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_decrease_modal_window_count</location>decrease_modal_window_count</feature>
+			<comment>--</comment><comment> Decrease modal window count.</comment>
+		<keyword>require</keyword>
+			<tag>modal_window_count_decreasable</tag><symbol>:</symbol> <feature><location>../implementation_gtk/ev_window_imp.xml#f_modal_window_count</location>modal_window_count</feature> <symbol>&gt;</symbol> <number>0</number>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_window_imp.xml#f_modal_window_count</location>modal_window_count</feature> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_window_imp.xml#f_modal_window_count</location>modal_window_count</feature> <symbol>-</symbol> <number>1</number>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_window_imp.xml#f_modal_window_count</location>modal_window_count</feature> <symbol>=</symbol> <number>0</number> <keyword>then</keyword>
+				<feature><location>../implementation_gtk/ev_window_imp.xml#f_allow_window_manager_focus</location>allow_window_manager_focus</feature>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_has_modal_window</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_has_modal_window</location>has_modal_window</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Does </comment><quoted>Current</quoted><comment> have a transient window that is modal to </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_window_imp.xml#f_modal_window_count</location>modal_window_count</feature> <symbol>&gt;</symbol> <number>0</number>
+		<keyword>end</keyword>
+
+	<anchor>f_allow_window_manager_focus</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_allow_window_manager_focus</location>allow_window_manager_focus</feature>
+			<comment>--</comment><comment> Allow the window manager to give the focus to </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_window_set_accept_focus</location>gtk_window_set_accept_focus</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>,</symbol> <keyword>True</keyword><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_disallow_window_manager_focus</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_disallow_window_manager_focus</location>disallow_window_manager_focus</feature>
+			<comment>--</comment><comment> Disallow the window manager to give the focus to </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_window_set_accept_focus</location>gtk_window_set_accept_focus</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>,</symbol> <keyword>False</keyword><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Composite handling</comment>
+
+	<anchor>f_set_opacity</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_set_opacity</location>set_opacity</feature> <symbol>(</symbol><local>a_opacity</local><symbol>:</symbol> <class><include>False</include>REAL_32</class><symbol>)</symbol>
+		<keyword>require</keyword>
+			<tag>not_is_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../implementation_interface/ev_any_i.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>a_opacity_valid</tag><symbol>:</symbol> <local>a_opacity</local> <symbol>&gt;=</symbol> <number>0</number><dot>.</dot><feature><include>False</include>to_real</feature> <keyword>and then</keyword> <local>a_opacity</local> <symbol>&lt;=</symbol> <number>1</number><dot>.</dot><feature><include>False</include>to_real</feature>
+		<keyword>local</keyword>
+			<local>l_opacity_symbol</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>do</keyword>
+			<local>l_opacity_symbol</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_window_imp.xml#f_gtk_window_set_opacity_symbol</location>Gtk_window_set_opacity_symbol</feature>
+			<keyword>if</keyword> <local>l_opacity_symbol</local> <symbol>/=</symbol> <feature><include>False</include>default_pointer</feature> <keyword>then</keyword>
+				<feature><location>../implementation_gtk/ev_window_imp.xml#f_gtk_window_set_opacity_call</location>gtk_window_set_opacity_call</feature><symbol> </symbol><symbol>(</symbol><local>l_opacity_symbol</local><symbol>,</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>,</symbol> <local>a_opacity</local><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_gtk_window_set_opacity_symbol</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_gtk_window_set_opacity_symbol</location>Gtk_window_set_opacity_symbol</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Symbol for </comment><quoted>gtk_window_set_opacity</quoted>
+		<keyword>once</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_symbol_from_symbol_name</location>symbol_from_symbol_name</feature><symbol> </symbol><symbol>(</symbol>&quot;gtk_window_set_opacity&quot;<symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_gtk_window_set_opacity_call</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_gtk_window_set_opacity_call</location>gtk_window_set_opacity_call</feature> <symbol>(</symbol><local>a_function</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>;</symbol> <local>a_window</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>;</symbol> <local>a_opacity</local><symbol>:</symbol> <class><include>False</include>REAL_32</class><symbol>)</symbol>
+		<keyword>external</keyword>
+			&quot;C inline use &lt;ev_gtk.h&gt;&quot;
+		<keyword>alias</keyword>
+			&quot;(FUNCTION_CAST(void, (GtkWidget*, gdouble)) $a_function)((GtkWidget*) $a_window, (gdouble) $a_opacity);&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_gtk_widget_is_composited_symbol</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_gtk_widget_is_composited_symbol</location>Gtk_widget_is_composited_symbol</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Symbol for </comment><quoted>gtk_widget_is_composited</quoted>
+		<keyword>once</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_symbol_from_symbol_name</location>symbol_from_symbol_name</feature><symbol> </symbol><symbol>(</symbol>&quot;gtk_widget_is_composited&quot;<symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_gtk_widget_is_composited_call</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_gtk_widget_is_composited_call</location>gtk_widget_is_composited_call</feature> <symbol>(</symbol><local>a_function</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>;</symbol> <local>a_widget</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+		<keyword>external</keyword>
+			&quot;C inline use &lt;ev_gtk.h&gt;&quot;
+		<keyword>alias</keyword>
+			&quot;return (FUNCTION_CAST(gboolean, (GtkWidget*)) $a_function)((GtkWidget*) $a_widget);&quot;
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_menu_bar_imp.xml</location>EV_MENU_BAR_IMP</class><symbol>,</symbol> <class><location>../implementation_gtk/ev_accelerator_imp.xml</location>EV_ACCELERATOR_IMP</class><symbol>,</symbol> <class><location>../implementation_gtk/ev_application_imp.xml</location>EV_APPLICATION_IMP</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_on_focus_changed</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_on_focus_changed</location>on_focus_changed</feature> <symbol>(</symbol><local>a_has_focus</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class><symbol>)</symbol>
+			<comment>--</comment><comment> Called from focus intermediary agents when focus for </comment><quoted>Current</quoted><comment> has changed.</comment>
+			<comment>--</comment><comment> if </comment><quoted>a_has_focus</quoted><comment> then </comment><quoted>Current</quoted><comment> has just received focus.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_window_imp.xml#f_internal_has_focus</location>internal_has_focus</feature> <symbol>:=</symbol> <local>a_has_focus</local>
+			<keyword><location>../implementation_gtk/ev_widget_imp.xml#f_on_focus_changed</location>Precursor</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_cell_imp.xml</location>EV_CELL_IMP</class><symbol>}</symbol><symbol> </symbol><symbol>(</symbol><local>a_has_focus</local><symbol>)</symbol>
+			<keyword>if</keyword> <local>a_has_focus</local> <keyword>then</keyword>
+				<feature><location>../implementation_gtk/ev_window_imp.xml#f_on_set_focus_event</location>on_set_focus_event</feature><symbol> </symbol><symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_window_struct_focus_widget</location>gtk_window_struct_focus_widget</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>)</symbol><symbol>)</symbol>
+			<keyword>else</keyword>
+				<feature><location>../implementation_gtk/ev_window_imp.xml#f_on_set_focus_event</location>on_set_focus_event</feature><symbol> </symbol><symbol>(</symbol><feature><include>False</include>default_pointer</feature><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_accelerator_imp.xml</location>EV_ACCELERATOR_IMP</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_vbox</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_vbox</location>vbox</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Vertical_box to have a possibility for a menu on the</comment>
+			<comment>--</comment><comment> top and a status bar at the bottom.</comment>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_intermediary_routines.xml</location>EV_INTERMEDIARY_ROUTINES</class><symbol>}</symbol> 
+
+	<anchor>f_call_close_request_actions</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_call_close_request_actions</location>call_close_request_actions</feature>
+			<comment>--</comment><comment> Call the close request actions.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_interface/ev_window_action_sequences_i.xml#f_close_request_actions_internal</location>close_request_actions_internal</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>and then</keyword> <keyword>not</keyword> <feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_is_in_transport</location>is_in_transport</feature> <keyword>and then</keyword> <keyword>not</keyword> <feature><location>../implementation_gtk/ev_window_imp.xml#f_has_modal_window</location>has_modal_window</feature> <keyword>and then</keyword> <keyword>not</keyword> <feature><location>../implementation_interface/ev_any_i.xml#f_is_destroyed</location>is_destroyed</feature> <keyword>then</keyword>
+				<feature><location>../implementation_interface/ev_window_action_sequences_i.xml#f_close_request_actions_internal</location>close_request_actions_internal</feature><dot>.</dot><feature><location>../interface/ev_lite_action_sequence.xml#f_call</location>call</feature><symbol> </symbol><symbol>(</symbol><keyword>Void</keyword><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_clipboard_imp.xml</location>EV_CLIPBOARD_IMP</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_container_widget</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_container_widget</location>container_widget</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Horizontal box container for the child.</comment>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_any.xml</location>EV_ANY</class><symbol>,</symbol> <class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_interface</anchor><feature><location>../implementation_gtk/ev_window_imp.xml#f_interface</location>interface</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_window.xml</location>EV_WINDOW</class>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2017, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_gtk/ev_window_imp.xml</location>EV_WINDOW_IMP</class></system>
+

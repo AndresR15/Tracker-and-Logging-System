@@ -1,0 +1,335 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Objects that represent an EV_TITLED_WINDOW.&quot;</string>
+	<indexing_tag>generator</indexing_tag><symbol>:</symbol> <string>&quot;EiffelBuild&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2014-01-22 11:12:21 -0800 (Wed, 22 Jan 2014) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 94077 $&quot;</string>
+
+<keyword>deferred</keyword> <keyword>class</keyword> 
+	<class><location>../tracker/etf_main_window_imp.xml</location>ETF_MAIN_WINDOW_IMP</class>
+
+<keyword>inherit</keyword>
+	<class><location>../interface/ev_titled_window.xml</location>EV_TITLED_WINDOW</class>
+		<keyword>redefine</keyword>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_create_interface_objects</location>create_interface_objects</feature><symbol>,</symbol>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_initialize</location>initialize</feature><symbol>,</symbol>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_is_in_default_state</location>is_in_default_state</feature>
+		<keyword>end</keyword>
+
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Initialization</comment>
+
+	<anchor>f_initialize</anchor><keyword>frozen</keyword> <feature><location>../tracker/etf_main_window_imp.xml#f_initialize</location>initialize</feature>
+			<comment>--</comment><comment> Initialize </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword><location>../interface/ev_titled_window.xml#f_initialize</location>Precursor</keyword> <symbol>{</symbol><class><location>../interface/ev_titled_window.xml</location>EV_TITLED_WINDOW</class><symbol>}</symbol>
+			<feature><location>../interface/ev_container.xml#f_extend</location>extend</feature><symbol> </symbol><symbol>(</symbol><feature><location>../tracker/etf_main_window_imp.xml#f_hbox_main</location>hbox_main</feature><symbol>)</symbol>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_hbox_main</location>hbox_main</feature><dot>.</dot><feature><location>../interface/ev_dynamic_list.xml#f_extend</location>extend</feature><symbol> </symbol><symbol>(</symbol><feature><location>../tracker/etf_main_window_imp.xml#f_cell</location>cell</feature><symbol>)</symbol>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_cell</location>cell</feature><dot>.</dot><feature><location>../interface/ev_container.xml#f_extend</location>extend</feature><symbol> </symbol><symbol>(</symbol><feature><location>../tracker/etf_main_window_imp.xml#f_vbox</location>vbox</feature><symbol>)</symbol>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_vbox</location>vbox</feature><dot>.</dot><feature><location>../interface/ev_dynamic_list.xml#f_extend</location>extend</feature><symbol> </symbol><symbol>(</symbol><feature><location>../tracker/etf_main_window_imp.xml#f_command_label</location>command_label</feature><symbol>)</symbol>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_vbox</location>vbox</feature><dot>.</dot><feature><location>../interface/ev_dynamic_list.xml#f_extend</location>extend</feature><symbol> </symbol><symbol>(</symbol><feature><location>../tracker/etf_main_window_imp.xml#f_command</location>command</feature><symbol>)</symbol>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_vbox</location>vbox</feature><dot>.</dot><feature><location>../interface/ev_dynamic_list.xml#f_extend</location>extend</feature><symbol> </symbol><symbol>(</symbol><feature><location>../tracker/etf_main_window_imp.xml#f_hbox_buttons</location>hbox_buttons</feature><symbol>)</symbol>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_hbox_buttons</location>hbox_buttons</feature><dot>.</dot><feature><location>../interface/ev_dynamic_list.xml#f_extend</location>extend</feature><symbol> </symbol><symbol>(</symbol><feature><location>../tracker/etf_main_window_imp.xml#f_execute</location>execute</feature><symbol>)</symbol>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_hbox_buttons</location>hbox_buttons</feature><dot>.</dot><feature><location>../interface/ev_dynamic_list.xml#f_extend</location>extend</feature><symbol> </symbol><symbol>(</symbol><feature><location>../tracker/etf_main_window_imp.xml#f_reset</location>reset</feature><symbol>)</symbol>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_hbox_buttons</location>hbox_buttons</feature><dot>.</dot><feature><location>../interface/ev_dynamic_list.xml#f_extend</location>extend</feature><symbol> </symbol><symbol>(</symbol><feature><location>../tracker/etf_main_window_imp.xml#f_load</location>load</feature><symbol>)</symbol>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_vbox</location>vbox</feature><dot>.</dot><feature><location>../interface/ev_dynamic_list.xml#f_extend</location>extend</feature><symbol> </symbol><symbol>(</symbol><feature><location>../tracker/etf_main_window_imp.xml#f_output</location>output</feature><symbol>)</symbol>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_vbox</location>vbox</feature><dot>.</dot><feature><location>../interface/ev_dynamic_list.xml#f_extend</location>extend</feature><symbol> </symbol><symbol>(</symbol><feature><location>../tracker/etf_main_window_imp.xml#f_l_ev_horizontal_separator_1</location>l_ev_horizontal_separator_1</feature><symbol>)</symbol>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_vbox</location>vbox</feature><dot>.</dot><feature><location>../interface/ev_dynamic_list.xml#f_extend</location>extend</feature><symbol> </symbol><symbol>(</symbol><feature><location>../tracker/etf_main_window_imp.xml#f_status_label</location>status_label</feature><symbol>)</symbol>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_vbox</location>vbox</feature><dot>.</dot><feature><location>../interface/ev_dynamic_list.xml#f_extend</location>extend</feature><symbol> </symbol><symbol>(</symbol><feature><location>../tracker/etf_main_window_imp.xml#f_status</location>status</feature><symbol>)</symbol>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_hbox_main</location>hbox_main</feature><dot>.</dot><feature><location>../interface/ev_dynamic_list.xml#f_extend</location>extend</feature><symbol> </symbol><symbol>(</symbol><feature><location>../tracker/etf_main_window_imp.xml#f_history</location>history</feature><symbol>)</symbol>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_hbox_main</location>hbox_main</feature><dot>.</dot><feature><location>../interface/ev_box.xml#f_enable_homogeneous</location>enable_homogeneous</feature>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_vbox</location>vbox</feature><dot>.</dot><feature><location>../interface/ev_box.xml#f_disable_item_expand</location>disable_item_expand</feature><symbol> </symbol><symbol>(</symbol><feature><location>../tracker/etf_main_window_imp.xml#f_command_label</location>command_label</feature><symbol>)</symbol>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_vbox</location>vbox</feature><dot>.</dot><feature><location>../interface/ev_box.xml#f_disable_item_expand</location>disable_item_expand</feature><symbol> </symbol><symbol>(</symbol><feature><location>../tracker/etf_main_window_imp.xml#f_command</location>command</feature><symbol>)</symbol>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_vbox</location>vbox</feature><dot>.</dot><feature><location>../interface/ev_box.xml#f_disable_item_expand</location>disable_item_expand</feature><symbol> </symbol><symbol>(</symbol><feature><location>../tracker/etf_main_window_imp.xml#f_hbox_buttons</location>hbox_buttons</feature><symbol>)</symbol>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_vbox</location>vbox</feature><dot>.</dot><feature><location>../interface/ev_box.xml#f_disable_item_expand</location>disable_item_expand</feature><symbol> </symbol><symbol>(</symbol><feature><location>../tracker/etf_main_window_imp.xml#f_l_ev_horizontal_separator_1</location>l_ev_horizontal_separator_1</feature><symbol>)</symbol>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_vbox</location>vbox</feature><dot>.</dot><feature><location>../interface/ev_box.xml#f_disable_item_expand</location>disable_item_expand</feature><symbol> </symbol><symbol>(</symbol><feature><location>../tracker/etf_main_window_imp.xml#f_status_label</location>status_label</feature><symbol>)</symbol>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_command_label</location>command_label</feature><dot>.</dot><feature><location>../interface/ev_textable.xml#f_set_text</location>set_text</feature><symbol> </symbol><symbol>(</symbol>&quot;Enter Command (%&quot;man%&quot; for options)&quot;<symbol>)</symbol>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_hbox_buttons</location>hbox_buttons</feature><dot>.</dot><feature><location>../interface/ev_box.xml#f_enable_homogeneous</location>enable_homogeneous</feature>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_execute</location>execute</feature><dot>.</dot><feature><location>../interface/ev_textable.xml#f_set_text</location>set_text</feature><symbol> </symbol><symbol>(</symbol>&quot;Execute&quot;<symbol>)</symbol>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_reset</location>reset</feature><dot>.</dot><feature><location>../interface/ev_textable.xml#f_set_text</location>set_text</feature><symbol> </symbol><symbol>(</symbol>&quot;Reset&quot;<symbol>)</symbol>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_load</location>load</feature><dot>.</dot><feature><location>../interface/ev_textable.xml#f_set_text</location>set_text</feature><symbol> </symbol><symbol>(</symbol>&quot;Load&quot;<symbol>)</symbol>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_output</location>output</feature><dot>.</dot><feature><location>../interface/ev_text_component.xml#f_disable_edit</location>disable_edit</feature>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_status_label</location>status_label</feature><dot>.</dot><feature><location>../interface/ev_colorizable.xml#f_set_background_color</location>set_background_color</feature><symbol> </symbol><symbol>(</symbol><keyword>create</keyword><symbol> </symbol><symbol>{</symbol><class><location>../interface/ev_color.xml</location>EV_COLOR</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_color.xml#f_make_with_8_bit_rgb</location>make_with_8_bit_rgb</feature><symbol> </symbol><symbol>(</symbol><number>0</number><symbol>,</symbol> <number>0</number><symbol>,</symbol> <number>0</number><symbol>)</symbol><symbol>)</symbol>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_status_label</location>status_label</feature><dot>.</dot><feature><location>../interface/ev_colorizable.xml#f_set_foreground_color</location>set_foreground_color</feature><symbol> </symbol><symbol>(</symbol><keyword>create</keyword><symbol> </symbol><symbol>{</symbol><class><location>../interface/ev_color.xml</location>EV_COLOR</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_color.xml#f_make_with_8_bit_rgb</location>make_with_8_bit_rgb</feature><symbol> </symbol><symbol>(</symbol><number>255</number><symbol>,</symbol> <number>255</number><symbol>,</symbol> <number>255</number><symbol>)</symbol><symbol>)</symbol>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_status_label</location>status_label</feature><dot>.</dot><feature><location>../interface/ev_textable.xml#f_set_text</location>set_text</feature><symbol> </symbol><symbol>(</symbol>&quot;Status&quot;<symbol>)</symbol>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_status_label</location>status_label</feature><dot>.</dot><feature><location>../interface/ev_text_alignable.xml#f_align_text_left</location>align_text_left</feature>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_status</location>status</feature><dot>.</dot><feature><location>../interface/ev_text_component.xml#f_disable_edit</location>disable_edit</feature>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_history</location>history</feature><dot>.</dot><feature><location>../interface/ev_widget.xml#f_set_minimum_width</location>set_minimum_width</feature><symbol> </symbol><symbol>(</symbol><number>200</number><symbol>)</symbol>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_history</location>history</feature><dot>.</dot><feature><location>../interface/ev_widget.xml#f_set_minimum_height</location>set_minimum_height</feature><symbol> </symbol><symbol>(</symbol><number>100</number><symbol>)</symbol>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_history</location>history</feature><dot>.</dot><feature><location>../interface/ev_text_component.xml#f_disable_edit</location>disable_edit</feature>
+			<feature><location>../interface/ev_widget.xml#f_set_minimum_width</location>set_minimum_width</feature><symbol> </symbol><symbol>(</symbol><number>700</number><symbol>)</symbol>
+			<feature><location>../interface/ev_widget.xml#f_set_minimum_height</location>set_minimum_height</feature><symbol> </symbol><symbol>(</symbol><number>500</number><symbol>)</symbol>
+			<feature><location>../interface/ev_window.xml#f_set_title</location>set_title</feature><symbol> </symbol><symbol>(</symbol>&quot;system etf_template GUI&quot;<symbol>)</symbol>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_set_all_attributes_using_constants</location>set_all_attributes_using_constants</feature>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_command</location>command</feature><dot>.</dot><feature><location>../interface/ev_text_field_action_sequences.xml#f_return_actions</location>return_actions</feature><dot>.</dot><feature><include>False</include>extend</feature><symbol> </symbol><symbol>(</symbol><keyword>agent</keyword> <feature><location>../tracker/etf_main_window_imp.xml#f_command_return_key_pressed</location>command_return_key_pressed</feature><symbol>)</symbol>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_execute</location>execute</feature><dot>.</dot><feature><location>../interface/ev_button_action_sequences.xml#f_select_actions</location>select_actions</feature><dot>.</dot><feature><include>False</include>extend</feature><symbol> </symbol><symbol>(</symbol><keyword>agent</keyword> <feature><location>../tracker/etf_main_window_imp.xml#f_execute_pressed</location>execute_pressed</feature><symbol>)</symbol>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_reset</location>reset</feature><dot>.</dot><feature><location>../interface/ev_button_action_sequences.xml#f_select_actions</location>select_actions</feature><dot>.</dot><feature><include>False</include>extend</feature><symbol> </symbol><symbol>(</symbol><keyword>agent</keyword> <feature><location>../tracker/etf_main_window_imp.xml#f_reset_pressed</location>reset_pressed</feature><symbol>)</symbol>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_load</location>load</feature><dot>.</dot><feature><location>../interface/ev_button_action_sequences.xml#f_select_actions</location>select_actions</feature><dot>.</dot><feature><include>False</include>extend</feature><symbol> </symbol><symbol>(</symbol><keyword>agent</keyword> <feature><location>../tracker/etf_main_window_imp.xml#f_load_pressed</location>load_pressed</feature><symbol>)</symbol>
+			<feature><location>../interface/ev_window_action_sequences.xml#f_close_request_actions</location>close_request_actions</feature><dot>.</dot><feature><include>False</include>extend</feature><symbol> </symbol><symbol>(</symbol><keyword>agent</keyword> <feature><location>../interface/ev_window.xml#f_destroy_and_exit_if_last</location>destroy_and_exit_if_last</feature><symbol>)</symbol>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_user_initialization</location>user_initialization</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_create_interface_objects</anchor><keyword>frozen</keyword> <feature><location>../tracker/etf_main_window_imp.xml#f_create_interface_objects</location>create_interface_objects</feature>
+			<comment>--</comment><comment> Create objects</comment>
+		<keyword>do</keyword>
+			<keyword>create</keyword> <feature><location>../tracker/etf_main_window_imp.xml#f_hbox_main</location>hbox_main</feature>
+			<keyword>create</keyword> <feature><location>../tracker/etf_main_window_imp.xml#f_cell</location>cell</feature>
+			<keyword>create</keyword> <feature><location>../tracker/etf_main_window_imp.xml#f_vbox</location>vbox</feature>
+			<keyword>create</keyword> <feature><location>../tracker/etf_main_window_imp.xml#f_command_label</location>command_label</feature>
+			<keyword>create</keyword> <feature><location>../tracker/etf_main_window_imp.xml#f_command</location>command</feature>
+			<keyword>create</keyword> <feature><location>../tracker/etf_main_window_imp.xml#f_hbox_buttons</location>hbox_buttons</feature>
+			<keyword>create</keyword> <feature><location>../tracker/etf_main_window_imp.xml#f_execute</location>execute</feature>
+			<keyword>create</keyword> <feature><location>../tracker/etf_main_window_imp.xml#f_reset</location>reset</feature>
+			<keyword>create</keyword> <feature><location>../tracker/etf_main_window_imp.xml#f_load</location>load</feature>
+			<keyword>create</keyword> <feature><location>../tracker/etf_main_window_imp.xml#f_output</location>output</feature>
+			<keyword>create</keyword> <feature><location>../tracker/etf_main_window_imp.xml#f_l_ev_horizontal_separator_1</location>l_ev_horizontal_separator_1</feature>
+			<keyword>create</keyword> <feature><location>../tracker/etf_main_window_imp.xml#f_status_label</location>status_label</feature>
+			<keyword>create</keyword> <feature><location>../tracker/etf_main_window_imp.xml#f_status</location>status</feature>
+			<keyword>create</keyword> <feature><location>../tracker/etf_main_window_imp.xml#f_history</location>history</feature>
+			<keyword>create</keyword> <feature><location>../tracker/etf_main_window_imp.xml#f_string_constant_set_procedures</location>string_constant_set_procedures</feature><dot>.</dot><feature><include>False</include>make</feature><symbol> </symbol><symbol>(</symbol><number>10</number><symbol>)</symbol>
+			<keyword>create</keyword> <feature><location>../tracker/etf_main_window_imp.xml#f_string_constant_retrieval_functions</location>string_constant_retrieval_functions</feature><dot>.</dot><feature><include>False</include>make</feature><symbol> </symbol><symbol>(</symbol><number>10</number><symbol>)</symbol>
+			<keyword>create</keyword> <feature><location>../tracker/etf_main_window_imp.xml#f_integer_constant_set_procedures</location>integer_constant_set_procedures</feature><dot>.</dot><feature><include>False</include>make</feature><symbol> </symbol><symbol>(</symbol><number>10</number><symbol>)</symbol>
+			<keyword>create</keyword> <feature><location>../tracker/etf_main_window_imp.xml#f_integer_constant_retrieval_functions</location>integer_constant_retrieval_functions</feature><dot>.</dot><feature><include>False</include>make</feature><symbol> </symbol><symbol>(</symbol><number>10</number><symbol>)</symbol>
+			<keyword>create</keyword> <feature><location>../tracker/etf_main_window_imp.xml#f_pixmap_constant_set_procedures</location>pixmap_constant_set_procedures</feature><dot>.</dot><feature><include>False</include>make</feature><symbol> </symbol><symbol>(</symbol><number>10</number><symbol>)</symbol>
+			<keyword>create</keyword> <feature><location>../tracker/etf_main_window_imp.xml#f_pixmap_constant_retrieval_functions</location>pixmap_constant_retrieval_functions</feature><dot>.</dot><feature><include>False</include>make</feature><symbol> </symbol><symbol>(</symbol><number>10</number><symbol>)</symbol>
+			<keyword>create</keyword> <feature><location>../tracker/etf_main_window_imp.xml#f_integer_interval_constant_retrieval_functions</location>integer_interval_constant_retrieval_functions</feature><dot>.</dot><feature><include>False</include>make</feature><symbol> </symbol><symbol>(</symbol><number>10</number><symbol>)</symbol>
+			<keyword>create</keyword> <feature><location>../tracker/etf_main_window_imp.xml#f_integer_interval_constant_set_procedures</location>integer_interval_constant_set_procedures</feature><dot>.</dot><feature><include>False</include>make</feature><symbol> </symbol><symbol>(</symbol><number>10</number><symbol>)</symbol>
+			<keyword>create</keyword> <feature><location>../tracker/etf_main_window_imp.xml#f_font_constant_set_procedures</location>font_constant_set_procedures</feature><dot>.</dot><feature><include>False</include>make</feature><symbol> </symbol><symbol>(</symbol><number>10</number><symbol>)</symbol>
+			<keyword>create</keyword> <feature><location>../tracker/etf_main_window_imp.xml#f_font_constant_retrieval_functions</location>font_constant_retrieval_functions</feature><dot>.</dot><feature><include>False</include>make</feature><symbol> </symbol><symbol>(</symbol><number>10</number><symbol>)</symbol>
+			<keyword>create</keyword> <feature><location>../tracker/etf_main_window_imp.xml#f_pixmap_constant_retrieval_functions</location>pixmap_constant_retrieval_functions</feature><dot>.</dot><feature><include>False</include>make</feature><symbol> </symbol><symbol>(</symbol><number>10</number><symbol>)</symbol>
+			<keyword>create</keyword> <feature><location>../tracker/etf_main_window_imp.xml#f_color_constant_set_procedures</location>color_constant_set_procedures</feature><dot>.</dot><feature><include>False</include>make</feature><symbol> </symbol><symbol>(</symbol><number>10</number><symbol>)</symbol>
+			<keyword>create</keyword> <feature><location>../tracker/etf_main_window_imp.xml#f_color_constant_retrieval_functions</location>color_constant_retrieval_functions</feature><dot>.</dot><feature><include>False</include>make</feature><symbol> </symbol><symbol>(</symbol><number>10</number><symbol>)</symbol>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_user_create_interface_objects</location>user_create_interface_objects</feature>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_hbox_main</anchor><feature><location>../tracker/etf_main_window_imp.xml#f_hbox_main</location>hbox_main</feature><symbol>:</symbol> <class><location>../interface/ev_horizontal_box.xml</location>EV_HORIZONTAL_BOX</class>
+
+	<anchor>f_hbox_buttons</anchor><feature><location>../tracker/etf_main_window_imp.xml#f_hbox_buttons</location>hbox_buttons</feature><symbol>:</symbol> <class><location>../interface/ev_horizontal_box.xml</location>EV_HORIZONTAL_BOX</class>
+
+	<anchor>f_cell</anchor><feature><location>../tracker/etf_main_window_imp.xml#f_cell</location>cell</feature><symbol>:</symbol> <class><location>../interface/ev_cell.xml</location>EV_CELL</class>
+
+	<anchor>f_vbox</anchor><feature><location>../tracker/etf_main_window_imp.xml#f_vbox</location>vbox</feature><symbol>:</symbol> <class><location>../interface/ev_vertical_box.xml</location>EV_VERTICAL_BOX</class>
+
+	<anchor>f_command_label</anchor><feature><location>../tracker/etf_main_window_imp.xml#f_command_label</location>command_label</feature><symbol>:</symbol> <class><location>../interface/ev_label.xml</location>EV_LABEL</class>
+
+	<anchor>f_status_label</anchor><feature><location>../tracker/etf_main_window_imp.xml#f_status_label</location>status_label</feature><symbol>:</symbol> <class><location>../interface/ev_label.xml</location>EV_LABEL</class>
+
+	<anchor>f_command</anchor><feature><location>../tracker/etf_main_window_imp.xml#f_command</location>command</feature><symbol>:</symbol> <class><location>../interface/ev_text_field.xml</location>EV_TEXT_FIELD</class>
+
+	<anchor>f_execute</anchor><feature><location>../tracker/etf_main_window_imp.xml#f_execute</location>execute</feature><symbol>:</symbol> <class><location>../interface/ev_button.xml</location>EV_BUTTON</class>
+
+	<anchor>f_reset</anchor><feature><location>../tracker/etf_main_window_imp.xml#f_reset</location>reset</feature><symbol>:</symbol> <class><location>../interface/ev_button.xml</location>EV_BUTTON</class>
+
+	<anchor>f_load</anchor><feature><location>../tracker/etf_main_window_imp.xml#f_load</location>load</feature><symbol>:</symbol> <class><location>../interface/ev_button.xml</location>EV_BUTTON</class>
+
+	<anchor>f_output</anchor><feature><location>../tracker/etf_main_window_imp.xml#f_output</location>output</feature><symbol>:</symbol> <class><location>../interface/ev_rich_text.xml</location>EV_RICH_TEXT</class>
+
+	<anchor>f_status</anchor><feature><location>../tracker/etf_main_window_imp.xml#f_status</location>status</feature><symbol>:</symbol> <class><location>../interface/ev_rich_text.xml</location>EV_RICH_TEXT</class>
+
+	<anchor>f_history</anchor><feature><location>../tracker/etf_main_window_imp.xml#f_history</location>history</feature><symbol>:</symbol> <class><location>../interface/ev_rich_text.xml</location>EV_RICH_TEXT</class>
+	
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_l_ev_horizontal_separator_1</anchor><feature><location>../tracker/etf_main_window_imp.xml#f_l_ev_horizontal_separator_1</location>l_ev_horizontal_separator_1</feature><symbol>:</symbol> <class><location>../interface/ev_horizontal_separator.xml</location>EV_HORIZONTAL_SEPARATOR</class>
+	
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_is_in_default_state</anchor><feature><location>../tracker/etf_main_window_imp.xml#f_is_in_default_state</location>is_in_default_state</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is </comment><quoted>Current</quoted><comment> in its default state?</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <keyword>True</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_user_create_interface_objects</anchor><feature><location>../tracker/etf_main_window_imp.xml#f_user_create_interface_objects</location>user_create_interface_objects</feature>
+			<comment>--</comment><comment> Feature for custom user interface object creation, called at end of </comment><feature><location>../tracker/etf_main_window_imp.xml#f_create_interface_objects</location>create_interface_objects</feature><comment>.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_user_initialization</anchor><feature><location>../tracker/etf_main_window_imp.xml#f_user_initialization</location>user_initialization</feature>
+			<comment>--</comment><comment> Feature for custom initialization, called at end of </comment><feature><location>../tracker/etf_main_window_imp.xml#f_initialize</location>initialize</feature><comment>.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_command_return_key_pressed</anchor><feature><location>../tracker/etf_main_window_imp.xml#f_command_return_key_pressed</location>command_return_key_pressed</feature>
+			<comment>--</comment><comment> Called by </comment><quoted>return_actions</quoted><comment> of </comment><feature><location>../tracker/etf_main_window_imp.xml#f_command</location>command</feature><comment>.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_execute_pressed</anchor><feature><location>../tracker/etf_main_window_imp.xml#f_execute_pressed</location>execute_pressed</feature>
+			<comment>--</comment><comment> Called by </comment><quoted>select_actions</quoted><comment> of </comment><feature><location>../tracker/etf_main_window_imp.xml#f_execute</location>execute</feature><comment>.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_reset_pressed</anchor><feature><location>../tracker/etf_main_window_imp.xml#f_reset_pressed</location>reset_pressed</feature>
+			<comment>--</comment><comment> Called by </comment><quoted>select_actions</quoted><comment> of </comment><feature><location>../tracker/etf_main_window_imp.xml#f_reset</location>reset</feature><comment>.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_load_pressed</anchor><feature><location>../tracker/etf_main_window_imp.xml#f_load_pressed</location>load_pressed</feature>
+			<comment>--</comment><comment> Called by </comment><quoted>select_actions</quoted><comment> of </comment><feature><location>../tracker/etf_main_window_imp.xml#f_load</location>load</feature><comment>.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Constant setting</comment>
+
+	<anchor>f_set_attributes_using_string_constants</anchor><keyword>frozen</keyword> <feature><location>../tracker/etf_main_window_imp.xml#f_set_attributes_using_string_constants</location>set_attributes_using_string_constants</feature>
+			<comment>--</comment><comment> Set all attributes relying on string constants to the current</comment>
+			<comment>--</comment><comment> value of the associated constant.</comment>
+		<keyword>local</keyword>
+			<local>s</local><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>STRING_32</class>
+		<keyword>do</keyword>
+			<keyword>from</keyword>
+				<feature><location>../tracker/etf_main_window_imp.xml#f_string_constant_set_procedures</location>string_constant_set_procedures</feature><dot>.</dot><feature><include>False</include>start</feature>
+			<keyword>until</keyword>
+				<feature><location>../tracker/etf_main_window_imp.xml#f_string_constant_set_procedures</location>string_constant_set_procedures</feature><dot>.</dot><feature><include>False</include>off</feature>
+			<keyword>loop</keyword>
+				<feature><location>../tracker/etf_main_window_imp.xml#f_string_constant_retrieval_functions</location>string_constant_retrieval_functions</feature><dot>.</dot><feature><include>False</include>i_th</feature><symbol> </symbol><symbol>(</symbol><feature><location>../tracker/etf_main_window_imp.xml#f_string_constant_set_procedures</location>string_constant_set_procedures</feature><dot>.</dot><feature><include>False</include>index</feature><symbol>)</symbol><dot>.</dot><feature><include>False</include>call</feature><symbol> </symbol><symbol>(</symbol><keyword>Void</keyword><symbol>)</symbol>
+				<local>s</local> <symbol>:=</symbol> <feature><location>../tracker/etf_main_window_imp.xml#f_string_constant_retrieval_functions</location>string_constant_retrieval_functions</feature><dot>.</dot><feature><include>False</include>i_th</feature><symbol> </symbol><symbol>(</symbol><feature><location>../tracker/etf_main_window_imp.xml#f_string_constant_set_procedures</location>string_constant_set_procedures</feature><dot>.</dot><feature><include>False</include>index</feature><symbol>)</symbol><dot>.</dot><feature><include>False</include>last_result</feature>
+				<keyword>if</keyword> <local>s</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+					<feature><location>../tracker/etf_main_window_imp.xml#f_string_constant_set_procedures</location>string_constant_set_procedures</feature><dot>.</dot><feature><include>False</include>item</feature><dot>.</dot><feature><include>False</include>call</feature><symbol> </symbol><symbol>(</symbol><symbol>[</symbol><local>s</local><symbol>]</symbol><symbol>)</symbol>
+				<keyword>end</keyword>
+				<feature><location>../tracker/etf_main_window_imp.xml#f_string_constant_set_procedures</location>string_constant_set_procedures</feature><dot>.</dot><feature><include>False</include>forth</feature>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_set_attributes_using_integer_constants</anchor><keyword>frozen</keyword> <feature><location>../tracker/etf_main_window_imp.xml#f_set_attributes_using_integer_constants</location>set_attributes_using_integer_constants</feature>
+			<comment>--</comment><comment> Set all attributes relying on integer constants to the current</comment>
+			<comment>--</comment><comment> value of the associated constant.</comment>
+		<keyword>local</keyword>
+			<local>i</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<local>arg1</local><symbol>,</symbol> <local>arg2</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<local>int</local><symbol>:</symbol> <class><include>False</include>INTEGER_INTERVAL</class>
+		<keyword>do</keyword>
+			<keyword>from</keyword>
+				<feature><location>../tracker/etf_main_window_imp.xml#f_integer_constant_set_procedures</location>integer_constant_set_procedures</feature><dot>.</dot><feature><include>False</include>start</feature>
+			<keyword>until</keyword>
+				<feature><location>../tracker/etf_main_window_imp.xml#f_integer_constant_set_procedures</location>integer_constant_set_procedures</feature><dot>.</dot><feature><include>False</include>off</feature>
+			<keyword>loop</keyword>
+				<feature><location>../tracker/etf_main_window_imp.xml#f_integer_constant_retrieval_functions</location>integer_constant_retrieval_functions</feature><dot>.</dot><feature><include>False</include>i_th</feature><symbol> </symbol><symbol>(</symbol><feature><location>../tracker/etf_main_window_imp.xml#f_integer_constant_set_procedures</location>integer_constant_set_procedures</feature><dot>.</dot><feature><include>False</include>index</feature><symbol>)</symbol><dot>.</dot><feature><include>False</include>call</feature><symbol> </symbol><symbol>(</symbol><keyword>Void</keyword><symbol>)</symbol>
+				<local>i</local> <symbol>:=</symbol> <feature><location>../tracker/etf_main_window_imp.xml#f_integer_constant_retrieval_functions</location>integer_constant_retrieval_functions</feature><dot>.</dot><feature><include>False</include>i_th</feature><symbol> </symbol><symbol>(</symbol><feature><location>../tracker/etf_main_window_imp.xml#f_integer_constant_set_procedures</location>integer_constant_set_procedures</feature><dot>.</dot><feature><include>False</include>index</feature><symbol>)</symbol><dot>.</dot><feature><include>False</include>last_result</feature>
+				<feature><location>../tracker/etf_main_window_imp.xml#f_integer_constant_set_procedures</location>integer_constant_set_procedures</feature><dot>.</dot><feature><include>False</include>item</feature><dot>.</dot><feature><include>False</include>call</feature><symbol> </symbol><symbol>(</symbol><symbol>[</symbol><local>i</local><symbol>]</symbol><symbol>)</symbol>
+				<feature><location>../tracker/etf_main_window_imp.xml#f_integer_constant_set_procedures</location>integer_constant_set_procedures</feature><dot>.</dot><feature><include>False</include>forth</feature>
+			<keyword>end</keyword>
+			<keyword>from</keyword>
+				<feature><location>../tracker/etf_main_window_imp.xml#f_integer_interval_constant_retrieval_functions</location>integer_interval_constant_retrieval_functions</feature><dot>.</dot><feature><include>False</include>start</feature>
+				<feature><location>../tracker/etf_main_window_imp.xml#f_integer_interval_constant_set_procedures</location>integer_interval_constant_set_procedures</feature><dot>.</dot><feature><include>False</include>start</feature>
+			<keyword>until</keyword>
+				<feature><location>../tracker/etf_main_window_imp.xml#f_integer_interval_constant_retrieval_functions</location>integer_interval_constant_retrieval_functions</feature><dot>.</dot><feature><include>False</include>off</feature>
+			<keyword>loop</keyword>
+				<feature><location>../tracker/etf_main_window_imp.xml#f_integer_interval_constant_retrieval_functions</location>integer_interval_constant_retrieval_functions</feature><dot>.</dot><feature><include>False</include>item</feature><dot>.</dot><feature><include>False</include>call</feature><symbol> </symbol><symbol>(</symbol><keyword>Void</keyword><symbol>)</symbol>
+				<local>arg1</local> <symbol>:=</symbol> <feature><location>../tracker/etf_main_window_imp.xml#f_integer_interval_constant_retrieval_functions</location>integer_interval_constant_retrieval_functions</feature><dot>.</dot><feature><include>False</include>item</feature><dot>.</dot><feature><include>False</include>last_result</feature>
+				<feature><location>../tracker/etf_main_window_imp.xml#f_integer_interval_constant_retrieval_functions</location>integer_interval_constant_retrieval_functions</feature><dot>.</dot><feature><include>False</include>forth</feature>
+				<feature><location>../tracker/etf_main_window_imp.xml#f_integer_interval_constant_retrieval_functions</location>integer_interval_constant_retrieval_functions</feature><dot>.</dot><feature><include>False</include>item</feature><dot>.</dot><feature><include>False</include>call</feature><symbol> </symbol><symbol>(</symbol><keyword>Void</keyword><symbol>)</symbol>
+				<local>arg2</local> <symbol>:=</symbol> <feature><location>../tracker/etf_main_window_imp.xml#f_integer_interval_constant_retrieval_functions</location>integer_interval_constant_retrieval_functions</feature><dot>.</dot><feature><include>False</include>item</feature><dot>.</dot><feature><include>False</include>last_result</feature>
+				<keyword>create</keyword> <local>int</local><dot>.</dot><feature><include>False</include>make</feature><symbol> </symbol><symbol>(</symbol><local>arg1</local><symbol>,</symbol> <local>arg2</local><symbol>)</symbol>
+				<feature><location>../tracker/etf_main_window_imp.xml#f_integer_interval_constant_set_procedures</location>integer_interval_constant_set_procedures</feature><dot>.</dot><feature><include>False</include>item</feature><dot>.</dot><feature><include>False</include>call</feature><symbol> </symbol><symbol>(</symbol><symbol>[</symbol><local>int</local><symbol>]</symbol><symbol>)</symbol>
+				<feature><location>../tracker/etf_main_window_imp.xml#f_integer_interval_constant_retrieval_functions</location>integer_interval_constant_retrieval_functions</feature><dot>.</dot><feature><include>False</include>forth</feature>
+				<feature><location>../tracker/etf_main_window_imp.xml#f_integer_interval_constant_set_procedures</location>integer_interval_constant_set_procedures</feature><dot>.</dot><feature><include>False</include>forth</feature>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_set_attributes_using_pixmap_constants</anchor><keyword>frozen</keyword> <feature><location>../tracker/etf_main_window_imp.xml#f_set_attributes_using_pixmap_constants</location>set_attributes_using_pixmap_constants</feature>
+			<comment>--</comment><comment> Set all attributes relying on pixmap constants to the current</comment>
+			<comment>--</comment><comment> value of the associated constant.</comment>
+		<keyword>local</keyword>
+			<local>p</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_pixmap.xml</location>EV_PIXMAP</class>
+		<keyword>do</keyword>
+			<keyword>from</keyword>
+				<feature><location>../tracker/etf_main_window_imp.xml#f_pixmap_constant_set_procedures</location>pixmap_constant_set_procedures</feature><dot>.</dot><feature><include>False</include>start</feature>
+			<keyword>until</keyword>
+				<feature><location>../tracker/etf_main_window_imp.xml#f_pixmap_constant_set_procedures</location>pixmap_constant_set_procedures</feature><dot>.</dot><feature><include>False</include>off</feature>
+			<keyword>loop</keyword>
+				<feature><location>../tracker/etf_main_window_imp.xml#f_pixmap_constant_retrieval_functions</location>pixmap_constant_retrieval_functions</feature><dot>.</dot><feature><include>False</include>i_th</feature><symbol> </symbol><symbol>(</symbol><feature><location>../tracker/etf_main_window_imp.xml#f_pixmap_constant_set_procedures</location>pixmap_constant_set_procedures</feature><dot>.</dot><feature><include>False</include>index</feature><symbol>)</symbol><dot>.</dot><feature><include>False</include>call</feature><symbol> </symbol><symbol>(</symbol><keyword>Void</keyword><symbol>)</symbol>
+				<local>p</local> <symbol>:=</symbol> <feature><location>../tracker/etf_main_window_imp.xml#f_pixmap_constant_retrieval_functions</location>pixmap_constant_retrieval_functions</feature><dot>.</dot><feature><include>False</include>i_th</feature><symbol> </symbol><symbol>(</symbol><feature><location>../tracker/etf_main_window_imp.xml#f_pixmap_constant_set_procedures</location>pixmap_constant_set_procedures</feature><dot>.</dot><feature><include>False</include>index</feature><symbol>)</symbol><dot>.</dot><feature><include>False</include>last_result</feature>
+				<keyword>if</keyword> <local>p</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+					<feature><location>../tracker/etf_main_window_imp.xml#f_pixmap_constant_set_procedures</location>pixmap_constant_set_procedures</feature><dot>.</dot><feature><include>False</include>item</feature><dot>.</dot><feature><include>False</include>call</feature><symbol> </symbol><symbol>(</symbol><symbol>[</symbol><local>p</local><symbol>]</symbol><symbol>)</symbol>
+				<keyword>end</keyword>
+				<feature><location>../tracker/etf_main_window_imp.xml#f_pixmap_constant_set_procedures</location>pixmap_constant_set_procedures</feature><dot>.</dot><feature><include>False</include>forth</feature>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_set_attributes_using_font_constants</anchor><keyword>frozen</keyword> <feature><location>../tracker/etf_main_window_imp.xml#f_set_attributes_using_font_constants</location>set_attributes_using_font_constants</feature>
+			<comment>--</comment><comment> Set all attributes relying on font constants to the current</comment>
+			<comment>--</comment><comment> value of the associated constant.</comment>
+		<keyword>local</keyword>
+			<local>f</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_font.xml</location>EV_FONT</class>
+		<keyword>do</keyword>
+			<keyword>from</keyword>
+				<feature><location>../tracker/etf_main_window_imp.xml#f_font_constant_set_procedures</location>font_constant_set_procedures</feature><dot>.</dot><feature><include>False</include>start</feature>
+			<keyword>until</keyword>
+				<feature><location>../tracker/etf_main_window_imp.xml#f_font_constant_set_procedures</location>font_constant_set_procedures</feature><dot>.</dot><feature><include>False</include>off</feature>
+			<keyword>loop</keyword>
+				<feature><location>../tracker/etf_main_window_imp.xml#f_font_constant_retrieval_functions</location>font_constant_retrieval_functions</feature><dot>.</dot><feature><include>False</include>i_th</feature><symbol> </symbol><symbol>(</symbol><feature><location>../tracker/etf_main_window_imp.xml#f_font_constant_set_procedures</location>font_constant_set_procedures</feature><dot>.</dot><feature><include>False</include>index</feature><symbol>)</symbol><dot>.</dot><feature><include>False</include>call</feature><symbol> </symbol><symbol>(</symbol><keyword>Void</keyword><symbol>)</symbol>
+				<local>f</local> <symbol>:=</symbol> <feature><location>../tracker/etf_main_window_imp.xml#f_font_constant_retrieval_functions</location>font_constant_retrieval_functions</feature><dot>.</dot><feature><include>False</include>i_th</feature><symbol> </symbol><symbol>(</symbol><feature><location>../tracker/etf_main_window_imp.xml#f_font_constant_set_procedures</location>font_constant_set_procedures</feature><dot>.</dot><feature><include>False</include>index</feature><symbol>)</symbol><dot>.</dot><feature><include>False</include>last_result</feature>
+				<keyword>if</keyword> <local>f</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+					<feature><location>../tracker/etf_main_window_imp.xml#f_font_constant_set_procedures</location>font_constant_set_procedures</feature><dot>.</dot><feature><include>False</include>item</feature><dot>.</dot><feature><include>False</include>call</feature><symbol> </symbol><symbol>(</symbol><symbol>[</symbol><local>f</local><symbol>]</symbol><symbol>)</symbol>
+				<keyword>end</keyword>
+				<feature><location>../tracker/etf_main_window_imp.xml#f_font_constant_set_procedures</location>font_constant_set_procedures</feature><dot>.</dot><feature><include>False</include>forth</feature>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_set_attributes_using_color_constants</anchor><keyword>frozen</keyword> <feature><location>../tracker/etf_main_window_imp.xml#f_set_attributes_using_color_constants</location>set_attributes_using_color_constants</feature>
+			<comment>--</comment><comment> Set all attributes relying on color constants to the current</comment>
+			<comment>--</comment><comment> value of the associated constant.</comment>
+		<keyword>local</keyword>
+			<local>c</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_color.xml</location>EV_COLOR</class>
+		<keyword>do</keyword>
+			<keyword>from</keyword>
+				<feature><location>../tracker/etf_main_window_imp.xml#f_color_constant_set_procedures</location>color_constant_set_procedures</feature><dot>.</dot><feature><include>False</include>start</feature>
+			<keyword>until</keyword>
+				<feature><location>../tracker/etf_main_window_imp.xml#f_color_constant_set_procedures</location>color_constant_set_procedures</feature><dot>.</dot><feature><include>False</include>off</feature>
+			<keyword>loop</keyword>
+				<feature><location>../tracker/etf_main_window_imp.xml#f_color_constant_retrieval_functions</location>color_constant_retrieval_functions</feature><dot>.</dot><feature><include>False</include>i_th</feature><symbol> </symbol><symbol>(</symbol><feature><location>../tracker/etf_main_window_imp.xml#f_color_constant_set_procedures</location>color_constant_set_procedures</feature><dot>.</dot><feature><include>False</include>index</feature><symbol>)</symbol><dot>.</dot><feature><include>False</include>call</feature><symbol> </symbol><symbol>(</symbol><keyword>Void</keyword><symbol>)</symbol>
+				<local>c</local> <symbol>:=</symbol> <feature><location>../tracker/etf_main_window_imp.xml#f_color_constant_retrieval_functions</location>color_constant_retrieval_functions</feature><dot>.</dot><feature><include>False</include>i_th</feature><symbol> </symbol><symbol>(</symbol><feature><location>../tracker/etf_main_window_imp.xml#f_color_constant_set_procedures</location>color_constant_set_procedures</feature><dot>.</dot><feature><include>False</include>index</feature><symbol>)</symbol><dot>.</dot><feature><include>False</include>last_result</feature>
+				<keyword>if</keyword> <local>c</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+					<feature><location>../tracker/etf_main_window_imp.xml#f_color_constant_set_procedures</location>color_constant_set_procedures</feature><dot>.</dot><feature><include>False</include>item</feature><dot>.</dot><feature><include>False</include>call</feature><symbol> </symbol><symbol>(</symbol><symbol>[</symbol><local>c</local><symbol>]</symbol><symbol>)</symbol>
+				<keyword>end</keyword>
+				<feature><location>../tracker/etf_main_window_imp.xml#f_color_constant_set_procedures</location>color_constant_set_procedures</feature><dot>.</dot><feature><include>False</include>forth</feature>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_set_all_attributes_using_constants</anchor><keyword>frozen</keyword> <feature><location>../tracker/etf_main_window_imp.xml#f_set_all_attributes_using_constants</location>set_all_attributes_using_constants</feature>
+			<comment>--</comment><comment> Set all attributes relying on constants to the current</comment>
+			<comment>--</comment><comment> calue of the associated constant.</comment>
+		<keyword>do</keyword>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_set_attributes_using_string_constants</location>set_attributes_using_string_constants</feature>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_set_attributes_using_integer_constants</location>set_attributes_using_integer_constants</feature>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_set_attributes_using_pixmap_constants</location>set_attributes_using_pixmap_constants</feature>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_set_attributes_using_font_constants</location>set_attributes_using_font_constants</feature>
+			<feature><location>../tracker/etf_main_window_imp.xml#f_set_attributes_using_color_constants</location>set_attributes_using_color_constants</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_string_constant_set_procedures</anchor><feature><location>../tracker/etf_main_window_imp.xml#f_string_constant_set_procedures</location>string_constant_set_procedures</feature><symbol>:</symbol> <class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><class><include>False</include>PROCEDURE</class> <symbol>[</symbol><class><include>False</include>READABLE_STRING_GENERAL</class><symbol>]</symbol><symbol>]</symbol>
+
+	<anchor>f_string_constant_retrieval_functions</anchor><feature><location>../tracker/etf_main_window_imp.xml#f_string_constant_retrieval_functions</location>string_constant_retrieval_functions</feature><symbol>:</symbol> <class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><class><include>False</include>FUNCTION</class> <symbol>[</symbol><class><include>False</include>STRING_32</class><symbol>]</symbol><symbol>]</symbol>
+
+	<anchor>f_integer_constant_set_procedures</anchor><feature><location>../tracker/etf_main_window_imp.xml#f_integer_constant_set_procedures</location>integer_constant_set_procedures</feature><symbol>:</symbol> <class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><class><include>False</include>PROCEDURE</class> <symbol>[</symbol><class><include>False</include>INTEGER_32</class><symbol>]</symbol><symbol>]</symbol>
+
+	<anchor>f_integer_constant_retrieval_functions</anchor><feature><location>../tracker/etf_main_window_imp.xml#f_integer_constant_retrieval_functions</location>integer_constant_retrieval_functions</feature><symbol>:</symbol> <class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><class><include>False</include>FUNCTION</class> <symbol>[</symbol><class><include>False</include>INTEGER_32</class><symbol>]</symbol><symbol>]</symbol>
+
+	<anchor>f_pixmap_constant_set_procedures</anchor><feature><location>../tracker/etf_main_window_imp.xml#f_pixmap_constant_set_procedures</location>pixmap_constant_set_procedures</feature><symbol>:</symbol> <class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><class><include>False</include>PROCEDURE</class> <symbol>[</symbol><class><location>../interface/ev_pixmap.xml</location>EV_PIXMAP</class><symbol>]</symbol><symbol>]</symbol>
+
+	<anchor>f_pixmap_constant_retrieval_functions</anchor><feature><location>../tracker/etf_main_window_imp.xml#f_pixmap_constant_retrieval_functions</location>pixmap_constant_retrieval_functions</feature><symbol>:</symbol> <class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><class><include>False</include>FUNCTION</class> <symbol>[</symbol><class><location>../interface/ev_pixmap.xml</location>EV_PIXMAP</class><symbol>]</symbol><symbol>]</symbol>
+
+	<anchor>f_integer_interval_constant_retrieval_functions</anchor><feature><location>../tracker/etf_main_window_imp.xml#f_integer_interval_constant_retrieval_functions</location>integer_interval_constant_retrieval_functions</feature><symbol>:</symbol> <class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><class><include>False</include>FUNCTION</class> <symbol>[</symbol><class><include>False</include>INTEGER_32</class><symbol>]</symbol><symbol>]</symbol>
+
+	<anchor>f_integer_interval_constant_set_procedures</anchor><feature><location>../tracker/etf_main_window_imp.xml#f_integer_interval_constant_set_procedures</location>integer_interval_constant_set_procedures</feature><symbol>:</symbol> <class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><class><include>False</include>PROCEDURE</class> <symbol>[</symbol><class><include>False</include>INTEGER_INTERVAL</class><symbol>]</symbol><symbol>]</symbol>
+
+	<anchor>f_font_constant_set_procedures</anchor><feature><location>../tracker/etf_main_window_imp.xml#f_font_constant_set_procedures</location>font_constant_set_procedures</feature><symbol>:</symbol> <class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><class><include>False</include>PROCEDURE</class> <symbol>[</symbol><class><location>../interface/ev_font.xml</location>EV_FONT</class><symbol>]</symbol><symbol>]</symbol>
+
+	<anchor>f_font_constant_retrieval_functions</anchor><feature><location>../tracker/etf_main_window_imp.xml#f_font_constant_retrieval_functions</location>font_constant_retrieval_functions</feature><symbol>:</symbol> <class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><class><include>False</include>FUNCTION</class> <symbol>[</symbol><class><location>../interface/ev_font.xml</location>EV_FONT</class><symbol>]</symbol><symbol>]</symbol>
+
+	<anchor>f_color_constant_set_procedures</anchor><feature><location>../tracker/etf_main_window_imp.xml#f_color_constant_set_procedures</location>color_constant_set_procedures</feature><symbol>:</symbol> <class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><class><include>False</include>PROCEDURE</class> <symbol>[</symbol><class><location>../interface/ev_color.xml</location>EV_COLOR</class><symbol>]</symbol><symbol>]</symbol>
+
+	<anchor>f_color_constant_retrieval_functions</anchor><feature><location>../tracker/etf_main_window_imp.xml#f_color_constant_retrieval_functions</location>color_constant_retrieval_functions</feature><symbol>:</symbol> <class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><class><include>False</include>FUNCTION</class> <symbol>[</symbol><class><location>../interface/ev_color.xml</location>EV_COLOR</class><symbol>]</symbol><symbol>]</symbol>
+
+	<anchor>f_integer_from_integer</anchor><keyword>frozen</keyword> <feature><location>../tracker/etf_main_window_imp.xml#f_integer_from_integer</location>integer_from_integer</feature> <symbol>(</symbol><local>an_integer</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Return </comment><quoted>an_integer</quoted><comment>, used for creation of</comment>
+			<comment>--</comment><comment> an agent that returns a fixed integer value.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <local>an_integer</local>
+		<keyword>end</keyword>
+	
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../tracker/etf_main_window_imp.xml</location>ETF_MAIN_WINDOW_IMP</class></system>
+

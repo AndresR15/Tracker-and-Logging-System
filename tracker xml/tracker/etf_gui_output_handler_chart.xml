@@ -1,0 +1,25 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../tracker/etf_gui_output_handler_chart.xml</location>ETF_GUI_OUTPUT_HANDLER</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>tracker</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;An output handler for the GUI mode of ETF.&quot;</string>
+	<indexing_tag>create</indexing_tag><symbol>:</symbol> <feature><location>../tracker/etf_gui_output_handler.xml#f_make</location>make</feature>
+
+<keyword>Ancestors</keyword>
+	<class><include>False</include>ETF_OUTPUT_HANDLER_INTERFACE</class><char>*</char>
+
+<keyword>Queries</keyword>
+	<feature><include>False</include>error_message</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+	<feature><location>../tracker/etf_gui_output_handler.xml#f_model</location>model</feature><symbol>:</symbol> <class><location>../tracker/tracker_chart.xml</location>TRACKER</class>
+	<feature><location>../tracker/etf_gui_output_handler.xml#f_model_state</location>model_state</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+	<feature><include>False</include>output</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+
+<keyword>Commands</keyword>
+	<feature><location>../tracker/etf_gui_output_handler.xml#f_log_command</location>log_command</feature> <symbol>(</symbol><local>a_cmd</local><symbol>:</symbol> <class><location>../tracker/etf_command_chart.xml</location>ETF_COMMAND</class><symbol>)</symbol>
+	<feature><include>False</include>log_empty</feature> <symbol>(</symbol><local>a_cmd</local><symbol>:</symbol> <class><location>../tracker/etf_command_chart.xml</location>ETF_COMMAND</class><symbol>)</symbol>
+	<feature><include>False</include>log_error</feature> <symbol>(</symbol><local>a_error</local><symbol>:</symbol> <class><include>False</include>STRING_8</class><symbol>)</symbol>
+	<feature><location>../tracker/etf_gui_output_handler.xml#f_log_model_state</location>log_model_state</feature>
+
+</system>

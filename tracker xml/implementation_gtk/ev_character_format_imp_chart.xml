@@ -1,0 +1,38 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../implementation_gtk/ev_character_format_imp_chart.xml</location>EV_CHARACTER_FORMAT_IMP</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>implementation_gtk</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Objects that ...&quot;</string>
+	<indexing_tag>create</indexing_tag><symbol>:</symbol> <feature><location>../implementation_gtk/ev_character_format_imp.xml#f_make</location>make</feature>
+
+<keyword>Ancestors</keyword>
+	<class><location>../implementation_interface/ev_character_format_i_chart.xml</location>EV_CHARACTER_FORMAT_I</class><char>*</char>
+	<class><include>False</include>IDENTIFIED</class>
+
+<keyword>Queries</keyword>
+	<feature><location>../implementation_gtk/ev_character_format_imp.xml#f_background_color</location>background_color</feature><symbol>:</symbol> <class><location>../interface/ev_color_chart.xml</location>EV_COLOR</class>
+	<feature><location>../implementation_gtk/ev_character_format_imp.xml#f_color</location>color</feature><symbol>:</symbol> <class><location>../interface/ev_color_chart.xml</location>EV_COLOR</class>
+	<feature><location>../implementation_gtk/ev_character_format_imp.xml#f_effects</location>effects</feature><symbol>:</symbol> <class><location>../interface/ev_character_format_effects_chart.xml</location>EV_CHARACTER_FORMAT_EFFECTS</class>
+	<feature><location>../implementation_gtk/ev_character_format_imp.xml#f_font</location>font</feature><symbol>:</symbol> <class><location>../interface/ev_font_chart.xml</location>EV_FONT</class>
+	<feature><include>False</include>id_freed</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><include>False</include>id_object</feature> <symbol>(</symbol><local>an_id</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>IDENTIFIED</class>
+	<feature><location>../implementation_interface/ev_any_i.xml#f_is_destroyed</location>is_destroyed</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><include>False</include>is_equal</feature> <symbol>(</symbol><local>other</local><symbol>:</symbol> <symbol>[</symbol><keyword>attached</keyword> <keyword>like</keyword> <keyword>Current</keyword><symbol>]</symbol> <keyword>attached</keyword> <class><location>../implementation_gtk/ev_character_format_imp_chart.xml</location>EV_CHARACTER_FORMAT_IMP</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><include>False</include>object_id</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_interface/ev_character_format_i.xml#f_out</location>out</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+
+<keyword>Commands</keyword>
+	<feature><include>False</include>copy</feature> <symbol>(</symbol><local>other</local><symbol>:</symbol> <symbol>[</symbol><keyword>attached</keyword> <keyword>like</keyword> <keyword>Current</keyword><symbol>]</symbol> <keyword>attached</keyword> <class><location>../implementation_gtk/ev_character_format_imp_chart.xml</location>EV_CHARACTER_FORMAT_IMP</class><symbol>)</symbol>
+	<feature><include>False</include>free_id</feature>
+	<feature><location>../implementation_gtk/ev_character_format_imp.xml#f_set_background_color</location>set_background_color</feature> <symbol>(</symbol><local>a_color</local><symbol>:</symbol> <class><location>../interface/ev_color_chart.xml</location>EV_COLOR</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_character_format_imp.xml#f_set_bcolor</location>set_bcolor</feature> <symbol>(</symbol><local>a_red</local><symbol>,</symbol> <local>a_green</local><symbol>,</symbol> <local>a_blue</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_character_format_imp.xml#f_set_color</location>set_color</feature> <symbol>(</symbol><local>a_color</local><symbol>:</symbol> <class><location>../interface/ev_color_chart.xml</location>EV_COLOR</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_character_format_imp.xml#f_set_effects</location>set_effects</feature> <symbol>(</symbol><local>an_effect</local><symbol>:</symbol> <class><location>../interface/ev_character_format_effects_chart.xml</location>EV_CHARACTER_FORMAT_EFFECTS</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_character_format_imp.xml#f_set_effects_internal</location>set_effects_internal</feature> <symbol>(</symbol><local>a_underlined</local><symbol>,</symbol> <local>a_striked_out</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class><symbol>;</symbol> <local>a_vertical_offset</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_character_format_imp.xml#f_set_fcolor</location>set_fcolor</feature> <symbol>(</symbol><local>a_red</local><symbol>,</symbol> <local>a_green</local><symbol>,</symbol> <local>a_blue</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_character_format_imp.xml#f_set_font</location>set_font</feature> <symbol>(</symbol><local>a_font</local><symbol>:</symbol> <class><location>../interface/ev_font_chart.xml</location>EV_FONT</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_character_format_imp.xml#f_set_font_attributes</location>set_font_attributes</feature> <symbol>(</symbol><local>a_name</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>;</symbol> <local>a_family</local><symbol>,</symbol> <local>a_point_height</local><symbol>,</symbol> <local>a_weight</local><symbol>,</symbol> <local>a_shape</local><symbol>,</symbol> <local>a_charset</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+
+</system>

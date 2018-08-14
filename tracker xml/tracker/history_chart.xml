@@ -1,0 +1,21 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../tracker/history_chart.xml</location>HISTORY</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>tracker</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Summary description for </string><symbol>{</symbol><class><location>../tracker/history_chart.xml</location>HISTORY</class><symbol>}</symbol><string>.&quot;</string>
+	<indexing_tag>create</indexing_tag><symbol>:</symbol> <feature><location>../tracker/history.xml#f_make</location>make</feature>
+
+<keyword>Ancestors</keyword>
+	<class><include>False</include>ANY</class>
+
+<keyword>Queries</keyword>
+	<feature><location>../tracker/history.xml#f_get_record</location>get_record</feature><symbol>:</symbol> <class><include>False</include>LINKED_LIST</class> <symbol>[</symbol><class><location>../tracker/command_chart.xml</location>COMMAND</class><symbol>]</symbol>
+
+<keyword>Commands</keyword>
+	<feature><location>../tracker/history.xml#f_add_to_record</location>add_to_record</feature> <symbol>(</symbol><local>c</local><symbol>:</symbol> <class><location>../tracker/command_chart.xml</location>COMMAND</class><symbol>)</symbol>
+	<feature><location>../tracker/history.xml#f_remove_all_right</location>remove_all_right</feature>
+	<feature><location>../tracker/history.xml#f_reset_record_and_append</location>reset_record_and_append</feature> <symbol>(</symbol><local>c</local><symbol>:</symbol> <class><location>../tracker/command_chart.xml</location>COMMAND</class><symbol>)</symbol>
+
+</system>

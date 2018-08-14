@@ -1,0 +1,154 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Vision gauge. Implementation interface.&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2009-08-21 14:40:11 -0700 (Fri, 21 Aug 2009) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 80388 $&quot;</string>
+
+<keyword>deferred</keyword> <keyword>class</keyword> 
+	<class><location>../implementation_interface/ev_gauge_i.xml</location>EV_GAUGE_I</class>
+
+<keyword>inherit</keyword>
+	<class><location>../implementation_interface/ev_primitive_i.xml</location>EV_PRIMITIVE_I</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_interface/ev_gauge_i.xml#f_interface</location>interface</feature>
+		<keyword>end</keyword>
+
+	<class><location>../implementation_interface/ev_gauge_action_sequences_i.xml</location>EV_GAUGE_ACTION_SEQUENCES_I</class>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_value</anchor><feature><location>../implementation_interface/ev_gauge_i.xml#f_value</location>value</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Current value of the gauge.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_step</anchor><feature><location>../implementation_interface/ev_gauge_i.xml#f_step</location>step</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Value by which </comment><feature><location>../implementation_interface/ev_gauge_i.xml#f_value</location>value</feature><comment> is increased after </comment><feature><location>../implementation_interface/ev_gauge_i.xml#f_step_forward</location>step_forward</feature><comment>.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_leap</anchor><feature><location>../implementation_interface/ev_gauge_i.xml#f_leap</location>leap</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Value by which </comment><feature><location>../implementation_interface/ev_gauge_i.xml#f_value</location>value</feature><comment> is increased after </comment><feature><location>../implementation_interface/ev_gauge_i.xml#f_leap_forward</location>leap_forward</feature><comment>.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_value_range</anchor><feature><location>../implementation_interface/ev_gauge_i.xml#f_value_range</location>value_range</feature><symbol>:</symbol> <class><include>False</include>ACTIVE_INTEGER_INTERVAL</class>
+			<comment>--</comment><comment> Range of </comment><feature><location>../implementation_interface/ev_gauge_i.xml#f_value</location>value</feature><comment>.</comment>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status report</comment>
+
+	<anchor>f_proportion</anchor><feature><location>../implementation_interface/ev_gauge_i.xml#f_proportion</location>proportion</feature><symbol>:</symbol> <class><include>False</include>REAL_32</class>
+			<comment>--</comment><comment> Relative position of </comment><feature><location>../implementation_interface/ev_gauge_i.xml#f_value</location>value</feature><comment> in </comment><quoted>range</quoted><comment>. Range: [0, 1].</comment>
+		<keyword>local</keyword>
+			<local>u</local><symbol>,</symbol> <local>l</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+		<keyword>do</keyword>
+			<local>u</local> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_gauge_i.xml#f_value_range</location>value_range</feature><dot>.</dot><feature><include>False</include>upper</feature>
+			<local>l</local> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_gauge_i.xml#f_value_range</location>value_range</feature><dot>.</dot><feature><include>False</include>lower</feature>
+			<keyword>if</keyword> <local>u</local> <symbol>/=</symbol> <local>l</local> <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <symbol>(</symbol><symbol>(</symbol><feature><location>../implementation_interface/ev_gauge_i.xml#f_value</location>value</feature> <symbol>-</symbol> <local>l</local><symbol>)</symbol> <symbol>/</symbol> <symbol>(</symbol><local>u</local> <symbol>-</symbol> <local>l</local><symbol>)</symbol><symbol>)</symbol><dot>.</dot><feature><include>False</include>truncated_to_real</feature>
+			<keyword>else</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <symbol>{</symbol><class><include>False</include>REAL_32</class><symbol>}</symbol> <number>0.0</number>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status setting</comment>
+
+	<anchor>f_step_forward</anchor><feature><location>../implementation_interface/ev_gauge_i.xml#f_step_forward</location>step_forward</feature>
+			<comment>--</comment><comment> Increment </comment><feature><location>../implementation_interface/ev_gauge_i.xml#f_value</location>value</feature><comment> by </comment><feature><location>../implementation_interface/ev_gauge_i.xml#f_step</location>step</feature><comment> if possible.</comment>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>incremented</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_gauge_i.xml#f_value</location>value</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_gauge_i.xml#f_value</location>value</feature> <symbol>+</symbol> <feature><location>../implementation_interface/ev_gauge_i.xml#f_step</location>step</feature> <keyword>or else</keyword> <feature><location>../implementation_interface/ev_gauge_i.xml#f_value</location>value</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_gauge_i.xml#f_value_range</location>value_range</feature><dot>.</dot><feature><include>False</include>upper</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_step_backward</anchor><feature><location>../implementation_interface/ev_gauge_i.xml#f_step_backward</location>step_backward</feature>
+			<comment>--</comment><comment> Decrement </comment><feature><location>../implementation_interface/ev_gauge_i.xml#f_value</location>value</feature><comment> by </comment><feature><location>../implementation_interface/ev_gauge_i.xml#f_step</location>step</feature><comment> if possible.</comment>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>decremented</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_gauge_i.xml#f_value</location>value</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_gauge_i.xml#f_value</location>value</feature> <symbol>-</symbol> <feature><location>../implementation_interface/ev_gauge_i.xml#f_step</location>step</feature> <keyword>or else</keyword> <feature><location>../implementation_interface/ev_gauge_i.xml#f_value</location>value</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_gauge_i.xml#f_value_range</location>value_range</feature><dot>.</dot><feature><include>False</include>lower</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_leap_forward</anchor><feature><location>../implementation_interface/ev_gauge_i.xml#f_leap_forward</location>leap_forward</feature>
+			<comment>--</comment><comment> Increment </comment><feature><location>../implementation_interface/ev_gauge_i.xml#f_value</location>value</feature><comment> by </comment><feature><location>../implementation_interface/ev_gauge_i.xml#f_leap</location>leap</feature><comment> if possible.</comment>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>incremented</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_gauge_i.xml#f_value</location>value</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_gauge_i.xml#f_value</location>value</feature> <symbol>+</symbol> <feature><location>../implementation_interface/ev_gauge_i.xml#f_leap</location>leap</feature> <keyword>or else</keyword> <feature><location>../implementation_interface/ev_gauge_i.xml#f_value</location>value</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_gauge_i.xml#f_value_range</location>value_range</feature><dot>.</dot><feature><include>False</include>upper</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_leap_backward</anchor><feature><location>../implementation_interface/ev_gauge_i.xml#f_leap_backward</location>leap_backward</feature>
+			<comment>--</comment><comment> Decrement </comment><feature><location>../implementation_interface/ev_gauge_i.xml#f_value</location>value</feature><comment> by </comment><feature><location>../implementation_interface/ev_gauge_i.xml#f_leap</location>leap</feature><comment> if possible.</comment>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>decremented</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_gauge_i.xml#f_value</location>value</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_gauge_i.xml#f_value</location>value</feature> <symbol>-</symbol> <feature><location>../implementation_interface/ev_gauge_i.xml#f_leap</location>leap</feature> <keyword>or else</keyword> <feature><location>../implementation_interface/ev_gauge_i.xml#f_value</location>value</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_gauge_i.xml#f_value_range</location>value_range</feature><dot>.</dot><feature><include>False</include>lower</feature>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Element change</comment>
+
+	<anchor>f_set_value</anchor><feature><location>../implementation_interface/ev_gauge_i.xml#f_set_value</location>set_value</feature> <symbol>(</symbol><local>a_value</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><feature><location>../implementation_interface/ev_gauge_i.xml#f_value</location>value</feature><comment> to </comment><quoted>a_value</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>value_in_range</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_gauge_i.xml#f_value_range</location>value_range</feature><dot>.</dot><feature><include>False</include>has</feature><symbol> </symbol><symbol>(</symbol><local>a_value</local><symbol>)</symbol>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>assigned</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_gauge_i.xml#f_value</location>value</feature> <symbol>=</symbol> <local>a_value</local>
+		<keyword>end</keyword>
+
+	<anchor>f_set_step</anchor><feature><location>../implementation_interface/ev_gauge_i.xml#f_set_step</location>set_step</feature> <symbol>(</symbol><local>a_step</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><feature><location>../implementation_interface/ev_gauge_i.xml#f_step</location>step</feature><comment> to </comment><quoted>a_step</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>a_step_positive</tag><symbol>:</symbol> <local>a_step</local> <symbol>&gt;</symbol> <number>0</number>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>assigned</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_gauge_i.xml#f_step</location>step</feature> <symbol>=</symbol> <local>a_step</local>
+		<keyword>end</keyword>
+
+	<anchor>f_set_leap</anchor><feature><location>../implementation_interface/ev_gauge_i.xml#f_set_leap</location>set_leap</feature> <symbol>(</symbol><local>a_leap</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><feature><location>../implementation_interface/ev_gauge_i.xml#f_leap</location>leap</feature><comment> to </comment><quoted>a_leap</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>a_leap_non_negative</tag><symbol>:</symbol> <local>a_leap</local> <symbol>&gt;</symbol> <number>0</number>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>assigned</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_gauge_i.xml#f_leap</location>leap</feature> <symbol>=</symbol> <local>a_leap</local>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status setting</comment>
+
+	<anchor>f_set_proportion</anchor><feature><location>../implementation_interface/ev_gauge_i.xml#f_set_proportion</location>set_proportion</feature> <symbol>(</symbol><local>a_proportion</local><symbol>:</symbol> <class><include>False</include>REAL_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Move </comment><feature><location>../implementation_interface/ev_gauge_i.xml#f_value</location>value</feature><comment> to </comment><quoted>a_proportion</quoted><comment> within </comment><quoted>range</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>a_proportion_within_range</tag><symbol>:</symbol> <local>a_proportion</local> <symbol>&gt;=</symbol> <number>0</number><dot>.</dot><feature><include>False</include>to_real</feature> <keyword>and</keyword> <local>a_proportion</local> <symbol>&lt;=</symbol> <number>1</number><dot>.</dot><feature><include>False</include>to_real</feature>
+		<keyword>local</keyword>
+			<local>u</local><symbol>,</symbol> <local>l</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+		<keyword>do</keyword>
+			<local>u</local> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_gauge_i.xml#f_value_range</location>value_range</feature><dot>.</dot><feature><include>False</include>upper</feature>
+			<local>l</local> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_gauge_i.xml#f_value_range</location>value_range</feature><dot>.</dot><feature><include>False</include>lower</feature>
+			<keyword>if</keyword> <local>u</local> <symbol>/=</symbol> <local>l</local> <keyword>then</keyword>
+				<feature><location>../implementation_interface/ev_gauge_i.xml#f_set_value</location>set_value</feature><symbol> </symbol><symbol>(</symbol><symbol>(</symbol><symbol>(</symbol><local>u</local> <symbol>-</symbol> <local>l</local><symbol>)</symbol><dot>.</dot><feature><include>False</include>to_real</feature> <symbol>*</symbol> <local>a_proportion</local><symbol>)</symbol><dot>.</dot><feature><include>False</include>rounded</feature> <symbol>+</symbol> <local>l</local><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_any.xml</location>EV_ANY</class><symbol>,</symbol> <class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_interface</anchor><feature><location>../implementation_interface/ev_gauge_i.xml#f_interface</location>interface</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_gauge.xml</location>EV_GAUGE</class>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>invariant</keyword>
+	<tag>value_range_not_void</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_any_i.xml#f_is_usable</location>is_usable</feature> <keyword>implies</keyword> <feature><location>../implementation_interface/ev_gauge_i.xml#f_value_range</location>value_range</feature> <symbol>/=</symbol> <keyword>Void</keyword>
+
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2006, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>356 Storke Road, Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_interface/ev_gauge_i.xml</location>EV_GAUGE_I</class></system>
+

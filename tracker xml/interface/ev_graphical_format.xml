@@ -1,0 +1,84 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Base class for graphical formats&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2012-11-17 00:55:57 -0800 (Sat, 17 Nov 2012) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 89926 $&quot;</string>
+
+<keyword>deferred</keyword> <keyword>class</keyword> 
+	<class><location>../interface/ev_graphical_format.xml</location>EV_GRAPHICAL_FORMAT</class>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_scale_width</anchor><feature><location>../interface/ev_graphical_format.xml#f_scale_width</location>scale_width</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Width to scale graphic to, 0 means no scaling.</comment>
+
+	<anchor>f_scale_height</anchor><feature><location>../interface/ev_graphical_format.xml#f_scale_height</location>scale_height</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Height to scale graphic to, 0 means no scaling.</comment>
+
+	<anchor>f_color_mode</anchor><feature><location>../interface/ev_graphical_format.xml#f_color_mode</location>color_mode</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Color output mode of </comment><quoted>Current</quoted>
+
+	<anchor>f_file_extension</anchor><feature><location>../interface/ev_graphical_format.xml#f_file_extension</location>file_extension</feature><symbol>:</symbol> <class><include>False</include>STRING_32</class>
+			<comment>--</comment><comment> 3 character file extension associated with format.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status Setting</comment>
+
+	<anchor>f_set_scale_width</anchor><feature><location>../interface/ev_graphical_format.xml#f_set_scale_width</location>set_scale_width</feature> <symbol>(</symbol><local>a_width</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Scale the graphic width to </comment><quoted>a_width</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>a_width_not_negative</tag><symbol>:</symbol> <local>a_width</local> <symbol>&gt;=</symbol> <number>0</number>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_graphical_format.xml#f_scale_width</location>scale_width</feature> <symbol>:=</symbol> <local>a_width</local>
+		<keyword>ensure</keyword>
+			<tag>scale_width_set</tag><symbol>:</symbol> <feature><location>../interface/ev_graphical_format.xml#f_scale_width</location>scale_width</feature> <symbol>=</symbol> <local>a_width</local>
+		<keyword>end</keyword>
+
+	<anchor>f_set_scale_height</anchor><feature><location>../interface/ev_graphical_format.xml#f_set_scale_height</location>set_scale_height</feature> <symbol>(</symbol><local>a_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Scale the graphic height to </comment><quoted>a_height</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>a_height_not_negative</tag><symbol>:</symbol> <local>a_height</local> <symbol>&gt;=</symbol> <number>0</number>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_graphical_format.xml#f_scale_height</location>scale_height</feature> <symbol>:=</symbol> <local>a_height</local>
+		<keyword>ensure</keyword>
+			<tag>scale_height_set</tag><symbol>:</symbol> <feature><location>../interface/ev_graphical_format.xml#f_scale_height</location>scale_height</feature> <symbol>=</symbol> <local>a_height</local>
+		<keyword>end</keyword>
+
+	<anchor>f_set_truecolor</anchor><feature><location>../interface/ev_graphical_format.xml#f_set_truecolor</location>set_truecolor</feature>
+			<comment>--</comment><comment> Set </comment><feature><location>../interface/ev_graphical_format.xml#f_color_mode</location>color_mode</feature><comment> to truecolor.</comment>
+		<keyword>do</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_set_greyscale</anchor><feature><location>../interface/ev_graphical_format.xml#f_set_greyscale</location>set_greyscale</feature>
+			<comment>--</comment><comment> Set </comment><feature><location>../interface/ev_graphical_format.xml#f_color_mode</location>color_mode</feature><comment> to grayscale.</comment>
+		<keyword>do</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_set_paletted</anchor><feature><location>../interface/ev_graphical_format.xml#f_set_paletted</location>set_paletted</feature>
+			<comment>--</comment><comment> Set </comment><feature><location>../interface/ev_graphical_format.xml#f_color_mode</location>color_mode</feature><comment> to paletted mode.</comment>
+		<keyword>do</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_pixmap_i.xml</location>EV_PIXMAP_I</class><symbol>}</symbol> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_save</anchor><feature><location>../interface/ev_graphical_format.xml#f_save</location>save</feature> <symbol>(</symbol><local>raw_image_data</local><symbol>:</symbol> <class><location>../interface/ev_raw_image_data.xml</location>EV_RAW_IMAGE_DATA</class><symbol>;</symbol> <local>a_filepath</local><symbol>:</symbol> <class><include>False</include>PATH</class><symbol>)</symbol>
+			<comment>--</comment><comment> Save </comment><quoted>raw_image_data</quoted><comment> in </comment><quoted>Current</quoted><comment> format to </comment><quoted>a_filepath</quoted><comment>.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2012, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../interface/ev_graphical_format.xml</location>EV_GRAPHICAL_FORMAT</class></system>
+

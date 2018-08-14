@@ -1,0 +1,101 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Vision cell, GTK+ implementation.&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2017-03-27 13:31:29 -0700 (Mon, 27 Mar 2017) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 100058 $&quot;</string>
+
+<keyword>class</keyword> 
+	<class><location>../implementation_gtk/ev_cell_imp.xml</location>EV_CELL_IMP</class>
+
+<keyword>inherit</keyword>
+	<class><location>../implementation_interface/ev_cell_i.xml</location>EV_CELL_I</class>
+		<keyword>undefine</keyword>
+			<feature><location>../implementation_gtk/ev_container_imp.xml#f_propagate_foreground_color</location>propagate_foreground_color</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_container_imp.xml#f_propagate_background_color</location>propagate_background_color</feature>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_gtk/ev_cell_imp.xml#f_interface</location>interface</feature>
+		<keyword>end</keyword>
+
+	<class><location>../implementation_gtk/ev_container_imp.xml</location>EV_CONTAINER_IMP</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_gtk/ev_cell_imp.xml#f_interface</location>interface</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_cell_imp.xml#f_replace</location>replace</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_cell_imp.xml#f_make</location>make</feature>
+		<keyword>end</keyword>
+
+	<class><location>../implementation_gtk/ev_dockable_target_imp.xml</location>EV_DOCKABLE_TARGET_IMP</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_gtk/ev_cell_imp.xml#f_interface</location>interface</feature>
+		<keyword>end</keyword>
+
+<keyword>create</keyword> 
+	<feature><location>../implementation_gtk/ev_cell_imp.xml#f_make</location>make</feature>
+
+<keyword>feature</keyword> <comment>--</comment><comment> initialization</comment>
+
+	<anchor>f_old_make</anchor><feature><location>../implementation_gtk/ev_cell_imp.xml#f_old_make</location>old_make</feature> <symbol>(</symbol><local>an_interface</local><symbol>:</symbol> <keyword>attached</keyword> <keyword>like</keyword> <feature><location>../implementation_gtk/ev_cell_imp.xml#f_interface</location>interface</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Connect interface and initialize </comment><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><comment>.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_interface/ev_any_i.xml#f_assign_interface</location>assign_interface</feature><symbol> </symbol><symbol>(</symbol><local>an_interface</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_make</anchor><feature><location>../implementation_gtk/ev_cell_imp.xml#f_make</location>make</feature>
+			<comment>--</comment><comment> Creation routine and initialization for </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature> <symbol>=</symbol> <feature><include>False</include>default_pointer</feature> <keyword>then</keyword>
+				<feature><location>../implementation_gtk/ev_any_imp.xml#f_set_c_object</location>set_c_object</feature><symbol> </symbol><symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_event_box_new</location>gtk_event_box_new</feature><symbol>)</symbol>
+			<keyword>end</keyword>
+			<keyword><location>../implementation_gtk/ev_container_imp.xml#f_make</location>Precursor</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_has</anchor><feature><location>../implementation_gtk/ev_cell_imp.xml#f_has</location>has</feature> <symbol>(</symbol><local>v</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../implementation_gtk/ev_cell_imp.xml#f_item</location>item</feature><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Does </comment><quoted>Current</quoted><comment> include </comment><quoted>v</quoted><comment>?</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <keyword>not</keyword> <feature><location>../implementation_interface/ev_any_i.xml#f_is_destroyed</location>is_destroyed</feature> <keyword>and</keyword> <symbol>(</symbol><local>v</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>and then</keyword> <feature><location>../implementation_gtk/ev_cell_imp.xml#f_item</location>item</feature> <symbol>=</symbol> <local>v</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_item</anchor><feature><location>../implementation_gtk/ev_cell_imp.xml#f_item</location>item</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_widget.xml</location>EV_WIDGET</class>
+			<comment>--</comment><comment> Current item.</comment>
+
+	<anchor>f_count</anchor><feature><location>../implementation_gtk/ev_cell_imp.xml#f_count</location>count</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Number of elements in </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_cell_imp.xml#f_item</location>item</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <number>1</number>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Element change</comment>
+
+	<anchor>f_replace</anchor><feature><location>../implementation_gtk/ev_cell_imp.xml#f_replace</location>replace</feature> <symbol>(</symbol><local>v</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../implementation_gtk/ev_cell_imp.xml#f_item</location>item</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Replace </comment><feature><location>../implementation_gtk/ev_cell_imp.xml#f_item</location>item</feature><comment> with </comment><quoted>v</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword><location>../implementation_gtk/ev_container_imp.xml#f_replace</location>Precursor</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_container_imp.xml</location>EV_CONTAINER_IMP</class><symbol>}</symbol><symbol> </symbol><symbol>(</symbol><local>v</local><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_cell_imp.xml#f_item</location>item</feature> <symbol>:=</symbol> <local>v</local>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_any.xml</location>EV_ANY</class><symbol>,</symbol> <class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_interface</anchor><feature><location>../implementation_gtk/ev_cell_imp.xml#f_interface</location>interface</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_cell.xml</location>EV_CELL</class>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2017, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_gtk/ev_cell_imp.xml</location>EV_CELL_IMP</class></system>
+

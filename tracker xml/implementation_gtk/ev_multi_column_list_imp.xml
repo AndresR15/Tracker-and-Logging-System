@@ -1,0 +1,1195 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;EiffelVision multi-column-list, implementation interface.&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2017-03-27 13:31:29 -0700 (Mon, 27 Mar 2017) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 100058 $&quot;</string>
+
+<keyword>class</keyword> 
+	<class><location>../implementation_gtk/ev_multi_column_list_imp.xml</location>EV_MULTI_COLUMN_LIST_IMP</class>
+
+<keyword>inherit</keyword>
+	<class><location>../implementation_interface/ev_multi_column_list_i.xml</location>EV_MULTI_COLUMN_LIST_I</class>
+		<keyword>export</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines.xml</location>EV_GTK_DEPENDENT_INTERMEDIARY_ROUTINES</class><symbol>}</symbol> <feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_column_widths</location>column_widths</feature><symbol>,</symbol> <feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_update_column_width</location>update_column_width</feature><symbol>,</symbol> <feature><location>../implementation_interface/ev_multi_column_list_action_sequences_i.xml#f_column_resized_actions_internal</location>column_resized_actions_internal</feature><symbol>,</symbol> <feature><location>../implementation_interface/ev_multi_column_list_action_sequences_i.xml#f_column_title_click_actions_internal</location>column_title_click_actions_internal</feature>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_interface</location>interface</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_make</location>make</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_call_pebble_function</location>call_pebble_function</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_wipe_out</location>wipe_out</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_pixmaps_size_changed</location>pixmaps_size_changed</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_remove_row_pixmap</location>remove_row_pixmap</feature>
+		<keyword>end</keyword>
+
+	<class><location>../implementation_gtk/ev_primitive_imp.xml</location>EV_PRIMITIVE_IMP</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_disable_transport</location>disable_transport</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_pre_pick_steps</location>pre_pick_steps</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_call_pebble_function</location>call_pebble_function</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_post_drop_steps</location>post_drop_steps</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_on_mouse_button_event</location>on_mouse_button_event</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_make</location>make</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_interface</location>interface</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_destroy</location>destroy</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_able_to_transport</location>able_to_transport</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_ready_for_pnd_menu</location>ready_for_pnd_menu</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_set_to_drag_and_drop</location>set_to_drag_and_drop</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_call_button_event_actions</location>call_button_event_actions</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_visual_widget</location>visual_widget</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_on_pointer_motion</location>on_pointer_motion</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_pebble_source</location>pebble_source</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_needs_event_box</location>Needs_event_box</feature>
+		<keyword>end</keyword>
+
+	<class><location>../implementation_gtk/ev_item_list_imp.xml</location>EV_ITEM_LIST_IMP</class> <symbol>[</symbol><class><location>../interface/ev_multi_column_list_row.xml</location>EV_MULTI_COLUMN_LIST_ROW</class><symbol>]</symbol>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_i_th</location>i_th</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_count</location>count</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_insert_i_th</location>insert_i_th</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_remove_i_th</location>remove_i_th</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_destroy</location>destroy</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_interface</location>interface</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_wipe_out</location>wipe_out</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_make</location>make</feature>
+		<keyword>end</keyword>
+
+	<class><location>../implementation_gtk/ev_pnd_deferred_item_parent.xml</location>EV_PND_DEFERRED_ITEM_PARENT</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_call_selection_action_sequences</location>call_selection_action_sequences</feature>
+		<keyword>end</keyword>
+
+<keyword>create</keyword> 
+	<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_make</location>make</feature>
+
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Initialization</comment>
+
+	<anchor>f_old_make</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_old_make</location>old_make</feature> <symbol>(</symbol><local>an_interface</local><symbol>:</symbol> <keyword>attached</keyword> <keyword>like</keyword> <feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_interface</location>interface</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Create underlying native toolkit objects.</comment>
+			<comment>--</comment><comment> Every descendant should exactly one a creation procedure </comment><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_make</location>make</feature><comment>.</comment>
+			<comment>--</comment><comment> Must call </comment><quoted>base_make</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_interface/ev_any_i.xml#f_assign_interface</location>assign_interface</feature><symbol> </symbol><symbol>(</symbol><local>an_interface</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_make</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_make</location>make</feature>
+			<comment>--</comment><comment> Initialize </comment><quoted>Current</quoted>
+		<keyword>local</keyword>
+			<local>l_release_actions</local><symbol>:</symbol> <class><location>../interface/ev_pointer_button_action_sequence.xml</location>EV_POINTER_BUTTON_ACTION_SEQUENCE</class>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_scrollable_area</location>scrollable_area</feature> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_scrolled_window_new</location>gtk_scrolled_window_new</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_scrolled_window_set_shadow_type</location>gtk_scrolled_window_set_shadow_type</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_scrollable_area</location>scrollable_area</feature><symbol>,</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_shadow_in_enum</location>gtk_shadow_in_enum</feature><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_any_imp.xml#f_set_c_object</location>set_c_object</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_scrollable_area</location>scrollable_area</feature><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_scrolled_window_set_policy</location>gtk_scrolled_window_set_policy</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_scrollable_area</location>scrollable_area</feature><symbol>,</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_policy_automatic_enum</location>gtk_policy_automatic_enum</feature><symbol>,</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_policy_automatic_enum</location>gtk_policy_automatic_enum</feature><symbol>)</symbol>
+			<keyword>create</keyword> <feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_ev_children</location>ev_children</feature><dot>.</dot><feature><include>False</include>make</feature><symbol> </symbol><symbol>(</symbol><number>0</number><symbol>)</symbol>
+			<keyword>create</keyword> <feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_previous_selection</location>previous_selection</feature><dot>.</dot><feature><include>False</include>make</feature><symbol> </symbol><symbol>(</symbol><number>0</number><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_tree_view</location>tree_view</feature> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_new</location>gtk_tree_view_new</feature>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_container_add</location>gtk_container_add</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_scrollable_area</location>scrollable_area</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_widget_show</location>gtk_widget_show</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>)</symbol>
+			<keyword><location>../implementation_gtk/ev_dynamic_list_imp.xml#f_make</location>Precursor</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_item_list_imp.xml</location>EV_ITEM_LIST_IMP</class><symbol>}</symbol>
+			<keyword><location>../implementation_gtk/ev_primitive_imp.xml#f_make</location>Precursor</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_primitive_imp.xml</location>EV_PRIMITIVE_IMP</class><symbol>}</symbol>
+			<keyword><location>../implementation_interface/ev_multi_column_list_i.xml#f_make</location>Precursor</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_multi_column_list_i.xml</location>EV_MULTI_COLUMN_LIST_I</class><symbol>}</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_set_enable_search</location>gtk_tree_view_set_enable_search</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>,</symbol> <keyword>False</keyword><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_resize_model_if_needed</location>resize_model_if_needed</feature><symbol> </symbol><symbol>(</symbol><number>25</number><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_create_list</location>create_list</feature><symbol> </symbol><symbol>(</symbol><number>2</number><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_previous_selection</location>previous_selection</feature> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_selected_items</location>selected_items</feature>
+			<feature><location>../implementation_interface/ev_item_pixmap_scaler_i.xml#f_initialize_pixmaps</location>initialize_pixmaps</feature>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_disable_multiple_selection</location>disable_multiple_selection</feature>
+			<local>l_release_actions</local> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_widget_action_sequences_i.xml#f_pointer_button_release_actions</location>pointer_button_release_actions</feature>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_connect_selection_actions</location>connect_selection_actions</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_needs_event_box</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_needs_event_box</location>Needs_event_box</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class> <symbol>=</symbol> <keyword>True</keyword>
+			<comment>--</comment><comment> Does </comment><feature><location>../implementation_gtk/ev_gtk_widget_imp.xml#f_event_widget</location>event_widget</feature><comment> need an event box to receive events?</comment>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines.xml</location>EV_GTK_DEPENDENT_INTERMEDIARY_ROUTINES</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_connect_selection_actions</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_connect_selection_actions</location>connect_selection_actions</feature>
+			<comment>--</comment><comment> Connect the selection signal</comment>
+		<keyword>local</keyword>
+			<local>a_selection</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_selection_signal_id</location>selection_signal_id</feature> <symbol>=</symbol> <number>0</number> <keyword>then</keyword>
+				<local>a_selection</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_get_selection</location>gtk_tree_view_get_selection</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>)</symbol>
+				<feature><location>../implementation_gtk/ev_any_imp.xml#f_real_signal_connect</location>real_signal_connect</feature><symbol> </symbol><symbol>(</symbol><local>a_selection</local><symbol>,</symbol> &quot;changed&quot;<symbol>,</symbol> <keyword>agent</keyword> <feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_gtk_marshal</location>gtk_marshal</feature><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines.xml#f_on_pnd_deferred_item_parent_selection_change</location>on_pnd_deferred_item_parent_selection_change</feature><symbol> </symbol><symbol>(</symbol><feature><include>False</include>internal_id</feature><symbol>)</symbol><symbol>,</symbol> <keyword>Void</keyword><symbol>)</symbol>
+				<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_selection_signal_id</location>selection_signal_id</feature> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_last_signal_connection_id</location>last_signal_connection_id</feature>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_disconnect_selection_actions</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_disconnect_selection_actions</location>disconnect_selection_actions</feature>
+			<comment>--</comment><comment> Disconnect the selection signal</comment>
+		<keyword>local</keyword>
+			<local>a_selection</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_selection_signal_id</location>selection_signal_id</feature> <symbol>/=</symbol> <number>0</number> <keyword>then</keyword>
+				<local>a_selection</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_get_selection</location>gtk_tree_view_get_selection</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_signal_disconnect</location>signal_disconnect</feature> <symbol>(</symbol><local>a_selection</local><symbol>,</symbol> <feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_selection_signal_id</location>selection_signal_id</feature><symbol>)</symbol>
+				<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_selection_signal_id</location>selection_signal_id</feature> <symbol>:=</symbol> <number>0</number>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_selection_signal_id</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_selection_signal_id</location>selection_signal_id</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Signal id used for the selection changed event</comment>
+	
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_call_selection_action_sequences</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_call_selection_action_sequences</location>call_selection_action_sequences</feature>
+			<comment>--</comment><comment> Call appropriate selection and deselection action sequences</comment>
+		<keyword>local</keyword>
+			<local>new_selection</local><symbol>:</symbol> <class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><class><location>../interface/ev_multi_column_list_row.xml</location>EV_MULTI_COLUMN_LIST_ROW</class><symbol>]</symbol>
+			<local>newly_selected_items</local><symbol>:</symbol> <class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><class><location>../implementation_gtk/ev_multi_column_list_row_imp.xml</location>EV_MULTI_COLUMN_LIST_ROW_IMP</class><symbol>]</symbol>
+			<local>an_item</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_multi_column_list_row_imp.xml</location>EV_MULTI_COLUMN_LIST_ROW_IMP</class>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_disconnect_selection_actions</location>disconnect_selection_actions</feature>
+			<keyword>if</keyword> <keyword>not</keyword> <feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_mouse_button_pressed</location>mouse_button_pressed</feature> <keyword>then</keyword>
+				<local>new_selection</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_selected_items</location>selected_items</feature>
+				<keyword>create</keyword> <local>newly_selected_items</local><dot>.</dot><feature><include>False</include>make</feature><symbol> </symbol><symbol>(</symbol><number>0</number><symbol>)</symbol>
+				<keyword>from</keyword>
+					<local>new_selection</local><dot>.</dot><feature><include>False</include>start</feature>
+				<keyword>until</keyword>
+					<local>new_selection</local><dot>.</dot><feature><include>False</include>off</feature>
+				<keyword>loop</keyword>
+					<keyword>if</keyword> <keyword>not</keyword> <feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_previous_selection</location>previous_selection</feature><dot>.</dot><feature><include>False</include>has</feature><symbol> </symbol><symbol>(</symbol><local>new_selection</local><dot>.</dot><feature><include>False</include>item</feature><symbol>)</symbol> <keyword>then</keyword>
+						<local>an_item</local> <symbol>?=</symbol> <local>new_selection</local><dot>.</dot><feature><include>False</include>item</feature><dot>.</dot><feature><location>../interface/ev_multi_column_list_row.xml#f_implementation</location>implementation</feature>
+						<keyword>check</keyword>
+								<local>an_item</local> <symbol>/=</symbol> <keyword>Void</keyword>
+						<keyword>end</keyword>
+						<keyword>if</keyword> <local>an_item</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+							<local>newly_selected_items</local><dot>.</dot><feature><include>False</include>extend</feature><symbol> </symbol><symbol>(</symbol><local>an_item</local><symbol>)</symbol>
+						<keyword>end</keyword>
+					<keyword>end</keyword>
+					<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_previous_selection</location>previous_selection</feature><dot>.</dot><feature><include>False</include>prune_all</feature><symbol> </symbol><symbol>(</symbol><local>new_selection</local><dot>.</dot><feature><include>False</include>item</feature><symbol>)</symbol>
+					<local>new_selection</local><dot>.</dot><feature><include>False</include>forth</feature>
+				<keyword>end</keyword>
+				<keyword>from</keyword>
+					<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_previous_selection</location>previous_selection</feature><dot>.</dot><feature><include>False</include>start</feature>
+				<keyword>until</keyword>
+					<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_previous_selection</location>previous_selection</feature><dot>.</dot><feature><include>False</include>off</feature>
+				<keyword>loop</keyword>
+					<local>an_item</local> <symbol>?=</symbol> <feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_previous_selection</location>previous_selection</feature><dot>.</dot><feature><include>False</include>item</feature><dot>.</dot><feature><location>../interface/ev_multi_column_list_row.xml#f_implementation</location>implementation</feature>
+					<keyword>check</keyword>
+							<local>an_item</local> <symbol>/=</symbol> <keyword>Void</keyword>
+					<keyword>end</keyword>
+					<keyword>if</keyword> <local>an_item</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+						<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_call_deselect_actions</location>call_deselect_actions</feature><symbol> </symbol><symbol>(</symbol><local>an_item</local><symbol>)</symbol>
+					<keyword>end</keyword>
+					<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_previous_selection</location>previous_selection</feature><dot>.</dot><feature><include>False</include>forth</feature>
+				<keyword>end</keyword>
+				<keyword>from</keyword>
+					<local>newly_selected_items</local><dot>.</dot><feature><include>False</include>start</feature>
+				<keyword>until</keyword>
+					<local>newly_selected_items</local><dot>.</dot><feature><include>False</include>off</feature>
+				<keyword>loop</keyword>
+					<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_call_selection_actions</location>call_selection_actions</feature><symbol> </symbol><symbol>(</symbol><local>newly_selected_items</local><dot>.</dot><feature><include>False</include>item</feature><symbol>)</symbol>
+					<local>newly_selected_items</local><dot>.</dot><feature><include>False</include>forth</feature>
+				<keyword>end</keyword>
+				<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_previous_selection</location>previous_selection</feature> <symbol>:=</symbol> <local>new_selection</local>
+			<keyword>end</keyword>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_connect_selection_actions</location>connect_selection_actions</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_previous_selection</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_previous_selection</location>previous_selection</feature><symbol>:</symbol> <class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><class><location>../interface/ev_multi_column_list_row.xml</location>EV_MULTI_COLUMN_LIST_ROW</class><symbol>]</symbol>
+			<comment>--</comment><comment> Previous selection of </comment><quoted>Current</quoted>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines.xml</location>EV_GTK_DEPENDENT_INTERMEDIARY_ROUTINES</class><symbol>}</symbol> <comment>--</comment><comment> Event handling</comment>
+
+	<anchor>f_call_button_event_actions</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_call_button_event_actions</location>call_button_event_actions</feature> <symbol>(</symbol><local>a_type</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>a_button</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_x_tilt</local><symbol>,</symbol> <local>a_y_tilt</local><symbol>,</symbol> <local>a_pressure</local><symbol>:</symbol> <class><include>False</include>REAL_64</class><symbol>;</symbol> <local>a_screen_x</local><symbol>,</symbol> <local>a_screen_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Call pointer_button_press_actions or pointer_double_press_actions</comment>
+			<comment>--</comment><comment> depending on event type in first position of </comment><quoted>event_data</quoted><comment>.</comment>
+		<keyword>local</keyword>
+			<local>t</local><symbol>:</symbol> <class><include>False</include>TUPLE</class> <symbol>[</symbol><class><include>False</include>INTEGER_32</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>,</symbol> <class><include>False</include>REAL_64</class><symbol>,</symbol> <class><include>False</include>REAL_64</class><symbol>,</symbol> <class><include>False</include>REAL_64</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>]</symbol>
+			<local>a_row_number</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<local>clicked_row</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_multi_column_list_row_imp.xml</location>EV_MULTI_COLUMN_LIST_ROW_IMP</class>
+			<local>a_gdkwin</local><symbol>,</symbol> <local>a_gtkwid</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>l_x</local><symbol>,</symbol> <local>l_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+		<keyword>do</keyword>
+			<keyword><location>../implementation_gtk/ev_widget_imp.xml#f_call_button_event_actions</location>Precursor</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_primitive_imp.xml</location>EV_PRIMITIVE_IMP</class><symbol>}</symbol><symbol> </symbol><symbol>(</symbol><local>a_type</local><symbol>,</symbol> <local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>a_button</local><symbol>,</symbol> <local>a_x_tilt</local><symbol>,</symbol> <local>a_y_tilt</local><symbol>,</symbol> <local>a_pressure</local><symbol>,</symbol> <local>a_screen_x</local><symbol>,</symbol> <local>a_screen_y</local><symbol>)</symbol>
+			<keyword>if</keyword> <local>a_type</local> <symbol>/=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_button_release_enum</location>gdk_button_release_enum</feature> <keyword>then</keyword>
+				<local>a_gdkwin</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_window_at_pointer</location>gdk_window_at_pointer</feature> <symbol>(</symbol><symbol>$</symbol><local>l_x</local><dot>.</dot><feature><include>False</include>to_pointer</feature><symbol>,</symbol> <symbol>$</symbol><local>l_y</local><dot>.</dot><feature><include>False</include>to_pointer</feature><symbol>)</symbol>
+				<keyword>if</keyword> <local>a_gdkwin</local> <symbol>/=</symbol> <feature><include>False</include>default_pointer</feature> <keyword>then</keyword>
+					<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_window_get_user_data</location>gdk_window_get_user_data</feature> <symbol>(</symbol><local>a_gdkwin</local><symbol>,</symbol> <symbol>$</symbol><local>a_gtkwid</local><dot>.</dot><feature><include>False</include>to_pointer</feature><symbol>)</symbol>
+					<keyword>if</keyword> <local>a_gtkwid</local> <symbol>=</symbol> <feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_tree_view</location>tree_view</feature> <keyword>then</keyword>
+						<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_mouse_button_pressed</location>mouse_button_pressed</feature> <symbol>:=</symbol> <keyword>True</keyword>
+						<local>t</local> <symbol>:=</symbol> <symbol>[</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>a_button</local><symbol>,</symbol> <local>a_x_tilt</local><symbol>,</symbol> <local>a_y_tilt</local><symbol>,</symbol> <local>a_pressure</local><symbol>,</symbol> <local>a_screen_x</local><symbol>,</symbol> <local>a_screen_y</local><symbol>]</symbol>
+						<local>a_row_number</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_row_index_from_y_coord</location>row_index_from_y_coord</feature><symbol> </symbol><symbol>(</symbol><local>a_y</local><symbol>)</symbol>
+						<keyword>if</keyword> <local>a_row_number</local> <symbol>&gt;</symbol> <number>0</number> <keyword>and then</keyword> <local>a_row_number</local> <symbol>&lt;=</symbol> <feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_count</location>count</feature> <keyword>then</keyword>
+							<local>clicked_row</local> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_ev_children</location>ev_children</feature> <symbol>@</symbol> <local>a_row_number</local>
+						<keyword>else</keyword>
+							<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_clear_selection</location>clear_selection</feature>
+						<keyword>end</keyword>
+						<keyword>if</keyword> <local>a_type</local> <symbol>=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_button_press_enum</location>gdk_button_press_enum</feature> <keyword>then</keyword>
+							<keyword>if</keyword> <local>clicked_row</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>and then</keyword> <local>clicked_row</local><dot>.</dot><feature><location>../implementation_interface/ev_item_action_sequences_i.xml#f_pointer_button_press_actions_internal</location>pointer_button_press_actions_internal</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+								<local>clicked_row</local><dot>.</dot><feature><location>../implementation_interface/ev_item_action_sequences_i.xml#f_pointer_button_press_actions</location>pointer_button_press_actions</feature><dot>.</dot><feature><location>../interface/ev_lite_action_sequence.xml#f_call</location>call</feature><symbol> </symbol><symbol>(</symbol><local>t</local><symbol>)</symbol>
+							<keyword>end</keyword>
+						<keyword>elseif</keyword> <local>a_type</local> <symbol>=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_2button_press_enum</location>gdk_2button_press_enum</feature> <keyword>then</keyword>
+							<keyword>if</keyword> <local>clicked_row</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>and then</keyword> <local>clicked_row</local><dot>.</dot><feature><location>../implementation_interface/ev_item_action_sequences_i.xml#f_pointer_double_press_actions_internal</location>pointer_double_press_actions_internal</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+								<local>clicked_row</local><dot>.</dot><feature><location>../implementation_interface/ev_item_action_sequences_i.xml#f_pointer_double_press_actions</location>pointer_double_press_actions</feature><dot>.</dot><feature><location>../interface/ev_lite_action_sequence.xml#f_call</location>call</feature><symbol> </symbol><symbol>(</symbol><local>t</local><symbol>)</symbol>
+							<keyword>end</keyword>
+						<keyword>end</keyword>
+					<keyword>end</keyword>
+				<keyword>end</keyword>
+			<keyword>else</keyword>
+				<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_mouse_button_pressed</location>mouse_button_pressed</feature> <symbol>:=</symbol> <keyword>False</keyword>
+				<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_call_selection_action_sequences</location>call_selection_action_sequences</feature>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_mouse_button_pressed</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_mouse_button_pressed</location>mouse_button_pressed</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is the mouse button pressed</comment>
+	
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_call_selection_actions</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_call_selection_actions</location>call_selection_actions</feature> <symbol>(</symbol><local>clicked_row</local><symbol>:</symbol> <class><location>../implementation_gtk/ev_multi_column_list_row_imp.xml</location>EV_MULTI_COLUMN_LIST_ROW_IMP</class><symbol>)</symbol>
+			<comment>--</comment><comment> Call the selections actions for </comment><quoted>clicked_row</quoted>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <keyword>not</keyword> <feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_previous_selection</location>previous_selection</feature><dot>.</dot><feature><include>False</include>has</feature><symbol> </symbol><symbol>(</symbol><local>clicked_row</local><dot>.</dot><feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature><symbol>)</symbol> <keyword>then</keyword>
+				<keyword>if</keyword> <local>clicked_row</local><dot>.</dot><feature><location>../implementation_interface/ev_multi_column_list_row_action_sequences_i.xml#f_select_actions_internal</location>select_actions_internal</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+					<local>clicked_row</local><dot>.</dot><feature><location>../implementation_interface/ev_multi_column_list_row_action_sequences_i.xml#f_select_actions</location>select_actions</feature><dot>.</dot><feature><location>../interface/ev_lite_action_sequence.xml#f_call</location>call</feature><symbol> </symbol><symbol>(</symbol><keyword>Void</keyword><symbol>)</symbol>
+				<keyword>end</keyword>
+				<keyword>if</keyword> <feature><location>../implementation_interface/ev_multi_column_list_action_sequences_i.xml#f_select_actions_internal</location>select_actions_internal</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+					<feature><location>../implementation_interface/ev_multi_column_list_action_sequences_i.xml#f_select_actions_internal</location>select_actions_internal</feature><dot>.</dot><feature><location>../interface/ev_lite_action_sequence.xml#f_call</location>call</feature><symbol> </symbol><symbol>(</symbol><symbol>[</symbol><local>clicked_row</local><dot>.</dot><feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature><symbol>]</symbol><symbol>)</symbol>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_call_deselect_actions</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_call_deselect_actions</location>call_deselect_actions</feature> <symbol>(</symbol><local>deselected_row</local><symbol>:</symbol> <class><location>../implementation_gtk/ev_multi_column_list_row_imp.xml</location>EV_MULTI_COLUMN_LIST_ROW_IMP</class><symbol>)</symbol>
+			<comment>--</comment><comment> Call deselect actions for </comment><quoted>deselected_row</quoted>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <local>deselected_row</local><dot>.</dot><feature><location>../implementation_interface/ev_multi_column_list_row_action_sequences_i.xml#f_deselect_actions_internal</location>deselect_actions_internal</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<local>deselected_row</local><dot>.</dot><feature><location>../implementation_interface/ev_multi_column_list_row_action_sequences_i.xml#f_deselect_actions</location>deselect_actions</feature><dot>.</dot><feature><location>../interface/ev_lite_action_sequence.xml#f_call</location>call</feature><symbol> </symbol><symbol>(</symbol><keyword>Void</keyword><symbol>)</symbol>
+			<keyword>end</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_interface/ev_multi_column_list_action_sequences_i.xml#f_deselect_actions_internal</location>deselect_actions_internal</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<feature><location>../implementation_interface/ev_multi_column_list_action_sequences_i.xml#f_deselect_actions_internal</location>deselect_actions_internal</feature><dot>.</dot><feature><location>../interface/ev_lite_action_sequence.xml#f_call</location>call</feature><symbol> </symbol><symbol>(</symbol><symbol>[</symbol><local>deselected_row</local><dot>.</dot><feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature><symbol>]</symbol><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_resize_model_if_needed</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_resize_model_if_needed</location>resize_model_if_needed</feature> <symbol>(</symbol><local>a_columns</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+		<keyword>local</keyword>
+			<local>a_type_array</local><symbol>:</symbol> <class><include>False</include>MANAGED_POINTER</class>
+			<local>a_tree_iter</local><symbol>:</symbol> <class><location>../implementation_gtk/ev_gtk_tree_iter_struct.xml</location>EV_GTK_TREE_ITER_STRUCT</class>
+			<local>i</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <local>a_columns</local> <symbol>&gt;</symbol> <feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_model_column_count</location>model_column_count</feature> <symbol>-</symbol> <number>1</number> <keyword>then</keyword>
+				<keyword>create</keyword> <local>a_type_array</local><dot>.</dot><feature><include>False</include>make</feature><symbol> </symbol><symbol>(</symbol><symbol>(</symbol><local>a_columns</local> <symbol>+</symbol> <number>1</number><symbol>)</symbol> <symbol>*</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_sizeof_gtype</location>sizeof_gtype</feature><symbol>)</symbol>
+				<keyword>from</keyword>
+					<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_add_gdk_type_pixbuf</location>add_gdk_type_pixbuf</feature> <symbol>(</symbol><local>a_type_array</local><dot>.</dot><feature><include>False</include>item</feature><symbol>,</symbol> <number>0</number><symbol>)</symbol>
+					<local>i</local> <symbol>:=</symbol> <number>1</number>
+				<keyword>until</keyword>
+					<local>i</local> <symbol>&gt;</symbol> <local>a_columns</local>
+				<keyword>loop</keyword>
+					<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_add_g_type_string</location>add_g_type_string</feature> <symbol>(</symbol><local>a_type_array</local><dot>.</dot><feature><include>False</include>item</feature><symbol>,</symbol> <local>i</local> <symbol>*</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_sizeof_gtype</location>sizeof_gtype</feature><symbol>)</symbol>
+					<local>i</local> <symbol>:=</symbol> <local>i</local> <symbol>+</symbol> <number>1</number>
+				<keyword>end</keyword>
+				<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_list_store</location>list_store</feature> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_list_store_newv</location>gtk_list_store_newv</feature> <symbol>(</symbol><local>a_columns</local> <symbol>+</symbol> <number>1</number><symbol>,</symbol> <local>a_type_array</local><dot>.</dot><feature><include>False</include>item</feature><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_set_model</location>gtk_tree_view_set_model</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_list_store</location>list_store</feature><symbol>)</symbol>
+				<keyword>from</keyword>
+					<feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_ev_children</location>ev_children</feature><dot>.</dot><feature><include>False</include>start</feature>
+				<keyword>until</keyword>
+					<feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_ev_children</location>ev_children</feature><dot>.</dot><feature><include>False</include>after</feature>
+				<keyword>loop</keyword>
+					<keyword>create</keyword> <local>a_tree_iter</local><dot>.</dot><feature><include>False</include>make</feature>
+					<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_list_store_insert</location>gtk_list_store_insert</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_list_store</location>list_store</feature><symbol>,</symbol> <local>a_tree_iter</local><dot>.</dot><feature><include>False</include>item</feature><symbol>,</symbol> <feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_ev_children</location>ev_children</feature><dot>.</dot><feature><include>False</include>index</feature> <symbol>-</symbol> <number>1</number><symbol>)</symbol>
+					<feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_ev_children</location>ev_children</feature><dot>.</dot><feature><include>False</include>item</feature><dot>.</dot><feature><location>../implementation_gtk/ev_multi_column_list_row_imp.xml#f_set_list_iter</location>set_list_iter</feature><symbol> </symbol><symbol>(</symbol><local>a_tree_iter</local><symbol>)</symbol>
+					<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_update_child</location>update_child</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_ev_children</location>ev_children</feature><dot>.</dot><feature><include>False</include>item</feature><symbol>,</symbol> <feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_ev_children</location>ev_children</feature><dot>.</dot><feature><include>False</include>index</feature><symbol>)</symbol>
+					<feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_ev_children</location>ev_children</feature><dot>.</dot><feature><include>False</include>forth</feature>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_create_list</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_create_list</location>create_list</feature> <symbol>(</symbol><local>a_columns</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Create the clist with </comment><quoted>a_columns</quoted><comment> columns.</comment>
+		<keyword>require</keyword>
+			<tag>a_columns_positive</tag><symbol>:</symbol> <local>a_columns</local> <symbol>&gt;</symbol> <number>0</number>
+		<keyword>local</keyword>
+			<local>i</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<local>temp_title</local><symbol>:</symbol> <class><include>False</include>STRING_32</class>
+			<local>temp_width</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<local>temp_alignment</local><symbol>,</symbol> <local>default_alignment</local><symbol>:</symbol> <class><location>../interface/ev_text_alignment.xml</location>EV_TEXT_ALIGNMENT</class>
+			<local>temp_alignment_code</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<local>a_gtk_c_str</local><symbol>:</symbol> <class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class>
+			<local>a_cell_renderer</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>a_column</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>old_column_count</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+		<keyword>do</keyword>
+			<local>old_column_count</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_column_count</location>column_count</feature>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_resize_model_if_needed</location>resize_model_if_needed</feature><symbol> </symbol><symbol>(</symbol><local>a_columns</local><symbol>)</symbol>
+			<keyword>create</keyword> <local>default_alignment</local>
+			<keyword>from</keyword>
+				<local>i</local> <symbol>:=</symbol> <local>old_column_count</local> <symbol>+</symbol> <number>1</number>
+			<keyword>until</keyword>
+				<local>i</local> <symbol>&gt;</symbol> <local>a_columns</local>
+			<keyword>loop</keyword>
+				<local>a_column</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_column_new</location>gtk_tree_view_column_new</feature>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_column_set_resizable</location>gtk_tree_view_column_set_resizable</feature> <symbol>(</symbol><local>a_column</local><symbol>,</symbol> <keyword>True</keyword><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_column_set_clickable</location>gtk_tree_view_column_set_clickable</feature> <symbol>(</symbol><local>a_column</local><symbol>,</symbol> <keyword>True</keyword><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_column_set_sizing</location>gtk_tree_view_column_set_sizing</feature> <symbol>(</symbol><local>a_column</local><symbol>,</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_column_fixed_enum</location>gtk_tree_view_column_fixed_enum</feature><symbol>)</symbol>
+				<keyword>if</keyword> <local>i</local> <symbol>=</symbol> <number>1</number> <keyword>then</keyword>
+					<local>a_cell_renderer</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_cell_renderer_pixbuf_new</location>gtk_cell_renderer_pixbuf_new</feature>
+					<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_column_pack_start</location>gtk_tree_view_column_pack_start</feature> <symbol>(</symbol><local>a_column</local><symbol>,</symbol> <local>a_cell_renderer</local><symbol>,</symbol> <keyword>False</keyword><symbol>)</symbol>
+					<local>a_gtk_c_str</local> <symbol>:=</symbol> <keyword>create</keyword> <symbol>{</symbol><keyword>attached</keyword> <class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_set_with_eiffel_string</location>set_with_eiffel_string</feature><symbol> </symbol><symbol>(</symbol><keyword>once</keyword> &quot;pixbuf&quot;<symbol>)</symbol>
+					<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_column_add_attribute</location>gtk_tree_view_column_add_attribute</feature> <symbol>(</symbol><local>a_column</local><symbol>,</symbol> <local>a_cell_renderer</local><symbol>,</symbol> <local>a_gtk_c_str</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_item</location>item</feature><symbol>,</symbol> <number>0</number><symbol>)</symbol>
+				<keyword>end</keyword>
+				<local>a_cell_renderer</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_cell_renderer_text_new</location>gtk_cell_renderer_text_new</feature>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_column_pack_start</location>gtk_tree_view_column_pack_start</feature> <symbol>(</symbol><local>a_column</local><symbol>,</symbol> <local>a_cell_renderer</local><symbol>,</symbol> <keyword>True</keyword><symbol>)</symbol>
+				<local>a_gtk_c_str</local> <symbol>:=</symbol> <keyword>create</keyword> <symbol>{</symbol><keyword>attached</keyword> <class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_set_with_eiffel_string</location>set_with_eiffel_string</feature><symbol> </symbol><symbol>(</symbol><keyword>once</keyword> &quot;text&quot;<symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_column_add_attribute</location>gtk_tree_view_column_add_attribute</feature> <symbol>(</symbol><local>a_column</local><symbol>,</symbol> <local>a_cell_renderer</local><symbol>,</symbol> <local>a_gtk_c_str</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_item</location>item</feature><symbol>,</symbol> <local>i</local><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_insert_column</location>gtk_tree_view_insert_column</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>,</symbol> <local>a_column</local><symbol>,</symbol> <local>i</local> <symbol>-</symbol> <number>1</number><symbol>)</symbol>
+				<keyword>if</keyword> <feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_column_titles</location>column_titles</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>and then</keyword> <feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_column_titles</location>column_titles</feature><dot>.</dot><feature><include>False</include>valid_index</feature><symbol> </symbol><symbol>(</symbol><local>i</local><symbol>)</symbol> <keyword>and then</keyword> <keyword>attached</keyword> <feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_column_titles</location>column_titles</feature><dot>.</dot><feature><include>False</include>i_th</feature><symbol> </symbol><symbol>(</symbol><local>i</local><symbol>)</symbol> <keyword>as</keyword> l_temp_title <keyword>then</keyword>
+					<local>temp_title</local> <symbol>:=</symbol> <local>l_temp_title</local>
+				<keyword>else</keyword>
+					<local>temp_title</local> <symbol>:=</symbol> <keyword>once</keyword> <symbol>{</symbol><class><include>False</include>STRING_32</class><symbol>}</symbol>&quot;&quot;
+				<keyword>end</keyword>
+				<keyword>if</keyword> <feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_column_widths</location>column_widths</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>and then</keyword> <feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_column_widths</location>column_widths</feature><dot>.</dot><feature><include>False</include>valid_index</feature><symbol> </symbol><symbol>(</symbol><local>i</local><symbol>)</symbol> <keyword>then</keyword>
+					<local>temp_width</local> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_column_widths</location>column_widths</feature><dot>.</dot><feature><include>False</include>i_th</feature><symbol> </symbol><symbol>(</symbol><local>i</local><symbol>)</symbol>
+				<keyword>else</keyword>
+					<local>temp_width</local> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_default_column_width</location>Default_column_width</feature>
+				<keyword>end</keyword>
+				<keyword>if</keyword> <feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_column_alignments</location>column_alignments</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>and then</keyword> <feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_column_alignments</location>column_alignments</feature><dot>.</dot><feature><include>False</include>valid_index</feature><symbol> </symbol><symbol>(</symbol><local>i</local><symbol>)</symbol> <keyword>then</keyword>
+					<local>temp_alignment_code</local> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_column_alignments</location>column_alignments</feature><dot>.</dot><feature><include>False</include>i_th</feature><symbol> </symbol><symbol>(</symbol><local>i</local><symbol>)</symbol>
+					<keyword>create</keyword> <local>temp_alignment</local>
+					<keyword>if</keyword> <local>temp_alignment_code</local> <symbol>=</symbol> <local>temp_alignment</local><dot>.</dot><feature><location>../interface/ev_text_alignment.xml#f_left_alignment</location>Left_alignment</feature> <keyword>then</keyword>
+						<local>temp_alignment</local><dot>.</dot><feature><location>../interface/ev_text_alignment.xml#f_set_left_alignment</location>set_left_alignment</feature>
+					<keyword>elseif</keyword> <local>temp_alignment_code</local> <symbol>=</symbol> <local>temp_alignment</local><dot>.</dot><feature><location>../interface/ev_text_alignment.xml#f_center_alignment</location>Center_alignment</feature> <keyword>then</keyword>
+						<local>temp_alignment</local><dot>.</dot><feature><location>../interface/ev_text_alignment.xml#f_set_center_alignment</location>set_center_alignment</feature>
+					<keyword>else</keyword>
+						<local>temp_alignment</local><dot>.</dot><feature><location>../interface/ev_text_alignment.xml#f_set_right_alignment</location>set_right_alignment</feature>
+					<keyword>end</keyword>
+				<keyword>else</keyword>
+					<local>temp_alignment</local> <symbol>:=</symbol> <local>default_alignment</local>
+				<keyword>end</keyword>
+				<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_column_width_changed</location>column_width_changed</feature><symbol> </symbol><symbol>(</symbol><local>temp_width</local><symbol>,</symbol> <local>i</local><symbol>)</symbol>
+				<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_column_title_changed</location>column_title_changed</feature><symbol> </symbol><symbol>(</symbol><local>temp_title</local><symbol>,</symbol> <local>i</local><symbol>)</symbol>
+				<keyword>if</keyword> <local>i</local> <symbol>&gt;</symbol> <number>1</number> <keyword>then</keyword>
+					<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_column_alignment_changed</location>column_alignment_changed</feature><symbol> </symbol><symbol>(</symbol><local>temp_alignment</local><symbol>,</symbol> <local>i</local><symbol>)</symbol>
+				<keyword>end</keyword>
+				<feature><location>../implementation_gtk/ev_any_imp.xml#f_real_signal_connect</location>real_signal_connect</feature><symbol> </symbol><symbol>(</symbol><local>a_column</local><symbol>,</symbol> &quot;notify::width&quot;<symbol>,</symbol> <keyword>agent</keyword> <feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_gtk_marshal</location>gtk_marshal</feature><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines.xml#f_mcl_column_resize_callback</location>mcl_column_resize_callback</feature><symbol> </symbol><symbol>(</symbol><feature><include>False</include>object_id</feature><symbol>,</symbol> <local>i</local><symbol>)</symbol><symbol>,</symbol> <keyword>Void</keyword><symbol>)</symbol>
+				<feature><location>../implementation_gtk/ev_any_imp.xml#f_real_signal_connect</location>real_signal_connect</feature><symbol> </symbol><symbol>(</symbol><local>a_column</local><symbol>,</symbol> &quot;clicked&quot;<symbol>,</symbol> <keyword>agent</keyword> <feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_gtk_marshal</location>gtk_marshal</feature><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines.xml#f_mcl_column_click_callback</location>mcl_column_click_callback</feature><symbol> </symbol><symbol>(</symbol><feature><include>False</include>object_id</feature><symbol>,</symbol> <local>i</local><symbol>)</symbol><symbol>,</symbol> <keyword>Void</keyword><symbol>)</symbol>
+				<local>i</local> <symbol>:=</symbol> <local>i</local> <symbol>+</symbol> <number>1</number>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_list_store</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_list_store</location>list_store</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Pointer to the Model</comment>
+
+	<anchor>f_on_pointer_motion</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_on_pointer_motion</location>on_pointer_motion</feature> <symbol>(</symbol><local>a_motion_tuple</local><symbol>:</symbol> <class><include>False</include>TUPLE</class> <symbol>[</symbol><class><include>False</include>INTEGER_32</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>,</symbol> <class><include>False</include>REAL_64</class><symbol>,</symbol> <class><include>False</include>REAL_64</class><symbol>,</symbol> <class><include>False</include>REAL_64</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>]</symbol><symbol>)</symbol>
+			<comment>--</comment><comment> Handle motion event for </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>local</keyword>
+			<local>a_row_number</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<local>a_row_imp</local><symbol>:</symbol> <class><location>../implementation_gtk/ev_multi_column_list_row_imp.xml</location>EV_MULTI_COLUMN_LIST_ROW_IMP</class>
+		<keyword>do</keyword>
+			<keyword><location>../implementation_gtk/ev_pick_and_dropable_imp.xml#f_on_pointer_motion</location>Precursor</keyword><symbol> </symbol><symbol>(</symbol><local>a_motion_tuple</local><symbol>)</symbol>
+			<keyword>if</keyword> <keyword>not</keyword> <feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_is_in_transport</location>is_in_transport</feature> <keyword>and then</keyword> <local>a_motion_tuple</local><dot>.</dot><feature><include>False</include>integer_item</feature><symbol> </symbol><symbol>(</symbol><number>2</number><symbol>)</symbol> <symbol>&gt;</symbol> <number>0</number> <keyword>and</keyword> <local>a_motion_tuple</local><dot>.</dot><feature><include>False</include>integer_item</feature><symbol> </symbol><symbol>(</symbol><number>1</number><symbol>)</symbol> <symbol>&lt;=</symbol> <feature><location>../implementation_gtk/ev_gtk_widget_imp.xml#f_width</location>width</feature> <keyword>then</keyword>
+				<local>a_row_number</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_row_index_from_y_coord</location>row_index_from_y_coord</feature><symbol> </symbol><symbol>(</symbol><local>a_motion_tuple</local><dot>.</dot><feature><include>False</include>integer_item</feature><symbol> </symbol><symbol>(</symbol><number>2</number><symbol>)</symbol><symbol>)</symbol>
+				<keyword>if</keyword> <local>a_row_number</local> <symbol>&gt;</symbol> <number>0</number> <keyword>and then</keyword> <local>a_row_number</local> <symbol>&lt;=</symbol> <feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_count</location>count</feature> <keyword>then</keyword>
+					<local>a_row_imp</local> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_ev_children</location>ev_children</feature> <symbol>@</symbol> <local>a_row_number</local>
+					<keyword>if</keyword> <local>a_row_imp</local><dot>.</dot><feature><location>../implementation_interface/ev_item_action_sequences_i.xml#f_pointer_motion_actions_internal</location>pointer_motion_actions_internal</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+						<local>a_row_imp</local><dot>.</dot><feature><location>../implementation_interface/ev_item_action_sequences_i.xml#f_pointer_motion_actions</location>pointer_motion_actions</feature><dot>.</dot><feature><location>../interface/ev_lite_action_sequence.xml#f_call</location>call</feature><symbol> </symbol><symbol>(</symbol><local>a_motion_tuple</local><symbol>)</symbol>
+					<keyword>end</keyword>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_pixmaps_size_changed</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_pixmaps_size_changed</location>pixmaps_size_changed</feature>
+		<keyword>do</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_column_count</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_column_count</location>column_count</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Number of columns in the list.</comment>
+		<keyword>local</keyword>
+			<local>col_list</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>do</keyword>
+			<local>col_list</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_get_columns</location>gtk_tree_view_get_columns</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>)</symbol>
+			<keyword>if</keyword> <local>col_list</local> <symbol>/=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature> <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_g_list_length</location>g_list_length</feature> <symbol>(</symbol><local>col_list</local><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_g_list_free</location>g_list_free</feature> <symbol>(</symbol><local>col_list</local><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_model_column_count</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_model_column_count</location>model_column_count</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Number of columns in GtkTreeModel</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_list_store</location>list_store</feature> <symbol>/=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature> <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_model_get_n_columns</location>gtk_tree_model_get_n_columns</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_list_store</location>list_store</feature><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_rows</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_rows</location>rows</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Number of rows in the list.</comment>
+			<comment>--</comment><comment> Was declared in </comment><class><location>../implementation_gtk/ev_multi_column_list_imp.xml</location>EV_MULTI_COLUMN_LIST_IMP</class><comment> as synonym of </comment><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_count</location>count</feature><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_ev_children</location>ev_children</feature><dot>.</dot><feature><include>False</include>count</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_count</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_count</location>count</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Number of rows in the list.</comment>
+			<comment>--</comment><comment> Was declared in </comment><class><location>../implementation_gtk/ev_multi_column_list_imp.xml</location>EV_MULTI_COLUMN_LIST_IMP</class><comment> as synonym of </comment><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_rows</location>rows</feature><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_ev_children</location>ev_children</feature><dot>.</dot><feature><include>False</include>count</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_i_th</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_i_th</location>i_th</feature> <symbol>(</symbol><local>i</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><location>../interface/ev_multi_column_list_row.xml</location>EV_MULTI_COLUMN_LIST_ROW</class>
+			<comment>--</comment><comment> </comment><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_i_th</location>i_th</feature><comment> row in </comment><quoted>Current</quoted>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <symbol>(</symbol><feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_ev_children</location>ev_children</feature> <symbol>@</symbol> <local>i</local><symbol>)</symbol><dot>.</dot><feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_selected_item</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_selected_item</location>selected_item</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_multi_column_list_row.xml</location>EV_MULTI_COLUMN_LIST_ROW</class>
+			<comment>--</comment><comment> Item which is currently selected</comment>
+		<keyword>local</keyword>
+			<local>a_selection</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>a_tree_path_list</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>a_model</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>a_tree_path</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>a_int_ptr</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>mp</local><symbol>:</symbol> <class><include>False</include>MANAGED_POINTER</class>
+		<keyword>do</keyword>
+			<local>a_selection</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_get_selection</location>gtk_tree_view_get_selection</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>)</symbol>
+			<local>a_tree_path_list</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_selection_get_selected_rows</location>gtk_tree_selection_get_selected_rows</feature> <symbol>(</symbol><local>a_selection</local><symbol>,</symbol> <symbol>$</symbol><local>a_model</local><symbol>)</symbol>
+			<keyword>if</keyword> <local>a_tree_path_list</local> <symbol>/=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature> <keyword>then</keyword>
+				<local>a_tree_path</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_glist_struct_data</location>glist_struct_data</feature> <symbol>(</symbol><local>a_tree_path_list</local><symbol>)</symbol>
+				<local>a_int_ptr</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_path_get_indices</location>gtk_tree_path_get_indices</feature> <symbol>(</symbol><local>a_tree_path</local><symbol>)</symbol>
+				<keyword>create</keyword> <local>mp</local><dot>.</dot><feature><include>False</include>share_from_pointer</feature><symbol> </symbol><symbol>(</symbol><local>a_int_ptr</local><symbol>,</symbol> <symbol>{</symbol><class><include>False</include>PLATFORM</class><symbol>}</symbol><dot>.</dot><feature><include>False</include>integer_32_bytes</feature><symbol>)</symbol>
+				<keyword>Result</keyword> <symbol>:=</symbol> <symbol>(</symbol><symbol>(</symbol><feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_ev_children</location>ev_children</feature> <symbol>@</symbol> <symbol>(</symbol><local>mp</local><dot>.</dot><feature><include>False</include>read_integer_32</feature><symbol> </symbol><symbol>(</symbol><number>0</number><symbol>)</symbol> <symbol>+</symbol> <number>1</number><symbol>)</symbol><symbol>)</symbol><dot>.</dot><feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_path_list_free_contents</location>gtk_tree_path_list_free_contents</feature> <symbol>(</symbol><local>a_tree_path_list</local><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_g_list_free</location>g_list_free</feature> <symbol>(</symbol><local>a_tree_path_list</local><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_selected_items</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_selected_items</location>selected_items</feature><symbol>:</symbol> <class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><class><location>../interface/ev_multi_column_list_row.xml</location>EV_MULTI_COLUMN_LIST_ROW</class><symbol>]</symbol>
+			<comment>--</comment><comment> List of all the selected items. For a single</comment>
+			<comment>--</comment><comment> selection list, it gives a list with only one</comment>
+			<comment>--</comment><comment> element which is </comment><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_selected_item</location>selected_item</feature><comment>. Therefore, one</comment>
+			<comment>--</comment><comment> should use </comment><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_selected_item</location>selected_item</feature><comment> rather than</comment>
+			<comment>--</comment><comment> </comment><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_selected_items</location>selected_items</feature><comment> for a single selection list.</comment>
+		<keyword>local</keyword>
+			<local>a_selection</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>a_tree_path_list</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>a_model</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>a_tree_path</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>a_int_ptr</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>mp</local><symbol>:</symbol> <class><include>False</include>MANAGED_POINTER</class>
+		<keyword>do</keyword>
+			<keyword>create</keyword> <keyword>Result</keyword><dot>.</dot><feature><include>False</include>make</feature><symbol> </symbol><symbol>(</symbol><number>0</number><symbol>)</symbol>
+			<local>a_selection</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_get_selection</location>gtk_tree_view_get_selection</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>)</symbol>
+			<local>a_tree_path_list</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_selection_get_selected_rows</location>gtk_tree_selection_get_selected_rows</feature> <symbol>(</symbol><local>a_selection</local><symbol>,</symbol> <symbol>$</symbol><local>a_model</local><symbol>)</symbol>
+			<keyword>if</keyword> <local>a_tree_path_list</local> <symbol>/=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature> <keyword>then</keyword>
+				<keyword>from</keyword>
+				<keyword>until</keyword>
+					<local>a_tree_path_list</local> <symbol>=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature>
+				<keyword>loop</keyword>
+					<local>a_tree_path</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_glist_struct_data</location>glist_struct_data</feature> <symbol>(</symbol><local>a_tree_path_list</local><symbol>)</symbol>
+					<local>a_int_ptr</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_path_get_indices</location>gtk_tree_path_get_indices</feature> <symbol>(</symbol><local>a_tree_path</local><symbol>)</symbol>
+					<keyword>create</keyword> <local>mp</local><dot>.</dot><feature><include>False</include>share_from_pointer</feature><symbol> </symbol><symbol>(</symbol><local>a_int_ptr</local><symbol>,</symbol> <symbol>{</symbol><class><include>False</include>PLATFORM</class><symbol>}</symbol><dot>.</dot><feature><include>False</include>integer_32_bytes</feature><symbol>)</symbol>
+					<keyword>Result</keyword><dot>.</dot><feature><include>False</include>extend</feature><symbol> </symbol><symbol>(</symbol><symbol>(</symbol><feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_ev_children</location>ev_children</feature> <symbol>@</symbol> <symbol>(</symbol><local>mp</local><dot>.</dot><feature><include>False</include>read_integer_32</feature><symbol> </symbol><symbol>(</symbol><number>0</number><symbol>)</symbol> <symbol>+</symbol> <number>1</number><symbol>)</symbol><symbol>)</symbol><dot>.</dot><feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature><symbol>)</symbol>
+					<local>a_tree_path_list</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_glist_struct_next</location>glist_struct_next</feature> <symbol>(</symbol><local>a_tree_path_list</local><symbol>)</symbol>
+				<keyword>end</keyword>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_path_list_free_contents</location>gtk_tree_path_list_free_contents</feature> <symbol>(</symbol><local>a_tree_path_list</local><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_g_list_free</location>g_list_free</feature> <symbol>(</symbol><local>a_tree_path_list</local><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status report</comment>
+
+	<anchor>f_selected</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_selected</location>selected</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is at least one item selected ?</comment>
+		<keyword>local</keyword>
+			<local>a_selection</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>do</keyword>
+			<local>a_selection</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_get_selection</location>gtk_tree_view_get_selection</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>)</symbol>
+			<keyword>Result</keyword> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_selection_count_selected_rows</location>gtk_tree_selection_count_selected_rows</feature> <symbol>(</symbol><local>a_selection</local><symbol>)</symbol> <symbol>&gt;</symbol> <number>0</number>
+		<keyword>end</keyword>
+
+	<anchor>f_multiple_selection_enabled</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_multiple_selection_enabled</location>multiple_selection_enabled</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> True if the user can choose several items</comment>
+			<comment>--</comment><comment> False otherwise.</comment>
+		<keyword>local</keyword>
+			<local>a_selection</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>do</keyword>
+			<local>a_selection</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_get_selection</location>gtk_tree_view_get_selection</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>)</symbol>
+			<keyword>Result</keyword> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_selection_get_mode</location>gtk_tree_selection_get_mode</feature> <symbol>(</symbol><local>a_selection</local><symbol>)</symbol> <symbol>=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_selection_multiple_enum</location>gtk_selection_multiple_enum</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_title_shown</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_title_shown</location>title_shown</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> True if the title row is shown.</comment>
+			<comment>--</comment><comment> False if the title row is not shown.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_get_headers_visible</location>gtk_tree_view_get_headers_visible</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status setting</comment>
+
+	<anchor>f_destroy</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_destroy</location>destroy</feature>
+			<comment>--</comment><comment> Destroy screen widget implementation and EV_LIST_ITEM objects.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_wipe_out</location>wipe_out</feature>
+			<keyword><location>../implementation_gtk/ev_widget_imp.xml#f_destroy</location>Precursor</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_primitive_imp.xml</location>EV_PRIMITIVE_IMP</class><symbol>}</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_show_title_row</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_show_title_row</location>show_title_row</feature>
+			<comment>--</comment><comment> Show the row of the titles.</comment>
+		<keyword>do</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_set_headers_visible</location>gtk_tree_view_set_headers_visible</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>,</symbol> <keyword>True</keyword><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_hide_title_row</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_hide_title_row</location>hide_title_row</feature>
+			<comment>--</comment><comment> Hide the row of the titles.</comment>
+		<keyword>do</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_set_headers_visible</location>gtk_tree_view_set_headers_visible</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>,</symbol> <keyword>False</keyword><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_resize_column_to_content</location>resize_column_to_content</feature><symbol> </symbol><symbol>(</symbol><number>1</number><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_enable_multiple_selection</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_enable_multiple_selection</location>enable_multiple_selection</feature>
+			<comment>--</comment><comment> Allow the user to do a multiple selection simply</comment>
+			<comment>--</comment><comment> by clicking on several choices.</comment>
+			<comment>--</comment><comment> For constants, see EV_GTK_CONSTANTS.</comment>
+		<keyword>local</keyword>
+			<local>a_selection</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>do</keyword>
+			<local>a_selection</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_get_selection</location>gtk_tree_view_get_selection</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_selection_set_mode</location>gtk_tree_selection_set_mode</feature> <symbol>(</symbol><local>a_selection</local><symbol>,</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_selection_multiple_enum</location>gtk_selection_multiple_enum</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_disable_multiple_selection</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_disable_multiple_selection</location>disable_multiple_selection</feature>
+			<comment>--</comment><comment> Allow the user to do only one selection. It is the</comment>
+			<comment>--</comment><comment> default status of the list.</comment>
+			<comment>--</comment><comment> For constants, see EV_GTK_CONSTANTS.</comment>
+		<keyword>local</keyword>
+			<local>a_selection</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>do</keyword>
+			<local>a_selection</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_get_selection</location>gtk_tree_view_get_selection</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_selection_set_mode</location>gtk_tree_selection_set_mode</feature> <symbol>(</symbol><local>a_selection</local><symbol>,</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_selection_single_enum</location>gtk_selection_single_enum</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_select_item</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_select_item</location>select_item</feature> <symbol>(</symbol><local>an_index</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Select an item at the one-based </comment><feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_index</location>index</feature><comment> of the list.</comment>
+		<keyword>local</keyword>
+			<local>a_selection</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>a_row_imp</local><symbol>:</symbol> <class><location>../implementation_gtk/ev_multi_column_list_row_imp.xml</location>EV_MULTI_COLUMN_LIST_ROW_IMP</class>
+			<local>l_list_iter</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_gtk_tree_iter_struct.xml</location>EV_GTK_TREE_ITER_STRUCT</class>
+		<keyword>do</keyword>
+			<local>a_selection</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_get_selection</location>gtk_tree_view_get_selection</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>)</symbol>
+			<local>l_list_iter</local> <symbol>:=</symbol> <symbol>(</symbol><feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_ev_children</location>ev_children</feature> <symbol>@</symbol> <local>an_index</local><symbol>)</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_multi_column_list_row_imp.xml#f_list_iter</location>list_iter</feature>
+			<keyword>check</keyword>
+					<local>l_list_iter</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_selection_select_iter</location>gtk_tree_selection_select_iter</feature> <symbol>(</symbol><local>a_selection</local><symbol>,</symbol> <local>l_list_iter</local><dot>.</dot><feature><include>False</include>item</feature><symbol>)</symbol>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_selection_signal_id</location>selection_signal_id</feature> <symbol>=</symbol> <number>0</number> <keyword>then</keyword>
+				<local>a_row_imp</local> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_ev_children</location>ev_children</feature><dot>.</dot><feature><include>False</include>i_th</feature><symbol> </symbol><symbol>(</symbol><local>an_index</local><symbol>)</symbol>
+				<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_call_selection_actions</location>call_selection_actions</feature><symbol> </symbol><symbol>(</symbol><local>a_row_imp</local><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_deselect_item</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_deselect_item</location>deselect_item</feature> <symbol>(</symbol><local>an_index</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Unselect the item at the one-based </comment><feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_index</location>index</feature><comment>.</comment>
+		<keyword>local</keyword>
+			<local>a_selection</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>a_row_imp</local><symbol>:</symbol> <class><location>../implementation_gtk/ev_multi_column_list_row_imp.xml</location>EV_MULTI_COLUMN_LIST_ROW_IMP</class>
+			<local>l_list_iter</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_gtk_tree_iter_struct.xml</location>EV_GTK_TREE_ITER_STRUCT</class>
+		<keyword>do</keyword>
+			<local>a_selection</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_get_selection</location>gtk_tree_view_get_selection</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>)</symbol>
+			<local>l_list_iter</local> <symbol>:=</symbol> <symbol>(</symbol><feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_ev_children</location>ev_children</feature> <symbol>@</symbol> <local>an_index</local><symbol>)</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_multi_column_list_row_imp.xml#f_list_iter</location>list_iter</feature>
+			<keyword>check</keyword>
+					<local>l_list_iter</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_selection_unselect_iter</location>gtk_tree_selection_unselect_iter</feature> <symbol>(</symbol><local>a_selection</local><symbol>,</symbol> <local>l_list_iter</local><dot>.</dot><feature><include>False</include>item</feature><symbol>)</symbol>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_selection_signal_id</location>selection_signal_id</feature> <symbol>=</symbol> <number>0</number> <keyword>then</keyword>
+				<local>a_row_imp</local> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_ev_children</location>ev_children</feature><dot>.</dot><feature><include>False</include>i_th</feature><symbol> </symbol><symbol>(</symbol><local>an_index</local><symbol>)</symbol>
+				<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_call_deselect_actions</location>call_deselect_actions</feature><symbol> </symbol><symbol>(</symbol><local>a_row_imp</local><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_clear_selection</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_clear_selection</location>clear_selection</feature>
+			<comment>--</comment><comment> Clear the selection of the list.</comment>
+		<keyword>local</keyword>
+			<local>a_selection</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>do</keyword>
+			<local>a_selection</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_get_selection</location>gtk_tree_view_get_selection</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_selection_unselect_all</location>gtk_tree_selection_unselect_all</feature> <symbol>(</symbol><local>a_selection</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_resize_column_to_content</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_resize_column_to_content</location>resize_column_to_content</feature> <symbol>(</symbol><local>a_column</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Resize column </comment><quoted>a_column</quoted><comment> to width of its widest text.</comment>
+		<keyword>local</keyword>
+			<local>a_column_ptr</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>do</keyword>
+			<local>a_column_ptr</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_get_column</location>gtk_tree_view_get_column</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>,</symbol> <local>a_column</local> <symbol>-</symbol> <number>1</number><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_column_set_sizing</location>gtk_tree_view_column_set_sizing</feature> <symbol>(</symbol><local>a_column_ptr</local><symbol>,</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_column_grow_only_enum</location>gtk_tree_view_column_grow_only_enum</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Element change</comment>
+
+	<anchor>f_column_title_changed</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_column_title_changed</location>column_title_changed</feature> <symbol>(</symbol><local>a_txt</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>;</symbol> <local>a_column</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Make </comment><quoted>a_txt</quoted><comment> the title of the column number.</comment>
+		<keyword>local</keyword>
+			<local>l_txt</local><symbol>:</symbol> <class><include>False</include>STRING_32</class>
+			<local>a_cs</local><symbol>:</symbol> <class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class>
+			<local>a_column_ptr</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <local>a_column</local> <symbol>&gt;</symbol> <feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_column_count</location>column_count</feature> <keyword>then</keyword>
+				<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_expand_column_count_to</location>expand_column_count_to</feature><symbol> </symbol><symbol>(</symbol><local>a_column</local><symbol>)</symbol>
+			<keyword>end</keyword>
+			<local>a_column_ptr</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_get_column</location>gtk_tree_view_get_column</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>,</symbol> <local>a_column</local> <symbol>-</symbol> <number>1</number><symbol>)</symbol>
+			<keyword>check</keyword>
+				<tag>a_column_not_null</tag><symbol>:</symbol> <local>a_column_ptr</local> <symbol>/=</symbol> <feature><include>False</include>default_pointer</feature>
+			<keyword>end</keyword>
+			<local>l_txt</local> <symbol>:=</symbol> <local>a_txt</local><dot>.</dot><feature><include>False</include>as_string_32</feature>
+			<local>l_txt</local><dot>.</dot><feature><include>False</include>replace_substring_all</feature><symbol> </symbol><symbol>(</symbol><keyword>once</keyword> <symbol>{</symbol><class><include>False</include>STRING_32</class><symbol>}</symbol>&quot;_&quot;<symbol>,</symbol> <keyword>once</keyword> <symbol>{</symbol><class><include>False</include>STRING_32</class><symbol>}</symbol>&quot;__&quot;<symbol>)</symbol>
+			<local>a_cs</local> <symbol>:=</symbol> <keyword>create</keyword> <symbol>{</symbol><keyword>attached</keyword> <class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_set_with_eiffel_string</location>set_with_eiffel_string</feature><symbol> </symbol><symbol>(</symbol><local>l_txt</local><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_column_set_title</location>gtk_tree_view_column_set_title</feature> <symbol>(</symbol><local>a_column_ptr</local><symbol>,</symbol> <local>a_cs</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_item</location>item</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_column_width_changed</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_column_width_changed</location>column_width_changed</feature> <symbol>(</symbol><local>value</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_column</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Make </comment><quoted>value</quoted><comment> the new width of the column number</comment>
+			<comment>--</comment><comment> </comment><quoted>a_column</quoted><comment>.</comment>
+		<keyword>local</keyword>
+			<local>a_column_ptr</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_column_widths</location>column_widths</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<local>a_column_ptr</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_get_column</location>gtk_tree_view_get_column</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>,</symbol> <local>a_column</local> <symbol>-</symbol> <number>1</number><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_column_set_sizing</location>gtk_tree_view_column_set_sizing</feature> <symbol>(</symbol><local>a_column_ptr</local><symbol>,</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_column_fixed_enum</location>gtk_tree_view_column_fixed_enum</feature><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_column_set_fixed_width</location>gtk_tree_view_column_set_fixed_width</feature> <symbol>(</symbol><local>a_column_ptr</local><symbol>,</symbol> <local>value</local><dot>.</dot><feature><include>False</include>max</feature><symbol> </symbol><symbol>(</symbol><number>1</number><symbol>)</symbol><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_column_alignment_changed</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_column_alignment_changed</location>column_alignment_changed</feature> <symbol>(</symbol><local>an_alignment</local><symbol>:</symbol> <class><location>../interface/ev_text_alignment.xml</location>EV_TEXT_ALIGNMENT</class><symbol>;</symbol> <local>a_column</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set alignment of </comment><quoted>a_column</quoted><comment> to corresponding </comment><quoted>alignment_code</quoted><comment>.</comment>
+		<keyword>local</keyword>
+			<local>alignment</local><symbol>:</symbol> <class><include>False</include>REAL_32</class>
+			<local>a_column_ptr</local><symbol>,</symbol> <local>a_cell_rend_list</local><symbol>,</symbol> <local>a_cell_rend</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>a_gtk_c_str</local><symbol>:</symbol> <class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class>
+			<local>i</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <local>an_alignment</local><dot>.</dot><feature><location>../interface/ev_text_alignment.xml#f_is_left_aligned</location>is_left_aligned</feature> <keyword>then</keyword>
+				<local>alignment</local> <symbol>:=</symbol> <symbol>{</symbol><class><include>False</include>REAL_32</class><symbol>}</symbol> <number>0.0</number>
+			<keyword>elseif</keyword> <local>an_alignment</local><dot>.</dot><feature><location>../interface/ev_text_alignment.xml#f_is_center_aligned</location>is_center_aligned</feature> <keyword>then</keyword>
+				<local>alignment</local> <symbol>:=</symbol> <symbol>{</symbol><class><include>False</include>REAL_32</class><symbol>}</symbol> <number>0.5</number>
+			<keyword>else</keyword>
+				<local>alignment</local> <symbol>:=</symbol> <symbol>{</symbol><class><include>False</include>REAL_32</class><symbol>}</symbol> <number>1.0</number>
+			<keyword>end</keyword>
+			<local>a_column_ptr</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_get_column</location>gtk_tree_view_get_column</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>,</symbol> <local>a_column</local> <symbol>-</symbol> <number>1</number><symbol>)</symbol>
+			<local>a_cell_rend_list</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_column_get_cell_renderers</location>gtk_tree_view_column_get_cell_renderers</feature> <symbol>(</symbol><local>a_column_ptr</local><symbol>)</symbol>
+			<keyword>from</keyword>
+				<local>i</local> <symbol>:=</symbol> <number>0</number>
+				<local>a_gtk_c_str</local> <symbol>:=</symbol> <keyword>create</keyword> <symbol>{</symbol><keyword>attached</keyword> <class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_set_with_eiffel_string</location>set_with_eiffel_string</feature><symbol> </symbol><symbol>(</symbol>&quot;xalign&quot;<symbol>)</symbol>
+			<keyword>until</keyword>
+				<local>i</local> <symbol>=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_g_list_length</location>g_list_length</feature> <symbol>(</symbol><local>a_cell_rend_list</local><symbol>)</symbol>
+			<keyword>loop</keyword>
+				<local>a_cell_rend</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_g_list_nth_data</location>g_list_nth_data</feature> <symbol>(</symbol><local>a_cell_rend_list</local><symbol>,</symbol> <local>i</local><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_g_object_set_double</location>g_object_set_double</feature> <symbol>(</symbol><local>a_cell_rend</local><symbol>,</symbol> <local>a_gtk_c_str</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_item</location>item</feature><symbol>,</symbol> <local>alignment</local><dot>.</dot><feature><include>False</include>to_double</feature><symbol>)</symbol>
+				<local>i</local> <symbol>:=</symbol> <local>i</local> <symbol>+</symbol> <number>1</number>
+			<keyword>end</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_column_set_alignment</location>gtk_tree_view_column_set_alignment</feature> <symbol>(</symbol><local>a_column_ptr</local><symbol>,</symbol> <local>alignment</local><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_g_list_free</location>g_list_free</feature> <symbol>(</symbol><local>a_cell_rend_list</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_set_row_height</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_set_row_height</location>set_row_height</feature> <symbol>(</symbol><local>value</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Make </comment><quoted>value</quoted><comment> the new height of all the rows.</comment>
+		<keyword>local</keyword>
+			<local>a_column_ptr</local><symbol>,</symbol> <local>a_cell_rend_list</local><symbol>,</symbol> <local>a_cell_rend</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>a_gtk_c_str</local><symbol>:</symbol> <class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class>
+			<local>a_vert_sep</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+		<keyword>do</keyword>
+			<local>a_column_ptr</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_get_column</location>gtk_tree_view_get_column</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>,</symbol> <number>0</number><symbol>)</symbol>
+			<local>a_cell_rend_list</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_column_get_cell_renderers</location>gtk_tree_view_column_get_cell_renderers</feature> <symbol>(</symbol><local>a_column_ptr</local><symbol>)</symbol>
+			<local>a_cell_rend</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_g_list_nth_data</location>g_list_nth_data</feature> <symbol>(</symbol><local>a_cell_rend_list</local><symbol>,</symbol> <number>0</number><symbol>)</symbol>
+			<local>a_gtk_c_str</local> <symbol>:=</symbol> <keyword>create</keyword> <symbol>{</symbol><keyword>attached</keyword> <class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_set_with_eiffel_string</location>set_with_eiffel_string</feature><symbol> </symbol><symbol>(</symbol>&quot;vertical-separator&quot;<symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_widget_style_get_integer</location>gtk_widget_style_get_integer</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>,</symbol> <local>a_gtk_c_str</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_item</location>item</feature><symbol>,</symbol> <symbol>$</symbol><local>a_vert_sep</local><symbol>)</symbol>
+			<local>a_gtk_c_str</local> <symbol>:=</symbol> <keyword>create</keyword> <symbol>{</symbol><keyword>attached</keyword> <class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_set_with_eiffel_string</location>set_with_eiffel_string</feature><symbol> </symbol><symbol>(</symbol>&quot;height&quot;<symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_g_object_set_integer</location>g_object_set_integer</feature> <symbol>(</symbol><local>a_cell_rend</local><symbol>,</symbol> <local>a_gtk_c_str</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_item</location>item</feature><symbol>,</symbol> <local>value</local> <symbol>-</symbol> <local>a_vert_sep</local><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_g_list_free</location>g_list_free</feature> <symbol>(</symbol><local>a_cell_rend_list</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_wipe_out</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_wipe_out</location>wipe_out</feature>
+			<comment>--</comment><comment> Remove all items.</comment>
+		<keyword>local</keyword>
+			<local>item_imp</local><symbol>:</symbol> <class><location>../implementation_gtk/ev_multi_column_list_row_imp.xml</location>EV_MULTI_COLUMN_LIST_ROW_IMP</class>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_clear_selection</location>clear_selection</feature>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_list_store_clear</location>gtk_list_store_clear</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_list_store</location>list_store</feature><symbol>)</symbol>
+			<keyword>from</keyword>
+				<feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_ev_children</location>ev_children</feature><dot>.</dot><feature><include>False</include>start</feature>
+			<keyword>until</keyword>
+				<feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_ev_children</location>ev_children</feature><dot>.</dot><feature><include>False</include>after</feature>
+			<keyword>loop</keyword>
+				<local>item_imp</local> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_ev_children</location>ev_children</feature><dot>.</dot><feature><include>False</include>item</feature>
+				<local>item_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_multi_column_list_row_imp.xml#f_set_parent_imp</location>set_parent_imp</feature><symbol> </symbol><symbol>(</symbol><keyword>Void</keyword><symbol>)</symbol>
+				<feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_ev_children</location>ev_children</feature><dot>.</dot><feature><include>False</include>forth</feature>
+			<keyword>end</keyword>
+			<feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_ev_children</location>ev_children</feature><dot>.</dot><feature><include>False</include>wipe_out</feature>
+			<feature><location>../implementation_gtk/ev_dynamic_list_imp.xml#f_child_array</location>child_array</feature><dot>.</dot><feature><include>False</include>wipe_out</feature>
+			<feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_index</location>index</feature> <symbol>:=</symbol> <number>0</number>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_update_pnd_status</location>update_pnd_status</feature>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_pebble_source</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_pebble_source</location>pebble_source</feature><symbol>:</symbol> <class><location>../interface/ev_pick_and_dropable.xml</location>EV_PICK_AND_DROPABLE</class>
+			<comment>--</comment><comment> Source of pebble, used for widgets with deferred PND implementation</comment>
+			<comment>--</comment><comment> such as EV_TREE and EV_MULTI_COLUMN_LIST.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_pnd_row_imp</location>pnd_row_imp</feature> <keyword>as</keyword> l_pnd_row_imp <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>l_pnd_row_imp</local><dot>.</dot><feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature>
+			<keyword>else</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <keyword><location>../implementation_gtk/ev_pick_and_dropable_imp.xml#f_pebble_source</location>Precursor</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_set_to_drag_and_drop</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_set_to_drag_and_drop</location>set_to_drag_and_drop</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Set transport mode to drag and drop.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_pnd_row_imp</location>pnd_row_imp</feature> <keyword>as</keyword> l_pnd_row_imp <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>l_pnd_row_imp</local><dot>.</dot><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_mode_is_drag_and_drop</location>mode_is_drag_and_drop</feature>
+			<keyword>else</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_mode_is_drag_and_drop</location>mode_is_drag_and_drop</feature>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_able_to_transport</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_able_to_transport</location>able_to_transport</feature> <symbol>(</symbol><local>a_button</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is list or row able to transport PND data using </comment><quoted>a_button</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_pnd_row_imp</location>pnd_row_imp</feature> <keyword>as</keyword> l_pnd_row_imp <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>l_pnd_row_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_multi_column_list_row_imp.xml#f_able_to_transport</location>able_to_transport</feature><symbol> </symbol><symbol>(</symbol><local>a_button</local><symbol>)</symbol>
+			<keyword>else</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <keyword><location>../implementation_gtk/ev_pick_and_dropable_imp.xml#f_able_to_transport</location>Precursor</keyword><symbol> </symbol><symbol>(</symbol><local>a_button</local><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_ready_for_pnd_menu</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_ready_for_pnd_menu</location>ready_for_pnd_menu</feature> <symbol>(</symbol><local>a_button</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_press</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is list or row able to display PND menu using </comment><quoted>a_button</quoted>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_pnd_row_imp</location>pnd_row_imp</feature> <keyword>as</keyword> l_pnd_row_imp <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>l_pnd_row_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_multi_column_list_row_imp.xml#f_ready_for_pnd_menu</location>ready_for_pnd_menu</feature><symbol> </symbol><symbol>(</symbol><local>a_button</local><symbol>,</symbol> <local>a_press</local><symbol>)</symbol>
+			<keyword>else</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <keyword><location>../implementation_gtk/ev_pick_and_dropable_imp.xml#f_ready_for_pnd_menu</location>Precursor</keyword><symbol> </symbol><symbol>(</symbol><local>a_button</local><symbol>,</symbol> <local>a_press</local><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_disable_transport</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_disable_transport</location>disable_transport</feature>
+			<comment>--</comment><comment> Disable PND transport</comment>
+		<keyword>do</keyword>
+			<keyword><location>../implementation_gtk/ev_pick_and_dropable_imp.xml#f_disable_transport</location>Precursor</keyword>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_update_pnd_status</location>update_pnd_status</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_update_pnd_status</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_update_pnd_status</location>update_pnd_status</feature>
+			<comment>--</comment><comment> Update PND status of list and its children.</comment>
+		<keyword>local</keyword>
+			<local>a_enable_flag</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+		<keyword>do</keyword>
+			<keyword>from</keyword>
+				<feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_ev_children</location>ev_children</feature><dot>.</dot><feature><include>False</include>start</feature>
+			<keyword>until</keyword>
+				<feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_ev_children</location>ev_children</feature><dot>.</dot><feature><include>False</include>after</feature> <keyword>or else</keyword> <local>a_enable_flag</local>
+			<keyword>loop</keyword>
+				<local>a_enable_flag</local> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_ev_children</location>ev_children</feature><dot>.</dot><feature><include>False</include>item</feature><dot>.</dot><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_is_transport_enabled</location>is_transport_enabled</feature>
+				<feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_ev_children</location>ev_children</feature><dot>.</dot><feature><include>False</include>forth</feature>
+			<keyword>end</keyword>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_update_pnd_connection</location>update_pnd_connection</feature><symbol> </symbol><symbol>(</symbol><local>a_enable_flag</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_update_pnd_connection</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_update_pnd_connection</location>update_pnd_connection</feature> <symbol>(</symbol><local>a_enable</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class><symbol>)</symbol>
+			<comment>--</comment><comment> Update the PND connection of </comment><quoted>Current</quoted><comment> if needed.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <keyword>not</keyword> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_is_transport_enabled</location>is_transport_enabled</feature> <keyword>then</keyword>
+				<keyword>if</keyword> <local>a_enable</local> <keyword>or</keyword> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble</location>pebble</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+					<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_is_transport_enabled</location>is_transport_enabled</feature> <symbol>:=</symbol> <keyword>True</keyword>
+				<keyword>end</keyword>
+			<keyword>elseif</keyword> <keyword>not</keyword> <local>a_enable</local> <keyword>and</keyword> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble</location>pebble</feature> <symbol>=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_is_transport_enabled</location>is_transport_enabled</feature> <symbol>:=</symbol> <keyword>False</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_on_mouse_button_event</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_on_mouse_button_event</location>on_mouse_button_event</feature> <symbol>(</symbol><local>a_type</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>a_button</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_x_tilt</local><symbol>,</symbol> <local>a_y_tilt</local><symbol>,</symbol> <local>a_pressure</local><symbol>:</symbol> <class><include>False</include>REAL_64</class><symbol>;</symbol> <local>a_screen_x</local><symbol>,</symbol> <local>a_screen_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Initialize a pick and drop transport.</comment>
+		<keyword>local</keyword>
+			<local>a_row_index</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<local>l_pnd_row_imp</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_pnd_row_imp</location>pnd_row_imp</feature>
+		<keyword>do</keyword>
+			<local>a_row_index</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_row_index_from_y_coord</location>row_index_from_y_coord</feature><symbol> </symbol><symbol>(</symbol><local>a_y</local><symbol>)</symbol>
+			<keyword>if</keyword> <local>a_row_index</local> <symbol>&gt;</symbol> <number>0</number> <keyword>then</keyword>
+				<local>l_pnd_row_imp</local> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_ev_children</location>ev_children</feature><dot>.</dot><feature><include>False</include>i_th</feature><symbol> </symbol><symbol>(</symbol><local>a_row_index</local><symbol>)</symbol>
+				<keyword>check</keyword>
+						<local>l_pnd_row_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+				<keyword>end</keyword>
+				<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_pnd_row_imp</location>pnd_row_imp</feature> <symbol>:=</symbol> <local>l_pnd_row_imp</local>
+				<keyword>if</keyword> <keyword>not</keyword> <symbol>(</symbol><local>l_pnd_row_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_multi_column_list_row_imp.xml#f_able_to_transport</location>able_to_transport</feature><symbol> </symbol><symbol>(</symbol><local>a_button</local><symbol>)</symbol> <keyword>or</keyword> <local>l_pnd_row_imp</local><dot>.</dot><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_mode_is_configurable_target_menu</location>mode_is_configurable_target_menu</feature><symbol>)</symbol> <keyword>then</keyword>
+					<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_pnd_row_imp</location>pnd_row_imp</feature> <symbol>:=</symbol> <keyword>Void</keyword>
+				<keyword>end</keyword>
+			<keyword>else</keyword>
+				<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_pnd_row_imp</location>pnd_row_imp</feature> <symbol>:=</symbol> <keyword>Void</keyword>
+			<keyword>end</keyword>
+			<keyword><location>../implementation_gtk/ev_pick_and_dropable_imp.xml#f_on_mouse_button_event</location>Precursor</keyword><symbol> </symbol><symbol>(</symbol><local>a_type</local><symbol>,</symbol> <local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>a_button</local><symbol>,</symbol> <local>a_x_tilt</local><symbol>,</symbol> <local>a_y_tilt</local><symbol>,</symbol> <local>a_pressure</local><symbol>,</symbol> <local>a_screen_x</local><symbol>,</symbol> <local>a_screen_y</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_pnd_row_imp</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_pnd_row_imp</location>pnd_row_imp</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_multi_column_list_row_imp.xml</location>EV_MULTI_COLUMN_LIST_ROW_IMP</class>
+			<comment>--</comment><comment> Implementation object of the current row if in PND transport.</comment>
+
+	<anchor>f_temp_pebble</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_temp_pebble</location>temp_pebble</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>ANY</class>
+
+	<anchor>f_temp_pebble_function</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_temp_pebble_function</location>temp_pebble_function</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>FUNCTION</class> <symbol>[</symbol><keyword>detachable</keyword> <class><include>False</include>ANY</class><symbol>]</symbol>
+			<comment>--</comment><comment> Returns data to be transported by PND mechanism.</comment>
+
+	<anchor>f_temp_accept_cursor</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_temp_accept_cursor</location>temp_accept_cursor</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_pointer_style.xml</location>EV_POINTER_STYLE</class>
+
+	<anchor>f_temp_deny_cursor</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_temp_deny_cursor</location>temp_deny_cursor</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_pointer_style.xml</location>EV_POINTER_STYLE</class>
+
+	<anchor>f_call_pebble_function</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_call_pebble_function</location>call_pebble_function</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>a_screen_x</local><symbol>,</symbol> <local>a_screen_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble</location>pebble</feature><comment> using </comment><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble_function</location>pebble_function</feature><comment> if present.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_temp_pebble</location>temp_pebble</feature> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble</location>pebble</feature>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_temp_pebble_function</location>temp_pebble_function</feature> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble_function</location>pebble_function</feature>
+			<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_pnd_row_imp</location>pnd_row_imp</feature> <keyword>as</keyword> l_pnd_row_imp <keyword>then</keyword>
+				<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble</location>pebble</feature> <symbol>:=</symbol> <local>l_pnd_row_imp</local><dot>.</dot><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble</location>pebble</feature>
+				<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble_function</location>pebble_function</feature> <symbol>:=</symbol> <local>l_pnd_row_imp</local><dot>.</dot><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble_function</location>pebble_function</feature>
+			<keyword>end</keyword>
+			<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble_function</location>pebble_function</feature> <keyword>as</keyword> l_pebble_function <keyword>then</keyword>
+				<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble</location>pebble</feature> <symbol>:=</symbol> <local>l_pebble_function</local><dot>.</dot><feature><include>False</include>item</feature><symbol> </symbol><symbol>(</symbol><symbol>[</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>]</symbol><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_pre_pick_steps</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_pre_pick_steps</location>pre_pick_steps</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>a_screen_x</local><symbol>,</symbol> <local>a_screen_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Steps to perform before transport initiated.</comment>
+		<keyword>local</keyword>
+			<local>l_pnd_row_imp</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_pnd_row_imp</location>pnd_row_imp</feature>
+			<local>l_pebble</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble</location>pebble</feature>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_temp_accept_cursor</location>temp_accept_cursor</feature> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_accept_cursor</location>accept_cursor</feature>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_temp_deny_cursor</location>temp_deny_cursor</feature> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_deny_cursor</location>deny_cursor</feature>
+			<local>l_pebble</local> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble</location>pebble</feature>
+			<keyword>if</keyword> <local>l_pebble</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_on_pick</location>on_pick</feature><symbol> </symbol><symbol>(</symbol><keyword>Current</keyword><symbol>,</symbol> <local>l_pebble</local><symbol>)</symbol>
+			<keyword>end</keyword>
+			<local>l_pnd_row_imp</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_pnd_row_imp</location>pnd_row_imp</feature>
+			<keyword>if</keyword> <local>l_pnd_row_imp</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<keyword>if</keyword> <local>l_pnd_row_imp</local><dot>.</dot><feature><location>../implementation_interface/ev_pick_and_dropable_action_sequences_i.xml#f_pick_actions_internal</location>pick_actions_internal</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+					<local>l_pnd_row_imp</local><dot>.</dot><feature><location>../implementation_interface/ev_pick_and_dropable_action_sequences_i.xml#f_pick_actions</location>pick_actions</feature><dot>.</dot><feature><location>../interface/ev_lite_action_sequence.xml#f_call</location>call</feature><symbol> </symbol><symbol>(</symbol><symbol>[</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>]</symbol><symbol>)</symbol>
+				<keyword>end</keyword>
+				<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_accept_cursor</location>accept_cursor</feature> <symbol>:=</symbol> <local>l_pnd_row_imp</local><dot>.</dot><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_accept_cursor</location>accept_cursor</feature>
+				<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_deny_cursor</location>deny_cursor</feature> <symbol>:=</symbol> <local>l_pnd_row_imp</local><dot>.</dot><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_deny_cursor</location>deny_cursor</feature>
+			<keyword>else</keyword>
+				<keyword>if</keyword> <feature><location>../implementation_interface/ev_pick_and_dropable_action_sequences_i.xml#f_pick_actions_internal</location>pick_actions_internal</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+					<feature><location>../implementation_interface/ev_pick_and_dropable_action_sequences_i.xml#f_pick_actions_internal</location>pick_actions_internal</feature><dot>.</dot><feature><location>../interface/ev_lite_action_sequence.xml#f_call</location>call</feature><symbol> </symbol><symbol>(</symbol><symbol>[</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>]</symbol><symbol>)</symbol>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+			<feature><location>../implementation_interface/ev_shared_transport_i.xml#f_pointer_x</location>pointer_x</feature> <symbol>:=</symbol> <local>a_screen_x</local><dot>.</dot><feature><include>False</include>to_integer_16</feature>
+			<feature><location>../implementation_interface/ev_shared_transport_i.xml#f_pointer_y</location>pointer_y</feature> <symbol>:=</symbol> <local>a_screen_y</local><dot>.</dot><feature><include>False</include>to_integer_16</feature>
+			<keyword>if</keyword> <local>l_pnd_row_imp</local> <symbol>=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<keyword>if</keyword> <symbol>(</symbol><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pick_x</location>pick_x</feature> <symbol>=</symbol> <number>0</number> <keyword>and then</keyword> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pick_y</location>pick_y</feature> <symbol>=</symbol> <number>0</number><symbol>)</symbol> <keyword>then</keyword>
+					<feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_application_i.xml#f_set_x_y_origin</location>set_x_y_origin</feature><symbol> </symbol><symbol>(</symbol><local>a_screen_x</local><symbol>,</symbol> <local>a_screen_y</local><symbol>)</symbol>
+				<keyword>else</keyword>
+					<keyword>if</keyword> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pick_x</location>pick_x</feature><dot>.</dot><feature><include>False</include>to_integer_32</feature> <symbol>&gt;</symbol> <feature><location>../implementation_gtk/ev_gtk_widget_imp.xml#f_width</location>width</feature> <keyword>then</keyword>
+						<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pick_x</location>pick_x</feature> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_gtk_widget_imp.xml#f_width</location>width</feature><dot>.</dot><feature><include>False</include>to_integer_16</feature>
+					<keyword>end</keyword>
+					<keyword>if</keyword> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pick_y</location>pick_y</feature><dot>.</dot><feature><include>False</include>to_integer_32</feature> <symbol>&gt;</symbol> <feature><location>../implementation_gtk/ev_gtk_widget_imp.xml#f_height</location>height</feature> <keyword>then</keyword>
+						<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pick_y</location>pick_y</feature> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_gtk_widget_imp.xml#f_height</location>height</feature><dot>.</dot><feature><include>False</include>to_integer_16</feature>
+					<keyword>end</keyword>
+					<feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_application_i.xml#f_set_x_y_origin</location>set_x_y_origin</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pick_x</location>pick_x</feature><dot>.</dot><feature><include>False</include>to_integer_32</feature> <symbol>+</symbol> <symbol>(</symbol><local>a_screen_x</local> <symbol>-</symbol> <local>a_x</local><symbol>)</symbol><symbol>,</symbol> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pick_y</location>pick_y</feature><dot>.</dot><feature><include>False</include>to_integer_32</feature> <symbol>+</symbol> <symbol>(</symbol><local>a_screen_y</local> <symbol>-</symbol> <local>a_y</local><symbol>)</symbol><symbol>)</symbol>
+				<keyword>end</keyword>
+			<keyword>else</keyword>
+				<keyword>if</keyword> <symbol>(</symbol><local>l_pnd_row_imp</local><dot>.</dot><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pick_x</location>pick_x</feature> <symbol>=</symbol> <number>0</number> <keyword>and then</keyword> <local>l_pnd_row_imp</local><dot>.</dot><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pick_y</location>pick_y</feature> <symbol>=</symbol> <number>0</number><symbol>)</symbol> <keyword>then</keyword>
+					<feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_application_i.xml#f_set_x_y_origin</location>set_x_y_origin</feature><symbol> </symbol><symbol>(</symbol><local>a_screen_x</local><symbol>,</symbol> <local>a_screen_y</local><symbol>)</symbol>
+				<keyword>else</keyword>
+					<keyword>if</keyword> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pick_x</location>pick_x</feature><dot>.</dot><feature><include>False</include>to_integer_32</feature> <symbol>&gt;</symbol> <feature><location>../implementation_gtk/ev_gtk_widget_imp.xml#f_width</location>width</feature> <keyword>then</keyword>
+						<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pick_x</location>pick_x</feature> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_gtk_widget_imp.xml#f_width</location>width</feature><dot>.</dot><feature><include>False</include>to_integer_16</feature>
+					<keyword>end</keyword>
+					<keyword>if</keyword> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pick_y</location>pick_y</feature><dot>.</dot><feature><include>False</include>to_integer_32</feature> <symbol>&gt;</symbol> <feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_row_height</location>row_height</feature> <keyword>then</keyword>
+						<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pick_y</location>pick_y</feature> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_row_height</location>row_height</feature><dot>.</dot><feature><include>False</include>to_integer_16</feature>
+					<keyword>end</keyword>
+					<feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_application_i.xml#f_set_x_y_origin</location>set_x_y_origin</feature><symbol> </symbol><symbol>(</symbol><local>l_pnd_row_imp</local><dot>.</dot><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pick_x</location>pick_x</feature><dot>.</dot><feature><include>False</include>to_integer_32</feature> <symbol>+</symbol> <symbol>(</symbol><local>a_screen_x</local> <symbol>-</symbol> <local>a_x</local><symbol>)</symbol><symbol>,</symbol> <local>l_pnd_row_imp</local><dot>.</dot><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pick_y</location>pick_y</feature><dot>.</dot><feature><include>False</include>to_integer_32</feature> <symbol>+</symbol> <symbol>(</symbol><local>a_screen_y</local> <symbol>-</symbol> <local>a_y</local><symbol>)</symbol> <symbol>+</symbol> <symbol>(</symbol><symbol>(</symbol><feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_ev_children</location>ev_children</feature><dot>.</dot><feature><include>False</include>index_of</feature><symbol> </symbol><symbol>(</symbol><local>l_pnd_row_imp</local><symbol>,</symbol> <number>1</number><symbol>)</symbol> <symbol>-</symbol> <number>1</number><symbol>)</symbol> <symbol>*</symbol> <feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_row_height</location>row_height</feature><symbol>)</symbol><symbol>)</symbol>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+			<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_modify_widget_appearance</location>modify_widget_appearance</feature><symbol> </symbol><symbol>(</symbol><keyword>True</keyword><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_post_drop_steps</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_post_drop_steps</location>post_drop_steps</feature> <symbol>(</symbol><local>a_button</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Steps to perform once an attempted drop has happened.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_application_i.xml#f_set_x_y_origin</location>set_x_y_origin</feature><symbol> </symbol><symbol>(</symbol><number>0</number><symbol>,</symbol> <number>0</number><symbol>)</symbol>
+			<keyword>if</keyword> <feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble_function</location>pebble_function</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_pnd_row_imp</location>pnd_row_imp</feature> <keyword>as</keyword> l_pnd_row_imp <keyword>then</keyword>
+					<local>l_pnd_row_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_multi_column_list_row_imp.xml#f_set_pebble_void</location>set_pebble_void</feature>
+				<keyword>else</keyword>
+					<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_temp_pebble</location>temp_pebble</feature> <symbol>:=</symbol> <keyword>Void</keyword>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+			<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_accept_cursor</location>accept_cursor</feature> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_temp_accept_cursor</location>temp_accept_cursor</feature>
+			<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_deny_cursor</location>deny_cursor</feature> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_temp_deny_cursor</location>temp_deny_cursor</feature>
+			<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble</location>pebble</feature> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_temp_pebble</location>temp_pebble</feature>
+			<feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_pebble_function</location>pebble_function</feature> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_temp_pebble_function</location>temp_pebble_function</feature>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_temp_pebble</location>temp_pebble</feature> <symbol>:=</symbol> <keyword>Void</keyword>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_temp_pebble_function</location>temp_pebble_function</feature> <symbol>:=</symbol> <keyword>Void</keyword>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_temp_accept_cursor</location>temp_accept_cursor</feature> <symbol>:=</symbol> <keyword>Void</keyword>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_temp_deny_cursor</location>temp_deny_cursor</feature> <symbol>:=</symbol> <keyword>Void</keyword>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_pnd_row_imp</location>pnd_row_imp</feature> <symbol>:=</symbol> <keyword>Void</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_multi_column_list_row_imp.xml</location>EV_MULTI_COLUMN_LIST_ROW_IMP</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_row_index_from_y_coord</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_row_index_from_y_coord</location>row_index_from_y_coord</feature> <symbol>(</symbol><local>a_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Returns the row index at relative coordinate </comment><quoted>a_y</quoted><comment>.</comment>
+		<keyword>local</keyword>
+			<local>a_tree_path</local><symbol>,</symbol> <local>a_tree_column</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>a_success</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<local>a_int_ptr</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>mp</local><symbol>:</symbol> <class><include>False</include>MANAGED_POINTER</class>
+		<keyword>do</keyword>
+			<local>a_success</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_get_path_at_pos</location>gtk_tree_view_get_path_at_pos</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>,</symbol> <number>1</number><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <symbol>$</symbol><local>a_tree_path</local><dot>.</dot><feature><include>False</include>to_pointer</feature><symbol>,</symbol> <symbol>$</symbol><local>a_tree_column</local><dot>.</dot><feature><include>False</include>to_pointer</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature><symbol>)</symbol>
+			<keyword>if</keyword> <local>a_success</local> <keyword>then</keyword>
+				<local>a_int_ptr</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_path_get_indices</location>gtk_tree_path_get_indices</feature> <symbol>(</symbol><local>a_tree_path</local><symbol>)</symbol>
+				<keyword>create</keyword> <local>mp</local><dot>.</dot><feature><include>False</include>share_from_pointer</feature><symbol> </symbol><symbol>(</symbol><local>a_int_ptr</local><symbol>,</symbol> <symbol>{</symbol><class><include>False</include>PLATFORM</class><symbol>}</symbol><dot>.</dot><feature><include>False</include>integer_32_bytes</feature><symbol>)</symbol>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>mp</local><dot>.</dot><feature><include>False</include>read_integer_32</feature><symbol> </symbol><symbol>(</symbol><number>0</number><symbol>)</symbol> <symbol>+</symbol> <number>1</number>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_path_free</location>gtk_tree_path_free</feature> <symbol>(</symbol><local>a_tree_path</local><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_item_from_coords</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_item_from_coords</location>item_from_coords</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_pnd_deferred_item.xml</location>EV_PND_DEFERRED_ITEM</class>
+			<comment>--</comment><comment> Returns the row at relative coordinate </comment><quoted>a_y</quoted>
+		<keyword>local</keyword>
+			<local>a_row_index</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+		<keyword>do</keyword>
+			<local>a_row_index</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_row_index_from_y_coord</location>row_index_from_y_coord</feature><symbol> </symbol><symbol>(</symbol><local>a_y</local><symbol>)</symbol>
+			<keyword>if</keyword> <local>a_row_index</local> <symbol>&gt;</symbol> <number>0</number> <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_ev_children</location>ev_children</feature> <symbol>@</symbol> <local>a_row_index</local>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_multi_column_list_row_imp.xml</location>EV_MULTI_COLUMN_LIST_ROW_IMP</class><symbol>}</symbol> 
+
+	<anchor>f_set_text_on_position</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_set_text_on_position</location>set_text_on_position</feature> <symbol>(</symbol><local>a_column</local><symbol>,</symbol> <local>a_row</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_text</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set cell text at (a_column, a_row) to </comment><quoted>a_text</quoted><comment>.</comment>
+		<keyword>local</keyword>
+			<local>a_cs</local><symbol>:</symbol> <class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class>
+			<local>str_value</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>a_list_iter</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_gtk_tree_iter_struct.xml</location>EV_GTK_TREE_ITER_STRUCT</class>
+		<keyword>do</keyword>
+			<local>a_cs</local> <symbol>:=</symbol> <keyword>create</keyword> <symbol>{</symbol><keyword>attached</keyword> <class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_set_with_eiffel_string</location>set_with_eiffel_string</feature><symbol> </symbol><symbol>(</symbol><local>a_text</local><symbol>)</symbol>
+			<local>str_value</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_g_value_string_struct</location>G_value_string_struct</feature>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_g_value_unset</location>g_value_unset</feature> <symbol>(</symbol><local>str_value</local><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_g_value_init_string</location>g_value_init_string</feature> <symbol>(</symbol><local>str_value</local><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_g_value_set_string</location>g_value_set_string</feature> <symbol>(</symbol><local>str_value</local><symbol>,</symbol> <local>a_cs</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_item</location>item</feature><symbol>)</symbol>
+			<local>a_list_iter</local> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_ev_children</location>ev_children</feature><dot>.</dot><feature><include>False</include>i_th</feature><symbol> </symbol><symbol>(</symbol><local>a_row</local><symbol>)</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_multi_column_list_row_imp.xml#f_list_iter</location>list_iter</feature>
+			<keyword>check</keyword>
+					<local>a_list_iter</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_list_store_set_value</location>gtk_list_store_set_value</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_list_store</location>list_store</feature><symbol>,</symbol> <local>a_list_iter</local><dot>.</dot><feature><include>False</include>item</feature><symbol>,</symbol> <local>a_column</local><symbol>,</symbol> <local>str_value</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_g_value_string_struct</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_g_value_string_struct</location>G_value_string_struct</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Optimization for GValue struct access</comment>
+		<keyword>once</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_c_g_value_struct_allocate</location>c_g_value_struct_allocate</feature>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_g_value_init_string</location>g_value_init_string</feature> <symbol>(</symbol><keyword>Result</keyword><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_set_row_pixmap</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_set_row_pixmap</location>set_row_pixmap</feature> <symbol>(</symbol><local>a_row</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_pixmap</local><symbol>:</symbol> <class><location>../interface/ev_pixmap.xml</location>EV_PIXMAP</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set row </comment><quoted>a_row</quoted><comment> pixmap to </comment><quoted>a_pixmap</quoted><comment>.</comment>
+		<keyword>local</keyword>
+			<local>pixmap_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_pixmap_imp.xml</location>EV_PIXMAP_IMP</class>
+			<local>a_list_iter</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_gtk_tree_iter_struct.xml</location>EV_GTK_TREE_ITER_STRUCT</class>
+			<local>a_pixbuf</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>do</keyword>
+			<local>pixmap_imp</local> <symbol>?=</symbol> <local>a_pixmap</local><dot>.</dot><feature><location>../interface/ev_pixmap.xml#f_implementation</location>implementation</feature>
+			<keyword>check</keyword>
+					<local>pixmap_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<local>a_pixbuf</local> <symbol>:=</symbol> <local>pixmap_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_drawable_imp.xml#f_pixbuf_from_drawable_with_size</location>pixbuf_from_drawable_with_size</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_interface/ev_item_pixmap_scaler_i.xml#f_pixmaps_width</location>pixmaps_width</feature><symbol>,</symbol> <feature><location>../implementation_interface/ev_item_pixmap_scaler_i.xml#f_pixmaps_height</location>pixmaps_height</feature><symbol>)</symbol>
+			<local>a_list_iter</local> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_ev_children</location>ev_children</feature><dot>.</dot><feature><include>False</include>i_th</feature><symbol> </symbol><symbol>(</symbol><local>a_row</local><symbol>)</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_multi_column_list_row_imp.xml#f_list_iter</location>list_iter</feature>
+			<keyword>check</keyword>
+					<local>a_list_iter</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_list_store_set_pixbuf</location>gtk_list_store_set_pixbuf</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_list_store</location>list_store</feature><symbol>,</symbol> <local>a_list_iter</local><dot>.</dot><feature><include>False</include>item</feature><symbol>,</symbol> <number>0</number><symbol>,</symbol> <local>a_pixbuf</local><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_object_unref</location>object_unref</feature> <symbol>(</symbol><local>a_pixbuf</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_remove_row_pixmap</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_remove_row_pixmap</location>remove_row_pixmap</feature> <symbol>(</symbol><local>a_row</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Remove pixmap from </comment><quoted>a_row</quoted>
+		<keyword>local</keyword>
+			<local>a_list_iter</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_gtk_tree_iter_struct.xml</location>EV_GTK_TREE_ITER_STRUCT</class>
+		<keyword>do</keyword>
+			<local>a_list_iter</local> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_ev_children</location>ev_children</feature><dot>.</dot><feature><include>False</include>i_th</feature><symbol> </symbol><symbol>(</symbol><local>a_row</local><symbol>)</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_multi_column_list_row_imp.xml#f_list_iter</location>list_iter</feature>
+			<keyword>check</keyword>
+					<local>a_list_iter</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_list_store_set_pixbuf</location>gtk_list_store_set_pixbuf</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_list_store</location>list_store</feature><symbol>,</symbol> <local>a_list_iter</local><dot>.</dot><feature><include>False</include>item</feature><symbol>,</symbol> <number>0</number><symbol>,</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_update_child</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_update_child</location>update_child</feature> <symbol>(</symbol><local>child</local><symbol>:</symbol> <class><location>../implementation_gtk/ev_multi_column_list_row_imp.xml</location>EV_MULTI_COLUMN_LIST_ROW_IMP</class><symbol>;</symbol> <local>a_row</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Update </comment><quoted>child</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>child_exists</tag><symbol>:</symbol> <local>child</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>local</keyword>
+			<local>cur</local><symbol>:</symbol> <class><include>False</include>CURSOR</class>
+			<local>txt</local><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>STRING_32</class>
+			<local>list</local><symbol>:</symbol> <class><location>../interface/ev_multi_column_list_row.xml</location>EV_MULTI_COLUMN_LIST_ROW</class>
+			<local>column_counter</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+		<keyword>do</keyword>
+			<local>list</local> <symbol>:=</symbol> <local>child</local><dot>.</dot><feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature>
+			<local>cur</local> <symbol>:=</symbol> <local>list</local><dot>.</dot><feature><include>False</include>cursor</feature>
+			<keyword>if</keyword> <keyword>attached</keyword> <local>child</local><dot>.</dot><feature><location>../implementation_interface/ev_multi_column_list_row_i.xml#f_pixmap</location>pixmap</feature> <keyword>as</keyword> l_child_pixmap <keyword>then</keyword>
+				<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_set_row_pixmap</location>set_row_pixmap</feature><symbol> </symbol><symbol>(</symbol><local>a_row</local><symbol>,</symbol> <local>l_child_pixmap</local><symbol>)</symbol>
+			<keyword>end</keyword>
+			<keyword>from</keyword>
+				<local>column_counter</local> <symbol>:=</symbol> <number>1</number>
+				<local>list</local><dot>.</dot><feature><include>False</include>start</feature>
+			<keyword>until</keyword>
+				<local>column_counter</local> <symbol>&gt;</symbol> <feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_column_count</location>column_count</feature>
+			<keyword>loop</keyword>
+				<keyword>if</keyword> <local>list</local><dot>.</dot><feature><include>False</include>after</feature> <keyword>then</keyword>
+					<local>txt</local> <symbol>:=</symbol> <keyword>Void</keyword>
+				<keyword>else</keyword>
+					<local>txt</local> <symbol>:=</symbol> <local>list</local><dot>.</dot><feature><include>False</include>item</feature>
+				<keyword>end</keyword>
+				<keyword>if</keyword> <local>txt</local> <symbol>=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+					<keyword>create</keyword> <local>txt</local><dot>.</dot><feature><include>False</include>make_empty</feature>
+				<keyword>end</keyword>
+				<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_set_text_on_position</location>set_text_on_position</feature><symbol> </symbol><symbol>(</symbol><local>column_counter</local><symbol>,</symbol> <local>a_row</local><symbol>,</symbol> <local>txt</local><symbol>)</symbol>
+				<keyword>if</keyword> <keyword>not</keyword> <local>list</local><dot>.</dot><feature><include>False</include>after</feature> <keyword>then</keyword>
+					<local>list</local><dot>.</dot><feature><include>False</include>forth</feature>
+				<keyword>end</keyword>
+				<local>column_counter</local> <symbol>:=</symbol> <local>column_counter</local> <symbol>+</symbol> <number>1</number>
+			<keyword>end</keyword>
+			<local>list</local><dot>.</dot><feature><include>False</include>go_to</feature><symbol> </symbol><symbol>(</symbol><local>cur</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_ensure_item_visible</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_ensure_item_visible</location>ensure_item_visible</feature> <symbol>(</symbol><local>a_item</local><symbol>:</symbol> <class><location>../interface/ev_multi_column_list_row.xml</location>EV_MULTI_COLUMN_LIST_ROW</class><symbol>)</symbol>
+			<comment>--</comment><comment> Ensure </comment><quoted>a_item</quoted><comment> is visible on the screen.</comment>
+		<keyword>local</keyword>
+			<local>list_item_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_multi_column_list_row_imp.xml</location>EV_MULTI_COLUMN_LIST_ROW_IMP</class>
+			<local>l_list_iter</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_gtk_tree_iter_struct.xml</location>EV_GTK_TREE_ITER_STRUCT</class>
+			<local>a_path</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>do</keyword>
+			<local>list_item_imp</local> <symbol>?=</symbol> <local>a_item</local><dot>.</dot><feature><location>../interface/ev_multi_column_list_row.xml#f_implementation</location>implementation</feature>
+			<keyword>check</keyword>
+					<local>list_item_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<local>l_list_iter</local> <symbol>:=</symbol> <local>list_item_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_multi_column_list_row_imp.xml#f_list_iter</location>list_iter</feature>
+			<keyword>check</keyword>
+					<local>l_list_iter</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<local>a_path</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_model_get_path</location>gtk_tree_model_get_path</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_list_store</location>list_store</feature><symbol>,</symbol> <local>l_list_iter</local><dot>.</dot><feature><include>False</include>item</feature><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_scroll_to_cell</location>gtk_tree_view_scroll_to_cell</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>,</symbol> <local>a_path</local><symbol>,</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature><symbol>,</symbol> <keyword>False</keyword><symbol>,</symbol> <number>0</number><dot>.</dot><feature><include>False</include>to_real</feature><symbol>,</symbol> <number>0</number><dot>.</dot><feature><include>False</include>to_real</feature><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_path_free</location>gtk_tree_path_free</feature> <symbol>(</symbol><local>a_path</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_insert_i_th</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_insert_i_th</location>insert_i_th</feature> <symbol>(</symbol><local>v</local><symbol>:</symbol> <keyword>attached</keyword> <keyword>like</keyword> <feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_item</location>item</feature><symbol>;</symbol> <local>i</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Insert </comment><quoted>v</quoted><comment> at position </comment><quoted>i</quoted><comment>.</comment>
+		<keyword>local</keyword>
+			<local>item_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_multi_column_list_row_imp.xml</location>EV_MULTI_COLUMN_LIST_ROW_IMP</class>
+			<local>a_tree_iter</local><symbol>:</symbol> <class><location>../implementation_gtk/ev_gtk_tree_iter_struct.xml</location>EV_GTK_TREE_ITER_STRUCT</class>
+		<keyword>do</keyword>
+			<local>item_imp</local> <symbol>?=</symbol> <local>v</local><dot>.</dot><feature><location>../interface/ev_multi_column_list_row.xml#f_implementation</location>implementation</feature>
+			<keyword>check</keyword>
+					<local>item_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>end</keyword>
+			<keyword>if</keyword> <local>item_imp</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<local>item_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_multi_column_list_row_imp.xml#f_set_parent_imp</location>set_parent_imp</feature><symbol> </symbol><symbol>(</symbol><keyword>Current</keyword><symbol>)</symbol>
+				<keyword>if</keyword> <local>v</local><dot>.</dot><feature><include>False</include>count</feature> <symbol>&gt;</symbol> <feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_column_count</location>column_count</feature> <keyword>then</keyword>
+					<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_create_list</location>create_list</feature><symbol> </symbol><symbol>(</symbol><local>v</local><dot>.</dot><feature><include>False</include>count</feature><symbol>)</symbol>
+				<keyword>end</keyword>
+				<feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_ev_children</location>ev_children</feature><dot>.</dot><feature><include>False</include>go_i_th</feature><symbol> </symbol><symbol>(</symbol><local>i</local><symbol>)</symbol>
+				<feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_ev_children</location>ev_children</feature><dot>.</dot><feature><include>False</include>put_left</feature><symbol> </symbol><symbol>(</symbol><local>item_imp</local><symbol>)</symbol>
+				<keyword>create</keyword> <local>a_tree_iter</local><dot>.</dot><feature><include>False</include>make</feature>
+				<local>item_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_multi_column_list_row_imp.xml#f_set_list_iter</location>set_list_iter</feature><symbol> </symbol><symbol>(</symbol><local>a_tree_iter</local><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_list_store_insert</location>gtk_list_store_insert</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_list_store</location>list_store</feature><symbol>,</symbol> <local>a_tree_iter</local><dot>.</dot><feature><include>False</include>item</feature><symbol>,</symbol> <local>i</local> <symbol>-</symbol> <number>1</number><symbol>)</symbol>
+				<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_update_child</location>update_child</feature><symbol> </symbol><symbol>(</symbol><local>item_imp</local><symbol>,</symbol> <local>i</local><symbol>)</symbol>
+				<keyword>if</keyword> <local>item_imp</local><dot>.</dot><feature><location>../implementation_interface/ev_pick_and_dropable_i.xml#f_is_transport_enabled</location>is_transport_enabled</feature> <keyword>then</keyword>
+					<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_update_pnd_connection</location>update_pnd_connection</feature><symbol> </symbol><symbol>(</symbol><keyword>True</keyword><symbol>)</symbol>
+				<keyword>end</keyword>
+				<feature><location>../implementation_gtk/ev_dynamic_list_imp.xml#f_child_array</location>child_array</feature><dot>.</dot><feature><include>False</include>go_i_th</feature><symbol> </symbol><symbol>(</symbol><local>i</local><symbol>)</symbol>
+				<feature><location>../implementation_gtk/ev_dynamic_list_imp.xml#f_child_array</location>child_array</feature><dot>.</dot><feature><include>False</include>put_left</feature><symbol> </symbol><symbol>(</symbol><local>v</local><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_remove_i_th</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_remove_i_th</location>remove_i_th</feature> <symbol>(</symbol><local>a_position</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Remove item from list at </comment><quoted>a_position</quoted><comment>.</comment>
+			<comment>--</comment><comment> Set the items parent to void.</comment>
+		<keyword>local</keyword>
+			<local>item_imp</local><symbol>:</symbol> <class><location>../implementation_gtk/ev_multi_column_list_row_imp.xml</location>EV_MULTI_COLUMN_LIST_ROW_IMP</class>
+			<local>l_list_iter</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_gtk_tree_iter_struct.xml</location>EV_GTK_TREE_ITER_STRUCT</class>
+		<keyword>do</keyword>
+			<local>item_imp</local> <symbol>:=</symbol> <symbol>(</symbol><feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_ev_children</location>ev_children</feature> <symbol>@</symbol> <symbol>(</symbol><local>a_position</local><symbol>)</symbol><symbol>)</symbol>
+			<local>item_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_multi_column_list_row_imp.xml#f_set_parent_imp</location>set_parent_imp</feature><symbol> </symbol><symbol>(</symbol><keyword>Void</keyword><symbol>)</symbol>
+			<local>l_list_iter</local> <symbol>:=</symbol> <local>item_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_multi_column_list_row_imp.xml#f_list_iter</location>list_iter</feature>
+			<keyword>check</keyword>
+					<local>l_list_iter</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>end</keyword>
+			<keyword>if</keyword> <local>l_list_iter</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_list_store_remove</location>gtk_list_store_remove</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_list_store</location>list_store</feature><symbol>,</symbol> <local>l_list_iter</local><dot>.</dot><feature><include>False</include>item</feature><symbol>)</symbol>
+				<feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_ev_children</location>ev_children</feature><dot>.</dot><feature><include>False</include>go_i_th</feature><symbol> </symbol><symbol>(</symbol><local>a_position</local><symbol>)</symbol>
+				<feature><location>../implementation_interface/ev_multi_column_list_i.xml#f_ev_children</location>ev_children</feature><dot>.</dot><feature><include>False</include>remove</feature>
+				<feature><location>../implementation_gtk/ev_dynamic_list_imp.xml#f_child_array</location>child_array</feature><dot>.</dot><feature><include>False</include>go_i_th</feature><symbol> </symbol><symbol>(</symbol><local>a_position</local><symbol>)</symbol>
+				<feature><location>../implementation_gtk/ev_dynamic_list_imp.xml#f_child_array</location>child_array</feature><dot>.</dot><feature><include>False</include>remove</feature>
+				<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_update_pnd_status</location>update_pnd_status</feature>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_row_height</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_row_height</location>row_height</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Height of rows in </comment><quoted>Current</quoted>
+		<keyword>local</keyword>
+			<local>a_column_ptr</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+		<keyword>do</keyword>
+			<local>a_column_ptr</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_get_column</location>gtk_tree_view_get_column</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>,</symbol> <number>0</number><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tree_view_column_cell_get_size</location>gtk_tree_view_column_cell_get_size</feature> <symbol>(</symbol><local>a_column_ptr</local><symbol>,</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature><symbol>,</symbol> <symbol>$</symbol><local>a_x</local><symbol>,</symbol> <symbol>$</symbol><local>a_y</local><symbol>,</symbol> <symbol>$</symbol><local>a_width</local><symbol>,</symbol> <symbol>$</symbol><local>a_height</local><symbol>)</symbol>
+			<keyword>Result</keyword> <symbol>:=</symbol> <local>a_height</local>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_multi_column_list_row_imp.xml</location>EV_MULTI_COLUMN_LIST_ROW_IMP</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_expand_column_count_to</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_expand_column_count_to</location>expand_column_count_to</feature> <symbol>(</symbol><local>a_columns</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Expand the number of columns to </comment><quoted>a_columns</quoted>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_create_list</location>create_list</feature><symbol> </symbol><symbol>(</symbol><local>a_columns</local><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines.xml</location>EV_GTK_DEPENDENT_INTERMEDIARY_ROUTINES</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_tree_view</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_tree_view</location>tree_view</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Pointer to the View</comment>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_visual_widget</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_visual_widget</location>visual_widget</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Pointer to on-screen interactive widget</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_tree_view</location>tree_view</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_scrollable_area</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_scrollable_area</location>scrollable_area</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Gtk widget used to scroll tree view</comment>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_any.xml</location>EV_ANY</class><symbol>,</symbol> <class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_interface</anchor><feature><location>../implementation_gtk/ev_multi_column_list_imp.xml#f_interface</location>interface</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_multi_column_list.xml</location>EV_MULTI_COLUMN_LIST</class>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2017, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_gtk/ev_multi_column_list_imp.xml</location>EV_MULTI_COLUMN_LIST_IMP</class></system>
+

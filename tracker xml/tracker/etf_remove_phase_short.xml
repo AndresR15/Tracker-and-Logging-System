@@ -1,0 +1,21 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;&quot;</string>
+	<indexing_tag>author</indexing_tag><symbol>:</symbol> <string>&quot;&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date$&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision$&quot;</string>
+
+<keyword>class</keyword> <keyword>interface</keyword>
+	<class><location>../tracker/etf_remove_phase_short.xml</location>ETF_REMOVE_PHASE</class>
+
+<keyword>create</keyword> 
+	<feature><include>False</include>make</feature>
+
+<keyword>feature</keyword> <comment>--</comment><comment> command</comment>
+
+	<anchor>f_remove_phase</anchor><feature><location>../tracker/etf_remove_phase_short.xml#f_remove_phase</location>remove_phase</feature> <symbol>(</symbol><local>pid</local><symbol>:</symbol> <class><include>False</include>STRING_8</class><symbol>)</symbol>
+		<keyword>require else</keyword>
+				<feature><include>False</include>remove_phase_precond</feature><symbol> </symbol><symbol>(</symbol><local>pid</local><symbol>)</symbol>
+	
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../tracker/etf_remove_phase_short.xml</location>ETF_REMOVE_PHASE</class></system>
+

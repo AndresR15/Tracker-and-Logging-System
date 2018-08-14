@@ -1,0 +1,37 @@
+<system>
+<keyword>deferred</keyword> <keyword>class</keyword>
+	<class><location>../interface/ev_item_links.xml</location>EV_ITEM</class>
+
+<keyword>Ancestors</keyword>
+	<class><location>../interface/ev_containable_links.xml</location>EV_CONTAINABLE</class><char>*</char>
+	<class><location>../interface/ev_item_action_sequences_links.xml</location>EV_ITEM_ACTION_SEQUENCES</class><char>*</char>
+	<class><location>../interface/ev_pick_and_dropable_links.xml</location>EV_PICK_AND_DROPABLE</class><char>*</char>
+	<class><location>../interface/ev_pixmapable_links.xml</location>EV_PIXMAPABLE</class><char>*</char>
+
+<keyword>Descendants</keyword>
+	<class><location>../interface/ev_list_item_links.xml</location>EV_LIST_ITEM</class>
+	<class><location>../interface/ev_menu_item_links.xml</location>EV_MENU_ITEM</class>
+	<class><location>../interface/ev_multi_column_list_row_links.xml</location>EV_MULTI_COLUMN_LIST_ROW</class>
+	<class><location>../interface/ev_tool_bar_item_links.xml</location>EV_TOOL_BAR_ITEM</class><char>*</char>
+	<class><location>../interface/ev_tree_node_links.xml</location>EV_TREE_NODE</class><char>*</char>
+
+<keyword>Clients</keyword>
+	<class><location>../implementation_interface/ev_dockable_source_i_links.xml</location>EV_DOCKABLE_SOURCE_I</class><char>*</char>
+	<class><location>../interface/ev_item_links.xml</location>EV_ITEM</class><char>*</char>
+	<class><location>../interface/ev_item_list_links.xml</location>EV_ITEM_LIST</class><char>*</char> <symbol>[</symbol><generic>G</generic> <symbol>-&gt;</symbol> <class><location>../interface/ev_item_links.xml</location>EV_ITEM</class><symbol>]</symbol>
+	<class><location>../implementation_interface/ev_item_list_i_links.xml</location>EV_ITEM_LIST_I</class><char>*</char> <symbol>[</symbol><generic>G</generic> <symbol>-&gt;</symbol> <class><location>../interface/ev_item_links.xml</location>EV_ITEM</class><symbol>]</symbol>
+	<class><location>../interface/ev_list_item_links.xml</location>EV_LIST_ITEM</class>
+	<class><location>../interface/ev_menu_item_links.xml</location>EV_MENU_ITEM</class>
+	<class><location>../interface/ev_multi_column_list_row_links.xml</location>EV_MULTI_COLUMN_LIST_ROW</class>
+	<class><location>../interface/ev_tool_bar_item_links.xml</location>EV_TOOL_BAR_ITEM</class><char>*</char>
+	<class><location>../interface/ev_tree_node_links.xml</location>EV_TREE_NODE</class><char>*</char>
+
+<keyword>Suppliers</keyword>
+	<class><include>False</include>BOOLEAN</class>
+	<class><location>../interface/ev_containable_links.xml</location>EV_CONTAINABLE</class><char>*</char>
+	<class><location>../interface/ev_item_links.xml</location>EV_ITEM</class><char>*</char>
+	<class><location>../implementation_interface/ev_item_i_links.xml</location>EV_ITEM_I</class><char>*</char>
+	<class><location>../interface/ev_pick_and_dropable_links.xml</location>EV_PICK_AND_DROPABLE</class><char>*</char>
+	<class><location>../interface/ev_pixmapable_links.xml</location>EV_PIXMAPABLE</class><char>*</char>
+
+</system>

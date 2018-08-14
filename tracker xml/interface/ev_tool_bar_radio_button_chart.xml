@@ -1,0 +1,124 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../interface/ev_tool_bar_radio_button_chart.xml</location>EV_TOOL_BAR_RADIO_BUTTON</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>interface</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> 
+		<string>&quot;Toggle button for use with EV_TOOL_BAR.</string>
+		<string>is_selected</string><string> is mutualy exclusive with respect to other tool bar</string>
+		<string>radio buttons between separators in a tool bar.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;toggle, button, tool, bar&quot;</string>
+	<indexing_tag>create</indexing_tag><symbol>:</symbol> <feature><location>../interface/ev_any.xml#f_default_create</location>default_create</feature><symbol>,</symbol> <feature><location>../interface/ev_textable.xml#f_make_with_text</location>make_with_text</feature>
+
+<keyword>Ancestors</keyword>
+	<class><location>../interface/ev_radio_peer_chart.xml</location>EV_RADIO_PEER</class><char>*</char>
+	<class><location>../interface/ev_selectable_chart.xml</location>EV_SELECTABLE</class><char>*</char>
+	<class><location>../interface/ev_tool_bar_button_chart.xml</location>EV_TOOL_BAR_BUTTON</class>
+
+<keyword>Action sequences</keyword>
+	<feature><location>../interface/ev_pick_and_dropable_action_sequences.xml#f_conforming_pick_actions</location>conforming_pick_actions</feature><symbol>:</symbol> <class><location>../interface/ev_notify_action_sequence_chart.xml</location>EV_NOTIFY_ACTION_SEQUENCE</class>
+	<feature><location>../interface/ev_dockable_source_action_sequences.xml#f_dock_ended_actions</location>dock_ended_actions</feature><symbol>:</symbol> <class><location>../interface/ev_notify_action_sequence_chart.xml</location>EV_NOTIFY_ACTION_SEQUENCE</class>
+	<feature><location>../interface/ev_dockable_source_action_sequences.xml#f_dock_started_actions</location>dock_started_actions</feature><symbol>:</symbol> <class><location>../interface/ev_notify_action_sequence_chart.xml</location>EV_NOTIFY_ACTION_SEQUENCE</class>
+	<feature><location>../interface/ev_pick_and_dropable_action_sequences.xml#f_drop_actions</location>drop_actions</feature><symbol>:</symbol> <class><location>../interface/ev_pnd_action_sequence_chart.xml</location>EV_PND_ACTION_SEQUENCE</class>
+	<feature><location>../interface/ev_pick_and_dropable_action_sequences.xml#f_pick_actions</location>pick_actions</feature><symbol>:</symbol> <class><location>../interface/ev_pnd_start_action_sequence_chart.xml</location>EV_PND_START_ACTION_SEQUENCE</class>
+	<feature><location>../interface/ev_pick_and_dropable_action_sequences.xml#f_pick_ended_actions</location>pick_ended_actions</feature><symbol>:</symbol> <class><location>../interface/ev_pnd_finished_action_sequence_chart.xml</location>EV_PND_FINISHED_ACTION_SEQUENCE</class>
+	<feature><location>../interface/ev_item_action_sequences.xml#f_pointer_button_press_actions</location>pointer_button_press_actions</feature><symbol>:</symbol> <class><location>../interface/ev_pointer_button_action_sequence_chart.xml</location>EV_POINTER_BUTTON_ACTION_SEQUENCE</class>
+	<feature><location>../interface/ev_item_action_sequences.xml#f_pointer_double_press_actions</location>pointer_double_press_actions</feature><symbol>:</symbol> <class><location>../interface/ev_pointer_button_action_sequence_chart.xml</location>EV_POINTER_BUTTON_ACTION_SEQUENCE</class>
+	<feature><location>../interface/ev_item_action_sequences.xml#f_pointer_motion_actions</location>pointer_motion_actions</feature><symbol>:</symbol> <class><location>../interface/ev_pointer_motion_action_sequence_chart.xml</location>EV_POINTER_MOTION_ACTION_SEQUENCE</class>
+	<feature><location>../interface/ev_tool_bar_button_action_sequences.xml#f_select_actions</location>select_actions</feature><symbol>:</symbol> <class><location>../interface/ev_notify_action_sequence_chart.xml</location>EV_NOTIFY_ACTION_SEQUENCE</class>
+
+<keyword>Queries</keyword>
+	<feature><location>../interface/ev_pick_and_dropable.xml#f_accept_cursor</location>accept_cursor</feature><symbol>:</symbol> <class><location>../interface/ev_pointer_style_chart.xml</location>EV_POINTER_STYLE</class>
+	<feature><location>../interface/ev_item.xml#f_attached_parent</location>attached_parent</feature><symbol>:</symbol> <symbol>[</symbol><keyword>attached</keyword> <keyword>like</keyword> <feature><location>../interface/ev_tool_bar_button.xml#f_parent</location>parent</feature><symbol>]</symbol> <keyword>attached</keyword> <class><location>../interface/ev_tool_bar_chart.xml</location>EV_TOOL_BAR</class>
+	<feature><location>../interface/ev_pick_and_dropable.xml#f_configurable_target_menu_handler</location>configurable_target_menu_handler</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>PROCEDURE</class> <symbol>[</symbol><class><location>../interface/ev_menu_chart.xml</location>EV_MENU</class><symbol>,</symbol> <class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><class><location>../interface/ev_pnd_target_data_chart.xml</location>EV_PND_TARGET_DATA</class><symbol>]</symbol><symbol>,</symbol> <class><location>../interface/ev_pick_and_dropable_chart.xml</location>EV_PICK_AND_DROPABLE</class><symbol>,</symbol> <keyword>detachable</keyword> <class><include>False</include>ANY</class><symbol>]</symbol>
+	<feature><location>../interface/ev_any.xml#f_data</location>data</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>ANY</class>
+	<feature><location>../interface/ev_identifiable.xml#f_default_identifier_name</location>default_identifier_name</feature><symbol>:</symbol> <class><include>False</include>STRING_32</class>
+	<feature><location>../interface/ev_pick_and_dropable.xml#f_deny_cursor</location>deny_cursor</feature><symbol>:</symbol> <class><location>../interface/ev_pointer_style_chart.xml</location>EV_POINTER_STYLE</class>
+	<feature><location>../interface/ev_identifiable.xml#f_full_identifier_path</location>full_identifier_path</feature><symbol>:</symbol> <class><include>False</include>STRING_32</class>
+	<feature><location>../interface/ev_tool_bar_button.xml#f_gray_pixmap</location>gray_pixmap</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_pixmap_chart.xml</location>EV_PIXMAP</class>
+	<feature><location>../interface/ev_identifiable.xml#f_has_identifier_name_set</location>has_identifier_name_set</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_identifiable.xml#f_has_parent</location>has_parent</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_positioned.xml#f_height</location>height</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><include>False</include>id_object</feature> <symbol>(</symbol><local>an_id</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>IDENTIFIED</class>
+	<feature><location>../interface/ev_identifiable.xml#f_identifier_name</location>identifier_name</feature><symbol>:</symbol> <class><include>False</include>STRING_32</class>
+	<feature><location>../interface/ev_tooltipable.xml#f_is_bridge_ok</location>is_bridge_ok</feature> <symbol>(</symbol><local>a_string</local><symbol>:</symbol> <class><include>False</include>STRING_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_tooltipable.xml#f_is_cloned</location>is_cloned</feature> <symbol>(</symbol><local>a_string</local><symbol>:</symbol> <class><include>False</include>STRING_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_dockable_source.xml#f_is_dockable</location>is_dockable</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_dockable_source.xml#f_is_external_docking_enabled</location>is_external_docking_enabled</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_dockable_source.xml#f_is_external_docking_relative</location>is_external_docking_relative</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_selectable.xml#f_is_selectable</location>is_selectable</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_selectable.xml#f_is_selected</location>is_selected</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_sensitive.xml#f_is_sensitive</location>is_sensitive</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_positioned.xml#f_minimum_height</location>minimum_height</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_positioned.xml#f_minimum_width</location>minimum_width</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_pick_and_dropable.xml#f_mode_is_configurable_target_menu</location>mode_is_configurable_target_menu</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_pick_and_dropable.xml#f_mode_is_drag_and_drop</location>mode_is_drag_and_drop</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_pick_and_dropable.xml#f_mode_is_pick_and_drop</location>mode_is_pick_and_drop</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_pick_and_dropable.xml#f_mode_is_target_menu</location>mode_is_target_menu</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><include>False</include>object_id</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_tool_bar_button.xml#f_parent</location>parent</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_tool_bar_chart.xml</location>EV_TOOL_BAR</class>
+	<feature><location>../interface/ev_dockable_source.xml#f_parent_of_source_allows_docking</location>parent_of_source_allows_docking</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_pick_and_dropable.xml#f_pebble</location>pebble</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>ANY</class>
+	<feature><location>../interface/ev_pick_and_dropable.xml#f_pebble_function</location>pebble_function</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>FUNCTION</class> <symbol>[</symbol><keyword>detachable</keyword> <class><include>False</include>ANY</class><symbol>]</symbol>
+	<feature><location>../interface/ev_pick_and_dropable.xml#f_pebble_positioning_enabled</location>pebble_positioning_enabled</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_pick_and_dropable.xml#f_pebble_x_position</location>pebble_x_position</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_pick_and_dropable.xml#f_pebble_y_position</location>pebble_y_position</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_radio_peer.xml#f_peers</location>peers</feature><symbol>:</symbol> <class><include>False</include>LINKED_LIST</class> <symbol>[</symbol><symbol>[</symbol><keyword>like</keyword> <feature><location>../interface/ev_radio_peer.xml#f_selected_peer</location>selected_peer</feature><symbol>]</symbol> <symbol>[</symbol><keyword>attached</keyword> <keyword>like</keyword> <keyword>Current</keyword><symbol>]</symbol> <keyword>attached</keyword> <class><location>../interface/ev_tool_bar_radio_button_chart.xml</location>EV_TOOL_BAR_RADIO_BUTTON</class><symbol>]</symbol>
+	<feature><location>../interface/ev_pixmapable.xml#f_pixmap</location>pixmap</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_pixmap_chart.xml</location>EV_PIXMAP</class>
+	<feature><location>../interface/ev_dockable_source.xml#f_real_source</location>real_source</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_dockable_source_chart.xml</location>EV_DOCKABLE_SOURCE</class>
+	<feature><location>../interface/ev_positioned.xml#f_screen_x</location>screen_x</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_positioned.xml#f_screen_y</location>screen_y</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_radio_peer.xml#f_selected_peer</location>selected_peer</feature><symbol>:</symbol> <symbol>[</symbol><keyword>attached</keyword> <keyword>like</keyword> <keyword>Current</keyword><symbol>]</symbol> <keyword>attached</keyword> <class><location>../interface/ev_tool_bar_radio_button_chart.xml</location>EV_TOOL_BAR_RADIO_BUTTON</class>
+	<feature><location>../interface/ev_dockable_source.xml#f_source_has_current_recursive</location>source_has_current_recursive</feature> <symbol>(</symbol><local>source</local><symbol>:</symbol> <class><location>../interface/ev_dockable_source_chart.xml</location>EV_DOCKABLE_SOURCE</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_abstract_pick_and_dropable.xml#f_target_data_function</location>target_data_function</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>FUNCTION</class> <symbol>[</symbol><symbol>[</symbol><keyword>like</keyword> <feature><location>../interface/ev_pick_and_dropable.xml#f_pebble</location>pebble</feature><symbol>]</symbol> <keyword>detachable</keyword> <class><include>False</include>ANY</class><symbol>,</symbol> <class><location>../interface/ev_pnd_target_data_chart.xml</location>EV_PND_TARGET_DATA</class><symbol>]</symbol>
+	<feature><location>../interface/ev_abstract_pick_and_dropable.xml#f_target_name</location>target_name</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>READABLE_STRING_GENERAL</class>
+	<feature><location>../interface/ev_textable.xml#f_text</location>text</feature><symbol>:</symbol> <class><include>False</include>STRING_32</class>
+	<feature><location>../interface/ev_tooltipable.xml#f_tooltip</location>tooltip</feature><symbol>:</symbol> <class><include>False</include>STRING_32</class>
+	<feature><location>../interface/ev_positioned.xml#f_width</location>width</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_positioned.xml#f_x_position</location>x_position</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_positioned.xml#f_y_position</location>y_position</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+
+<keyword>Commands</keyword>
+	<feature><location>../interface/ev_any.xml#f_copy</location>copy</feature> <symbol>(</symbol><local>other</local><symbol>:</symbol> <symbol>[</symbol><keyword>attached</keyword> <keyword>like</keyword> <keyword>Current</keyword><symbol>]</symbol> <keyword>attached</keyword> <class><location>../interface/ev_tool_bar_radio_button_chart.xml</location>EV_TOOL_BAR_RADIO_BUTTON</class><symbol>)</symbol>
+	<feature><location>../interface/ev_any.xml#f_destroy</location>destroy</feature>
+	<feature><location>../interface/ev_dockable_source.xml#f_disable_dockable</location>disable_dockable</feature>
+	<feature><location>../interface/ev_dockable_source.xml#f_disable_external_docking</location>disable_external_docking</feature>
+	<feature><location>../interface/ev_dockable_source.xml#f_disable_external_docking_relative</location>disable_external_docking_relative</feature>
+	<feature><location>../interface/ev_pick_and_dropable.xml#f_disable_pebble_positioning</location>disable_pebble_positioning</feature>
+	<feature><location>../interface/ev_sensitive.xml#f_disable_sensitive</location>disable_sensitive</feature>
+	<feature><location>../interface/ev_dockable_source.xml#f_enable_dockable</location>enable_dockable</feature>
+	<feature><location>../interface/ev_dockable_source.xml#f_enable_external_docking</location>enable_external_docking</feature>
+	<feature><location>../interface/ev_dockable_source.xml#f_enable_external_docking_relative</location>enable_external_docking_relative</feature>
+	<feature><location>../interface/ev_pick_and_dropable.xml#f_enable_pebble_positioning</location>enable_pebble_positioning</feature>
+	<feature><location>../interface/ev_selectable.xml#f_enable_select</location>enable_select</feature>
+	<feature><location>../interface/ev_sensitive.xml#f_enable_sensitive</location>enable_sensitive</feature>
+	<feature><location>../interface/ev_tool_bar_button.xml#f_remove_gray_pixmap</location>remove_gray_pixmap</feature>
+	<feature><location>../interface/ev_pick_and_dropable.xml#f_remove_pebble</location>remove_pebble</feature>
+	<feature><location>../interface/ev_pixmapable.xml#f_remove_pixmap</location>remove_pixmap</feature>
+	<feature><location>../interface/ev_dockable_source.xml#f_remove_real_source</location>remove_real_source</feature>
+	<feature><location>../interface/ev_textable.xml#f_remove_text</location>remove_text</feature>
+	<feature><location>../interface/ev_tooltipable.xml#f_remove_tooltip</location>remove_tooltip</feature>
+	<feature><location>../interface/ev_pick_and_dropable.xml#f_set_accept_cursor</location>set_accept_cursor</feature> <symbol>(</symbol><local>a_cursor</local><symbol>:</symbol> <symbol>[</symbol><keyword>detachable</keyword> <keyword>like</keyword> <feature><location>../interface/ev_pick_and_dropable.xml#f_accept_cursor</location>accept_cursor</feature><symbol>]</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_pointer_style_chart.xml</location>EV_POINTER_STYLE</class><symbol>)</symbol>
+	<feature><location>../interface/ev_pick_and_dropable.xml#f_set_configurable_target_menu_handler</location>set_configurable_target_menu_handler</feature> <symbol>(</symbol><local>a_handler</local><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>PROCEDURE</class> <symbol>[</symbol><class><location>../interface/ev_menu_chart.xml</location>EV_MENU</class><symbol>,</symbol> <class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><class><location>../interface/ev_pnd_target_data_chart.xml</location>EV_PND_TARGET_DATA</class><symbol>]</symbol><symbol>,</symbol> <class><location>../interface/ev_pick_and_dropable_chart.xml</location>EV_PICK_AND_DROPABLE</class><symbol>,</symbol> <keyword>detachable</keyword> <class><include>False</include>ANY</class><symbol>]</symbol><symbol>)</symbol>
+	<feature><location>../interface/ev_pick_and_dropable.xml#f_set_configurable_target_menu_mode</location>set_configurable_target_menu_mode</feature>
+	<feature><location>../interface/ev_any.xml#f_set_data</location>set_data</feature> <symbol>(</symbol><local>some_data</local><symbol>:</symbol> <symbol>[</symbol><keyword>like</keyword> <feature><location>../interface/ev_any.xml#f_data</location>data</feature><symbol>]</symbol> <keyword>detachable</keyword> <class><include>False</include>ANY</class><symbol>)</symbol>
+	<feature><location>../interface/ev_pick_and_dropable.xml#f_set_deny_cursor</location>set_deny_cursor</feature> <symbol>(</symbol><local>a_cursor</local><symbol>:</symbol> <symbol>[</symbol><keyword>detachable</keyword> <keyword>like</keyword> <feature><location>../interface/ev_pick_and_dropable.xml#f_deny_cursor</location>deny_cursor</feature><symbol>]</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_pointer_style_chart.xml</location>EV_POINTER_STYLE</class><symbol>)</symbol>
+	<feature><location>../interface/ev_pick_and_dropable.xml#f_set_drag_and_drop_mode</location>set_drag_and_drop_mode</feature>
+	<feature><location>../interface/ev_tool_bar_button.xml#f_set_gray_pixmap</location>set_gray_pixmap</feature> <symbol>(</symbol><local>a_gray_pixmap</local><symbol>:</symbol> <class><location>../interface/ev_pixmap_chart.xml</location>EV_PIXMAP</class><symbol>)</symbol>
+	<feature><location>../interface/ev_identifiable.xml#f_set_identifier_name</location>set_identifier_name</feature> <symbol>(</symbol><local>a_name</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol>
+	<feature><location>../interface/ev_pick_and_dropable.xml#f_set_pebble</location>set_pebble</feature> <symbol>(</symbol><local>a_pebble</local><symbol>:</symbol> <class><include>False</include>ANY</class><symbol>)</symbol>
+	<feature><location>../interface/ev_pick_and_dropable.xml#f_set_pebble_function</location>set_pebble_function</feature> <symbol>(</symbol><local>a_function</local><symbol>:</symbol> <class><include>False</include>FUNCTION</class> <symbol>[</symbol><keyword>detachable</keyword> <class><include>False</include>ANY</class><symbol>]</symbol><symbol>)</symbol>
+	<feature><location>../interface/ev_pick_and_dropable.xml#f_set_pebble_position</location>set_pebble_position</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../interface/ev_pick_and_dropable.xml#f_set_pick_and_drop_mode</location>set_pick_and_drop_mode</feature>
+	<feature><location>../interface/ev_pixmapable.xml#f_set_pixmap</location>set_pixmap</feature> <symbol>(</symbol><local>a_pixmap</local><symbol>:</symbol> <class><location>../interface/ev_pixmap_chart.xml</location>EV_PIXMAP</class><symbol>)</symbol>
+	<feature><location>../interface/ev_dockable_source.xml#f_set_real_source</location>set_real_source</feature> <symbol>(</symbol><local>dockable_source</local><symbol>:</symbol> <class><location>../interface/ev_dockable_source_chart.xml</location>EV_DOCKABLE_SOURCE</class><symbol>)</symbol>
+	<feature><location>../interface/ev_abstract_pick_and_dropable.xml#f_set_target_data_function</location>set_target_data_function</feature> <symbol>(</symbol><local>a_function</local><symbol>:</symbol> <class><include>False</include>FUNCTION</class> <symbol>[</symbol><symbol>[</symbol><keyword>like</keyword> <feature><location>../interface/ev_pick_and_dropable.xml#f_pebble</location>pebble</feature><symbol>]</symbol> <keyword>detachable</keyword> <class><include>False</include>ANY</class><symbol>,</symbol> <class><location>../interface/ev_pnd_target_data_chart.xml</location>EV_PND_TARGET_DATA</class><symbol>]</symbol><symbol>)</symbol>
+	<feature><location>../interface/ev_pick_and_dropable.xml#f_set_target_menu_mode</location>set_target_menu_mode</feature>
+	<feature><location>../interface/ev_abstract_pick_and_dropable.xml#f_set_target_name</location>set_target_name</feature> <symbol>(</symbol><local>a_name</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol>
+	<feature><location>../interface/ev_textable.xml#f_set_text</location>set_text</feature> <symbol>(</symbol><local>a_text</local><symbol>:</symbol> <keyword>separate</keyword> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol>
+	<feature><location>../interface/ev_tooltipable.xml#f_set_tooltip</location>set_tooltip</feature> <symbol>(</symbol><local>a_tooltip</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol>
+	<feature><location>../interface/ev_pick_and_dropable.xml#f_show_configurable_target_menu</location>show_configurable_target_menu</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+
+</system>

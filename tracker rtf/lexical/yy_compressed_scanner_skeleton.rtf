@@ -1,0 +1,553 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "Skeletons of scanners implemented with compressed tables"{\line}
+{\tab}{\cf1 library}{\cf1 :} "Gobo Eiffel Lexical Library"{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 2001-2016, Eric Bezault and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "MIT License"{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2016-05-06 12:15:38 -0700 (Fri, 06 May 2016) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 98678 $"{\line}
+{\line}
+{\b\cf6 deferred} {\b\cf6 class} {\line}
+{\tab}{\cf4 YY_COMPRESSED_SCANNER_SKELETON}{\line}
+{\line}
+{\b\cf6 inherit}{\line}
+{\tab}{\cf4 YY_SCANNER_SKELETON}{\line}
+{\tab}{\tab}{\b\cf6 redefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 yy_set_content}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 yy_initialize}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 yy_build_tables}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 reset}{\line}
+{\tab}{\tab}{\b\cf6 end}{\line}
+{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Initialization}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yy_initialize}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Initialize lexical analyzer.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf1 Precursor}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yyreject_or_variable_trail_context} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 yy_state_stack} {\cf1 :=} {\cf5 Special_integer_}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 input_buffer}{\b\cf1 .}{\cf5 content}{\b\cf1 .}{\cf5 count} {\cf1 +} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 yy_state_stack} {\cf1 :=} {\cf5 Special_integer_}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}0{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Initialization}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 reset}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Reset scanner before scanning next input source.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (This routine can be called in }{\cf5 wrap}{\cf3  before scanning}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  another input buffer.)}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf1 Precursor}{\line}
+{\tab}{\tab}{\tab}{\cf5 yy_rejected} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\cf5 yy_state_count} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\cf5 yy_full_match} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\cf5 yy_lp} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\cf5 yy_looking_for_trail_begin} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\cf5 yy_full_lp} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\cf5 yy_full_state} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Scanning}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 read_token}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Read a token from }{\cf5 input_buffer}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Make result available in }{\cf5 last_token}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 yy_cp}{\cf1 ,} {\cf5 yy_bp}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 yy_current_state}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 yy_next_state}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 yy_matched_count}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 yy_act}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 yy_goto}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 yy_c}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 yy_found}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf5 yy_rejected_line}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 yy_rejected_column}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 yy_rejected_position}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 yy_done}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_content_area}{\cf1 :} {\b\cf6 like} {\cf5 yy_content_area}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 last_token} {\cf1 :=} {\cf5 Yyunknown_token}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 yy_goto} {\cf1 :=} {\cf5 Yynext_token}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 last_token} {\cf1 /=} {\cf5 Yyunknown_token}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 inspect} {\cf5 yy_goto}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf5 Yynext_token} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yy_more_flag} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_more_len} {\cf1 :=} {\cf5 yy_end} {\cf1 -} {\cf5 yy_start}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_more_flag} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_more_len} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 line} {\cf1 :=} {\cf5 yy_line}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 column} {\cf1 :=} {\cf5 yy_column}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 position} {\cf1 :=} {\cf5 yy_position}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_cp} {\cf1 :=} {\cf5 yy_end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_bp} {\cf1 :=} {\cf5 yy_cp}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 input_buffer}{\b\cf1 .}{\cf5 beginning_of_line} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_current_state} {\cf1 :=} {\cf5 yy_start_state} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_current_state} {\cf1 :=} {\cf5 yy_start_state}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yyreject_or_variable_trail_context} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 Special_integer_}{\b\cf1 .}{\cf5 force}{\cf1  }{\cf1 (}{\cf5 yy_state_stack}{\cf1 ,} {\cf5 yy_current_state}{\cf1 ,} 0{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_state_count} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_goto} {\cf1 :=} {\cf5 Yymatch}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf5 Yymatch} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_content_area} {\cf1 :=} {\cf5 yy_content_area}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_done} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_done}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 yy_ec} {\b\cf6 as} l_yy_ec {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_content_area} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_c} {\cf1 :=} {\cf5 l_yy_ec}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 l_content_area}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yy_cp}{\cf1 )}{\b\cf1 .}{\cf5 code}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_c} {\cf1 :=} {\cf5 l_yy_ec}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yy_content}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yy_cp}{\cf1 )}{\b\cf1 .}{\cf5 code}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_content_area} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_c} {\cf1 :=} {\cf5 l_content_area}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yy_cp}{\cf1 )}{\b\cf1 .}{\cf5 code}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_c} {\cf1 :=} {\cf5 yy_content}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yy_cp}{\cf1 )}{\b\cf1 .}{\cf5 code}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 yyreject_or_variable_trail_context} {\b\cf6 and then} {\cf5 yy_accept}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yy_current_state}{\cf1 )} {\cf1 /=} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_last_accepting_state} {\cf1 :=} {\cf5 yy_current_state}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_last_accepting_cpos} {\cf1 :=} {\cf5 yy_cp}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_chk}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yy_base}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yy_current_state}{\cf1 )} {\cf1 +} {\cf5 yy_c}{\cf1 )} {\cf1 =} {\cf5 yy_current_state}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_current_state} {\cf1 :=} {\cf5 yy_def}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yy_current_state}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 yy_meta} {\b\cf6 as} l_yy_meta {\b\cf6 and then} {\cf5 yy_current_state} {\cf1 >=} {\cf5 yytemplate_mark} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_c} {\cf1 :=} {\cf5 l_yy_meta}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yy_c}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_current_state} {\cf1 :=} {\cf5 yy_nxt}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yy_base}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yy_current_state}{\cf1 )} {\cf1 +} {\cf5 yy_c}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yyreject_or_variable_trail_context} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 Special_integer_}{\b\cf1 .}{\cf5 force}{\cf1  }{\cf1 (}{\cf5 yy_state_stack}{\cf1 ,} {\cf5 yy_current_state}{\cf1 ,} {\cf5 yy_state_count}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_state_count} {\cf1 :=} {\cf5 yy_state_count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_cp} {\cf1 :=} {\cf5 yy_cp} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_done} {\cf1 :=} {\cf1 (}{\cf5 yy_current_state} {\cf1 =} {\cf5 yyjam_state}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 yyreject_or_variable_trail_context} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_cp} {\cf1 :=} {\cf5 yy_last_accepting_cpos}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_current_state} {\cf1 :=} {\cf5 yy_last_accepting_state}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_goto} {\cf1 :=} {\cf5 Yyfind_action}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf5 Yyfind_action} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 yyreject_or_variable_trail_context} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_act} {\cf1 :=} {\cf5 yy_accept}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yy_current_state}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_goto} {\cf1 :=} {\cf5 Yydo_action}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_state_count} {\cf1 :=} {\cf5 yy_state_count} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_current_state} {\cf1 :=} {\cf5 yy_state_stack}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yy_state_count}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_lp} {\cf1 :=} {\cf5 yy_accept}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yy_current_state}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_goto} {\cf1 :=} {\cf5 Yyfind_rule}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf5 Yyfind_rule} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf1 reject_used}{\cf1 :} {\cf5 yyreject_or_variable_trail_context}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf1 yy_acclist_not_void}{\cf1 :} {\b\cf6 attached} {\cf5 yy_acclist} {\b\cf6 as} l_yy_acclist{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_found} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_found}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yy_lp} {\cf1 /=} 0 {\b\cf6 and} {\cf5 yy_lp} {\cf1 <} {\cf5 yy_accept}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yy_current_state} {\cf1 +} 1{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_act} {\cf1 :=} {\cf5 l_yy_acclist}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yy_lp}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yyvariable_trail_context} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yy_act} {\cf1 <} {\cf1 -} {\cf5 yynb_rules} {\b\cf6 or} {\cf5 yy_looking_for_trail_begin} {\cf1 /=} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yy_act} {\cf1 =} {\cf5 yy_looking_for_trail_begin} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_looking_for_trail_begin} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_act} {\cf1 :=} {\cf1 -} {\cf5 yy_act} {\cf1 -} {\cf5 yynb_rules}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_found} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_lp} {\cf1 :=} {\cf5 yy_lp} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 yy_act} {\cf1 <} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_looking_for_trail_begin} {\cf1 :=} {\cf5 yy_act} {\cf1 -} {\cf5 yynb_rules}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yyreject_used} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_full_match} {\cf1 :=} {\cf5 yy_cp}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_full_state} {\cf1 :=} {\cf5 yy_state_count}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_full_lp} {\cf1 :=} {\cf5 yy_lp}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_lp} {\cf1 :=} {\cf5 yy_lp} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_full_match} {\cf1 :=} {\cf5 yy_cp}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_full_state} {\cf1 :=} {\cf5 yy_state_count}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_full_lp} {\cf1 :=} {\cf5 yy_lp}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_found} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_full_match} {\cf1 :=} {\cf5 yy_cp}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_found} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_cp} {\cf1 :=} {\cf5 yy_cp} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_state_count} {\cf1 :=} {\cf5 yy_state_count} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_current_state} {\cf1 :=} {\cf5 yy_state_stack}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yy_state_count}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_lp} {\cf1 :=} {\cf5 yy_accept}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yy_current_state}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_rejected_line} {\cf1 :=} {\cf5 yy_line}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_rejected_column} {\cf1 :=} {\cf5 yy_column}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_rejected_position} {\cf1 :=} {\cf5 yy_position}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_goto} {\cf1 :=} {\cf5 Yydo_action}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf5 Yydo_action} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_bp} {\cf1 :=} {\cf5 yy_bp} {\cf1 -} {\cf5 yy_more_len}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_start} {\cf1 :=} {\cf5 yy_bp}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_end} {\cf1 :=} {\cf5 yy_cp}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 debug} {\cf1 (}"gelex"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_goto} {\cf1 :=} {\cf5 Yynext_token}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yy_act} {\cf1 =} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 yyreject_or_variable_trail_context} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_cp} {\cf1 :=} {\cf5 yy_last_accepting_cpos}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_bp} {\cf1 :=} {\cf5 yy_bp} {\cf1 +} {\cf5 yy_more_len}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_current_state} {\cf1 :=} {\cf5 yy_last_accepting_state}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_goto} {\cf1 :=} {\cf5 Yyfind_action}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 last_token} {\cf1 :=} {\cf5 Yyerror_token}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 fatal_error}{\cf1  }{\cf1 (}"fatal scanner internal error: no action found"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 yy_act} {\cf1 =} {\cf5 yyend_of_buffer} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_matched_count} {\cf1 :=} {\cf5 yy_cp} {\cf1 -} {\cf5 yy_bp} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yy_end} {\cf1 <=} {\cf5 input_buffer}{\b\cf1 .}{\cf5 count} {\cf1 +} 1 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_end} {\cf1 :=} {\cf5 yy_bp} {\cf1 +} {\cf5 yy_matched_count}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_current_state} {\cf1 :=} {\cf5 yy_previous_state}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_next_state} {\cf1 :=} {\cf5 yy_null_trans_state}{\cf1  }{\cf1 (}{\cf5 yy_current_state}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_bp} {\cf1 :=} {\cf5 yy_bp} {\cf1 +} {\cf5 yy_more_len}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yy_next_state} {\cf1 /=} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_cp} {\cf1 :=} {\cf5 yy_end} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_end} {\cf1 :=} {\cf5 yy_cp}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_current_state} {\cf1 :=} {\cf5 yy_next_state}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_goto} {\cf1 :=} {\cf5 Yymatch}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yyreject_or_variable_trail_context} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_cp} {\cf1 :=} {\cf5 yy_end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_state_count} {\cf1 :=} {\cf5 yy_state_count} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_cp} {\cf1 :=} {\cf5 yy_last_accepting_cpos}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_current_state} {\cf1 :=} {\cf5 yy_last_accepting_state}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_goto} {\cf1 :=} {\cf5 Yyfind_action}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_end} {\cf1 :=} {\cf5 yy_end} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_refill_input_buffer}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 input_buffer}{\b\cf1 .}{\cf5 filled} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_current_state} {\cf1 :=} {\cf5 yy_previous_state}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_cp} {\cf1 :=} {\cf5 yy_end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_bp} {\cf1 :=} {\cf5 yy_start} {\cf1 +} {\cf5 yy_more_len}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_goto} {\cf1 :=} {\cf5 Yymatch}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 yy_end} {\cf1 -} {\cf5 yy_start} {\cf1 -} {\cf5 yy_more_len} {\cf1 /=} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_current_state} {\cf1 :=} {\cf5 yy_previous_state}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_cp} {\cf1 :=} {\cf5 yy_end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_bp} {\cf1 :=} {\cf5 yy_start} {\cf1 +} {\cf5 yy_more_len}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_goto} {\cf1 :=} {\cf5 Yyfind_action}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 wrap} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_bp} {\cf1 :=} {\cf5 yy_start}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_cp} {\cf1 :=} {\cf5 yy_end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_execute_eof_action}{\cf1  }{\cf1 (}{\cf1 (}{\cf5 yy_start_state} {\cf1 -} 1{\cf1 )} {\cf1 //} 2{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_execute_action}{\cf1  }{\cf1 (}{\cf5 yy_act}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yy_rejected} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_rejected} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_line} {\cf1 :=} {\cf5 yy_rejected_line}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_column} {\cf1 :=} {\cf5 yy_rejected_column}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_position} {\cf1 :=} {\cf5 yy_rejected_position}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_cp} {\cf1 :=} {\cf5 yy_full_match}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yyvariable_trail_context} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_lp} {\cf1 :=} {\cf5 yy_full_lp}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_state_count} {\cf1 :=} {\cf5 yy_full_state}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_current_state} {\cf1 :=} {\cf5 yy_state_stack}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yy_state_count} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_lp} {\cf1 :=} {\cf5 yy_lp} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_goto} {\cf1 :=} {\cf5 Yyfind_rule}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 debug} {\cf1 (}"gelex"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 print_last_token}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Element change}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 reject}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Direct scanner to proceed on the second best rule}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  which matched the input (when '%option reject'}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  has been specified).}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yyreject_used} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 yy_rejected} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 last_token} {\cf1 :=} {\cf5 Yyerror_token}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 fatal_error}{\cf1  }{\cf1 (}"fatal scanner reject error"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Tables}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yy_nxt}{\cf1 :} {\cf4 SPECIAL} {\cf1 [}{\cf4 INTEGER_32}{\cf1 ]}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  States to enter upon reading symbol}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yy_chk}{\cf1 :} {\cf4 SPECIAL} {\cf1 [}{\cf4 INTEGER_32}{\cf1 ]}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Check value to see if }{\cf5 yy_nxt}{\cf3  applies}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yy_base}{\cf1 :} {\cf4 SPECIAL} {\cf1 [}{\cf4 INTEGER_32}{\cf1 ]}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Offsets into }{\cf5 yy_nxt}{\cf3  for given states}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yy_def}{\cf1 :} {\cf4 SPECIAL} {\cf1 [}{\cf4 INTEGER_32}{\cf1 ]}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Where to go if }{\cf5 yy_chk}{\cf3  disallow }{\cf5 yy_nxt}{\cf3  entry}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yy_ec}{\cf1 :} {\b\cf6 detachable} {\cf4 SPECIAL} {\cf1 [}{\cf4 INTEGER_32}{\cf1 ]}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Equivalence classes;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Void if equivalence classes are not used}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yy_meta}{\cf1 :} {\b\cf6 detachable} {\cf4 SPECIAL} {\cf1 [}{\cf4 INTEGER_32}{\cf1 ]}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Meta equivalence classes which are sets of classes}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  with identical transitions out of templates;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Void if meta equivalence classes are not used}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yy_accept}{\cf1 :} {\cf4 SPECIAL} {\cf1 [}{\cf4 INTEGER_32}{\cf1 ]}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Accepting ids indexed by state ids}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yy_acclist}{\cf1 :} {\b\cf6 detachable} {\cf4 SPECIAL} {\cf1 [}{\cf4 INTEGER_32}{\cf1 ]}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Accepting id list, used when }{\cf5 reject}{\cf3  is called}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  or when there is a variable length trailing context;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Void otherwise}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yy_set_content} {\cf1 (}{\cf5 a_content}{\cf1 :} {\b\cf6 like} {\cf5 yy_content}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 yy_content}{\cf3  to }{\cf5 a_content}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 nb}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 yy_content} {\cf1 :=} {\cf5 a_content}{\line}
+{\tab}{\tab}{\tab}{\cf5 yy_content_area} {\cf1 :=} {\cf5 a_content}{\b\cf1 .}{\cf5 as_special}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yyreject_or_variable_trail_context} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 nb} {\cf1 :=} {\cf5 a_content}{\b\cf1 .}{\cf5 count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yy_state_stack}{\b\cf1 .}{\cf5 capacity} {\cf1 <} {\cf5 nb} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_state_stack} {\cf1 :=} {\cf5 Special_integer_}{\b\cf1 .}{\cf5 aliased_resized_area}{\cf1  }{\cf1 (}{\cf5 yy_state_stack}{\cf1 ,} {\cf5 nb}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yy_build_tables}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Build scanner tables.}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure then}{\line}
+{\tab}{\tab}{\tab}{\cf1 yy_nxt_not_void}{\cf1 :} {\cf5 yy_nxt} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 yy_chk_not_void}{\cf1 :} {\cf5 yy_chk} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 yy_base_not_void}{\cf1 :} {\cf5 yy_base} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 yy_def_not_void}{\cf1 :} {\cf5 yy_def} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 yy_accept_not_void}{\cf1 :} {\cf5 yy_accept} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yy_previous_state}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  State just before EOB character was reached}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 yy_cp}{\cf1 ,} {\cf5 yy_nb}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 yy_c}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_content_area}{\cf1 :} {\b\cf6 like} {\cf5 yy_content_area}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 input_buffer}{\b\cf1 .}{\cf5 beginning_of_line} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 yy_start_state} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 yy_start_state}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yyreject_or_variable_trail_context} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 Special_integer_}{\b\cf1 .}{\cf5 force}{\cf1  }{\cf1 (}{\cf5 yy_state_stack}{\cf1 ,} {\b\cf6 Result}{\cf1 ,} 0{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 yy_state_count} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_content_area} {\cf1 :=} {\cf5 yy_content_area}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 yy_cp} {\cf1 :=} {\cf5 yy_start} {\cf1 +} {\cf5 yy_more_len}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 yy_nb} {\cf1 :=} {\cf5 yy_end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 yy_cp} {\cf1 >=} {\cf5 yy_nb}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_content_area} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_c} {\cf1 :=} {\cf5 l_content_area}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yy_cp}{\cf1 )}{\b\cf1 .}{\cf5 code}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_c} {\cf1 :=} {\cf5 yy_content}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yy_cp}{\cf1 )}{\b\cf1 .}{\cf5 code}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yy_c} {\cf1 =} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_c} {\cf1 :=} {\cf5 yynull_equiv_class}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\b\cf6 attached} {\cf5 yy_ec} {\b\cf6 as} l_yy_ec {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_c} {\cf1 :=} {\cf5 l_yy_ec}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yy_c}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 yyreject_or_variable_trail_context} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yy_accept}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 )} {\cf1 /=} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_last_accepting_state} {\cf1 :=} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_last_accepting_cpos} {\cf1 :=} {\cf5 yy_cp}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_chk}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yy_base}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 )} {\cf1 +} {\cf5 yy_c}{\cf1 )} {\cf1 =} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 yy_def}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 yy_meta} {\b\cf6 as} l_yy_meta {\b\cf6 and then} {\b\cf6 Result} {\cf1 >=} {\cf5 yytemplate_mark} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_c} {\cf1 :=} {\cf5 l_yy_meta}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yy_c}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 yy_nxt}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yy_base}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 )} {\cf1 +} {\cf5 yy_c}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yyreject_or_variable_trail_context} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 Special_integer_}{\b\cf1 .}{\cf5 force}{\cf1  }{\cf1 (}{\cf5 yy_state_stack}{\cf1 ,} {\b\cf6 Result}{\cf1 ,} {\cf5 yy_state_count}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_state_count} {\cf1 :=} {\cf5 yy_state_count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 yy_cp} {\cf1 :=} {\cf5 yy_cp} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yy_null_trans_state} {\cf1 (}{\cf5 yy_current_state}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  State reachable from }{\cf5 yy_current_state}{\cf3  through}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  a transition on NULL character; 0 if jammed}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 yy_c}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 yy_is_jam}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 yyreject_or_variable_trail_context} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yy_accept}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yy_current_state}{\cf1 )} {\cf1 /=} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_last_accepting_state} {\cf1 :=} {\cf5 yy_current_state}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_last_accepting_cpos} {\cf1 :=} {\cf5 yy_end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 yy_current_state}{\line}
+{\tab}{\tab}{\tab}{\cf5 yy_c} {\cf1 :=} {\cf5 yynull_equiv_class}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 yy_chk}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yy_base}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 )} {\cf1 +} {\cf5 yy_c}{\cf1 )} {\cf1 =} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 yy_def}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 yy_meta} {\b\cf6 as} l_yy_meta {\b\cf6 and then} {\b\cf6 Result} {\cf1 >=} {\cf5 yytemplate_mark} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 yy_c} {\cf1 :=} {\cf5 l_yy_meta}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yy_c}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 yy_nxt}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 yy_base}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 )} {\cf1 +} {\cf5 yy_c}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yyreject_or_variable_trail_context} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 Special_integer_}{\b\cf1 .}{\cf5 force}{\cf1  }{\cf1 (}{\cf5 yy_state_stack}{\cf1 ,} {\b\cf6 Result}{\cf1 ,} {\cf5 yy_state_count}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 yy_state_count} {\cf1 :=} {\cf5 yy_state_count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 yy_is_jam} {\cf1 :=} {\cf1 (}{\b\cf6 Result} {\cf1 =} {\cf5 yyjam_state}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 yy_is_jam} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yy_rejected}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Has current matched token been rejected?}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yy_state_stack}{\cf1 :} {\cf4 SPECIAL} {\cf1 [}{\cf4 INTEGER_32}{\cf1 ]}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  State buffer variable}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yy_state_count}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  State buffer variable}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yy_full_match}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  State buffer variable}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yy_lp}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  State buffer variable}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yy_looking_for_trail_begin}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  State buffer variable}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yy_full_lp}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  State buffer variable}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yy_full_state}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  State buffer variable}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Constants}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yyjam_base}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Position in }{\cf5 yy_nxt}{\cf3 /}{\cf5 yy_chk}{\cf3  tables where}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  default jam table starts}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yyjam_state}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  State id corresponding to jam state}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yytemplate_mark}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Mark between normal state and templates}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yyreject_used}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 reject}{\cf3  called?}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yyvariable_trail_context}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is there a regular expression with both leading}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  and trailing parts having variable length?}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yyreject_or_variable_trail_context}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 reject}{\cf3  called or is there a regular expression with}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  both leading and trailing parts having variable length?}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf5 yyreject_used} {\b\cf6 or} {\cf5 yyvariable_trail_context}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Yybacking_up}{\cf1 :} {\cf4 BOOLEAN} {\cf1 =} {\b\cf6 True}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Compressed tables always back up}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 yynb_rules}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of rules}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Yynext_token}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 1}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Yymatch}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 2}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Yyfind_action}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 3}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Yydo_action}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 4}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Yyfind_rule}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 5}{\line}
+{\tab}{\line}
+{\b\cf6 invariant}{\line}
+{\tab}{\cf1 yy_nxt_not_void}{\cf1 :} {\cf5 yy_nxt} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\cf1 yy_chk_not_void}{\cf1 :} {\cf5 yy_chk} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\cf1 yy_base_not_void}{\cf1 :} {\cf5 yy_base} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\cf1 yy_def_not_void}{\cf1 :} {\cf5 yy_def} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\cf1 yy_accept_not_void}{\cf1 :} {\cf5 yy_accept} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\cf1 yy_state_stack_not_void}{\cf1 :} {\cf5 yyreject_or_variable_trail_context} {\b\cf6 implies} {\cf5 yy_state_stack} {\cf1 /=} {\b\cf6 Void}{\line}
+{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 YY_COMPRESSED_SCANNER_SKELETON}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

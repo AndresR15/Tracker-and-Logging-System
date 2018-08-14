@@ -1,0 +1,208 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Facilities for pick and drop mechanism.%NDecendents can act both as pick and drop sources and as targets.%NWhen the user picks a </string><feature><location>../interface/ev_pick_and_dropable_short.xml#f_pebble</location>pebble</feature><string> from a source and drops on a target,the </string><feature><location>../interface/ev_pick_and_dropable_action_sequences_short.xml#f_drop_actions</location>drop_actions</feature><string> of the target receive the </string><feature><location>../interface/ev_pick_and_dropable_short.xml#f_pebble</location>pebble</feature><string> as input.%NThe user interface can be either pick and drop or drag and drop,selected by </string><string>set_pick_and_drop</string><string> and </string><string>set_drag_and_drop</string><string>.&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>example</indexing_tag><symbol>:</symbol> <string>&quot;Create two buttons one with the string %&quot;Hello world!%&quot; as pebbleand the other with agent io.put_string as a drop action.%NPicking the first button and dropping on the second will print:%N%&quot;Hello world!%&quot;.%Nb1, b2: BUTTON%Ncreate b1; create b2%Nb1.set_pebble (%&quot;Hello world!%&quot;)%Nb2.drop_actions.extend (agent io.put_string)&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;pick and drop, drag and drop, source, PND, DND&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2016-09-27 08:50:48 -0700 (Tue, 27 Sep 2016) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 99192 $&quot;</string>
+
+<keyword>deferred</keyword> <keyword>class</keyword> <keyword>interface</keyword>
+	<class><location>../interface/ev_pick_and_dropable_short.xml</location>EV_PICK_AND_DROPABLE</class>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_pebble</anchor><feature><location>../interface/ev_pick_and_dropable_short.xml#f_pebble</location>pebble</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>ANY</class>
+			<comment>--</comment><comment> Data to be transported by pick and drop mechanism.</comment>
+		<keyword>ensure then</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_pick_and_dropable_short.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_pick_and_dropable_i_short.xml#f_pebble</location>pebble</feature>
+
+	<anchor>f_pebble_function</anchor><feature><location>../interface/ev_pick_and_dropable_short.xml#f_pebble_function</location>pebble_function</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>FUNCTION</class> <symbol>[</symbol><keyword>detachable</keyword> <class><include>False</include>ANY</class><symbol>]</symbol>
+			<comment>--</comment><comment> Returns data to be transported by pick and drop mechanism.</comment>
+		<keyword>ensure then</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_pick_and_dropable_short.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_pick_and_dropable_i_short.xml#f_pebble_function</location>pebble_function</feature>
+
+	<anchor>f_pebble_x_position</anchor><feature><location>../interface/ev_pick_and_dropable_short.xml#f_pebble_x_position</location>pebble_x_position</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Initial x position for pick and drop relative to </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>ensure then</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_pick_and_dropable_short.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_pick_and_dropable_i_short.xml#f_pebble_x_position</location>pebble_x_position</feature>
+
+	<anchor>f_pebble_y_position</anchor><feature><location>../interface/ev_pick_and_dropable_short.xml#f_pebble_y_position</location>pebble_y_position</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Initial y position for pick and drop relative to </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>ensure then</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_pick_and_dropable_short.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_pick_and_dropable_i_short.xml#f_pebble_y_position</location>pebble_y_position</feature>
+
+	<anchor>f_pebble_positioning_enabled</anchor><feature><location>../interface/ev_pick_and_dropable_short.xml#f_pebble_positioning_enabled</location>pebble_positioning_enabled</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> If </comment><quoted>True</quoted><comment> then pick and drop start coordinates are</comment>
+			<comment>--</comment><comment> </comment><feature><location>../interface/ev_pick_and_dropable_short.xml#f_pebble_x_position</location>pebble_x_position</feature><comment>, </comment><feature><location>../interface/ev_pick_and_dropable_short.xml#f_pebble_y_position</location>pebble_y_position</feature><comment>.</comment>
+			<comment>--</comment><comment> If </comment><quoted>False</quoted><comment> then pick and drop start coordinates are</comment>
+			<comment>--</comment><comment> the pointer coordinates.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>ensure then</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_pick_and_dropable_short.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_pick_and_dropable_i_short.xml#f_pebble_positioning_enabled</location>pebble_positioning_enabled</feature>
+
+	<anchor>f_accept_cursor</anchor><feature><location>../interface/ev_pick_and_dropable_short.xml#f_accept_cursor</location>accept_cursor</feature><symbol>:</symbol> <class><location>../interface/ev_pointer_style_short.xml</location>EV_POINTER_STYLE</class>
+			<comment>--</comment><comment> </comment><quoted>Result</quoted><comment> is cursor displayed when the screen pointer is over a</comment>
+			<comment>--</comment><comment> target that accepts </comment><feature><location>../interface/ev_pick_and_dropable_short.xml#f_pebble</location>pebble</feature><comment> during pick and drop.</comment>
+		<keyword>ensure then</keyword>
+			<tag>cursor_valid</tag><symbol>:</symbol> <symbol>(</symbol><keyword>attached</keyword> <feature><location>../interface/ev_pick_and_dropable_short.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_pick_and_dropable_i_short.xml#f_accept_cursor</location>accept_cursor</feature> <keyword>implies</keyword> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_pick_and_dropable_short.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_pick_and_dropable_i_short.xml#f_accept_cursor</location>accept_cursor</feature><symbol>)</symbol> <keyword>or else</keyword> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_abstract_pick_and_dropable_short.xml#f_default_pixmaps</location>Default_pixmaps</feature><dot>.</dot><feature><location>../interface/ev_stock_pixmaps_short.xml#f_standard_cursor</location>Standard_cursor</feature>
+
+	<anchor>f_deny_cursor</anchor><feature><location>../interface/ev_pick_and_dropable_short.xml#f_deny_cursor</location>deny_cursor</feature><symbol>:</symbol> <class><location>../interface/ev_pointer_style_short.xml</location>EV_POINTER_STYLE</class>
+			<comment>--</comment><comment> </comment><quoted>Result</quoted><comment> is cursor displayed when the screen pointer is over a</comment>
+			<comment>--</comment><comment> target that does not accept </comment><feature><location>../interface/ev_pick_and_dropable_short.xml#f_pebble</location>pebble</feature><comment> during pick and drop.</comment>
+		<keyword>ensure then</keyword>
+			<tag>cursor_valid</tag><symbol>:</symbol> <symbol>(</symbol><keyword>attached</keyword> <feature><location>../interface/ev_pick_and_dropable_short.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_pick_and_dropable_i_short.xml#f_deny_cursor</location>deny_cursor</feature> <keyword>implies</keyword> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_pick_and_dropable_short.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_pick_and_dropable_i_short.xml#f_deny_cursor</location>deny_cursor</feature><symbol>)</symbol> <keyword>or else</keyword> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_abstract_pick_and_dropable_short.xml#f_default_pixmaps</location>Default_pixmaps</feature><dot>.</dot><feature><location>../interface/ev_stock_pixmaps_short.xml#f_no_cursor</location>No_cursor</feature>
+
+	<anchor>f_configurable_target_menu_handler</anchor><feature><location>../interface/ev_pick_and_dropable_short.xml#f_configurable_target_menu_handler</location>configurable_target_menu_handler</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>PROCEDURE</class> <symbol>[</symbol><class><location>../interface/ev_menu_short.xml</location>EV_MENU</class><symbol>,</symbol> <class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><class><location>../interface/ev_pnd_target_data_short.xml</location>EV_PND_TARGET_DATA</class><symbol>]</symbol><symbol>,</symbol> <class><location>../interface/ev_pick_and_dropable_short.xml</location>EV_PICK_AND_DROPABLE</class><symbol>,</symbol> <keyword>detachable</keyword> <class><include>False</include>ANY</class><symbol>]</symbol>
+			<comment>--</comment><comment> Agent used for customizing the Pick and Drop Target Menu of </comment><quoted>Current</quoted><comment>.</comment>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status setting</comment>
+
+	<anchor>f_set_pebble</anchor><feature><location>../interface/ev_pick_and_dropable_short.xml#f_set_pebble</location>set_pebble</feature> <symbol>(</symbol><local>a_pebble</local><symbol>:</symbol> <class><include>False</include>ANY</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>a_pebble</quoted><comment> to </comment><feature><location>../interface/ev_pick_and_dropable_short.xml#f_pebble</location>pebble</feature><comment>.</comment>
+			<comment>--</comment><comment> Overrides </comment><feature><location>../interface/ev_pick_and_dropable_short.xml#f_set_pebble_function</location>set_pebble_function</feature><comment>.</comment>
+
+	<anchor>f_remove_pebble</anchor><feature><location>../interface/ev_pick_and_dropable_short.xml#f_remove_pebble</location>remove_pebble</feature>
+			<comment>--</comment><comment> Make </comment><feature><location>../interface/ev_pick_and_dropable_short.xml#f_pebble</location>pebble</feature><comment> </comment><quoted>Void</quoted><comment> and </comment><feature><location>../interface/ev_pick_and_dropable_short.xml#f_pebble_function</location>pebble_function</feature><comment> `Void,</comment>
+			<comment>--</comment><comment> Removing transport.</comment>
+
+	<anchor>f_set_pebble_function</anchor><feature><location>../interface/ev_pick_and_dropable_short.xml#f_set_pebble_function</location>set_pebble_function</feature> <symbol>(</symbol><local>a_function</local><symbol>:</symbol> <class><include>False</include>FUNCTION</class> <symbol>[</symbol><keyword>detachable</keyword> <class><include>False</include>ANY</class><symbol>]</symbol><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><quoted>a_function</quoted><comment> to compute </comment><feature><location>../interface/ev_pick_and_dropable_short.xml#f_pebble</location>pebble</feature><comment>.</comment>
+			<comment>--</comment><comment> It will be called once each time a pick occurs, the result</comment>
+			<comment>--</comment><comment> will be assigned to </comment><feature><location>../interface/ev_pick_and_dropable_short.xml#f_pebble</location>pebble</feature><comment> for the duration of transport.</comment>
+			<comment>--</comment><comment> When a pick occurs, the pick position in widget coordinates,</comment>
+			<comment>--</comment><comment> &lt;&lt;x, y&gt;&gt; in pixels, is passed.</comment>
+			<comment>--</comment><comment> To handle this data use </comment><quoted>a_function</quoted><comment> of type</comment>
+			<comment>--</comment><comment> FUNCTION [ANY, TUPLE [INTEGER, INTEGER], ANY] and return the</comment>
+			<comment>--</comment><comment> pebble as a function of x and y.</comment>
+			<comment>--</comment><comment> Overrides </comment><feature><location>../interface/ev_pick_and_dropable_short.xml#f_set_pebble</location>set_pebble</feature><comment>.</comment>
+
+	<anchor>f_set_pick_and_drop_mode</anchor><feature><location>../interface/ev_pick_and_dropable_short.xml#f_set_pick_and_drop_mode</location>set_pick_and_drop_mode</feature>
+			<comment>--</comment><comment> Set user interface mode to pick and drop.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>ensure</keyword>
+			<tag>pick_and_drop_set</tag><symbol>:</symbol> <feature><location>../interface/ev_pick_and_dropable_short.xml#f_mode_is_pick_and_drop</location>mode_is_pick_and_drop</feature>
+
+	<anchor>f_set_drag_and_drop_mode</anchor><feature><location>../interface/ev_pick_and_dropable_short.xml#f_set_drag_and_drop_mode</location>set_drag_and_drop_mode</feature>
+			<comment>--</comment><comment> Set user interface mode to drag and drop.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>ensure</keyword>
+			<tag>drag_and_drop_set</tag><symbol>:</symbol> <feature><location>../interface/ev_pick_and_dropable_short.xml#f_mode_is_drag_and_drop</location>mode_is_drag_and_drop</feature>
+
+	<anchor>f_set_target_menu_mode</anchor><feature><location>../interface/ev_pick_and_dropable_short.xml#f_set_target_menu_mode</location>set_target_menu_mode</feature>
+			<comment>--</comment><comment> Set user interface mode to pop-up menu of targets.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>ensure</keyword>
+			<tag>target_menu_mode_set</tag><symbol>:</symbol> <feature><location>../interface/ev_pick_and_dropable_short.xml#f_mode_is_target_menu</location>mode_is_target_menu</feature>
+
+	<anchor>f_set_configurable_target_menu_mode</anchor><feature><location>../interface/ev_pick_and_dropable_short.xml#f_set_configurable_target_menu_mode</location>set_configurable_target_menu_mode</feature>
+			<comment>--</comment><comment> Set user interface mode to pop-up menu of targets.</comment>
+			<comment>--</comment><comment> Target menu is configurable as the first option can be used to</comment>
+			<comment>--</comment><comment> initiate a regular 'pick and drop' of the source pebble.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>ensure</keyword>
+			<tag>target_menu_mode_set</tag><symbol>:</symbol> <feature><location>../interface/ev_pick_and_dropable_short.xml#f_mode_is_configurable_target_menu</location>mode_is_configurable_target_menu</feature>
+
+	<anchor>f_set_configurable_target_menu_handler</anchor><feature><location>../interface/ev_pick_and_dropable_short.xml#f_set_configurable_target_menu_handler</location>set_configurable_target_menu_handler</feature> <symbol>(</symbol><local>a_handler</local><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>PROCEDURE</class> <symbol>[</symbol><class><location>../interface/ev_menu_short.xml</location>EV_MENU</class><symbol>,</symbol> <class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><class><location>../interface/ev_pnd_target_data_short.xml</location>EV_PND_TARGET_DATA</class><symbol>]</symbol><symbol>,</symbol> <class><location>../interface/ev_pick_and_dropable_short.xml</location>EV_PICK_AND_DROPABLE</class><symbol>,</symbol> <keyword>detachable</keyword> <class><include>False</include>ANY</class><symbol>]</symbol><symbol>)</symbol>
+			<comment>--</comment><comment> Set Configurable Target Menu Handler to </comment><quoted>a_handler</quoted><comment>.</comment>
+		<keyword>ensure</keyword>
+			<tag>configurable_target_menu_hander_assigned</tag><symbol>:</symbol> <feature><location>../interface/ev_pick_and_dropable_short.xml#f_configurable_target_menu_handler</location>configurable_target_menu_handler</feature> <symbol>=</symbol> <local>a_handler</local>
+
+	<anchor>f_set_pebble_position</anchor><feature><location>../interface/ev_pick_and_dropable_short.xml#f_set_pebble_position</location>set_pebble_position</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set the initial position for pick and drop</comment>
+			<comment>--</comment><comment> Coordinates are in pixels and are relative to position of </comment><quoted>Current</quoted><comment>.</comment>
+			<comment>--</comment><comment> Pebble_positioning_enabled must be </comment><quoted>True</quoted><comment> for the position to be used,</comment>
+			<comment>--</comment><comment> use enable_pebble_positioning.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>ensure</keyword>
+			<tag>pebble_position_assigned</tag><symbol>:</symbol> <feature><location>../interface/ev_pick_and_dropable_short.xml#f_pebble_x_position</location>pebble_x_position</feature> <symbol>=</symbol> <local>a_x</local> <keyword>and</keyword> <feature><location>../interface/ev_pick_and_dropable_short.xml#f_pebble_y_position</location>pebble_y_position</feature> <symbol>=</symbol> <local>a_y</local>
+
+	<anchor>f_set_accept_cursor</anchor><feature><location>../interface/ev_pick_and_dropable_short.xml#f_set_accept_cursor</location>set_accept_cursor</feature> <symbol>(</symbol><local>a_cursor</local><symbol>:</symbol> <keyword>detachable</keyword> <keyword>like</keyword> <feature><location>../interface/ev_pick_and_dropable_short.xml#f_accept_cursor</location>accept_cursor</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><quoted>a_cursor</quoted><comment> to be displayed when the screen pointer is over a</comment>
+			<comment>--</comment><comment> target that accepts </comment><feature><location>../interface/ev_pick_and_dropable_short.xml#f_pebble</location>pebble</feature><comment> during pick and drop.</comment>
+
+	<anchor>f_set_deny_cursor</anchor><feature><location>../interface/ev_pick_and_dropable_short.xml#f_set_deny_cursor</location>set_deny_cursor</feature> <symbol>(</symbol><local>a_cursor</local><symbol>:</symbol> <keyword>detachable</keyword> <keyword>like</keyword> <feature><location>../interface/ev_pick_and_dropable_short.xml#f_deny_cursor</location>deny_cursor</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><quoted>a_cursor</quoted><comment> to be displayed when the screen pointer is not</comment>
+			<comment>--</comment><comment> over a valid target.</comment>
+
+	<anchor>f_enable_pebble_positioning</anchor><feature><location>../interface/ev_pick_and_dropable_short.xml#f_enable_pebble_positioning</location>enable_pebble_positioning</feature>
+			<comment>--</comment><comment> Assign </comment><quoted>True</quoted><comment> to </comment><feature><location>../interface/ev_pick_and_dropable_short.xml#f_pebble_positioning_enabled</location>pebble_positioning_enabled</feature><comment>.</comment>
+			<comment>--</comment><comment> Use </comment><feature><location>../interface/ev_pick_and_dropable_short.xml#f_pebble_x_position</location>pebble_x_position</feature><comment> and </comment><feature><location>../interface/ev_pick_and_dropable_short.xml#f_pebble_y_position</location>pebble_y_position</feature><comment> as the initial coordinates</comment>
+			<comment>--</comment><comment> for the pick and drop in pixels relative to </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>ensure</keyword>
+			<tag>pebble_positioning_updated</tag><symbol>:</symbol> <feature><location>../interface/ev_pick_and_dropable_short.xml#f_pebble_positioning_enabled</location>pebble_positioning_enabled</feature>
+
+	<anchor>f_disable_pebble_positioning</anchor><feature><location>../interface/ev_pick_and_dropable_short.xml#f_disable_pebble_positioning</location>disable_pebble_positioning</feature>
+			<comment>--</comment><comment> Assign </comment><quoted>False</quoted><comment> to </comment><feature><location>../interface/ev_pick_and_dropable_short.xml#f_pebble_positioning_enabled</location>pebble_positioning_enabled</feature><comment>.</comment>
+			<comment>--</comment><comment> The pick and drop will start at the pointer position.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>ensure</keyword>
+			<tag>pebble_positioning_updated</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_pick_and_dropable_short.xml#f_pebble_positioning_enabled</location>pebble_positioning_enabled</feature>
+
+	<anchor>f_show_configurable_target_menu</anchor><feature><location>../interface/ev_pick_and_dropable_short.xml#f_show_configurable_target_menu</location>show_configurable_target_menu</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Show the configurable target menu at position </comment><quoted>a_x</quoted><comment>, </comment><quoted>a_y</quoted><comment> relative to </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>mode_is_configurable_target_menu</tag><symbol>:</symbol> <feature><location>../interface/ev_pick_and_dropable_short.xml#f_mode_is_configurable_target_menu</location>mode_is_configurable_target_menu</feature>
+			<tag>configurable_menu_handler_set</tag><symbol>:</symbol> <feature><location>../interface/ev_pick_and_dropable_short.xml#f_configurable_target_menu_handler</location>configurable_target_menu_handler</feature> <symbol>/=</symbol> <keyword>Void</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status report</comment>
+
+	<anchor>f_mode_is_pick_and_drop</anchor><feature><location>../interface/ev_pick_and_dropable_short.xml#f_mode_is_pick_and_drop</location>mode_is_pick_and_drop</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is the user interface mode pick and drop?</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>ensure then</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_pick_and_dropable_short.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_pick_and_dropable_i_short.xml#f_mode_is_pick_and_drop</location>mode_is_pick_and_drop</feature>
+
+	<anchor>f_mode_is_drag_and_drop</anchor><feature><location>../interface/ev_pick_and_dropable_short.xml#f_mode_is_drag_and_drop</location>mode_is_drag_and_drop</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is the user interface mode drag and drop?</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>ensure then</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_pick_and_dropable_short.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_pick_and_dropable_i_short.xml#f_mode_is_drag_and_drop</location>mode_is_drag_and_drop</feature>
+
+	<anchor>f_mode_is_target_menu</anchor><feature><location>../interface/ev_pick_and_dropable_short.xml#f_mode_is_target_menu</location>mode_is_target_menu</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is the user interface mode a pop-up menu of targets?</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>ensure then</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_pick_and_dropable_short.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_pick_and_dropable_i_short.xml#f_mode_is_target_menu</location>mode_is_target_menu</feature>
+
+	<anchor>f_mode_is_configurable_target_menu</anchor><feature><location>../interface/ev_pick_and_dropable_short.xml#f_mode_is_configurable_target_menu</location>mode_is_configurable_target_menu</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is the user interface mode a configurable pop-up menu of targets?</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>ensure then</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_pick_and_dropable_short.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_pick_and_dropable_i_short.xml#f_mode_is_configurable_target_menu</location>mode_is_configurable_target_menu</feature>
+	
+<keyword>invariant</keyword>
+	<tag>user_interface_modes_mutually_exclusive</tag><symbol>:</symbol> <feature><location>../interface/ev_pick_and_dropable_short.xml#f_mode_is_pick_and_drop</location>mode_is_pick_and_drop</feature><dot>.</dot><feature><include>False</include>to_integer</feature> <symbol>+</symbol> <feature><location>../interface/ev_pick_and_dropable_short.xml#f_mode_is_drag_and_drop</location>mode_is_drag_and_drop</feature><dot>.</dot><feature><include>False</include>to_integer</feature> <symbol>+</symbol> <feature><location>../interface/ev_pick_and_dropable_short.xml#f_mode_is_target_menu</location>mode_is_target_menu</feature><dot>.</dot><feature><include>False</include>to_integer</feature> <symbol>=</symbol> <number>1</number>
+
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2015, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../interface/ev_pick_and_dropable_short.xml</location>EV_PICK_AND_DROPABLE</class></system>
+

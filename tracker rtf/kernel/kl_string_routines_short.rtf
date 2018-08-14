@@ -1,0 +1,509 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "Routines that ought to be in class STRING"{\line}
+{\tab}{\cf1 remark}{\cf1 :} "[{\line}
+{\tab}{\tab}Unless otherwise specified in their preconditions,{\line}
+{\tab}{\tab}the features of this class can deal with UC_STRING{\line}
+{\tab}{\tab}whenever a STRING is expected.{\line}
+{\tab}]"{\line}
+{\tab}{\cf1 library}{\cf1 :} "Gobo Eiffel Kernel Library"{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 1999-2017, Eric Bezault and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "MIT License"{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2017-04-11 11:34:55 -0700 (Tue, 11 Apr 2017) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 100137 $"{\line}
+{\line}
+{\b\cf6 class} {\b\cf6 interface}{\line}
+{\tab}{\cf4 KL_STRING_ROUTINES}{\line}
+{\line}
+{\b\cf6 create} {\line}
+{\tab}{\cf5 default_create}{\line}
+{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Initialization}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make_from_string} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Initialize from the character sequence of }{\cf5 s}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 s}{\cf3  is considered with its characters which do not fit}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  in a CHARACTER replaced by a '%U'.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (ELKS 2001 STRING)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Note: Use this routine instead of 'STRING.make_from_string (s)'}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  when }{\cf5 s}{\cf3  is of dynamic type other than STRING (e.g. UC_STRING)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  because the class STRING provided with the Eiffel compilers}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  is not necessarily aware of the implementation of UC_STRING}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  and this may lead to run-time errors or crashes.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_not_void}{\cf1 :} {\cf5 s} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 string_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 new_string}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\cf5 s}{\line}
+{\tab}{\tab}{\tab}{\cf1 string_type}{\cf1 :} {\cf5 Any_}{\b\cf1 .}{\cf5 same_types}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 ,} ""{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 initialized}{\cf1 :} {\cf5 elks_same_string}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 ,} {\cf5 s}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 make_buffer} {\cf1 (}{\cf5 n}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create a new string containing }{\cf5 n}{\cf3  characters.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Not in ELKS 2001 STRING)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 non_negative_n}{\cf1 :} {\cf5 n} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 string_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 string_type}{\cf1 :} {\cf5 Any_}{\b\cf1 .}{\cf5 same_types}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 ,} ""{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 count_set}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 count} {\cf1 =} {\cf5 n}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status report}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 has_substring} {\cf1 (}{\cf5 a_string}{\cf1 ,} {\cf5 other}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does }{\cf5 a_string}{\cf3  contain }{\cf5 other}{\cf3 ? }{\cf5 a_string}{\cf3  and }{\cf5 other}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  are considered with their characters which do not fit}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  in a CHARACTER replaced by a '%U'.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Extended from ELKS 2001 STRING)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Note: Use this feature instead of 'a_string.has_substring}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (other)' when }{\cf5 a_string}{\cf3  can be of dynamic type STRING and}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 other}{\cf3  of dynamic type other than STRING such as UC_STRING,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  because class STRING provided by the Eiffel compilers is}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  not necessarily aware of the implementation of UC_STRING}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  and this may lead to run-time errors or crashes.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 false_if_too_small}{\cf1 :} {\cf5 a_string}{\b\cf1 .}{\cf5 count} {\cf1 <} {\cf5 other}{\b\cf1 .}{\cf5 count} {\b\cf6 implies} {\b\cf6 not} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\cf1 true_if_initial}{\cf1 :} {\cf1 (}{\cf5 a_string}{\b\cf1 .}{\cf5 count} {\cf1 >=} {\cf5 other}{\b\cf1 .}{\cf5 count} {\b\cf6 and then} {\cf5 elks_same_string}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 ,} {\cf5 a_string}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}1{\cf1 ,} {\cf5 other}{\b\cf1 .}{\cf5 count}{\cf1 )}{\cf1 )}{\cf1 )} {\b\cf6 implies} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\cf1 recurse}{\cf1 :} {\cf1 (}{\cf5 a_string}{\b\cf1 .}{\cf5 count} {\cf1 >=} {\cf5 other}{\b\cf1 .}{\cf5 count} {\b\cf6 and then} {\b\cf6 not} {\cf5 elks_same_string}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 ,} {\cf5 a_string}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}1{\cf1 ,} {\cf5 other}{\b\cf1 .}{\cf5 count}{\cf1 )}{\cf1 )}{\cf1 )} {\b\cf6 implies} {\cf1 (}{\b\cf6 Result} {\cf1 =} {\cf5 has_substring}{\cf1  }{\cf1 (}{\cf5 a_string}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}2{\cf1 ,} {\cf5 a_string}{\b\cf1 .}{\cf5 count}{\cf1 )}{\cf1 ,} {\cf5 other}{\cf1 )}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_decimal} {\cf1 (}{\cf5 a_string}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 a_string}{\cf3  only made up of characters 0-9?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Not in ELKS 2001 STRING)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_integer_64} {\cf1 (}{\cf5 a_string}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does }{\cf5 a_string}{\cf3  represent a positive INTEGER_64?}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_hexadecimal} {\cf1 (}{\cf5 a_string}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is a string made up of characters 0-9 or A-F or a-f?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Not in ELKS 2001 STRING)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_base64} {\cf1 (}{\cf5 a_string}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is a string made up of characters +, /, =, XML whitespace, 0-9 or A-Z or a-z?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Not in ELKS 2001 STRING)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 new_empty_string} {\cf1 (}{\cf5 a_string}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 n}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New empty string with same dynamic type as }{\cf5 a_string}{\cf3 ;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Try to allocate space for at least }{\cf5 n}{\cf3  characters.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Not in ELKS 2001 STRING)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 non_negative_n}{\cf1 :} {\cf5 n} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 new_string_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 same_type}{\cf1 :} {\cf5 Any_}{\b\cf1 .}{\cf5 same_types}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 ,} {\cf5 a_string}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 new_string_empty}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 count} {\cf1 =} 0{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 to_utf16_be} {\cf1 (}{\cf5 a_string}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New STRING made up of bytes corresponding to}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the UTF-16BE representation of }{\cf5 a_string}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 to_utf16_be_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 string_type}{\cf1 :} {\cf5 Any_}{\b\cf1 .}{\cf5 same_types}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 ,} ""{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_utf16}{\cf1 :} {\cf5 Utf16}{\b\cf1 .}{\cf5 valid_utf16}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 to_utf16_le} {\cf1 (}{\cf5 a_string}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New STRING made up of bytes corresponding to}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the UTF-16LE representation of }{\cf5 a_string}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 to_utf16_le_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 string_type}{\cf1 :} {\cf5 Any_}{\b\cf1 .}{\cf5 same_types}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 ,} ""{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_utf16}{\cf1 :} {\cf5 Utf16}{\b\cf1 .}{\cf5 valid_utf16}{\cf1  }{\cf1 (}{\cf5 Utf16}{\b\cf1 .}{\cf5 Bom_le} {\cf1 +} {\b\cf6 Result}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 to_utf32_be} {\cf1 (}{\cf5 a_string}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New STRING made up of bytes corresponding to}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the UTF-32BE representation of }{\cf5 a_string}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 to_utf32_be_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 string_type}{\cf1 :} {\cf5 Any_}{\b\cf1 .}{\cf5 same_types}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 ,} ""{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_utf32}{\cf1 :} {\cf5 Utf32}{\b\cf1 .}{\cf5 valid_utf32}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 to_utf32_le} {\cf1 (}{\cf5 a_string}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New STRING made up of bytes corresponding to}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the UTF-32LE representation of }{\cf5 a_string}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 to_utf32_le_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 string_type}{\cf1 :} {\cf5 Any_}{\b\cf1 .}{\cf5 same_types}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 ,} ""{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_utf32}{\cf1 :} {\cf5 Utf32}{\b\cf1 .}{\cf5 valid_utf32}{\cf1  }{\cf1 (}{\cf5 Utf32}{\b\cf1 .}{\cf5 Bom_le} {\cf1 +} {\b\cf6 Result}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 substring_index} {\cf1 (}{\cf5 a_string}{\cf1 ,} {\cf5 other}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 start_index}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Index of first occurrence of }{\cf5 other}{\cf3  at or after }{\cf5 start_index}{\cf3  in}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 a_string}{\cf3 ; 0 if none. }{\cf5 a_string}{\cf3  and }{\cf5 other}{\cf3  are considered with}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  their characters which do not fit in a CHARACTER replaced by a '%U'.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (ELKS 2001 STRING)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Note: Use this feature instead of 'a_string.substring_index (other,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  start_index)' when }{\cf5 a_string}{\cf3  can be of dynamic type STRING and}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 other}{\cf3  of dynamic type other than STRING such as UC_STRING, because}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  class STRING provided by the Eiffel compilers is not necessarily}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  aware of the implementation of UC_STRING and this may lead to}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  run-time errors or crashes.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_start_index}{\cf1 :} {\cf5 start_index} {\cf1 >=} 1 {\b\cf6 and} {\cf5 start_index} {\cf1 <=} {\cf5 a_string}{\b\cf1 .}{\cf5 count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_result}{\cf1 :} {\b\cf6 Result} {\cf1 =} 0 {\b\cf6 or else} {\cf1 (}{\cf5 start_index} {\cf1 <=} {\b\cf6 Result} {\b\cf6 and} {\b\cf6 Result} {\cf1 <=} {\cf5 a_string}{\b\cf1 .}{\cf5 count} {\cf1 -} {\cf5 other}{\b\cf1 .}{\cf5 count} {\cf1 +} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 zero_if_absent}{\cf1 :} {\cf1 (}{\b\cf6 Result} {\cf1 =} 0{\cf1 )} {\cf1 =} {\b\cf6 not} {\cf5 has_substring}{\cf1  }{\cf1 (}{\cf5 a_string}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}{\cf5 start_index}{\cf1 ,} {\cf5 a_string}{\b\cf1 .}{\cf5 count}{\cf1 )}{\cf1 ,} {\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 at_this_index}{\cf1 :} {\b\cf6 Result} {\cf1 >=} {\cf5 start_index} {\b\cf6 implies} {\cf5 elks_same_string}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 ,} {\cf5 a_string}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 ,} {\b\cf6 Result} {\cf1 +} {\cf5 other}{\b\cf1 .}{\cf5 count} {\cf1 -} 1{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 none_before}{\cf1 :} {\b\cf6 Result} {\cf1 >} {\cf5 start_index} {\b\cf6 implies} {\b\cf6 not} {\cf5 has_substring}{\cf1  }{\cf1 (}{\cf5 a_string}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}{\cf5 start_index}{\cf1 ,} {\b\cf6 Result} {\cf1 +} {\cf5 other}{\b\cf1 .}{\cf5 count} {\cf1 -} 2{\cf1 )}{\cf1 ,} {\cf5 other}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 case_insensitive_hash_code} {\cf1 (}{\cf5 a_string}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Hash code value of }{\cf5 a_string}{\cf3  which doesn't}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  take case sensitivity into account}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Not in ELKS 2001 STRING)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 hash_code_not_negative}{\cf1 :} {\b\cf6 Result} {\cf1 >=} 0{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 concat} {\cf1 (}{\cf5 a_string}{\cf1 ,} {\cf5 other}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New object which contains the characters of }{\cf5 a_string}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  followed by the characters of }{\cf5 other}{\cf3 ; If }{\cf5 other}{\cf3  is}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of dynamic type UC_STRING or one of its descendants and}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 a_string}{\cf3  is not, then the dynamic type of the result}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  is the same as the dynamic type of }{\cf5 other}{\cf3 . Otherwise}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the result is similar to 'a_string + other';}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Note: Use this routine instead of 'a_string + other' or}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  'a_string.append_string (other)' when }{\cf5 a_string}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  can be of dynamic type STRING and }{\cf5 other}{\cf3  of dynamic}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  type other than STRING such as UC_STRING, because class}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  STRING provided by the Eiffel compilers is not necessarily}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  aware of the implementation of UC_STRING and this may}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  lead to run-time errors or crashes.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 concat_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 concat_count}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 count} {\cf1 =} {\cf5 a_string}{\b\cf1 .}{\cf5 count} {\cf1 +} {\cf5 other}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\cf1 initial}{\cf1 :} {\cf5 same_string}{\cf1  }{\cf1 (}{\b\cf6 Result}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}1{\cf1 ,} {\cf5 a_string}{\b\cf1 .}{\cf5 count}{\cf1 )}{\cf1 ,} {\cf5 a_string}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 final}{\cf1 :} {\cf5 same_string}{\cf1  }{\cf1 (}{\b\cf6 Result}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}{\cf5 a_string}{\b\cf1 .}{\cf5 count} {\cf1 +} 1{\cf1 ,} {\b\cf6 Result}{\b\cf1 .}{\cf5 count}{\cf1 )}{\cf1 ,} {\cf5 other}{\cf1 )}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Comparison}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 elks_same_string} {\cf1 (}{\cf5 a_string}{\cf1 ,} {\cf5 other}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do }{\cf5 a_string}{\cf3  and }{\cf5 other}{\cf3  have the same character sequence?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 a_string}{\cf3  and }{\cf5 other}{\cf3  are considered with their characters}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  which do not fit in a CHARACTER replaced by a '%U'.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Extended from ELKS 2001 STRING)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Note: Use this feature instead of 'a_string.same_string}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (other)' when }{\cf5 a_string}{\cf3  can be of dynamic type STRING and}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 other}{\cf3  of dynamic type other than STRING such as UC_STRING,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  because class STRING provided by the Eiffel compilers is}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  not necessarily aware of the implementation of UC_STRING}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  and this may lead to run-time errors or crashes.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf5 a_string}{\b\cf1 .}{\cf5 string}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 other}{\b\cf1 .}{\cf5 string}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 same_string} {\cf1 (}{\cf5 a_string}{\cf1 ,} {\cf5 other}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do }{\cf5 a_string}{\cf3  and }{\cf5 other}{\cf3  have the same unicode character sequence?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Not in ELKS 2001 STRING)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Note: the difference with }{\cf5 elks_same_string}{\cf3  is that here the}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  implementation uses STRING.item_code instead of STRING.item}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  and hence characters which have different codes are not}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  considered equal even if they do not fit into a CHARACTER.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf5 a_string}{\b\cf1 .}{\cf5 count} {\cf1 =} {\cf5 other}{\b\cf1 .}{\cf5 count} {\b\cf6 and then} {\cf1 (}{\cf5 a_string}{\b\cf1 .}{\cf5 count} {\cf1 >} 0 {\b\cf6 implies} {\cf1 (}{\cf5 a_string}{\b\cf1 .}{\cf5 item_code}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} {\cf5 other}{\b\cf1 .}{\cf5 item_code}{\cf1  }{\cf1 (}1{\cf1 )} {\b\cf6 and} {\cf1 (}{\cf5 a_string}{\b\cf1 .}{\cf5 count} {\cf1 >=} 2 {\b\cf6 implies} {\cf5 same_string}{\cf1  }{\cf1 (}{\cf5 a_string}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}2{\cf1 ,} {\cf5 a_string}{\b\cf1 .}{\cf5 count}{\cf1 )}{\cf1 ,} {\cf5 other}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}2{\cf1 ,} {\cf5 a_string}{\b\cf1 .}{\cf5 count}{\cf1 )}{\cf1 )}{\cf1 )}{\cf1 )}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 elks_same_string}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 elks_same_string}{\cf1  }{\cf1 (}{\cf5 a_string}{\cf1 ,} {\cf5 other}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 same_case_insensitive} {\cf1 (}{\cf5 s1}{\cf1 ,} {\cf5 s2}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are }{\cf5 s1}{\cf3  and }{\cf5 s2}{\cf3  made up of the same}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  characters (case insensitive)?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Not in ELKS 2001 STRING)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 s1_not_void}{\cf1 :} {\cf5 s1} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 s2_not_void}{\cf1 :} {\cf5 s2} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_less} {\cf1 (}{\cf5 a_string}{\cf1 ,} {\cf5 other}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 a_string}{\cf3  considered less than }{\cf5 other}{\cf3 ?}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 three_way_comparison} {\cf1 (}{\cf5 a_string}{\cf1 ,} {\cf5 other}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  If }{\cf5 a_string}{\cf3  equal to }{\cf5 other}{\cf3 , 0;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  if smaller, -1; if greater, 1}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (ELKS 2001 STRING)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Note: there is a bug in the specification of the}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  contracts of }{\cf5 three_way_comparison}{\cf3  from class}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  COMPARABLE. This routine cannot satisfy its}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  postconditions if }{\cf5 other}{\cf3  is not of the same type}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  as }{\cf5 Current}{\cf3  because the postcondition uses }{\cf5 is_equal}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  and }{\cf5 is_equal}{\cf3  has a postcondition inherited from}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  ANY which says if it returns true then }{\cf5 other}{\cf3  has}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the same type as }{\cf5 Current}{\cf3 . The current feature}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 three_way_comparison}{\cf3  in class KL_STRING_ROTUINES}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  solves this problem and make the comparison}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  polymorphically safe by changing the signature}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  from 'like Current' to 'STRING' and by using}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 STRING_.same_string}{\cf3  instead of }{\cf5 is_equal}{\cf3  in}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  its postcondition.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 equal_zero}{\cf1 :} {\cf1 (}{\b\cf6 Result} {\cf1 =} 0{\cf1 )} {\cf1 =} {\cf5 same_string}{\cf1  }{\cf1 (}{\cf5 a_string}{\cf1 ,} {\cf5 other}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 three_way_case_insensitive_comparison} {\cf1 (}{\cf5 a_string}{\cf1 ,} {\cf5 other}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  If }{\cf5 a_string}{\cf3  equal to }{\cf5 other}{\cf3 , 0; if smaller, -1; if greater, 1}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (case insensitive comparison)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Not in ELKS 2001 STRING)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 three_way_lower_case_comparison} {\cf1 (}{\cf5 a_string}{\cf1 ,} {\cf5 other}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  If }{\cf5 a_string}{\cf3  equal to }{\cf5 other}{\cf3 , 0; if smaller, -1; if greater, 1}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (case insensitive comparison, consider letters as lower-case)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Not in ELKS 2001 STRING)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 three_way_upper_case_comparison} {\cf1 (}{\cf5 a_string}{\cf1 ,} {\cf5 other}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  If }{\cf5 a_string}{\cf3  equal to }{\cf5 other}{\cf3 , 0; if smaller, -1; if greater, 1}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (case insensitive comparison, consider letters as upper-case)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Not in ELKS 2001 STRING)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Duplication}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 cloned_string} {\cf1 (}{\cf5 a_string}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Clone of }{\cf5 a_string}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 cloned_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 same_type}{\cf1 :} {\cf5 Any_}{\b\cf1 .}{\cf5 same_types}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 ,} {\cf5 a_string}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_equal}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 a_string}{\cf1 )}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Element change}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 appended_string} {\cf1 (}{\cf5 a_string}{\cf1 ,} {\cf5 other}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  If the dynamic type of }{\cf5 other}{\cf3  is UC_STRING or one of}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  its descendants and }{\cf5 a_string}{\cf3  is not, then return a}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  new object with the same dynamic type as }{\cf5 other}{\cf3  and}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  which contains the characters of }{\cf5 a_string}{\cf3  followed}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  by the characters of }{\cf5 other}{\cf3 . Otherwise append the}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  characters of }{\cf5 other}{\cf3  to }{\cf5 a_string}{\cf3  and return }{\cf5 a_string}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Note: Use this routine instead of 'a_string.append_string (other)'}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  when }{\cf5 a_string}{\cf3  can be of dynamic type STRING and }{\cf5 other}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of dynamic type other than STRING such as UC_STRING, because}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  class STRING provided by the Eiffel compilers is not necessarily}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  aware of the implementation of UC_STRING and this may}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  lead to run-time errors or crashes.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 append_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 type_if_not_aliased}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\cf5 a_string} {\b\cf6 implies} {\cf5 Any_}{\b\cf1 .}{\cf5 same_types}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 ,} {\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 new_count}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 count} {\cf1 =} {\b\cf6 old} {\cf5 a_string}{\b\cf1 .}{\cf5 count} {\cf1 +} {\b\cf6 old} {\cf5 other}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\cf1 initial}{\cf1 :} {\cf5 same_string}{\cf1  }{\cf1 (}{\b\cf6 Result}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}1{\cf1 ,} {\b\cf6 old} {\cf5 a_string}{\b\cf1 .}{\cf5 count}{\cf1 )}{\cf1 ,} {\b\cf6 old} {\cf5 cloned_string}{\cf1  }{\cf1 (}{\cf5 a_string}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 final}{\cf1 :} {\cf5 same_string}{\cf1  }{\cf1 (}{\b\cf6 Result}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 a_string}{\b\cf1 .}{\cf5 count} {\cf1 +} 1{\cf1 ,} {\b\cf6 Result}{\b\cf1 .}{\cf5 count}{\cf1 )}{\cf1 ,} {\b\cf6 old} {\cf5 cloned_string}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 appended_substring} {\cf1 (}{\cf5 a_string}{\cf1 ,} {\cf5 other}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 s}{\cf1 ,} {\cf5 e}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  If the dynamic type of }{\cf5 other}{\cf3  is UC_STRING or one of}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  its descendants and }{\cf5 a_string}{\cf3  is not, then return a}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  new object with the same dynamic type as }{\cf5 other}{\cf3  and}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  which contains the characters of }{\cf5 a_string}{\cf3  followed by}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the characters of }{\cf5 other}{\cf3  between indexes }{\cf5 s}{\cf3  and }{\cf5 e}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Otherwise append the characters of }{\cf5 other}{\cf3  between }{\cf5 s}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  and }{\cf5 e}{\cf3  to }{\cf5 a_string}{\cf3  and return }{\cf5 a_string}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Note: Use this routine instead of 'a_string.append_string}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (other.substring (s, e)' when }{\cf5 a_string}{\cf3  can be of dynamic}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  type STRING and }{\cf5 other}{\cf3  of dynamic type other than STRING}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  such as UC_STRING, because class STRING provided by the}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Eiffel compilers is not necessarily aware of the}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  implementation of UC_STRING and this may lead to run-time}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  errors or crashes.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_large_enough}{\cf1 :} {\cf5 s} {\cf1 >=} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 e_small_enough}{\cf1 :} {\cf5 e} {\cf1 <=} {\cf5 other}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_interval}{\cf1 :} {\cf5 s} {\cf1 <=} {\cf5 e} {\cf1 +} 1{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 append_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 type_if_not_aliased}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\cf5 a_string} {\b\cf6 implies} {\cf5 Any_}{\b\cf1 .}{\cf5 same_types}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 ,} {\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 new_count}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 count} {\cf1 =} {\b\cf6 old} {\cf5 a_string}{\b\cf1 .}{\cf5 count} {\cf1 +} {\cf5 e} {\cf1 -} {\cf5 s} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 initial}{\cf1 :} {\cf5 same_string}{\cf1  }{\cf1 (}{\b\cf6 Result}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}1{\cf1 ,} {\b\cf6 old} {\cf5 a_string}{\b\cf1 .}{\cf5 count}{\cf1 )}{\cf1 ,} {\b\cf6 old} {\cf5 cloned_string}{\cf1  }{\cf1 (}{\cf5 a_string}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 final}{\cf1 :} {\cf5 same_string}{\cf1  }{\cf1 (}{\b\cf6 Result}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 a_string}{\b\cf1 .}{\cf5 count} {\cf1 +} 1{\cf1 ,} {\b\cf6 Result}{\b\cf1 .}{\cf5 count}{\cf1 )}{\cf1 ,} {\b\cf6 old} {\cf5 other}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 ,} {\cf5 e}{\cf1 )}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 replaced_substring} {\cf1 (}{\cf5 a_string}{\cf1 ,} {\cf5 other}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 start_index}{\cf1 ,} {\cf5 end_index}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  If the dynamic type of }{\cf5 other}{\cf3  is UC_STRING or one of}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  its descendants and }{\cf5 a_string}{\cf3  is not, then return a}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  new object with the same dynamic type as }{\cf5 other}{\cf3  and}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  which contains the characters of }{\cf5 a_string}{\cf3  from which}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the substring from }{\cf5 start_index}{\cf3  to }{\cf5 end_index}{\cf3 , inclusive,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  has been replaced with }{\cf5 other}{\cf3 . Otherwise replace the}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  substring from }{\cf5 start_index}{\cf3  to }{\cf5 end_index}{\cf3 , inclusive,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  in }{\cf5 a_string}{\cf3  with }{\cf5 other}{\cf3  and return }{\cf5 a_string}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Note: Use this routine instead of 'a_string.replace_substring (other)'}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  when }{\cf5 a_string}{\cf3  can be of dynamic type STRING and }{\cf5 other}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of dynamic type other than STRING such as UC_STRING, because}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  class STRING provided by the Eiffel compilers is not necessarily}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  aware of the implementation of UC_STRING and this may}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  lead to run-time errors or crashes.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_start_index}{\cf1 :} 1 {\cf1 <=} {\cf5 start_index}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_end_index}{\cf1 :} {\cf5 end_index} {\cf1 <=} {\cf5 a_string}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\cf1 meaningful_interval}{\cf1 :} {\cf5 start_index} {\cf1 <=} {\cf5 end_index} {\cf1 +} 1{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 replaced_substring_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 replaced}{\cf1 :} {\cf5 same_string}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 ,} {\b\cf6 old} {\cf1 (}{\cf5 appended_string}{\cf1  }{\cf1 (}{\cf5 appended_string}{\cf1  }{\cf1 (}{\cf5 a_string}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}1{\cf1 ,} {\cf5 start_index} {\cf1 -} 1{\cf1 )}{\cf1 ,} {\cf5 other}{\cf1 )}{\cf1 ,} {\cf5 a_string}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}{\cf5 end_index} {\cf1 +} 1{\cf1 ,} {\cf5 a_string}{\b\cf1 .}{\cf5 count}{\cf1 )}{\cf1 )}{\cf1 )}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 append_substring_to_string} {\cf1 (}{\cf5 a_string}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 other}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 s}{\cf1 ,} {\cf5 e}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Append substring of }{\cf5 other}{\cf3  between indexes}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 s}{\cf3  and }{\cf5 e}{\cf3  at end of }{\cf5 a_string}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 same_type}{\cf1 :} {\cf5 Any_}{\b\cf1 .}{\cf5 same_types}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 ,} {\cf5 a_string}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_large_enough}{\cf1 :} {\cf5 s} {\cf1 >=} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 e_small_enough}{\cf1 :} {\cf5 e} {\cf1 <=} {\cf5 other}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_interval}{\cf1 :} {\cf5 s} {\cf1 <=} {\cf5 e} {\cf1 +} 1{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 appended}{\cf1 :} {\cf5 a_string}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\b\cf6 old} {\cf5 cloned_string}{\cf1  }{\cf1 (}{\cf5 a_string}{\cf1 )} {\cf1 +} {\b\cf6 old} {\cf5 other}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 ,} {\cf5 e}{\cf1 )}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 replaced_all_substrings} {\cf1 (}{\cf5 a_text}{\cf1 ,} {\cf5 a_old}{\cf1 ,} {\cf5 a_new}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Copy of }{\cf5 a_text}{\cf3  for which each occurrence of }{\cf5 a_old}{\cf3  has been replaced}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  by }{\cf5 a_new}{\cf3 ; }{\cf5 a_text}{\cf3  if no occurrence could be found}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_text_not_void}{\cf1 :} {\cf5 a_text} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_old_not_void}{\cf1 :} {\cf5 a_old} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_new_not_void}{\cf1 :} {\cf5 a_new} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 replaced_all_substrings_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 replaced_first_substring} {\cf1 (}{\cf5 a_text}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 a_old}{\cf1 ,} {\cf5 a_new}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Copy of }{\cf5 a_text}{\cf3  for which first occurrence of }{\cf5 a_old}{\cf3  has been replaced}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  by }{\cf5 a_new}{\cf3 ; }{\cf5 a_text}{\cf3  if no occurrence could be found}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_text_not_void}{\cf1 :} {\cf5 a_text} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_old_not_void}{\cf1 :} {\cf5 a_old} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_new_not_void}{\cf1 :} {\cf5 a_new} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 replaced_first_substring_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Conversion}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 as_string} {\cf1 (}{\cf5 a_string}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String version of }{\cf5 a_string}{\cf3 ;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Return }{\cf5 a_string}{\cf3  if it is of dynamic type STRING,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  return the UTF encoding version if it is a descendant}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of UC_STRING, return 'string (a_string)' otherwise.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 as_string_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 string_type}{\cf1 :} {\cf5 Any_}{\b\cf1 .}{\cf5 same_types}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 ,} ""{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 aliasing}{\cf1 :} {\cf5 Any_}{\b\cf1 .}{\cf5 same_types}{\cf1  }{\cf1 (}{\cf5 a_string}{\cf1 ,} ""{\cf1 )} {\b\cf6 implies} {\b\cf6 Result} {\cf1 =} {\cf5 a_string}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 hexadecimal_to_integer} {\cf1 (}{\cf5 a_string}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Convert hexadecimal number string to integer;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Not in ELKS 2001 STRING)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Note: Do not take overflow into account.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 hexadecimal}{\cf1 :} {\cf5 is_hexadecimal}{\cf1  }{\cf1 (}{\cf5 a_string}{\cf1 )}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Removal}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 left_adjust} {\cf1 (}{\cf5 a_string}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Remove leading whitespace from }{\cf5 a_string}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Not in ELKS 2001 STRING)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Note: SE 1.1 removes the following characters: ' ';}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  ISE 5.4 removes the following characters: ' ', '%T', '%R', '%N';}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 left_adjusted}{\cf1 :} {\cf1 (}{\cf5 a_string}{\b\cf1 .}{\cf5 count} {\cf1 /=} 0{\cf1 )} {\b\cf6 implies} {\cf1 (}{\cf1 (}{\cf5 a_string}{\b\cf1 .}{\cf5 item_code}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 /=} {\cf1 (}' '{\cf1 )}{\b\cf1 .}{\cf5 code}{\cf1 )} {\b\cf6 and} {\cf1 (}{\cf5 a_string}{\b\cf1 .}{\cf5 item_code}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 /=} {\cf1 (}'%T'{\cf1 )}{\b\cf1 .}{\cf5 code}{\cf1 )} {\b\cf6 and} {\cf1 (}{\cf5 a_string}{\b\cf1 .}{\cf5 item_code}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 /=} {\cf1 (}'%R'{\cf1 )}{\b\cf1 .}{\cf5 code}{\cf1 )} {\b\cf6 and} {\cf1 (}{\cf5 a_string}{\b\cf1 .}{\cf5 item_code}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 /=} {\cf1 (}'%N'{\cf1 )}{\b\cf1 .}{\cf5 code}{\cf1 )}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 right_adjust} {\cf1 (}{\cf5 a_string}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Remove trailing whitespace from }{\cf5 a_string}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Not in ELKS 2001 STRING)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Note: SE 1.1 removes the following characters: ' ';}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  ISE 5.4 removes the following characters: ' ', '%T', '%R', '%N';}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 right_adjusted}{\cf1 :} {\cf1 (}{\cf5 a_string}{\b\cf1 .}{\cf5 count} {\cf1 /=} 0{\cf1 )} {\b\cf6 implies} {\cf1 (}{\cf1 (}{\cf5 a_string}{\b\cf1 .}{\cf5 item_code}{\cf1  }{\cf1 (}{\cf5 a_string}{\b\cf1 .}{\cf5 count}{\cf1 )} {\cf1 /=} {\cf1 (}' '{\cf1 )}{\b\cf1 .}{\cf5 code}{\cf1 )} {\b\cf6 and} {\cf1 (}{\cf5 a_string}{\b\cf1 .}{\cf5 item_code}{\cf1  }{\cf1 (}{\cf5 a_string}{\b\cf1 .}{\cf5 count}{\cf1 )} {\cf1 /=} {\cf1 (}'%T'{\cf1 )}{\b\cf1 .}{\cf5 code}{\cf1 )} {\b\cf6 and} {\cf1 (}{\cf5 a_string}{\b\cf1 .}{\cf5 item_code}{\cf1  }{\cf1 (}{\cf5 a_string}{\b\cf1 .}{\cf5 count}{\cf1 )} {\cf1 /=} {\cf1 (}'%R'{\cf1 )}{\b\cf1 .}{\cf5 code}{\cf1 )} {\b\cf6 and} {\cf1 (}{\cf5 a_string}{\b\cf1 .}{\cf5 item_code}{\cf1  }{\cf1 (}{\cf5 a_string}{\b\cf1 .}{\cf5 count}{\cf1 )} {\cf1 /=} {\cf1 (}'%N'{\cf1 )}{\b\cf1 .}{\cf5 code}{\cf1 )}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 wipe_out} {\cf1 (}{\cf5 a_string}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Remove all characters in }{\cf5 a_string}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do not discard allocated memory (i.e. do not}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  change capacity) when allowed by the underlying}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Eiffel compiler.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Note: currently ISE and SE will not change capacity.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 wiped_out}{\cf1 :} {\cf5 a_string}{\b\cf1 .}{\cf5 count} {\cf1 =} 0{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 prune_all_trailing} {\cf1 (}{\cf5 a_string}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 c}{\cf1 :} {\cf4 CHARACTER_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Remove all trailing occurrences of }{\cf5 c}{\cf3  in }{\cf5 a_string}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 no_more_trailing}{\cf1 :} {\cf5 a_string}{\b\cf1 .}{\cf5 is_empty} {\b\cf6 or else} {\cf5 a_string}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 a_string}{\b\cf1 .}{\cf5 count}{\cf1 )} {\cf1 /=} {\cf5 c}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Resizing}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 resize_buffer} {\cf1 (}{\cf5 a_string}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 n}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Resize }{\cf5 a_string}{\cf3  so that it contains }{\cf5 n}{\cf3  characters.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Do not lose any previously entered characters.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_is_string}{\cf1 :} {\cf5 Any_}{\b\cf1 .}{\cf5 same_types}{\cf1  }{\cf1 (}{\cf5 a_string}{\cf1 ,} ""{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 n_large_enough}{\cf1 :} {\cf5 n} {\cf1 >=} {\cf5 a_string}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 count_set}{\cf1 :} {\cf5 a_string}{\b\cf1 .}{\cf5 count} {\cf1 =} {\cf5 n}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Conversion}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 to_integer_64} {\cf1 (}{\cf5 a_string}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 INTEGER_64}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 a_string}{\cf3  as }{\cf5 INTEGER_64}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 integer_64_string}{\cf1 :} {\cf5 is_integer_64}{\cf1  }{\cf1 (}{\cf5 a_string}{\cf1 )}{\line}
+}{\tab}{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 KL_STRING_ROUTINES}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

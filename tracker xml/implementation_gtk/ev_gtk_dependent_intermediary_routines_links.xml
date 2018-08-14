@@ -1,0 +1,33 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines_links.xml</location>EV_GTK_DEPENDENT_INTERMEDIARY_ROUTINES</class>
+
+<keyword>Ancestors</keyword>
+	<class><location>../implementation_gtk/ev_gtk_key_conversion_links.xml</location>EV_GTK_KEY_CONVERSION</class>
+	<class><include>False</include>IDENTIFIED</class>
+
+<keyword>Descendants</keyword>
+	<class><location>../implementation_gtk/ev_intermediary_routines_links.xml</location>EV_INTERMEDIARY_ROUTINES</class>
+
+<keyword>Clients</keyword>
+	<class><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines_links.xml</location>EV_GTK_DEPENDENT_INTERMEDIARY_ROUTINES</class>
+
+<keyword>Suppliers</keyword>
+	<class><include>False</include>BOOLEAN</class>
+	<class><location>../implementation_gtk/ev_any_imp_links.xml</location>EV_ANY_IMP</class><char>*</char>
+	<class><location>../interface/ev_column_action_sequence_links.xml</location>EV_COLUMN_ACTION_SEQUENCE</class>
+	<class><location>../implementation_gtk/ev_combo_box_imp_links.xml</location>EV_COMBO_BOX_IMP</class>
+	<class><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines_links.xml</location>EV_GTK_DEPENDENT_INTERMEDIARY_ROUTINES</class>
+	<class><location>../implementation_gtk/ev_gtk_tree_view_links.xml</location>EV_GTK_TREE_VIEW</class><char>*</char>
+	<class><location>../implementation_gtk/ev_multi_column_list_imp_links.xml</location>EV_MULTI_COLUMN_LIST_IMP</class>
+	<class><location>../interface/ev_notify_action_sequence_links.xml</location>EV_NOTIFY_ACTION_SEQUENCE</class>
+	<class><location>../implementation_gtk/ev_pnd_deferred_item_parent_links.xml</location>EV_PND_DEFERRED_ITEM_PARENT</class><char>*</char>
+	<class><location>../implementation_gtk/ev_rich_text_imp_links.xml</location>EV_RICH_TEXT_IMP</class>
+	<class><location>../implementation_gtk/ev_tool_bar_button_imp_links.xml</location>EV_TOOL_BAR_BUTTON_IMP</class>
+	<class><location>../implementation_gtk/ev_tool_bar_radio_button_imp_links.xml</location>EV_TOOL_BAR_RADIO_BUTTON_IMP</class>
+	<class><location>../implementation_gtk/ev_tree_imp_links.xml</location>EV_TREE_IMP</class>
+	<class><location>../implementation_gtk/ev_tree_node_imp_links.xml</location>EV_TREE_NODE_IMP</class>
+	<class><location>../implementation_gtk/gtk2_links.xml</location>GTK2</class>
+	<class><include>False</include>INTEGER_32</class>
+
+</system>

@@ -1,0 +1,270 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "Eiffel Vision viewport. GTK+ implementation."{\line}
+{\tab}{\cf1 legal}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 status}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2013-05-30 14:33:11 -0700 (Thu, 30 May 2013) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 92653 $"{\line}
+{\line}
+{\b\cf6 class} {\line}
+{\tab}{\cf4 EV_VIEWPORT_IMP}{\line}
+{\line}
+{\b\cf6 inherit}{\line}
+{\tab}{\cf4 EV_VIEWPORT_I}{\line}
+{\tab}{\tab}{\b\cf6 undefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 propagate_foreground_color}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 propagate_background_color}{\line}
+{\tab}{\tab}{\b\cf6 redefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 interface}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_offset}{\line}
+{\tab}{\tab}{\b\cf6 end}{\line}
+{\line}
+{\tab}{\cf4 EV_CELL_IMP}{\line}
+{\tab}{\tab}{\b\cf6 redefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 interface}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 container_widget}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 visual_widget}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 on_removed_item}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 needs_event_box}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 gtk_insert_i_th}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 gtk_container_remove}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 make}{\line}
+{\tab}{\tab}{\b\cf6 end}{\line}
+{\line}
+{\b\cf6 create} {\line}
+{\tab}{\cf5 make}{\line}
+{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Initialization}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Creation routine and initialization for }{\cf5 Current}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 c_object} {\cf1 =} {\cf5 default_pointer} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 viewport} {\cf1 :=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_viewport_new} {\cf1 (}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 null_pointer}{\cf1 ,} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 null_pointer}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 set_c_object}{\cf1  }{\cf1 (}{\cf5 viewport}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_viewport_set_shadow_type} {\cf1 (}{\cf5 viewport}{\cf1 ,} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_shadow_none_enum}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_widget_set_minimum_size} {\cf1 (}{\cf5 viewport}{\cf1 ,} 1{\cf1 ,} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 container_widget} {\cf1 :=} {\cf5 viewport}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf1 Precursor}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 needs_event_box}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does }{\cf5 event_widget}{\cf3  need an event box to receive events?}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 x_offset}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Horizontal position of viewport relative to }{\cf5 item}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 internal_x_offset}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 y_offset}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Vertical position of viewport relative to }{\cf5 item}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 internal_y_offset}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Element change}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 block_resize_actions}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Block any resize actions that may occur.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 item} {\b\cf6 as} l_item {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_item}{\b\cf1 .}{\cf5 implementation}{\b\cf1 .}{\cf5 resize_actions_internal} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_item}{\b\cf1 .}{\cf5 implementation}{\b\cf1 .}{\cf5 resize_actions}{\b\cf1 .}{\cf5 block}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 unblock_resize_actions}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Unblock all resize actions.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 item} {\b\cf6 as} l_item {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_item}{\b\cf1 .}{\cf5 implementation}{\b\cf1 .}{\cf5 resize_actions_internal} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_item}{\b\cf1 .}{\cf5 implementation}{\b\cf1 .}{\cf5 resize_actions}{\b\cf1 .}{\cf5 resume}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_x_offset} {\cf1 (}{\cf5 a_x}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 x_offset}{\cf3  to }{\cf5 a_x}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_offset}{\cf1  }{\cf1 (}{\cf5 a_x}{\cf1 ,} {\cf5 internal_y_offset}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_offset} {\cf1 (}{\cf5 a_x}{\cf1 ,} {\cf5 a_y}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set viewport offset to }{\cf5 a_x}{\cf3 , }{\cf5 a_y}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_null}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_x_offset_changed}{\cf1 ,} {\cf5 l_y_offset_changed}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_x_offset_changed} {\cf1 :=} {\cf5 a_x} {\cf1 /=} {\cf5 internal_x_offset}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_y_offset_changed} {\cf1 :=} {\cf5 a_y} {\cf1 /=} {\cf5 internal_y_offset}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_x_offset_changed} {\b\cf6 or else} {\cf5 l_y_offset_changed} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 block_resize_actions}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_x_offset_changed} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 internal_x_offset} {\cf1 :=} {\cf5 a_x}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 internal_set_value_from_adjustment}{\cf1  }{\cf1 (}{\cf5 horizontal_adjustment}{\cf1 ,} {\cf5 a_x}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_y_offset_changed} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 internal_y_offset} {\cf1 :=} {\cf5 a_y}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 internal_set_value_from_adjustment}{\cf1  }{\cf1 (}{\cf5 vertical_adjustment}{\cf1 ,} {\cf5 a_y}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_viewport_struct_bin_window} {\cf1 (}{\cf5 viewport}{\cf1 )} {\cf1 /=} {\cf5 l_null} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_window_move} {\cf1 (}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_viewport_struct_bin_window} {\cf1 (}{\cf5 viewport}{\cf1 )}{\cf1 ,} {\cf1 -} {\cf5 a_x}{\cf1 ,} {\cf1 -} {\cf5 a_y}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_x_offset_changed} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_adjustment_value_changed} {\cf1 (}{\cf5 horizontal_adjustment}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_y_offset_changed} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_adjustment_value_changed} {\cf1 (}{\cf5 vertical_adjustment}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 unblock_resize_actions}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_y_offset} {\cf1 (}{\cf5 a_y}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 y_offset}{\cf3  to }{\cf5 a_y}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_offset}{\cf1  }{\cf1 (}{\cf5 internal_x_offset}{\cf1 ,} {\cf5 a_y}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_item_size} {\cf1 (}{\cf5 a_width}{\cf1 ,} {\cf5 a_height}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 a_widget.width}{\cf3  to }{\cf5 a_width}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 a_widget.height}{\cf3  to }{\cf5 a_height}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 w_imp}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_WIDGET_IMP}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_parent_box}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_c_object}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_item}{\cf1 :} {\b\cf6 like} {\cf5 item}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_alloc}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_item} {\cf1 :=} {\cf5 item}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_item} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 w_imp} {\cf1 ?=} {\cf5 l_item}{\b\cf1 .}{\cf5 implementation}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 w_imp} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_c_object} {\cf1 :=} {\cf5 w_imp}{\b\cf1 .}{\cf5 c_object}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_parent_box} {\cf1 :=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_widget_struct_parent} {\cf1 (}{\cf5 l_c_object}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_alloc} {\cf1 :=} {\cf5 l_alloc}{\b\cf1 .}{\cf5 memory_alloc}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 c_gtk_allocation_struct_size}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 set_gtk_allocation_struct_x} {\cf1 (}{\cf5 l_alloc}{\cf1 ,} {\cf5 internal_x_offset}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 set_gtk_allocation_struct_y} {\cf1 (}{\cf5 l_alloc}{\cf1 ,} {\cf5 internal_y_offset}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 set_gtk_allocation_struct_width} {\cf1 (}{\cf5 l_alloc}{\cf1 ,} {\cf5 a_width}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 set_gtk_allocation_struct_height} {\cf1 (}{\cf5 l_alloc}{\cf1 ,} {\cf5 a_height}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_widget_set_minimum_size} {\cf1 (}{\cf5 l_parent_box}{\cf1 ,} {\cf5 a_width}{\cf1 ,} {\cf5 a_height}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_widget_size_allocate} {\cf1 (}{\cf5 l_parent_box}{\cf1 ,} {\cf5 l_alloc}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_alloc}{\b\cf1 .}{\cf5 memory_free}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 gtk_insert_i_th} {\cf1 (}{\cf5 a_container}{\cf1 ,} {\cf5 a_child}{\cf1 :} {\cf4 POINTER}{\cf1 ;} {\cf5 a_position}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Move }{\cf5 a_child}{\cf3  to }{\cf5 a_position}{\cf3  in }{\cf5 a_container}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_parent_box}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_parent_box} {\cf1 :=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_event_box_new}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_event_box_set_visible_window} {\cf1 (}{\cf5 l_parent_box}{\cf1 ,} {\b\cf6 False}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_widget_show} {\cf1 (}{\cf5 l_parent_box}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_container_add} {\cf1 (}{\cf5 l_parent_box}{\cf1 ,} {\cf5 a_child}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_container_add} {\cf1 (}{\cf5 a_container}{\cf1 ,} {\cf5 l_parent_box}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 gtk_container_remove} {\cf1 (}{\cf5 a_container}{\cf1 ,} {\cf5 a_child}{\cf1 :} {\cf4 POINTER}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Remove }{\cf5 a_child}{\cf3  from }{\cf5 a_container}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_parent_box}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_parent_box} {\cf1 :=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_widget_struct_parent} {\cf1 (}{\cf5 a_child}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_container_remove} {\cf1 (}{\cf5 l_parent_box}{\cf1 ,} {\cf5 a_child}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_container_remove} {\cf1 (}{\cf5 a_container}{\cf1 ,} {\cf5 l_parent_box}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 container_widget}{\cf1 :} {\cf4 POINTER}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Pointer to the event box}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 visual_widget}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Pointer to the GtkViewport widget.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 viewport}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 on_removed_item} {\cf1 (}{\cf5 a_widget_imp}{\cf1 :} {\cf4 EV_WIDGET_IMP}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Reset minimum size.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf1 Precursor}{\cf1  }{\cf1 (}{\cf5 a_widget_imp}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_offset}{\cf1  }{\cf1 (}0{\cf1 ,} 0{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 internal_x_offset}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  X and Y offset values for viewport.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 internal_y_offset}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  X and Y offset values for viewport.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 horizontal_adjustment}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_viewport_get_hadjustment} {\cf1 (}{\cf5 viewport}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 vertical_adjustment}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_viewport_get_vadjustment} {\cf1 (}{\cf5 viewport}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 internal_set_value_from_adjustment} {\cf1 (}{\cf5 l_adj}{\cf1 :} {\cf4 POINTER}{\cf1 ;} {\cf5 a_value}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 value}{\cf3  of adjustment }{\cf5 l_adj}{\cf3  to }{\cf5 a_value}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 l_adj_not_null}{\cf1 :} {\cf5 l_adj} {\cf1 /=} {\cf5 default_pointer}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_adjustment_struct_lower} {\cf1 (}{\cf5 l_adj}{\cf1 )} {\cf1 >} {\cf5 a_value}{\b\cf1 .}{\cf5 to_real} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 set_gtk_adjustment_struct_lower} {\cf1 (}{\cf5 l_adj}{\cf1 ,} {\cf5 a_value}{\b\cf1 .}{\cf5 to_real}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_adjustment_struct_upper} {\cf1 (}{\cf5 l_adj}{\cf1 )} {\cf1 <} {\cf5 a_value}{\b\cf1 .}{\cf5 to_real} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 set_gtk_adjustment_struct_upper} {\cf1 (}{\cf5 l_adj}{\cf1 ,} {\cf5 a_value}{\b\cf1 .}{\cf5 to_real}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 set_gtk_adjustment_struct_value} {\cf1 (}{\cf5 l_adj}{\cf1 ,} {\cf5 a_value}{\b\cf1 .}{\cf5 to_real}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 value_set}{\cf1 :} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_adjustment_struct_value} {\cf1 (}{\cf5 l_adj}{\cf1 )} {\cf1 =} {\cf5 a_value}{\b\cf1 .}{\cf5 to_real}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 viewport}{\cf1 :} {\cf4 POINTER}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Pointer to viewport, used for reuse of adjustment functions from descendants.}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_ANY}{\cf1 ,} {\cf4 EV_ANY_I}{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 interface}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_VIEWPORT}{\line}
+{\tab}{\tab}{\b\cf6 note}{\line}
+{\tab}{\tab}{\tab}option: stable{\line}
+{\tab}{\tab}{\b\cf6 attribute}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 note}{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 1984-2013, Eiffel Software and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"{\line}
+{\tab}{\cf1 source}{\cf1 :} "[{\line}
+{\tab}{\tab}Eiffel Software{\line}
+{\tab}{\tab}5949 Hollister Ave., Goleta, CA 93117 USA{\line}
+{\tab}{\tab}Telephone 805-685-1006, Fax 805-685-6869{\line}
+{\tab}{\tab}Website http://www.eiffel.com{\line}
+{\tab}{\tab}Customer support http://support.eiffel.com{\line}
+{\tab}]"{\line}
+{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 EV_VIEWPORT_IMP}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

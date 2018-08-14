@@ -1,0 +1,16 @@
+<system>
+<keyword>deferred</keyword> <keyword>class</keyword>
+	<class><location>../interface/ev_gauge_action_sequences_chart.xml</location>EV_GAUGE_ACTION_SEQUENCES</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>interface</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Action sequences for EV_GAUGE.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;event, action, sequence&quot;</string>
+
+<keyword>Ancestors</keyword>
+	<class><location>../interface/ev_action_sequences_chart.xml</location>EV_ACTION_SEQUENCES</class><char>*</char>
+
+<keyword>Action sequences</keyword>
+	<feature><location>../interface/ev_gauge_action_sequences.xml#f_change_actions</location>change_actions</feature><symbol>:</symbol> <class><location>../interface/ev_value_change_action_sequence_chart.xml</location>EV_VALUE_CHANGE_ACTION_SEQUENCE</class>
+
+</system>

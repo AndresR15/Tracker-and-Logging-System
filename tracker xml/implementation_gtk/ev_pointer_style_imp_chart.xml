@@ -1,0 +1,33 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../implementation_gtk/ev_pointer_style_imp_chart.xml</location>EV_POINTER_STYLE_IMP</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>implementation_gtk</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Windows implementation of EV_POINTER_STYLE_I.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;mouse, pointer, cursor, arrow&quot;</string>
+	<indexing_tag>create</indexing_tag><symbol>:</symbol> <feature><location>../implementation_gtk/ev_pointer_style_imp.xml#f_make</location>make</feature>
+
+<keyword>Ancestors</keyword>
+	<class><include>False</include>DISPOSABLE</class><char>*</char>
+	<class><location>../interface/ev_any_handler_chart.xml</location>EV_ANY_HANDLER</class>
+	<class><location>../implementation_interface/ev_pointer_style_i_chart.xml</location>EV_POINTER_STYLE_I</class><char>*</char>
+
+<keyword>Queries</keyword>
+	<feature><location>../implementation_gtk/ev_pointer_style_imp.xml#f_gdk_cursor_from_pointer_style</location>gdk_cursor_from_pointer_style</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+	<feature><location>../implementation_gtk/ev_pointer_style_imp.xml#f_gdk_pixbuf</location>gdk_pixbuf</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+	<feature><location>../implementation_gtk/ev_pointer_style_imp.xml#f_height</location>height</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_gtk/ev_pointer_style_imp.xml#f_image_from_xpm_data</location>image_from_xpm_data</feature> <symbol>(</symbol><local>a_xpm_data</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>POINTER</class>
+	<feature><location>../implementation_interface/ev_any_i.xml#f_is_destroyed</location>is_destroyed</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../implementation_gtk/ev_pointer_style_imp.xml#f_width</location>width</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_gtk/ev_pointer_style_imp.xml#f_x_hotspot</location>x_hotspot</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_gtk/ev_pointer_style_imp.xml#f_y_hotspot</location>y_hotspot</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+
+<keyword>Commands</keyword>
+	<feature><location>../implementation_gtk/ev_pointer_style_imp.xml#f_copy_from_pointer_style</location>copy_from_pointer_style</feature> <symbol>(</symbol><local>a_pointer_style</local><symbol>:</symbol> <symbol>[</symbol><keyword>attached</keyword> <keyword>like</keyword> <feature><location>../implementation_interface/ev_pointer_style_i.xml#f_interface</location>interface</feature><symbol>]</symbol> <keyword>attached</keyword> <class><location>../interface/ev_pointer_style_chart.xml</location>EV_POINTER_STYLE</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_pointer_style_imp.xml#f_destroy</location>destroy</feature>
+	<feature><location>../implementation_gtk/ev_pointer_style_imp.xml#f_set_gdkpixbuf</location>set_gdkpixbuf</feature> <symbol>(</symbol><local>a_pixbuf</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_pointer_style_imp.xml#f_set_x_hotspot</location>set_x_hotspot</feature> <symbol>(</symbol><local>a_x</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_gtk/ev_pointer_style_imp.xml#f_set_y_hotspot</location>set_y_hotspot</feature> <symbol>(</symbol><local>a_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+
+</system>

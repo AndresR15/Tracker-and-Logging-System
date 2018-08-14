@@ -1,0 +1,37 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../implementation_gtk/ev_notebook_imp_links.xml</location>EV_NOTEBOOK_IMP</class>
+
+<keyword>Ancestors</keyword>
+	<class><location>../implementation_gtk/ev_fontable_imp_links.xml</location>EV_FONTABLE_IMP</class><char>*</char>
+	<class><location>../implementation_interface/ev_notebook_i_links.xml</location>EV_NOTEBOOK_I</class><char>*</char>
+	<class><location>../implementation_gtk/ev_widget_list_imp_links.xml</location>EV_WIDGET_LIST_IMP</class><char>*</char>
+
+<keyword>Clients</keyword>
+	<class><location>../implementation_gtk/ev_intermediary_routines_links.xml</location>EV_INTERMEDIARY_ROUTINES</class>
+	<class><location>../interface/ev_notebook_links.xml</location>EV_NOTEBOOK</class>
+	<class><location>../implementation_gtk/ev_notebook_imp_links.xml</location>EV_NOTEBOOK_IMP</class>
+	<class><location>../implementation_gtk/ev_notebook_tab_imp_links.xml</location>EV_NOTEBOOK_TAB_IMP</class>
+
+<keyword>Suppliers</keyword>
+	<class><include>False</include>BOOLEAN</class>
+	<class><location>../implementation_gtk/ev_application_imp_links.xml</location>EV_APPLICATION_IMP</class>
+	<class><location>../implementation_gtk/ev_gtk_callback_marshal_links.xml</location>EV_GTK_CALLBACK_MARSHAL</class>
+	<class><location>../implementation_gtk/ev_gtk_c_string_links.xml</location>EV_GTK_C_STRING</class>
+	<class><location>../interface/ev_notebook_links.xml</location>EV_NOTEBOOK</class>
+	<class><location>../implementation_gtk/ev_notebook_imp_links.xml</location>EV_NOTEBOOK_IMP</class>
+	<class><location>../interface/ev_notebook_tab_links.xml</location>EV_NOTEBOOK_TAB</class>
+	<class><location>../interface/ev_notify_action_sequence_links.xml</location>EV_NOTIFY_ACTION_SEQUENCE</class>
+	<class><location>../interface/ev_pixmap_links.xml</location>EV_PIXMAP</class>
+	<class><location>../implementation_gtk/ev_pixmap_imp_links.xml</location>EV_PIXMAP_IMP</class>
+	<class><location>../interface/ev_widget_links.xml</location>EV_WIDGET</class><char>*</char>
+	<class><location>../implementation_interface/ev_widget_i_links.xml</location>EV_WIDGET_I</class><char>*</char>
+	<class><location>../implementation_gtk/ev_widget_imp_links.xml</location>EV_WIDGET_IMP</class><char>*</char>
+	<class><location>../implementation_gtk/ev_widget_list_imp_links.xml</location>EV_WIDGET_LIST_IMP</class><char>*</char>
+	<class><location>../implementation_gtk/gtk_links.xml</location>GTK</class>
+	<class><location>../implementation_gtk/gtk2_links.xml</location>GTK2</class>
+	<class><include>False</include>INTEGER_32</class>
+	<class><include>False</include>STRING_32</class>
+	<class><include>False</include>TYPED_POINTER</class> <symbol>[</symbol><generic>G</generic><symbol>]</symbol>
+
+</system>

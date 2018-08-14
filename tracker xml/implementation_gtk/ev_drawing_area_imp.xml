@@ -1,0 +1,411 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;EiffelVision drawing area. GTK implementation.&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2017-03-27 13:31:29 -0700 (Mon, 27 Mar 2017) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 100058 $&quot;</string>
+
+<keyword>class</keyword> 
+	<class><location>../implementation_gtk/ev_drawing_area_imp.xml</location>EV_DRAWING_AREA_IMP</class>
+
+<keyword>inherit</keyword>
+	<class><location>../implementation_interface/ev_drawing_area_i.xml</location>EV_DRAWING_AREA_I</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_interface</location>interface</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_init_expose_actions</location>init_expose_actions</feature>
+		<keyword>end</keyword>
+
+	<class><location>../implementation_gtk/ev_drawable_imp.xml</location>EV_DRAWABLE_IMP</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_interface</location>interface</feature>
+		<keyword>end</keyword>
+
+	<class><location>../implementation_gtk/ev_primitive_imp.xml</location>EV_PRIMITIVE_IMP</class>
+		<keyword>undefine</keyword>
+			<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_foreground_color_internal</location>foreground_color_internal</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_background_color_internal</location>background_color_internal</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_set_foreground_color</location>set_foreground_color</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_set_background_color</location>set_background_color</feature>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_interface</location>interface</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_dispose</location>dispose</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_destroy</location>destroy</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_call_button_event_actions</location>call_button_event_actions</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_make</location>make</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_tooltips_pointer</location>tooltips_pointer</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_set_tooltip</location>set_tooltip</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_tooltip</location>tooltip</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_on_pointer_enter_leave</location>on_pointer_enter_leave</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_on_key_event</location>on_key_event</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_internal_set_focus</location>internal_set_focus</feature>
+		<keyword>end</keyword>
+
+<keyword>create</keyword> 
+	<feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_make</location>make</feature>
+
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Initialization</comment>
+
+	<anchor>f_old_make</anchor><feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_old_make</location>old_make</feature> <symbol>(</symbol><local>an_interface</local><symbol>:</symbol> <keyword>attached</keyword> <keyword>like</keyword> <feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_interface</location>interface</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Create an empty drawing area.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_interface/ev_any_i.xml#f_assign_interface</location>assign_interface</feature><symbol> </symbol><symbol>(</symbol><local>an_interface</local><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Initialization</comment>
+
+	<anchor>f_make</anchor><feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_make</location>make</feature>
+			<comment>--</comment><comment> Initialize </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword>create</keyword> <feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_tooltip_repeater</location>tooltip_repeater</feature>
+			<feature><location>../implementation_gtk/ev_any_imp.xml#f_set_c_object</location>set_c_object</feature><symbol> </symbol><symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_drawing_area_new</location>gtk_drawing_area_new</feature><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_widget_set_redraw_on_allocate</location>gtk_widget_set_redraw_on_allocate</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>,</symbol> <keyword>False</keyword><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_gc</location>gc</feature> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_gc_new</location>gdk_gc_new</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_default_gdk_window</location>default_gdk_window</feature><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_init_default_values</location>init_default_values</feature>
+			<feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_disable_double_buffering</location>disable_double_buffering</feature>
+			<feature><location>../implementation_gtk/ev_colorizable_imp.xml#f_real_set_background_color</location>real_set_background_color</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>,</symbol> <feature><location>../implementation_interface/ev_colorizable_i.xml#f_background_color</location>background_color</feature><symbol>)</symbol>
+			<keyword>create</keyword> <feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_internal_tooltip</location>internal_tooltip</feature><dot>.</dot><feature><include>False</include>make_empty</feature>
+			<keyword><location>../implementation_gtk/ev_primitive_imp.xml#f_make</location>Precursor</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_primitive_imp.xml</location>EV_PRIMITIVE_IMP</class><symbol>}</symbol>
+			<feature><location>../implementation_gtk/ev_primitive_imp.xml#f_disable_tabable_to</location>disable_tabable_to</feature>
+			<feature><location>../implementation_gtk/ev_primitive_imp.xml#f_disable_tabable_from</location>disable_tabable_from</feature>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status setting</comment>
+
+	<anchor>f_enable_double_buffering</anchor><feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_enable_double_buffering</location>enable_double_buffering</feature>
+			<comment>--</comment><comment> Allow </comment><quoted>Current</quoted><comment> to have all exposed area double buffered.</comment>
+		<keyword>do</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_widget_set_double_buffered</location>gtk_widget_set_double_buffered</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_visual_widget</location>visual_widget</feature><symbol>,</symbol> <keyword>True</keyword><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_disable_double_buffering</anchor><feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_disable_double_buffering</location>disable_double_buffering</feature>
+			<comment>--</comment><comment> Disable double buffering for exposed areas.</comment>
+		<keyword>do</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_widget_set_double_buffered</location>gtk_widget_set_double_buffered</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_visual_widget</location>visual_widget</feature><symbol>,</symbol> <keyword>False</keyword><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_on_pointer_enter_leave</anchor><feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_on_pointer_enter_leave</location>on_pointer_enter_leave</feature> <symbol>(</symbol><local>a_enter</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class><symbol>)</symbol>
+			<comment>--</comment><comment> The mouse pointer has either just entered or left </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_update_tooltip</location>update_tooltip</feature><symbol> </symbol><symbol>(</symbol><local>a_enter</local><symbol>)</symbol>
+			<keyword><location>../implementation_gtk/ev_widget_imp.xml#f_on_pointer_enter_leave</location>Precursor</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_primitive_imp.xml</location>EV_PRIMITIVE_IMP</class><symbol>}</symbol><symbol> </symbol><symbol>(</symbol><local>a_enter</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_update_tooltip</anchor><feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_update_tooltip</location>update_tooltip</feature> <symbol>(</symbol><local>a_show_tooltip</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set tooltip status to </comment><quoted>a_show_tooltip</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_needs_custom_tooltip_implementation</location>needs_custom_tooltip_implementation</feature> <keyword>and then</keyword> <feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_tooltips_pointer</location>tooltips_pointer</feature> <symbol>/=</symbol> <feature><include>False</include>default_pointer</feature> <keyword>then</keyword>
+				<keyword>if</keyword> <local>a_show_tooltip</local> <keyword>then</keyword>
+					<feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_show_tooltips_if_activated</location>show_tooltips_if_activated</feature> <symbol>:=</symbol> <keyword>True</keyword>
+					<feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_reset_tooltip_position</location>reset_tooltip_position</feature> <symbol>:=</symbol> <keyword>True</keyword>
+					<feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_tooltip_repeater</location>tooltip_repeater</feature><dot>.</dot><feature><location>../interface/ev_timeout.xml#f_set_interval</location>set_interval</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_tooltip_delay</location>tooltip_delay</feature><symbol>)</symbol>
+				<keyword>else</keyword>
+					<feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_show_tooltips_if_activated</location>show_tooltips_if_activated</feature> <symbol>:=</symbol> <keyword>False</keyword>
+					<feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_update_tooltip_window</location>update_tooltip_window</feature>
+					<feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_tooltip_repeater</location>tooltip_repeater</feature><dot>.</dot><feature><location>../interface/ev_timeout.xml#f_set_interval</location>set_interval</feature><symbol> </symbol><symbol>(</symbol><number>0</number><symbol>)</symbol>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_reset_tooltip_position</anchor><feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_reset_tooltip_position</location>reset_tooltip_position</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Should the tooltip window position be reset?</comment>
+
+	<anchor>f_update_tooltip_window</anchor><feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_update_tooltip_window</location>update_tooltip_window</feature>
+			<comment>--</comment><comment> Update the tooltip window.</comment>
+		<keyword>local</keyword>
+			<local>a_tip_win</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>l_show_tooltips</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<local>a_window</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>i</local><symbol>,</symbol> <local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>a_screen_x</local><symbol>,</symbol> <local>a_screen_y</local><symbol>,</symbol> <local>l_width</local><symbol>,</symbol> <local>l_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<local>l_screen</local><symbol>:</symbol> <class><location>../interface/ev_screen.xml</location>EV_SCREEN</class>
+			<local>gr</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_needs_custom_tooltip_implementation</location>needs_custom_tooltip_implementation</feature> <keyword>then</keyword>
+				<local>a_window</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_window_at_pointer</location>gdk_window_at_pointer</feature> <symbol>(</symbol><symbol>$</symbol><local>a_x</local><dot>.</dot><feature><include>False</include>to_pointer</feature><symbol>,</symbol> <symbol>$</symbol><local>a_y</local><dot>.</dot><feature><include>False</include>to_pointer</feature><symbol>)</symbol>
+				<local>a_tip_win</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_tooltips_struct_tip_window</location>gtk_tooltips_struct_tip_window</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_tooltips_pointer</location>tooltips_pointer</feature><symbol>)</symbol>
+				<keyword>if</keyword> <local>a_window</local> <symbol>=</symbol> <feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_drawable</location>drawable</feature> <keyword>and then</keyword> <feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_show_tooltips_if_activated</location>show_tooltips_if_activated</feature> <keyword>and then</keyword> <keyword>not</keyword> <feature><location>../implementation_gtk/ev_pick_and_dropable_imp.xml#f_has_capture</location>has_capture</feature> <keyword>then</keyword>
+					<keyword>if</keyword> <feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_reset_tooltip_position</location>reset_tooltip_position</feature> <keyword>then</keyword>
+						<local>i</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_window_get_origin</location>gdk_window_get_origin</feature> <symbol>(</symbol><local>a_window</local><symbol>,</symbol> <symbol>$</symbol><local>a_screen_x</local><dot>.</dot><feature><include>False</include>to_pointer</feature><symbol>,</symbol> <symbol>$</symbol><local>a_screen_y</local><dot>.</dot><feature><include>False</include>to_pointer</feature><symbol>)</symbol>
+						<local>gr</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_gtk_widget_imp.xml#f_reusable_requisition_struct</location>Reusable_requisition_struct</feature><dot>.</dot><feature><include>False</include>item</feature>
+						<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_widget_size_request</location>gtk_widget_size_request</feature> <symbol>(</symbol><local>a_tip_win</local><symbol>,</symbol> <local>gr</local><symbol>)</symbol>
+						<local>l_width</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_requisition_struct_width</location>gtk_requisition_struct_width</feature> <symbol>(</symbol><local>gr</local><symbol>)</symbol>
+						<local>l_height</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_requisition_struct_height</location>gtk_requisition_struct_height</feature> <symbol>(</symbol><local>gr</local><symbol>)</symbol>
+						<keyword>create</keyword> <local>l_screen</local>
+						<feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_tooltip_initial_x</location>tooltip_initial_x</feature> <symbol>:=</symbol> <local>a_screen_x</local> <symbol>+</symbol> <local>a_x</local>
+						<feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_tooltip_initial_y</location>tooltip_initial_y</feature> <symbol>:=</symbol> <local>a_screen_y</local> <symbol>+</symbol> <local>a_y</local> <symbol>+</symbol> <feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_tooltip_window_y_offset</location>tooltip_window_y_offset</feature>
+						<keyword>if</keyword> <feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_tooltip_initial_x</location>tooltip_initial_x</feature> <symbol>+</symbol> <local>l_width</local> <symbol>&gt;</symbol> <local>l_screen</local><dot>.</dot><feature><location>../interface/ev_screen.xml#f_width</location>width</feature> <keyword>then</keyword>
+							<feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_tooltip_initial_x</location>tooltip_initial_x</feature> <symbol>:=</symbol> <local>l_screen</local><dot>.</dot><feature><location>../interface/ev_screen.xml#f_width</location>width</feature> <symbol>-</symbol> <local>l_width</local>
+						<keyword>end</keyword>
+						<keyword>if</keyword> <feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_tooltip_initial_y</location>tooltip_initial_y</feature> <symbol>+</symbol> <local>l_height</local> <symbol>&gt;</symbol> <local>l_screen</local><dot>.</dot><feature><location>../interface/ev_screen.xml#f_height</location>height</feature> <keyword>then</keyword>
+							<feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_tooltip_initial_y</location>tooltip_initial_y</feature> <symbol>:=</symbol> <local>a_screen_y</local> <symbol>+</symbol> <local>a_y</local> <symbol>-</symbol> <local>l_height</local> <symbol>-</symbol> <feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_tooltip_window_y_offset</location>tooltip_window_y_offset</feature>
+						<keyword>end</keyword>
+						<feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_reset_tooltip_position</location>reset_tooltip_position</feature> <symbol>:=</symbol> <keyword>False</keyword>
+					<keyword>end</keyword>
+					<local>l_show_tooltips</local> <symbol>:=</symbol> <keyword>True</keyword>
+				<keyword>else</keyword>
+					<feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_show_tooltips_if_activated</location>show_tooltips_if_activated</feature> <symbol>:=</symbol> <keyword>False</keyword>
+					<feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_tooltip_repeater</location>tooltip_repeater</feature><dot>.</dot><feature><location>../interface/ev_timeout.xml#f_set_interval</location>set_interval</feature><symbol> </symbol><symbol>(</symbol><number>0</number><symbol>)</symbol>
+				<keyword>end</keyword>
+				<keyword>if</keyword> <local>l_show_tooltips</local> <keyword>and then</keyword> <keyword>not</keyword> <feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_internal_tooltip</location>internal_tooltip</feature><dot>.</dot><feature><include>False</include>is_empty</feature> <keyword>then</keyword>
+					<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_window_move</location>gtk_window_move</feature> <symbol>(</symbol><local>a_tip_win</local><symbol>,</symbol> <feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_tooltip_initial_x</location>tooltip_initial_x</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_tooltip_initial_y</location>tooltip_initial_y</feature><symbol>)</symbol>
+					<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_widget_show</location>gtk_widget_show</feature> <symbol>(</symbol><local>a_tip_win</local><symbol>)</symbol>
+				<keyword>else</keyword>
+					<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_widget_hide</location>gtk_widget_hide</feature> <symbol>(</symbol><local>a_tip_win</local><symbol>)</symbol>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_tooltip_initial_x</anchor><feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_tooltip_initial_x</location>tooltip_initial_x</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Initial x and y coordinates for the tooltip window.</comment>
+
+	<anchor>f_tooltip_initial_y</anchor><feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_tooltip_initial_y</location>tooltip_initial_y</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Initial x and y coordinates for the tooltip window.</comment>
+
+	<anchor>f_tooltip_window_y_offset</anchor><feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_tooltip_window_y_offset</location>tooltip_window_y_offset</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Amount of pixels tooltip window is offset down from the mouse pointer when shown.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gdk_display_get_default_cursor_size</location>gdk_display_get_default_cursor_size</feature> <symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gdk_display_get_default</location>gdk_display_get_default</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_tooltip_repeater</anchor><feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_tooltip_repeater</location>tooltip_repeater</feature><symbol>:</symbol> <class><location>../interface/ev_timeout.xml</location>EV_TIMEOUT</class>
+			<comment>--</comment><comment> Timeout repeater used for hiding/show tooltip.</comment>
+
+	<anchor>f_show_tooltips_if_activated</anchor><feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_show_tooltips_if_activated</location>show_tooltips_if_activated</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Should tooltips be shown if activated?</comment>
+
+	<anchor>f_tooltips_pointer</anchor><feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_tooltips_pointer</location>tooltips_pointer</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Tooltips pointer for </comment><quoted>Current</quoted><comment>.</comment>
+
+	<anchor>f_needs_custom_tooltip_implementation</anchor><feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_needs_custom_tooltip_implementation</location>needs_custom_tooltip_implementation</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Does </comment><quoted>Current</quoted><comment> need a custom tooltip implementation?</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_maj_ver</location>gtk_maj_ver</feature> <symbol>=</symbol> <number>2</number> <keyword>and then</keyword> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_min_ver</location>gtk_min_ver</feature> <symbol>&lt;</symbol> <number>12</number>
+		<keyword>end</keyword>
+
+	<anchor>f_set_tooltip</anchor><feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_set_tooltip</location>set_tooltip</feature> <symbol>(</symbol><local>a_text</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_tooltip</location>tooltip</feature><comment> to </comment><quoted>a_text</quoted><comment>.</comment>
+		<keyword>local</keyword>
+			<local>a_tip_label</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>a_tip_win</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>a_cs</local><symbol>:</symbol> <class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_tooltips_pointer</location>tooltips_pointer</feature> <symbol>=</symbol> <feature><include>False</include>default_pointer</feature> <keyword>then</keyword>
+				<keyword>if</keyword> <feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_needs_custom_tooltip_implementation</location>needs_custom_tooltip_implementation</feature> <keyword>then</keyword>
+					<feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_tooltips_pointer</location>tooltips_pointer</feature> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_tooltips_new</location>gtk_tooltips_new</feature>
+					<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_tooltips_force_window</location>gtk_tooltips_force_window</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_tooltips_pointer</location>tooltips_pointer</feature><symbol>)</symbol>
+					<local>a_tip_win</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_tooltips_struct_tip_window</location>gtk_tooltips_struct_tip_window</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_tooltips_pointer</location>tooltips_pointer</feature><symbol>)</symbol>
+					<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_window_set_position</location>gtk_window_set_position</feature> <symbol>(</symbol><local>a_tip_win</local><symbol>,</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_win_pos_mouse_enum</location>gtk_win_pos_mouse_enum</feature><symbol>)</symbol>
+					<keyword>create</keyword> <feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_tooltip_repeater</location>tooltip_repeater</feature>
+					<feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_tooltip_repeater</location>tooltip_repeater</feature><dot>.</dot><feature><location>../interface/ev_timeout.xml#f_actions</location>actions</feature><dot>.</dot><feature><include>False</include>extend</feature><symbol> </symbol><symbol>(</symbol><keyword>agent</keyword> <feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_update_tooltip_window</location>update_tooltip_window</feature><symbol>)</symbol>
+				<keyword>else</keyword>
+					<feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_tooltips_pointer</location>tooltips_pointer</feature> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_tooltips</location>tooltips</feature>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_needs_custom_tooltip_implementation</location>needs_custom_tooltip_implementation</feature> <keyword>then</keyword>
+				<feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_internal_tooltip</location>internal_tooltip</feature> <symbol>:=</symbol> <local>a_text</local><dot>.</dot><feature><include>False</include>as_string_32</feature><dot>.</dot><feature><include>False</include>twin</feature>
+				<local>a_cs</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_c_string_from_eiffel_string</location>c_string_from_eiffel_string</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_internal_tooltip</location>internal_tooltip</feature><symbol>)</symbol>
+				<local>a_tip_label</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_tooltips_struct_tip_label</location>gtk_tooltips_struct_tip_label</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_tooltips_pointer</location>tooltips_pointer</feature><symbol>)</symbol>
+				<local>a_tip_win</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_tooltips_struct_tip_window</location>gtk_tooltips_struct_tip_window</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_tooltips_pointer</location>tooltips_pointer</feature><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_label_set_text</location>gtk_label_set_text</feature> <symbol>(</symbol><local>a_tip_label</local><symbol>,</symbol> <local>a_cs</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_item</location>item</feature><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_widget_hide</location>gtk_widget_hide</feature> <symbol>(</symbol><local>a_tip_win</local><symbol>)</symbol>
+				<keyword>if</keyword> <keyword>not</keyword> <local>a_text</local><dot>.</dot><feature><include>False</include>is_empty</feature> <keyword>and then</keyword> <feature><location>../implementation_gtk/ev_gtk_widget_imp.xml#f_is_displayed</location>is_displayed</feature> <keyword>then</keyword>
+					<feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_update_tooltip</location>update_tooltip</feature><symbol> </symbol><symbol>(</symbol><keyword>True</keyword><symbol>)</symbol>
+				<keyword>else</keyword>
+					<feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_update_tooltip</location>update_tooltip</feature><symbol> </symbol><symbol>(</symbol><keyword>False</keyword><symbol>)</symbol>
+				<keyword>end</keyword>
+			<keyword>else</keyword>
+				<keyword><location>../implementation_gtk/ev_tooltipable_imp.xml#f_set_tooltip</location>Precursor</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_primitive_imp.xml</location>EV_PRIMITIVE_IMP</class><symbol>}</symbol><symbol> </symbol><symbol>(</symbol><local>a_text</local><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_tooltip</anchor><feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_tooltip</location>tooltip</feature><symbol>:</symbol> <class><include>False</include>STRING_32</class>
+			<comment>--</comment><comment> Tooltip for </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_needs_custom_tooltip_implementation</location>needs_custom_tooltip_implementation</feature> <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_internal_tooltip</location>internal_tooltip</feature><dot>.</dot><feature><include>False</include>twin</feature>
+			<keyword>else</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <keyword><location>../implementation_gtk/ev_tooltipable_imp.xml#f_tooltip</location>Precursor</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_internal_tooltip</anchor><feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_internal_tooltip</location>internal_tooltip</feature><symbol>:</symbol> <class><include>False</include>STRING_32</class>
+			<comment>--</comment><comment> Used for storing </comment><feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_tooltip</location>tooltip</feature><comment> of </comment><quoted>Current</quoted><comment>.</comment>
+
+	<anchor>f_redraw</anchor><feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_redraw</location>redraw</feature>
+			<comment>--</comment><comment> Redraw the entire area.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_redraw_rectangle</location>redraw_rectangle</feature><symbol> </symbol><symbol>(</symbol><number>0</number><symbol>,</symbol> <number>0</number><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_widget_imp.xml#f_width</location>width</feature><symbol>,</symbol> <feature><location>../implementation_gtk/ev_gtk_widget_imp.xml#f_height</location>height</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_redraw_rectangle</anchor><feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_redraw_rectangle</location>redraw_rectangle</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Redraw the rectangle area defined by </comment><quoted>a_x</quoted><comment>, </comment><quoted>a_y</quoted><comment>, </comment><quoted>a_width</quoted><comment>, a_height'.</comment>
+		<keyword>local</keyword>
+			<local>a_rectangle</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>l_drawable</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>do</keyword>
+			<local>l_drawable</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_drawable</location>drawable</feature>
+			<keyword>if</keyword> <local>l_drawable</local> <symbol>/=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature> <keyword>and then</keyword> <feature><location>../implementation_gtk/ev_gtk_widget_imp.xml#f_is_displayed</location>is_displayed</feature> <keyword>then</keyword>
+				<local>a_rectangle</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_reusable_rectangle_struct</location>Reusable_rectangle_struct</feature>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_set_gdk_rectangle_struct_width</location>set_gdk_rectangle_struct_width</feature> <symbol>(</symbol><local>a_rectangle</local><symbol>,</symbol> <local>a_width</local><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_set_gdk_rectangle_struct_height</location>set_gdk_rectangle_struct_height</feature> <symbol>(</symbol><local>a_rectangle</local><symbol>,</symbol> <local>a_height</local><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_set_gdk_rectangle_struct_x</location>set_gdk_rectangle_struct_x</feature> <symbol>(</symbol><local>a_rectangle</local><symbol>,</symbol> <local>a_x</local><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_set_gdk_rectangle_struct_y</location>set_gdk_rectangle_struct_y</feature> <symbol>(</symbol><local>a_rectangle</local><symbol>,</symbol> <local>a_y</local><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gdk_window_invalidate_rect</location>gdk_window_invalidate_rect</feature> <symbol>(</symbol><local>l_drawable</local><symbol>,</symbol> <local>a_rectangle</local><symbol>,</symbol> <keyword>False</keyword><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_clear_and_redraw</anchor><feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_clear_and_redraw</location>clear_and_redraw</feature>
+			<comment>--</comment><comment> Clear </comment><quoted>Current</quoted><comment> and redraw.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_clear</location>clear</feature>
+			<feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_redraw</location>redraw</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_clear_and_redraw_rectangle</anchor><feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_clear_and_redraw_rectangle</location>clear_and_redraw_rectangle</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Clear the rectangle area defined by </comment><quoted>a_x</quoted><comment>, </comment><quoted>a_y</quoted><comment>, </comment><quoted>a_width</quoted><comment>, </comment><quoted>a_height</quoted><comment> and then redraw it.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_clear_rectangle</location>clear_rectangle</feature><symbol> </symbol><symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_redraw_rectangle</location>redraw_rectangle</feature><symbol> </symbol><symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_flush</anchor><feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_flush</location>flush</feature>
+			<comment>--</comment><comment> Redraw the screen immediately.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_widget_imp.xml#f_refresh_now</location>refresh_now</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_update_if_needed</anchor><feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_update_if_needed</location>update_if_needed</feature>
+			<comment>--</comment><comment> Update </comment><quoted>Current</quoted><comment> if needed.</comment>
+		<keyword>do</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_get_drawable</anchor><feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_get_drawable</location>get_drawable</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Retrieve drawable used for rendering docking elements</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_release_drawable</anchor><feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_release_drawable</location>release_drawable</feature> <symbol>(</symbol><local>a_drawable</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>)</symbol>
+			<comment>--</comment><comment> Release resources from </comment><quoted>a_drawable</quoted>
+		<keyword>do</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_drawable_imp.xml</location>EV_DRAWABLE_IMP</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_drawable</anchor><feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_drawable</location>drawable</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Pointer to the drawable object for </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_widget_struct_window</location>gtk_widget_struct_window</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_mask</anchor><feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_mask</location>mask</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Mask of Current, which is always NULL.</comment>
+		<keyword>do</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_intermediary_routines.xml</location>EV_INTERMEDIARY_ROUTINES</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_call_expose_actions</anchor><feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_call_expose_actions</location>call_expose_actions</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Call the expose actions for the drawing area.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_interface/ev_drawable_action_sequences_i.xml#f_expose_actions_internal</location>expose_actions_internal</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<feature><location>../implementation_interface/ev_drawable_action_sequences_i.xml#f_expose_actions_internal</location>expose_actions_internal</feature><dot>.</dot><feature><location>../interface/ev_lite_action_sequence.xml#f_call</location>call</feature><symbol> </symbol><symbol>(</symbol><symbol>[</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>]</symbol><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_lose_focus</anchor><feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_lose_focus</location>lose_focus</feature>
+			<comment>--</comment><comment> Current has lost keyboard focus.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_update_tooltip</location>update_tooltip</feature><symbol> </symbol><symbol>(</symbol><keyword>False</keyword><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_internal_set_focus</anchor><feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_internal_set_focus</location>internal_set_focus</feature>
+			<comment>--</comment><comment> Grab keyboard focus.</comment>
+		<keyword>local</keyword>
+			<local>l_can_focus</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+		<keyword>do</keyword>
+			<local>l_can_focus</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_object_struct_flags</location>gtk_object_struct_flags</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_visual_widget</location>visual_widget</feature><symbol>)</symbol> <symbol>&amp;</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_can_focus_enum</location>gtk_can_focus_enum</feature> <symbol>/=</symbol> <number>0</number>
+			<keyword>if</keyword> <keyword>not</keyword> <local>l_can_focus</local> <keyword>then</keyword>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_widget_set_flags</location>gtk_widget_set_flags</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_visual_widget</location>visual_widget</feature><symbol>,</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_can_focus_enum</location>gtk_can_focus_enum</feature><symbol>)</symbol>
+			<keyword>end</keyword>
+			<keyword><location>../implementation_gtk/ev_gtk_widget_imp.xml#f_internal_set_focus</location>Precursor</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_primitive_imp.xml</location>EV_PRIMITIVE_IMP</class><symbol>}</symbol>
+			<keyword>if</keyword> <keyword>not</keyword> <local>l_can_focus</local> <keyword>then</keyword>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_widget_unset_flags</location>gtk_widget_unset_flags</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_visual_widget</location>visual_widget</feature><symbol>,</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_can_focus_enum</location>gtk_can_focus_enum</feature><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_on_key_event</anchor><feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_on_key_event</location>on_key_event</feature> <symbol>(</symbol><local>a_key</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_key.xml</location>EV_KEY</class><symbol>;</symbol> <local>a_key_string</local><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>STRING_32</class><symbol>;</symbol> <local>a_key_press</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class><symbol>)</symbol>
+			<comment>--</comment><comment> Used for key event actions sequences.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_update_tooltip</location>update_tooltip</feature><symbol> </symbol><symbol>(</symbol><keyword>False</keyword><symbol>)</symbol>
+			<keyword><location>../implementation_gtk/ev_widget_imp.xml#f_on_key_event</location>Precursor</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_primitive_imp.xml</location>EV_PRIMITIVE_IMP</class><symbol>}</symbol><symbol> </symbol><symbol>(</symbol><local>a_key</local><symbol>,</symbol> <local>a_key_string</local><symbol>,</symbol> <local>a_key_press</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_call_button_event_actions</anchor><feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_call_button_event_actions</location>call_button_event_actions</feature> <symbol>(</symbol><local>a_type</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>a_button</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_x_tilt</local><symbol>,</symbol> <local>a_y_tilt</local><symbol>,</symbol> <local>a_pressure</local><symbol>:</symbol> <class><include>False</include>REAL_64</class><symbol>;</symbol> <local>a_screen_x</local><symbol>,</symbol> <local>a_screen_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Call pointer_button_press_actions or pointer_double_press_actions</comment>
+			<comment>--</comment><comment> depending on event type in first position of </comment><quoted>event_data</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_update_tooltip</location>update_tooltip</feature><symbol> </symbol><symbol>(</symbol><keyword>False</keyword><symbol>)</symbol>
+			<keyword>if</keyword> <local>a_type</local> <symbol>=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/ev_gtk_enums.xml</location>EV_GTK_ENUMS</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_enums.xml#f_gdk_button_press_enum</location>gdk_button_press_enum</feature> <keyword>and then</keyword> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_object_struct_flags</location>gtk_object_struct_flags</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_visual_widget</location>visual_widget</feature><symbol>)</symbol> <symbol>&amp;</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_has_focus_enum</location>gtk_has_focus_enum</feature> <symbol>=</symbol> <number>0</number> <keyword>and then</keyword> <symbol>(</symbol><local>a_button</local> <symbol>=</symbol> <number>1</number> <keyword>and then</keyword> <local>a_button</local> <symbol>&lt;=</symbol> <number>3</number><symbol>)</symbol> <keyword>and then</keyword> <keyword>not</keyword> <feature><location>../implementation_interface/ev_drawing_area_i.xml#f_focus_on_press_disabled</location>focus_on_press_disabled</feature> <keyword>then</keyword>
+				<feature><location>../implementation_gtk/ev_gtk_widget_imp.xml#f_set_focus</location>set_focus</feature>
+			<keyword>end</keyword>
+			<keyword><location>../implementation_gtk/ev_widget_imp.xml#f_call_button_event_actions</location>Precursor</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_primitive_imp.xml</location>EV_PRIMITIVE_IMP</class><symbol>}</symbol><symbol> </symbol><symbol>(</symbol><local>a_type</local><symbol>,</symbol> <local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>a_button</local><symbol>,</symbol> <local>a_x_tilt</local><symbol>,</symbol> <local>a_y_tilt</local><symbol>,</symbol> <local>a_pressure</local><symbol>,</symbol> <local>a_screen_x</local><symbol>,</symbol> <local>a_screen_y</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_destroy</anchor><feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_destroy</location>destroy</feature>
+			<comment>--</comment><comment> Destroy implementation.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_update_tooltip</location>update_tooltip</feature><symbol> </symbol><symbol>(</symbol><keyword>False</keyword><symbol>)</symbol>
+			<keyword><location>../implementation_gtk/ev_widget_imp.xml#f_destroy</location>Precursor</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_primitive_imp.xml</location>EV_PRIMITIVE_IMP</class><symbol>}</symbol>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_drawable_imp.xml#f_gc</location>gc</feature> <symbol>/=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature> <keyword>then</keyword>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_gc_unref</location>gdk_gc_unref</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_drawable_imp.xml#f_gc</location>gc</feature><symbol>)</symbol>
+				<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_gc</location>gc</feature> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_dispose</anchor><feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_dispose</location>dispose</feature>
+			<comment>--</comment><comment> Clean up</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_drawable_imp.xml#f_gc</location>gc</feature> <symbol>/=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature> <keyword>then</keyword>
+				<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_gdk_gc_unref</location>gdk_gc_unref</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_drawable_imp.xml#f_gc</location>gc</feature><symbol>)</symbol>
+				<feature><location>../implementation_gtk/ev_drawable_imp.xml#f_gc</location>gc</feature> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature>
+			<keyword>end</keyword>
+			<keyword><location>../implementation_gtk/ev_any_imp.xml#f_dispose</location>Precursor</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_primitive_imp.xml</location>EV_PRIMITIVE_IMP</class><symbol>}</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_init_expose_actions</anchor><feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_init_expose_actions</location>init_expose_actions</feature> <symbol>(</symbol><local>a_expose_actions</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../implementation_interface/ev_drawable_action_sequences_i.xml#f_expose_actions</location>expose_actions</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Initialize </comment><quoted>a_expose_actions</quoted><comment> accordingly to the current widget.</comment>
+		<keyword>local</keyword>
+			<local>l_app_imp</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature>
+		<keyword>do</keyword>
+			<local>l_app_imp</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature>
+			<local>l_app_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_gtk_marshal</location>gtk_marshal</feature><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_callback_marshal.xml#f_signal_connect</location>signal_connect</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_visual_widget</location>visual_widget</feature><symbol>,</symbol> <keyword>create</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_set_with_eiffel_string</location>set_with_eiffel_string</feature><symbol> </symbol><symbol>(</symbol><keyword>once</keyword> &quot;expose-event&quot;<symbol>)</symbol><symbol>,</symbol> <keyword>agent</keyword> <local>l_app_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_gtk_marshal</location>gtk_marshal</feature><dot>.</dot><feature><location>../implementation_gtk/ev_intermediary_routines.xml#f_create_expose_actions_intermediary</location>create_expose_actions_intermediary</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>,</symbol> <symbol>?</symbol><symbol>,</symbol> <symbol>?</symbol><symbol>,</symbol> <symbol>?</symbol><symbol>,</symbol> <symbol>?</symbol><symbol>)</symbol><symbol>,</symbol> <local>l_app_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_gtk_marshal</location>gtk_marshal</feature><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_callback_marshal.xml#f_expose_translate_agent</location>Expose_translate_agent</feature><symbol>,</symbol> <keyword>True</keyword><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_any.xml</location>EV_ANY</class><symbol>,</symbol> <class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_interface</anchor><feature><location>../implementation_gtk/ev_drawing_area_imp.xml#f_interface</location>interface</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_drawing_area.xml</location>EV_DRAWING_AREA</class>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2017, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_gtk/ev_drawing_area_imp.xml</location>EV_DRAWING_AREA_IMP</class></system>
+

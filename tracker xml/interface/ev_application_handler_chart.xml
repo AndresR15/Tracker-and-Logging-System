@@ -1,0 +1,31 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../interface/ev_application_handler_chart.xml</location>EV_APPLICATION_HANDLER</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>interface</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> 
+		<string>&quot;Before SCOOP appeared, the event loop of a graphical application would run in the main thread</string>
+		<string>after creating the initial graphical objects. That thread would enter an event loop to process</string>
+		<string>new events. That thread was also called the GUI thread.</string>
+		
+		<string>In SCOOP mode this doesn't work because a processor stuck in a loop cannot process any logged</string>
+		<string>calls. In other words, it means that you cannot perform calls on a separate widget </string><string>my_widget</string>
+		<string>as they will be logged but only applied after the processor has completed its event loop and</string>
+		<string>exited its current application of a call.</string>
+		
+		<string>To circumvent this, we require the following guidelines. A GUI processor is created, this is</string>
+		<string>where the EV_APPLICATION object and all GUI objects are created. The GUI processor is similar</string>
+		<string>to the GUI thread in non-SCOOP mode. However we require the GUI processor to not do anything</string>
+		<string>else after calling </string><symbol>{</symbol><class><location>../interface/ev_application_chart.xml</location>EV_APPLICATION</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_application.xml#f_launch</location>launch</feature><string> so that it enters the idle mode of SCOOP processors.</string>
+		
+		<string>Internally when calling </string><string>launch</string><string> from the EV_APPLICATION instance, we will create a separate</string>
+		<string>instance of EV_APPLICATION_HANDLER which will continuously log calls to process events on the</string>
+		<string>GUI processor. Since the GUI processor is idle, it will be able to log and apply calls coming</string>
+		<string>from any other separate processors that wants to interact with the GUI.&quot;</string>
+	<indexing_tag>create</indexing_tag><symbol>:</symbol> <feature><location>../interface/ev_application_handler.xml#f_make</location>make</feature>
+
+<keyword>Ancestors</keyword>
+	<class><location>../interface/ev_any_handler_chart.xml</location>EV_ANY_HANDLER</class>
+
+</system>

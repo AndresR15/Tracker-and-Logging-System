@@ -1,0 +1,267 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Vision application. Implementation interface.%NSee ev_application.e&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;application&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2017-03-27 10:23:22 -0700 (Mon, 27 Mar 2017) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 100056 $&quot;</string>
+
+<keyword>deferred</keyword> <keyword>class</keyword> <keyword>interface</keyword>
+	<class><location>../implementation_interface/ev_application_i_short.xml</location>EV_APPLICATION_I</class>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Initialization</comment>
+
+	<anchor>f_old_make</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_old_make</location>old_make</feature> <symbol>(</symbol><local>an_interface</local><symbol>:</symbol> <keyword>attached</keyword> <keyword>like</keyword> <feature><location>../implementation_interface/ev_application_i_short.xml#f_interface</location>interface</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Create underlying native toolkit objects.</comment>
+			<comment>--</comment><comment> Every descendant should exactly one a creation procedure </comment><feature><location>../implementation_interface/ev_application_i_short.xml#f_make</location>make</feature><comment>.</comment>
+			<comment>--</comment><comment> Must call </comment><quoted>base_make</quoted><comment>.</comment>
+
+	<anchor>f_make</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_make</location>make</feature>
+			<comment>--</comment><comment> Create pick and drop target list.</comment>
+			<comment>--</comment><comment> Set F1 as default help key.</comment>
+			<comment>--</comment><comment> Create default help engine.</comment>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_invoke_garbage_collection_when_inactive</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_invoke_garbage_collection_when_inactive</location>invoke_garbage_collection_when_inactive</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Should garbage collection be invoked when application is inactive.</comment>
+
+	<anchor>f_pnd_targets</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_pnd_targets</location>pnd_targets</feature><symbol>:</symbol> <class><include>False</include>HASH_TABLE</class> <symbol>[</symbol><class><include>False</include>INTEGER_32</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>]</symbol>
+			<comment>--</comment><comment> Global list of pick and drop target object ids.</comment>
+
+	<anchor>f_windows</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_windows</location>windows</feature><symbol>:</symbol> <class><include>False</include>LINEAR</class> <symbol>[</symbol><class><location>../interface/ev_window_short.xml</location>EV_WINDOW</class><symbol>]</symbol>
+			<comment>--</comment><comment> Global list of windows.</comment>
+
+	<anchor>f_locked_window</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_locked_window</location>locked_window</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_window_short.xml</location>EV_WINDOW</class>
+			<comment>--</comment><comment> Window currently locked. Void if no window</comment>
+			<comment>--</comment><comment> is currently locked.</comment>
+			<comment>--</comment>
+			<comment>--</comment><comment> See </comment><quoted>{EV_WINDOW}.lock_update</quoted><comment> for more details</comment>
+
+	<anchor>f_captured_widget</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_captured_widget</location>captured_widget</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_widget_short.xml</location>EV_WIDGET</class>
+			<comment>--</comment><comment> Widget currently captured. Void if none.</comment>
+
+	<anchor>f_pick_and_drop_source</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_pick_and_drop_source</location>pick_and_drop_source</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_interface/ev_pick_and_dropable_i_short.xml</location>EV_PICK_AND_DROPABLE_I</class>
+			<comment>--</comment><comment> The current pick and drop source.</comment>
+
+	<anchor>f_help_accelerator</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_help_accelerator</location>help_accelerator</feature><symbol>:</symbol> <class><location>../interface/ev_accelerator_short.xml</location>EV_ACCELERATOR</class>
+			<comment>--</comment><comment> Accelerator that displays contextual help</comment>
+
+	<anchor>f_contextual_help_accelerator</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_contextual_help_accelerator</location>contextual_help_accelerator</feature><symbol>:</symbol> <class><location>../interface/ev_accelerator_short.xml</location>EV_ACCELERATOR</class>
+			<comment>--</comment><comment> Accelerator that enables contextual help mode</comment>
+
+	<anchor>f_help_engine</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_help_engine</location>help_engine</feature><symbol>:</symbol> <class><location>../interface/ev_help_engine_short.xml</location>EV_HELP_ENGINE</class>
+			<comment>--</comment><comment> Object that handle contextual help display requests</comment>
+
+	<anchor>f_clipboard</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_clipboard</location>clipboard</feature><symbol>:</symbol> <class><location>../interface/ev_clipboard_short.xml</location>EV_CLIPBOARD</class>
+			<comment>--</comment><comment> Native platform clipboard access.</comment>
+
+	<anchor>f_ctrl_pressed</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_ctrl_pressed</location>ctrl_pressed</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is ctrl key currently pressed?</comment>
+
+	<anchor>f_shift_pressed</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_shift_pressed</location>shift_pressed</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is shift key currently pressed?</comment>
+
+	<anchor>f_alt_pressed</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_alt_pressed</location>alt_pressed</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is alt key currently pressed?</comment>
+
+	<anchor>f_caps_lock_on</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_caps_lock_on</location>caps_lock_on</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is the Caps Lock key currently on?</comment>
+
+	<anchor>f_transport_in_progress</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_transport_in_progress</location>transport_in_progress</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is a Pick and Drop transport currently in progress?</comment>
+
+	<anchor>f_is_display_remote</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_is_display_remote</location>is_display_remote</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is application display remote?</comment>
+			<comment>--</comment><comment> This function is primarily to determine if drawing to the display is optimal.</comment>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Element Change</comment>
+
+	<anchor>f_set_invoke_garbage_collection_when_inactive</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_set_invoke_garbage_collection_when_inactive</location>set_invoke_garbage_collection_when_inactive</feature> <symbol>(</symbol><local>a_enabled</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><feature><location>../implementation_interface/ev_application_i_short.xml#f_invoke_garbage_collection_when_inactive</location>invoke_garbage_collection_when_inactive</feature><comment> to </comment><quoted>a_enabled</quoted><comment>.</comment>
+
+	<anchor>f_set_captured_widget</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_set_captured_widget</location>set_captured_widget</feature> <symbol>(</symbol><local>a_captured_widget</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_widget_short.xml</location>EV_WIDGET</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><feature><location>../implementation_interface/ev_application_i_short.xml#f_captured_widget</location>captured_widget</feature><comment> to the widget that has the current capture 'a_capture_widget'.</comment>
+		<keyword>ensure</keyword>
+			<tag>captured_widget_set</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_application_i_short.xml#f_captured_widget</location>captured_widget</feature> <symbol>=</symbol> <local>a_captured_widget</local>
+
+	<anchor>f_set_help_accelerator</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_set_help_accelerator</location>set_help_accelerator</feature> <symbol>(</symbol><local>an_accelerator</local><symbol>:</symbol> <class><location>../interface/ev_accelerator_short.xml</location>EV_ACCELERATOR</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>an_accelerator</quoted><comment> to </comment><feature><location>../implementation_interface/ev_application_i_short.xml#f_help_accelerator</location>help_accelerator</feature>
+		<keyword>require</keyword>
+			<tag>an_accelerator_not_void</tag><symbol>:</symbol> <local>an_accelerator</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>ensure</keyword>
+			<tag>help_accelerator_assigned</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_application_i_short.xml#f_help_accelerator</location>help_accelerator</feature> <symbol>=</symbol> <local>an_accelerator</local>
+			<tag>help_accelerator_complete</tag><symbol>:</symbol> <keyword>attached</keyword> <feature><location>../implementation_interface/ev_application_i_short.xml#f_help_handler_procedure</location>help_handler_procedure</feature> <keyword>and then</keyword> <feature><location>../implementation_interface/ev_application_i_short.xml#f_help_accelerator</location>help_accelerator</feature><dot>.</dot><feature><location>../interface/ev_accelerator_short.xml#f_actions</location>actions</feature><dot>.</dot><feature><include>False</include>has</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_interface/ev_application_i_short.xml#f_help_handler_procedure</location>help_handler_procedure</feature><symbol>)</symbol>
+
+	<anchor>f_set_contextual_help_accelerator</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_set_contextual_help_accelerator</location>set_contextual_help_accelerator</feature> <symbol>(</symbol><local>an_accelerator</local><symbol>:</symbol> <class><location>../interface/ev_accelerator_short.xml</location>EV_ACCELERATOR</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>an_accelerator</quoted><comment> to </comment><feature><location>../implementation_interface/ev_application_i_short.xml#f_contextual_help_accelerator</location>contextual_help_accelerator</feature>
+		<keyword>require</keyword>
+			<tag>an_accelerator_not_void</tag><symbol>:</symbol> <local>an_accelerator</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>ensure</keyword>
+			<tag>contextual_help_accelerator_assigned</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_application_i_short.xml#f_contextual_help_accelerator</location>contextual_help_accelerator</feature> <symbol>=</symbol> <local>an_accelerator</local>
+			<tag>contextual_help_accelerator_complete</tag><symbol>:</symbol> <keyword>attached</keyword> <feature><location>../implementation_interface/ev_application_i_short.xml#f_contextual_help_handler_procedure</location>contextual_help_handler_procedure</feature> <keyword>and then</keyword> <feature><location>../implementation_interface/ev_application_i_short.xml#f_contextual_help_accelerator</location>contextual_help_accelerator</feature><dot>.</dot><feature><location>../interface/ev_accelerator_short.xml#f_actions</location>actions</feature><dot>.</dot><feature><include>False</include>has</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_interface/ev_application_i_short.xml#f_contextual_help_handler_procedure</location>contextual_help_handler_procedure</feature><symbol>)</symbol>
+
+	<anchor>f_set_help_engine</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_set_help_engine</location>set_help_engine</feature> <symbol>(</symbol><local>an_engine</local><symbol>:</symbol> <class><location>../interface/ev_help_engine_short.xml</location>EV_HELP_ENGINE</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>an_engine</quoted><comment> to </comment><feature><location>../implementation_interface/ev_application_i_short.xml#f_help_engine</location>help_engine</feature>
+		<keyword>require</keyword>
+			<tag>an_engine_not_void</tag><symbol>:</symbol> <local>an_engine</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>ensure</keyword>
+			<tag>help_engine_set</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_application_i_short.xml#f_help_engine</location>help_engine</feature> <symbol>=</symbol> <local>an_engine</local>
+
+	<anchor>f_set_locked_window</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_set_locked_window</location>set_locked_window</feature> <symbol>(</symbol><local>a_window</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_window_short.xml</location>EV_WINDOW</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><feature><location>../implementation_interface/ev_application_i_short.xml#f_locked_window</location>locked_window</feature><comment> to </comment><quoted>a_window</quoted><comment>.</comment>
+			<comment>--</comment>
+			<comment>--</comment><comment> See </comment><quoted>{EV_WINDOW}.lock_update</quoted><comment> for more details</comment>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Basic operation</comment>
+
+	<anchor>f_process_events</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_process_events</location>process_events</feature>
+			<comment>--</comment><comment> Process any pending events.</comment>
+
+	<anchor>f_process_graphical_events</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_process_graphical_events</location>process_graphical_events</feature>
+			<comment>--</comment><comment> Process any pending paint events.</comment>
+			<comment>--</comment><comment> Pass control to the GUI toolkit so that it can</comment>
+			<comment>--</comment><comment> handle any paint events that may be in its queue.</comment>
+
+	<anchor>f_process_events_until_stopped</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_process_events_until_stopped</location>process_events_until_stopped</feature>
+			<comment>--</comment><comment> Process all events until 'stop_processing' is called.</comment>
+
+	<anchor>f_stop_processing</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_stop_processing</location>stop_processing</feature>
+			<comment>--</comment><comment>  Exit </comment><feature><location>../implementation_interface/ev_application_i_short.xml#f_process_events_until_stopped</location>process_events_until_stopped</feature><comment>.</comment>
+
+	<anchor>f_sleep</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_sleep</location>sleep</feature> <symbol>(</symbol><local>msec</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Wait for </comment><quoted>msec</quoted><comment> milliseconds and return.</comment>
+		<keyword>require</keyword>
+			<tag>msec_non_negative</tag><symbol>:</symbol> <local>msec</local> <symbol>&gt;=</symbol> <number>0</number>
+
+	<anchor>f_enable_contextual_help</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_enable_contextual_help</location>enable_contextual_help</feature>
+			<comment>--</comment><comment> Change mouse cursor to help cursor</comment>
+			<comment>--</comment><comment> Capture mouse input</comment>
+			<comment>--</comment><comment> Send help context of widget under mouse cursor when left mouse button is pressed to help engine.</comment>
+			<comment>--</comment><comment> Cancel contextual help mode when right mouse button is pressed.</comment>
+
+	<anchor>f_display_help_for_widget</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_display_help_for_widget</location>display_help_for_widget</feature> <symbol>(</symbol><local>a_widget</local><symbol>:</symbol> <class><location>../interface/ev_widget_short.xml</location>EV_WIDGET</class><symbol>)</symbol>
+			<comment>--</comment><comment> Display contextual help for </comment><quoted>a_widget</quoted><comment>, if any.</comment>
+		<keyword>require</keyword>
+			<tag>a_widget_not_void</tag><symbol>:</symbol> <local>a_widget</local> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_add_idle_action</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_add_idle_action</location>add_idle_action</feature> <symbol>(</symbol><local>a_idle_action</local><symbol>:</symbol> <class><include>False</include>PROCEDURE</class><symbol>)</symbol>
+			<comment>--</comment><comment> Extend </comment><feature><location>../implementation_interface/ev_application_action_sequences_i_short.xml#f_idle_actions</location>idle_actions</feature><comment> with </comment><quoted>a_idle_action</quoted><comment>.</comment>
+			<comment>--</comment><comment> Thread safe</comment>
+		<keyword>require</keyword>
+			<tag>a_idle_action_not_void</tag><symbol>:</symbol> <local>a_idle_action</local> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_remove_idle_action</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_remove_idle_action</location>remove_idle_action</feature> <symbol>(</symbol><local>a_idle_action</local><symbol>:</symbol> <class><include>False</include>PROCEDURE</class><symbol>)</symbol>
+			<comment>--</comment><comment> Remove </comment><quoted>a_idle_action</quoted><comment> from </comment><feature><location>../implementation_interface/ev_application_action_sequences_i_short.xml#f_idle_actions</location>idle_actions</feature>
+			<comment>--</comment><comment> Thread safe</comment>
+		<keyword>require</keyword>
+			<tag>a_idle_action_not_void</tag><symbol>:</symbol> <local>a_idle_action</local> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_idle_lock</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_idle_lock</location>idle_lock</feature>
+			<comment>--</comment><comment> Lock the Idle Actions Mutex.</comment>
+
+	<anchor>f_try_idle_lock</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_try_idle_lock</location>try_idle_lock</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Attempt to lock the Idle Actions Mutex. True if successful.</comment>
+
+	<anchor>f_idle_unlock</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_idle_unlock</location>idle_unlock</feature>
+			<comment>--</comment><comment> Unlock the Idle Actions Mutex.</comment>
+
+	<anchor>f_kamikaze_lock</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_kamikaze_lock</location>kamikaze_lock</feature>
+			<comment>--</comment><comment> Lock the Kamikaze Actions Mutex.</comment>
+
+	<anchor>f_try_kamikaze_lock</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_try_kamikaze_lock</location>try_kamikaze_lock</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Attempt to lock the Kamikaze Actions Mutex. True if successful.</comment>
+
+	<anchor>f_kamikaze_unlock</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_kamikaze_unlock</location>kamikaze_unlock</feature>
+			<comment>--</comment><comment> Unlock the Kamikaze Actions Mutex.</comment>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Events</comment>
+
+	<anchor>f_do_once_on_idle</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_do_once_on_idle</location>do_once_on_idle</feature> <symbol>(</symbol><local>an_action</local><symbol>:</symbol> <keyword>separate</keyword> <class><include>False</include>PROCEDURE</class><symbol>)</symbol>
+			<comment>--</comment><comment> Perform </comment><quoted>an_action</quoted><comment> one time only on idle.</comment>
+
+	<anchor>f_actions_are_callable</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_actions_are_callable</location>actions_are_callable</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> May actions be called</comment>
+
+	<anchor>f_increase_action_sequence_call_counter</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_increase_action_sequence_call_counter</location>increase_action_sequence_call_counter</feature>
+			<comment>--</comment><comment> Increase </comment><feature><location>../implementation_interface/ev_application_i_short.xml#f_action_sequence_call_counter</location>action_sequence_call_counter</feature><comment> by one.</comment>
+
+	<anchor>f_action_sequence_call_counter</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_action_sequence_call_counter</location>action_sequence_call_counter</feature><symbol>:</symbol> <class><include>False</include>NATURAL_32</class>
+			<comment>--</comment><comment> Counter used in post-conditions to determine if any actions sequences have been</comment>
+			<comment>--</comment><comment> called as a result of the routine the post-condition is applied to.</comment>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Event handling</comment>
+
+	<anchor>f_accelerator_actions</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_accelerator_actions</location>accelerator_actions</feature> <symbol>(</symbol><local>an_accelerator</local><symbol>:</symbol> <class><location>../interface/ev_accelerator_short.xml</location>EV_ACCELERATOR</class><symbol>)</symbol><symbol>:</symbol> <class><location>../interface/ev_notify_action_sequence_short.xml</location>EV_NOTIFY_ACTION_SEQUENCE</class>
+			<comment>--</comment><comment> Actions to be performed when </comment><quoted>an_accelerator</quoted><comment> key sequence is</comment>
+			<comment>--</comment><comment> pressed.</comment>
+		<keyword>ensure</keyword>
+			<tag>not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status report</comment>
+
+	<anchor>f_tooltip_delay</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_tooltip_delay</location>tooltip_delay</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Time in milliseconds before tooltips pop up.</comment>
+
+	<anchor>f_focused_widget</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_focused_widget</location>focused_widget</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_widget_short.xml</location>EV_WIDGET</class>
+			<comment>--</comment><comment> Widget with keyboard focus</comment>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status setting</comment>
+
+	<anchor>f_set_tooltip_delay</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_set_tooltip_delay</location>set_tooltip_delay</feature> <symbol>(</symbol><local>a_delay</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><feature><location>../implementation_interface/ev_application_i_short.xml#f_tooltip_delay</location>tooltip_delay</feature><comment> to </comment><quoted>a_delay</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>a_delay_non_negative</tag><symbol>:</symbol> <local>a_delay</local> <symbol>&gt;=</symbol> <number>0</number>
+		<keyword>ensure</keyword>
+			<tag>assigned</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_application_i_short.xml#f_tooltip_delay</location>tooltip_delay</feature> <symbol>=</symbol> <local>a_delay</local>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_interface</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_interface</location>interface</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_application_short.xml</location>EV_APPLICATION</class>
+		<keyword>note</keyword>
+			option: stable
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_call_post_launch_actions</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_call_post_launch_actions</location>call_post_launch_actions</feature>
+			<comment>--</comment><comment> Call the post launch actions.</comment>
+
+	<anchor>f_on_exception_action</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_on_exception_action</location>on_exception_action</feature> <symbol>(</symbol><local>an_exception</local><symbol>:</symbol> <class><include>False</include>EXCEPTION</class><symbol>)</symbol>
+			<comment>--</comment><comment> Call exception actions.</comment>
+		<keyword>require</keyword>
+			<tag>an_exception_not_void</tag><symbol>:</symbol> <local>an_exception</local> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_raise_default_exception_dialog</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_raise_default_exception_dialog</location>raise_default_exception_dialog</feature> <symbol>(</symbol><local>a_empty_dialog</local><symbol>:</symbol> <class><location>../interface/ev_dialog_short.xml</location>EV_DIALOG</class><symbol>;</symbol> <local>an_exception</local><symbol>:</symbol> <class><include>False</include>EXCEPTION</class><symbol>)</symbol>
+			<comment>--</comment><comment> Raise the exception dialog</comment>
+		<keyword>require</keyword>
+			<tag>a_empty_dialog_valid</tag><symbol>:</symbol> <local>a_empty_dialog</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>and then</keyword> <keyword>not</keyword> <local>a_empty_dialog</local><dot>.</dot><feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+
+	<anchor>f_exception_dialog</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_exception_dialog</location>exception_dialog</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_dialog_short.xml</location>EV_DIALOG</class>
+			<comment>--</comment><comment> Dialog used for showing uncaught exceptions.</comment>
+
+	<anchor>f_show_exception_dialog</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_show_exception_dialog</location>Show_exception_dialog</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class> <symbol>=</symbol> <keyword>True</keyword>
+			<comment>--</comment><comment> Should the exception dialog be shown by default?</comment>
+
+	<anchor>f_uncaught_exception_actions_called</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_uncaught_exception_actions_called</location>uncaught_exception_actions_called</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Are the </comment><quoted>uncaught_exceptions_actions</quoted><comment> currently being called?</comment>
+			<comment>--</comment><comment> This is used to prevent infinite looping should an exception be raised as part of calling </comment><feature><location>../implementation_interface/ev_application_action_sequences_i_short.xml#f_uncaught_exception_actions</location>uncaught_exception_actions</feature><comment>.</comment>
+
+	<anchor>f_new_exception</anchor><feature><location>../implementation_interface/ev_application_i_short.xml#f_new_exception</location>new_exception</feature><symbol>:</symbol> <class><include>False</include>EXCEPTION</class>
+			<comment>--</comment><comment> New exception object representating the last exception caught in Current</comment>
+		<keyword>ensure</keyword>
+			<tag>new_exception_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2017, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_interface/ev_application_i_short.xml</location>EV_APPLICATION_I</class></system>
+

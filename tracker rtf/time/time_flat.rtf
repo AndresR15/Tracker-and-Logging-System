@@ -1,0 +1,1123 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "Absolute times"{\line}
+{\tab}{\cf1 legal}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 status}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2017-03-29 05:26:46 -0700 (Wed, 29 Mar 2017) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 100065 $"{\line}
+{\tab}{\cf1 access}{\cf1 :} time{\line}
+{\tab}{\cf1 eis}{\cf1 :} "name=Obtaining a DATE from a DATE_TIME and vice versa"{\cf1 ,} "src=$(ISE_DOC_UUID)/195849fc-1a9c-d734-2d2b-acae78133886#Obtaining_a_DATE_from_a_DATE_TIME_and_vice_versa"{\cf1 ,} "tag=EiffelTime"{\line}
+{\line}
+{\b\cf6 class} {\line}
+{\tab}{\cf4 TIME}{\line}
+{\line}
+{\b\cf6 create} {\line}
+{\tab}{\cf5 make}{\cf1 ,}{\line}
+{\tab}{\cf5 make_fine}{\cf1 ,}{\line}
+{\tab}{\cf5 make_now}{\cf1 ,}{\line}
+{\tab}{\cf5 make_now_utc}{\cf1 ,}{\line}
+{\tab}{\cf5 make_by_seconds}{\cf1 ,}{\line}
+{\tab}{\cf5 make_by_fine_seconds}{\cf1 ,}{\line}
+{\tab}{\cf5 make_from_string}{\cf1 ,}{\line}
+{\tab}{\cf5 make_from_string_default}{\cf1 ,}{\line}
+{\tab}{\cf5 make_by_compact_time}{\line}
+{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Initialization}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make} {\cf1 (}{\cf5 h}{\cf1 ,} {\cf5 m}{\cf1 ,} {\cf5 s}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 hour, }{\cf3 minute' and }{\cf5 second}{\cf3  to }{\cf5 h}{\cf3 , }{\cf5 m}{\cf3 , }{\cf5 s}{\cf3  respectively.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 correct_time}{\cf1 :} {\cf5 is_correct_time}{\cf1  }{\cf1 (}{\cf5 h}{\cf1 ,} {\cf5 m}{\cf1 ,} {\cf5 s}{\b\cf1 .}{\cf5 to_double}{\cf1 ,} {\b\cf6 False}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_hour}{\cf1  }{\cf1 (}{\cf5 h}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_minute}{\cf1  }{\cf1 (}{\cf5 m}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_second}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 fractional_second} {\cf1 :=} 0{\b\cf1 .}{\cf5 to_double}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 hour_set}{\cf1 :} {\cf5 hour} {\cf1 =} {\cf5 h}{\line}
+{\tab}{\tab}{\tab}{\cf1 minute_set}{\cf1 :} {\cf5 minute} {\cf1 =} {\cf5 m}{\line}
+{\tab}{\tab}{\tab}{\cf1 second_set}{\cf1 :} {\cf5 second} {\cf1 =} {\cf5 s}{\line}
+{\tab}{\tab}{\tab}{\cf1 fractional_second_set}{\cf1 :} {\cf5 fractional_second} {\cf1 =} 0{\b\cf1 .}{\cf5 to_double}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make_by_compact_time} {\cf1 (}{\cf5 c_t}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Initialize from }{\cf5 compact_time}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 c_t_valid}{\cf1 :} {\cf5 compact_time_valid}{\cf1  }{\cf1 (}{\cf5 c_t}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 compact_time} {\cf1 :=} {\cf5 c_t}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 compact_time_set}{\cf1 :} {\cf5 compact_time} {\cf1 =} {\cf5 c_t}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make_by_fine_seconds} {\cf1 (}{\cf5 sec}{\cf1 :} {\cf4 REAL_64}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set the object by the number of seconds }{\cf5 sec}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_large_enough}{\cf1 :} {\cf5 sec} {\cf1 >=} 0{\b\cf1 .}{\cf5 to_double}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_small_enough}{\cf1 :} {\cf5 sec} {\cf1 <} {\cf5 Seconds_in_day}{\b\cf1 .}{\cf5 to_double}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 s}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 s} {\cf1 :=} {\cf5 sec}{\b\cf1 .}{\cf5 truncated_to_integer}{\line}
+{\tab}{\tab}{\tab}{\cf5 make_by_seconds}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 fractional_second} {\cf1 :=} {\cf5 sec} {\cf1 -} {\cf5 s}{\b\cf1 .}{\cf5 to_double}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make_by_seconds} {\cf1 (}{\cf5 sec}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set the object by the number of seconds }{\cf5 sec}{\cf3  from midnight.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_large_enough}{\cf1 :} {\cf5 sec} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\tab}{\cf1 s_small_enough}{\cf1 :} {\cf5 sec} {\cf1 <} {\cf5 Seconds_in_day}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 h}{\cf1 ,} {\cf5 m}{\cf1 ,} {\cf5 s}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 s} {\cf1 :=} {\cf5 sec}{\line}
+{\tab}{\tab}{\tab}{\cf5 h} {\cf1 :=} {\cf5 s} {\cf1 //} {\cf5 Seconds_in_hour}{\line}
+{\tab}{\tab}{\tab}{\cf5 s} {\cf1 :=} {\cf5 s} {\cf1 -} {\cf1 (}{\cf5 h} {\cf1 *} {\cf5 Seconds_in_hour}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 m} {\cf1 :=} {\cf5 s} {\cf1 //} {\cf5 Seconds_in_minute}{\line}
+{\tab}{\tab}{\tab}{\cf5 s} {\cf1 :=} {\cf5 s} {\cf1 -} {\cf1 (}{\cf5 m} {\cf1 *} {\cf5 Seconds_in_minute}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 h}{\cf1 ,} {\cf5 m}{\cf1 ,} {\cf5 s}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 seconds_set}{\cf1 :} {\cf5 seconds} {\cf1 =} {\cf5 sec}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make_fine} {\cf1 (}{\cf5 h}{\cf1 ,} {\cf5 m}{\cf1 :} {\cf4 INTEGER_32}{\cf1 ;} {\cf5 s}{\cf1 :} {\cf4 REAL_64}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 hour, }{\cf3 minute' and }{\cf5 second}{\cf3  to }{\cf5 h}{\cf3 , }{\cf5 m}{\cf3  and truncated to}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  integer part of }{\cf5 s}{\cf3  respectively.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 fractional_second}{\cf3  to the fractional part of }{\cf5 s}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 correct_time}{\cf1 :} {\cf5 is_correct_time}{\cf1  }{\cf1 (}{\cf5 h}{\cf1 ,} {\cf5 m}{\cf1 ,} {\cf5 s}{\cf1 ,} {\b\cf6 False}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 s_tmp}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 s_tmp} {\cf1 :=} {\cf5 s}{\b\cf1 .}{\cf5 truncated_to_integer}{\line}
+{\tab}{\tab}{\tab}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 h}{\cf1 ,} {\cf5 m}{\cf1 ,} {\cf5 s_tmp}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 fractional_second} {\cf1 :=} {\cf5 s} {\cf1 -} {\cf5 s_tmp}{\b\cf1 .}{\cf5 to_double}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 hour_set}{\cf1 :} {\cf5 hour} {\cf1 =} {\cf5 h}{\line}
+{\tab}{\tab}{\tab}{\cf1 minute_set}{\cf1 :} {\cf5 minute} {\cf1 =} {\cf5 m}{\line}
+{\tab}{\tab}{\tab}{\cf1 fine_second_set}{\cf1 :} {\cf5 fine_second} {\cf1 =} {\cf5 s}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make_from_string} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 code}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Initialize from a "standard" string of form}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 code}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_exists}{\cf1 :} {\cf5 s} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 c_exists}{\cf1 :} {\cf5 code} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 time_valid}{\cf1 :} {\cf5 time_valid}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 ,} {\cf5 code}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 time}{\cf1 :} {\cf4 TIME}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 time} {\cf1 :=} {\cf1 (}{\b\cf6 create}{\cf1  }{\cf1 \{}{\cf4 DATE_TIME_CODE_STRING}{\cf1 \}}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 code}{\cf1 )}{\cf1 )}{\b\cf1 .}{\cf5 create_time}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 make_fine}{\cf1  }{\cf1 (}{\cf5 time}{\b\cf1 .}{\cf5 hour}{\cf1 ,} {\cf5 time}{\b\cf1 .}{\cf5 minute}{\cf1 ,} {\cf5 time}{\b\cf1 .}{\cf5 fine_second}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make_from_string_default} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Initialize from a "standard" string of form}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 default_format_string}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_exists}{\cf1 :} {\cf5 s} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 time_valid}{\cf1 :} {\cf5 time_valid}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 ,} {\cf5 default_format_string}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 make_from_string}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 ,} {\cf5 default_format_string}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make_now}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set current time according to timezone.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_date}{\cf1 :} {\cf4 C_DATE}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 l_date}{\line}
+{\tab}{\tab}{\tab}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 l_date}{\b\cf1 .}{\cf5 hour_now}{\cf1 ,} {\cf5 l_date}{\b\cf1 .}{\cf5 minute_now}{\cf1 ,} {\cf5 l_date}{\b\cf1 .}{\cf5 second_now}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 fractional_second} {\cf1 :=} {\cf5 l_date}{\b\cf1 .}{\cf5 millisecond_now} {\cf1 /} 1000{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make_now_utc}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set the current object to today's date in utc format.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_date}{\cf1 :} {\cf4 C_DATE}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 l_date}{\b\cf1 .}{\cf5 make_utc}{\line}
+{\tab}{\tab}{\tab}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 l_date}{\b\cf1 .}{\cf5 hour_now}{\cf1 ,} {\cf5 l_date}{\b\cf1 .}{\cf5 minute_now}{\cf1 ,} {\cf5 l_date}{\b\cf1 .}{\cf5 second_now}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 fractional_second} {\cf1 :=} {\cf5 l_date}{\b\cf1 .}{\cf5 millisecond_now} {\cf1 /} 1000{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Initialization}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 default_create}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Process instances of classes with no creation clause.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Default: do nothing.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 compact_time}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Hour, minute, second coded.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 TIME_VALUE}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Date_time_tools}{\cf1 :} {\cf4 DATE_TIME_TOOLS}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Tools for outputting dates and times in different formats}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 TIME_UTILITY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 default_format_string}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Default output format string}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 TIME_UTILITY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 Date_time_tools}{\b\cf1 .}{\cf5 Default_format_string}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 fine_second}{\cf1 :} {\cf4 REAL_64}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Representation of second with decimals}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 TIME_VALUE}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 second}{\b\cf1 .}{\cf5 to_double} {\cf1 +} {\cf5 fractional_second}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 fractional_second}{\cf1 :} {\cf4 REAL_64}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Fractional part of }{\cf5 fine_second}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 TIME_VALUE}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 generating_type}{\cf1 :} {\cf4 TYPE} {\cf1 [}{\b\cf6 detachable} {\cf4 TIME}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Type of current object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (type of which it is a direct instance)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 generating_type_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 generator}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Name of current object's generating class}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (base class of the type of which it is a direct instance)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 generator_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 generator_not_empty}{\cf1 :} {\b\cf6 not} {\b\cf6 Result}{\b\cf1 .}{\cf5 is_empty}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 hour}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Hour of the current time}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 TIME_VALUE}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 compact_time} {\cf1 &} {\cf5 Hour_mask}{\cf1 )} {\cf1 |>>} {\cf5 Hour_shift}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Hours_in_day}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 24}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of hours in a day}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 TIME_CONSTANTS}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 micro_second}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Microsecond of the current time}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 TIME_VALUE}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 fractional_second} {\cf1 *} 1000000{\b\cf1 .}{\cf5 to_double}{\cf1 )}{\b\cf1 .}{\cf5 truncated_to_integer}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Result} {\cf1 \\\\} 1000{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 milli_second}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Millisecond of the current time}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 TIME_VALUE}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 fractional_second} {\cf1 *} 1000{\b\cf1 .}{\cf5 to_double}{\cf1 )}{\b\cf1 .}{\cf5 truncated_to_integer}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 minute}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Minute of the current time}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 TIME_VALUE}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 compact_time} {\cf1 &} {\cf5 Minute_mask}{\cf1 )} {\cf1 |>>} {\cf5 Minute_shift}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Minutes_in_hour}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 60}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of minutes in an hour}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 TIME_CONSTANTS}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 nano_second}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Nanosecond of the current time}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 TIME_VALUE}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 fractional_second} {\cf1 *} 1000000000{\b\cf1 .}{\cf5 to_double}{\cf1 )}{\b\cf1 .}{\cf5 truncated_to_integer}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Result} {\cf1 \\\\} 1000{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Origin}{\cf1 :} {\cf4 TIME}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Origin time}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}0{\cf1 ,} 0{\cf1 ,} 0{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ABSOLUTE}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_exists}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 second}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Second of the current time}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 TIME_VALUE}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 compact_time} {\cf1 &} {\cf5 Second_mask}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Seconds_in_day}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 86400}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of seconds in an hour}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 TIME_CONSTANTS}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Seconds_in_hour}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 3600}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of seconds in an hour}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 TIME_CONSTANTS}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Seconds_in_minute}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 60}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of seconds in a minute}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 TIME_CONSTANTS}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 time_default_format_string}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Default output format for times}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 TIME_CONSTANTS}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 Date_time_tools}{\b\cf1 .}{\cf5 Time_default_format_string}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Measurement}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 duration}{\cf1 :} {\cf4 TIME_DURATION}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Duration elapsed from midnight}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from } {\cf4 ABSOLUTE}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 True}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make_fine}{\cf1  }{\cf1 (}{\cf5 hour}{\cf1 ,} {\cf5 minute}{\cf1 ,} {\cf5 fine_second}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure then}{\line}
+{\tab}{\tab}{\tab}{\cf1 seconds_large_enough}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 seconds_count} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\tab}{\cf1 seconds_small_enough}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 seconds_count} {\cf1 <} {\cf5 Seconds_in_day}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 fine_seconds}{\cf1 :} {\cf4 REAL_64}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of seconds and fractions of seconds elapsed from midnight}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 hour} {\cf1 *} {\cf5 Seconds_in_hour}{\cf1 )} {\cf1 +} {\cf1 (}{\cf5 minute} {\cf1 *} {\cf5 Seconds_in_minute}{\cf1 )}{\b\cf1 .}{\cf5 to_double} {\cf1 +} {\cf5 fine_second}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 seconds}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of seconds elapsed from midnight}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 hour} {\cf1 *} {\cf5 Seconds_in_hour}{\cf1 )} {\cf1 +} {\cf1 (}{\cf5 minute} {\cf1 *} {\cf5 Seconds_in_minute}{\cf1 )} {\cf1 +} {\cf5 second}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf5 duration}{\b\cf1 .}{\cf5 seconds_count}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Comparison}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 deep_equal} {\cf1 (}{\cf5 a}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 ;} {\cf5 b}{\cf1 :} {\b\cf6 like} arg #1{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are }{\cf5 a}{\cf3  and }{\cf5 b}{\cf3  either both void}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  or attached to isomorphic object structures?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a} {\cf1 =} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 =} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 is_deep_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 shallow_implies_deep}{\cf1 :} {\cf5 standard_equal}{\cf1  }{\cf1 (}{\cf5 a}{\cf1 ,} {\cf5 b}{\cf1 )} {\b\cf6 implies} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\cf1 both_or_none_void}{\cf1 :} {\cf1 (}{\cf5 a} {\cf1 =} {\b\cf6 Void}{\cf1 )} {\b\cf6 implies} {\cf1 (}{\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf5 b} {\cf1 =} {\b\cf6 Void}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 same_type}{\cf1 :} {\cf1 (}{\b\cf6 Result} {\b\cf6 and} {\cf1 (}{\cf5 a} {\cf1 /=} {\b\cf6 Void}{\cf1 )}{\cf1 )} {\b\cf6 implies} {\cf1 (}{\cf5 b} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 same_type}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 symmetric}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 deep_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 ,} {\cf5 a}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 equal} {\cf1 (}{\cf5 a}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 ;} {\cf5 b}{\cf1 :} {\b\cf6 like} arg #1{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are }{\cf5 a}{\cf3  and }{\cf5 b}{\cf3  either both void or attached}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to objects considered equal?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a} {\cf1 =} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 =} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf5 a} {\cf1 =} {\b\cf6 Void} {\b\cf6 and} {\cf5 b} {\cf1 =} {\b\cf6 Void}{\cf1 )} {\b\cf6 or else} {\cf1 (}{\cf1 (}{\cf5 a} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and} {\cf5 b} {\cf1 /=} {\b\cf6 Void}{\cf1 )} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 is_deep_equal} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 TIME}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are }{\cf5 Current}{\cf3  and }{\cf5 other}{\cf3  attached to isomorphic object structures?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 shallow_implies_deep}{\cf1 :} {\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )} {\b\cf6 implies} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\cf1 same_type}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 same_type}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 symmetric}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 other}{\b\cf1 .}{\cf5 is_deep_equal}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_equal} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 TIME}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 other}{\cf3  attached to an object of the same type}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  as current object and identical to it?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 COMPARABLE}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 not} {\cf1 (}{\b\cf6 Current} {\cf1 <} {\cf5 other}{\cf1 )} {\b\cf6 and} {\b\cf6 not} {\cf1 (}{\cf5 other} {\cf1 <} {\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 symmetric}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 other} {\cf1 ~} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\tab}{\cf1 consistent}{\cf1 :} {\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )} {\b\cf6 implies} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\b\cf6 ensure then} {\cf3 --} {\cf3 from }{\cf4 COMPARABLE}{\line}
+{\tab}{\tab}{\tab}{\cf1 trichotomy}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf1 (}{\b\cf6 not} {\cf1 (}{\b\cf6 Current} {\cf1 <} {\cf5 other}{\cf1 )} {\b\cf6 and} {\b\cf6 not} {\cf1 (}{\cf5 other} {\cf1 <} {\b\cf6 Current}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_greater} {\b\cf6 alias} {\cf1 "}{\cf1 >}{\cf1 "} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 TIME}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is current object greater than }{\cf5 other}{\cf3 ?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 COMPARABLE}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 PART_COMPARABLE}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_exists}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 other} {\cf1 <} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\b\cf6 ensure then} {\cf3 --} {\cf3 from }{\cf4 COMPARABLE}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf5 other} {\cf1 <} {\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_greater_equal} {\b\cf6 alias} {\cf1 "}{\cf1 >=}{\cf1 "} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 TIME}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is current object greater than or equal to }{\cf5 other}{\cf3 ?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 COMPARABLE}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 PART_COMPARABLE}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_exists}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 not} {\cf1 (}{\b\cf6 Current} {\cf1 <} {\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure then} {\cf3 --} {\cf3 from }{\cf4 COMPARABLE}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf5 other} {\cf1 <=} {\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_less} {\b\cf6 alias} {\cf1 "}{\cf1 <}{\cf1 "} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 like} {\b\cf6 Current}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is the current time before }{\cf5 other}{\cf3 ?}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 PART_COMPARABLE}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_exists}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_current}{\cf1 ,} {\cf5 l_other}{\cf1 :} {\b\cf6 like} {\cf5 compact_time}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_current} {\cf1 :=} {\cf5 compact_time}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_other} {\cf1 :=} {\cf5 other}{\b\cf1 .}{\cf5 compact_time}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 l_current} {\cf1 <} {\cf5 l_other}{\cf1 )} {\b\cf6 or else} {\cf1 (}{\cf1 (}{\cf5 l_current} {\cf1 =} {\cf5 l_other}{\cf1 )} {\b\cf6 and} {\cf1 (}{\cf5 fractional_second} {\cf1 <} {\cf5 other}{\b\cf1 .}{\cf5 fractional_second} {\b\cf6 and then} {\cf1 (}{\cf5 other}{\b\cf1 .}{\cf5 fractional_second} {\cf1 -} {\cf5 fractional_second}{\cf1 )} {\cf1 >} 1.0e-10{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure then} {\cf3 --} {\cf3 from }{\cf4 COMPARABLE}{\line}
+{\tab}{\tab}{\tab}{\cf1 asymmetric}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\b\cf6 not} {\cf1 (}{\cf5 other} {\cf1 <} {\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_less_equal} {\b\cf6 alias} {\cf1 "}{\cf1 <=}{\cf1 "} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 TIME}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is current object less than or equal to }{\cf5 other}{\cf3 ?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 COMPARABLE}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 PART_COMPARABLE}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_exists}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 not} {\cf1 (}{\cf5 other} {\cf1 <} {\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure then} {\cf3 --} {\cf3 from }{\cf4 COMPARABLE}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf1 (}{\b\cf6 Current} {\cf1 <} {\cf5 other}{\cf1 )} {\b\cf6 or} {\cf1 (}{\b\cf6 Current} {\cf1 ~} {\cf5 other}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 max} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 TIME}{\cf1 )}{\cf1 :} {\b\cf6 attached} {\cf4 TIME}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  The greater of current object and }{\cf5 other}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 COMPARABLE}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 COMPARABLE}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_exists}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 Current} {\cf1 >=} {\cf5 other} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 other}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 COMPARABLE}{\line}
+{\tab}{\tab}{\tab}{\cf1 current_if_not_smaller}{\cf1 :} {\b\cf6 Current} {\cf1 >=} {\cf5 other} {\b\cf6 implies} {\b\cf6 Result} {\cf1 =} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_if_smaller}{\cf1 :} {\b\cf6 Current} {\cf1 <} {\cf5 other} {\b\cf6 implies} {\b\cf6 Result} {\cf1 =} {\cf5 other}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 min} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 TIME}{\cf1 )}{\cf1 :} {\b\cf6 attached} {\cf4 TIME}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  The smaller of current object and }{\cf5 other}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 COMPARABLE}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 COMPARABLE}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_exists}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 Current} {\cf1 <=} {\cf5 other} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 other}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 COMPARABLE}{\line}
+{\tab}{\tab}{\tab}{\cf1 current_if_not_greater}{\cf1 :} {\b\cf6 Current} {\cf1 <=} {\cf5 other} {\b\cf6 implies} {\b\cf6 Result} {\cf1 =} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_if_greater}{\cf1 :} {\b\cf6 Current} {\cf1 >} {\cf5 other} {\b\cf6 implies} {\b\cf6 Result} {\cf1 =} {\cf5 other}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 standard_equal} {\cf1 (}{\cf5 a}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 ;} {\cf5 b}{\cf1 :} {\b\cf6 like} arg #1{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are }{\cf5 a}{\cf3  and }{\cf5 b}{\cf3  either both void or attached to}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  field-by-field identical objects of the same type?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Always uses default object comparison criterion.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a} {\cf1 =} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 =} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf5 a} {\cf1 =} {\b\cf6 Void} {\b\cf6 and} {\cf5 b} {\cf1 =} {\b\cf6 Void}{\cf1 )} {\b\cf6 or else} {\cf1 (}{\cf1 (}{\cf5 a} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and} {\cf5 b} {\cf1 /=} {\b\cf6 Void}{\cf1 )} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 standard_is_equal} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 TIME}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 other}{\cf3  attached to an object of the same type}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  as current object, and field-by-field identical to it?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 same_type}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 same_type}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 symmetric}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 other}{\b\cf1 .}{\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 three_way_comparison} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 TIME}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  If current object equal to }{\cf5 other}{\cf3 , 0;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  if smaller, -1; if greater, 1}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 COMPARABLE}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 COMPARABLE}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_exists}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 Current} {\cf1 <} {\cf5 other} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} -1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 other} {\cf1 <} {\b\cf6 Current} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 COMPARABLE}{\line}
+{\tab}{\tab}{\tab}{\cf1 equal_zero}{\cf1 :} {\cf1 (}{\b\cf6 Result} {\cf1 =} 0{\cf1 )} {\cf1 =} {\cf1 (}{\b\cf6 Current} {\cf1 ~} {\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 smaller_negative}{\cf1 :} {\cf1 (}{\b\cf6 Result} {\cf1 =} -1{\cf1 )} {\cf1 =} {\cf1 (}{\b\cf6 Current} {\cf1 <} {\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 greater_positive}{\cf1 :} {\cf1 (}{\b\cf6 Result} {\cf1 =} 1{\cf1 )} {\cf1 =} {\cf1 (}{\b\cf6 Current} {\cf1 >} {\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status report}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 conforms_to} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 ANY}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does type of current object conform to type}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of }{\cf5 other}{\cf3  (as per Eiffel: The Language, chapter 13)?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 same_type} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 ANY}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is type of current object identical to type of }{\cf5 other}{\cf3 ?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf5 conforms_to}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )} {\b\cf6 and} {\cf5 other}{\b\cf1 .}{\cf5 conforms_to}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Element change}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_fine_second} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 REAL_64}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 fine_second}{\cf3  to }{\cf5 s}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 TIME_VALUE}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 TIME_MEASUREMENT}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_large_enough}{\cf1 :} {\cf5 s} {\cf1 >=} 0{\b\cf1 .}{\cf5 to_double}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_small_enough}{\cf1 :} {\cf5 s} {\cf1 <} {\cf5 Seconds_in_minute}{\b\cf1 .}{\cf5 to_double}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 s_tmp}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 s_tmp} {\cf1 :=} {\cf5 s}{\b\cf1 .}{\cf5 truncated_to_integer}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_second}{\cf1  }{\cf1 (}{\cf5 s_tmp}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 fractional_second} {\cf1 :=} {\cf5 s} {\cf1 -} {\cf5 s_tmp}{\b\cf1 .}{\cf5 to_double}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 TIME_MEASUREMENT}{\line}
+{\tab}{\tab}{\tab}{\cf1 fine_second_set}{\cf1 :} {\cf5 fine_second} {\cf1 =} {\cf5 s}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_fractionals} {\cf1 (}{\cf5 f}{\cf1 :} {\cf4 REAL_64}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 fractional_second}{\cf3  to }{\cf5 f}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 TIME_VALUE}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 TIME_MEASUREMENT}{\line}
+{\tab}{\tab}{\tab}{\cf1 f_large_enough}{\cf1 :} {\cf5 f} {\cf1 >=} 0{\b\cf1 .}{\cf5 to_double}{\line}
+{\tab}{\tab}{\tab}{\cf1 f_small_enough}{\cf1 :} {\cf5 f} {\cf1 <} 1{\b\cf1 .}{\cf5 to_double}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 fractional_second} {\cf1 :=} {\cf5 f}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 TIME_MEASUREMENT}{\line}
+{\tab}{\tab}{\tab}{\cf1 second_same}{\cf1 :} {\cf5 second} {\cf1 =} {\b\cf6 old} {\cf5 second}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_hour} {\cf1 (}{\cf5 h}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 hour}{\cf3  to }{\cf5 h}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 TIME_VALUE}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 TIME_MEASUREMENT}{\line}
+{\tab}{\tab}{\tab}{\cf1 h_large_enough}{\cf1 :} {\cf5 h} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\tab}{\cf1 h_small_enough}{\cf1 :} {\cf5 h} {\cf1 <} {\cf5 Hours_in_day}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 compact_time} {\cf1 :=} {\cf5 compact_time} {\cf1 &} {\cf5 Hour_mask}{\b\cf1 .}{\cf5 bit_not}{\line}
+{\tab}{\tab}{\tab}{\cf5 compact_time} {\cf1 :=} {\cf5 compact_time} {\cf1 |} {\cf1 (}{\cf5 h} {\cf1 |<<} {\cf5 Hour_shift}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 TIME_MEASUREMENT}{\line}
+{\tab}{\tab}{\tab}{\cf1 hour_set}{\cf1 :} {\cf5 hour} {\cf1 =} {\cf5 h}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_minute} {\cf1 (}{\cf5 m}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 minute}{\cf3  to }{\cf5 m}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 TIME_VALUE}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 TIME_MEASUREMENT}{\line}
+{\tab}{\tab}{\tab}{\cf1 m_large_enough}{\cf1 :} {\cf5 m} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\tab}{\cf1 m_small_enough}{\cf1 :} {\cf5 m} {\cf1 <} {\cf5 Minutes_in_hour}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 compact_time} {\cf1 :=} {\cf5 compact_time} {\cf1 &} {\cf5 Minute_mask}{\b\cf1 .}{\cf5 bit_not}{\line}
+{\tab}{\tab}{\tab}{\cf5 compact_time} {\cf1 :=} {\cf5 compact_time} {\cf1 |} {\cf1 (}{\cf5 m} {\cf1 |<<} {\cf5 Minute_shift}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 TIME_MEASUREMENT}{\line}
+{\tab}{\tab}{\tab}{\cf1 minute_set}{\cf1 :} {\cf5 minute} {\cf1 =} {\cf5 m}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_second} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 second}{\cf3  to }{\cf5 s}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 TIME_VALUE}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 TIME_MEASUREMENT}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_large_enough}{\cf1 :} {\cf5 s} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\tab}{\cf1 s_small_enough}{\cf1 :} {\cf5 s} {\cf1 <} {\cf5 Seconds_in_minute}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 compact_time} {\cf1 :=} {\cf5 compact_time} {\cf1 &} {\cf5 Second_mask}{\b\cf1 .}{\cf5 bit_not}{\line}
+{\tab}{\tab}{\tab}{\cf5 compact_time} {\cf1 :=} {\cf5 compact_time} {\cf1 |} {\cf5 s}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 TIME_MEASUREMENT}{\line}
+{\tab}{\tab}{\tab}{\cf1 second_set}{\cf1 :} {\cf5 second} {\cf1 =} {\cf5 s}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Duplication}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 clone} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 )}{\cf1 :} {\b\cf6 like} {\cf5 other}{\line}
+{\tab}{\tab}{\b\cf6 obsolete} "Use `twin' instead. [2017-05-31]"{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Void if }{\cf5 other}{\cf3  is void; otherwise new object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  equal to }{\cf5 other}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  For non-void }{\cf5 other}{\cf3 , }{\cf5 clone}{\cf3  calls }{\cf5 copy}{\cf3 ;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to change copying/cloning semantics, redefine }{\cf5 copy}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 other} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 other}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 equal}{\cf1 :} {\b\cf6 Result} {\cf1 ~} {\cf5 other}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 copy} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 TIME}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Update current object using fields of object attached}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to }{\cf5 other}{\cf3 , so as to yield equal objects.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 type_identity}{\cf1 :} {\cf5 same_type}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_equal}{\cf1 :} {\b\cf6 Current} {\cf1 ~} {\cf5 other}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 deep_clone} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 )}{\cf1 :} {\b\cf6 like} {\cf5 other}{\line}
+{\tab}{\tab}{\b\cf6 obsolete} "Use `deep_twin' instead. [2017-05-31]"{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Void if }{\cf5 other}{\cf3  is void: otherwise, new object structure}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  recursively duplicated from the one attached to }{\cf5 other}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 other} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 other}{\b\cf1 .}{\cf5 deep_twin}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 deep_equal}{\cf1 :} {\cf5 deep_equal}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 ,} {\b\cf6 Result}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 deep_copy} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 TIME}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Effect equivalent to that of:}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3 		}{\cf5 copy}{\cf3  (}{\cf5 other}{\cf3  . }{\cf5 deep_twin}{\cf3 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 copy}{\cf1  }{\cf1 (}{\cf5 other}{\b\cf1 .}{\cf5 deep_twin}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 deep_equal}{\cf1 :} {\cf5 deep_equal}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 ,} {\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 deep_twin}{\cf1 :} {\b\cf6 attached} {\cf4 TIME}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New object structure recursively duplicated from Current.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 deep_twin_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 deep_equal}{\cf1 :} {\cf5 deep_equal}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 ,} {\b\cf6 Result}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 standard_clone} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 )}{\cf1 :} {\b\cf6 like} {\cf5 other}{\line}
+{\tab}{\tab}{\b\cf6 obsolete} "Use `standard_twin' instead. [2017-05-31]"{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Void if }{\cf5 other}{\cf3  is void; otherwise new object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  field-by-field identical to }{\cf5 other}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Always uses default copying semantics.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 other} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 other}{\b\cf1 .}{\cf5 standard_twin}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 equal}{\cf1 :} {\cf5 standard_equal}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 ,} {\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 standard_copy} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 TIME}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Copy every field of }{\cf5 other}{\cf3  onto corresponding field}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of current object.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 type_identity}{\cf1 :} {\cf5 same_type}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_standard_equal}{\cf1 :} {\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 standard_twin}{\cf1 :} {\b\cf6 attached} {\cf4 TIME}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New object field-by-field identical to }{\cf5 other}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Always uses default copying semantics.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 standard_twin_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 equal}{\cf1 :} {\cf5 standard_equal}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 ,} {\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 twin}{\cf1 :} {\b\cf6 attached} {\cf4 TIME}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New object equal to }{\cf5 Current}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 twin}{\cf3  calls }{\cf5 copy}{\cf3 ; to change copying/twinning semantics, redefine }{\cf5 copy}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 twin_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_equal}{\cf1 :} {\b\cf6 Result} {\cf1 ~} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Basic operations}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 as_attached}{\cf1 :} {\b\cf6 attached} {\cf4 TIME}{\line}
+{\tab}{\tab}{\b\cf6 obsolete} "Remove calls to this feature. [2017-05-31]"{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Attached version of Current.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Can be used during transitional period to convert}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  non-void-safe classes to void-safe ones.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 default}{\cf1 :} {\b\cf6 detachable} {\cf4 TIME}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Default value of object's type}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 default_pointer}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Default value of type }{\cf5 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Avoid the need to write }{\cf5 p}{\cf3 .}{\cf5 default}{\cf3  for}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  some }{\cf5 p}{\cf3  of type }{\cf5 POINTER}{\cf3 .)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 default_rescue}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Process exception for routines with no Rescue clause.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Default: do nothing.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 do_nothing}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Execute a null action.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 fine_second_add} {\cf1 (}{\cf5 f}{\cf1 :} {\cf4 REAL_64}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Add }{\cf5 f}{\cf3  seconds to the current time.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  if }{\cf5 f}{\cf3  has decimals, }{\cf5 fractional_second}{\cf3  is modified.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 total_second}{\cf1 :} {\cf4 REAL_64}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 total_second} {\cf1 :=} {\cf5 fine_second} {\cf1 +} {\cf5 f}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 total_second} {\cf1 <} 0{\b\cf1 .}{\cf5 to_double} {\b\cf6 or else} {\cf5 total_second} {\cf1 >=} {\cf5 Seconds_in_minute}{\b\cf1 .}{\cf5 to_double} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 set_fine_second}{\cf1  }{\cf1 (}{\cf5 total_second} {\cf1 -} {\cf5 div}{\cf1  }{\cf1 (}{\cf5 total_second}{\b\cf1 .}{\cf5 floor}{\cf1 ,} {\cf5 Seconds_in_minute}{\cf1 )} {\cf1 *} {\cf5 Seconds_in_minute}{\b\cf1 .}{\cf5 to_double}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 minute_add}{\cf1  }{\cf1 (}{\cf5 div}{\cf1  }{\cf1 (}{\cf5 total_second}{\b\cf1 .}{\cf5 floor}{\cf1 ,} {\cf5 Seconds_in_minute}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 set_fine_second}{\cf1  }{\cf1 (}{\cf5 total_second}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 hour_add} {\cf1 (}{\cf5 h}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Add }{\cf5 h}{\cf3  hours to the current object.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_hour}{\cf1  }{\cf1 (}{\cf5 mod}{\cf1  }{\cf1 (}{\cf5 hour} {\cf1 +} {\cf5 h}{\cf1 ,} {\cf5 Hours_in_day}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 hour_back}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Move to evious hour.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 hour} {\cf1 >} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 set_hour}{\cf1  }{\cf1 (}{\cf5 hour} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 set_hour}{\cf1  }{\cf1 (}{\cf5 Hours_in_day} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 hour_forth}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Move to next hour.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 hour} {\cf1 <} {\cf5 Hours_in_day} {\cf1 -} 1 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 set_hour}{\cf1  }{\cf1 (}{\cf5 hour} {\cf1 +} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 set_hour}{\cf1  }{\cf1 (}0{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 minus} {\b\cf6 alias} {\cf1 "}{\cf1 -}{\cf1 "} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 TIME}{\cf1 )}{\cf1 :} {\cf4 INTERVAL} {\cf1 [}{\b\cf6 attached} {\cf4 TIME}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Interval between current object and }{\cf5 other}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ABSOLUTE}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ABSOLUTE}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_exists}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_smaller_than_current}{\cf1 :} {\cf5 other} {\cf1 <=} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 ,} {\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ABSOLUTE}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_exists}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_set}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 start_bound}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )} {\b\cf6 and then} {\b\cf6 Result}{\b\cf1 .}{\cf5 end_bound}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 minute_add} {\cf1 (}{\cf5 m}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Add }{\cf5 m}{\cf3  minutes to the current object.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 total_minute}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 total_minute} {\cf1 :=} {\cf5 minute} {\cf1 +} {\cf5 m}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 total_minute} {\cf1 <} 0 {\b\cf6 or else} {\cf5 total_minute} {\cf1 >=} {\cf5 Minutes_in_hour} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 set_minute}{\cf1  }{\cf1 (}{\cf5 mod}{\cf1  }{\cf1 (}{\cf5 total_minute}{\cf1 ,} {\cf5 Minutes_in_hour}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 hour_add}{\cf1  }{\cf1 (}{\cf5 div}{\cf1  }{\cf1 (}{\cf5 total_minute}{\cf1 ,} {\cf5 Minutes_in_hour}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 set_minute}{\cf1  }{\cf1 (}{\cf5 total_minute}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 minute_back}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Move to evious minute.	}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 minute} {\cf1 >} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 set_minute}{\cf1  }{\cf1 (}{\cf5 minute} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 set_minute}{\cf1  }{\cf1 (}{\cf5 Minutes_in_hour} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 hour_back}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 minute_forth}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Move to next minute.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 minute} {\cf1 <} {\cf5 Minutes_in_hour} {\cf1 -} 1 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 set_minute}{\cf1  }{\cf1 (}{\cf5 minute} {\cf1 +} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 set_minute}{\cf1  }{\cf1 (}0{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 hour_forth}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 plus} {\b\cf6 alias} {\cf1 "}{\cf1 +}{\cf1 "} {\cf1 (}{\cf5 t}{\cf1 :} {\cf4 TIME_DURATION}{\cf1 )}{\cf1 :} {\cf4 TIME}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Sum of the current time and duration }{\cf5 t}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 t_exists}{\cf1 :} {\cf5 t} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 fine_second_add}{\cf1  }{\cf1 (}{\cf5 t}{\b\cf1 .}{\cf5 fine_second}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 minute_add}{\cf1  }{\cf1 (}{\cf5 t}{\b\cf1 .}{\cf5 minute}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 hour_add}{\cf1  }{\cf1 (}{\cf5 t}{\b\cf1 .}{\cf5 hour}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_exists}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 relative_duration} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 like} {\b\cf6 Current}{\cf1 )}{\cf1 :} {\cf4 TIME_DURATION}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Duration elapsed from }{\cf5 other}{\cf3  to }{\cf5 Current}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ABSOLUTE}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_exists}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make_by_fine_seconds}{\cf1  }{\cf1 (}{\cf5 fine_seconds} {\cf1 -} {\cf5 other}{\b\cf1 .}{\cf5 fine_seconds}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Result}{\b\cf1 .}{\cf5 to_canonical}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ABSOLUTE}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_exists}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 second_add} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Add }{\cf5 s}{\cf3  seconds to the current time.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 total_second}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 total_second} {\cf1 :=} {\cf5 second} {\cf1 +} {\cf5 s}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 total_second} {\cf1 <} 0 {\b\cf6 or else} {\cf5 total_second} {\cf1 >=} {\cf5 Seconds_in_minute} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 set_fine_second}{\cf1  }{\cf1 (}{\cf5 mod}{\cf1  }{\cf1 (}{\cf5 total_second}{\cf1 ,} {\cf5 Seconds_in_minute}{\cf1 )}{\b\cf1 .}{\cf5 to_double} {\cf1 +} {\cf5 fractional_second}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 minute_add}{\cf1  }{\cf1 (}{\cf5 div}{\cf1  }{\cf1 (}{\cf5 total_second}{\cf1 ,} {\cf5 Seconds_in_minute}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 set_fine_second}{\cf1  }{\cf1 (}{\cf5 total_second}{\b\cf1 .}{\cf5 to_double} {\cf1 +} {\cf5 fractional_second}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 second_back}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Move to previous second.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 fine_second} {\cf1 >} 0{\b\cf1 .}{\cf5 to_double} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 set_fine_second}{\cf1  }{\cf1 (}{\cf5 fine_second} {\cf1 -} 1{\b\cf1 .}{\cf5 to_double}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 set_fine_second}{\cf1  }{\cf1 (}{\cf5 Seconds_in_minute} {\cf1 -} 1{\b\cf1 .}{\cf5 to_double}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 minute_back}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 second_forth}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Move to next second.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 fine_second} {\cf1 <} {\cf5 Seconds_in_minute} {\cf1 -} 1{\b\cf1 .}{\cf5 to_double} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 set_fine_second}{\cf1  }{\cf1 (}{\cf5 fine_second} {\cf1 +} 1{\b\cf1 .}{\cf5 to_double}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 set_fine_second}{\cf1  }{\cf1 (}0{\b\cf1 .}{\cf5 to_double}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 minute_forth}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Basic operations}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 div} {\cf1 (}{\cf5 i}{\cf1 ,} {\cf5 j}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (i \\\\ j) if }{\cf5 i}{\cf3  positive}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (i \\\\ j + 1) if }{\cf5 i}{\cf3  negative}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 TIME_UTILITY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 i} {\cf1 //} {\cf5 j}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 Result}{\b\cf1 .}{\cf5 to_double} {\cf1 >} {\cf5 i} {\cf1 /} {\cf5 j} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Result} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 TIME_UTILITY}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_definition}{\cf1 :} {\cf5 i} {\cf1 =} {\cf5 j} {\cf1 *} {\b\cf6 Result} {\cf1 +} {\cf5 mod}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 ,} {\cf5 j}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 mod} {\cf1 (}{\cf5 i}{\cf1 ,} {\cf5 j}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (i \\\\ j) if }{\cf5 i}{\cf3  positive}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (i \\\\ j + j) if }{\cf5 i}{\cf3  negative}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 TIME_UTILITY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 i} {\cf1 \\\\} {\cf5 j}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 Result} {\cf1 <} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Result} {\cf1 +} {\cf5 j}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 TIME_UTILITY}{\line}
+{\tab}{\tab}{\tab}{\cf1 positive_result}{\cf1 :} {\b\cf6 Result} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\tab}{\cf1 result_definition}{\cf1 :} {\cf5 i} {\cf1 =} {\cf5 j} {\cf1 *} {\cf5 div}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 ,} {\cf5 j}{\cf1 )} {\cf1 +} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Hour_mask}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 16711680}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 TIME_VALUE}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Hour_shift}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 16}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 TIME_VALUE}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Minute_mask}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 65280}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 TIME_VALUE}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Minute_shift}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Shift needed to extract/set }{\cf5 hour}{\cf3  and }{\cf5 minute}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 TIME_VALUE}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Second_mask}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 255}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Mask used to extract/set }{\cf5 hour}{\cf3 , }{\cf5 minute}{\cf3  and }{\cf5 second}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 TIME_VALUE}{\cf3 )}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Output}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 debug_output}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Printable representation of time with "standard"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Form: }{\cf5 time_default_format_string}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 TIME}{\cf3  as synonym of }{\cf5 out}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 formatted_out}{\cf1  }{\cf1 (}{\cf5 time_default_format_string}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 DEBUG_OUTPUT}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 formatted_out} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Printable representation of time with "standard"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Form: }{\cf5 s}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_exists}{\cf1 :} {\cf5 s} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\b\cf6 create}{\cf1  }{\cf1 \{}{\cf4 DATE_TIME_CODE_STRING}{\cf1 \}}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\cf1 )}{\b\cf1 .}{\cf5 create_time_string}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Io}{\cf1 :} {\cf4 STD_FILES}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Handle to standard file setup}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 set_output_default}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 io_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 out}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Printable representation of time with "standard"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Form: }{\cf5 time_default_format_string}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 TIME}{\cf3  as synonym of }{\cf5 debug_output}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 formatted_out}{\cf1  }{\cf1 (}{\cf5 time_default_format_string}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 out_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 print} {\cf1 (}{\cf5 o}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Write terse external representation of }{\cf5 o}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  on standard output.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 o} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 Io}{\b\cf1 .}{\cf5 put_string}{\cf1  }{\cf1 (}{\cf5 o}{\b\cf1 .}{\cf5 out}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 tagged_out}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New string containing terse printable representation}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of current object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 tagged_out_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Platform}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Operating_environment}{\cf1 :} {\cf4 OPERATING_ENVIRONMENT}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Objects available from the operating system}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 operating_environment_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Preconditions}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 compact_time_valid} {\cf1 (}{\cf5 c_t}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is compact time }{\cf5 c_t}{\cf3  valid?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 TIME_VALIDITY_CHECKER}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 h}{\cf1 ,} {\cf5 m}{\cf1 ,} {\cf5 s}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_c_t}{\cf1 :} {\b\cf6 like} {\cf5 compact_time}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_c_t} {\cf1 :=} {\cf5 compact_time}{\line}
+{\tab}{\tab}{\tab}{\cf5 compact_time} {\cf1 :=} {\cf5 c_t}{\line}
+{\tab}{\tab}{\tab}{\cf5 h} {\cf1 :=} {\cf5 hour}{\line}
+{\tab}{\tab}{\tab}{\cf5 m} {\cf1 :=} {\cf5 minute}{\line}
+{\tab}{\tab}{\tab}{\cf5 s} {\cf1 :=} {\cf5 second}{\line}
+{\tab}{\tab}{\tab}{\cf5 compact_time} {\cf1 :=} {\cf5 l_c_t}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 h} {\cf1 >=} 0 {\b\cf6 and} {\cf5 h} {\cf1 <} {\cf5 Hours_in_day} {\b\cf6 and} {\cf5 m} {\cf1 >=} 0 {\b\cf6 and} {\cf5 m} {\cf1 <} {\cf5 Minutes_in_hour} {\b\cf6 and} {\cf5 s} {\cf1 >=} 0 {\b\cf6 and} {\cf5 s} {\cf1 <} {\cf5 Seconds_in_minute}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_correct_time} {\cf1 (}{\cf5 h}{\cf1 ,} {\cf5 m}{\cf1 :} {\cf4 INTEGER_32}{\cf1 ;} {\cf5 s}{\cf1 :} {\cf4 REAL_64}{\cf1 ;} {\cf5 twelve_hour_scale}{\cf1 :} {\cf4 BOOLEAN}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is time represented by }{\cf5 h}{\cf3 , }{\cf5 m}{\cf3 , }{\cf5 code}{\cf3 , and }{\cf5 s}{\cf3  correct?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 twelve_hour_scale}{\cf3  specifies if the hour range is 1 - 12}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (if True) or 0 - 23 (if False).}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 TIME_VALIDITY_CHECKER}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 min_hour}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 max_hour}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 twelve_hour_scale} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 min_hour} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 max_hour} {\cf1 :=} 12{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 min_hour} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 max_hour} {\cf1 :=} {\cf5 Hours_in_day} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 h} {\cf1 >=} {\cf5 min_hour} {\b\cf6 and} {\cf5 h} {\cf1 <=} {\cf5 max_hour} {\b\cf6 and then} {\cf5 m} {\cf1 >=} 0 {\b\cf6 and} {\cf5 m} {\cf1 <} {\cf5 Minutes_in_hour} {\b\cf6 and then} {\cf5 s} {\cf1 >=} 0{\b\cf1 .}{\cf5 to_double} {\b\cf6 and} {\cf5 s} {\cf1 <} {\cf5 Seconds_in_minute}{\b\cf1 .}{\cf5 to_double}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 time_valid} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 code_string}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is the code_string enough precise}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to create an instance of type TIME?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  And does the string }{\cf5 s}{\cf3  correspond to }{\cf5 code_string}{\cf3 ?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 TIME_VALIDITY_CHECKER}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 TIME_VALIDITY_CHECKER}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_exists}{\cf1 :} {\cf5 s} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 code_exists}{\cf1 :} {\cf5 code_string} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 code}{\cf1 :} {\cf4 DATE_TIME_CODE_STRING}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 code}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 code_string}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 code}{\b\cf1 .}{\cf5 precise_time} {\b\cf6 and} {\cf5 code}{\b\cf1 .}{\cf5 correspond}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )} {\b\cf6 and then} {\cf5 code}{\b\cf1 .}{\cf5 is_time}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Retrieval}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 internal_correct_mismatch}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Called from runtime to perform a proper dynamic dispatch on }{\cf5 correct_mismatch}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  from MISMATCH_CORRECTOR.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_msg}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_exc}{\cf1 :} {\cf4 EXCEPTIONS}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf1 \{}{\cf4 MISMATCH_CORRECTOR}{\cf1 \}} {\b\cf6 Current} {\b\cf6 as} l_corrector {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_corrector}{\b\cf1 .}{\cf5 correct_mismatch}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 l_msg}{\b\cf1 .}{\cf5 make_from_string}{\cf1  }{\cf1 (}"Mismatch: "{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 l_exc}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_msg}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 generating_type}{\b\cf1 .}{\cf5 name}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_exc}{\b\cf1 .}{\cf5 raise_retrieval_exception}{\cf1  }{\cf1 (}{\cf5 l_msg}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 invariant}{\line}
+{\tab}{\cf1 second_large_enough}{\cf1 :} {\cf5 second} {\cf1 >=} 0{\line}
+{\tab}{\cf1 second_small_enough}{\cf1 :} {\cf5 second} {\cf1 <} {\cf5 Seconds_in_minute}{\line}
+{\tab}{\cf1 fractionals_large_enough}{\cf1 :} {\cf5 fractional_second} {\cf1 >=} 0{\b\cf1 .}{\cf5 to_double}{\line}
+{\tab}{\cf1 fractionals_small_enough}{\cf1 :} {\cf5 fractional_second} {\cf1 <} 1{\b\cf1 .}{\cf5 to_double}{\line}
+{\tab}{\cf1 minute_large_enough}{\cf1 :} {\cf5 minute} {\cf1 >=} 0{\line}
+{\tab}{\cf1 minute_small_enough}{\cf1 :} {\cf5 minute} {\cf1 <} {\cf5 Minutes_in_hour}{\line}
+{\tab}{\cf1 hour_large_enough}{\cf1 :} {\cf5 hour} {\cf1 >=} 0{\line}
+{\tab}{\cf1 hour_small_enough}{\cf1 :} {\cf5 hour} {\cf1 <} {\cf5 Hours_in_day}{\line}
+{\line}
+{\tab}{\tab}{\cf3 --} {\cf3 from }{\cf4 COMPARABLE}{\line}
+{\tab}{\cf1 irreflexive_comparison}{\cf1 :} {\b\cf6 not} {\cf1 (}{\b\cf6 Current} {\cf1 <} {\b\cf6 Current}{\cf1 )}{\line}
+{\line}
+{\tab}{\tab}{\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\cf1 reflexive_equality}{\cf1 :} {\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\cf1 reflexive_conformance}{\cf1 :} {\cf5 conforms_to}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\line}
+{\line}
+{\b\cf6 note}{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 1984-2017, Eiffel Software and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"{\line}
+{\tab}{\cf1 source}{\cf1 :} "[{\line}
+{\tab}{\tab}Eiffel Software{\line}
+{\tab}{\tab}5949 Hollister Ave., Goleta, CA 93117 USA{\line}
+{\tab}{\tab}Telephone 805-685-1006, Fax 805-685-6869{\line}
+{\tab}{\tab}Website http://www.eiffel.com{\line}
+{\tab}{\tab}Customer support http://support.eiffel.com{\line}
+{\tab}]"{\line}
+{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 TIME}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

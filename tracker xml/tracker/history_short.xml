@@ -1,0 +1,31 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Summary description for </string><symbol>{</symbol><class><location>../tracker/history_short.xml</location>HISTORY</class><symbol>}</symbol><string>.&quot;</string>
+	<indexing_tag>author</indexing_tag><symbol>:</symbol> <string>&quot;&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date$&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision$&quot;</string>
+
+<keyword>class</keyword> <keyword>interface</keyword>
+	<class><location>../tracker/history_short.xml</location>HISTORY</class>
+
+<keyword>create</keyword> 
+	<feature><location>../tracker/history_short.xml#f_make</location>make</feature>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Deleation</comment>
+
+	<anchor>f_reset_record_and_append</anchor><feature><location>../tracker/history_short.xml#f_reset_record_and_append</location>reset_record_and_append</feature> <symbol>(</symbol><local>c</local><symbol>:</symbol> <class><location>../tracker/command_short.xml</location>COMMAND</class><symbol>)</symbol>
+
+	<anchor>f_remove_all_right</anchor><feature><location>../tracker/history_short.xml#f_remove_all_right</location>remove_all_right</feature>
+			<comment>--</comment><comment>remove all items to the right of the cursor</comment>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Setters</comment>
+
+	<anchor>f_add_to_record</anchor><feature><location>../tracker/history_short.xml#f_add_to_record</location>add_to_record</feature> <symbol>(</symbol><local>c</local><symbol>:</symbol> <class><location>../tracker/command_short.xml</location>COMMAND</class><symbol>)</symbol>
+			<comment>--</comment><comment> add a COMMAND object to record</comment>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Getters</comment>
+
+	<anchor>f_get_record</anchor><feature><location>../tracker/history_short.xml#f_get_record</location>get_record</feature><symbol>:</symbol> <class><include>False</include>LINKED_LIST</class> <symbol>[</symbol><class><location>../tracker/command_short.xml</location>COMMAND</class><symbol>]</symbol>
+	
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../tracker/history_short.xml</location>HISTORY</class></system>
+

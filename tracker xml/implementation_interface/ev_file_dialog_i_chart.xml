@@ -1,0 +1,52 @@
+<system>
+<keyword>deferred</keyword> <keyword>class</keyword>
+	<class><location>../implementation_interface/ev_file_dialog_i_chart.xml</location>EV_FILE_DIALOG_I</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>implementation_interface</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;EiffelVision file selection dialog, implementation interface.&quot;</string>
+
+<keyword>Ancestors</keyword>
+	<class><location>../implementation_interface/ev_standard_dialog_i_chart.xml</location>EV_STANDARD_DIALOG_I</class><char>*</char>
+
+<keyword>Action sequences</keyword>
+	<feature><location>../implementation_interface/ev_standard_dialog_action_sequences_i.xml#f_cancel_actions</location>cancel_actions</feature><symbol>:</symbol> <class><location>../interface/ev_notify_action_sequence_chart.xml</location>EV_NOTIFY_ACTION_SEQUENCE</class>
+	<feature><location>../implementation_interface/ev_standard_dialog_action_sequences_i.xml#f_ok_actions</location>ok_actions</feature><symbol>:</symbol> <class><location>../interface/ev_notify_action_sequence_chart.xml</location>EV_NOTIFY_ACTION_SEQUENCE</class>
+
+<keyword>Queries</keyword>
+	<feature><location>../implementation_interface/ev_standard_dialog_i.xml#f_blocking_window</location>blocking_window</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_window_chart.xml</location>EV_WINDOW</class>
+	<feature><location>../implementation_interface/ev_file_dialog_i.xml#f_filter</location>filter</feature><symbol>:</symbol> <class><include>False</include>STRING_32</class>
+	<feature><location>../implementation_interface/ev_file_dialog_i.xml#f_filters</location>filters</feature><symbol>:</symbol> <class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><class><include>False</include>TUPLE</class> <symbol>[</symbol><class><include>False</include>READABLE_STRING_GENERAL</class><symbol>,</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>]</symbol><symbol>]</symbol>
+	<feature><location>../implementation_interface/ev_file_dialog_i.xml#f_full_file_path</location>full_file_path</feature><symbol>:</symbol> <class><include>False</include>PATH</class>
+	<feature><location>../implementation_interface/ev_positioned_i.xml#f_height</location>height</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_interface/ev_any_i.xml#f_is_destroyed</location>is_destroyed</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../implementation_interface/ev_positioned_i.xml#f_minimum_height</location>minimum_height</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_interface/ev_positioned_i.xml#f_minimum_width</location>minimum_width</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_interface/ev_positioned_i.xml#f_screen_x</location>screen_x</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_interface/ev_positioned_i.xml#f_screen_y</location>screen_y</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_interface/ev_standard_dialog_i.xml#f_selected_button</location>selected_button</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>IMMUTABLE_STRING_32</class>
+	<feature><location>../implementation_interface/ev_file_dialog_i.xml#f_selected_filter_index</location>selected_filter_index</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_interface/ev_file_dialog_i.xml#f_start_path</location>start_path</feature><symbol>:</symbol> <class><include>False</include>PATH</class>
+	<feature><location>../implementation_interface/ev_standard_dialog_i.xml#f_title</location>title</feature><symbol>:</symbol> <class><include>False</include>STRING_32</class>
+	<feature><location>../implementation_interface/ev_positioned_i.xml#f_width</location>width</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_interface/ev_positioned_i.xml#f_x_position</location>x_position</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_interface/ev_positioned_i.xml#f_y_position</location>y_position</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+
+<keyword>Commands</keyword>
+	<feature><location>../implementation_interface/ev_standard_dialog_i.xml#f_hide</location>hide</feature>
+	<feature><location>../implementation_interface/ev_file_dialog_i.xml#f_set_filter</location>set_filter</feature> <symbol>(</symbol><local>a_filter</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol>
+	<feature><location>../implementation_interface/ev_file_dialog_i.xml#f_set_full_file_path</location>set_full_file_path</feature> <symbol>(</symbol><local>a_path</local><symbol>:</symbol> <class><include>False</include>PATH</class><symbol>)</symbol>
+	<feature><location>../implementation_interface/ev_positionable_i.xml#f_set_height</location>set_height</feature> <symbol>(</symbol><local>a_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_interface/ev_positionable_i.xml#f_set_position</location>set_position</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_interface/ev_positionable_i.xml#f_set_size</location>set_size</feature> <symbol>(</symbol><local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_interface/ev_file_dialog_i.xml#f_set_start_path</location>set_start_path</feature> <symbol>(</symbol><local>a_path</local><symbol>:</symbol> <class><include>False</include>PATH</class><symbol>)</symbol>
+	<feature><location>../implementation_interface/ev_standard_dialog_i.xml#f_set_title</location>set_title</feature> <symbol>(</symbol><local>a_title</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol>
+	<feature><location>../implementation_interface/ev_positionable_i.xml#f_set_width</location>set_width</feature> <symbol>(</symbol><local>a_width</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_interface/ev_positionable_i.xml#f_set_x_position</location>set_x_position</feature> <symbol>(</symbol><local>a_x</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_interface/ev_positionable_i.xml#f_set_y_position</location>set_y_position</feature> <symbol>(</symbol><local>a_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_interface/ev_standard_dialog_i.xml#f_show_modal_to_window</location>show_modal_to_window</feature> <symbol>(</symbol><local>a_window</local><symbol>:</symbol> <class><location>../interface/ev_window_chart.xml</location>EV_WINDOW</class><symbol>)</symbol>
+
+<keyword>Constraints</keyword>
+	<tag>filters not void</tag>
+
+</system>

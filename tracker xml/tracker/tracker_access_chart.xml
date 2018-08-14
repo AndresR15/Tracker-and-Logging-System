@@ -1,0 +1,17 @@
+<system>
+<keyword>expanded</keyword> <keyword>class</keyword>
+	<class><location>../tracker/tracker_access_chart.xml</location>TRACKER_ACCESS</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>tracker</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Singleton access to the default business model.&quot;</string>
+
+<keyword>Ancestors</keyword>
+	<class><include>False</include>ANY</class>
+
+<keyword>Queries</keyword>
+	<feature><location>../tracker/tracker_access.xml#f_m</location>M</feature><symbol>:</symbol> <class><location>../tracker/tracker_chart.xml</location>TRACKER</class>
+
+<keyword>Constraints</keyword>
+
+</system>

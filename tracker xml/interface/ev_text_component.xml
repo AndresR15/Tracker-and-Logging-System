@@ -1,0 +1,386 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Vision text component. Base class for text editing widgets.</string>
+	<string>]</string><string>&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2017-05-03 08:56:14 -0700 (Wed, 03 May 2017) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 100317 $&quot;</string>
+
+<keyword>deferred</keyword> <keyword>class</keyword> 
+	<class><location>../interface/ev_text_component.xml</location>EV_TEXT_COMPONENT</class>
+
+<keyword>inherit</keyword>
+	<class><location>../interface/ev_primitive.xml</location>EV_PRIMITIVE</class>
+		<keyword>redefine</keyword>
+			<feature><location>../interface/ev_text_component.xml#f_implementation</location>implementation</feature><symbol>,</symbol>
+			<feature><location>../interface/ev_text_component.xml#f_is_in_default_state</location>is_in_default_state</feature>
+		<keyword>end</keyword>
+
+	<class><location>../interface/ev_textable.xml</location>EV_TEXTABLE</class>
+		<keyword>redefine</keyword>
+			<feature><location>../interface/ev_text_component.xml#f_implementation</location>implementation</feature><symbol>,</symbol>
+			<feature><location>../interface/ev_text_component.xml#f_is_in_default_state</location>is_in_default_state</feature>
+		<keyword>end</keyword>
+
+	<class><location>../interface/ev_text_component_action_sequences.xml</location>EV_TEXT_COMPONENT_ACTION_SEQUENCES</class>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_text_length</anchor><feature><location>../interface/ev_text_component.xml#f_text_length</location>text_length</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Number of characters making up </comment><feature><location>../interface/ev_textable.xml#f_text</location>text</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_text_component.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_text_component_i.xml#f_text_length</location>text_length</feature>
+		<keyword>ensure</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_text_component.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_text_component_i.xml#f_text_length</location>text_length</feature>
+			<tag>definition</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_textable.xml#f_text</location>text</feature><dot>.</dot><feature><include>False</include>count</feature>
+			<tag>result_not_negative</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>&gt;=</symbol> <number>0</number>
+		<keyword>end</keyword>
+
+	<anchor>f_selected_text</anchor><feature><location>../interface/ev_text_component.xml#f_selected_text</location>selected_text</feature><symbol>:</symbol> <class><include>False</include>STRING_32</class>
+			<comment>--</comment><comment> Currently selected text.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_text_component.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_text_component_i.xml#f_selected_text</location>selected_text</feature>
+		<keyword>ensure</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_text_component.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_text_component_i.xml#f_selected_text</location>selected_text</feature><symbol>)</symbol>
+			<tag>definition</tag><symbol>:</symbol> <feature><location>../interface/ev_text_component.xml#f_has_selection</location>has_selection</feature> <keyword>implies</keyword> <feature><location>../interface/ev_textable.xml#f_text</location>text</feature><dot>.</dot><feature><include>False</include>substring</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_text_component.xml#f_start_selection</location>start_selection</feature><symbol>,</symbol> <feature><location>../interface/ev_text_component.xml#f_end_selection</location>end_selection</feature> <symbol>-</symbol> <number>1</number><symbol>)</symbol><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><keyword>Result</keyword><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status report</comment>
+
+	<anchor>f_is_editable</anchor><feature><location>../interface/ev_text_component.xml#f_is_editable</location>is_editable</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is </comment><feature><location>../interface/ev_textable.xml#f_text</location>text</feature><comment> editable?</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_text_component.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_text_component_i.xml#f_is_editable</location>is_editable</feature>
+		<keyword>ensure</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_text_component.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_text_component_i.xml#f_is_editable</location>is_editable</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_caret_position</anchor><feature><location>../interface/ev_text_component.xml#f_caret_position</location>caret_position</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Current position of caret.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_text_component.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature>
+		<keyword>ensure</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_text_component.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature>
+			<tag>within_range</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>&gt;=</symbol> <number>1</number> <keyword>and</keyword> <keyword>Result</keyword> <symbol>&lt;=</symbol> <feature><location>../interface/ev_text_component.xml#f_text_length</location>text_length</feature> <symbol>+</symbol> <number>1</number>
+		<keyword>end</keyword>
+
+	<anchor>f_has_selection</anchor><feature><location>../interface/ev_text_component.xml#f_has_selection</location>has_selection</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Does current have a selection?</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_text_component.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature>
+		<keyword>ensure</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_text_component.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature>
+			<tag>definition</tag><symbol>:</symbol> <keyword>Result</keyword> <keyword>implies</keyword> <feature><location>../interface/ev_text_component.xml#f_start_selection</location>start_selection</feature> <symbol>/=</symbol> <feature><location>../interface/ev_text_component.xml#f_end_selection</location>end_selection</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_start_selection</anchor><feature><location>../interface/ev_text_component.xml#f_start_selection</location>start_selection</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Caret position of the start of selected text if any,</comment>
+			<comment>--</comment><comment> otherwise </comment><feature><location>../interface/ev_text_component.xml#f_caret_position</location>caret_position</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_text_component.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature>
+		<keyword>ensure</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_text_component.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature>
+			<tag>within_range</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>&gt;=</symbol> <number>1</number> <keyword>and</keyword> <keyword>Result</keyword> <symbol>&lt;=</symbol> <feature><location>../interface/ev_text_component.xml#f_text_length</location>text_length</feature> <symbol>+</symbol> <number>1</number>
+			<tag>consistent_with_selection_end</tag><symbol>:</symbol> <feature><location>../interface/ev_text_component.xml#f_end_selection</location>end_selection</feature> <symbol>&gt;=</symbol> <keyword>Result</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_end_selection</anchor><feature><location>../interface/ev_text_component.xml#f_end_selection</location>end_selection</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Caret position of the end of selected text if any,</comment>
+			<comment>--</comment><comment> otherwise </comment><feature><location>../interface/ev_text_component.xml#f_caret_position</location>caret_position</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_text_component.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature>
+		<keyword>ensure</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_text_component.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature>
+			<tag>within_range</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>&gt;=</symbol> <number>1</number> <keyword>and</keyword> <keyword>Result</keyword> <symbol>&lt;=</symbol> <feature><location>../interface/ev_text_component.xml#f_text_length</location>text_length</feature> <symbol>+</symbol> <number>1</number>
+			<tag>consistent_with_selection_start</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>&gt;=</symbol> <feature><location>../interface/ev_text_component.xml#f_start_selection</location>start_selection</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_selection_start</anchor><feature><location>../interface/ev_text_component.xml#f_selection_start</location>selection_start</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+		<keyword>obsolete</keyword> &quot;Use `start_selection' instead. [2017-05-31]&quot;
+			<comment>--</comment><comment> Index of first selected character.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>has_selection</tag><symbol>:</symbol> <feature><location>../interface/ev_text_component.xml#f_has_selection</location>has_selection</feature>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_text_component.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_selection_end</anchor><feature><location>../interface/ev_text_component.xml#f_selection_end</location>selection_end</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+		<keyword>obsolete</keyword> &quot;Use `end_selection - 1' instead. [2017-05-31]&quot;
+			<comment>--</comment><comment> Index of last character selected.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>has_selection</tag><symbol>:</symbol> <feature><location>../interface/ev_text_component.xml#f_has_selection</location>has_selection</feature>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_text_component.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature> <symbol>-</symbol> <number>1</number>
+		<keyword>end</keyword>
+
+	<anchor>f_valid_caret_position</anchor><feature><location>../interface/ev_text_component.xml#f_valid_caret_position</location>valid_caret_position</feature> <symbol>(</symbol><local>pos</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is </comment><quoted>pos</quoted><comment> a valid caret position?</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_text_component.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_text_component_i.xml#f_valid_caret_position</location>valid_caret_position</feature><symbol> </symbol><symbol>(</symbol><local>pos</local><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_text_component.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_text_component_i.xml#f_valid_caret_position</location>valid_caret_position</feature><symbol> </symbol><symbol>(</symbol><local>pos</local><symbol>)</symbol>
+			<tag>within_range</tag><symbol>:</symbol> <keyword>Result</keyword> <keyword>implies</keyword> <symbol>(</symbol><local>pos</local> <symbol>&gt;=</symbol> <number>1</number> <keyword>and</keyword> <local>pos</local> <symbol>&lt;=</symbol> <feature><location>../interface/ev_text_component.xml#f_text_length</location>text_length</feature> <symbol>+</symbol> <number>1</number><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status setting</comment>
+
+	<anchor>f_enable_edit</anchor><feature><location>../interface/ev_text_component.xml#f_enable_edit</location>enable_edit</feature>
+			<comment>--</comment><comment> Make </comment><quoted>Current</quoted><comment> editable.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_text_component.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_text_component_i.xml#f_set_editable</location>set_editable</feature><symbol> </symbol><symbol>(</symbol><keyword>True</keyword><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>is_editable</tag><symbol>:</symbol> <feature><location>../interface/ev_text_component.xml#f_is_editable</location>is_editable</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_disable_edit</anchor><feature><location>../interface/ev_text_component.xml#f_disable_edit</location>disable_edit</feature>
+			<comment>--</comment><comment> Make </comment><quoted>Current</quoted><comment> read-only.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_text_component.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_text_component_i.xml#f_set_editable</location>set_editable</feature><symbol> </symbol><symbol>(</symbol><keyword>False</keyword><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>is_editable</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_text_component.xml#f_is_editable</location>is_editable</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_set_caret_position</anchor><feature><location>../interface/ev_text_component.xml#f_set_caret_position</location>set_caret_position</feature> <symbol>(</symbol><local>a_caret_position</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>a_caret_position</quoted><comment> to </comment><feature><location>../interface/ev_text_component.xml#f_caret_position</location>caret_position</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>valid_caret_position</tag><symbol>:</symbol> <local>a_caret_position</local> <symbol>&gt;=</symbol> <number>1</number> <keyword>and</keyword> <local>a_caret_position</local> <symbol>&lt;=</symbol> <feature><location>../interface/ev_text_component.xml#f_text_length</location>text_length</feature> <symbol>+</symbol> <number>1</number>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_text_component.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_text_component_i.xml#f_set_caret_position</location>set_caret_position</feature><symbol> </symbol><symbol>(</symbol><local>a_caret_position</local><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>caret_position_assigned</tag><symbol>:</symbol> <feature><location>../interface/ev_text_component_action_sequences.xml#f_change_actions</location>change_actions</feature><dot>.</dot><feature><include>False</include>is_empty</feature> <keyword>implies</keyword> <feature><location>../interface/ev_text_component.xml#f_caret_position</location>caret_position</feature> <symbol>=</symbol> <local>a_caret_position</local>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Element change</comment>
+
+	<anchor>f_insert_text</anchor><feature><location>../interface/ev_text_component.xml#f_insert_text</location>insert_text</feature> <symbol>(</symbol><local>a_text</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol>
+			<comment>--</comment><comment> Insert </comment><quoted>a_text</quoted><comment> to right of </comment><feature><location>../interface/ev_text_component.xml#f_caret_position</location>caret_position</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>text_not_void</tag><symbol>:</symbol> <local>a_text</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>no_carriage_returns</tag><symbol>:</symbol> <keyword>not</keyword> <local>a_text</local><dot>.</dot><feature><include>False</include>has_code</feature><symbol> </symbol><symbol>(</symbol><symbol>(</symbol><char>'%R'</char><symbol>)</symbol><dot>.</dot><feature><include>False</include>natural_32_code</feature><symbol>)</symbol>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_text_component.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_text_component_i.xml#f_insert_text</location>insert_text</feature><symbol> </symbol><symbol>(</symbol><local>a_text</local><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>text_insert_correctly</tag><symbol>:</symbol> <feature><location>../interface/ev_textable.xml#f_text</location>text</feature><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><symbol>(</symbol><keyword>old</keyword> <feature><location>../interface/ev_textable.xml#f_text</location>text</feature><symbol>)</symbol><dot>.</dot><feature><include>False</include>substring</feature><symbol> </symbol><symbol>(</symbol><number>1</number><symbol>,</symbol> <symbol>(</symbol><keyword>old</keyword> <feature><location>../interface/ev_text_component.xml#f_caret_position</location>caret_position</feature> <symbol>-</symbol> <number>1</number><symbol>)</symbol><symbol>)</symbol> <symbol>+</symbol> <local>a_text</local><dot>.</dot><feature><include>False</include>as_string_32</feature> <symbol>+</symbol> <symbol>(</symbol><keyword>old</keyword> <feature><location>../interface/ev_textable.xml#f_text</location>text</feature><symbol>)</symbol><dot>.</dot><feature><include>False</include>substring</feature><symbol> </symbol><symbol>(</symbol><symbol>(</symbol><keyword>old</keyword> <feature><location>../interface/ev_text_component.xml#f_caret_position</location>caret_position</feature><symbol>)</symbol><symbol>,</symbol> <symbol>(</symbol><keyword>old</keyword> <feature><location>../interface/ev_textable.xml#f_text</location>text</feature><dot>.</dot><feature><include>False</include>count</feature><symbol>)</symbol><symbol>)</symbol><symbol>)</symbol>
+			<tag>caret_not_moved</tag><symbol>:</symbol> <keyword>old</keyword> <feature><location>../interface/ev_text_component.xml#f_caret_position</location>caret_position</feature> <symbol>=</symbol> <feature><location>../interface/ev_text_component.xml#f_caret_position</location>caret_position</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_append_text</anchor><feature><location>../interface/ev_text_component.xml#f_append_text</location>append_text</feature> <symbol>(</symbol><local>a_text</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol>
+			<comment>--</comment><comment> Append </comment><quoted>a_text</quoted><comment> to </comment><feature><location>../interface/ev_textable.xml#f_text</location>text</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>text_not_void</tag><symbol>:</symbol> <local>a_text</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>no_carriage_returns</tag><symbol>:</symbol> <keyword>not</keyword> <local>a_text</local><dot>.</dot><feature><include>False</include>has_code</feature><symbol> </symbol><symbol>(</symbol><symbol>(</symbol><char>'%R'</char><symbol>)</symbol><dot>.</dot><feature><include>False</include>natural_32_code</feature><symbol>)</symbol>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_text_component.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_text_component_i.xml#f_append_text</location>append_text</feature><symbol> </symbol><symbol>(</symbol><local>a_text</local><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>text_appended</tag><symbol>:</symbol> <feature><location>../interface/ev_text_component.xml#f_check_text_modification</location>check_text_modification</feature><symbol> </symbol><symbol>(</symbol><keyword>old</keyword> <feature><location>../interface/ev_textable.xml#f_text</location>text</feature><symbol>,</symbol> <local>a_text</local><dot>.</dot><feature><include>False</include>as_string_32</feature><symbol>)</symbol>
+			<tag>caret_not_moved</tag><symbol>:</symbol> <keyword>old</keyword> <feature><location>../interface/ev_text_component.xml#f_caret_position</location>caret_position</feature> <symbol>=</symbol> <feature><location>../interface/ev_text_component.xml#f_caret_position</location>caret_position</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_prepend_text</anchor><feature><location>../interface/ev_text_component.xml#f_prepend_text</location>prepend_text</feature> <symbol>(</symbol><local>a_text</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol>
+			<comment>--</comment><comment> Prepend </comment><quoted>a_text</quoted><comment> to </comment><feature><location>../interface/ev_textable.xml#f_text</location>text</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>text_not_void</tag><symbol>:</symbol> <local>a_text</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>no_carriage_returns</tag><symbol>:</symbol> <keyword>not</keyword> <local>a_text</local><dot>.</dot><feature><include>False</include>has_code</feature><symbol> </symbol><symbol>(</symbol><symbol>(</symbol><char>'%R'</char><symbol>)</symbol><dot>.</dot><feature><include>False</include>natural_32_code</feature><symbol>)</symbol>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_text_component.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_text_component_i.xml#f_prepend_text</location>prepend_text</feature><symbol> </symbol><symbol>(</symbol><local>a_text</local><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>text_prepended</tag><symbol>:</symbol> <feature><location>../interface/ev_textable.xml#f_text</location>text</feature><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><local>a_text</local><dot>.</dot><feature><include>False</include>as_string_32</feature> <symbol>+</symbol> <keyword>old</keyword> <feature><location>../interface/ev_textable.xml#f_text</location>text</feature><symbol>)</symbol>
+			<tag>caret_not_moved</tag><symbol>:</symbol> <keyword>old</keyword> <feature><location>../interface/ev_text_component.xml#f_caret_position</location>caret_position</feature> <symbol>=</symbol> <feature><location>../interface/ev_text_component.xml#f_caret_position</location>caret_position</feature>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Resizing</comment>
+
+	<anchor>f_set_minimum_width_in_characters</anchor><feature><location>../interface/ev_text_component.xml#f_set_minimum_width_in_characters</location>set_minimum_width_in_characters</feature> <symbol>(</symbol><local>nb</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Make a minimum of </comment><quoted>nb</quoted><comment> of the widest character visible</comment>
+			<comment>--</comment><comment> on one line.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>valid_nb</tag><symbol>:</symbol> <local>nb</local> <symbol>&gt;</symbol> <number>0</number>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_text_component.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_text_component_i.xml#f_set_minimum_width_in_characters</location>set_minimum_width_in_characters</feature><symbol> </symbol><symbol>(</symbol><local>nb</local><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>minimum_width_in_characters_assigned</tag><symbol>:</symbol> <keyword>old</keyword> <feature><location>../interface/ev_positioned.xml#f_minimum_width</location>minimum_width</feature> <symbol>&lt;</symbol> <feature><location>../interface/ev_positioned.xml#f_minimum_width</location>minimum_width</feature> <keyword>implies</keyword> <feature><location>../interface/ev_positioned.xml#f_minimum_width</location>minimum_width</feature> <symbol>&gt;=</symbol> <feature><location>../interface/ev_text_component.xml#f_maximum_character_width</location>maximum_character_width</feature> <symbol>*</symbol> <local>nb</local>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Basic operation</comment>
+
+	<anchor>f_select_region</anchor><feature><location>../interface/ev_text_component.xml#f_select_region</location>select_region</feature> <symbol>(</symbol><local>a_start_character_pos</local><symbol>,</symbol> <local>a_end_character_pos</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Select (highlight) text between </comment><quoted>a_start_character_pos</quoted><comment> and </comment><quoted>a_end_character_pos</quoted><comment> character positions inclusive.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>start_within_range</tag><symbol>:</symbol> <local>a_start_character_pos</local> <symbol>&gt;=</symbol> <number>1</number> <keyword>and</keyword> <local>a_start_character_pos</local> <symbol>&lt;=</symbol> <feature><location>../interface/ev_text_component.xml#f_text_length</location>text_length</feature>
+			<tag>end_within_range</tag><symbol>:</symbol> <local>a_end_character_pos</local> <symbol>&gt;=</symbol> <number>1</number> <keyword>and</keyword> <local>a_end_character_pos</local> <symbol>&lt;=</symbol> <feature><location>../interface/ev_text_component.xml#f_text_length</location>text_length</feature>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_text_component.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_text_component_i.xml#f_select_region</location>select_region</feature><symbol> </symbol><symbol>(</symbol><local>a_start_character_pos</local><symbol>,</symbol> <local>a_end_character_pos</local><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>has_selection</tag><symbol>:</symbol> <feature><location>../interface/ev_text_component.xml#f_has_selection</location>has_selection</feature>
+			<tag>selection_set</tag><symbol>:</symbol> <symbol>(</symbol><local>a_start_character_pos</local> <symbol>&lt;=</symbol> <local>a_end_character_pos</local> <keyword>implies</keyword> <feature><location>../interface/ev_text_component.xml#f_start_selection</location>start_selection</feature> <symbol>=</symbol> <local>a_start_character_pos</local> <keyword>and</keyword> <feature><location>../interface/ev_text_component.xml#f_end_selection</location>end_selection</feature> <symbol>=</symbol> <local>a_end_character_pos</local> <symbol>+</symbol> <number>1</number><symbol>)</symbol> <keyword>or</keyword> <feature><location>../interface/ev_text_component.xml#f_start_selection</location>start_selection</feature> <symbol>=</symbol> <local>a_end_character_pos</local> <keyword>and</keyword> <feature><location>../interface/ev_text_component.xml#f_end_selection</location>end_selection</feature> <symbol>=</symbol> <local>a_start_character_pos</local> <symbol>+</symbol> <number>1</number>
+		<keyword>end</keyword>
+
+	<anchor>f_set_selection</anchor><feature><location>../interface/ev_text_component.xml#f_set_selection</location>set_selection</feature> <symbol>(</symbol><local>a_start_pos</local><symbol>,</symbol> <local>a_end_pos</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Select (highlight) the characters between valid caret positions </comment><quoted>a_start_pos</quoted><comment> and </comment><quoted>a_end_pos</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>valid_start</tag><symbol>:</symbol> <local>a_start_pos</local> <symbol>&gt;</symbol> <number>0</number> <keyword>and</keyword> <local>a_start_pos</local> <symbol>&lt;=</symbol> <feature><location>../interface/ev_text_component.xml#f_text_length</location>text_length</feature> <symbol>+</symbol> <number>1</number>
+			<tag>valid_end</tag><symbol>:</symbol> <local>a_end_pos</local> <symbol>&gt;</symbol> <number>0</number> <keyword>and</keyword> <local>a_end_pos</local> <symbol>&lt;=</symbol> <feature><location>../interface/ev_text_component.xml#f_text_length</location>text_length</feature> <symbol>+</symbol> <number>1</number>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_text_component.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_text_component_i.xml#f_set_selection</location>set_selection</feature><symbol> </symbol><symbol>(</symbol><local>a_start_pos</local><symbol>,</symbol> <local>a_end_pos</local><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>selection_set</tag><symbol>:</symbol> <local>a_start_pos</local> <symbol>/=</symbol> <local>a_end_pos</local> <symbol>=</symbol> <feature><location>../interface/ev_text_component.xml#f_has_selection</location>has_selection</feature>
+			<tag>caret_set</tag><symbol>:</symbol> <symbol>(</symbol><local>a_start_pos</local> <symbol>=</symbol> <local>a_end_pos</local><symbol>)</symbol> <keyword>implies</keyword> <feature><location>../interface/ev_text_component.xml#f_caret_position</location>caret_position</feature> <symbol>=</symbol> <local>a_start_pos</local>
+			<tag>selection_bounds_set</tag><symbol>:</symbol> <symbol>(</symbol><local>a_start_pos</local> <symbol>&lt;=</symbol> <local>a_end_pos</local> <keyword>implies</keyword> <symbol>(</symbol><feature><location>../interface/ev_text_component.xml#f_start_selection</location>start_selection</feature> <symbol>=</symbol> <local>a_start_pos</local> <keyword>and</keyword> <feature><location>../interface/ev_text_component.xml#f_end_selection</location>end_selection</feature> <symbol>=</symbol> <local>a_end_pos</local><symbol>)</symbol><symbol>)</symbol> <keyword>or</keyword> <symbol>(</symbol><feature><location>../interface/ev_text_component.xml#f_start_selection</location>start_selection</feature> <symbol>=</symbol> <local>a_end_pos</local> <keyword>and</keyword> <feature><location>../interface/ev_text_component.xml#f_end_selection</location>end_selection</feature> <symbol>=</symbol> <local>a_start_pos</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_select_all</anchor><feature><location>../interface/ev_text_component.xml#f_select_all</location>select_all</feature>
+			<comment>--</comment><comment> Select all text.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>positive_length</tag><symbol>:</symbol> <feature><location>../interface/ev_text_component.xml#f_text_length</location>text_length</feature> <symbol>&gt;</symbol> <number>0</number>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_text_component.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_text_component_i.xml#f_select_all</location>select_all</feature>
+		<keyword>ensure</keyword>
+			<tag>has_selection</tag><symbol>:</symbol> <feature><location>../interface/ev_text_component.xml#f_has_selection</location>has_selection</feature>
+			<tag>selection_start_set</tag><symbol>:</symbol> <feature><location>../interface/ev_text_component.xml#f_start_selection</location>start_selection</feature> <symbol>=</symbol> <number>1</number>
+			<tag>selection_end_set</tag><symbol>:</symbol> <feature><location>../interface/ev_text_component.xml#f_end_selection</location>end_selection</feature> <symbol>=</symbol> <feature><location>../interface/ev_text_component.xml#f_text_length</location>text_length</feature> <symbol>+</symbol> <number>1</number>
+		<keyword>end</keyword>
+
+	<anchor>f_deselect_all</anchor><feature><location>../interface/ev_text_component.xml#f_deselect_all</location>deselect_all</feature>
+			<comment>--</comment><comment> Unselect current selection.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../interface/ev_text_component.xml#f_has_selection</location>has_selection</feature> <keyword>then</keyword>
+				<feature><location>../interface/ev_text_component.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_text_component_i.xml#f_deselect_all</location>deselect_all</feature>
+			<keyword>end</keyword>
+		<keyword>ensure</keyword>
+			<tag>not_has_selection</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_text_component.xml#f_has_selection</location>has_selection</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_delete_selection</anchor><feature><location>../interface/ev_text_component.xml#f_delete_selection</location>delete_selection</feature>
+			<comment>--</comment><comment> Delete current selection.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>has_selection</tag><symbol>:</symbol> <feature><location>../interface/ev_text_component.xml#f_has_selection</location>has_selection</feature>
+			<tag>is_editable</tag><symbol>:</symbol> <feature><location>../interface/ev_text_component.xml#f_is_editable</location>is_editable</feature>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_text_component.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_text_component_i.xml#f_delete_selection</location>delete_selection</feature>
+		<keyword>ensure</keyword>
+			<tag>has_no_selection</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_text_component.xml#f_has_selection</location>has_selection</feature>
+			<tag>selection_deleted</tag><symbol>:</symbol> <feature><location>../interface/ev_textable.xml#f_text</location>text</feature><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><symbol>(</symbol><keyword>old</keyword> <feature><location>../interface/ev_textable.xml#f_text</location>text</feature><symbol>)</symbol><dot>.</dot><feature><include>False</include>substring</feature><symbol> </symbol><symbol>(</symbol><number>1</number><symbol>,</symbol> <keyword>old</keyword> <feature><location>../interface/ev_text_component.xml#f_start_selection</location>start_selection</feature> <symbol>-</symbol> <number>1</number><symbol>)</symbol> <symbol>+</symbol> <symbol>(</symbol><keyword>old</keyword> <feature><location>../interface/ev_textable.xml#f_text</location>text</feature><symbol>)</symbol><dot>.</dot><feature><include>False</include>substring</feature><symbol> </symbol><symbol>(</symbol><keyword>old</keyword> <feature><location>../interface/ev_text_component.xml#f_end_selection</location>end_selection</feature><symbol>,</symbol> <symbol>(</symbol><keyword>old</keyword> <feature><location>../interface/ev_textable.xml#f_text</location>text</feature><symbol>)</symbol><dot>.</dot><feature><include>False</include>count</feature><symbol>)</symbol><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_cut_selection</anchor><feature><location>../interface/ev_text_component.xml#f_cut_selection</location>cut_selection</feature>
+			<comment>--</comment><comment> Move </comment><feature><location>../interface/ev_text_component.xml#f_selected_text</location>selected_text</feature><comment> to clipboard.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>has_selection</tag><symbol>:</symbol> <feature><location>../interface/ev_text_component.xml#f_has_selection</location>has_selection</feature>
+			<tag>is_editable</tag><symbol>:</symbol> <feature><location>../interface/ev_text_component.xml#f_is_editable</location>is_editable</feature>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_text_component.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_text_component_i.xml#f_cut_selection</location>cut_selection</feature>
+		<keyword>ensure</keyword>
+			<tag>selection_in_clipboard</tag><symbol>:</symbol> <feature><location>../interface/ev_text_component.xml#f_clipboard_content</location>clipboard_content</feature><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><keyword>old</keyword> <feature><location>../interface/ev_text_component.xml#f_selected_text</location>selected_text</feature><symbol>)</symbol>
+			<tag>selection_cut</tag><symbol>:</symbol> <feature><location>../interface/ev_textable.xml#f_text</location>text</feature><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><symbol>(</symbol><keyword>old</keyword> <feature><location>../interface/ev_textable.xml#f_text</location>text</feature><symbol>)</symbol><dot>.</dot><feature><include>False</include>substring</feature><symbol> </symbol><symbol>(</symbol><number>1</number><symbol>,</symbol> <keyword>old</keyword> <feature><location>../interface/ev_text_component.xml#f_start_selection</location>start_selection</feature> <symbol>-</symbol> <number>1</number><symbol>)</symbol> <symbol>+</symbol> <symbol>(</symbol><keyword>old</keyword> <feature><location>../interface/ev_textable.xml#f_text</location>text</feature><symbol>)</symbol><dot>.</dot><feature><include>False</include>substring</feature><symbol> </symbol><symbol>(</symbol><keyword>old</keyword> <feature><location>../interface/ev_text_component.xml#f_end_selection</location>end_selection</feature><symbol>,</symbol> <symbol>(</symbol><keyword>old</keyword> <feature><location>../interface/ev_textable.xml#f_text</location>text</feature><symbol>)</symbol><dot>.</dot><feature><include>False</include>count</feature><symbol>)</symbol><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_copy_selection</anchor><feature><location>../interface/ev_text_component.xml#f_copy_selection</location>copy_selection</feature>
+			<comment>--</comment><comment> Copy </comment><feature><location>../interface/ev_text_component.xml#f_selected_text</location>selected_text</feature><comment> to clipboard.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>has_selection</tag><symbol>:</symbol> <feature><location>../interface/ev_text_component.xml#f_has_selection</location>has_selection</feature>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_text_component.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_text_component_i.xml#f_copy_selection</location>copy_selection</feature>
+		<keyword>ensure</keyword>
+			<tag>selection_copied</tag><symbol>:</symbol> <feature><location>../interface/ev_text_component.xml#f_clipboard_content</location>clipboard_content</feature><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_text_component.xml#f_selected_text</location>selected_text</feature><symbol>)</symbol>
+			<tag>text_unchanged</tag><symbol>:</symbol> <feature><location>../interface/ev_textable.xml#f_text</location>text</feature><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><keyword>old</keyword> <feature><location>../interface/ev_textable.xml#f_text</location>text</feature><symbol>)</symbol>
+			<tag>caret_not_moved</tag><symbol>:</symbol> <feature><location>../interface/ev_text_component.xml#f_caret_position</location>caret_position</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../interface/ev_text_component.xml#f_caret_position</location>caret_position</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_paste</anchor><feature><location>../interface/ev_text_component.xml#f_paste</location>paste</feature> <symbol>(</symbol><local>a_position</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Insert text from </comment><quoted>clipboard</quoted><comment> at </comment><quoted>a_position</quoted><comment>.</comment>
+			<comment>--</comment><comment> No effect if clipboard is empty.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>a_position_within_range</tag><symbol>:</symbol> <local>a_position</local> <symbol>&gt;=</symbol> <number>1</number> <keyword>and</keyword> <local>a_position</local> <symbol>&lt;=</symbol> <feature><location>../interface/ev_text_component.xml#f_text_length</location>text_length</feature> <symbol>+</symbol> <number>1</number>
+			<tag>is_editable</tag><symbol>:</symbol> <feature><location>../interface/ev_text_component.xml#f_is_editable</location>is_editable</feature>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_text_component.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_text_component_i.xml#f_paste</location>paste</feature><symbol> </symbol><symbol>(</symbol><local>a_position</local><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>text_pasted_correctly</tag><symbol>:</symbol> <feature><location>../interface/ev_textable.xml#f_text</location>text</feature><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><symbol>(</symbol><keyword>old</keyword> <feature><location>../interface/ev_textable.xml#f_text</location>text</feature><symbol>)</symbol><dot>.</dot><feature><include>False</include>substring</feature><symbol> </symbol><symbol>(</symbol><number>1</number><symbol>,</symbol> <local>a_position</local> <symbol>-</symbol> <number>1</number><symbol>)</symbol> <symbol>+</symbol> <feature><location>../interface/ev_text_component.xml#f_clipboard_content</location>clipboard_content</feature> <symbol>+</symbol> <symbol>(</symbol><symbol>(</symbol><keyword>old</keyword> <feature><location>../interface/ev_textable.xml#f_text</location>text</feature><symbol>)</symbol><dot>.</dot><feature><include>False</include>substring</feature><symbol> </symbol><symbol>(</symbol><local>a_position</local><symbol>,</symbol> <symbol>(</symbol><symbol>(</symbol><keyword>old</keyword> <feature><location>../interface/ev_textable.xml#f_text</location>text</feature><symbol>)</symbol><dot>.</dot><feature><include>False</include>count</feature><symbol>)</symbol><symbol>)</symbol><symbol>)</symbol><symbol>)</symbol>
+			<tag>caret_position_consistent</tag><symbol>:</symbol> <keyword>old</keyword> <feature><location>../interface/ev_text_component.xml#f_caret_position</location>caret_position</feature> <symbol>&lt;=</symbol> <local>a_position</local> <keyword>implies</keyword> <feature><location>../interface/ev_text_component.xml#f_caret_position</location>caret_position</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../interface/ev_text_component.xml#f_caret_position</location>caret_position</feature>
+			<tag>caret_position_consistent</tag><symbol>:</symbol> <keyword>old</keyword> <feature><location>../interface/ev_text_component.xml#f_caret_position</location>caret_position</feature> <symbol>&gt;</symbol> <local>a_position</local> <keyword>implies</keyword> <feature><location>../interface/ev_text_component.xml#f_caret_position</location>caret_position</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../interface/ev_text_component.xml#f_caret_position</location>caret_position</feature> <symbol>+</symbol> <feature><location>../interface/ev_text_component.xml#f_clipboard_content</location>clipboard_content</feature><dot>.</dot><feature><include>False</include>count</feature>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Contract support</comment>
+
+	<anchor>f_maximum_character_width</anchor><feature><location>../interface/ev_text_component.xml#f_maximum_character_width</location>maximum_character_width</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Maximum width of a single character in </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_text_component.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_text_component_i.xml#f_maximum_character_width</location>maximum_character_width</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_clipboard_content</anchor><feature><location>../interface/ev_text_component.xml#f_clipboard_content</location>clipboard_content</feature><symbol>:</symbol> <class><include>False</include>STRING_32</class>
+			<comment>--</comment><comment> </comment><quoted>Result</quoted><comment> is contents of the clipboard.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_text_component.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_text_component_i.xml#f_clipboard_content</location>clipboard_content</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_check_text_modification</anchor><feature><location>../interface/ev_text_component.xml#f_check_text_modification</location>check_text_modification</feature> <symbol>(</symbol><local>old_text</local><symbol>,</symbol> <local>added_text</local><symbol>:</symbol> <class><include>False</include>STRING_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Ensure that </comment><feature><location>../interface/ev_textable.xml#f_text</location>text</feature><comment> is equal to </comment><quoted>old_text</quoted><comment> + </comment><quoted>added_text</quoted><comment> with</comment>
+			<comment>--</comment><comment> all %R removed.</comment>
+		<keyword>do</keyword>
+			<local>added_text</local><dot>.</dot><feature><include>False</include>prune_all</feature><symbol> </symbol><symbol>(</symbol><char>'%R'</char><dot>.</dot><feature><include>False</include>to_character_32</feature><symbol>)</symbol>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_textable.xml#f_text</location>text</feature><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><local>old_text</local> <symbol>+</symbol> <local>added_text</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_is_in_default_state</anchor><feature><location>../interface/ev_text_component.xml#f_is_in_default_state</location>is_in_default_state</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is </comment><quoted>Current</quoted><comment> in its default state?</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <keyword><location>../interface/ev_primitive.xml#f_is_in_default_state</location>Precursor</keyword> <symbol>{</symbol><class><location>../interface/ev_primitive.xml</location>EV_PRIMITIVE</class><symbol>}</symbol> <keyword>and</keyword> <feature><location>../interface/ev_textable.xml#f_text</location>text</feature><dot>.</dot><feature><include>False</include>is_empty</feature> <keyword>and</keyword> <feature><location>../interface/ev_text_component.xml#f_is_editable</location>is_editable</feature> <keyword>and</keyword> <feature><location>../interface/ev_text_component.xml#f_caret_position</location>caret_position</feature> <symbol>=</symbol> <number>1</number> <keyword>and</keyword> <keyword>not</keyword> <feature><location>../interface/ev_text_component.xml#f_has_selection</location>has_selection</feature>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_any.xml</location>EV_ANY</class><symbol>,</symbol> <class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_implementation</anchor><feature><location>../interface/ev_text_component.xml#f_implementation</location>implementation</feature><symbol>:</symbol> <class><location>../implementation_interface/ev_text_component_i.xml</location>EV_TEXT_COMPONENT_I</class>
+			<comment>--</comment><comment> Responsible for interaction with native graphics</comment>
+			<comment>--</comment><comment> toolkit.</comment>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2015, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../interface/ev_text_component.xml</location>EV_TEXT_COMPONENT</class></system>
+

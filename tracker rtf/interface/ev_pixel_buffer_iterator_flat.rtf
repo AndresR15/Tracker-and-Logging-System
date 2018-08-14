@@ -1,0 +1,889 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "Iterator for pixel values of EV_PIXEL_BUFFER"{\line}
+{\tab}{\cf1 author}{\cf1 :} ""{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2016-07-15 21:44:59 -0700 (Fri, 15 Jul 2016) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 99025 $"{\line}
+{\line}
+{\b\cf6 class} {\line}
+{\tab}{\cf4 EV_PIXEL_BUFFER_ITERATOR}{\line}
+{\line}
+{\b\cf6 create} {\cf1 \{}{\cf4 EV_PIXEL_BUFFER_I}{\cf1 \}}{\line}
+{\tab}{\cf5 make_for_pixel_buffer}{\line}
+{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Initialization}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 default_create}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Process instances of classes with no creation clause.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Default: do nothing.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 generating_type}{\cf1 :} {\cf4 TYPE} {\cf1 [}{\b\cf6 detachable} {\cf4 EV_PIXEL_BUFFER_ITERATOR}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Type of current object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (type of which it is a direct instance)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 generating_type_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 generator}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Name of current object's generating class}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (base class of the type of which it is a direct instance)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 generator_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 generator_not_empty}{\cf1 :} {\b\cf6 not} {\b\cf6 Result}{\b\cf1 .}{\cf5 is_empty}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 has} {\cf1 (}{\cf5 v}{\cf1 :} {\b\cf6 like} {\cf5 item}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does structure include an occurrence of }{\cf5 v}{\cf3 ?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Reference or object equality,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  based on }{\cf5 object_comparison}{\cf3 .)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 LINEAR}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 start}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 off} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 search}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 not} {\cf5 exhausted}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 CONTAINER}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_found_in_empty}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\b\cf6 not} {\cf5 is_empty}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 index_of} {\cf1 (}{\cf5 v}{\cf1 :} {\b\cf6 like} {\cf5 item}{\cf1 ;} {\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Index of }{\cf5 i}{\cf3 -th occurrence of }{\cf5 v}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  0 if none.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Reference or object equality,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  based on }{\cf5 object_comparison}{\cf3 .)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 LINEAR}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 LINEAR}{\line}
+{\tab}{\tab}{\tab}{\cf1 positive_occurrences}{\cf1 :} {\cf5 i} {\cf1 >} 0{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 occur}{\cf1 ,} {\cf5 pos}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 object_comparison} {\b\cf6 and} {\cf5 v} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 start}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 pos} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 exhausted} {\b\cf6 or} {\cf1 (}{\cf5 occur} {\cf1 =} {\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 item} {\cf1 ~} {\cf5 v} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 occur} {\cf1 :=} {\cf5 occur} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 forth}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 pos} {\cf1 :=} {\cf5 pos} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 start}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 pos} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 exhausted} {\b\cf6 or} {\cf1 (}{\cf5 occur} {\cf1 =} {\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 item} {\cf1 =} {\cf5 v} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 occur} {\cf1 :=} {\cf5 occur} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 forth}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 pos} {\cf1 :=} {\cf5 pos} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 occur} {\cf1 =} {\cf5 i} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 pos} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 LINEAR}{\line}
+{\tab}{\tab}{\tab}{\cf1 non_negative_result}{\cf1 :} {\b\cf6 Result} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 item_for_iteration}{\cf1 :} {\cf4 EV_PIXEL_BUFFER_PIXEL}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Item at current position}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 LINEAR}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 LINEAR}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_off}{\cf1 :} {\b\cf6 not} {\cf5 off}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 item}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 occurrences} {\cf1 (}{\cf5 v}{\cf1 :} {\b\cf6 like} {\cf5 item}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of times }{\cf5 v}{\cf3  appears.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Reference or object equality,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  based on }{\cf5 object_comparison}{\cf3 .)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 LINEAR}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 start}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 search}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 exhausted}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Result} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 forth}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 search}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 off}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is there no current item?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 BILINEAR}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from } {\cf4 TRAVERSABLE}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 True}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 before} {\b\cf6 or} {\cf5 after}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 sequential_search} {\cf1 (}{\cf5 v}{\cf1 :} {\b\cf6 like} {\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Move to first position (at or after current}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  position) where }{\cf5 item}{\cf3  and }{\cf5 v}{\cf3  are equal.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Reference or object equality,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  based on }{\cf5 object_comparison}{\cf3 .)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  If no such position ensure that }{\cf5 exhausted}{\cf3  will be true.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 LINEAR}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 object_comparison} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 exhausted} {\b\cf6 or else} {\cf5 v} {\cf1 ~} {\cf5 item}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 forth}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 exhausted} {\b\cf6 or else} {\cf5 v} {\cf1 =} {\cf5 item}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 forth}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 LINEAR}{\line}
+{\tab}{\tab}{\tab}{\cf1 object_found}{\cf1 :} {\cf1 (}{\b\cf6 not} {\cf5 exhausted} {\b\cf6 and} {\cf5 object_comparison}{\cf1 )} {\b\cf6 implies} {\cf5 v} {\cf1 ~} {\cf5 item}{\line}
+{\tab}{\tab}{\tab}{\cf1 item_found}{\cf1 :} {\cf1 (}{\b\cf6 not} {\cf5 exhausted} {\b\cf6 and} {\b\cf6 not} {\cf5 object_comparison}{\cf1 )} {\b\cf6 implies} {\cf5 v} {\cf1 =} {\cf5 item}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Comparison}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 deep_equal} {\cf1 (}{\cf5 a}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 ;} {\cf5 b}{\cf1 :} {\b\cf6 like} arg #1{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are }{\cf5 a}{\cf3  and }{\cf5 b}{\cf3  either both void}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  or attached to isomorphic object structures?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a} {\cf1 =} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 =} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 is_deep_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 shallow_implies_deep}{\cf1 :} {\cf5 standard_equal}{\cf1  }{\cf1 (}{\cf5 a}{\cf1 ,} {\cf5 b}{\cf1 )} {\b\cf6 implies} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\cf1 both_or_none_void}{\cf1 :} {\cf1 (}{\cf5 a} {\cf1 =} {\b\cf6 Void}{\cf1 )} {\b\cf6 implies} {\cf1 (}{\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf5 b} {\cf1 =} {\b\cf6 Void}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 same_type}{\cf1 :} {\cf1 (}{\b\cf6 Result} {\b\cf6 and} {\cf1 (}{\cf5 a} {\cf1 /=} {\b\cf6 Void}{\cf1 )}{\cf1 )} {\b\cf6 implies} {\cf1 (}{\cf5 b} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 same_type}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 symmetric}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 deep_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 ,} {\cf5 a}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 equal} {\cf1 (}{\cf5 a}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 ;} {\cf5 b}{\cf1 :} {\b\cf6 like} arg #1{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are }{\cf5 a}{\cf3  and }{\cf5 b}{\cf3  either both void or attached}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to objects considered equal?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a} {\cf1 =} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 =} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf5 a} {\cf1 =} {\b\cf6 Void} {\b\cf6 and} {\cf5 b} {\cf1 =} {\b\cf6 Void}{\cf1 )} {\b\cf6 or else} {\cf1 (}{\cf1 (}{\cf5 a} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and} {\cf5 b} {\cf1 /=} {\b\cf6 Void}{\cf1 )} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 is_deep_equal} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 EV_PIXEL_BUFFER_ITERATOR}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are }{\cf5 Current}{\cf3  and }{\cf5 other}{\cf3  attached to isomorphic object structures?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 shallow_implies_deep}{\cf1 :} {\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )} {\b\cf6 implies} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\cf1 same_type}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 same_type}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 symmetric}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 other}{\b\cf1 .}{\cf5 is_deep_equal}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_equal} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 EV_PIXEL_BUFFER_ITERATOR}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 other}{\cf3  attached to an object considered}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  equal to current object?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 symmetric}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 other} {\cf1 ~} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\tab}{\cf1 consistent}{\cf1 :} {\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )} {\b\cf6 implies} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 standard_equal} {\cf1 (}{\cf5 a}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 ;} {\cf5 b}{\cf1 :} {\b\cf6 like} arg #1{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are }{\cf5 a}{\cf3  and }{\cf5 b}{\cf3  either both void or attached to}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  field-by-field identical objects of the same type?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Always uses default object comparison criterion.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a} {\cf1 =} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 =} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf5 a} {\cf1 =} {\b\cf6 Void} {\b\cf6 and} {\cf5 b} {\cf1 =} {\b\cf6 Void}{\cf1 )} {\b\cf6 or else} {\cf1 (}{\cf1 (}{\cf5 a} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and} {\cf5 b} {\cf1 /=} {\b\cf6 Void}{\cf1 )} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 standard_is_equal} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 EV_PIXEL_BUFFER_ITERATOR}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 other}{\cf3  attached to an object of the same type}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  as current object, and field-by-field identical to it?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 same_type}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 same_type}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 symmetric}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 other}{\b\cf1 .}{\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status report}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 changeable_comparison_criterion}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  May }{\cf5 object_comparison}{\cf3  be changed?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Answer: yes by default.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 CONTAINER}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 conforms_to} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 ANY}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does type of current object conform to type}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of }{\cf5 other}{\cf3  (as per Eiffel: The Language, chapter 13)?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 empty}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\b\cf6 obsolete} "ELKS 2000: Use `is_empty' instead. [2017-05-31]"{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is there no element?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 CONTAINER}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 is_empty}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 exhausted}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Has structure been completely explored?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 LINEAR}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 off}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 LINEAR}{\line}
+{\tab}{\tab}{\tab}{\cf1 exhausted_when_off}{\cf1 :} {\cf5 off} {\b\cf6 implies} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 object_comparison}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Must search operations use }{\cf5 equal}{\cf3  rather than }{\cf5 =}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  for comparing references? (Default: no, use }{\cf5 =}{\cf3 .)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 CONTAINER}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 same_type} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 ANY}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is type of current object identical to type of }{\cf5 other}{\cf3 ?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf5 conforms_to}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )} {\b\cf6 and} {\cf5 other}{\b\cf1 .}{\cf5 conforms_to}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status setting}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 compare_objects}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Ensure that future search operations will use }{\cf5 equal}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  rather than }{\cf5 =}{\cf3  for comparing references.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 CONTAINER}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 CONTAINER}{\line}
+{\tab}{\tab}{\tab}{\cf1 changeable_comparison_criterion}{\cf1 :} {\cf5 changeable_comparison_criterion}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 object_comparison} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 CONTAINER}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 object_comparison}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 compare_references}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Ensure that future search operations will use }{\cf5 =}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  rather than }{\cf5 equal}{\cf3  for comparing references.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 CONTAINER}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 CONTAINER}{\line}
+{\tab}{\tab}{\tab}{\cf1 changeable_comparison_criterion}{\cf1 :} {\cf5 changeable_comparison_criterion}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 object_comparison} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 CONTAINER}{\line}
+{\tab}{\tab}{\tab}{\cf1 reference_comparison}{\cf1 :} {\b\cf6 not} {\cf5 object_comparison}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Cursor movement}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 search} {\cf1 (}{\cf5 v}{\cf1 :} {\b\cf6 like} {\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Move to first position (at or after current}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  position) where }{\cf5 item}{\cf3  and }{\cf5 v}{\cf3  are equal.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  If structure does not include }{\cf5 v}{\cf3  ensure that}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 exhausted}{\cf3  will be true.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Reference or object equality,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  based on }{\cf5 object_comparison}{\cf3 .)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 BILINEAR}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 before} {\b\cf6 and} {\b\cf6 not} {\cf5 is_empty} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 forth}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 sequential_search}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 LINEAR}{\line}
+{\tab}{\tab}{\tab}{\cf1 object_found}{\cf1 :} {\cf1 (}{\b\cf6 not} {\cf5 exhausted} {\b\cf6 and} {\cf5 object_comparison}{\cf1 )} {\b\cf6 implies} {\cf5 v} {\cf1 ~} {\cf5 item}{\line}
+{\tab}{\tab}{\tab}{\cf1 item_found}{\cf1 :} {\cf1 (}{\b\cf6 not} {\cf5 exhausted} {\b\cf6 and} {\b\cf6 not} {\cf5 object_comparison}{\cf1 )} {\b\cf6 implies} {\cf5 v} {\cf1 =} {\cf5 item}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Conversion}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 linear_representation}{\cf1 :} {\cf4 LINEAR} {\cf1 [}{\cf4 EV_PIXEL_BUFFER_PIXEL}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Representation as a linear structure}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 LINEAR}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Duplication}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 clone} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 )}{\cf1 :} {\b\cf6 like} {\cf5 other}{\line}
+{\tab}{\tab}{\b\cf6 obsolete} "Use `twin' instead. [2017-05-31]"{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Void if }{\cf5 other}{\cf3  is void; otherwise new object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  equal to }{\cf5 other}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  For non-void }{\cf5 other}{\cf3 , }{\cf5 clone}{\cf3  calls }{\cf5 copy}{\cf3 ;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to change copying/cloning semantics, redefine }{\cf5 copy}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 other} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 other}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 equal}{\cf1 :} {\b\cf6 Result} {\cf1 ~} {\cf5 other}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 copy} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 EV_PIXEL_BUFFER_ITERATOR}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Update current object using fields of object attached}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to }{\cf5 other}{\cf3 , so as to yield equal objects.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 type_identity}{\cf1 :} {\cf5 same_type}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_equal}{\cf1 :} {\b\cf6 Current} {\cf1 ~} {\cf5 other}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 deep_clone} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 )}{\cf1 :} {\b\cf6 like} {\cf5 other}{\line}
+{\tab}{\tab}{\b\cf6 obsolete} "Use `deep_twin' instead. [2017-05-31]"{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Void if }{\cf5 other}{\cf3  is void: otherwise, new object structure}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  recursively duplicated from the one attached to }{\cf5 other}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 other} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 other}{\b\cf1 .}{\cf5 deep_twin}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 deep_equal}{\cf1 :} {\cf5 deep_equal}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 ,} {\b\cf6 Result}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 deep_copy} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 EV_PIXEL_BUFFER_ITERATOR}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Effect equivalent to that of:}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3 		}{\cf5 copy}{\cf3  (}{\cf5 other}{\cf3  . }{\cf5 deep_twin}{\cf3 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 copy}{\cf1  }{\cf1 (}{\cf5 other}{\b\cf1 .}{\cf5 deep_twin}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 deep_equal}{\cf1 :} {\cf5 deep_equal}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 ,} {\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 deep_twin}{\cf1 :} {\b\cf6 attached} {\cf4 EV_PIXEL_BUFFER_ITERATOR}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New object structure recursively duplicated from Current.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 deep_twin_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 deep_equal}{\cf1 :} {\cf5 deep_equal}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 ,} {\b\cf6 Result}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 standard_clone} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 )}{\cf1 :} {\b\cf6 like} {\cf5 other}{\line}
+{\tab}{\tab}{\b\cf6 obsolete} "Use `standard_twin' instead. [2017-05-31]"{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Void if }{\cf5 other}{\cf3  is void; otherwise new object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  field-by-field identical to }{\cf5 other}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Always uses default copying semantics.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 other} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 other}{\b\cf1 .}{\cf5 standard_twin}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 equal}{\cf1 :} {\cf5 standard_equal}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 ,} {\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 standard_copy} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 EV_PIXEL_BUFFER_ITERATOR}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Copy every field of }{\cf5 other}{\cf3  onto corresponding field}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of current object.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 type_identity}{\cf1 :} {\cf5 same_type}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_standard_equal}{\cf1 :} {\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 standard_twin}{\cf1 :} {\b\cf6 attached} {\cf4 EV_PIXEL_BUFFER_ITERATOR}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New object field-by-field identical to }{\cf5 other}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Always uses default copying semantics.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 standard_twin_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 equal}{\cf1 :} {\cf5 standard_equal}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 ,} {\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 twin}{\cf1 :} {\b\cf6 attached} {\cf4 EV_PIXEL_BUFFER_ITERATOR}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New object equal to }{\cf5 Current}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 twin}{\cf3  calls }{\cf5 copy}{\cf3 ; to change copying/twinning semantics, redefine }{\cf5 copy}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 twin_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_equal}{\cf1 :} {\b\cf6 Result} {\cf1 ~} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Basic operations}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 as_attached}{\cf1 :} {\b\cf6 attached} {\cf4 EV_PIXEL_BUFFER_ITERATOR}{\line}
+{\tab}{\tab}{\b\cf6 obsolete} "Remove calls to this feature. [2017-05-31]"{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Attached version of Current.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Can be used during transitional period to convert}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  non-void-safe classes to void-safe ones.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 default}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_PIXEL_BUFFER_ITERATOR}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Default value of object's type}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 default_pointer}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Default value of type }{\cf5 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Avoid the need to write }{\cf5 p}{\cf3 .}{\cf5 default}{\cf3  for}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  some }{\cf5 p}{\cf3  of type }{\cf5 POINTER}{\cf3 .)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 default_rescue}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Process exception for routines with no Rescue clause.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Default: do nothing.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 do_nothing}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Execute a null action.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 internal_item}{\cf1 :} {\cf4 EV_PIXEL_BUFFER_PIXEL}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 pixel_buffer}{\cf1 :} {\cf4 EV_PIXEL_BUFFER_I}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Pixel buffer for which }{\cf5 Current}{\cf3  is iterating.}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\line}
+{\line}
+{\tab}{\cf5 {\cf5 after}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is there no valid position to the right of current one?}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 row} {\cf1 >} {\cf5 max_row_value}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 back}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Move to previous position.}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 BILINEAR}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_before}{\cf1 :} {\b\cf6 not} {\cf5 before}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 column} {\cf1 =} 1 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 column} {\cf1 :=} {\cf5 max_column_value}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 row} {\cf1 :=} {\cf5 row} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 column} {\cf1 :=} {\cf5 column} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 before}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is there no valid position to the left of current one?}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 row} {\cf1 =} 0{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 column}{\cf1 :} {\cf4 NATURAL_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Column index of }{\cf5 item}{\cf3 .}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 finish}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Move to last position.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 row} {\cf1 :=} {\cf5 max_row_value}{\line}
+{\tab}{\tab}{\tab}{\cf5 column} {\cf1 :=} {\cf5 max_column_value}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 forth}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Move to next position; if no next position,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  ensure that exhausted will be true.}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 LINEAR}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_after}{\cf1 :} {\b\cf6 not} {\cf5 after}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 column} {\cf1 =} {\cf5 max_column_value} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 column} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 row} {\cf1 :=} {\cf5 row} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 column} {\cf1 :=} {\cf5 column} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 index}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Index of current position.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf1 (}{\cf5 row} {\cf1 -} 1{\cf1 )} {\cf1 *} {\cf5 max_column_value} {\cf1 +} {\cf5 column}{\cf1 )}{\b\cf1 .}{\cf5 to_integer_32}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_empty}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is there no element?}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 item}{\cf1 :} {\cf4 EV_PIXEL_BUFFER_PIXEL}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Pixel at current iteration position.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Object is reused for efficiency so retained references will be automatically updated.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  If not locked then a default pixel is returned.}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 TRAVERSABLE}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_off}{\cf1 :} {\b\cf6 not} {\cf5 off}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 pixel_buffer}{\b\cf1 .}{\cf5 is_locked} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 internal_item}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 sync_with_pixel_buffer_value}{\cf1  }{\cf1 (}{\cf5 column} {\cf1 -} 1{\cf1 ,} {\cf5 row} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 max_column_value}{\cf1 :} {\cf4 NATURAL_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Total number of columns for iteration.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 max_row_value}{\cf1 :} {\cf4 NATURAL_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Total number of rows for iteration.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 row}{\cf1 :} {\cf4 NATURAL_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Row index of }{\cf5 item}{\cf3 .}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_column} {\cf1 (}{\cf5 a_column}{\cf1 :} {\cf4 NATURAL_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set iterator to column }{\cf5 a_column}{\cf3  of }{\cf5 pixel_buffer}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_column_valid}{\cf1 :} {\cf5 a_column} {\cf1 >=} 1 {\b\cf6 and then} {\cf5 a_column} {\cf1 <=} {\cf5 max_column_value}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 column} {\cf1 :=} {\cf5 a_column}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_row} {\cf1 (}{\cf5 a_row}{\cf1 :} {\cf4 NATURAL_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set iterator to row }{\cf5 a_row}{\cf3  of }{\cf5 pixel_buffer}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_row_valid}{\cf1 :} {\cf5 a_row} {\cf1 >=} 1 {\b\cf6 and then} {\cf5 a_row} {\cf1 <=} {\cf5 max_row_value}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 row} {\cf1 :=} {\cf5 a_row}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 start}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Move to first position if any.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 column} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\cf5 row} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 update_pixel} {\cf1 (}{\cf5 a_column}{\cf1 ,} {\cf5 a_row}{\cf1 :} {\cf4 NATURAL_32}{\cf1 ;} {\cf5 a_pixel}{\cf1 :} {\cf4 EV_PIXEL_BUFFER_PIXEL}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Update }{\cf5 a_pixel}{\cf3  with pixel value at }{\cf5 a_column}{\cf3 , }{\cf5 a_row}{\cf3  of }{\cf5 Current}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  If not locked nothing is done.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_column_valid}{\cf1 :} {\cf5 a_column} {\cf1 >=} 1 {\b\cf6 and then} {\cf5 a_column} {\cf1 <=} {\cf5 max_column_value}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_row_valid}{\cf1 :} {\cf5 a_row} {\cf1 >=} 1 {\b\cf6 and then} {\cf5 a_row} {\cf1 <=} {\cf5 max_row_value}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 pixel_buffer}{\b\cf1 .}{\cf5 is_locked} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 a_pixel}{\b\cf1 .}{\cf5 set_pixel_buffer}{\cf1  }{\cf1 (}{\cf5 pixel_buffer}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 a_pixel}{\b\cf1 .}{\cf5 sync_with_pixel_buffer_value}{\cf1  }{\cf1 (}{\cf5 a_column} {\cf1 -} 1{\cf1 ,} {\cf5 a_row} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Creation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make_for_pixel_buffer} {\cf1 (}{\cf5 a_pixel_buffer}{\cf1 :} {\cf4 EV_PIXEL_BUFFER}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Make iterator for pixel buffer }{\cf5 a_pixel_buffer}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 pixel_buffer} {\cf1 :=} {\cf5 a_pixel_buffer}{\b\cf1 .}{\cf5 implementation}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 internal_item}{\line}
+{\tab}{\tab}{\tab}{\cf5 internal_item}{\b\cf1 .}{\cf5 set_pixel_buffer}{\cf1  }{\cf1 (}{\cf5 pixel_buffer}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 max_row_value} {\cf1 :=} {\cf5 a_pixel_buffer}{\b\cf1 .}{\cf5 height}{\b\cf1 .}{\cf5 to_natural_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 max_column_value} {\cf1 :=} {\cf5 a_pixel_buffer}{\b\cf1 .}{\cf5 width}{\b\cf1 .}{\cf5 to_natural_32}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Iteration}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 do_all} {\cf1 (}{\cf5 action}{\cf1 :} {\cf4 PROCEDURE} {\cf1 [}{\cf4 EV_PIXEL_BUFFER_PIXEL}{\cf1 ]}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Apply }{\cf5 action}{\cf3  to every item.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Semantics not guaranteed if }{\cf5 action}{\cf3  changes the structure;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  in such a case, apply iterator to clone of structure instead.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 LINEAR}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 TRAVERSABLE}{\line}
+{\tab}{\tab}{\tab}{\cf1 action_exists}{\cf1 :} {\cf5 action} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 c}{\cf1 :} {\b\cf6 detachable} {\cf4 CURSOR}{\line}
+{\tab}{\tab}{\tab}{\cf5 cs}{\cf1 :} {\b\cf6 detachable} {\cf4 CURSOR_STRUCTURE} {\cf1 [}{\cf4 EV_PIXEL_BUFFER_PIXEL}{\cf1 ]}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf1 \{}{\cf4 CURSOR_STRUCTURE} {\cf1 [}{\cf4 EV_PIXEL_BUFFER_PIXEL}{\cf1 ]}{\cf1 \}} {\b\cf6 Current} {\b\cf6 as} acs {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 cs} {\cf1 :=} {\cf5 acs}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 c} {\cf1 :=} {\cf5 acs}{\b\cf1 .}{\cf5 cursor}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 start}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 after}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 action}{\b\cf1 .}{\cf5 call}{\cf1  }{\cf1 (}{\cf1 [}{\cf5 item}{\cf1 ]}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 forth}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 cs} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and} {\cf5 c} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 cs}{\b\cf1 .}{\cf5 go_to}{\cf1  }{\cf1 (}{\cf5 c}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 do_if} {\cf1 (}{\cf5 action}{\cf1 :} {\cf4 PROCEDURE} {\cf1 [}{\cf4 EV_PIXEL_BUFFER_PIXEL}{\cf1 ]}{\cf1 ;} {\cf5 test}{\cf1 :} {\cf4 FUNCTION} {\cf1 [}{\cf4 EV_PIXEL_BUFFER_PIXEL}{\cf1 ,} {\cf4 BOOLEAN}{\cf1 ]}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Apply }{\cf5 action}{\cf3  to every item that satisfies }{\cf5 test}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Semantics not guaranteed if }{\cf5 action}{\cf3  or }{\cf5 test}{\cf3  changes the structure;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  in such a case, apply iterator to clone of structure instead.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 LINEAR}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 TRAVERSABLE}{\line}
+{\tab}{\tab}{\tab}{\cf1 action_exists}{\cf1 :} {\cf5 action} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 test_exists}{\cf1 :} {\cf5 test} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 c}{\cf1 :} {\b\cf6 detachable} {\cf4 CURSOR}{\line}
+{\tab}{\tab}{\tab}{\cf5 cs}{\cf1 :} {\b\cf6 detachable} {\cf4 CURSOR_STRUCTURE} {\cf1 [}{\cf4 EV_PIXEL_BUFFER_PIXEL}{\cf1 ]}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf1 \{}{\cf4 CURSOR_STRUCTURE} {\cf1 [}{\cf4 EV_PIXEL_BUFFER_PIXEL}{\cf1 ]}{\cf1 \}} {\b\cf6 Current} {\b\cf6 as} acs {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 cs} {\cf1 :=} {\cf5 acs}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 c} {\cf1 :=} {\cf5 acs}{\b\cf1 .}{\cf5 cursor}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 start}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 after}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 test}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf1 [}{\cf5 item}{\cf1 ]}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 action}{\b\cf1 .}{\cf5 call}{\cf1  }{\cf1 (}{\cf1 [}{\cf5 item}{\cf1 ]}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 forth}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 cs} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and} {\cf5 c} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 cs}{\b\cf1 .}{\cf5 go_to}{\cf1  }{\cf1 (}{\cf5 c}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 for_all} {\cf1 (}{\cf5 test}{\cf1 :} {\cf4 FUNCTION} {\cf1 [}{\cf4 EV_PIXEL_BUFFER_PIXEL}{\cf1 ,} {\cf4 BOOLEAN}{\cf1 ]}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 test}{\cf3  true for all items?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Semantics not guaranteed if }{\cf5 test}{\cf3  changes the structure;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  in such a case, apply iterator to clone of structure instead.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 LINEAR}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 TRAVERSABLE}{\line}
+{\tab}{\tab}{\tab}{\cf1 test_exists}{\cf1 :} {\cf5 test} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 c}{\cf1 :} {\b\cf6 detachable} {\cf4 CURSOR}{\line}
+{\tab}{\tab}{\tab}{\cf5 cs}{\cf1 :} {\b\cf6 detachable} {\cf4 CURSOR_STRUCTURE} {\cf1 [}{\cf4 EV_PIXEL_BUFFER_PIXEL}{\cf1 ]}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf1 \{}{\cf4 CURSOR_STRUCTURE} {\cf1 [}{\cf4 EV_PIXEL_BUFFER_PIXEL}{\cf1 ]}{\cf1 \}} {\b\cf6 Current} {\b\cf6 as} acs {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 cs} {\cf1 :=} {\cf5 acs}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 c} {\cf1 :=} {\cf5 acs}{\b\cf1 .}{\cf5 cursor}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 start}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 after} {\b\cf6 or} {\b\cf6 not} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 test}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf1 [}{\cf5 item}{\cf1 ]}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 forth}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 cs} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and} {\cf5 c} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 cs}{\b\cf1 .}{\cf5 go_to}{\cf1  }{\cf1 (}{\cf5 c}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure then} {\cf3 --} {\cf3 from }{\cf4 LINEAR}{\line}
+{\tab}{\tab}{\tab}{\cf1 empty}{\cf1 :} {\cf5 is_empty} {\b\cf6 implies} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 there_exists} {\cf1 (}{\cf5 test}{\cf1 :} {\cf4 FUNCTION} {\cf1 [}{\cf4 EV_PIXEL_BUFFER_PIXEL}{\cf1 ,} {\cf4 BOOLEAN}{\cf1 ]}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 test}{\cf3  true for at least one item?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Semantics not guaranteed if }{\cf5 test}{\cf3  changes the structure;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  in such a case, apply iterator to clone of structure instead.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 LINEAR}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 TRAVERSABLE}{\line}
+{\tab}{\tab}{\tab}{\cf1 test_exists}{\cf1 :} {\cf5 test} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 c}{\cf1 :} {\b\cf6 detachable} {\cf4 CURSOR}{\line}
+{\tab}{\tab}{\tab}{\cf5 cs}{\cf1 :} {\b\cf6 detachable} {\cf4 CURSOR_STRUCTURE} {\cf1 [}{\cf4 EV_PIXEL_BUFFER_PIXEL}{\cf1 ]}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf1 \{}{\cf4 CURSOR_STRUCTURE} {\cf1 [}{\cf4 EV_PIXEL_BUFFER_PIXEL}{\cf1 ]}{\cf1 \}} {\b\cf6 Current} {\b\cf6 as} acs {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 cs} {\cf1 :=} {\cf5 acs}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 c} {\cf1 :=} {\cf5 acs}{\b\cf1 .}{\cf5 cursor}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 start}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 after} {\b\cf6 or} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 test}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf1 [}{\cf5 item}{\cf1 ]}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 forth}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 cs} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and} {\cf5 c} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 cs}{\b\cf1 .}{\cf5 go_to}{\cf1  }{\cf1 (}{\cf5 c}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Output}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Io}{\cf1 :} {\cf4 STD_FILES}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Handle to standard file setup}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 set_output_default}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 io_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 out}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New string containing terse printable representation}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of current object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 tagged_out}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 out_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 print} {\cf1 (}{\cf5 o}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Write terse external representation of }{\cf5 o}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  on standard output.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 o} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 Io}{\b\cf1 .}{\cf5 put_string}{\cf1  }{\cf1 (}{\cf5 o}{\b\cf1 .}{\cf5 out}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 tagged_out}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New string containing terse printable representation}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of current object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 tagged_out_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Platform}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Operating_environment}{\cf1 :} {\cf4 OPERATING_ENVIRONMENT}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Objects available from the operating system}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 operating_environment_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Retrieval}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 internal_correct_mismatch}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Called from runtime to perform a proper dynamic dispatch on }{\cf5 correct_mismatch}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  from MISMATCH_CORRECTOR.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_msg}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_exc}{\cf1 :} {\cf4 EXCEPTIONS}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf1 \{}{\cf4 MISMATCH_CORRECTOR}{\cf1 \}} {\b\cf6 Current} {\b\cf6 as} l_corrector {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_corrector}{\b\cf1 .}{\cf5 correct_mismatch}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 l_msg}{\b\cf1 .}{\cf5 make_from_string}{\cf1  }{\cf1 (}"Mismatch: "{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 l_exc}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_msg}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 generating_type}{\b\cf1 .}{\cf5 name}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_exc}{\b\cf1 .}{\cf5 raise_retrieval_exception}{\cf1  }{\cf1 (}{\cf5 l_msg}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 invariant}{\line}
+{\tab}{\tab}{\cf3 --} {\cf3 from }{\cf4 BILINEAR}{\line}
+{\tab}{\cf1 not_both}{\cf1 :} {\b\cf6 not} {\cf1 (}{\cf5 after} {\b\cf6 and} {\cf5 before}{\cf1 )}{\line}
+{\tab}{\cf1 before_constraint}{\cf1 :} {\cf5 before} {\b\cf6 implies} {\cf5 off}{\line}
+{\line}
+{\tab}{\tab}{\cf3 --} {\cf3 from }{\cf4 LINEAR}{\line}
+{\tab}{\cf1 after_constraint}{\cf1 :} {\cf5 after} {\b\cf6 implies} {\cf5 off}{\line}
+{\line}
+{\tab}{\tab}{\cf3 --} {\cf3 from }{\cf4 TRAVERSABLE}{\line}
+{\tab}{\cf1 empty_constraint}{\cf1 :} {\cf5 is_empty} {\b\cf6 implies} {\cf5 off}{\line}
+{\line}
+{\tab}{\tab}{\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\cf1 reflexive_equality}{\cf1 :} {\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\cf1 reflexive_conformance}{\cf1 :} {\cf5 conforms_to}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\line}
+{\line}
+{\b\cf6 note}{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 1984-2016, Eiffel Software and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"{\line}
+{\tab}{\cf1 source}{\cf1 :} "[{\line}
+{\tab}{\tab}Eiffel Software{\line}
+{\tab}{\tab}5949 Hollister Ave., Goleta, CA 93117 USA{\line}
+{\tab}{\tab}Telephone 805-685-1006, Fax 805-685-6869{\line}
+{\tab}{\tab}Website http://www.eiffel.com{\line}
+{\tab}{\tab}Customer support http://support.eiffel.com{\line}
+{\tab}]"{\line}
+{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 EV_PIXEL_BUFFER_ITERATOR}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

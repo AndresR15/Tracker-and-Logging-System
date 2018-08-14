@@ -1,0 +1,528 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Action sequences for EV_APPLICATION_I.&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;event, action, sequence&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;Generated!&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;Generated!&quot;</string>
+
+<keyword>deferred</keyword> <keyword>class</keyword> 
+	<class><location>../implementation_interface/ev_application_action_sequences_i.xml</location>EV_APPLICATION_ACTION_SEQUENCES_I</class>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Event handling</comment>
+
+	<anchor>f_post_launch_actions</anchor><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_post_launch_actions</location>post_launch_actions</feature><symbol>:</symbol> <class><location>../interface/ev_notify_action_sequence.xml</location>EV_NOTIFY_ACTION_SEQUENCE</class>
+			<comment>--</comment><comment> Actions to be performed just after application </comment><quoted>launch</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_post_launch_actions_internal</location>post_launch_actions_internal</feature> <keyword>as</keyword> l_result <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>l_result</local>
+			<keyword>else</keyword>
+				<keyword>create</keyword> <keyword>Result</keyword>
+				<feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_post_launch_actions_internal</location>post_launch_actions_internal</feature> <symbol>:=</symbol> <keyword>Result</keyword>
+			<keyword>end</keyword>
+		<keyword>ensure</keyword>
+			<tag>not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_post_launch_actions_internal</anchor><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_post_launch_actions_internal</location>post_launch_actions_internal</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_notify_action_sequence.xml</location>EV_NOTIFY_ACTION_SEQUENCE</class>
+			<comment>--</comment><comment> Implementation of once per object </comment><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_post_launch_actions</location>post_launch_actions</feature><comment>.</comment>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Event handling</comment>
+
+	<anchor>f_idle_actions</anchor><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_idle_actions</location>idle_actions</feature><symbol>:</symbol> <class><location>../interface/ev_notify_action_sequence.xml</location>EV_NOTIFY_ACTION_SEQUENCE</class>
+			<comment>--</comment><comment> Actions to be performed when the application is otherwise idle.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_idle_actions_internal</location>idle_actions_internal</feature> <keyword>as</keyword> l_result <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>l_result</local>
+			<keyword>else</keyword>
+				<keyword>create</keyword> <keyword>Result</keyword>
+				<feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_idle_actions_internal</location>idle_actions_internal</feature> <symbol>:=</symbol> <keyword>Result</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_kamikaze_actions</anchor><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_kamikaze_actions</location>kamikaze_actions</feature><symbol>:</symbol> <class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><keyword>separate</keyword> <class><include>False</include>PROCEDURE</class><symbol>]</symbol>
+			<comment>--</comment><comment> Actions to be performed once when the application is otherwise idle.</comment>
+			<comment>--</comment><comment> Allows for separate agents coming from other processors that may want to be called when the application is idle</comment>
+			<comment>--</comment><comment> via 'do_once_on_idle'.</comment>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_idle_actions_internal</anchor><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_idle_actions_internal</location>idle_actions_internal</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_notify_action_sequence.xml</location>EV_NOTIFY_ACTION_SEQUENCE</class>
+			<comment>--</comment><comment> Implementation of once per object </comment><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_idle_actions</location>idle_actions</feature><comment>.</comment>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Event handling</comment>
+
+	<anchor>f_pick_actions</anchor><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_pick_actions</location>pick_actions</feature><symbol>:</symbol> <class><location>../interface/ev_pnd_action_sequence.xml</location>EV_PND_ACTION_SEQUENCE</class>
+			<comment>--</comment><comment> Actions to be performed when any &quot;pick&quot; occurs.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_pick_actions_internal</location>pick_actions_internal</feature> <keyword>as</keyword> l_result <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>l_result</local>
+			<keyword>else</keyword>
+				<keyword>create</keyword> <keyword>Result</keyword>
+				<feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_pick_actions_internal</location>pick_actions_internal</feature> <symbol>:=</symbol> <keyword>Result</keyword>
+			<keyword>end</keyword>
+		<keyword>ensure</keyword>
+			<tag>not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_pick_actions_internal</anchor><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_pick_actions_internal</location>pick_actions_internal</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_pnd_action_sequence.xml</location>EV_PND_ACTION_SEQUENCE</class>
+			<comment>--</comment><comment> Implementation of once per object </comment><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_pick_actions</location>pick_actions</feature><comment>.</comment>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Event handling</comment>
+
+	<anchor>f_drop_actions</anchor><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_drop_actions</location>drop_actions</feature><symbol>:</symbol> <class><location>../interface/ev_pnd_action_sequence.xml</location>EV_PND_ACTION_SEQUENCE</class>
+			<comment>--</comment><comment> Actions to be performed when any &quot;drop&quot; occurs.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_drop_actions_internal</location>drop_actions_internal</feature> <keyword>as</keyword> l_result <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>l_result</local>
+			<keyword>else</keyword>
+				<keyword>create</keyword> <keyword>Result</keyword>
+				<feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_drop_actions_internal</location>drop_actions_internal</feature> <symbol>:=</symbol> <keyword>Result</keyword>
+			<keyword>end</keyword>
+		<keyword>ensure</keyword>
+			<tag>not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_drop_actions_internal</anchor><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_drop_actions_internal</location>drop_actions_internal</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_pnd_action_sequence.xml</location>EV_PND_ACTION_SEQUENCE</class>
+			<comment>--</comment><comment> Implementation of once per object </comment><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_drop_actions</location>drop_actions</feature><comment>.</comment>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Event handling</comment>
+
+	<anchor>f_cancel_actions</anchor><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_cancel_actions</location>cancel_actions</feature><symbol>:</symbol> <class><location>../interface/ev_pnd_action_sequence.xml</location>EV_PND_ACTION_SEQUENCE</class>
+			<comment>--</comment><comment> Actions to be performed when a PND is cancelled</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_cancel_actions_internal</location>cancel_actions_internal</feature> <keyword>as</keyword> l_result <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>l_result</local>
+			<keyword>else</keyword>
+				<keyword>create</keyword> <keyword>Result</keyword>
+				<feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_cancel_actions_internal</location>cancel_actions_internal</feature> <symbol>:=</symbol> <keyword>Result</keyword>
+			<keyword>end</keyword>
+		<keyword>ensure</keyword>
+			<tag>not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_cancel_actions_internal</anchor><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_cancel_actions_internal</location>cancel_actions_internal</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_pnd_action_sequence.xml</location>EV_PND_ACTION_SEQUENCE</class>
+			<comment>--</comment><comment> Implementation of once per object </comment><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_cancel_actions</location>cancel_actions</feature><comment>.</comment>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Event handling</comment>
+
+	<anchor>f_pnd_motion_actions</anchor><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_pnd_motion_actions</location>pnd_motion_actions</feature><symbol>:</symbol> <class><location>../interface/ev_pnd_motion_action_sequence.xml</location>EV_PND_MOTION_ACTION_SEQUENCE</class>
+			<comment>--</comment><comment> Actions to be performed when screen pointer is moved,</comment>
+			<comment>--</comment><comment> during a pick and drop.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_pnd_motion_actions_internal</location>pnd_motion_actions_internal</feature> <keyword>as</keyword> l_result <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>l_result</local>
+			<keyword>else</keyword>
+				<keyword>create</keyword> <keyword>Result</keyword>
+				<feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_pnd_motion_actions_internal</location>pnd_motion_actions_internal</feature> <symbol>:=</symbol> <keyword>Result</keyword>
+			<keyword>end</keyword>
+		<keyword>ensure</keyword>
+			<tag>not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_file_drop_actions</anchor><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_file_drop_actions</location>file_drop_actions</feature><symbol>:</symbol> <class><location>../interface/ev_lite_action_sequence.xml</location>EV_LITE_ACTION_SEQUENCE</class> <symbol>[</symbol><class><location>../interface/ev_widget.xml</location>EV_WIDGET</class><symbol>,</symbol> <class><include>False</include>LIST</class> <symbol>[</symbol><class><include>False</include>STRING_32</class><symbol>]</symbol><symbol>]</symbol>
+			<comment>--</comment><comment> Actions to be performed when an OS file drop is performed on </comment><quoted>Current</quoted><comment>.</comment>
+			<comment>--</comment><comment> </comment><quoted>widget</quoted><comment> is the widget on which the file(s) where dropped on to.</comment>
+			<comment>--</comment><comment> </comment><quoted>file_list</quoted><comment> is a list of the file paths being dropped on to </comment><quoted>widget</quoted><comment>.</comment>
+			<comment>--</comment><comment> In order for </comment><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_file_drop_actions</location>file_drop_actions</feature><comment> to be called an agent has to be already</comment>
+			<comment>--</comment><comment> present in the </comment><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_file_drop_actions</location>file_drop_actions</feature><comment> of </comment><quoted>widget</quoted><comment> otherwise a drop is disallowed.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_file_drop_actions_internal</location>file_drop_actions_internal</feature> <keyword>as</keyword> l_result <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>l_result</local>
+			<keyword>else</keyword>
+				<keyword>create</keyword> <keyword>Result</keyword>
+				<feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_file_drop_actions_internal</location>file_drop_actions_internal</feature> <symbol>:=</symbol> <keyword>Result</keyword>
+			<keyword>end</keyword>
+		<keyword>ensure</keyword>
+			<tag>not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_uncaught_exception_actions</anchor><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_uncaught_exception_actions</location>uncaught_exception_actions</feature><symbol>:</symbol> <class><location>../interface/ev_lite_action_sequence.xml</location>EV_LITE_ACTION_SEQUENCE</class> <symbol>[</symbol><class><include>False</include>EXCEPTION</class><symbol>]</symbol>
+			<comment>--</comment><comment> Actions to be performed when an</comment>
+			<comment>--</comment><comment> action sequence called via callback</comment>
+			<comment>--</comment><comment> from the underlying toolkit raises an</comment>
+			<comment>--</comment><comment> exception that is not caught</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_uncaught_exception_actions_internal</location>uncaught_exception_actions_internal</feature> <keyword>as</keyword> l_result <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>l_result</local>
+			<keyword>else</keyword>
+				<keyword>create</keyword> <keyword>Result</keyword>
+				<feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_uncaught_exception_actions_internal</location>uncaught_exception_actions_internal</feature> <symbol>:=</symbol> <keyword>Result</keyword>
+			<keyword>end</keyword>
+		<keyword>ensure</keyword>
+			<tag>not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_pnd_motion_actions_internal</anchor><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_pnd_motion_actions_internal</location>pnd_motion_actions_internal</feature><symbol>:</symbol> <keyword>detachable</keyword> <keyword>like</keyword> <feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_pnd_motion_actions</location>pnd_motion_actions</feature>
+			<comment>--</comment><comment> Implementation of once per object </comment><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_pnd_motion_actions</location>pnd_motion_actions</feature><comment>.</comment>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_file_drop_actions_internal</anchor><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_file_drop_actions_internal</location>file_drop_actions_internal</feature><symbol>:</symbol> <keyword>detachable</keyword> <keyword>like</keyword> <feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_file_drop_actions</location>file_drop_actions</feature>
+			<comment>--</comment><comment> Implementation of once per object </comment><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_file_drop_actions</location>file_drop_actions</feature><comment>.</comment>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_uncaught_exception_actions_internal</anchor><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_uncaught_exception_actions_internal</location>uncaught_exception_actions_internal</feature><symbol>:</symbol> <keyword>detachable</keyword> <keyword>like</keyword> <feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_uncaught_exception_actions</location>uncaught_exception_actions</feature>
+			<comment>--</comment><comment> Implementation of once per object </comment><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_uncaught_exception_actions</location>uncaught_exception_actions</feature><comment>.</comment>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> 
+
+	<anchor>f_pointer_motion_actions</anchor><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_pointer_motion_actions</location>pointer_motion_actions</feature><symbol>:</symbol> <class><location>../interface/ev_lite_action_sequence.xml</location>EV_LITE_ACTION_SEQUENCE</class> <symbol>[</symbol><class><location>../interface/ev_widget.xml</location>EV_WIDGET</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>]</symbol>
+			<comment>--</comment><comment> Actions to be performed when screen pointer moves.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_pointer_motion_actions_internal</location>pointer_motion_actions_internal</feature> <keyword>as</keyword> l_result <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>l_result</local>
+			<keyword>else</keyword>
+				<keyword>create</keyword> <keyword>Result</keyword>
+				<feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_pointer_motion_actions_internal</location>pointer_motion_actions_internal</feature> <symbol>:=</symbol> <keyword>Result</keyword>
+			<keyword>end</keyword>
+		<keyword>ensure</keyword>
+			<tag>not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_pointer_motion_actions_internal</anchor><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_pointer_motion_actions_internal</location>pointer_motion_actions_internal</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_lite_action_sequence.xml</location>EV_LITE_ACTION_SEQUENCE</class> <symbol>[</symbol><class><location>../interface/ev_widget.xml</location>EV_WIDGET</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>]</symbol>
+			<comment>--</comment><comment> Implementation of once per object </comment><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_pointer_motion_actions</location>pointer_motion_actions</feature><comment>.</comment>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Event handling</comment>
+
+	<anchor>f_pointer_button_press_actions</anchor><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_pointer_button_press_actions</location>pointer_button_press_actions</feature><symbol>:</symbol> <class><location>../interface/ev_lite_action_sequence.xml</location>EV_LITE_ACTION_SEQUENCE</class> <symbol>[</symbol><class><location>../interface/ev_widget.xml</location>EV_WIDGET</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>]</symbol>
+			<comment>--</comment><comment> Actions to be performed when screen pointer button is pressed.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_pointer_button_press_actions_internal</location>pointer_button_press_actions_internal</feature> <keyword>as</keyword> l_result <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>l_result</local>
+			<keyword>else</keyword>
+				<keyword>create</keyword> <keyword>Result</keyword>
+				<feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_pointer_button_press_actions_internal</location>pointer_button_press_actions_internal</feature> <symbol>:=</symbol> <keyword>Result</keyword>
+			<keyword>end</keyword>
+		<keyword>ensure</keyword>
+			<tag>not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_pointer_button_press_actions_internal</anchor><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_pointer_button_press_actions_internal</location>pointer_button_press_actions_internal</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_lite_action_sequence.xml</location>EV_LITE_ACTION_SEQUENCE</class> <symbol>[</symbol><class><location>../interface/ev_widget.xml</location>EV_WIDGET</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>]</symbol>
+			<comment>--</comment><comment> Implementation of once per object </comment><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_pointer_button_press_actions</location>pointer_button_press_actions</feature><comment>.</comment>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Event handling</comment>
+
+	<anchor>f_pointer_double_press_actions</anchor><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_pointer_double_press_actions</location>pointer_double_press_actions</feature><symbol>:</symbol> <class><location>../interface/ev_lite_action_sequence.xml</location>EV_LITE_ACTION_SEQUENCE</class> <symbol>[</symbol><class><location>../interface/ev_widget.xml</location>EV_WIDGET</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>]</symbol>
+			<comment>--</comment><comment> Actions to be performed when screen pointer is double clicked.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_pointer_double_press_actions_internal</location>pointer_double_press_actions_internal</feature> <keyword>as</keyword> l_result <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>l_result</local>
+			<keyword>else</keyword>
+				<keyword>create</keyword> <keyword>Result</keyword>
+				<feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_pointer_double_press_actions_internal</location>pointer_double_press_actions_internal</feature> <symbol>:=</symbol> <keyword>Result</keyword>
+			<keyword>end</keyword>
+		<keyword>ensure</keyword>
+			<tag>not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_pointer_double_press_actions_internal</anchor><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_pointer_double_press_actions_internal</location>pointer_double_press_actions_internal</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_lite_action_sequence.xml</location>EV_LITE_ACTION_SEQUENCE</class> <symbol>[</symbol><class><location>../interface/ev_widget.xml</location>EV_WIDGET</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>]</symbol>
+			<comment>--</comment><comment> Implementation of once per object </comment><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_pointer_double_press_actions</location>pointer_double_press_actions</feature><comment>.</comment>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Event handling</comment>
+
+	<anchor>f_pointer_button_release_actions</anchor><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_pointer_button_release_actions</location>pointer_button_release_actions</feature><symbol>:</symbol> <class><location>../interface/ev_lite_action_sequence.xml</location>EV_LITE_ACTION_SEQUENCE</class> <symbol>[</symbol><class><location>../interface/ev_widget.xml</location>EV_WIDGET</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>]</symbol>
+			<comment>--</comment><comment> Actions to be performed when screen pointer button is released.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_pointer_button_release_actions_internal</location>pointer_button_release_actions_internal</feature> <keyword>as</keyword> l_result <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>l_result</local>
+			<keyword>else</keyword>
+				<keyword>create</keyword> <keyword>Result</keyword>
+				<feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_pointer_button_release_actions_internal</location>pointer_button_release_actions_internal</feature> <symbol>:=</symbol> <keyword>Result</keyword>
+			<keyword>end</keyword>
+		<keyword>ensure</keyword>
+			<tag>not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_pointer_button_release_actions_internal</anchor><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_pointer_button_release_actions_internal</location>pointer_button_release_actions_internal</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_lite_action_sequence.xml</location>EV_LITE_ACTION_SEQUENCE</class> <symbol>[</symbol><class><location>../interface/ev_widget.xml</location>EV_WIDGET</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>]</symbol>
+			<comment>--</comment><comment> Implementation of once per object </comment><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_pointer_button_release_actions</location>pointer_button_release_actions</feature><comment>.</comment>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Event handling</comment>
+
+	<anchor>f_mouse_wheel_actions</anchor><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_mouse_wheel_actions</location>mouse_wheel_actions</feature><symbol>:</symbol> <class><location>../interface/ev_lite_action_sequence.xml</location>EV_LITE_ACTION_SEQUENCE</class> <symbol>[</symbol><class><location>../interface/ev_widget.xml</location>EV_WIDGET</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>]</symbol>
+			<comment>--</comment><comment> Actions to be performed when mouse wheel is rotated.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_mouse_wheel_actions_internal</location>mouse_wheel_actions_internal</feature> <keyword>as</keyword> l_result <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>l_result</local>
+			<keyword>else</keyword>
+				<keyword>create</keyword> <keyword>Result</keyword>
+				<feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_mouse_wheel_actions_internal</location>mouse_wheel_actions_internal</feature> <symbol>:=</symbol> <keyword>Result</keyword>
+			<keyword>end</keyword>
+		<keyword>ensure</keyword>
+			<tag>not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_mouse_wheel_actions_internal</anchor><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_mouse_wheel_actions_internal</location>mouse_wheel_actions_internal</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_lite_action_sequence.xml</location>EV_LITE_ACTION_SEQUENCE</class> <symbol>[</symbol><class><location>../interface/ev_widget.xml</location>EV_WIDGET</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>]</symbol>
+			<comment>--</comment><comment> Implementation of once per object </comment><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_mouse_wheel_actions</location>mouse_wheel_actions</feature><comment>.</comment>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Event handling</comment>
+
+	<anchor>f_key_press_actions</anchor><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_key_press_actions</location>key_press_actions</feature><symbol>:</symbol> <class><location>../interface/ev_lite_action_sequence.xml</location>EV_LITE_ACTION_SEQUENCE</class> <symbol>[</symbol><class><location>../interface/ev_widget.xml</location>EV_WIDGET</class><symbol>,</symbol> <class><location>../interface/ev_key.xml</location>EV_KEY</class><symbol>]</symbol>
+			<comment>--</comment><comment> Actions to be performed when a keyboard key is pressed.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_key_press_actions_internal</location>key_press_actions_internal</feature> <keyword>as</keyword> l_result <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>l_result</local>
+			<keyword>else</keyword>
+				<keyword>create</keyword> <keyword>Result</keyword>
+				<feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_key_press_actions_internal</location>key_press_actions_internal</feature> <symbol>:=</symbol> <keyword>Result</keyword>
+			<keyword>end</keyword>
+		<keyword>ensure</keyword>
+			<tag>not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_key_press_actions_internal</anchor><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_key_press_actions_internal</location>key_press_actions_internal</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_lite_action_sequence.xml</location>EV_LITE_ACTION_SEQUENCE</class> <symbol>[</symbol><class><location>../interface/ev_widget.xml</location>EV_WIDGET</class><symbol>,</symbol> <class><location>../interface/ev_key.xml</location>EV_KEY</class><symbol>]</symbol>
+			<comment>--</comment><comment> Implementation of once per object </comment><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_key_press_actions</location>key_press_actions</feature><comment>.</comment>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Event handling</comment>
+
+	<anchor>f_key_press_string_actions</anchor><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_key_press_string_actions</location>key_press_string_actions</feature><symbol>:</symbol> <class><location>../interface/ev_lite_action_sequence.xml</location>EV_LITE_ACTION_SEQUENCE</class> <symbol>[</symbol><class><location>../interface/ev_widget.xml</location>EV_WIDGET</class><symbol>,</symbol> <class><include>False</include>STRING_32</class><symbol>]</symbol>
+			<comment>--</comment><comment> Actions to be performed when a keyboard press generates a displayable character.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_key_press_string_actions_internal</location>key_press_string_actions_internal</feature> <keyword>as</keyword> l_result <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>l_result</local>
+			<keyword>else</keyword>
+				<keyword>create</keyword> <keyword>Result</keyword>
+				<feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_key_press_string_actions_internal</location>key_press_string_actions_internal</feature> <symbol>:=</symbol> <keyword>Result</keyword>
+			<keyword>end</keyword>
+		<keyword>ensure</keyword>
+			<tag>not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_key_press_string_actions_internal</anchor><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_key_press_string_actions_internal</location>key_press_string_actions_internal</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_lite_action_sequence.xml</location>EV_LITE_ACTION_SEQUENCE</class> <symbol>[</symbol><class><location>../interface/ev_widget.xml</location>EV_WIDGET</class><symbol>,</symbol> <class><include>False</include>STRING_32</class><symbol>]</symbol>
+			<comment>--</comment><comment> Implementation of once per object </comment><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_key_press_string_actions</location>key_press_string_actions</feature><comment>.</comment>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Event handling</comment>
+
+	<anchor>f_key_release_actions</anchor><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_key_release_actions</location>key_release_actions</feature><symbol>:</symbol> <class><location>../interface/ev_lite_action_sequence.xml</location>EV_LITE_ACTION_SEQUENCE</class> <symbol>[</symbol><class><location>../interface/ev_widget.xml</location>EV_WIDGET</class><symbol>,</symbol> <class><location>../interface/ev_key.xml</location>EV_KEY</class><symbol>]</symbol>
+			<comment>--</comment><comment> Actions to be performed when a keyboard key is released.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_key_release_actions_internal</location>key_release_actions_internal</feature> <keyword>as</keyword> l_result <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>l_result</local>
+			<keyword>else</keyword>
+				<keyword>create</keyword> <keyword>Result</keyword>
+				<feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_key_release_actions_internal</location>key_release_actions_internal</feature> <symbol>:=</symbol> <keyword>Result</keyword>
+			<keyword>end</keyword>
+		<keyword>ensure</keyword>
+			<tag>not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_key_release_actions_internal</anchor><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_key_release_actions_internal</location>key_release_actions_internal</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_lite_action_sequence.xml</location>EV_LITE_ACTION_SEQUENCE</class> <symbol>[</symbol><class><location>../interface/ev_widget.xml</location>EV_WIDGET</class><symbol>,</symbol> <class><location>../interface/ev_key.xml</location>EV_KEY</class><symbol>]</symbol>
+			<comment>--</comment><comment> Implementation of once per object </comment><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_key_release_actions</location>key_release_actions</feature><comment>.</comment>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Event handling</comment>
+
+	<anchor>f_focus_in_actions</anchor><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_focus_in_actions</location>focus_in_actions</feature><symbol>:</symbol> <class><location>../interface/ev_lite_action_sequence.xml</location>EV_LITE_ACTION_SEQUENCE</class> <symbol>[</symbol><class><location>../interface/ev_widget.xml</location>EV_WIDGET</class><symbol>]</symbol>
+			<comment>--</comment><comment> Actions to be performed when getting focus.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_focus_in_actions_internal</location>focus_in_actions_internal</feature> <keyword>as</keyword> l_result <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>l_result</local>
+			<keyword>else</keyword>
+				<keyword>create</keyword> <keyword>Result</keyword>
+				<feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_focus_in_actions_internal</location>focus_in_actions_internal</feature> <symbol>:=</symbol> <keyword>Result</keyword>
+			<keyword>end</keyword>
+		<keyword>ensure</keyword>
+			<tag>not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_focus_in_actions_internal</anchor><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_focus_in_actions_internal</location>focus_in_actions_internal</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_lite_action_sequence.xml</location>EV_LITE_ACTION_SEQUENCE</class> <symbol>[</symbol><class><location>../interface/ev_widget.xml</location>EV_WIDGET</class><symbol>]</symbol>
+			<comment>--</comment><comment> Implementation of once per object </comment><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_focus_in_actions</location>focus_in_actions</feature><comment>.</comment>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Event handling</comment>
+
+	<anchor>f_focus_out_actions</anchor><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_focus_out_actions</location>focus_out_actions</feature><symbol>:</symbol> <class><location>../interface/ev_lite_action_sequence.xml</location>EV_LITE_ACTION_SEQUENCE</class> <symbol>[</symbol><class><location>../interface/ev_widget.xml</location>EV_WIDGET</class><symbol>]</symbol>
+			<comment>--</comment><comment> Actions to be performed when losing focus.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_focus_out_actions_internal</location>focus_out_actions_internal</feature> <keyword>as</keyword> l_result <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>l_result</local>
+			<keyword>else</keyword>
+				<keyword>create</keyword> <keyword>Result</keyword>
+				<feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_focus_out_actions_internal</location>focus_out_actions_internal</feature> <symbol>:=</symbol> <keyword>Result</keyword>
+			<keyword>end</keyword>
+		<keyword>ensure</keyword>
+			<tag>not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_focus_out_actions_internal</anchor><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_focus_out_actions_internal</location>focus_out_actions_internal</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_lite_action_sequence.xml</location>EV_LITE_ACTION_SEQUENCE</class> <symbol>[</symbol><class><location>../interface/ev_widget.xml</location>EV_WIDGET</class><symbol>]</symbol>
+			<comment>--</comment><comment> Implementation of once per object </comment><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_focus_out_actions</location>focus_out_actions</feature><comment>.</comment>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Event handling</comment>
+
+	<anchor>f_theme_changed_actions</anchor><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_theme_changed_actions</location>theme_changed_actions</feature><symbol>:</symbol> <class><location>../interface/ev_notify_action_sequence.xml</location>EV_NOTIFY_ACTION_SEQUENCE</class>
+			<comment>--</comment><comment> Actions to be performed when operating system theme changed.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_theme_changed_actions_internal</location>theme_changed_actions_internal</feature> <keyword>as</keyword> l_result <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>l_result</local>
+			<keyword>else</keyword>
+				<keyword>create</keyword> <keyword>Result</keyword>
+				<feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_theme_changed_actions_internal</location>theme_changed_actions_internal</feature> <symbol>:=</symbol> <keyword>Result</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_theme_changed_actions_internal</anchor><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_theme_changed_actions_internal</location>theme_changed_actions_internal</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_notify_action_sequence.xml</location>EV_NOTIFY_ACTION_SEQUENCE</class>
+			<comment>--</comment><comment> Implementation of once per object </comment><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_theme_changed_actions</location>theme_changed_actions</feature><comment>.</comment>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Event handling</comment>
+
+	<anchor>f_system_color_change_actions</anchor><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_system_color_change_actions</location>system_color_change_actions</feature><symbol>:</symbol> <class><location>../interface/ev_notify_action_sequence.xml</location>EV_NOTIFY_ACTION_SEQUENCE</class>
+			<comment>--</comment><comment> Actions to be performed when screen color depth changed.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_system_color_change_actions_internal</location>system_color_change_actions_internal</feature> <keyword>as</keyword> l_result <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>l_result</local>
+			<keyword>else</keyword>
+				<keyword>create</keyword> <keyword>Result</keyword>
+				<feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_system_color_change_actions_internal</location>system_color_change_actions_internal</feature> <symbol>:=</symbol> <keyword>Result</keyword>
+			<keyword>end</keyword>
+		<keyword>ensure</keyword>
+			<tag>not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_system_color_change_actions_internal</anchor><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_system_color_change_actions_internal</location>system_color_change_actions_internal</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_notify_action_sequence.xml</location>EV_NOTIFY_ACTION_SEQUENCE</class>
+			<comment>--</comment><comment> Implementation of once per object </comment><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_system_color_change_actions</location>system_color_change_actions</feature><comment>.</comment>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Event handling</comment>
+
+	<anchor>f_destroy_actions</anchor><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_destroy_actions</location>destroy_actions</feature><symbol>:</symbol> <class><location>../interface/ev_notify_action_sequence.xml</location>EV_NOTIFY_ACTION_SEQUENCE</class>
+			<comment>--</comment><comment> Actions to be performed when current application is destroying.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_destroy_actions_internal</location>destroy_actions_internal</feature> <keyword>as</keyword> l_result <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>l_result</local>
+			<keyword>else</keyword>
+				<keyword>create</keyword> <keyword>Result</keyword>
+				<feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_destroy_actions_internal</location>destroy_actions_internal</feature> <symbol>:=</symbol> <keyword>Result</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_destroy_actions_internal</anchor><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_destroy_actions_internal</location>destroy_actions_internal</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_notify_action_sequence.xml</location>EV_NOTIFY_ACTION_SEQUENCE</class>
+			<comment>--</comment><comment> Impplementation of once per object </comment><feature><location>../implementation_interface/ev_application_action_sequences_i.xml#f_destroy_actions</location>destroy_actions</feature>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2014, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_interface/ev_application_action_sequences_i.xml</location>EV_APPLICATION_ACTION_SEQUENCES_I</class></system>
+

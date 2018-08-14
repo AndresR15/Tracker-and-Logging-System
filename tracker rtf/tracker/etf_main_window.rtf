@@ -1,0 +1,191 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "Main window of ETF project."{\line}
+{\tab}{\cf1 generator}{\cf1 :} "EiffelBuild"{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2010-12-22 10:39:24 -0800 (Wed, 22 Dec 2010) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 85202 $"{\line}
+{\line}
+{\b\cf6 class} {\line}
+{\tab}{\cf4 ETF_MAIN_WINDOW}{\line}
+{\line}
+{\b\cf6 inherit}{\line}
+{\tab}{\cf4 ETF_MAIN_WINDOW_IMP}{\line}
+{\tab}{\tab}{\b\cf6 rename}{\line}
+{\tab}{\tab}{\tab}{\cf5 raise} {\b\cf6 as} {\cf5 main_window_raise}{\line}
+{\tab}{\tab}{\b\cf6 end}{\line}
+{\line}
+{\tab}{\cf4 EXCEPTIONS}{\line}
+{\tab}{\tab}{\b\cf6 rename}{\line}
+{\tab}{\tab}{\tab}{\cf5 raise} {\b\cf6 as} {\cf5 exceptions_raise}{\line}
+{\tab}{\tab}{\b\cf6 undefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 default_create}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 copy}{\line}
+{\tab}{\tab}{\b\cf6 end}{\line}
+{\line}
+{\b\cf6 create} {\line}
+{\tab}{\cf5 default_create}{\line}
+{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Initialization}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 user_create_interface_objects}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create any auxilliary objects needed for MAIN_WINDOW.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Initialization for these objects must be performed in }{\cf5 user_initialization}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 business_obj}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 session_file}{\b\cf1 .}{\cf5 make_with_name}{\cf1  }{\cf1 (}{\cf5 Session_file_path}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 output}{\b\cf1 .}{\cf5 insert_text}{\cf1  }{\cf1 (}{\cf5 business_obj}{\b\cf1 .}{\cf5 model}{\b\cf1 .}{\cf5 out}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 status}{\b\cf1 .}{\cf5 insert_text}{\cf1  }{\cf1 (}"List of commands: %N"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 status}{\b\cf1 .}{\cf5 insert_text}{\cf1  }{\cf1 (}"================= %N"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 status}{\b\cf1 .}{\cf5 insert_text}{\cf1  }{\cf1 (}{\cf5 business_obj}{\b\cf1 .}{\cf5 Man_page}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 user_initialization}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Perform any initialization on objects created by }{\cf5 user_create_interface_objects}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  and from within current class itself.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Business Object}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 business_obj}{\cf1 :} {\cf4 ETF_MODEL_FACADE}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 session_file}{\cf1 :} {\cf4 PLAIN_TEXT_FILE}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Session_file_path}{\cf1 :} {\cf4 STRING_8} {\cf1 =} "./session.txt"}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Auxiliary Commands}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 clear_display}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 output}{\b\cf1 .}{\cf5 set_text}{\cf1  }{\cf1 (}""{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 status}{\b\cf1 .}{\cf5 set_text}{\cf1  }{\cf1 (}""{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 command}{\b\cf1 .}{\cf5 set_text}{\cf1  }{\cf1 (}""{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 history}{\b\cf1 .}{\cf5 set_text}{\cf1  }{\cf1 (}""{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 display_history} {\cf1 (}{\cf5 trace}{\cf1 :} {\cf4 LIST} {\cf1 [}{\cf4 STRING_8}{\cf1 ]}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 trace}{\b\cf1 .}{\cf5 start}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 trace}{\b\cf1 .}{\cf5 after}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 history}{\b\cf1 .}{\cf5 append_text}{\cf1  }{\cf1 (}{\cf5 trace}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 i} {\cf1 <} {\cf5 trace}{\b\cf1 .}{\cf5 count} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 history}{\b\cf1 .}{\cf5 append_text}{\cf1  }{\cf1 (}"%N"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 trace}{\b\cf1 .}{\cf5 forth}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 i} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 command_return_key_pressed}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Hit the return key to execute the typed command.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 execute_pressed}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 execute_pressed}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Called by }{\cf5 select_actions}{\cf3  of }{\cf5 execute}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 cmd}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 cmd} {\cf1 :=} {\cf5 command}{\b\cf1 .}{\cf5 text}{\b\cf1 .}{\cf5 as_string_8}{\line}
+{\tab}{\tab}{\tab}{\cf5 execute_command}{\cf1  }{\cf1 (}{\cf5 cmd}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 business_obj}{\b\cf1 .}{\cf5 error} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 business_obj}{\b\cf1 .}{\cf5 history}{\b\cf1 .}{\cf5 count} {\cf1 =} 1 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 session_file}{\b\cf1 .}{\cf5 wipe_out}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 session_file}{\b\cf1 .}{\cf5 open_append}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 session_file}{\b\cf1 .}{\cf5 put_string}{\cf1  }{\cf1 (}{\cf5 cmd} {\cf1 +} "%N"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 session_file}{\b\cf1 .}{\cf5 close}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 reset_pressed}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Reset the history.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Two consecutive clicks of 'reset' will also}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  wipe out the session file.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 business_obj}{\b\cf1 .}{\cf5 reset}{\line}
+{\tab}{\tab}{\tab}{\cf5 clear_display}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 load_pressed}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Load the session file if it exists.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 fu}{\cf1 :} {\cf4 ETF_FILE_UTILITY}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 fu}{\b\cf1 .}{\cf5 read_text_from}{\cf1  }{\cf1 (}{\cf5 Session_file_path}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 fu}{\b\cf1 .}{\cf5 error} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 clear_display}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 status}{\b\cf1 .}{\cf5 insert_text}{\cf1  }{\cf1 (}{\cf5 fu}{\b\cf1 .}{\cf5 error_string}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 business_obj}{\b\cf1 .}{\cf5 history}{\b\cf1 .}{\cf5 is_empty} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 reset_pressed}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 fu}{\b\cf1 .}{\cf5 remove_comment_lines}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 across}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 fu}{\b\cf1 .}{\cf5 items} {\b\cf6 as} cmd{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 execute_command}{\cf1  }{\cf1 (}{\cf5 cmd}{\b\cf1 .}{\cf5 item}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\line}
+{\line}
+{\tab}{\cf5 {\cf5 execute_command} {\cf1 (}{\cf5 cmd}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Execute 'cmd' and}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  print off stack trace if there's any contract violation.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 problem}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf5 error}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 problem}{\b\cf1 .}{\cf5 make_empty}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 error} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 business_obj}{\b\cf1 .}{\cf5 execute_cmd}{\cf1  }{\cf1 (}{\cf5 cmd}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 clear_display}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 display_history}{\cf1  }{\cf1 (}{\cf5 business_obj}{\b\cf1 .}{\cf5 history}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 status}{\b\cf1 .}{\cf5 insert_text}{\cf1  }{\cf1 (}{\cf5 business_obj}{\b\cf1 .}{\cf5 status_message}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 output}{\b\cf1 .}{\cf5 insert_text}{\cf1  }{\cf1 (}{\cf5 business_obj}{\b\cf1 .}{\cf5 output_message}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 business_obj}{\b\cf1 .}{\cf5 error} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 command}{\b\cf1 .}{\cf5 set_text}{\cf1  }{\cf1 (}{\cf5 cmd}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 problem}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}"%NThere was a problem:%N"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 meaning}{\cf1  }{\cf1 (}{\cf5 exception}{\cf1 )} {\b\cf6 as} s {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 problem}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}"  " {\cf1 +} {\cf5 s} {\cf1 +} "%N"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 tag_name} {\b\cf6 as} s {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 problem}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}"  Tag: " {\cf1 +} {\cf5 s} {\cf1 +} "%N"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf5 exception_trace} {\b\cf6 as} s {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 problem}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}"%NHere is the stack trace%N"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 problem}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 problem}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}"%NEnd of stack trace...%N"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 clear_display}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 display_history}{\cf1  }{\cf1 (}{\cf5 business_obj}{\b\cf1 .}{\cf5 history}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 status}{\b\cf1 .}{\cf5 insert_text}{\cf1  }{\cf1 (}{\cf5 problem}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 output}{\b\cf1 .}{\cf5 insert_text}{\cf1  }{\cf1 (}{\cf5 business_obj}{\b\cf1 .}{\cf5 output_message}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 rescue}{\line}
+{\tab}{\tab}{\tab}{\cf5 error} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 retry}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 ETF_MAIN_WINDOW}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

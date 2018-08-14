@@ -1,0 +1,422 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>			Representation of a typeface.</string>
+		<string>			Appearance is specified in terms of font family, height, shape and</string>
+		<string>			weight. The local system font closest to the specification will be</string>
+		<string>			displayed. A specific font name may optionally be specified. See </string><string>set_preferred_face</string><string>&quot;</string>
+		
+		<string>			There are two available queries for a font height, </string><feature><location>../interface/ev_font.xml#f_height</location>height</feature><string> and </string><feature><location>../interface/ev_font.xml#f_height_in_points</location>height_in_points</feature><string>.</string>
+		<string>			Changing one, changes the other accordingly. </string><feature><location>../interface/ev_font.xml#f_height</location>height</feature><string> is given in pixels while</string>
+		<string>			</string><feature><location>../interface/ev_font.xml#f_height_in_points</location>height_in_points</feature><string> is in points or 1/72 of an inch. Using </string><feature><location>../interface/ev_font.xml#f_height_in_points</location>height_in_points</feature><string> ensures</string>
+		<string>			that on different screen resolutions </string><string>Current</string><string> has the same physical size, although</string>
+		<string>			the pixel height may differ to achieve this.</string>
+	<string>]</string><string>&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;character, face, height, family, weight, shape, bold, italic&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2011-10-13 11:36:42 -0700 (Thu, 13 Oct 2011) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 87465 $&quot;</string>
+
+<keyword>class</keyword> 
+	<class><location>../interface/ev_font.xml</location>EV_FONT</class>
+
+<keyword>inherit</keyword>
+	<class><location>../interface/ev_any.xml</location>EV_ANY</class>
+		<keyword>redefine</keyword>
+			<feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><symbol>,</symbol>
+			<feature><location>../interface/ev_font.xml#f_is_equal</location>is_equal</feature><symbol>,</symbol>
+			<feature><location>../interface/ev_font.xml#f_copy</location>copy</feature><symbol>,</symbol>
+			<feature><location>../interface/ev_font.xml#f_is_in_default_state</location>is_in_default_state</feature>
+		<keyword>end</keyword>
+
+	<class><location>../interface/ev_font_constants.xml</location>EV_FONT_CONSTANTS</class>
+		<keyword>export</keyword>
+			<symbol>{</symbol>NONE<symbol>}</symbol> <keyword>all</keyword>
+			<symbol>{</symbol><class><include>False</include>ANY</class><symbol>}</symbol> <feature><location>../interface/ev_font_constants.xml#f_valid_family</location>valid_family</feature><symbol>,</symbol> <feature><location>../interface/ev_font_constants.xml#f_valid_weight</location>valid_weight</feature><symbol>,</symbol> <feature><location>../interface/ev_font_constants.xml#f_valid_shape</location>valid_shape</feature>
+		<keyword>undefine</keyword>
+			<feature><location>../interface/ev_any.xml#f_default_create</location>default_create</feature><symbol>,</symbol>
+			<feature><location>../interface/ev_font.xml#f_is_equal</location>is_equal</feature><symbol>,</symbol>
+			<feature><location>../interface/ev_font.xml#f_copy</location>copy</feature>
+		<keyword>end</keyword>
+
+<keyword>create</keyword> 
+	<feature><location>../interface/ev_any.xml#f_default_create</location>default_create</feature><symbol>,</symbol>
+	<feature><location>../interface/ev_font.xml#f_make_with_values</location>make_with_values</feature>
+
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Initialization</comment>
+
+	<anchor>f_make_with_values</anchor><feature><location>../interface/ev_font.xml#f_make_with_values</location>make_with_values</feature> <symbol>(</symbol><local>a_family</local><symbol>,</symbol> <local>a_weight</local><symbol>,</symbol> <local>a_shape</local><symbol>,</symbol> <local>a_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Create with </comment><quoted>a_family</quoted><comment>, </comment><quoted>a_weight</quoted><comment>, </comment><quoted>a_shape</quoted><comment> and </comment><quoted>a_height</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>a_family_valid</tag><symbol>:</symbol> <feature><location>../interface/ev_font_constants.xml#f_valid_family</location>valid_family</feature><symbol> </symbol><symbol>(</symbol><local>a_family</local><symbol>)</symbol>
+			<tag>a_weight_valid</tag><symbol>:</symbol> <feature><location>../interface/ev_font_constants.xml#f_valid_weight</location>valid_weight</feature><symbol> </symbol><symbol>(</symbol><local>a_weight</local><symbol>)</symbol>
+			<tag>a_shape_valid</tag><symbol>:</symbol> <feature><location>../interface/ev_font_constants.xml#f_valid_shape</location>valid_shape</feature><symbol> </symbol><symbol>(</symbol><local>a_shape</local><symbol>)</symbol>
+			<tag>a_height_bigger_than_zero</tag><symbol>:</symbol> <local>a_height</local> <symbol>&gt;</symbol> <number>0</number>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_any.xml#f_default_create</location>default_create</feature>
+			<feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_font_i.xml#f_set_values</location>set_values</feature><symbol> </symbol><symbol>(</symbol><local>a_family</local><symbol>,</symbol> <local>a_weight</local><symbol>,</symbol> <local>a_shape</local><symbol>,</symbol> <local>a_height</local><symbol>,</symbol> <feature><location>../interface/ev_font.xml#f_preferred_families</location>preferred_families</feature><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>a_family_set</tag><symbol>:</symbol> <feature><location>../interface/ev_font.xml#f_family</location>family</feature> <symbol>=</symbol> <local>a_family</local>
+			<tag>a_weight_set</tag><symbol>:</symbol> <feature><location>../interface/ev_font.xml#f_weight</location>weight</feature> <symbol>=</symbol> <local>a_weight</local>
+			<tag>a_shape_set</tag><symbol>:</symbol> <feature><location>../interface/ev_font.xml#f_shape</location>shape</feature> <symbol>=</symbol> <local>a_shape</local>
+			<tag>a_height_set</tag><symbol>:</symbol> <feature><location>../interface/ev_font.xml#f_height</location>height</feature> <symbol>=</symbol> <local>a_height</local>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_family</anchor><feature><location>../interface/ev_font.xml#f_family</location>family</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Font category. Can be any of the Family_* constants</comment>
+			<comment>--</comment><comment> defined in EV_FONT_CONSTANTS.</comment>
+			<comment>--</comment><comment> Default: Family_sans</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_font_i.xml#f_family</location>family</feature>
+		<keyword>ensure</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_font_i.xml#f_family</location>family</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_char_set</anchor><feature><location>../interface/ev_font.xml#f_char_set</location>char_set</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Charset of the font.</comment>
+			<comment>--</comment><comment> Only meaningful on windows.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_font_i.xml#f_char_set</location>char_set</feature>
+		<keyword>ensure</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_font_i.xml#f_char_set</location>char_set</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_weight</anchor><feature><location>../interface/ev_font.xml#f_weight</location>weight</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Preferred font thickness. Can be any of the Weight_*</comment>
+			<comment>--</comment><comment> constants defined in EV_FONT_CONSTANTS.</comment>
+			<comment>--</comment><comment> Default: Weight_regular</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_font_i.xml#f_weight</location>weight</feature>
+		<keyword>ensure</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_font_i.xml#f_weight</location>weight</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_shape</anchor><feature><location>../interface/ev_font.xml#f_shape</location>shape</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Preferred font slant. Can be any of the Shape_*</comment>
+			<comment>--</comment><comment> constants defined in EV_FONT_CONSTANTS.</comment>
+			<comment>--</comment><comment> Default: Shape_regular</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_font_i.xml#f_shape</location>shape</feature>
+		<keyword>ensure</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_font_i.xml#f_shape</location>shape</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_height</anchor><feature><location>../interface/ev_font.xml#f_height</location>height</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Preferred font height in pixels.</comment>
+			<comment>--</comment><comment> Default: 8</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_font_i.xml#f_height</location>height</feature>
+		<keyword>ensure</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_font_i.xml#f_height</location>height</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_height_in_points</anchor><feature><location>../interface/ev_font.xml#f_height_in_points</location>height_in_points</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Preferred font height in points.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_font_i.xml#f_height_in_points</location>height_in_points</feature>
+		<keyword>ensure</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_font_i.xml#f_height_in_points</location>height_in_points</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_line_height</anchor><feature><location>../interface/ev_font.xml#f_line_height</location>line_height</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Preferred text editor line height in pixels for </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_font_i.xml#f_line_height</location>line_height</feature>
+		<keyword>ensure</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_font_i.xml#f_line_height</location>line_height</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_preferred_families</anchor><feature><location>../interface/ev_font.xml#f_preferred_families</location>preferred_families</feature><symbol>:</symbol> <class><location>../interface/ev_active_list.xml</location>EV_ACTIVE_LIST</class> <symbol>[</symbol><class><include>False</include>STRING_32</class><symbol>]</symbol>
+			<comment>--</comment><comment> Preferred families. The first one in the list</comment>
+			<comment>--</comment><comment> will be tried first. If it does not exists on</comment>
+			<comment>--</comment><comment> the system, the second will be tried, etc.</comment>
+			<comment>--</comment>
+			<comment>--</comment><comment> Overrides </comment><feature><location>../interface/ev_font.xml#f_family</location>family</feature><comment> if found on current system.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_font_i.xml#f_preferred_families</location>preferred_families</feature>
+		<keyword>ensure</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_font_i.xml#f_preferred_families</location>preferred_families</feature>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Element change</comment>
+
+	<anchor>f_set_family</anchor><feature><location>../interface/ev_font.xml#f_set_family</location>set_family</feature> <symbol>(</symbol><local>a_family</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign  </comment><quoted>a_family</quoted><comment> to </comment><feature><location>../interface/ev_font.xml#f_family</location>family</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>a_family_valid</tag><symbol>:</symbol> <feature><location>../interface/ev_font_constants.xml#f_valid_family</location>valid_family</feature><symbol> </symbol><symbol>(</symbol><local>a_family</local><symbol>)</symbol>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_font_i.xml#f_set_family</location>set_family</feature><symbol> </symbol><symbol>(</symbol><local>a_family</local><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>family_assigned</tag><symbol>:</symbol> <feature><location>../interface/ev_font.xml#f_family</location>family</feature> <symbol>=</symbol> <local>a_family</local>
+		<keyword>end</keyword>
+
+	<anchor>f_set_weight</anchor><feature><location>../interface/ev_font.xml#f_set_weight</location>set_weight</feature> <symbol>(</symbol><local>a_weight</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><quoted>a_weight</quoted><comment> to </comment><feature><location>../interface/ev_font.xml#f_weight</location>weight</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>a_weight_valid</tag><symbol>:</symbol> <feature><location>../interface/ev_font_constants.xml#f_valid_weight</location>valid_weight</feature><symbol> </symbol><symbol>(</symbol><local>a_weight</local><symbol>)</symbol>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_font_i.xml#f_set_weight</location>set_weight</feature><symbol> </symbol><symbol>(</symbol><local>a_weight</local><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>weight_assigned</tag><symbol>:</symbol> <feature><location>../interface/ev_font.xml#f_weight</location>weight</feature> <symbol>=</symbol> <local>a_weight</local>
+		<keyword>end</keyword>
+
+	<anchor>f_set_shape</anchor><feature><location>../interface/ev_font.xml#f_set_shape</location>set_shape</feature> <symbol>(</symbol><local>a_shape</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><quoted>a_shape</quoted><comment> to </comment><feature><location>../interface/ev_font.xml#f_shape</location>shape</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>a_shape_valid</tag><symbol>:</symbol> <feature><location>../interface/ev_font_constants.xml#f_valid_shape</location>valid_shape</feature><symbol> </symbol><symbol>(</symbol><local>a_shape</local><symbol>)</symbol>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_font_i.xml#f_set_shape</location>set_shape</feature><symbol> </symbol><symbol>(</symbol><local>a_shape</local><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>shape_assigned</tag><symbol>:</symbol> <feature><location>../interface/ev_font.xml#f_shape</location>shape</feature> <symbol>=</symbol> <local>a_shape</local>
+		<keyword>end</keyword>
+
+	<anchor>f_set_height</anchor><feature><location>../interface/ev_font.xml#f_set_height</location>set_height</feature> <symbol>(</symbol><local>a_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><quoted>a_height</quoted><comment> to </comment><feature><location>../interface/ev_font.xml#f_height</location>height</feature><comment>.</comment>
+			<comment>--</comment><comment> </comment><feature><location>../interface/ev_font.xml#f_height_in_points</location>height_in_points</feature><comment> changes accordingly based on screen resolution.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>a_height_bigger_than_zero</tag><symbol>:</symbol> <local>a_height</local> <symbol>&gt;</symbol> <number>0</number>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_font_i.xml#f_set_height</location>set_height</feature><symbol> </symbol><symbol>(</symbol><local>a_height</local><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>height_assigned</tag><symbol>:</symbol> <feature><location>../interface/ev_font.xml#f_height</location>height</feature> <symbol>=</symbol> <local>a_height</local>
+		<keyword>end</keyword>
+
+	<anchor>f_set_height_in_points</anchor><feature><location>../interface/ev_font.xml#f_set_height_in_points</location>set_height_in_points</feature> <symbol>(</symbol><local>a_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><feature><location>../interface/ev_font.xml#f_height_in_points</location>height_in_points</feature><comment> to </comment><quoted>a_height</quoted><comment>.</comment>
+			<comment>--</comment><comment> </comment><feature><location>../interface/ev_font.xml#f_height</location>height</feature><comment> changes accordingly based on screen resolution.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>a_height_bigger_than_zero</tag><symbol>:</symbol> <local>a_height</local> <symbol>&gt;</symbol> <number>0</number>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_font_i.xml#f_set_height_in_points</location>set_height_in_points</feature><symbol> </symbol><symbol>(</symbol><local>a_height</local><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>height_assigned</tag><symbol>:</symbol> <feature><location>../interface/ev_font.xml#f_height_in_points</location>height_in_points</feature> <symbol>=</symbol> <local>a_height</local>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status report</comment>
+
+	<anchor>f_name</anchor><feature><location>../interface/ev_font.xml#f_name</location>name</feature><symbol>:</symbol> <class><include>False</include>STRING_32</class>
+			<comment>--</comment><comment> Face name chosen by toolkit.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_font_i.xml#f_name</location>name</feature>
+		<keyword>ensure</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_font_i.xml#f_name</location>name</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_ascent</anchor><feature><location>../interface/ev_font.xml#f_ascent</location>ascent</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Vertical distance from the origin of the drawing</comment>
+			<comment>--</comment><comment> operation to the top of the drawn character.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_font_i.xml#f_ascent</location>ascent</feature>
+		<keyword>ensure</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_font_i.xml#f_ascent</location>ascent</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_descent</anchor><feature><location>../interface/ev_font.xml#f_descent</location>descent</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Vertical distance from the origin of the drawing</comment>
+			<comment>--</comment><comment> operation to the bottom of the drawn character.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_font_i.xml#f_descent</location>descent</feature>
+		<keyword>ensure</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_font_i.xml#f_descent</location>descent</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_width</anchor><feature><location>../interface/ev_font.xml#f_width</location>width</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Character width of current fixed-width font.</comment>
+			<comment>--</comment><comment> If font is proportional, returns the average width.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_font_i.xml#f_width</location>width</feature>
+		<keyword>ensure</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_font_i.xml#f_width</location>width</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_minimum_width</anchor><feature><location>../interface/ev_font.xml#f_minimum_width</location>minimum_width</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Width of the smallest character in the font.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_font_i.xml#f_minimum_width</location>minimum_width</feature>
+		<keyword>ensure</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_font_i.xml#f_minimum_width</location>minimum_width</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_maximum_width</anchor><feature><location>../interface/ev_font.xml#f_maximum_width</location>maximum_width</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Width of the biggest character in the font.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_font_i.xml#f_maximum_width</location>maximum_width</feature>
+		<keyword>ensure</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_font_i.xml#f_maximum_width</location>maximum_width</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_string_width</anchor><feature><location>../interface/ev_font.xml#f_string_width</location>string_width</feature> <symbol>(</symbol><local>a_string</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Width in pixels of </comment><quoted>a_string</quoted><comment> in the current font.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>a_string_not_void</tag><symbol>:</symbol> <local>a_string</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_font_i.xml#f_string_width</location>string_width</feature><symbol> </symbol><symbol>(</symbol><local>a_string</local><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_font_i.xml#f_string_width</location>string_width</feature><symbol> </symbol><symbol>(</symbol><local>a_string</local><symbol>)</symbol>
+			<tag>positive</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>&gt;=</symbol> <number>0</number>
+		<keyword>end</keyword>
+
+	<anchor>f_horizontal_resolution</anchor><feature><location>../interface/ev_font.xml#f_horizontal_resolution</location>horizontal_resolution</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Horizontal resolution of screen for which the font is designed.</comment>
+			<comment>--</comment><comment> Measured in dots per inch. If return value is zero, the</comment>
+			<comment>--</comment><comment> resolution is not known.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_font_i.xml#f_horizontal_resolution</location>horizontal_resolution</feature>
+		<keyword>ensure</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_font_i.xml#f_horizontal_resolution</location>horizontal_resolution</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_vertical_resolution</anchor><feature><location>../interface/ev_font.xml#f_vertical_resolution</location>vertical_resolution</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Vertical resolution of screen for which the font is designed.</comment>
+			<comment>--</comment><comment> Measured in dots per inch. If return value is zero, the</comment>
+			<comment>--</comment><comment> resolution is not known.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_font_i.xml#f_vertical_resolution</location>vertical_resolution</feature>
+		<keyword>ensure</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_font_i.xml#f_vertical_resolution</location>vertical_resolution</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_is_proportional</anchor><feature><location>../interface/ev_font.xml#f_is_proportional</location>is_proportional</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Can characters in the font have different widths?</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_font_i.xml#f_is_proportional</location>is_proportional</feature>
+		<keyword>ensure</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_font_i.xml#f_is_proportional</location>is_proportional</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_string_size</anchor><feature><location>../interface/ev_font.xml#f_string_size</location>string_size</feature> <symbol>(</symbol><local>a_string</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>TUPLE</class> <symbol>[</symbol><local>width</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>left_offset</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>right_offset</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>]</symbol>
+			<comment>--</comment><comment> [width, height, left_offset, right_offset] in pixels of </comment><quoted>a_string</quoted><comment> in the current font,</comment>
+			<comment>--</comment><comment> taking into account line breaks ('%N').</comment>
+			<comment>--</comment><comment> </comment><feature><location>../interface/ev_font.xml#f_width</location>width</feature><comment> and </comment><feature><location>../interface/ev_font.xml#f_height</location>height</feature><comment> correspond to the rectange used to bound </comment><quoted>a_string</quoted><comment>, and</comment>
+			<comment>--</comment><comment> should be used when placing strings next to each as part of a text.</comment>
+			<comment>--</comment><comment> On some fonts, characters may extend outside of the bounds given by </comment><feature><location>../interface/ev_font.xml#f_width</location>width</feature><comment> and </comment><feature><location>../interface/ev_font.xml#f_height</location>height</feature><comment>,</comment>
+			<comment>--</comment><comment> for example certain italic letters may overhang other letters. Use </comment><quoted>left_offset</quoted><comment> and</comment>
+			<comment>--</comment><comment> </comment><quoted>right_offset</quoted><comment> to determine if there is any overhang for </comment><quoted>a_string</quoted><comment>. a negative </comment><quoted>left_offset</quoted>
+			<comment>--</comment><comment> indicates overhang to the left, while a positive </comment><quoted>right_offset</quoted><comment> indicates an overhang to the right.</comment>
+			<comment>--</comment><comment> To determine the complete bounding rectangle for </comment><quoted>a_string</quoted><comment> add negative </comment><quoted>left_offset</quoted>
+			<comment>--</comment><comment> and positive </comment><quoted>right_offset</quoted><comment> to </comment><feature><location>../interface/ev_font.xml#f_width</location>width</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>a_string_not_void</tag><symbol>:</symbol> <local>a_string</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_font_i.xml#f_string_size</location>string_size</feature><symbol> </symbol><symbol>(</symbol><local>a_string</local><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword><dot>.</dot><local>width</local> <symbol>=</symbol> <feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_font_i.xml#f_string_size</location>string_size</feature><symbol> </symbol><symbol>(</symbol><local>a_string</local><symbol>)</symbol><dot>.</dot><local>width</local> <keyword>and</keyword> <keyword>Result</keyword><dot>.</dot><local>height</local> <symbol>=</symbol> <feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_font_i.xml#f_string_size</location>string_size</feature><symbol> </symbol><symbol>(</symbol><local>a_string</local><symbol>)</symbol><dot>.</dot><local>height</local>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Basic operations</comment>
+
+	<anchor>f_is_equal</anchor><feature><location>../interface/ev_font.xml#f_is_equal</location>is_equal</feature> <symbol>(</symbol><local>other</local><symbol>:</symbol> <keyword>like</keyword> <keyword>Current</keyword><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Does </comment><quoted>other</quoted><comment> have same appearance?</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_font.xml#f_family</location>family</feature> <symbol>=</symbol> <local>other</local><dot>.</dot><feature><location>../interface/ev_font.xml#f_family</location>family</feature> <keyword>and then</keyword> <feature><location>../interface/ev_font.xml#f_weight</location>weight</feature> <symbol>=</symbol> <local>other</local><dot>.</dot><feature><location>../interface/ev_font.xml#f_weight</location>weight</feature> <keyword>and then</keyword> <feature><location>../interface/ev_font.xml#f_shape</location>shape</feature> <symbol>=</symbol> <local>other</local><dot>.</dot><feature><location>../interface/ev_font.xml#f_shape</location>shape</feature> <keyword>and then</keyword> <feature><location>../interface/ev_font.xml#f_height_in_points</location>height_in_points</feature> <symbol>=</symbol> <local>other</local><dot>.</dot><feature><location>../interface/ev_font.xml#f_height_in_points</location>height_in_points</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_copy</anchor><feature><location>../interface/ev_font.xml#f_copy</location>copy</feature> <symbol>(</symbol><local>other</local><symbol>:</symbol> <keyword>like</keyword> <keyword>Current</keyword><symbol>)</symbol>
+			<comment>--</comment><comment> Update </comment><quoted>Current</quoted><comment> with all attributes of </comment><quoted>other</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature> <symbol>=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<feature><location>../interface/ev_any.xml#f_default_create</location>default_create</feature>
+			<keyword>end</keyword>
+			<feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_font_i.xml#f_copy_font</location>copy_font</feature><symbol> </symbol><symbol>(</symbol><local>other</local><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Contract support</comment>
+
+	<anchor>f_is_in_default_state</anchor><feature><location>../interface/ev_font.xml#f_is_in_default_state</location>is_in_default_state</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is </comment><quoted>Current</quoted><comment> in its default state.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <keyword><location>../interface/ev_any.xml#f_is_in_default_state</location>Precursor</keyword> <symbol>{</symbol><class><location>../interface/ev_any.xml</location>EV_ANY</class><symbol>}</symbol> <keyword>and then</keyword> <feature><location>../interface/ev_font.xml#f_preferred_families</location>preferred_families</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>and then</keyword> <feature><location>../interface/ev_font.xml#f_preferred_families</location>preferred_families</feature><dot>.</dot><feature><include>False</include>is_empty</feature>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_any.xml</location>EV_ANY</class><symbol>,</symbol> <class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>,</symbol> <class><location>../interface/ev_any_handler.xml</location>EV_ANY_HANDLER</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_implementation</anchor><feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><symbol>:</symbol> <class><location>../implementation_interface/ev_font_i.xml</location>EV_FONT_I</class>
+			<comment>--</comment><comment> Responsible for interaction with native graphics</comment>
+			<comment>--</comment><comment> toolkit.</comment>
+	
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_create_interface_objects</anchor><feature><location>../interface/ev_font.xml#f_create_interface_objects</location>create_interface_objects</feature>
+			<comment>--</comment><comment> Create objects to be used by </comment><quoted>Current</quoted><comment> in </comment><feature><location>../interface/ev_any.xml#f_initialize</location>initialize</feature>
+			<comment>--</comment><comment> Implemented by descendants to create attached objects</comment>
+			<comment>--</comment><comment> in order to adhere to void-safety due to the implementation bridge pattern.</comment>
+		<keyword>do</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_create_implementation</anchor><feature><location>../interface/ev_font.xml#f_create_implementation</location>create_implementation</feature>
+			<comment>--</comment><comment> Create implementation of drawing area.</comment>
+		<keyword>do</keyword>
+			<keyword>create</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_font_imp.xml</location>EV_FONT_IMP</class><symbol>}</symbol> <feature><location>../interface/ev_font.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_font_imp.xml#f_make</location>make</feature>
+		<keyword>end</keyword>
+	
+<keyword>invariant</keyword>
+	<tag>family_valid</tag><symbol>:</symbol> <feature><location>../interface/ev_any.xml#f_is_initialized</location>is_initialized</feature> <keyword>implies</keyword> <feature><location>../interface/ev_font_constants.xml#f_valid_family</location>valid_family</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_font.xml#f_family</location>family</feature><symbol>)</symbol>
+	<tag>weight_valid</tag><symbol>:</symbol> <feature><location>../interface/ev_any.xml#f_is_initialized</location>is_initialized</feature> <keyword>implies</keyword> <feature><location>../interface/ev_font_constants.xml#f_valid_weight</location>valid_weight</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_font.xml#f_weight</location>weight</feature><symbol>)</symbol>
+	<tag>shape_valid</tag><symbol>:</symbol> <feature><location>../interface/ev_any.xml#f_is_initialized</location>is_initialized</feature> <keyword>implies</keyword> <feature><location>../interface/ev_font_constants.xml#f_valid_shape</location>valid_shape</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_font.xml#f_shape</location>shape</feature><symbol>)</symbol>
+	<tag>height_positive</tag><symbol>:</symbol> <feature><location>../interface/ev_any.xml#f_is_initialized</location>is_initialized</feature> <keyword>implies</keyword> <feature><location>../interface/ev_font.xml#f_height</location>height</feature> <symbol>&gt;</symbol> <number>0</number>
+	<tag>height_in_points_positive</tag><symbol>:</symbol> <feature><location>../interface/ev_any.xml#f_is_initialized</location>is_initialized</feature> <keyword>implies</keyword> <feature><location>../interface/ev_font.xml#f_height_in_points</location>height_in_points</feature> <symbol>&gt;</symbol> <number>0</number>
+	<tag>ascent_not_negative</tag><symbol>:</symbol> <feature><location>../interface/ev_any.xml#f_is_initialized</location>is_initialized</feature> <keyword>implies</keyword> <feature><location>../interface/ev_font.xml#f_ascent</location>ascent</feature> <symbol>&gt;=</symbol> <number>0</number>
+	<tag>descent_not_negative</tag><symbol>:</symbol> <feature><location>../interface/ev_any.xml#f_is_initialized</location>is_initialized</feature> <keyword>implies</keyword> <feature><location>../interface/ev_font.xml#f_descent</location>descent</feature> <symbol>&gt;=</symbol> <number>0</number>
+	<tag>width_of_empty_string_equals_zero</tag><symbol>:</symbol> <feature><location>../interface/ev_any.xml#f_is_initialized</location>is_initialized</feature> <keyword>implies</keyword> <feature><location>../interface/ev_font.xml#f_string_width</location>string_width</feature><symbol> </symbol><symbol>(</symbol>&quot;&quot;<symbol>)</symbol> <symbol>=</symbol> <number>0</number>
+	<tag>horizontal_resolution_non_negative</tag><symbol>:</symbol> <feature><location>../interface/ev_any.xml#f_is_initialized</location>is_initialized</feature> <keyword>implies</keyword> <feature><location>../interface/ev_font.xml#f_horizontal_resolution</location>horizontal_resolution</feature> <symbol>&gt;=</symbol> <number>0</number>
+	<tag>vertical_resolution_non_negative</tag><symbol>:</symbol> <feature><location>../interface/ev_any.xml#f_is_initialized</location>is_initialized</feature> <keyword>implies</keyword> <feature><location>../interface/ev_font.xml#f_vertical_resolution</location>vertical_resolution</feature> <symbol>&gt;=</symbol> <number>0</number>
+
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2006, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>356 Storke Road, Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../interface/ev_font.xml</location>EV_FONT</class></system>
+

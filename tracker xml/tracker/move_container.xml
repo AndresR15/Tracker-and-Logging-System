@@ -1,0 +1,57 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Summary description for </string><symbol>{</symbol><class><location>../tracker/move_container.xml</location>MOVE_CONTAINER</class><symbol>}</symbol><string>.&quot;</string>
+	<indexing_tag>author</indexing_tag><symbol>:</symbol> <string>&quot;&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date$&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision$&quot;</string>
+
+<keyword>class</keyword> 
+	<class><location>../tracker/move_container.xml</location>MOVE_CONTAINER</class>
+
+<keyword>inherit</keyword>
+	<class><location>../tracker/command.xml</location>COMMAND</class>
+
+<keyword>create</keyword> 
+	<feature><location>../tracker/move_container.xml#f_make</location>make</feature>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Initialization</comment>
+
+	<anchor>f_make</anchor><feature><location>../tracker/move_container.xml#f_make</location>make</feature> <symbol>(</symbol><local>init_cid</local><symbol>:</symbol> <class><include>False</include>STRING_8</class><symbol>;</symbol> <local>init_pid1</local><symbol>:</symbol> <class><include>False</include>STRING_8</class><symbol>;</symbol> <local>init_pid2</local><symbol>:</symbol> <class><include>False</include>STRING_8</class><symbol>)</symbol>
+		<keyword>local</keyword>
+			<local>tracker_access</local><symbol>:</symbol> <class><location>../tracker/tracker_access.xml</location>TRACKER_ACCESS</class>
+		<keyword>do</keyword>
+			<feature><location>../tracker/command.xml#f_track</location>track</feature> <symbol>:=</symbol> <local>tracker_access</local><dot>.</dot><feature><location>../tracker/tracker_access.xml#f_m</location>M</feature>
+			<feature><location>../tracker/move_container.xml#f_cid</location>cid</feature> <symbol>:=</symbol> <local>init_cid</local>
+			<feature><location>../tracker/move_container.xml#f_pid1</location>pid1</feature> <symbol>:=</symbol> <local>init_pid1</local>
+			<feature><location>../tracker/move_container.xml#f_pid2</location>pid2</feature> <symbol>:=</symbol> <local>init_pid2</local>
+			<feature><location>../tracker/command.xml#f_state</location>state</feature> <symbol>:=</symbol> <feature><location>../tracker/command.xml#f_track</location>track</feature><dot>.</dot><feature><location>../tracker/tracker.xml#f_get_state</location>get_state</feature>
+			<feature><location>../tracker/command.xml#f_msg</location>msg</feature> <symbol>:=</symbol> <feature><location>../tracker/command.xml#f_m_a</location>m_a</feature><dot>.</dot><feature><location>../tracker/messages_access.xml#f_ok</location>Ok</feature>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Attributes</comment>
+
+	<anchor>f_cid</anchor><feature><location>../tracker/move_container.xml#f_cid</location>cid</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+
+	<anchor>f_pid1</anchor><feature><location>../tracker/move_container.xml#f_pid1</location>pid1</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+
+	<anchor>f_pid2</anchor><feature><location>../tracker/move_container.xml#f_pid2</location>pid2</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+	
+<keyword>feature</keyword> 
+
+	<anchor>f_execute</anchor><feature><location>../tracker/move_container.xml#f_execute</location>execute</feature>
+		<keyword>do</keyword>
+			<feature><location>../tracker/command.xml#f_track</location>track</feature><dot>.</dot><feature><location>../tracker/tracker.xml#f_move_container</location>move_container</feature><symbol> </symbol><symbol>(</symbol><feature><location>../tracker/move_container.xml#f_cid</location>cid</feature><symbol>,</symbol> <feature><location>../tracker/move_container.xml#f_pid1</location>pid1</feature><symbol>,</symbol> <feature><location>../tracker/move_container.xml#f_pid2</location>pid2</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_undo</anchor><feature><location>../tracker/move_container.xml#f_undo</location>undo</feature>
+		<keyword>do</keyword>
+			<feature><location>../tracker/command.xml#f_track</location>track</feature><dot>.</dot><feature><location>../tracker/tracker.xml#f_move_container</location>move_container</feature><symbol> </symbol><symbol>(</symbol><feature><location>../tracker/move_container.xml#f_cid</location>cid</feature><symbol>,</symbol> <feature><location>../tracker/move_container.xml#f_pid2</location>pid2</feature><symbol>,</symbol> <feature><location>../tracker/move_container.xml#f_pid1</location>pid1</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_redo</anchor><feature><location>../tracker/move_container.xml#f_redo</location>redo</feature>
+		<keyword>do</keyword>
+			<feature><location>../tracker/move_container.xml#f_execute</location>execute</feature>
+		<keyword>end</keyword>
+	
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../tracker/move_container.xml</location>MOVE_CONTAINER</class></system>
+

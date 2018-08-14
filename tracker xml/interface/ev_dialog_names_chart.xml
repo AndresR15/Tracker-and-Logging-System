@@ -1,0 +1,29 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../interface/ev_dialog_names_chart.xml</location>EV_DIALOG_NAMES</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>interface</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Dialog constants. Standard strings displayed on &quot;</string>
+
+<keyword>Ancestors</keyword>
+	<class><include>False</include>ANY</class>
+
+<keyword>Queries</keyword>
+	<feature><location>../interface/ev_dialog_names.xml#f_ev_abort</location>Ev_abort</feature><symbol>:</symbol> <class><include>False</include>IMMUTABLE_STRING_32</class>
+	<feature><location>../interface/ev_dialog_names.xml#f_ev_cancel</location>Ev_cancel</feature><symbol>:</symbol> <class><include>False</include>IMMUTABLE_STRING_32</class>
+	<feature><location>../interface/ev_dialog_names.xml#f_ev_confirmation_dialog_title</location>Ev_confirmation_dialog_title</feature><symbol>:</symbol> <class><include>False</include>IMMUTABLE_STRING_32</class>
+	<feature><location>../interface/ev_dialog_names.xml#f_ev_error_dialog_title</location>Ev_error_dialog_title</feature><symbol>:</symbol> <class><include>False</include>IMMUTABLE_STRING_32</class>
+	<feature><location>../interface/ev_dialog_names.xml#f_ev_ignore</location>Ev_ignore</feature><symbol>:</symbol> <class><include>False</include>IMMUTABLE_STRING_32</class>
+	<feature><location>../interface/ev_dialog_names.xml#f_ev_information_dialog_title</location>Ev_information_dialog_title</feature><symbol>:</symbol> <class><include>False</include>IMMUTABLE_STRING_32</class>
+	<feature><location>../interface/ev_dialog_names.xml#f_ev_no</location>Ev_no</feature><symbol>:</symbol> <class><include>False</include>IMMUTABLE_STRING_32</class>
+	<feature><location>../interface/ev_dialog_names.xml#f_ev_ok</location>Ev_ok</feature><symbol>:</symbol> <class><include>False</include>IMMUTABLE_STRING_32</class>
+	<feature><location>../interface/ev_dialog_names.xml#f_ev_open</location>Ev_open</feature><symbol>:</symbol> <class><include>False</include>IMMUTABLE_STRING_32</class>
+	<feature><location>../interface/ev_dialog_names.xml#f_ev_print</location>Ev_print</feature><symbol>:</symbol> <class><include>False</include>IMMUTABLE_STRING_32</class>
+	<feature><location>../interface/ev_dialog_names.xml#f_ev_question_dialog_title</location>Ev_question_dialog_title</feature><symbol>:</symbol> <class><include>False</include>IMMUTABLE_STRING_32</class>
+	<feature><location>../interface/ev_dialog_names.xml#f_ev_retry</location>Ev_retry</feature><symbol>:</symbol> <class><include>False</include>IMMUTABLE_STRING_32</class>
+	<feature><location>../interface/ev_dialog_names.xml#f_ev_save</location>Ev_save</feature><symbol>:</symbol> <class><include>False</include>IMMUTABLE_STRING_32</class>
+	<feature><location>../interface/ev_dialog_names.xml#f_ev_warning_dialog_title</location>Ev_warning_dialog_title</feature><symbol>:</symbol> <class><include>False</include>IMMUTABLE_STRING_32</class>
+	<feature><location>../interface/ev_dialog_names.xml#f_ev_yes</location>Ev_yes</feature><symbol>:</symbol> <class><include>False</include>IMMUTABLE_STRING_32</class>
+
+</system>

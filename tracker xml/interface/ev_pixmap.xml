@@ -1,0 +1,296 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Graphical picture stored as a two dimensional map of pixels.%NCan be modified and displayed.&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;drawable, primitives, figures, buffer, bitmap, picture&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2016-09-27 08:50:48 -0700 (Tue, 27 Sep 2016) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 99192 $&quot;</string>
+
+<keyword>class</keyword> 
+	<class><location>../interface/ev_pixmap.xml</location>EV_PIXMAP</class>
+
+<keyword>inherit</keyword>
+	<class><location>../interface/ev_drawable.xml</location>EV_DRAWABLE</class>
+		<keyword>redefine</keyword>
+			<feature><location>../interface/ev_pixmap.xml#f_is_in_default_state</location>is_in_default_state</feature><symbol>,</symbol>
+			<feature><location>../interface/ev_pixmap.xml#f_implementation</location>implementation</feature><symbol>,</symbol>
+			<feature><location>../interface/ev_pixmap.xml#f_create_implementation</location>create_implementation</feature><symbol>,</symbol>
+			<feature><location>../interface/ev_pixmap.xml#f_is_equal</location>is_equal</feature><symbol>,</symbol>
+			<feature><location>../interface/ev_pixmap.xml#f_copy</location>copy</feature>
+		<keyword>end</keyword>
+
+	<class><location>../interface/ev_primitive.xml</location>EV_PRIMITIVE</class>
+		<keyword>undefine</keyword>
+			<feature><location>../interface/ev_colorizable.xml#f_set_background_color</location>set_background_color</feature><symbol>,</symbol>
+			<feature><location>../interface/ev_colorizable.xml#f_background_color</location>background_color</feature><symbol>,</symbol>
+			<feature><location>../interface/ev_colorizable.xml#f_set_foreground_color</location>set_foreground_color</feature><symbol>,</symbol>
+			<feature><location>../interface/ev_colorizable.xml#f_foreground_color</location>foreground_color</feature><symbol>,</symbol>
+			<feature><location>../interface/ev_pixmap.xml#f_is_equal</location>is_equal</feature><symbol>,</symbol>
+			<feature><location>../interface/ev_pixmap.xml#f_copy</location>copy</feature>
+		<keyword>redefine</keyword>
+			<feature><location>../interface/ev_pixmap.xml#f_is_in_default_state</location>is_in_default_state</feature><symbol>,</symbol>
+			<feature><location>../interface/ev_pixmap.xml#f_is_in_default_state_for_tabs</location>is_in_default_state_for_tabs</feature><symbol>,</symbol>
+			<feature><location>../interface/ev_pixmap.xml#f_implementation</location>implementation</feature>
+		<keyword>end</keyword>
+
+	<class><location>../interface/ev_drawable_action_sequences.xml</location>EV_DRAWABLE_ACTION_SEQUENCES</class>
+
+<keyword>create</keyword> 
+	<feature><location>../interface/ev_any.xml#f_default_create</location>default_create</feature><symbol>,</symbol>
+	<feature><location>../interface/ev_pixmap.xml#f_make_with_size</location>make_with_size</feature><symbol>,</symbol>
+	<feature><location>../interface/ev_pixmap.xml#f_make_with_pointer_style</location>make_with_pointer_style</feature><symbol>,</symbol>
+	<feature><location>../interface/ev_pixmap.xml#f_make_with_pixel_buffer</location>make_with_pixel_buffer</feature>
+
+<keyword>convert</keyword>
+	<feature><location>../interface/ev_pixmap.xml#f_make_with_pointer_style</location>make_with_pointer_style</feature> <symbol>(</symbol><symbol>{</symbol><class><location>../interface/ev_pointer_style.xml</location>EV_POINTER_STYLE</class><symbol>}</symbol><symbol>)</symbol><symbol>,</symbol>
+	<feature><location>../interface/ev_pixmap.xml#f_make_with_pixel_buffer</location>make_with_pixel_buffer</feature> <symbol>(</symbol><symbol>{</symbol><class><location>../interface/ev_pixel_buffer.xml</location>EV_PIXEL_BUFFER</class><symbol>}</symbol><symbol>)</symbol>
+
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Initialization</comment>
+
+	<anchor>f_make_with_size</anchor><feature><location>../interface/ev_pixmap.xml#f_make_with_size</location>make_with_size</feature> <symbol>(</symbol><local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Create with </comment><quoted>a_width</quoted><comment> and </comment><quoted>a_height</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>a_width_positive</tag><symbol>:</symbol> <local>a_width</local> <symbol>&gt;</symbol> <number>0</number>
+			<tag>a_height_positive</tag><symbol>:</symbol> <local>a_height</local> <symbol>&gt;</symbol> <number>0</number>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_any.xml#f_default_create</location>default_create</feature>
+			<feature><location>../interface/ev_pixmap.xml#f_set_size</location>set_size</feature><symbol> </symbol><symbol>(</symbol><local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>)</symbol>
+		<keyword>ensure then</keyword>
+			<tag>width_assigned</tag><symbol>:</symbol> <feature><location>../interface/ev_positioned.xml#f_width</location>width</feature> <symbol>=</symbol> <local>a_width</local>
+			<tag>height_assigned</tag><symbol>:</symbol> <feature><location>../interface/ev_positioned.xml#f_height</location>height</feature> <symbol>=</symbol> <local>a_height</local>
+		<keyword>end</keyword>
+
+	<anchor>f_make_with_pointer_style</anchor><feature><location>../interface/ev_pixmap.xml#f_make_with_pointer_style</location>make_with_pointer_style</feature> <symbol>(</symbol><local>a_pointer_style</local><symbol>:</symbol> <class><location>../interface/ev_pointer_style.xml</location>EV_POINTER_STYLE</class><symbol>)</symbol>
+			<comment>--</comment><comment> Create from </comment><quoted>a_pointer_style</quoted><comment>.</comment>
+		<keyword>local</keyword>
+			<local>l_temp</local><symbol>:</symbol> <class><location>../interface/ev_pointer_style.xml</location>EV_POINTER_STYLE</class>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_any.xml#f_default_create</location>default_create</feature>
+			<local>l_temp</local> <symbol>:=</symbol> <local>a_pointer_style</local>
+			<keyword>if</keyword> <local>l_temp</local> <symbol>=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<keyword>create</keyword> <local>l_temp</local>
+			<keyword>end</keyword>
+			<feature><location>../interface/ev_pixmap.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_pixmap_i.xml#f_init_from_pointer_style</location>init_from_pointer_style</feature><symbol> </symbol><symbol>(</symbol><local>l_temp</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_make_with_pixel_buffer</anchor><feature><location>../interface/ev_pixmap.xml#f_make_with_pixel_buffer</location>make_with_pixel_buffer</feature> <symbol>(</symbol><local>a_pixel_buffer</local><symbol>:</symbol> <class><location>../interface/ev_pixel_buffer.xml</location>EV_PIXEL_BUFFER</class><symbol>)</symbol>
+			<comment>--</comment><comment> Create from </comment><quoted>a_pixel_buffer</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>a_pixel_buffer_not_void</tag><symbol>:</symbol> <local>a_pixel_buffer</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_any.xml#f_default_create</location>default_create</feature>
+			<feature><location>../interface/ev_pixmap.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_pixmap_i.xml#f_init_from_pixel_buffer</location>init_from_pixel_buffer</feature><symbol> </symbol><symbol>(</symbol><local>a_pixel_buffer</local><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Basic Operations</comment>
+
+	<anchor>f_flush</anchor><feature><location>../interface/ev_pixmap.xml#f_flush</location>flush</feature>
+			<comment>--</comment><comment> Ensure that the appearance of </comment><quoted>Current</quoted><comment> is updated on screen</comment>
+			<comment>--</comment><comment> immediately. Any changes that have not yet been reflected will</comment>
+			<comment>--</comment><comment> become visible.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_pixmap.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_pixmap_i.xml#f_flush</location>flush</feature>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Comparison</comment>
+
+	<anchor>f_is_equal</anchor><feature><location>../interface/ev_pixmap.xml#f_is_equal</location>is_equal</feature> <symbol>(</symbol><local>other</local><symbol>:</symbol> <keyword>like</keyword> <keyword>Current</keyword><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Does </comment><quoted>other</quoted><comment> have the same appearance as </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <local>other</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <symbol>(</symbol><feature><location>../interface/ev_positioned.xml#f_width</location>width</feature> <symbol>*</symbol> <local>other</local><dot>.</dot><feature><location>../interface/ev_positioned.xml#f_height</location>height</feature> <symbol>=</symbol> <local>other</local><dot>.</dot><feature><location>../interface/ev_positioned.xml#f_width</location>width</feature> <symbol>*</symbol> <feature><location>../interface/ev_positioned.xml#f_height</location>height</feature><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_any.xml</location>EV_ANY</class><symbol>}</symbol> <comment>--</comment><comment> Contract support</comment>
+
+	<anchor>f_is_in_default_state</anchor><feature><location>../interface/ev_pixmap.xml#f_is_in_default_state</location>is_in_default_state</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is </comment><quoted>Current</quoted><comment> in its default state?</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <keyword><location>../interface/ev_drawable.xml#f_is_in_default_state</location>Precursor</keyword> <symbol>{</symbol><class><location>../interface/ev_drawable.xml</location>EV_DRAWABLE</class><symbol>}</symbol> <keyword>and then</keyword> <feature><location>../interface/ev_pixmap.xml#f_is_in_default_state_for_tabs</location>is_in_default_state_for_tabs</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_is_in_default_state_for_tabs</anchor><feature><location>../interface/ev_pixmap.xml#f_is_in_default_state_for_tabs</location>is_in_default_state_for_tabs</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is </comment><quoted>Current</quoted><comment> in its default state with regards to tabs?</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <keyword>not</keyword> <feature><location>../interface/ev_tab_controlable.xml#f_is_tabable_to</location>is_tabable_to</feature> <keyword>and</keyword> <keyword>not</keyword> <feature><location>../interface/ev_tab_controlable.xml#f_is_tabable_from</location>is_tabable_from</feature>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><include>False</include>EV_BUILDER</class><symbol>}</symbol> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_pixmap_path</anchor><feature><location>../interface/ev_pixmap.xml#f_pixmap_path</location>pixmap_path</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>PATH</class>
+			<comment>--</comment><comment> Path of </comment><quoted>pixmap</quoted><comment>.</comment>
+
+	<anchor>f_pixmap_exists</anchor><feature><location>../interface/ev_pixmap.xml#f_pixmap_exists</location>pixmap_exists</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Does pixmap </comment><feature><location>../interface/ev_pixmap.xml#f_pixmap_path</location>pixmap_path</feature><comment> exist?</comment>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><include>False</include>EV_BUILDER</class><symbol>}</symbol> <comment>--</comment><comment> Status setting</comment>
+
+	<anchor>f_enable_pixmap_exists</anchor><feature><location>../interface/ev_pixmap.xml#f_enable_pixmap_exists</location>enable_pixmap_exists</feature>
+			<comment>--</comment><comment> Assign </comment><quoted>True</quoted><comment> to </comment><feature><location>../interface/ev_pixmap.xml#f_pixmap_exists</location>pixmap_exists</feature><comment>.</comment>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_pixmap.xml#f_pixmap_exists</location>pixmap_exists</feature> <symbol>:=</symbol> <keyword>True</keyword>
+		<keyword>ensure</keyword>
+			<tag>pixmap_exists_set</tag><symbol>:</symbol> <feature><location>../interface/ev_pixmap.xml#f_pixmap_exists</location>pixmap_exists</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_disable_pixmap_exists</anchor><feature><location>../interface/ev_pixmap.xml#f_disable_pixmap_exists</location>disable_pixmap_exists</feature>
+			<comment>--</comment><comment> Assign </comment><quoted>False</quoted><comment> to </comment><feature><location>../interface/ev_pixmap.xml#f_pixmap_exists</location>pixmap_exists</feature><comment>.</comment>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_pixmap.xml#f_pixmap_exists</location>pixmap_exists</feature> <symbol>:=</symbol> <keyword>False</keyword>
+		<keyword>ensure</keyword>
+			<tag>pixmap_exists_set</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_pixmap.xml#f_pixmap_exists</location>pixmap_exists</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_set_pixmap_path</anchor><feature><location>../interface/ev_pixmap.xml#f_set_pixmap_path</location>set_pixmap_path</feature> <symbol>(</symbol><local>a_path</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../interface/ev_pixmap.xml#f_pixmap_path</location>pixmap_path</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>a_path</quoted><comment> to </comment><feature><location>../interface/ev_pixmap.xml#f_pixmap_path</location>pixmap_path</feature><comment>.</comment>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_pixmap.xml#f_pixmap_path</location>pixmap_path</feature> <symbol>:=</symbol> <local>a_path</local>
+		<keyword>ensure</keyword>
+			<tag>pixmap_path_set</tag><symbol>:</symbol> <feature><location>../interface/ev_pixmap.xml#f_pixmap_path</location>pixmap_path</feature> <symbol>=</symbol> <local>a_path</local>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status setting</comment>
+
+	<anchor>f_set_with_named_path</anchor><feature><location>../interface/ev_pixmap.xml#f_set_with_named_path</location>set_with_named_path</feature> <symbol>(</symbol><local>a_path</local><symbol>:</symbol> <class><include>False</include>PATH</class><symbol>)</symbol>
+			<comment>--</comment><comment> Attempt to load pixmap data from a file specified by </comment><quoted>file_name</quoted><comment>.</comment>
+			<comment>--</comment><comment> May raise </comment><quoted>Ev_unknown_image_format</quoted><comment> or </comment><quoted>Ev_corrupt_image_data</quoted>
+			<comment>--</comment><comment> exceptions.</comment>
+			<comment>--</comment><comment> See </comment><quoted>supported_image_formats</quoted><comment> in EV_ENVIRONMENT for valid file formats.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>a_path_not_void</tag><symbol>:</symbol> <local>a_path</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>a_pathnot_empty</tag><symbol>:</symbol> <keyword>not</keyword> <local>a_path</local><dot>.</dot><feature><include>False</include>is_empty</feature>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_pixmap.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_pixmap_i.xml#f_read_from_named_path</location>read_from_named_path</feature><symbol> </symbol><symbol>(</symbol><local>a_path</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_set_with_named_file</anchor><feature><location>../interface/ev_pixmap.xml#f_set_with_named_file</location>set_with_named_file</feature> <symbol>(</symbol><local>file_name</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol>
+			<comment>--</comment><comment> Attempt to load pixmap data from a file specified by </comment><quoted>file_name</quoted><comment>.</comment>
+			<comment>--</comment><comment> May raise </comment><quoted>Ev_unknown_image_format</quoted><comment> or </comment><quoted>Ev_corrupt_image_data</quoted>
+			<comment>--</comment><comment> exceptions.</comment>
+			<comment>--</comment><comment> See </comment><quoted>supported_image_formats</quoted><comment> in EV_ENVIRONMENT for valid file formats.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>file_name_not_void</tag><symbol>:</symbol> <local>file_name</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>file_name_not_empty</tag><symbol>:</symbol> <keyword>not</keyword> <local>file_name</local><dot>.</dot><feature><include>False</include>is_empty</feature>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_pixmap.xml#f_set_with_named_path</location>set_with_named_path</feature><symbol> </symbol><symbol>(</symbol><keyword>create</keyword><symbol> </symbol><symbol>{</symbol><class><include>False</include>PATH</class><symbol>}</symbol><dot>.</dot><feature><include>False</include>make_from_string</feature><symbol> </symbol><symbol>(</symbol><local>file_name</local><symbol>)</symbol><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_set_size</anchor><feature><location>../interface/ev_pixmap.xml#f_set_size</location>set_size</feature> <symbol>(</symbol><local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>a_width</quoted><comment> and </comment><quoted>a_height</quoted><comment> to </comment><feature><location>../interface/ev_positioned.xml#f_width</location>width</feature><comment> and </comment><quoted>weight</quoted><comment>.</comment>
+			<comment>--</comment><comment> Do not stretch image.</comment>
+			<comment>--</comment><comment> May cause cropping.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>a_width_positive</tag><symbol>:</symbol> <local>a_width</local> <symbol>&gt;</symbol> <number>0</number>
+			<tag>a_height_positive</tag><symbol>:</symbol> <local>a_height</local> <symbol>&gt;</symbol> <number>0</number>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_pixmap.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_pixmap_i.xml#f_set_size</location>set_size</feature><symbol> </symbol><symbol>(</symbol><local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>width_assigned</tag><symbol>:</symbol> <feature><location>../interface/ev_positioned.xml#f_width</location>width</feature> <symbol>=</symbol> <local>a_width</local>
+			<tag>height_assigned</tag><symbol>:</symbol> <feature><location>../interface/ev_positioned.xml#f_height</location>height</feature> <symbol>=</symbol> <local>a_height</local>
+		<keyword>end</keyword>
+
+	<anchor>f_reset_for_buffering</anchor><feature><location>../interface/ev_pixmap.xml#f_reset_for_buffering</location>reset_for_buffering</feature> <symbol>(</symbol><local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Resets the size of the pixmap without keeping original image or clearing background.</comment>
+			<comment>--</comment><comment> Useful when reusing </comment><quoted>Current</quoted><comment> as a back-buffer for blitting to other drawables.</comment>
+		<keyword>require</keyword>
+			<tag>width_valid</tag><symbol>:</symbol> <local>a_width</local> <symbol>&gt;</symbol> <number>0</number>
+			<tag>height_valid</tag><symbol>:</symbol> <local>a_height</local> <symbol>&gt;</symbol> <number>0</number>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_pixmap.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_pixmap_i.xml#f_reset_for_buffering</location>reset_for_buffering</feature><symbol> </symbol><symbol>(</symbol><local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_stretch</anchor><feature><location>../interface/ev_pixmap.xml#f_stretch</location>stretch</feature> <symbol>(</symbol><local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>a_width</quoted><comment> and </comment><quoted>a_height</quoted><comment> to </comment><feature><location>../interface/ev_positioned.xml#f_width</location>width</feature><comment> and </comment><quoted>weight</quoted><comment>.</comment>
+			<comment>--</comment><comment> Stretch the image to new size.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>a_width_positive</tag><symbol>:</symbol> <local>a_width</local> <symbol>&gt;</symbol> <number>0</number>
+			<tag>a_height_positive</tag><symbol>:</symbol> <local>a_height</local> <symbol>&gt;</symbol> <number>0</number>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_pixmap.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_pixmap_i.xml#f_stretch</location>stretch</feature><symbol> </symbol><symbol>(</symbol><local>a_width</local><symbol>,</symbol> <local>a_height</local><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>width_assigned</tag><symbol>:</symbol> <feature><location>../interface/ev_positioned.xml#f_width</location>width</feature> <symbol>=</symbol> <local>a_width</local>
+			<tag>height_assigned</tag><symbol>:</symbol> <feature><location>../interface/ev_positioned.xml#f_height</location>height</feature> <symbol>=</symbol> <local>a_height</local>
+		<keyword>end</keyword>
+
+	<anchor>f_set_mask</anchor><feature><location>../interface/ev_pixmap.xml#f_set_mask</location>set_mask</feature> <symbol>(</symbol><local>a_mask</local><symbol>:</symbol> <class><location>../interface/ev_bitmap.xml</location>EV_BITMAP</class><symbol>)</symbol>
+			<comment>--</comment><comment> set transparency mask of </comment><quoted>current</quoted><comment> to </comment><quoted>a_mask</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>mask_not_void</tag><symbol>:</symbol> <local>a_mask</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>mask_same_dimensions</tag><symbol>:</symbol> <local>a_mask</local><dot>.</dot><feature><location>../interface/ev_bitmap.xml#f_width</location>width</feature> <symbol>=</symbol> <feature><location>../interface/ev_positioned.xml#f_width</location>width</feature> <keyword>and then</keyword> <local>a_mask</local><dot>.</dot><feature><location>../interface/ev_bitmap.xml#f_height</location>height</feature> <symbol>=</symbol> <feature><location>../interface/ev_positioned.xml#f_height</location>height</feature>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_pixmap.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_pixmap_i.xml#f_set_mask</location>set_mask</feature><symbol> </symbol><symbol>(</symbol><local>a_mask</local><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Duplication</comment>
+
+	<anchor>f_save_to_named_path</anchor><feature><location>../interface/ev_pixmap.xml#f_save_to_named_path</location>save_to_named_path</feature> <symbol>(</symbol><local>a_format</local><symbol>:</symbol> <class><location>../interface/ev_graphical_format.xml</location>EV_GRAPHICAL_FORMAT</class><symbol>;</symbol> <local>a_filepath</local><symbol>:</symbol> <class><include>False</include>PATH</class><symbol>)</symbol>
+			<comment>--</comment><comment> Save </comment><quoted>Current</quoted><comment> to </comment><quoted>a_filepath</quoted><comment> in format </comment><quoted>a_format</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>a_format_not_void</tag><symbol>:</symbol> <local>a_format</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>a_filepath_not_void</tag><symbol>:</symbol> <local>a_filepath</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_pixmap.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_pixmap_i.xml#f_save_to_named_path</location>save_to_named_path</feature><symbol> </symbol><symbol>(</symbol><local>a_format</local><symbol>,</symbol> <local>a_filepath</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_save_to_named_file</anchor><feature><location>../interface/ev_pixmap.xml#f_save_to_named_file</location>save_to_named_file</feature> <symbol>(</symbol><local>a_format</local><symbol>:</symbol> <class><location>../interface/ev_graphical_format.xml</location>EV_GRAPHICAL_FORMAT</class><symbol>;</symbol> <local>a_filename</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol>
+			<comment>--</comment><comment> Save </comment><quoted>Current</quoted><comment> to </comment><quoted>a_filename</quoted><comment> in format </comment><quoted>a_format</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>a_format_not_void</tag><symbol>:</symbol> <local>a_format</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>a_filename_not_void</tag><symbol>:</symbol> <local>a_filename</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_pixmap.xml#f_save_to_named_path</location>save_to_named_path</feature><symbol> </symbol><symbol>(</symbol><local>a_format</local><symbol>,</symbol> <keyword>create</keyword><symbol> </symbol><symbol>{</symbol><class><include>False</include>PATH</class><symbol>}</symbol><dot>.</dot><feature><include>False</include>make_from_string</feature><symbol> </symbol><symbol>(</symbol><local>a_filename</local><symbol>)</symbol><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_copy</anchor><feature><location>../interface/ev_pixmap.xml#f_copy</location>copy</feature> <symbol>(</symbol><local>other</local><symbol>:</symbol> <keyword>like</keyword> <keyword>Current</keyword><symbol>)</symbol>
+			<comment>--</comment><comment> Update </comment><quoted>Current</quoted><comment> to have same appearance as </comment><quoted>other</quoted><comment>.</comment>
+			<comment>--</comment><comment> (So as to satisfy </comment><feature><location>../interface/ev_pixmap.xml#f_is_equal</location>is_equal</feature><comment>.)</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../interface/ev_pixmap.xml#f_implementation</location>implementation</feature> <symbol>=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<feature><location>../interface/ev_any.xml#f_default_create</location>default_create</feature>
+			<keyword>end</keyword>
+			<keyword>if</keyword> <keyword>not</keyword> <local>other</local><dot>.</dot><feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature> <keyword>then</keyword>
+				<feature><location>../interface/ev_pixmap.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_pixmap_i.xml#f_copy_pixmap</location>copy_pixmap</feature><symbol> </symbol><symbol>(</symbol><local>other</local><symbol>)</symbol>
+			<keyword>else</keyword>
+				<feature><location>../interface/ev_pixmap.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_pixmap_i.xml#f_set_size</location>set_size</feature><symbol> </symbol><symbol>(</symbol><local>other</local><dot>.</dot><feature><location>../interface/ev_pixmap.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_drawable_i.xml#f_width</location>width</feature><symbol>,</symbol> <local>other</local><dot>.</dot><feature><location>../interface/ev_pixmap.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_drawable_i.xml#f_height</location>height</feature><symbol>)</symbol>
+				<feature><location>../interface/ev_pixmap.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_any_i.xml#f_destroy</location>destroy</feature>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_any.xml</location>EV_ANY</class><symbol>,</symbol> <class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>,</symbol> <class><location>../interface/ev_any_handler.xml</location>EV_ANY_HANDLER</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_implementation</anchor><feature><location>../interface/ev_pixmap.xml#f_implementation</location>implementation</feature><symbol>:</symbol> <class><location>../implementation_interface/ev_pixmap_i.xml</location>EV_PIXMAP_I</class>
+			<comment>--</comment><comment> Responsible for interaction with native graphics toolkit.</comment>
+	
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_create_implementation</anchor><feature><location>../interface/ev_pixmap.xml#f_create_implementation</location>create_implementation</feature>
+			<comment>--</comment><comment> See </comment><quoted>{EV_ANY}.create_implementation</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword>create</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_pixmap_imp.xml</location>EV_PIXMAP_IMP</class><symbol>}</symbol> <feature><location>../interface/ev_pixmap.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_make</location>make</feature>
+		<keyword>end</keyword>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2014, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../interface/ev_pixmap.xml</location>EV_PIXMAP</class></system>
+

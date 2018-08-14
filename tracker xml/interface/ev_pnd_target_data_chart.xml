@@ -1,0 +1,21 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../interface/ev_pnd_target_data_chart.xml</location>EV_PND_TARGET_DATA</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>interface</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Used for describing a particular PND target&quot;</string>
+
+<keyword>Ancestors</keyword>
+	<class><include>False</include>ANY</class>
+
+<keyword>Queries</keyword>
+	<feature><location>../interface/ev_pnd_target_data.xml#f_name</location>name</feature><symbol>:</symbol> <class><include>False</include>STRING_32</class>
+	<feature><location>../interface/ev_pnd_target_data.xml#f_pixmap</location>pixmap</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_pixmap_chart.xml</location>EV_PIXMAP</class>
+	<feature><location>../interface/ev_pnd_target_data.xml#f_target</location>target</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_abstract_pick_and_dropable_chart.xml</location>EV_ABSTRACT_PICK_AND_DROPABLE</class>
+
+<keyword>Commands</keyword>
+	<feature><location>../interface/ev_pnd_target_data.xml#f_set_name</location>set_name</feature> <symbol>(</symbol><local>a_name</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol>
+	<feature><location>../interface/ev_pnd_target_data.xml#f_set_pixmap</location>set_pixmap</feature> <symbol>(</symbol><local>a_pixmap</local><symbol>:</symbol> <class><location>../interface/ev_pixmap_chart.xml</location>EV_PIXMAP</class><symbol>)</symbol>
+
+</system>

@@ -1,0 +1,25 @@
+<system>
+<keyword>deferred</keyword> <keyword>class</keyword>
+	<class><location>../interface/ev_textable_chart.xml</location>EV_TEXTABLE</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>interface</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Abstraction for objects that have a text label.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;text, label, font, name, property&quot;</string>
+
+<keyword>Ancestors</keyword>
+	<class><location>../interface/ev_any_chart.xml</location>EV_ANY</class><char>*</char>
+
+<keyword>Queries</keyword>
+	<feature><location>../interface/ev_any.xml#f_data</location>data</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>ANY</class>
+	<feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_textable.xml#f_text</location>text</feature><symbol>:</symbol> <class><include>False</include>STRING_32</class>
+
+<keyword>Commands</keyword>
+	<feature><location>../interface/ev_any.xml#f_copy</location>copy</feature> <symbol>(</symbol><local>other</local><symbol>:</symbol> <symbol>[</symbol><keyword>attached</keyword> <keyword>like</keyword> <keyword>Current</keyword><symbol>]</symbol> <keyword>attached</keyword> <class><location>../interface/ev_textable_chart.xml</location>EV_TEXTABLE</class><symbol>)</symbol>
+	<feature><location>../interface/ev_any.xml#f_destroy</location>destroy</feature>
+	<feature><location>../interface/ev_textable.xml#f_remove_text</location>remove_text</feature>
+	<feature><location>../interface/ev_any.xml#f_set_data</location>set_data</feature> <symbol>(</symbol><local>some_data</local><symbol>:</symbol> <symbol>[</symbol><keyword>like</keyword> <feature><location>../interface/ev_any.xml#f_data</location>data</feature><symbol>]</symbol> <keyword>detachable</keyword> <class><include>False</include>ANY</class><symbol>)</symbol>
+	<feature><location>../interface/ev_textable.xml#f_set_text</location>set_text</feature> <symbol>(</symbol><local>a_text</local><symbol>:</symbol> <keyword>separate</keyword> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol>
+
+</system>

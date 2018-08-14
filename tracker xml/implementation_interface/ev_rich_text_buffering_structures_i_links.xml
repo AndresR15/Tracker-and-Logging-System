@@ -1,0 +1,41 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../implementation_interface/ev_rich_text_buffering_structures_i_links.xml</location>EV_RICH_TEXT_BUFFERING_STRUCTURES_I</class>
+
+<keyword>Ancestors</keyword>
+	<class><include>False</include>ANY</class>
+	<class><location>../interface/ev_font_constants_links.xml</location>EV_FONT_CONSTANTS</class>
+	<class><location>../implementation_interface/ev_rich_text_constants_i_links.xml</location>EV_RICH_TEXT_CONSTANTS_I</class>
+
+<keyword>Clients</keyword>
+	<class><location>../implementation_interface/ev_rich_text_buffering_structures_i_links.xml</location>EV_RICH_TEXT_BUFFERING_STRUCTURES_I</class>
+	<class><location>../implementation_interface/ev_rich_text_i_links.xml</location>EV_RICH_TEXT_I</class><char>*</char>
+
+<keyword>Suppliers</keyword>
+	<class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><generic>G</generic><symbol>]</symbol>
+	<class><include>False</include>ARRAYED_STACK</class> <symbol>[</symbol><generic>G</generic><symbol>]</symbol>
+	<class><include>False</include>BOOLEAN</class>
+	<class><include>False</include>CHARACTER_32</class>
+	<class><include>False</include>CHARACTER_8</class>
+	<class><location>../interface/ev_active_list_links.xml</location>EV_ACTIVE_LIST</class> <symbol>[</symbol><generic>G</generic><symbol>]</symbol>
+	<class><location>../interface/ev_character_format_links.xml</location>EV_CHARACTER_FORMAT</class>
+	<class><location>../interface/ev_character_format_effects_links.xml</location>EV_CHARACTER_FORMAT_EFFECTS</class>
+	<class><location>../implementation_interface/ev_character_format_i_links.xml</location>EV_CHARACTER_FORMAT_I</class><char>*</char>
+	<class><location>../interface/ev_color_links.xml</location>EV_COLOR</class>
+	<class><location>../interface/ev_font_links.xml</location>EV_FONT</class>
+	<class><location>../interface/ev_font_constants_links.xml</location>EV_FONT_CONSTANTS</class>
+	<class><location>../interface/ev_integer_action_sequence_links.xml</location>EV_INTEGER_ACTION_SEQUENCE</class>
+	<class><location>../interface/ev_paragraph_constants_links.xml</location>EV_PARAGRAPH_CONSTANTS</class>
+	<class><location>../interface/ev_paragraph_format_links.xml</location>EV_PARAGRAPH_FORMAT</class>
+	<class><location>../implementation_interface/ev_rich_text_buffering_structures_i_links.xml</location>EV_RICH_TEXT_BUFFERING_STRUCTURES_I</class>
+	<class><location>../implementation_interface/ev_rich_text_i_links.xml</location>EV_RICH_TEXT_I</class><char>*</char>
+	<class><location>../interface/ev_screen_links.xml</location>EV_SCREEN</class>
+	<class><include>False</include>HASH_TABLE</class> <symbol>[</symbol><generic>G</generic><symbol>,</symbol> <generic>K</generic> <symbol>-&gt;</symbol> <keyword>detachable</keyword> <class><include>False</include>HASHABLE</class><symbol>]</symbol>
+	<class><include>False</include>INTEGER_32</class>
+	<class><include>False</include>NATURAL_32</class>
+	<class><include>False</include>READABLE_STRING_GENERAL</class><char>*</char>
+	<class><location>../implementation_interface/rtf_format_i_links.xml</location>RTF_FORMAT_I</class>
+	<class><include>False</include>STRING_32</class>
+	<class><include>False</include>STRING_8</class>
+
+</system>

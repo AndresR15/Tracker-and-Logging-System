@@ -1,0 +1,32 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../interface/ev_cell_links.xml</location>EV_CELL</class>
+
+<keyword>Ancestors</keyword>
+	<class><location>../interface/ev_container_links.xml</location>EV_CONTAINER</class><char>*</char>
+	<class><location>../interface/ev_dockable_target_links.xml</location>EV_DOCKABLE_TARGET</class><char>*</char>
+
+<keyword>Descendants</keyword>
+	<class><location>../interface/ev_frame_links.xml</location>EV_FRAME</class>
+	<class><location>../interface/ev_viewport_links.xml</location>EV_VIEWPORT</class>
+	<class><location>../interface/ev_window_links.xml</location>EV_WINDOW</class>
+
+<keyword>Clients</keyword>
+	<class><location>../tracker/etf_main_window_imp_links.xml</location>ETF_MAIN_WINDOW_IMP</class><char>*</char>
+	<class><location>../implementation_interface/ev_application_i_links.xml</location>EV_APPLICATION_I</class><char>*</char>
+	<class><location>../interface/ev_cell_links.xml</location>EV_CELL</class>
+	<class><location>../implementation_interface/ev_dockable_source_i_links.xml</location>EV_DOCKABLE_SOURCE_I</class><char>*</char>
+	<class><location>../interface/ev_frame_links.xml</location>EV_FRAME</class>
+	<class><location>../interface/ev_message_dialog_links.xml</location>EV_MESSAGE_DIALOG</class>
+	<class><location>../implementation_interface/ev_shared_transport_i_links.xml</location>EV_SHARED_TRANSPORT_I</class>
+	<class><location>../interface/ev_viewport_links.xml</location>EV_VIEWPORT</class>
+	<class><location>../interface/ev_window_links.xml</location>EV_WINDOW</class>
+
+<keyword>Suppliers</keyword>
+	<class><include>False</include>BOOLEAN</class>
+	<class><location>../interface/ev_cell_links.xml</location>EV_CELL</class>
+	<class><location>../implementation_interface/ev_cell_i_links.xml</location>EV_CELL_I</class><char>*</char>
+	<class><location>../implementation_gtk/ev_cell_imp_links.xml</location>EV_CELL_IMP</class>
+	<class><include>False</include>LINKED_LIST</class> <symbol>[</symbol><generic>G</generic><symbol>]</symbol>
+
+</system>

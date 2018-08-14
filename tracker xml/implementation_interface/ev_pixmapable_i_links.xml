@@ -1,0 +1,26 @@
+<system>
+<keyword>deferred</keyword> <keyword>class</keyword>
+	<class><location>../implementation_interface/ev_pixmapable_i_links.xml</location>EV_PIXMAPABLE_I</class>
+
+<keyword>Ancestors</keyword>
+	<class><location>../implementation_interface/ev_any_i_links.xml</location>EV_ANY_I</class><char>*</char>
+
+<keyword>Descendants</keyword>
+	<class><location>../implementation_interface/ev_button_i_links.xml</location>EV_BUTTON_I</class><char>*</char>
+	<class><location>../implementation_interface/ev_container_i_links.xml</location>EV_CONTAINER_I</class><char>*</char>
+	<class><location>../implementation_interface/ev_item_i_links.xml</location>EV_ITEM_I</class><char>*</char>
+	<class><location>../implementation_interface/ev_multi_column_list_row_i_links.xml</location>EV_MULTI_COLUMN_LIST_ROW_I</class><char>*</char>
+	<class><location>../implementation_interface/ev_notebook_tab_i_links.xml</location>EV_NOTEBOOK_TAB_I</class><char>*</char>
+	<class><location>../implementation_gtk/ev_notebook_tab_imp_links.xml</location>EV_NOTEBOOK_TAB_IMP</class>
+	<class><location>../implementation_gtk/ev_pixmapable_imp_links.xml</location>EV_PIXMAPABLE_IMP</class><char>*</char>
+
+<keyword>Clients</keyword>
+	<class><location>../interface/ev_pixmapable_links.xml</location>EV_PIXMAPABLE</class><char>*</char>
+	<class><location>../implementation_interface/ev_pixmapable_i_links.xml</location>EV_PIXMAPABLE_I</class><char>*</char>
+
+<keyword>Suppliers</keyword>
+	<class><include>False</include>BOOLEAN</class>
+	<class><location>../interface/ev_pixmap_links.xml</location>EV_PIXMAP</class>
+	<class><location>../implementation_interface/ev_pixmapable_i_links.xml</location>EV_PIXMAPABLE_I</class><char>*</char>
+
+</system>

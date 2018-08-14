@@ -1,0 +1,20 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../interface/ev_raw_image_data_links.xml</location>EV_RAW_IMAGE_DATA</class>
+
+<keyword>Ancestors</keyword>
+	<class><include>False</include>ARRAY</class> <symbol>[</symbol><generic>G</generic><symbol>]</symbol>
+
+<keyword>Clients</keyword>
+	<class><location>../implementation_gtk/ev_pixmap_imp_links.xml</location>EV_PIXMAP_IMP</class>
+	<class><location>../interface/ev_raw_image_data_links.xml</location>EV_RAW_IMAGE_DATA</class>
+
+<keyword>Suppliers</keyword>
+	<class><include>False</include>BOOLEAN</class>
+	<class><location>../interface/ev_color_links.xml</location>EV_COLOR</class>
+	<class><location>../interface/ev_raw_image_data_links.xml</location>EV_RAW_IMAGE_DATA</class>
+	<class><include>False</include>INTEGER_32</class>
+	<class><include>False</include>NATURAL_8</class>
+	<class><include>False</include>STRING_8</class>
+
+</system>

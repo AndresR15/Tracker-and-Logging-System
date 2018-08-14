@@ -1,0 +1,16 @@
+<system>
+<keyword>deferred</keyword> <keyword>class</keyword>
+	<class><location>../interface/ev_drawable_action_sequences_chart.xml</location>EV_DRAWABLE_ACTION_SEQUENCES</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>interface</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Action sequences for drawables.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;event, action, sequence&quot;</string>
+
+<keyword>Ancestors</keyword>
+	<class><location>../interface/ev_action_sequences_chart.xml</location>EV_ACTION_SEQUENCES</class><char>*</char>
+
+<keyword>Action sequences</keyword>
+	<feature><location>../interface/ev_drawable_action_sequences.xml#f_expose_actions</location>expose_actions</feature><symbol>:</symbol> <class><location>../interface/ev_geometry_action_sequence_chart.xml</location>EV_GEOMETRY_ACTION_SEQUENCE</class>
+
+</system>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<system xmlns="http://www.eiffel.com/developers/xml/configuration-1-16-0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.eiffel.com/developers/xml/configuration-1-16-0 http://www.eiffel.com/developers/xml/configuration-1-16-0.xsd" name="etf-gui" uuid="9E2B955D-CB65-4E6B-9120-A7D785E61D37">
+	<target name="etf-gui">
+		<description>EiffelBuild Generated Configuration for Project etf-gui.</description>
+		<root cluster="root_cluster" class="ETF_GUI" feature="make_and_launch"/>
+		<option warning="true" full_class_checking="true" is_attached_by_default="true" syntax="standard">
+			<assertions precondition="true" postcondition="true" check="true" supplier_precondition="true"/>
+		</option>
+		<capability>
+			<concurrency support="none"/>
+			<void_safety support="transitional" use="transitional"/>
+		</capability>
+		<precompile name="vision2_pre" location="$ISE_PRECOMP\vision2-safe.ecf"/>
+		<library name="base" location="$ISE_LIBRARY\library\base\base-safe.ecf"/>
+		<library name="vision2" location="$ISE_LIBRARY\library\vision2\vision2-safe.ecf"/>
+		<cluster name="root_cluster" location=".\" recursive="true">
+			<file_rule>
+				<exclude>/.svn$</exclude>
+				<exclude>/CVS$</exclude>
+				<exclude>/EIFGENs$</exclude>
+			</file_rule>
+		</cluster>
+	</target>
+	<target name="etf-gui_dotnet" extends="etf-gui">
+		<setting name="msil_generation" value="true"/>
+	</target>
+</system>
+

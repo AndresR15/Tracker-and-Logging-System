@@ -1,0 +1,1554 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "[{\line}
+{\tab}{\tab}Perform arithmetic (+, -, *, /) on real numbers of arbitrary precision.{\line}
+{\tab}{\tab}In the case of division, the default precision is 35 digits after{\line}
+{\tab}{\tab}the decimal point. This can be changed via {\cf5 set_division_precision}.{\line}
+{\tab}{\tab}The queries {\cf5 is_integer}, {\cf5 is_natural} and {\cf5 is_natural1} may be used to{\line}
+{\tab}{\tab}check that the value is an integer or natural number. {\line}
+{\tab}{\tab}{\cf5 out} provides a string represesentation rounded to two decimal places, and {\line}
+{\tab}{\tab}{\cf5 precise_out} is a string representation of the precise value. The corresponding{\line}
+{\tab}{\tab}C# class was the inspiration for this class.{\line}
+{\tab}]"{\line}
+{\tab}{\cf1 author}{\cf1 :} "Vlad Gerchikov for the Software Engineering Lab at sel@cse.yorku.ca"{\line}
+{\tab}{\cf1 date}{\cf1 :} "$April 15, 2008$"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$1.0$"{\line}
+{\line}
+{\b\cf6 expanded} {\b\cf6 class} {\line}
+{\tab}{\cf4 VALUE}{\line}
+{\line}
+{\b\cf6 inherit}{\line}
+{\tab}{\cf4 COMPARABLE}{\line}
+{\tab}{\tab}{\b\cf6 redefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 is_equal}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 default_create}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 out}{\line}
+{\tab}{\tab}{\b\cf6 end}{\line}
+{\line}
+{\tab}{\cf4 NUMERIC}{\line}
+{\tab}{\tab}{\b\cf6 redefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 is_equal}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 default_create}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 out}{\line}
+{\tab}{\tab}{\b\cf6 end}{\line}
+{\line}
+{\b\cf6 create} {\line}
+{\tab}{\cf5 make_from_string}{\cf1 ,}{\line}
+{\tab}{\cf5 make}{\cf1 ,}{\line}
+{\tab}{\cf5 make_from_int}{\cf1 ,}{\line}
+{\tab}{\cf5 default_create}{\line}
+{\line}
+{\b\cf6 convert}{\line}
+{\tab}{\cf5 make_from_string} {\cf1 (}{\cf1 \{}{\cf4 STRING_8}{\cf1 \}}{\cf1 )}{\cf1 ,}{\line}
+{\tab}{\cf5 as_double}{\cf1 :} {\cf1 \{}{\cf4 REAL_64}{\cf1 \}}{\line}
+{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 VALUE}{\cf1 \}} {\cf3 --}{\cf3  private fields	}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 s_}{\cf1 :} {\cf4 STRING_8}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 divisiondecimalprecision_}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the minimum accuracy of division results; division results will be accurate to AT LEAST this many digits}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Default_precision}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 35}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 dv}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  create a MONEY_VALUE object from string }{\cf5 s}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 non_void}{\cf1 :} {\cf5 s} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 non_empty}{\cf1 :} {\b\cf6 not} {\cf5 s}{\b\cf1 .}{\cf5 is_empty}{\line}
+{\tab}{\tab}{\tab}{\cf1 has_correct_format}{\cf1 :} {\cf5 ensurevalid}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 divisiondecimalprecision_} {\cf1 :=} {\cf5 dv}{\line}
+{\tab}{\tab}{\tab}{\cf5 s_} {\cf1 :=} {\cf5 s}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 clone_me}{\cf1 :} {\cf4 VALUE}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_s}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 l_s}{\b\cf1 .}{\cf5 make_from_string}{\cf1  }{\cf1 (}{\cf5 s_}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 l_s}{\cf1 ,} {\cf5 divisiondecimalprecision_}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  constructors}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 default_create}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  create an empty MONEY_VALUE object (it's equivalent to 0)}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 empty}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 divisiondecimalprecision_} {\cf1 :=} {\cf5 Default_precision}{\line}
+{\tab}{\tab}{\tab}{\cf5 empty} {\cf1 :=} "0"{\line}
+{\tab}{\tab}{\tab}{\cf5 s_} {\cf1 :=} {\cf5 empty}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\b\cf6 ensure then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 s_}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}"0"{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make_from_string} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  create a MONEY_VALUE object from string }{\cf5 s}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 non_void}{\cf1 :} {\cf5 s} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 non_empty}{\cf1 :} {\b\cf6 not} {\cf5 s}{\b\cf1 .}{\cf5 is_empty}{\line}
+{\tab}{\tab}{\tab}{\cf1 has_correct_format}{\cf1 :} {\cf5 ensurevalid}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 divisiondecimalprecision_} {\cf1 :=} {\cf5 Default_precision}{\line}
+{\tab}{\tab}{\tab}{\cf5 s_} {\cf1 :=} {\cf5 s}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\cf5 normalize}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make_from_int} {\cf1 (}{\cf5 int}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  create a MONEY_VALUE object from integer }{\cf5 m}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 ch}{\cf1 :} {\cf4 CHARACTER_8}{\line}
+{\tab}{\tab}{\tab}{\cf5 m}{\cf1 ,} {\cf5 n}{\cf1 ,} {\cf5 d}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 neg}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 divisiondecimalprecision_} {\cf1 :=} {\cf5 Default_precision}{\line}
+{\tab}{\tab}{\tab}{\cf5 m} {\cf1 :=} {\cf5 int}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 m} {\cf1 =} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 s_}{\b\cf1 .}{\cf5 make_from_string}{\cf1  }{\cf1 (}"0"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 neg} {\cf1 :=} {\cf5 m} {\cf1 <} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 neg} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 m} {\cf1 :=} {\cf5 m} {\cf1 *} -1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 n} {\cf1 :=} {\cf5 m}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 s_}{\b\cf1 .}{\cf5 make_empty}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 n} {\cf1 =} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 d} {\cf1 :=} {\cf5 n} {\cf1 \\\\} 10{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 n} {\cf1 :=} {\cf5 n} {\cf1 //} 10{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 ch} {\cf1 :=} {\cf5 tochar}{\cf1  }{\cf1 (}{\cf5 d}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 s_}{\b\cf1 .}{\cf5 insert_character}{\cf1  }{\cf1 (}{\cf5 ch}{\cf1 ,} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 neg} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 normalize}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  comparison}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_equal} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 VALUE}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  check whether other is equal to current or not}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 r1i}{\cf1 ,} {\cf5 r2i}{\cf1 ,} {\cf5 d1}{\cf1 ,} {\cf5 d2}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 r1}{\cf1 ,} {\cf5 r2}{\cf1 :} {\cf4 VALUE}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 r1} {\cf1 :=} {\b\cf6 Current}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\cf5 r2} {\cf1 :=} {\cf5 other}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\cf5 r1}{\b\cf1 .}{\cf5 aligndecimal}{\cf1  }{\cf1 (}{\cf5 r2}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 r1}{\b\cf1 .}{\cf5 alignwhole}{\cf1  }{\cf1 (}{\cf5 r2}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r1i} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r2i} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r1i} {\cf1 >} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count} {\b\cf6 or} {\cf5 r2i} {\cf1 >} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 d1} {\cf1 :=} {\cf5 todigit}{\cf1  }{\cf1 (}{\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 r1i}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 d2} {\cf1 :=} {\cf5 todigit}{\cf1  }{\cf1 (}{\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 r2i}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 d1} {\cf1 /=} {\cf5 d2} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1i} {\cf1 :=} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r1i} {\cf1 :=} {\cf5 r1i} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r2i} {\cf1 :=} {\cf5 r2i} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_less} {\b\cf6 alias} {\cf1 "}{\cf1 <}{\cf1 "} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 VALUE}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  whether current is less than other}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 r1i}{\cf1 ,} {\cf5 r2i}{\cf1 ,} {\cf5 d1}{\cf1 ,} {\cf5 d2}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 r1}{\cf1 ,} {\cf5 r2}{\cf1 :} {\cf4 VALUE}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 r1} {\cf1 :=} {\b\cf6 Current}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\cf5 r2} {\cf1 :=} {\cf5 other}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} '-' {\b\cf6 and} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 /=} '-' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 /=} '-' {\b\cf6 and} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} '-' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} '-' {\b\cf6 and} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} '-' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r1}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r2}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 r2} {\cf1 <} {\cf5 r1}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r1}{\b\cf1 .}{\cf5 aligndecimal}{\cf1  }{\cf1 (}{\cf5 r2}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r1}{\b\cf1 .}{\cf5 alignwhole}{\cf1  }{\cf1 (}{\cf5 r2}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1i} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r2i} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1i} {\cf1 >} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count} {\b\cf6 or} {\cf5 r2i} {\cf1 >} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 d1} {\cf1 :=} {\cf5 todigit}{\cf1  }{\cf1 (}{\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 r1i}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 d2} {\cf1 :=} {\cf5 todigit}{\cf1  }{\cf1 (}{\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 r2i}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 d1} {\cf1 <} {\cf5 d2} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1i} {\cf1 :=} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 d1} {\cf1 >} {\cf5 d2} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1i} {\cf1 :=} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1i} {\cf1 :=} {\cf5 r1i} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r2i} {\cf1 :=} {\cf5 r2i} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  operations}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 plus} {\b\cf6 alias} {\cf1 "}{\cf1 +}{\cf1 "} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 VALUE}{\cf1 )}{\cf1 :} {\cf4 VALUE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  adds current to other and returns a new object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 VALUE}{\cf3  as synonym of }{\cf5 add}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 res}{\cf1 ,} {\cf5 empty}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf5 carry}{\cf1 ,} {\cf5 r1i}{\cf1 ,} {\cf5 r2i}{\cf1 ,} {\cf5 d1}{\cf1 ,} {\cf5 d2}{\cf1 ,} {\cf5 d}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 ch}{\cf1 :} {\cf4 CHARACTER_8}{\line}
+{\tab}{\tab}{\tab}{\cf5 r1}{\cf1 ,} {\cf5 r2}{\cf1 :} {\cf4 VALUE}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 r1} {\cf1 :=} {\b\cf6 Current}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\cf5 r2} {\cf1 :=} {\cf5 other}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} '-' {\b\cf6 and} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 /=} '-' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r1}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 r2} {\cf1 -} {\cf5 r1}{\cf1 )}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 /=} '-' {\b\cf6 and} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} '-' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r2}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 r1} {\cf1 -} {\cf5 r2}{\cf1 )}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} '-' {\b\cf6 and} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} '-' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r1}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r2}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 r1} {\cf1 +} {\cf5 r2}{\cf1 )}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r1}{\b\cf1 .}{\cf5 aligndecimal}{\cf1  }{\cf1 (}{\cf5 r2}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r1}{\b\cf1 .}{\cf5 alignwhole}{\cf1  }{\cf1 (}{\cf5 r2}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 empty} {\cf1 :=} ""{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 res} {\cf1 :=} {\cf5 empty}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1i} {\cf1 :=} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r2i} {\cf1 :=} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1i} {\cf1 <} 1 {\b\cf6 or} {\cf5 r2i} {\cf1 <} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 ch} {\cf1 :=} '0'{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 r1i}{\cf1 )} {\cf1 /=} '.' {\b\cf6 and} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 r2i}{\cf1 )} {\cf1 /=} '.' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 d1} {\cf1 :=} {\cf5 todigit}{\cf1  }{\cf1 (}{\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 r1i}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 d2} {\cf1 :=} {\cf5 todigit}{\cf1  }{\cf1 (}{\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 r2i}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 d} {\cf1 :=} {\cf5 carry} {\cf1 +} {\cf5 d1} {\cf1 +} {\cf5 d2}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 d} {\cf1 >=} 10 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 carry} {\cf1 :=} {\cf5 d} {\cf1 //} 10{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 d} {\cf1 :=} {\cf5 d} {\cf1 -} 10{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 carry} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 ch} {\cf1 :=} {\cf5 tochar}{\cf1  }{\cf1 (}{\cf5 d}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 r1i}{\cf1 )} {\cf1 =} '.' {\b\cf6 and} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 r2i}{\cf1 )} {\cf1 =} '.' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 ch} {\cf1 :=} '.'{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 res}{\b\cf1 .}{\cf5 insert_character}{\cf1  }{\cf1 (}{\cf5 ch}{\cf1 ,} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1i} {\cf1 :=} {\cf5 r1i} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r2i} {\cf1 :=} {\cf5 r2i} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 carry} {\cf1 >} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 res}{\b\cf1 .}{\cf5 insert_character}{\cf1  }{\cf1 (}{\cf5 tochar}{\cf1  }{\cf1 (}{\cf5 carry}{\cf1 )}{\cf1 ,} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make_from_string}{\cf1  }{\cf1 (}{\cf5 res}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 add} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 VALUE}{\cf1 )}{\cf1 :} {\cf4 VALUE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  adds current to other and returns a new object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 VALUE}{\cf3  as synonym of }{\cf5 plus}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 res}{\cf1 ,} {\cf5 empty}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf5 carry}{\cf1 ,} {\cf5 r1i}{\cf1 ,} {\cf5 r2i}{\cf1 ,} {\cf5 d1}{\cf1 ,} {\cf5 d2}{\cf1 ,} {\cf5 d}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 ch}{\cf1 :} {\cf4 CHARACTER_8}{\line}
+{\tab}{\tab}{\tab}{\cf5 r1}{\cf1 ,} {\cf5 r2}{\cf1 :} {\cf4 VALUE}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 r1} {\cf1 :=} {\b\cf6 Current}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\cf5 r2} {\cf1 :=} {\cf5 other}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} '-' {\b\cf6 and} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 /=} '-' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r1}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 r2} {\cf1 -} {\cf5 r1}{\cf1 )}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 /=} '-' {\b\cf6 and} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} '-' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r2}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 r1} {\cf1 -} {\cf5 r2}{\cf1 )}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} '-' {\b\cf6 and} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} '-' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r1}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r2}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 r1} {\cf1 +} {\cf5 r2}{\cf1 )}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r1}{\b\cf1 .}{\cf5 aligndecimal}{\cf1  }{\cf1 (}{\cf5 r2}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r1}{\b\cf1 .}{\cf5 alignwhole}{\cf1  }{\cf1 (}{\cf5 r2}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 empty} {\cf1 :=} ""{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 res} {\cf1 :=} {\cf5 empty}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1i} {\cf1 :=} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r2i} {\cf1 :=} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1i} {\cf1 <} 1 {\b\cf6 or} {\cf5 r2i} {\cf1 <} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 ch} {\cf1 :=} '0'{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 r1i}{\cf1 )} {\cf1 /=} '.' {\b\cf6 and} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 r2i}{\cf1 )} {\cf1 /=} '.' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 d1} {\cf1 :=} {\cf5 todigit}{\cf1  }{\cf1 (}{\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 r1i}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 d2} {\cf1 :=} {\cf5 todigit}{\cf1  }{\cf1 (}{\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 r2i}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 d} {\cf1 :=} {\cf5 carry} {\cf1 +} {\cf5 d1} {\cf1 +} {\cf5 d2}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 d} {\cf1 >=} 10 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 carry} {\cf1 :=} {\cf5 d} {\cf1 //} 10{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 d} {\cf1 :=} {\cf5 d} {\cf1 -} 10{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 carry} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 ch} {\cf1 :=} {\cf5 tochar}{\cf1  }{\cf1 (}{\cf5 d}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 r1i}{\cf1 )} {\cf1 =} '.' {\b\cf6 and} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 r2i}{\cf1 )} {\cf1 =} '.' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 ch} {\cf1 :=} '.'{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 res}{\b\cf1 .}{\cf5 insert_character}{\cf1  }{\cf1 (}{\cf5 ch}{\cf1 ,} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1i} {\cf1 :=} {\cf5 r1i} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r2i} {\cf1 :=} {\cf5 r2i} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 carry} {\cf1 >} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 res}{\b\cf1 .}{\cf5 insert_character}{\cf1  }{\cf1 (}{\cf5 tochar}{\cf1  }{\cf1 (}{\cf5 carry}{\cf1 )}{\cf1 ,} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make_from_string}{\cf1  }{\cf1 (}{\cf5 res}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 minus} {\b\cf6 alias} {\cf1 "}{\cf1 -}{\cf1 "} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 VALUE}{\cf1 )}{\cf1 :} {\cf4 VALUE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  subtracts other from current and returns a new object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 VALUE}{\cf3  as synonym of }{\cf5 subtract}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 res}{\cf1 ,} {\cf5 empty}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf5 r1}{\cf1 ,} {\cf5 r2}{\cf1 :} {\cf4 VALUE}{\line}
+{\tab}{\tab}{\tab}{\cf5 r1i}{\cf1 ,} {\cf5 r2i}{\cf1 ,} {\cf5 d1}{\cf1 ,} {\cf5 d2}{\cf1 ,} {\cf5 dp}{\cf1 ,} {\cf5 i}{\cf1 ,} {\cf5 j}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 ch}{\cf1 :} {\cf4 CHARACTER_8}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 r1} {\cf1 :=} {\b\cf6 Current}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\cf5 r2} {\cf1 :=} {\cf5 other}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} '-' {\b\cf6 and} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 /=} '-' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r1}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 r1} {\cf1 +} {\cf5 r2}{\cf1 )}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 /=} '-' {\b\cf6 and} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} '-' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r2}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 r1} {\cf1 +} {\cf5 r2}{\cf1 )}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} '-' {\b\cf6 and} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} '-' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r2}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 r1} {\cf1 +} {\cf5 r2}{\cf1 )}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 r1} {\cf1 <} {\cf5 r2} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 r2} {\cf1 -} {\cf5 r1}{\cf1 )}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1}{\b\cf1 .}{\cf5 aligndecimal}{\cf1  }{\cf1 (}{\cf5 r2}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1}{\b\cf1 .}{\cf5 alignwhole}{\cf1  }{\cf1 (}{\cf5 r2}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 empty} {\cf1 :=} ""{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 res} {\cf1 :=} {\cf5 empty}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1i} {\cf1 :=} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r2i} {\cf1 :=} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1i} {\cf1 <} 1 {\b\cf6 or} {\cf5 r2i} {\cf1 <} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 ch} {\cf1 :=} '0'{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 r1i}{\cf1 )} {\cf1 /=} '.' {\b\cf6 and} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 r2i}{\cf1 )} {\cf1 /=} '.' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 d1} {\cf1 :=} {\cf5 todigit}{\cf1  }{\cf1 (}{\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 r1i}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 d2} {\cf1 :=} {\cf5 todigit}{\cf1  }{\cf1 (}{\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 r2i}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 d1} {\cf1 <} {\cf5 d2} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 r1i} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 <} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )} {\cf1 /=} '.' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 dp} {\cf1 :=} {\cf5 todigit}{\cf1  }{\cf1 (}{\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 dp} {\cf1 >} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 tochar}{\cf1  }{\cf1 (}{\cf5 dp} {\cf1 -} 1{\cf1 )}{\cf1 ,} {\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 j} {\cf1 :=} {\cf5 i} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 j} {\cf1 >} {\cf5 r1i} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 j}{\cf1 )} {\cf1 /=} '.' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 tochar}{\cf1  }{\cf1 (}{\cf5 todigit}{\cf1  }{\cf1 (}{\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 j}{\cf1 )}{\cf1 )} {\cf1 +} 9{\cf1 )}{\cf1 ,} {\cf5 j}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 j} {\cf1 :=} {\cf5 j} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 d1} {\cf1 :=} {\cf5 d1} {\cf1 +} 10{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 i} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 ch} {\cf1 :=} {\cf5 tochar}{\cf1  }{\cf1 (}{\cf5 d1} {\cf1 -} {\cf5 d2}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 r1i}{\cf1 )} {\cf1 =} '.' {\b\cf6 and} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 r2i}{\cf1 )} {\cf1 =} '.' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 ch} {\cf1 :=} '.'{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 res}{\b\cf1 .}{\cf5 insert_character}{\cf1  }{\cf1 (}{\cf5 ch}{\cf1 ,} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1i} {\cf1 :=} {\cf5 r1i} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r2i} {\cf1 :=} {\cf5 r2i} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make_from_string}{\cf1  }{\cf1 (}{\cf5 res}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 subtract} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 VALUE}{\cf1 )}{\cf1 :} {\cf4 VALUE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  subtracts other from current and returns a new object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 VALUE}{\cf3  as synonym of }{\cf5 minus}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 res}{\cf1 ,} {\cf5 empty}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf5 r1}{\cf1 ,} {\cf5 r2}{\cf1 :} {\cf4 VALUE}{\line}
+{\tab}{\tab}{\tab}{\cf5 r1i}{\cf1 ,} {\cf5 r2i}{\cf1 ,} {\cf5 d1}{\cf1 ,} {\cf5 d2}{\cf1 ,} {\cf5 dp}{\cf1 ,} {\cf5 i}{\cf1 ,} {\cf5 j}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 ch}{\cf1 :} {\cf4 CHARACTER_8}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 r1} {\cf1 :=} {\b\cf6 Current}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\cf5 r2} {\cf1 :=} {\cf5 other}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} '-' {\b\cf6 and} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 /=} '-' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r1}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 r1} {\cf1 +} {\cf5 r2}{\cf1 )}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 /=} '-' {\b\cf6 and} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} '-' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r2}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 r1} {\cf1 +} {\cf5 r2}{\cf1 )}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} '-' {\b\cf6 and} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} '-' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r2}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 r1} {\cf1 +} {\cf5 r2}{\cf1 )}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 r1} {\cf1 <} {\cf5 r2} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 r2} {\cf1 -} {\cf5 r1}{\cf1 )}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1}{\b\cf1 .}{\cf5 aligndecimal}{\cf1  }{\cf1 (}{\cf5 r2}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1}{\b\cf1 .}{\cf5 alignwhole}{\cf1  }{\cf1 (}{\cf5 r2}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 empty} {\cf1 :=} ""{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 res} {\cf1 :=} {\cf5 empty}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1i} {\cf1 :=} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r2i} {\cf1 :=} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1i} {\cf1 <} 1 {\b\cf6 or} {\cf5 r2i} {\cf1 <} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 ch} {\cf1 :=} '0'{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 r1i}{\cf1 )} {\cf1 /=} '.' {\b\cf6 and} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 r2i}{\cf1 )} {\cf1 /=} '.' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 d1} {\cf1 :=} {\cf5 todigit}{\cf1  }{\cf1 (}{\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 r1i}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 d2} {\cf1 :=} {\cf5 todigit}{\cf1  }{\cf1 (}{\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 r2i}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 d1} {\cf1 <} {\cf5 d2} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 r1i} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 <} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )} {\cf1 /=} '.' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 dp} {\cf1 :=} {\cf5 todigit}{\cf1  }{\cf1 (}{\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 dp} {\cf1 >} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 tochar}{\cf1  }{\cf1 (}{\cf5 dp} {\cf1 -} 1{\cf1 )}{\cf1 ,} {\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 j} {\cf1 :=} {\cf5 i} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 j} {\cf1 >} {\cf5 r1i} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 j}{\cf1 )} {\cf1 /=} '.' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 tochar}{\cf1  }{\cf1 (}{\cf5 todigit}{\cf1  }{\cf1 (}{\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 j}{\cf1 )}{\cf1 )} {\cf1 +} 9{\cf1 )}{\cf1 ,} {\cf5 j}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 j} {\cf1 :=} {\cf5 j} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 d1} {\cf1 :=} {\cf5 d1} {\cf1 +} 10{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 i} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 ch} {\cf1 :=} {\cf5 tochar}{\cf1  }{\cf1 (}{\cf5 d1} {\cf1 -} {\cf5 d2}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 r1i}{\cf1 )} {\cf1 =} '.' {\b\cf6 and} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 r2i}{\cf1 )} {\cf1 =} '.' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 ch} {\cf1 :=} '.'{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 res}{\b\cf1 .}{\cf5 insert_character}{\cf1  }{\cf1 (}{\cf5 ch}{\cf1 ,} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1i} {\cf1 :=} {\cf5 r1i} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r2i} {\cf1 :=} {\cf5 r2i} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make_from_string}{\cf1  }{\cf1 (}{\cf5 res}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 product} {\b\cf6 alias} {\cf1 "}{\cf1 *}{\cf1 "} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 VALUE}{\cf1 )}{\cf1 :} {\cf4 VALUE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  multiplies current by other and returns a new object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 VALUE}{\cf3  as synonym of }{\cf5 multiply}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 r1}{\cf1 ,} {\cf5 r2}{\cf1 ,} {\cf5 tr1}{\cf1 ,} {\cf5 tr2}{\cf1 ,} {\cf5 tr}{\cf1 :} {\cf4 VALUE}{\line}
+{\tab}{\tab}{\tab}{\cf5 r1dotpos}{\cf1 ,} {\cf5 r2dotpos}{\cf1 ,} {\cf5 precision}{\cf1 ,} {\cf5 r1i}{\cf1 ,} {\cf5 r2i}{\cf1 ,} {\cf5 carry}{\cf1 ,} {\cf5 d1}{\cf1 ,} {\cf5 d2}{\cf1 ,} {\cf5 d}{\cf1 ,} {\cf5 diff}{\cf1 ,} {\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 res}{\cf1 ,} {\cf5 cres}{\cf1 ,} {\cf5 tmp}{\cf1 ,} {\cf5 empty}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 r1} {\cf1 :=} {\b\cf6 Current}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\cf5 r2} {\cf1 :=} {\cf5 other}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} '-' {\b\cf6 and} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 /=} '-' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r1}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 r1} {\cf1 *} {\cf5 r2}{\cf1 )}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 /=} '-' {\b\cf6 and} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} '-' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r2}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 r1} {\cf1 *} {\cf5 r2}{\cf1 )}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} '-' {\b\cf6 and} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} '-' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r1}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r2}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 r1} {\cf1 *} {\cf5 r2}{\cf1 )}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r1dotpos} {\cf1 :=} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 index_of}{\cf1  }{\cf1 (}'.'{\cf1 ,} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r2dotpos} {\cf1 :=} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 index_of}{\cf1  }{\cf1 (}'.'{\cf1 ,} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 precision} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 r1dotpos} {\cf1 >} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 precision} {\cf1 :=} {\cf5 precision} {\cf1 +} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count} {\cf1 -} {\cf5 r1dotpos}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 remove}{\cf1  }{\cf1 (}{\cf5 r1dotpos}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 r2dotpos} {\cf1 >} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 precision} {\cf1 :=} {\cf5 precision} {\cf1 +} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count} {\cf1 -} {\cf5 r2dotpos}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 remove}{\cf1  }{\cf1 (}{\cf5 r2dotpos}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 empty} {\cf1 :=} ""{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 res} {\cf1 :=} {\cf5 empty}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r2i} {\cf1 :=} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r2i} {\cf1 <} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 cres} {\cf1 :=} {\cf5 empty}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 carry} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1i} {\cf1 :=} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1i} {\cf1 <} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 d1} {\cf1 :=} {\cf5 todigit}{\cf1  }{\cf1 (}{\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 r1i}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 d2} {\cf1 :=} {\cf5 todigit}{\cf1  }{\cf1 (}{\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 r2i}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 d} {\cf1 :=} {\cf5 carry} {\cf1 +} {\cf5 d1} {\cf1 *} {\cf5 d2}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 d} {\cf1 >=} 10 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 carry} {\cf1 :=} {\cf5 d} {\cf1 //} 10{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 d} {\cf1 :=} {\cf5 d} {\cf1 \\\\} 10{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 carry} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 cres}{\b\cf1 .}{\cf5 insert_character}{\cf1  }{\cf1 (}{\cf5 tochar}{\cf1  }{\cf1 (}{\cf5 d}{\cf1 )}{\cf1 ,} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1i} {\cf1 :=} {\cf5 r1i} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 carry} {\cf1 >} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 cres}{\b\cf1 .}{\cf5 insert_character}{\cf1  }{\cf1 (}{\cf5 tochar}{\cf1  }{\cf1 (}{\cf5 carry}{\cf1 )}{\cf1 ,} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 res}{\b\cf1 .}{\cf5 count} {\cf1 =} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 res} {\cf1 :=} {\cf5 cres}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 tmp}{\b\cf1 .}{\cf5 make_filled}{\cf1  }{\cf1 (}'0'{\cf1 ,} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count} {\cf1 -} {\cf5 r2i}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 cres}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 tmp}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 tr1}{\b\cf1 .}{\cf5 make_from_string}{\cf1  }{\cf1 (}{\cf5 cres}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 tr2}{\b\cf1 .}{\cf5 make_from_string}{\cf1  }{\cf1 (}{\cf5 res}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 tr} {\cf1 :=} {\cf5 tr1} {\cf1 +} {\cf5 tr2}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 res} {\cf1 :=} {\cf5 tr}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r2i} {\cf1 :=} {\cf5 r2i} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 precision} {\cf1 >} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 precision} {\cf1 >} {\cf5 res}{\b\cf1 .}{\cf5 count} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 diff} {\cf1 :=} {\cf5 precision} {\cf1 -} {\cf5 res}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 >} {\cf5 diff}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 res}{\b\cf1 .}{\cf5 insert_character}{\cf1  }{\cf1 (}'0'{\cf1 ,} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 i} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 res}{\b\cf1 .}{\cf5 insert_character}{\cf1  }{\cf1 (}'.'{\cf1 ,} {\cf5 res}{\b\cf1 .}{\cf5 count} {\cf1 -} {\cf5 precision} {\cf1 +} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make_from_string}{\cf1  }{\cf1 (}{\cf5 res}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 multiply} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 VALUE}{\cf1 )}{\cf1 :} {\cf4 VALUE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  multiplies current by other and returns a new object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 VALUE}{\cf3  as synonym of }{\cf5 product}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 r1}{\cf1 ,} {\cf5 r2}{\cf1 ,} {\cf5 tr1}{\cf1 ,} {\cf5 tr2}{\cf1 ,} {\cf5 tr}{\cf1 :} {\cf4 VALUE}{\line}
+{\tab}{\tab}{\tab}{\cf5 r1dotpos}{\cf1 ,} {\cf5 r2dotpos}{\cf1 ,} {\cf5 precision}{\cf1 ,} {\cf5 r1i}{\cf1 ,} {\cf5 r2i}{\cf1 ,} {\cf5 carry}{\cf1 ,} {\cf5 d1}{\cf1 ,} {\cf5 d2}{\cf1 ,} {\cf5 d}{\cf1 ,} {\cf5 diff}{\cf1 ,} {\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 res}{\cf1 ,} {\cf5 cres}{\cf1 ,} {\cf5 tmp}{\cf1 ,} {\cf5 empty}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 r1} {\cf1 :=} {\b\cf6 Current}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\cf5 r2} {\cf1 :=} {\cf5 other}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} '-' {\b\cf6 and} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 /=} '-' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r1}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 r1} {\cf1 *} {\cf5 r2}{\cf1 )}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 /=} '-' {\b\cf6 and} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} '-' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r2}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 r1} {\cf1 *} {\cf5 r2}{\cf1 )}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} '-' {\b\cf6 and} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} '-' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r1}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r2}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 r1} {\cf1 *} {\cf5 r2}{\cf1 )}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r1dotpos} {\cf1 :=} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 index_of}{\cf1  }{\cf1 (}'.'{\cf1 ,} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r2dotpos} {\cf1 :=} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 index_of}{\cf1  }{\cf1 (}'.'{\cf1 ,} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 precision} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 r1dotpos} {\cf1 >} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 precision} {\cf1 :=} {\cf5 precision} {\cf1 +} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count} {\cf1 -} {\cf5 r1dotpos}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 remove}{\cf1  }{\cf1 (}{\cf5 r1dotpos}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 r2dotpos} {\cf1 >} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 precision} {\cf1 :=} {\cf5 precision} {\cf1 +} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count} {\cf1 -} {\cf5 r2dotpos}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 remove}{\cf1  }{\cf1 (}{\cf5 r2dotpos}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 empty} {\cf1 :=} ""{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 res} {\cf1 :=} {\cf5 empty}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r2i} {\cf1 :=} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r2i} {\cf1 <} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 cres} {\cf1 :=} {\cf5 empty}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 carry} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1i} {\cf1 :=} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1i} {\cf1 <} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 d1} {\cf1 :=} {\cf5 todigit}{\cf1  }{\cf1 (}{\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 r1i}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 d2} {\cf1 :=} {\cf5 todigit}{\cf1  }{\cf1 (}{\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 r2i}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 d} {\cf1 :=} {\cf5 carry} {\cf1 +} {\cf5 d1} {\cf1 *} {\cf5 d2}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 d} {\cf1 >=} 10 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 carry} {\cf1 :=} {\cf5 d} {\cf1 //} 10{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 d} {\cf1 :=} {\cf5 d} {\cf1 \\\\} 10{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 carry} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 cres}{\b\cf1 .}{\cf5 insert_character}{\cf1  }{\cf1 (}{\cf5 tochar}{\cf1  }{\cf1 (}{\cf5 d}{\cf1 )}{\cf1 ,} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1i} {\cf1 :=} {\cf5 r1i} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 carry} {\cf1 >} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 cres}{\b\cf1 .}{\cf5 insert_character}{\cf1  }{\cf1 (}{\cf5 tochar}{\cf1  }{\cf1 (}{\cf5 carry}{\cf1 )}{\cf1 ,} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 res}{\b\cf1 .}{\cf5 count} {\cf1 =} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 res} {\cf1 :=} {\cf5 cres}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 tmp}{\b\cf1 .}{\cf5 make_filled}{\cf1  }{\cf1 (}'0'{\cf1 ,} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count} {\cf1 -} {\cf5 r2i}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 cres}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 tmp}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 tr1}{\b\cf1 .}{\cf5 make_from_string}{\cf1  }{\cf1 (}{\cf5 cres}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 tr2}{\b\cf1 .}{\cf5 make_from_string}{\cf1  }{\cf1 (}{\cf5 res}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 tr} {\cf1 :=} {\cf5 tr1} {\cf1 +} {\cf5 tr2}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 res} {\cf1 :=} {\cf5 tr}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r2i} {\cf1 :=} {\cf5 r2i} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 precision} {\cf1 >} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 precision} {\cf1 >} {\cf5 res}{\b\cf1 .}{\cf5 count} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 diff} {\cf1 :=} {\cf5 precision} {\cf1 -} {\cf5 res}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 >} {\cf5 diff}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 res}{\b\cf1 .}{\cf5 insert_character}{\cf1  }{\cf1 (}'0'{\cf1 ,} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 i} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 res}{\b\cf1 .}{\cf5 insert_character}{\cf1  }{\cf1 (}'.'{\cf1 ,} {\cf5 res}{\b\cf1 .}{\cf5 count} {\cf1 -} {\cf5 precision} {\cf1 +} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make_from_string}{\cf1  }{\cf1 (}{\cf5 res}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 quotient} {\b\cf6 alias} {\cf1 "}{\cf1 /}{\cf1 "} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 VALUE}{\cf1 )}{\cf1 :} {\cf4 VALUE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  divides current by other and returns a new object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 VALUE}{\cf3  as synonym of }{\cf5 divide}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 r1}{\cf1 ,} {\cf5 r2}{\cf1 ,} {\cf5 tr}{\cf1 ,} {\cf5 diff}{\cf1 ,} {\cf5 x}{\cf1 ,} {\cf5 sum}{\cf1 ,} {\cf5 prod}{\cf1 :} {\cf4 VALUE}{\line}
+{\tab}{\tab}{\tab}{\cf5 r1dotpos}{\cf1 ,} {\cf5 r2dotpos}{\cf1 ,} {\cf5 r1precision}{\cf1 ,} {\cf5 r2precision}{\cf1 ,} {\cf5 r1numtrailingzeros}{\cf1 ,} {\cf5 r2numtrailingzeros}{\cf1 ,} {\cf5 scalefactor}{\cf1 ,} {\cf5 i}{\cf1 ,} {\cf5 startpos}{\cf1 ,} {\cf5 r1i}{\cf1 ,} {\cf5 d}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 s}{\cf1 ,} {\cf5 res}{\cf1 ,} {\cf5 empty}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf5 pad}{\cf1 :} {\b\cf6 detachable} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf5 stoploop}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf5 ch}{\cf1 :} {\cf4 CHARACTER_8}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 r1} {\cf1 :=} {\b\cf6 Current}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\cf5 r2} {\cf1 :=} {\cf5 other}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 r1}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 zero}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 zero}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} '-' {\b\cf6 and} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 /=} '-' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r1}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 r1} {\cf1 /} {\cf5 r2}{\cf1 )}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 /=} '-' {\b\cf6 and} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} '-' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r2}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 r1} {\cf1 /} {\cf5 r2}{\cf1 )}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} '-' {\b\cf6 and} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} '-' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r1}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r2}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 r1} {\cf1 /} {\cf5 r2}{\cf1 )}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r1dotpos} {\cf1 :=} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 index_of}{\cf1  }{\cf1 (}'.'{\cf1 ,} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r2dotpos} {\cf1 :=} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 index_of}{\cf1  }{\cf1 (}'.'{\cf1 ,} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r1precision} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r2precision} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 r1dotpos} {\cf1 >} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1precision} {\cf1 :=} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count} {\cf1 -} {\cf5 r1dotpos}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 remove}{\cf1  }{\cf1 (}{\cf5 r1dotpos}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1}{\b\cf1 .}{\cf5 normalize}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 r2dotpos} {\cf1 >} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r2precision} {\cf1 :=} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count} {\cf1 -} {\cf5 r2dotpos}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 remove}{\cf1  }{\cf1 (}{\cf5 r2dotpos}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r2}{\b\cf1 .}{\cf5 normalize}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 pad} {\cf1 :=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 r1precision} {\cf1 >} {\cf5 r2precision} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 pad} {\cf1 :=} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 r2precision} {\cf1 >} {\cf5 r1precision} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 pad} {\cf1 :=} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 pad} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 s}{\b\cf1 .}{\cf5 make_filled}{\cf1  }{\cf1 (}'0'{\cf1 ,} {\cf1 (}{\cf5 r1precision} {\cf1 -} {\cf5 r2precision}{\cf1 )}{\b\cf1 .}{\cf5 abs}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 pad}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r1numtrailingzeros} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r2numtrailingzeros} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 scalefactor} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 <} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )} {\cf1 =} '0' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1numtrailingzeros} {\cf1 :=} {\cf5 r1numtrailingzeros} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 i} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 <} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )} {\cf1 =} '0' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r2numtrailingzeros} {\cf1 :=} {\cf5 r2numtrailingzeros} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 i} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 r1numtrailingzeros} {\cf1 <} {\cf5 r2numtrailingzeros} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 s}{\b\cf1 .}{\cf5 make_filled}{\cf1  }{\cf1 (}'0'{\cf1 ,} {\cf5 r2numtrailingzeros} {\cf1 -} {\cf5 r1numtrailingzeros}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 scalefactor} {\cf1 :=} {\cf5 scalefactor} {\cf1 +} {\cf5 r2numtrailingzeros} {\cf1 -} {\cf5 r1numtrailingzeros}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1numtrailingzeros} {\cf1 :=} {\cf5 r2numtrailingzeros}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 r1numtrailingzeros} {\cf1 -} {\cf5 r2numtrailingzeros} {\cf1 <} {\cf5 divisiondecimalprecision_} {\cf1 +} 1 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 scalefactor} {\cf1 :=} {\cf5 scalefactor} {\cf1 +} {\cf5 divisiondecimalprecision_} {\cf1 +} 1 {\cf1 -} {\cf1 (}{\cf5 r1numtrailingzeros} {\cf1 -} {\cf5 r2numtrailingzeros}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 s}{\b\cf1 .}{\cf5 make_filled}{\cf1  }{\cf1 (}'0'{\cf1 ,} {\cf5 divisiondecimalprecision_} {\cf1 +} 1 {\cf1 -} {\cf1 (}{\cf5 r1numtrailingzeros} {\cf1 -} {\cf5 r2numtrailingzeros}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 r1} {\cf1 <} {\cf5 r2} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 scalefactor} {\cf1 :=} {\cf5 scalefactor} {\cf1 +} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count} {\cf1 -} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 s}{\b\cf1 .}{\cf5 make_filled}{\cf1  }{\cf1 (}'0'{\cf1 ,} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count} {\cf1 -} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count} {\cf1 +} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count} {\cf1 -} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count} {\cf1 <} {\cf5 divisiondecimalprecision_} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 scalefactor} {\cf1 :=} {\cf5 scalefactor} {\cf1 +} {\cf5 divisiondecimalprecision_} {\cf1 -} {\cf1 (}{\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count} {\cf1 -} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 s}{\b\cf1 .}{\cf5 make_filled}{\cf1  }{\cf1 (}'0'{\cf1 ,} {\cf5 divisiondecimalprecision_} {\cf1 -} {\cf1 (}{\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count} {\cf1 -} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 startpos} {\cf1 :=} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count} {\cf1 >} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 stoploop} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 startpos} {\cf1 >} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count} {\b\cf6 or} {\cf5 stoploop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 s} {\cf1 :=} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}1{\cf1 ,} {\cf5 startpos} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 tr}{\b\cf1 .}{\cf5 make_from_string}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 tr} {\cf1 >=} {\cf5 r2} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 stoploop} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 startpos} {\cf1 :=} {\cf5 startpos} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 empty} {\cf1 :=} ""{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 res} {\cf1 :=} {\cf5 empty}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 diff}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1i} {\cf1 :=} {\cf5 startpos} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1i} {\cf1 >} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 r1i} {\cf1 =} {\cf5 startpos} {\cf1 -} 1 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 x}{\b\cf1 .}{\cf5 make_from_string}{\cf1  }{\cf1 (}{\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}1{\cf1 ,} {\cf5 r1i}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 diff}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 insert_character}{\cf1  }{\cf1 (}{\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 r1i}{\cf1 )}{\cf1 ,} {\cf5 diff}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count} {\cf1 +} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 x}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 x} {\cf1 :=} {\cf5 diff}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 d} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 sum}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 stoploop} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 stoploop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 sum} {\cf1 :=} {\cf5 sum} {\cf1 +} {\cf5 r2}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 sum} {\cf1 >} {\cf5 x} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 stoploop} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 d} {\cf1 :=} {\cf5 d} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 ch} {\cf1 :=} {\cf5 tochar}{\cf1  }{\cf1 (}{\cf5 d}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 res}{\b\cf1 .}{\cf5 insert_character}{\cf1  }{\cf1 (}{\cf5 ch}{\cf1 ,} {\cf5 res}{\b\cf1 .}{\cf5 count} {\cf1 +} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 prod}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 s}{\b\cf1 .}{\cf5 make_filled}{\cf1  }{\cf1 (}{\cf5 ch}{\cf1 ,} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 tr}{\b\cf1 .}{\cf5 make_from_string}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 prod} {\cf1 :=} {\cf5 tr} {\cf1 *} {\cf5 r2}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 diff} {\cf1 :=} {\cf5 x} {\cf1 -} {\cf5 prod}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1i} {\cf1 :=} {\cf5 r1i} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 scalefactor} {\cf1 >} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 scalefactor} {\cf1 >} {\cf5 res}{\b\cf1 .}{\cf5 count} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 s}{\b\cf1 .}{\cf5 make_filled}{\cf1  }{\cf1 (}'0'{\cf1 ,} {\cf5 scalefactor} {\cf1 -} {\cf5 res}{\b\cf1 .}{\cf5 count}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 res}{\b\cf1 .}{\cf5 insert_string}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 ,} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 res}{\b\cf1 .}{\cf5 insert_character}{\cf1  }{\cf1 (}'.'{\cf1 ,} {\cf5 res}{\b\cf1 .}{\cf5 count} {\cf1 -} {\cf5 scalefactor} {\cf1 +} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make_from_string}{\cf1  }{\cf1 (}{\cf5 res}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 divide} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 VALUE}{\cf1 )}{\cf1 :} {\cf4 VALUE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  divides current by other and returns a new object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 VALUE}{\cf3  as synonym of }{\cf5 quotient}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 r1}{\cf1 ,} {\cf5 r2}{\cf1 ,} {\cf5 tr}{\cf1 ,} {\cf5 diff}{\cf1 ,} {\cf5 x}{\cf1 ,} {\cf5 sum}{\cf1 ,} {\cf5 prod}{\cf1 :} {\cf4 VALUE}{\line}
+{\tab}{\tab}{\tab}{\cf5 r1dotpos}{\cf1 ,} {\cf5 r2dotpos}{\cf1 ,} {\cf5 r1precision}{\cf1 ,} {\cf5 r2precision}{\cf1 ,} {\cf5 r1numtrailingzeros}{\cf1 ,} {\cf5 r2numtrailingzeros}{\cf1 ,} {\cf5 scalefactor}{\cf1 ,} {\cf5 i}{\cf1 ,} {\cf5 startpos}{\cf1 ,} {\cf5 r1i}{\cf1 ,} {\cf5 d}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 s}{\cf1 ,} {\cf5 res}{\cf1 ,} {\cf5 empty}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf5 pad}{\cf1 :} {\b\cf6 detachable} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf5 stoploop}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf5 ch}{\cf1 :} {\cf4 CHARACTER_8}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 r1} {\cf1 :=} {\b\cf6 Current}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\cf5 r2} {\cf1 :=} {\cf5 other}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 r1}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 zero}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 zero}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} '-' {\b\cf6 and} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 /=} '-' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r1}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 r1} {\cf1 /} {\cf5 r2}{\cf1 )}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 /=} '-' {\b\cf6 and} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} '-' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r2}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 r1} {\cf1 /} {\cf5 r2}{\cf1 )}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} '-' {\b\cf6 and} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} '-' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r1}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r2}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 r1} {\cf1 /} {\cf5 r2}{\cf1 )}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r1dotpos} {\cf1 :=} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 index_of}{\cf1  }{\cf1 (}'.'{\cf1 ,} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r2dotpos} {\cf1 :=} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 index_of}{\cf1  }{\cf1 (}'.'{\cf1 ,} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r1precision} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r2precision} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 r1dotpos} {\cf1 >} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1precision} {\cf1 :=} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count} {\cf1 -} {\cf5 r1dotpos}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 remove}{\cf1  }{\cf1 (}{\cf5 r1dotpos}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1}{\b\cf1 .}{\cf5 normalize}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 r2dotpos} {\cf1 >} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r2precision} {\cf1 :=} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count} {\cf1 -} {\cf5 r2dotpos}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 remove}{\cf1  }{\cf1 (}{\cf5 r2dotpos}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r2}{\b\cf1 .}{\cf5 normalize}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 pad} {\cf1 :=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 r1precision} {\cf1 >} {\cf5 r2precision} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 pad} {\cf1 :=} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 r2precision} {\cf1 >} {\cf5 r1precision} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 pad} {\cf1 :=} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 pad} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 s}{\b\cf1 .}{\cf5 make_filled}{\cf1  }{\cf1 (}'0'{\cf1 ,} {\cf1 (}{\cf5 r1precision} {\cf1 -} {\cf5 r2precision}{\cf1 )}{\b\cf1 .}{\cf5 abs}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 pad}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r1numtrailingzeros} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 r2numtrailingzeros} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 scalefactor} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 <} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )} {\cf1 =} '0' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1numtrailingzeros} {\cf1 :=} {\cf5 r1numtrailingzeros} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 i} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 <} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )} {\cf1 =} '0' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r2numtrailingzeros} {\cf1 :=} {\cf5 r2numtrailingzeros} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 i} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 r1numtrailingzeros} {\cf1 <} {\cf5 r2numtrailingzeros} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 s}{\b\cf1 .}{\cf5 make_filled}{\cf1  }{\cf1 (}'0'{\cf1 ,} {\cf5 r2numtrailingzeros} {\cf1 -} {\cf5 r1numtrailingzeros}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 scalefactor} {\cf1 :=} {\cf5 scalefactor} {\cf1 +} {\cf5 r2numtrailingzeros} {\cf1 -} {\cf5 r1numtrailingzeros}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1numtrailingzeros} {\cf1 :=} {\cf5 r2numtrailingzeros}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 r1numtrailingzeros} {\cf1 -} {\cf5 r2numtrailingzeros} {\cf1 <} {\cf5 divisiondecimalprecision_} {\cf1 +} 1 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 scalefactor} {\cf1 :=} {\cf5 scalefactor} {\cf1 +} {\cf5 divisiondecimalprecision_} {\cf1 +} 1 {\cf1 -} {\cf1 (}{\cf5 r1numtrailingzeros} {\cf1 -} {\cf5 r2numtrailingzeros}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 s}{\b\cf1 .}{\cf5 make_filled}{\cf1  }{\cf1 (}'0'{\cf1 ,} {\cf5 divisiondecimalprecision_} {\cf1 +} 1 {\cf1 -} {\cf1 (}{\cf5 r1numtrailingzeros} {\cf1 -} {\cf5 r2numtrailingzeros}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 r1} {\cf1 <} {\cf5 r2} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 scalefactor} {\cf1 :=} {\cf5 scalefactor} {\cf1 +} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count} {\cf1 -} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 s}{\b\cf1 .}{\cf5 make_filled}{\cf1  }{\cf1 (}'0'{\cf1 ,} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count} {\cf1 -} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count} {\cf1 +} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count} {\cf1 -} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count} {\cf1 <} {\cf5 divisiondecimalprecision_} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 scalefactor} {\cf1 :=} {\cf5 scalefactor} {\cf1 +} {\cf5 divisiondecimalprecision_} {\cf1 -} {\cf1 (}{\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count} {\cf1 -} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 s}{\b\cf1 .}{\cf5 make_filled}{\cf1  }{\cf1 (}'0'{\cf1 ,} {\cf5 divisiondecimalprecision_} {\cf1 -} {\cf1 (}{\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count} {\cf1 -} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 startpos} {\cf1 :=} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count} {\cf1 >} {\cf5 r2}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 stoploop} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 startpos} {\cf1 >} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count} {\b\cf6 or} {\cf5 stoploop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 s} {\cf1 :=} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}1{\cf1 ,} {\cf5 startpos} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 tr}{\b\cf1 .}{\cf5 make_from_string}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 tr} {\cf1 >=} {\cf5 r2} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 stoploop} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 startpos} {\cf1 :=} {\cf5 startpos} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 empty} {\cf1 :=} ""{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 res} {\cf1 :=} {\cf5 empty}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 diff}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1i} {\cf1 :=} {\cf5 startpos} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1i} {\cf1 >} {\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 r1i} {\cf1 =} {\cf5 startpos} {\cf1 -} 1 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 x}{\b\cf1 .}{\cf5 make_from_string}{\cf1  }{\cf1 (}{\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}1{\cf1 ,} {\cf5 r1i}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 diff}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 insert_character}{\cf1  }{\cf1 (}{\cf5 r1}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 r1i}{\cf1 )}{\cf1 ,} {\cf5 diff}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count} {\cf1 +} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 x}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 x} {\cf1 :=} {\cf5 diff}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 d} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 sum}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 stoploop} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 stoploop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 sum} {\cf1 :=} {\cf5 sum} {\cf1 +} {\cf5 r2}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 sum} {\cf1 >} {\cf5 x} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 stoploop} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 d} {\cf1 :=} {\cf5 d} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 ch} {\cf1 :=} {\cf5 tochar}{\cf1  }{\cf1 (}{\cf5 d}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 res}{\b\cf1 .}{\cf5 insert_character}{\cf1  }{\cf1 (}{\cf5 ch}{\cf1 ,} {\cf5 res}{\b\cf1 .}{\cf5 count} {\cf1 +} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 prod}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 s}{\b\cf1 .}{\cf5 make_filled}{\cf1  }{\cf1 (}{\cf5 ch}{\cf1 ,} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 tr}{\b\cf1 .}{\cf5 make_from_string}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 prod} {\cf1 :=} {\cf5 tr} {\cf1 *} {\cf5 r2}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 diff} {\cf1 :=} {\cf5 x} {\cf1 -} {\cf5 prod}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 r1i} {\cf1 :=} {\cf5 r1i} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 scalefactor} {\cf1 >} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 scalefactor} {\cf1 >} {\cf5 res}{\b\cf1 .}{\cf5 count} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 s}{\b\cf1 .}{\cf5 make_filled}{\cf1  }{\cf1 (}'0'{\cf1 ,} {\cf5 scalefactor} {\cf1 -} {\cf5 res}{\b\cf1 .}{\cf5 count}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 res}{\b\cf1 .}{\cf5 insert_string}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 ,} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 res}{\b\cf1 .}{\cf5 insert_character}{\cf1  }{\cf1 (}'.'{\cf1 ,} {\cf5 res}{\b\cf1 .}{\cf5 count} {\cf1 -} {\cf5 scalefactor} {\cf1 +} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make_from_string}{\cf1  }{\cf1 (}{\cf5 res}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 opposite} {\b\cf6 alias} {\cf1 "}{\cf1 -}{\cf1 "}{\cf1 :} {\cf4 VALUE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  unary minus}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make_from_string}{\cf1  }{\cf1 (}{\cf5 s_}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 negate}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 identity} {\b\cf6 alias} {\cf1 "}{\cf1 +}{\cf1 "}{\cf1 :} {\cf4 VALUE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  unary plus}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make_from_string}{\cf1  }{\cf1 (}{\cf5 s_}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 zero}{\cf1 :} {\cf4 VALUE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  neutral element for "+" and "-"}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make_from_string}{\cf1  }{\cf1 (}"0"{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 one}{\cf1 :} {\cf4 VALUE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  neutral element for "*" and "/"}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make_from_string}{\cf1  }{\cf1 (}"1"{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 divisible} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 VALUE}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  may current object be divided by }{\cf5 other}{\cf3 ?}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 not} {\cf5 other}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 zero}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 exponentiable} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 NUMERIC}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  may current object be elevated to the power }{\cf5 other}{\cf3 ?}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_natural}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 is_integer} {\b\cf6 and} {\b\cf6 Current} {\cf1 >=} {\cf5 zero}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_natural1}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 is_integer} {\b\cf6 and} {\b\cf6 Current} {\cf1 >=} {\cf5 one}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_integer}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 s_}{\b\cf1 .}{\cf5 index_of}{\cf1  }{\cf1 (}'.'{\cf1 ,} 1{\cf1 )} {\cf1 =} 0{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_division_precision} {\cf1 (}{\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  sets divisionDecimalPrecision_ to 'i'}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 greater_than_zero}{\cf1 :} {\cf5 i} {\cf1 >} 0{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 divisiondecimalprecision_} {\cf1 :=} {\cf5 i}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Conversion}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 as_double}{\cf1 :} {\cf4 REAL_64}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  represent as a DOUBLE}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 precise_out}{\b\cf1 .}{\cf5 to_double}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  printing}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 precise_out}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  what is the string representation of VALUE_IMP}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 s_}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 out}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  return a representation of the number rounded to two decimal places}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 myclone}{\cf1 :} {\cf4 VALUE}{\line}
+{\tab}{\tab}{\tab}{\cf5 precision}{\cf1 ,} {\cf5 missingzeros}{\cf1 ,} {\cf5 idxdot}{\cf1 ,} {\cf5 rounddigits}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 pad}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 myclone} {\cf1 :=} {\b\cf6 Current}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\cf5 rounddigits} {\cf1 :=} 2{\line}
+{\tab}{\tab}{\tab}{\cf5 myclone}{\b\cf1 .}{\cf5 round}{\cf1  }{\cf1 (}{\cf5 rounddigits}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 idxdot} {\cf1 :=} {\cf5 myclone}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 index_of}{\cf1  }{\cf1 (}'.'{\cf1 ,} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 idxdot} {\cf1 =} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 myclone}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 append_character}{\cf1  }{\cf1 (}'.'{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 pad}{\b\cf1 .}{\cf5 make_filled}{\cf1  }{\cf1 (}'0'{\cf1 ,} {\cf5 rounddigits}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 myclone}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 append_string}{\cf1  }{\cf1 (}{\cf5 pad}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 precision} {\cf1 :=} {\cf5 myclone}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count} {\cf1 -} {\cf5 idxdot}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 missingzeros} {\cf1 :=} {\cf5 rounddigits} {\cf1 -} {\cf5 precision}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 missingzeros} {\cf1 >} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 pad}{\b\cf1 .}{\cf5 make_filled}{\cf1  }{\cf1 (}'0'{\cf1 ,} {\cf5 missingzeros}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 myclone}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 append_string}{\cf1  }{\cf1 (}{\cf5 pad}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 myclone}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  rounding}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 round_to} {\cf1 (}{\cf5 digits}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 VALUE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  rounds the current VALUE_IMP to 'digits'}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  symmetric rounding as in Excel }{\cf3 http://support.microsoft.com/kb/196652}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  -2.6 is rounded to -3}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 digits} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Current}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 round}{\cf1  }{\cf1 (}{\cf5 digits}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 precise_out_to} {\cf1 (}{\cf5 digits}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  returns the precise string representation to 'digits'}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 digits} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 dotpos}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 precise_out}{\line}
+{\tab}{\tab}{\tab}{\cf5 dotpos} {\cf1 :=} {\b\cf6 Result}{\b\cf1 .}{\cf5 index_of}{\cf1  }{\cf1 (}'.'{\cf1 ,} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 dotpos} {\cf1 >} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Result}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}1{\cf1 ,} {\cf5 dotpos} {\cf1 +} {\cf5 digits}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 round} {\cf1 (}{\cf5 digits}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  rounds this instance to the specified number of digits}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 digits} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 dotpos}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 neg}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf5 s}{\cf1 ,} {\cf5 tmp}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf5 x}{\cf1 ,} {\cf5 y}{\cf1 :} {\cf4 VALUE}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 dotpos} {\cf1 :=} {\cf5 s_}{\b\cf1 .}{\cf5 index_of}{\cf1  }{\cf1 (}'.'{\cf1 ,} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 dotpos} {\cf1 >} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 neg} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} '-' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 neg} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 s}{\b\cf1 .}{\cf5 make_filled}{\cf1  }{\cf1 (}'0'{\cf1 ,} {\cf5 digits}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 s}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}"5"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 s}{\b\cf1 .}{\cf5 insert_string}{\cf1  }{\cf1 (}"0."{\cf1 ,} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 x}{\b\cf1 .}{\cf5 make_from_string}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 y} {\cf1 :=} {\b\cf6 Current} {\cf1 +} {\cf5 x}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 dotpos} {\cf1 :=} {\cf5 y}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 index_of}{\cf1  }{\cf1 (}'.'{\cf1 ,} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 dotpos} {\cf1 /=} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 tmp} {\cf1 :=} {\cf5 y}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}1{\cf1 ,} {\cf5 dotpos} {\cf1 +} {\cf5 digits}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 tmp} {\cf1 :=} {\cf5 y}{\b\cf1 .}{\cf5 precise_out}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 s_} {\cf1 :=} {\cf5 tmp}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 neg} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 normalize}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  negates the number}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 tmp}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} '-' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 tmp} {\cf1 :=} {\cf5 s_}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}2{\cf1 ,} {\cf5 s_}{\b\cf1 .}{\cf5 count}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 s_} {\cf1 :=} {\cf5 tmp}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 s_}{\b\cf1 .}{\cf5 insert_character}{\cf1  }{\cf1 (}'-'{\cf1 ,} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Epsilon_singleton}{\cf1 :} {\cf4 VALUE_SINGLETON}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_epsilon} {\cf1 (}{\cf5 v}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 Epsilon_singleton}{\b\cf1 .}{\cf5 set_epsilon}{\cf1  }{\cf1 (}{\cf5 v}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_imprecise_equal} {\b\cf6 alias} {\cf1 "}{\cf1 |~}{\cf1 "} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 VALUE}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 Epsilon_singleton}{\b\cf1 .}{\cf5 epsilon} {\cf1 =} {\b\cf6 create} {\cf1 \{}{\cf4 VALUE}{\cf1 \}}{\b\cf1 .}{\cf5 make_from_string}{\cf1  }{\cf1 (}"0.0"{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Current} {\cf1 =} {\cf5 other}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\b\cf6 Current} {\cf1 -} {\cf5 other}{\cf1 )}{\b\cf1 .}{\cf5 absolute} {\cf1 <=} {\cf5 Epsilon_singleton}{\b\cf1 .}{\cf5 epsilon}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_imprecise_equal_negation} {\b\cf6 alias} {\cf1 "}{\cf1 |/~}{\cf1 "} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 VALUE}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 Epsilon_singleton}{\b\cf1 .}{\cf5 epsilon} {\cf1 =} {\b\cf6 create} {\cf1 \{}{\cf4 VALUE}{\cf1 \}}{\b\cf1 .}{\cf5 make_from_string}{\cf1  }{\cf1 (}"0.0"{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Current} {\cf1 /=} {\cf5 other}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 not} {\cf1 (}{\b\cf6 Current} {\cf1 |~} {\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_imprecise_less} {\b\cf6 alias} {\cf1 "}{\cf1 |<}{\cf1 "} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 VALUE}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 Epsilon_singleton}{\b\cf1 .}{\cf5 epsilon} {\cf1 =} {\b\cf6 create} {\cf1 \{}{\cf4 VALUE}{\cf1 \}}{\b\cf1 .}{\cf5 make_from_string}{\cf1  }{\cf1 (}"0.0"{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Current} {\cf1 <} {\cf5 other}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Current} {\cf1 <} {\cf1 (}{\cf5 other} {\cf1 -} {\cf5 Epsilon_singleton}{\b\cf1 .}{\cf5 epsilon}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_imprecise_less_equal} {\b\cf6 alias} {\cf1 "}{\cf1 |<~}{\cf1 "} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 VALUE}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 Epsilon_singleton}{\b\cf1 .}{\cf5 epsilon} {\cf1 =} {\b\cf6 create} {\cf1 \{}{\cf4 VALUE}{\cf1 \}}{\b\cf1 .}{\cf5 make_from_string}{\cf1  }{\cf1 (}"0.0"{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Current} {\cf1 <=} {\cf5 other}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\b\cf6 Current} {\cf1 |~} {\cf5 other}{\cf1 )} {\b\cf6 or} {\cf1 (}{\b\cf6 Current} {\cf1 <} {\cf1 (}{\cf5 other} {\cf1 -} {\cf5 Epsilon_singleton}{\b\cf1 .}{\cf5 epsilon}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_imprecise_greater} {\b\cf6 alias} {\cf1 "}{\cf1 |>}{\cf1 "} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 VALUE}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 Epsilon_singleton}{\b\cf1 .}{\cf5 epsilon} {\cf1 =} {\b\cf6 create} {\cf1 \{}{\cf4 VALUE}{\cf1 \}}{\b\cf1 .}{\cf5 make_from_string}{\cf1  }{\cf1 (}"0.0"{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Current} {\cf1 >} {\cf5 other}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Current} {\cf1 >} {\cf1 (}{\cf5 other} {\cf1 +} {\cf5 Epsilon_singleton}{\b\cf1 .}{\cf5 epsilon}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_imprecise_greater_equal} {\b\cf6 alias} {\cf1 "}{\cf1 |>~}{\cf1 "} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 VALUE}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 Epsilon_singleton}{\b\cf1 .}{\cf5 epsilon} {\cf1 =} {\b\cf6 create} {\cf1 \{}{\cf4 VALUE}{\cf1 \}}{\b\cf1 .}{\cf5 make_from_string}{\cf1  }{\cf1 (}"0.0"{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Current} {\cf1 >=} {\cf5 other}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\b\cf6 Current} {\cf1 |~} {\cf5 other}{\cf1 )} {\b\cf6 or} {\cf1 (}{\b\cf6 Current} {\cf1 >} {\cf1 (}{\cf5 other} {\cf1 +} {\cf5 Epsilon_singleton}{\b\cf1 .}{\cf5 epsilon}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 absolute}{\cf1 :} {\cf4 VALUE}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 Current} {\cf1 >=} {\b\cf6 Current}{\b\cf1 .}{\cf5 zero} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Current}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 opposite}{\b\cf1 .}{\cf5 clone_me}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 >=} {\b\cf6 Result}{\b\cf1 .}{\cf5 zero}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 VALUE}{\cf1 \}} {\cf3 --}{\cf3  private methods}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 ensurevalid} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  check if the given string is of the correct format}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 non_void}{\cf1 :} {\cf5 s} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 non_empty}{\cf1 :} {\b\cf6 not} {\cf5 s}{\b\cf1 .}{\cf5 is_empty}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 seendot}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 seendot} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 >} {\cf5 s}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 s}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )} {\cf1 =} '-' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 i} {\cf1 >} 1 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 s}{\b\cf1 .}{\cf5 count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 s}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )} {\cf1 =} '.' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 i} {\cf1 =} {\cf5 s}{\b\cf1 .}{\cf5 count} {\b\cf6 or} {\cf5 seendot} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 s}{\b\cf1 .}{\cf5 count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 seendot} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\b\cf6 not} {\cf5 s}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\b\cf1 .}{\cf5 is_digit} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 s}{\b\cf1 .}{\cf5 count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 i} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 normalize}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  standardizes the format of the real number}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 non_empty}{\cf1 :} {\b\cf6 not} {\cf5 s_}{\b\cf1 .}{\cf5 is_empty}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 i}{\cf1 ,} {\cf5 inspos}{\cf1 ,} {\cf5 dotpos}{\cf1 ,} {\cf5 firstnonzeropos}{\cf1 ,} {\cf5 lastnonzeropos}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 seenminus}{\cf1 ,} {\cf5 prependzero}{\cf1 ,} {\cf5 hasdot}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf5 whole}{\cf1 ,} {\cf5 fraction}{\cf1 ,} {\cf5 empty}{\cf1 ,} {\cf5 tmp}{\cf1 ,} {\cf5 zerostr}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 empty} {\cf1 :=} ""{\line}
+{\tab}{\tab}{\tab}{\cf5 zerostr} {\cf1 :=} "0"{\line}
+{\tab}{\tab}{\tab}{\cf5 seenminus} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\cf5 prependzero} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 >} {\cf5 s_}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )} {\cf1 =} '-' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 seenminus} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )} {\cf1 =} '.' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 i} {\cf1 =} 1 {\b\cf6 or} {\cf5 seenminus} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 prependzero} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 i} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 prependzero} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 inspos} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 seenminus} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 inspos} {\cf1 :=} 2{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 s_}{\b\cf1 .}{\cf5 insert_character}{\cf1  }{\cf1 (}'0'{\cf1 ,} {\cf5 inspos}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf1 (}{\cf5 seenminus}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 dotpos} {\cf1 :=} {\cf5 s_}{\b\cf1 .}{\cf5 index_of}{\cf1  }{\cf1 (}'.'{\cf1 ,} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 dotpos} {\cf1 =} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 hasdot} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 whole} {\cf1 :=} {\cf5 s_}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 fraction} {\cf1 :=} {\cf5 empty}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 hasdot} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 tmp} {\cf1 :=} {\cf5 s_}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}1{\cf1 ,} {\cf5 dotpos} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 whole} {\cf1 :=} {\cf5 tmp}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 tmp} {\cf1 :=} {\cf5 s_}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}{\cf5 dotpos} {\cf1 +} 1{\cf1 ,} {\cf5 s_}{\b\cf1 .}{\cf5 count}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 fraction} {\cf1 :=} {\cf5 tmp}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 whole}{\b\cf1 .}{\cf5 is_empty} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 firstnonzeropos} {\cf1 :=} {\cf5 whole}{\b\cf1 .}{\cf5 count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 >} {\cf5 whole}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 whole}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )} {\cf1 /=} '0' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 firstnonzeropos} {\cf1 :=} {\cf5 i}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 whole}{\b\cf1 .}{\cf5 count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 i} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 firstnonzeropos} {\cf1 =} {\cf5 whole}{\b\cf1 .}{\cf5 count} {\cf1 +} 1 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 whole} {\cf1 :=} {\cf5 zerostr}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 tmp} {\cf1 :=} {\cf5 whole}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}{\cf5 firstnonzeropos}{\cf1 ,} {\cf5 whole}{\b\cf1 .}{\cf5 count}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 whole} {\cf1 :=} {\cf5 tmp}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 fraction}{\b\cf1 .}{\cf5 is_empty} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 lastnonzeropos} {\cf1 :=} -1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 fraction}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 <} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 fraction}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )} {\cf1 /=} '0' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 lastnonzeropos} {\cf1 :=} {\cf5 i}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 i} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 lastnonzeropos} {\cf1 =} -1 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 fraction} {\cf1 :=} {\cf5 empty}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 tmp} {\cf1 :=} {\cf5 fraction}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}1{\cf1 ,} {\cf5 lastnonzeropos}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 fraction} {\cf1 :=} {\cf5 tmp}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 s_} {\cf1 :=} {\cf5 whole}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 hasdot} {\b\cf6 and} {\b\cf6 not} {\cf5 fraction}{\b\cf1 .}{\cf5 is_empty} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 s_}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}"."{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 s_}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 fraction}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 seenminus} {\b\cf6 and} {\b\cf6 not} {\cf5 s_}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}"0"{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 s_}{\b\cf1 .}{\cf5 insert_character}{\cf1  }{\cf1 (}'-'{\cf1 ,} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 todigit} {\cf1 (}{\cf5 ch}{\cf1 :} {\cf4 CHARACTER_8}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  converts a character to a digit}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 chzero}{\cf1 :} {\cf4 CHARACTER_8}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 chzero} {\cf1 :=} '0'{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 ch}{\b\cf1 .}{\cf5 code} {\cf1 -} {\cf5 chzero}{\b\cf1 .}{\cf5 code}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 tochar} {\cf1 (}{\cf5 d}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 CHARACTER_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  converts a digit to a character}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 chzero}{\cf1 :} {\cf4 CHARACTER_8}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 chzero} {\cf1 :=} '0'{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 chzero}{\b\cf1 .}{\cf5 code} {\cf1 +} {\cf5 d}{\cf1 )}{\b\cf1 .}{\cf5 to_character_8}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 aligndecimal} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 VALUE}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  used to align the fractional parts of the given parameters}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 mydotpos}{\cf1 ,} {\cf5 otherdotpos}{\cf1 ,} {\cf5 myprec}{\cf1 ,} {\cf5 otherprec}{\cf1 ,} {\cf5 numtopad}{\cf1 ,} {\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 pad}{\cf1 :} {\b\cf6 detachable} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 mydotpos} {\cf1 :=} {\cf5 s_}{\b\cf1 .}{\cf5 index_of}{\cf1  }{\cf1 (}'.'{\cf1 ,} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 otherdotpos} {\cf1 :=} {\cf5 other}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 index_of}{\cf1  }{\cf1 (}'.'{\cf1 ,} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 mydotpos} {\cf1 /=} 0 {\b\cf6 and} {\cf5 otherdotpos} {\cf1 /=} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 myprec} {\cf1 :=} {\cf5 s_}{\b\cf1 .}{\cf5 count} {\cf1 -} {\cf5 mydotpos}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 otherprec} {\cf1 :=} {\cf5 other}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count} {\cf1 -} {\cf5 otherdotpos}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 myprec} {\cf1 /=} {\cf5 otherprec} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 pad} {\cf1 :=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 myprec} {\cf1 <} {\cf5 otherprec} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 pad} {\cf1 :=} {\cf5 s_}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 pad} {\cf1 :=} {\cf5 other}{\b\cf1 .}{\cf5 s_}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 numtopad} {\cf1 :=} {\cf1 (}{\cf5 myprec} {\cf1 -} {\cf5 otherprec}{\cf1 )}{\b\cf1 .}{\cf5 abs}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 >} {\cf5 numtopad}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 pad}{\b\cf1 .}{\cf5 append_character}{\cf1  }{\cf1 (}'0'{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 i} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 mydotpos} {\cf1 /=} 0 {\b\cf6 or} {\cf5 otherdotpos} {\cf1 /=} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 mydotpos} {\cf1 /=} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 myprec} {\cf1 :=} {\cf5 s_}{\b\cf1 .}{\cf5 count} {\cf1 -} {\cf5 mydotpos}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 myprec} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 otherdotpos} {\cf1 /=} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 otherprec} {\cf1 :=} {\cf5 other}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count} {\cf1 -} {\cf5 otherdotpos}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 otherprec} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 pad} {\cf1 :=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 myprec} {\cf1 <} {\cf5 otherprec} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 pad} {\cf1 :=} {\cf5 s_}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 pad} {\cf1 :=} {\cf5 other}{\b\cf1 .}{\cf5 s_}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 numtopad} {\cf1 :=} {\cf1 (}{\cf5 myprec} {\cf1 -} {\cf5 otherprec}{\cf1 )}{\b\cf1 .}{\cf5 abs}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 pad}{\b\cf1 .}{\cf5 append_character}{\cf1  }{\cf1 (}'.'{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 >} {\cf5 numtopad}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 pad}{\b\cf1 .}{\cf5 append_character}{\cf1  }{\cf1 (}'0'{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 i} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 alignwhole} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 VALUE}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  used to align the integer parts of the given parameters}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 mydotpos}{\cf1 ,} {\cf5 otherdotpos}{\cf1 ,} {\cf5 mywholelength}{\cf1 ,} {\cf5 otherwholelength}{\cf1 ,} {\cf5 menegoffset}{\cf1 ,} {\cf5 othernegoffset}{\cf1 ,} {\cf5 inspos}{\cf1 ,} {\cf5 numtopad}{\cf1 ,} {\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 meneg}{\cf1 ,} {\cf5 otherneg}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf5 pad}{\cf1 :} {\b\cf6 detachable} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 mydotpos} {\cf1 :=} {\cf5 s_}{\b\cf1 .}{\cf5 index_of}{\cf1  }{\cf1 (}'.'{\cf1 ,} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 otherdotpos} {\cf1 :=} {\cf5 other}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 index_of}{\cf1  }{\cf1 (}'.'{\cf1 ,} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 meneg} {\cf1 :=} {\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} '-'{\line}
+{\tab}{\tab}{\tab}{\cf5 otherneg} {\cf1 :=} {\cf5 other}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} '-'{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 mydotpos} {\cf1 /=} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 meneg} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 menegoffset} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 menegoffset} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 mywholelength} {\cf1 :=} {\cf5 mydotpos} {\cf1 -} {\cf5 menegoffset} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 mywholelength} {\cf1 :=} {\cf5 s_}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 otherdotpos} {\cf1 /=} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 otherneg} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 othernegoffset} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 othernegoffset} {\cf1 :=} 0{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 otherwholelength} {\cf1 :=} {\cf5 otherdotpos} {\cf1 -} {\cf5 othernegoffset} {\cf1 -} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 otherwholelength} {\cf1 :=} {\cf5 other}{\b\cf1 .}{\cf5 s_}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 mywholelength} {\cf1 /=} {\cf5 otherwholelength} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 pad} {\cf1 :=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 mywholelength} {\cf1 <} {\cf5 otherwholelength} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 pad} {\cf1 :=} {\cf5 s_}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 pad} {\cf1 :=} {\cf5 other}{\b\cf1 .}{\cf5 s_}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 inspos} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 pad}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}1{\cf1 )} {\cf1 =} '-' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 inspos} {\cf1 :=} {\cf5 inspos} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 numtopad} {\cf1 :=} {\cf1 (}{\cf5 mywholelength} {\cf1 -} {\cf5 otherwholelength}{\cf1 )}{\b\cf1 .}{\cf5 abs}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 >} {\cf5 numtopad}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 pad}{\b\cf1 .}{\cf5 insert_character}{\cf1  }{\cf1 (}'0'{\cf1 ,} {\cf5 inspos}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 i} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 invariant}{\line}
+{\tab}{\tab}{\cf5 divisiondecimalprecision_} {\cf1 >} 0{\line}
+{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 VALUE}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

@@ -1,0 +1,29 @@
+<system>
+<keyword>deferred</keyword> <keyword>class</keyword>
+	<class><location>../interface/ev_tab_controlable_chart.xml</location>EV_TAB_CONTROLABLE</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>interface</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Abstraction for objects that may have their ability to be tabbed to enabled/disabled.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;select, selected, selectable&quot;</string>
+
+<keyword>Ancestors</keyword>
+	<class><location>../interface/ev_any_chart.xml</location>EV_ANY</class><char>*</char>
+
+<keyword>Queries</keyword>
+	<feature><location>../interface/ev_any.xml#f_data</location>data</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>ANY</class>
+	<feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_tab_controlable.xml#f_is_in_default_state_for_tabs</location>is_in_default_state_for_tabs</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_tab_controlable.xml#f_is_tabable_from</location>is_tabable_from</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_tab_controlable.xml#f_is_tabable_to</location>is_tabable_to</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+
+<keyword>Commands</keyword>
+	<feature><location>../interface/ev_any.xml#f_copy</location>copy</feature> <symbol>(</symbol><local>other</local><symbol>:</symbol> <symbol>[</symbol><keyword>attached</keyword> <keyword>like</keyword> <keyword>Current</keyword><symbol>]</symbol> <keyword>attached</keyword> <class><location>../interface/ev_tab_controlable_chart.xml</location>EV_TAB_CONTROLABLE</class><symbol>)</symbol>
+	<feature><location>../interface/ev_any.xml#f_destroy</location>destroy</feature>
+	<feature><location>../interface/ev_tab_controlable.xml#f_disable_tabable_from</location>disable_tabable_from</feature>
+	<feature><location>../interface/ev_tab_controlable.xml#f_disable_tabable_to</location>disable_tabable_to</feature>
+	<feature><location>../interface/ev_tab_controlable.xml#f_enable_tabable_from</location>enable_tabable_from</feature>
+	<feature><location>../interface/ev_tab_controlable.xml#f_enable_tabable_to</location>enable_tabable_to</feature>
+	<feature><location>../interface/ev_any.xml#f_set_data</location>set_data</feature> <symbol>(</symbol><local>some_data</local><symbol>:</symbol> <symbol>[</symbol><keyword>like</keyword> <feature><location>../interface/ev_any.xml#f_data</location>data</feature><symbol>]</symbol> <keyword>detachable</keyword> <class><include>False</include>ANY</class><symbol>)</symbol>
+
+</system>

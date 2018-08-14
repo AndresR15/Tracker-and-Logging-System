@@ -1,0 +1,27 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../interface/ev_text_alignment_chart.xml</location>EV_TEXT_ALIGNMENT</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>interface</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Enumeration class for text alignment. Default is left.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;text, aligment&quot;</string>
+	<indexing_tag>create</indexing_tag><symbol>:</symbol> <feature><include>False</include>default_create</feature><symbol>,</symbol> <feature><location>../interface/ev_text_alignment.xml#f_make_with_left_alignment</location>make_with_left_alignment</feature><symbol>,</symbol> <feature><location>../interface/ev_text_alignment.xml#f_make_with_center_alignment</location>make_with_center_alignment</feature><symbol>,</symbol> <feature><location>../interface/ev_text_alignment.xml#f_make_with_right_alignment</location>make_with_right_alignment</feature>
+
+<keyword>Ancestors</keyword>
+	<class><include>False</include>ANY</class>
+
+<keyword>Queries</keyword>
+	<feature><location>../interface/ev_text_alignment.xml#f_is_center_aligned</location>is_center_aligned</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_text_alignment.xml#f_is_left_aligned</location>is_left_aligned</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_text_alignment.xml#f_is_right_aligned</location>is_right_aligned</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+
+<keyword>Commands</keyword>
+	<feature><location>../interface/ev_text_alignment.xml#f_set_center_alignment</location>set_center_alignment</feature>
+	<feature><location>../interface/ev_text_alignment.xml#f_set_left_alignment</location>set_left_alignment</feature>
+	<feature><location>../interface/ev_text_alignment.xml#f_set_right_alignment</location>set_right_alignment</feature>
+
+<keyword>Constraints</keyword>
+	<tag>alignment code within range</tag>
+
+</system>

@@ -1,0 +1,37 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;&quot;</string>
+	<indexing_tag>author</indexing_tag><symbol>:</symbol> <string>&quot;&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date$&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision$&quot;</string>
+
+<keyword>class</keyword> 
+	<class><location>../tracker/etf_undo.xml</location>ETF_UNDO</class>
+
+<keyword>inherit</keyword>
+	<class><include>False</include>ETF_UNDO_INTERFACE</class>
+		<keyword>redefine</keyword>
+			<feature><location>../tracker/etf_undo.xml#f_undo</location>undo</feature>
+		<keyword>end</keyword>
+
+<keyword>create</keyword> 
+	<feature><include>False</include>make</feature>
+
+<keyword>feature</keyword> <comment>--</comment><comment> command</comment>
+
+	<anchor>f_undo</anchor><feature><location>../tracker/etf_undo.xml#f_undo</location>undo</feature>
+		<keyword>do</keyword>
+			<feature><location>../tracker/etf_command.xml#f_model</location>model</feature><dot>.</dot><feature><location>../tracker/tracker.xml#f_set_state</location>set_state</feature><symbol> </symbol><symbol>(</symbol><feature><location>../tracker/etf_command.xml#f_model</location>model</feature><dot>.</dot><feature><location>../tracker/tracker.xml#f_get_state</location>get_state</feature> <symbol>+</symbol> <number>1</number><symbol>)</symbol>
+			<keyword>if</keyword> <feature><location>../tracker/etf_command.xml#f_model</location>model</feature><dot>.</dot><feature><location>../tracker/tracker.xml#f_get_history</location>get_history</feature><dot>.</dot><feature><location>../tracker/history.xml#f_get_record</location>get_record</feature><dot>.</dot><feature><include>False</include>count</feature> <symbol>&lt;</symbol> <number>2</number> <keyword>or else</keyword> <feature><location>../tracker/etf_command.xml#f_model</location>model</feature><dot>.</dot><feature><location>../tracker/tracker.xml#f_get_history</location>get_history</feature><dot>.</dot><feature><location>../tracker/history.xml#f_get_record</location>get_record</feature><dot>.</dot><feature><include>False</include>isfirst</feature> <keyword>then</keyword>
+				<feature><location>../tracker/etf_command.xml#f_model</location>model</feature><dot>.</dot><feature><location>../tracker/tracker.xml#f_set_error</location>set_error</feature><symbol> </symbol><symbol>(</symbol><feature><location>../tracker/etf_command.xml#f_msg</location>msg</feature><dot>.</dot><feature><location>../tracker/messages_access.xml#f_no_undo</location>No_undo</feature><symbol>)</symbol>
+			<keyword>else</keyword>
+				<feature><location>../tracker/etf_command.xml#f_model</location>model</feature><dot>.</dot><feature><location>../tracker/tracker.xml#f_get_history</location>get_history</feature><dot>.</dot><feature><location>../tracker/history.xml#f_get_record</location>get_record</feature><dot>.</dot><feature><include>False</include>item</feature><dot>.</dot><feature><location>../tracker/command.xml#f_undo</location>undo</feature>
+				<feature><location>../tracker/etf_command.xml#f_model</location>model</feature><dot>.</dot><feature><location>../tracker/tracker.xml#f_get_history</location>get_history</feature><dot>.</dot><feature><location>../tracker/history.xml#f_get_record</location>get_record</feature><dot>.</dot><feature><include>False</include>back</feature>
+				<feature><location>../tracker/etf_command.xml#f_model</location>model</feature><dot>.</dot><feature><location>../tracker/tracker.xml#f_get_history</location>get_history</feature><dot>.</dot><feature><location>../tracker/history.xml#f_get_record</location>get_record</feature><dot>.</dot><feature><include>False</include>item</feature><dot>.</dot><feature><location>../tracker/command.xml#f_set_state</location>set_state</feature>
+				<feature><location>../tracker/etf_command.xml#f_model</location>model</feature><dot>.</dot><feature><location>../tracker/tracker.xml#f_set_error</location>set_error</feature><symbol> </symbol><symbol>(</symbol><feature><location>../tracker/etf_command.xml#f_model</location>model</feature><dot>.</dot><feature><location>../tracker/tracker.xml#f_get_history</location>get_history</feature><dot>.</dot><feature><location>../tracker/history.xml#f_get_record</location>get_record</feature><dot>.</dot><feature><include>False</include>item</feature><dot>.</dot><feature><location>../tracker/command.xml#f_msg</location>msg</feature><symbol>)</symbol>
+			<keyword>end</keyword>
+			<feature><include>False</include>etf_cmd_container</feature><dot>.</dot><feature><include>False</include>on_change</feature><dot>.</dot><feature><include>False</include>notify</feature><symbol> </symbol><symbol>(</symbol><symbol>[</symbol><keyword>Current</keyword><symbol>]</symbol><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../tracker/etf_undo.xml</location>ETF_UNDO</class></system>
+

@@ -1,0 +1,118 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;EiffelVision multi-column list row, gtk implementation.&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2017-03-27 13:31:29 -0700 (Mon, 27 Mar 2017) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 100058 $&quot;</string>
+
+<keyword>class</keyword> <keyword>interface</keyword>
+	<class><location>../implementation_gtk/ev_multi_column_list_row_imp_short.xml</location>EV_MULTI_COLUMN_LIST_ROW_IMP</class>
+
+<keyword>create</keyword> 
+	<feature><location>../implementation_gtk/ev_multi_column_list_row_imp_short.xml#f_make</location>make</feature>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Status report</comment>
+
+	<anchor>f_is_selected</anchor><feature><location>../implementation_gtk/ev_multi_column_list_row_imp_short.xml#f_is_selected</location>is_selected</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is the item selected.</comment>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status setting</comment>
+
+	<anchor>f_destroy</anchor><feature><location>../implementation_gtk/ev_multi_column_list_row_imp_short.xml#f_destroy</location>destroy</feature>
+			<comment>--</comment><comment> Destroy actual object.</comment>
+
+	<anchor>f_enable_select</anchor><feature><location>../implementation_gtk/ev_multi_column_list_row_imp_short.xml#f_enable_select</location>enable_select</feature>
+			<comment>--</comment><comment> Select the row in the list.</comment>
+
+	<anchor>f_disable_select</anchor><feature><location>../implementation_gtk/ev_multi_column_list_row_imp_short.xml#f_disable_select</location>disable_select</feature>
+			<comment>--</comment><comment> Deselect the row from the list.</comment>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> PND</comment>
+
+	<anchor>f_enable_transport</anchor><feature><location>../implementation_gtk/ev_multi_column_list_row_imp_short.xml#f_enable_transport</location>enable_transport</feature>
+			<comment>--</comment><comment> Activate pick/drag and drop mechanism.</comment>
+
+	<anchor>f_disable_transport</anchor><feature><location>../implementation_gtk/ev_multi_column_list_row_imp_short.xml#f_disable_transport</location>disable_transport</feature>
+			<comment>--</comment><comment> Deactivate pick/drag and drop mechanism.</comment>
+
+	<anchor>f_draw_rubber_band</anchor><feature><location>../implementation_gtk/ev_multi_column_list_row_imp_short.xml#f_draw_rubber_band</location>draw_rubber_band</feature>
+			<comment>--</comment><comment> Erase previously drawn rubber band.</comment>
+			<comment>--</comment><comment> Draw a rubber band between initial pick point and cursor.</comment>
+
+	<anchor>f_erase_rubber_band</anchor><feature><location>../implementation_gtk/ev_multi_column_list_row_imp_short.xml#f_erase_rubber_band</location>erase_rubber_band</feature>
+			<comment>--</comment><comment> Erase previously drawn rubber band.</comment>
+
+	<anchor>f_enable_capture</anchor><feature><location>../implementation_gtk/ev_multi_column_list_row_imp_short.xml#f_enable_capture</location>enable_capture</feature>
+			<comment>--</comment><comment> Grab the user input.</comment>
+
+	<anchor>f_disable_capture</anchor><feature><location>../implementation_gtk/ev_multi_column_list_row_imp_short.xml#f_disable_capture</location>disable_capture</feature>
+			<comment>--</comment><comment> Ungrab the user input.</comment>
+
+	<anchor>f_start_transport</anchor><feature><location>../implementation_gtk/ev_multi_column_list_row_imp_short.xml#f_start_transport</location>start_transport</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>a_button</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_press</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class><symbol>;</symbol> <local>a_x_tilt</local><symbol>,</symbol> <local>a_y_tilt</local><symbol>,</symbol> <local>a_pressure</local><symbol>:</symbol> <class><include>False</include>REAL_64</class><symbol>;</symbol> <local>a_screen_x</local><symbol>,</symbol> <local>a_screen_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_menu_only</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class><symbol>)</symbol>
+			<comment>--</comment><comment> Start a pick and drop transport.</comment>
+
+	<anchor>f_end_transport</anchor><feature><location>../implementation_gtk/ev_multi_column_list_row_imp_short.xml#f_end_transport</location>end_transport</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>a_button</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_x_tilt</local><symbol>,</symbol> <local>a_y_tilt</local><symbol>,</symbol> <local>a_pressure</local><symbol>:</symbol> <class><include>False</include>REAL_64</class><symbol>;</symbol> <local>a_screen_x</local><symbol>,</symbol> <local>a_screen_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Terminate the pick and drop mechanism.</comment>
+
+	<anchor>f_set_pointer_style</anchor><feature><location>../implementation_gtk/ev_multi_column_list_row_imp_short.xml#f_set_pointer_style</location>set_pointer_style</feature> <symbol>(</symbol><local>c</local><symbol>:</symbol> <class><location>../interface/ev_pointer_style_short.xml</location>EV_POINTER_STYLE</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>c</quoted><comment> to </comment><quoted>pointer_style</quoted>
+			<comment>--</comment><comment> Was declared in </comment><class><location>../implementation_gtk/ev_multi_column_list_row_imp_short.xml</location>EV_MULTI_COLUMN_LIST_ROW_IMP</class><comment> as synonym of </comment><feature><location>../implementation_gtk/ev_multi_column_list_row_imp_short.xml#f_internal_set_pointer_style</location>internal_set_pointer_style</feature><comment>.</comment>
+
+	<anchor>f_internal_set_pointer_style</anchor><feature><location>../implementation_gtk/ev_multi_column_list_row_imp_short.xml#f_internal_set_pointer_style</location>internal_set_pointer_style</feature> <symbol>(</symbol><local>c</local><symbol>:</symbol> <class><location>../interface/ev_pointer_style_short.xml</location>EV_POINTER_STYLE</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>c</quoted><comment> to </comment><quoted>pointer_style</quoted>
+			<comment>--</comment><comment> Was declared in </comment><class><location>../implementation_gtk/ev_multi_column_list_row_imp_short.xml</location>EV_MULTI_COLUMN_LIST_ROW_IMP</class><comment> as synonym of </comment><feature><location>../implementation_gtk/ev_multi_column_list_row_imp_short.xml#f_set_pointer_style</location>set_pointer_style</feature><comment>.</comment>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Element Change</comment>
+
+	<anchor>f_set_pixmap</anchor><feature><location>../implementation_gtk/ev_multi_column_list_row_imp_short.xml#f_set_pixmap</location>set_pixmap</feature> <symbol>(</symbol><local>a_pix</local><symbol>:</symbol> <class><location>../interface/ev_pixmap_short.xml</location>EV_PIXMAP</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set the rows </comment><feature><location>../implementation_interface/ev_multi_column_list_row_i_short.xml#f_pixmap</location>pixmap</feature><comment> to </comment><quoted>a_pix</quoted><comment>.</comment>
+
+	<anchor>f_remove_pixmap</anchor><feature><location>../implementation_gtk/ev_multi_column_list_row_imp_short.xml#f_remove_pixmap</location>remove_pixmap</feature>
+			<comment>--</comment><comment> Remove the rows pixmap.</comment>
+
+	<anchor>f_set_tooltip</anchor><feature><location>../implementation_gtk/ev_multi_column_list_row_imp_short.xml#f_set_tooltip</location>set_tooltip</feature> <symbol>(</symbol><local>a_tooltip</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>a_tooltip</quoted><comment> to </comment><feature><location>../implementation_gtk/ev_multi_column_list_row_imp_short.xml#f_tooltip</location>tooltip</feature><comment>.</comment>
+
+	<anchor>f_tooltip</anchor><feature><location>../implementation_gtk/ev_multi_column_list_row_imp_short.xml#f_tooltip</location>tooltip</feature><symbol>:</symbol> <class><include>False</include>STRING_32</class>
+			<comment>--</comment><comment> Tooltip displayed on </comment><quoted>Current</quoted><comment>.</comment>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Measurement</comment>
+
+	<anchor>f_x_position</anchor><feature><location>../implementation_gtk/ev_multi_column_list_row_imp_short.xml#f_x_position</location>x_position</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Horizontal offset relative to parent </comment><feature><location>../implementation_gtk/ev_multi_column_list_row_imp_short.xml#f_x_position</location>x_position</feature><comment> in pixels.</comment>
+
+	<anchor>f_y_position</anchor><feature><location>../implementation_gtk/ev_multi_column_list_row_imp_short.xml#f_y_position</location>y_position</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Vertical offset relative to parent </comment><feature><location>../implementation_gtk/ev_multi_column_list_row_imp_short.xml#f_y_position</location>y_position</feature><comment> in pixels.</comment>
+
+	<anchor>f_screen_x</anchor><feature><location>../implementation_gtk/ev_multi_column_list_row_imp_short.xml#f_screen_x</location>screen_x</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Horizontal offset relative to screen.</comment>
+
+	<anchor>f_screen_y</anchor><feature><location>../implementation_gtk/ev_multi_column_list_row_imp_short.xml#f_screen_y</location>screen_y</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Vertical offset relative to screen.</comment>
+
+	<anchor>f_width</anchor><feature><location>../implementation_gtk/ev_multi_column_list_row_imp_short.xml#f_width</location>width</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Horizontal size in pixels.</comment>
+
+	<anchor>f_height</anchor><feature><location>../implementation_gtk/ev_multi_column_list_row_imp_short.xml#f_height</location>height</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Vertical size in pixels.</comment>
+
+	<anchor>f_minimum_width</anchor><feature><location>../implementation_gtk/ev_multi_column_list_row_imp_short.xml#f_minimum_width</location>minimum_width</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Minimum horizontal size in pixels.</comment>
+
+	<anchor>f_minimum_height</anchor><feature><location>../implementation_gtk/ev_multi_column_list_row_imp_short.xml#f_minimum_height</location>minimum_height</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Minimum vertical size in pixels.</comment>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2017, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_gtk/ev_multi_column_list_row_imp_short.xml</location>EV_MULTI_COLUMN_LIST_ROW_IMP</class></system>
+

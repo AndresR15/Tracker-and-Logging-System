@@ -1,0 +1,46 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;EiffelVision label, gtk implementation.&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>id</indexing_tag><symbol>:</symbol> <string>&quot;$Id: ev_label_imp.e 100058 2017-03-27 20:31:29Z jfiat $&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2017-03-27 13:31:29 -0700 (Mon, 27 Mar 2017) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 100058 $&quot;</string>
+
+<keyword>class</keyword> <keyword>interface</keyword>
+	<class><location>../implementation_gtk/ev_label_imp_short.xml</location>EV_LABEL_IMP</class>
+
+<keyword>create</keyword> 
+	<feature><location>../implementation_gtk/ev_label_imp_short.xml#f_make</location>make</feature>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_angle</anchor><feature><location>../implementation_gtk/ev_label_imp_short.xml#f_angle</location>angle</feature><symbol>:</symbol> <class><include>False</include>REAL_32</class>
+			<comment>--</comment><comment> Amount text is rotated counter-clockwise from horizontal plane in radians.</comment>
+
+	<anchor>f_set_angle</anchor><feature><location>../implementation_gtk/ev_label_imp_short.xml#f_set_angle</location>set_angle</feature> <symbol>(</symbol><local>a_angle</local><symbol>:</symbol> <class><include>False</include>REAL_32</class><symbol>)</symbol>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status Setting</comment>
+
+	<anchor>f_align_text_top</anchor><feature><location>../implementation_gtk/ev_label_imp_short.xml#f_align_text_top</location>align_text_top</feature>
+			<comment>--</comment><comment> Set vertical text alignment of current label to top.</comment>
+
+	<anchor>f_align_text_vertical_center</anchor><feature><location>../implementation_gtk/ev_label_imp_short.xml#f_align_text_vertical_center</location>align_text_vertical_center</feature>
+			<comment>--</comment><comment> Set text alignment of current label to be in the center vertically.</comment>
+
+	<anchor>f_align_text_bottom</anchor><feature><location>../implementation_gtk/ev_label_imp_short.xml#f_align_text_bottom</location>align_text_bottom</feature>
+			<comment>--</comment><comment> Set vertical text alignment of current label to bottom.</comment>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2017, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_gtk/ev_label_imp_short.xml</location>EV_LABEL_IMP</class></system>
+

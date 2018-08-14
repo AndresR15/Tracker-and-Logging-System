@@ -1,0 +1,17 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../interface/ev_dynamic_list_cursor_chart.xml</location>EV_DYNAMIC_LIST_CURSOR</class> <symbol>[</symbol><generic>G</generic><symbol>]</symbol>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>interface</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Cursor for Eiffel Vision dynamic lists.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;container, list, cursor&quot;</string>
+	<indexing_tag>create</indexing_tag><symbol>:</symbol> <feature><location>../interface/ev_dynamic_list_cursor.xml#f_make</location>make</feature><symbol>,</symbol> <feature><location>../interface/ev_dynamic_list_cursor.xml#f_make_with_item</location>make_with_item</feature>
+
+<keyword>Ancestors</keyword>
+	<class><include>False</include>CURSOR</class>
+
+<keyword>Constraints</keyword>
+	<tag>item void equals before or after</tag>
+
+</system>

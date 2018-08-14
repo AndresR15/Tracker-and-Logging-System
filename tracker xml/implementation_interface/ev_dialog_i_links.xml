@@ -1,0 +1,28 @@
+<system>
+<keyword>deferred</keyword> <keyword>class</keyword>
+	<class><location>../implementation_interface/ev_dialog_i_links.xml</location>EV_DIALOG_I</class>
+
+<keyword>Ancestors</keyword>
+	<class><location>../interface/ev_shared_application_links.xml</location>EV_SHARED_APPLICATION</class>
+	<class><location>../implementation_interface/ev_titled_window_i_links.xml</location>EV_TITLED_WINDOW_I</class><char>*</char>
+
+<keyword>Descendants</keyword>
+	<class><location>../implementation_gtk/ev_dialog_imp_links.xml</location>EV_DIALOG_IMP</class>
+
+<keyword>Clients</keyword>
+	<class><location>../interface/ev_dialog_links.xml</location>EV_DIALOG</class>
+	<class><location>../implementation_interface/ev_dialog_i_links.xml</location>EV_DIALOG_I</class><char>*</char>
+	<class><location>../implementation_interface/ev_dockable_source_i_links.xml</location>EV_DOCKABLE_SOURCE_I</class><char>*</char>
+	<class><location>../interface/ev_message_dialog_links.xml</location>EV_MESSAGE_DIALOG</class>
+
+<keyword>Suppliers</keyword>
+	<class><include>False</include>BOOLEAN</class>
+	<class><location>../interface/ev_application_links.xml</location>EV_APPLICATION</class>
+	<class><location>../implementation_interface/ev_application_i_links.xml</location>EV_APPLICATION_I</class><char>*</char>
+	<class><location>../interface/ev_button_links.xml</location>EV_BUTTON</class>
+	<class><location>../implementation_interface/ev_dialog_i_links.xml</location>EV_DIALOG_I</class><char>*</char>
+	<class><location>../interface/ev_key_links.xml</location>EV_KEY</class>
+	<class><location>../interface/ev_key_constants_links.xml</location>EV_KEY_CONSTANTS</class>
+	<class><location>../interface/ev_notify_action_sequence_links.xml</location>EV_NOTIFY_ACTION_SEQUENCE</class>
+
+</system>

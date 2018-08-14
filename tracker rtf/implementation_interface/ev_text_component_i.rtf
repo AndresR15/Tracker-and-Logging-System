@@ -1,0 +1,250 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "EiffelVision text component. Implementation interface."{\line}
+{\tab}{\cf1 legal}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 status}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2014-04-17 15:19:54 -0700 (Thu, 17 Apr 2014) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 94888 $"{\line}
+{\line}
+{\b\cf6 deferred} {\b\cf6 class} {\line}
+{\tab}{\cf4 EV_TEXT_COMPONENT_I}{\line}
+{\line}
+{\b\cf6 inherit}{\line}
+{\tab}{\cf4 EV_PRIMITIVE_I}{\line}
+{\tab}{\tab}{\b\cf6 redefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 interface}{\line}
+{\tab}{\tab}{\b\cf6 end}{\line}
+{\line}
+{\tab}{\cf4 EV_TEXTABLE_I}{\line}
+{\tab}{\tab}{\b\cf6 redefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 interface}{\line}
+{\tab}{\tab}{\b\cf6 end}{\line}
+{\line}
+{\tab}{\cf4 EV_TEXT_COMPONENT_ACTION_SEQUENCES_I}{\line}
+{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 text_length}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Length of the text in }{\cf5 Current}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 text}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_not_negative}{\cf1 :} {\b\cf6 Result} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 selected_text}{\cf1 :} {\cf4 STRING_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Text currently selected in }{\cf5 Current}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 text}{\b\cf1 .}{\cf5 substring}{\cf1  }{\cf1 (}{\cf5 start_selection}{\cf1 ,} {\cf5 end_selection} {\cf1 -} 1{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 maximum_character_width}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Maximum width of a single character in }{\cf5 Current}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 clipboard_content}{\cf1 :} {\cf4 STRING_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 Result}{\cf3  is current clipboard content.}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status report}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_editable}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is the text editable by the user?}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 caret_position}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Current position of the caret.}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 has_selection}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does }{\cf5 Current}{\cf3  have a selection?}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 start_selection}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Caret position of the start of selected text if any,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  otherwise }{\cf5 caret_position}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_large_enough}{\cf1 :} {\b\cf6 Result} {\cf1 >=} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 result_small_enough}{\cf1 :} {\b\cf6 Result} {\cf1 <=} {\cf5 text_length} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 consistent_with_selection_start}{\cf1 :} {\b\cf6 Result} {\cf1 >=} {\cf5 start_selection}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 end_selection}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Caret position of the end of selected text if any,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  otherwise }{\cf5 caret_position}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_large_enough}{\cf1 :} {\b\cf6 Result} {\cf1 >=} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 result_small_enough}{\cf1 :} {\b\cf6 Result} {\cf1 <=} {\cf5 text_length} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 consistent_with_selection_end}{\cf1 :} {\cf5 end_selection} {\cf1 >=} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 valid_caret_position} {\cf1 (}{\cf5 pos}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 pos}{\cf3  a valid position for the caret?}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 pos} {\cf1 >=} 1 {\b\cf6 and} {\cf5 pos} {\cf1 <=} {\cf5 text_length} {\cf1 +} 1{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status setting}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_editable} {\cf1 (}{\cf5 flag}{\cf1 :} {\cf4 BOOLEAN}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  if }{\cf5 flag}{\cf3  then make the component read-write.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  if not }{\cf5 flag}{\cf3  then make the component read-only.}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_caret_position} {\cf1 (}{\cf5 pos}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  set current insertion position}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_caret_position}{\cf1 :} {\cf5 pos} {\cf1 >=} 1 {\b\cf6 and} {\cf5 pos} {\cf1 <=} {\cf5 text_length} {\cf1 +} 1{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Element change}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 insert_text} {\cf1 (}{\cf5 a_text}{\cf1 :} {\cf4 READABLE_STRING_GENERAL}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Insert }{\cf5 a_text}{\cf3  at the current caret position.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_text}{\cf1 :} {\cf5 a_text} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 append_text} {\cf1 (}{\cf5 a_text}{\cf1 :} {\cf4 READABLE_STRING_GENERAL}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  append 'a_text' into }{\cf5 Current}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_text}{\cf1 :} {\cf5 a_text} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 prepend_text} {\cf1 (}{\cf5 a_text}{\cf1 :} {\cf4 READABLE_STRING_GENERAL}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  prepend 'a_text' into }{\cf5 Current}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_text}{\cf1 :} {\cf5 a_text} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Resizing}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_minimum_width_in_characters} {\cf1 (}{\cf5 nb}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Make a minimum of }{\cf5 nb}{\cf3  of the widest character visible}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  on one line.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_nb}{\cf1 :} {\cf5 nb} {\cf1 >} 0{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_ANY}{\cf1 ,} {\cf4 EV_ANY_I}{\cf1 \}} {\cf3 --}{\cf3  Basic operation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 select_region} {\cf1 (}{\cf5 start_pos}{\cf1 ,} {\cf5 end_pos}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Select (highlight) the characters between character positions }{\cf5 start_pos}{\cf3  and }{\cf5 end_pos}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_start_character_position}{\cf1 :} {\cf5 start_pos} {\cf1 >=} 1 {\b\cf6 and} {\cf5 start_pos} {\cf1 <=} {\cf5 text_length}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_end_character_position}{\cf1 :} {\cf5 end_pos} {\cf1 >=} 1 {\b\cf6 and} {\cf5 end_pos} {\cf1 <=} {\cf5 text_length}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 has_selection}{\cf1 :} {\cf5 has_selection}{\line}
+{\tab}{\tab}{\tab}{\cf1 selection_set}{\cf1 :} {\cf1 (}{\cf5 start_pos} {\cf1 <=} {\cf5 end_pos} {\b\cf6 implies} {\cf5 start_selection} {\cf1 =} {\cf5 start_pos} {\b\cf6 and} {\cf5 end_selection} {\cf1 =} {\cf5 end_pos} {\cf1 +} 1{\cf1 )} {\b\cf6 or} {\cf5 start_selection} {\cf1 =} {\cf5 end_pos} {\b\cf6 and} {\cf5 end_selection} {\cf1 =} {\cf5 start_pos} {\cf1 +} 1{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_selection} {\cf1 (}{\cf5 a_start_pos}{\cf1 ,} {\cf5 a_end_pos}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Select (highlight) the characters between valid caret positions }{\cf5 a_start_pos}{\cf3  and }{\cf5 a_end_pos}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_start}{\cf1 :} {\cf5 a_start_pos} {\cf1 >} 0 {\b\cf6 and} {\cf5 a_start_pos} {\cf1 <=} {\cf5 text_length} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 valid_end}{\cf1 :} {\cf5 a_end_pos} {\cf1 >} 0 {\b\cf6 and} {\cf5 a_end_pos} {\cf1 <=} {\cf5 text_length} {\cf1 +} 1{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 selection_set}{\cf1 :} {\cf5 a_start_pos} {\cf1 /=} {\cf5 a_end_pos} {\cf1 =} {\cf5 has_selection}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 select_all}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Select all the text of }{\cf5 Current}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 positive_length}{\cf1 :} {\cf5 text_length} {\cf1 >} 0{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 select_region}{\cf1  }{\cf1 (}1{\cf1 ,} {\cf5 text}{\b\cf1 .}{\cf5 count}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 has_selection}{\cf1 :} {\cf5 has_selection}{\line}
+{\tab}{\tab}{\tab}{\cf1 selection_start_set}{\cf1 :} {\cf5 start_selection} {\cf1 =} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 selection_end_set}{\cf1 :} {\cf5 end_selection} {\cf1 =} {\cf5 text_length} {\cf1 +} 1{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 deselect_all}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Unselect the current selection.}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 has_no_selection}{\cf1 :} {\b\cf6 not} {\cf5 has_selection}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 delete_selection}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Delete the current selection.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 has_selection}{\cf1 :} {\cf5 has_selection}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_editable}{\cf1 :} {\cf5 is_editable}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 has_no_selection}{\cf1 :} {\b\cf6 not} {\cf5 has_selection}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 cut_selection}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Cut }{\cf5 selected_region}{\cf3  by erasing it from}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the text and putting it in the Clipboard to paste it later.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  If }{\cf5 selectd_region}{\cf3  is empty, it does nothing.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 has_selection}{\cf1 :} {\cf5 has_selection}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_editable}{\cf1 :} {\cf5 is_editable}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 copy_selection}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Copy }{\cf5 selected_region}{\cf3  into the Clipboard.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  If the }{\cf5 selected_region}{\cf3  is empty, it does nothing.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 has_selection}{\cf1 :} {\cf5 has_selection}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 paste} {\cf1 (}{\cf5 index}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Insert the contents of the clipboard}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  at }{\cf5 index}{\cf3  postion of }{\cf5 text}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  If the Clipboard is empty, it does nothing.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 index_large_enough}{\cf1 :} {\cf5 index} {\cf1 >=} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 index_small_enough}{\cf1 :} {\cf5 index} {\cf1 <=} {\cf5 text_length} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\cf1 is_editable}{\cf1 :} {\cf5 is_editable}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_ANY}{\cf1 ,} {\cf4 EV_ANY_I}{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 interface}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_TEXT_COMPONENT}{\line}
+{\tab}{\tab}{\b\cf6 note}{\line}
+{\tab}{\tab}{\tab}option: stable{\line}
+{\tab}{\tab}{\b\cf6 attribute}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 note}{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 1984-2014, Eiffel Software and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"{\line}
+{\tab}{\cf1 source}{\cf1 :} "[{\line}
+{\tab}{\tab}Eiffel Software{\line}
+{\tab}{\tab}5949 Hollister Ave., Goleta, CA 93117 USA{\line}
+{\tab}{\tab}Telephone 805-685-1006, Fax 805-685-6869{\line}
+{\tab}{\tab}Website http://www.eiffel.com{\line}
+{\tab}{\tab}Customer support http://support.eiffel.com{\line}
+{\tab}]"{\line}
+{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 EV_TEXT_COMPONENT_I}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

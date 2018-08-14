@@ -1,0 +1,37 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Summary description for </string><symbol>{</symbol><class><location>../tracker/new_container_short.xml</location>NEW_CONTAINER</class><symbol>}</symbol><string>.&quot;</string>
+	<indexing_tag>author</indexing_tag><symbol>:</symbol> <string>&quot;&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date$&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision$&quot;</string>
+
+<keyword>class</keyword> <keyword>interface</keyword>
+	<class><location>../tracker/new_container_short.xml</location>NEW_CONTAINER</class>
+
+<keyword>create</keyword> 
+	<feature><location>../tracker/new_container_short.xml#f_make</location>make</feature>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Initialization</comment>
+
+	<anchor>f_make</anchor><feature><location>../tracker/new_container_short.xml#f_make</location>make</feature> <symbol>(</symbol><local>init_cid</local><symbol>:</symbol> <class><include>False</include>STRING_8</class><symbol>;</symbol> <local>cont_spec</local><symbol>:</symbol> <class><include>False</include>TUPLE</class> <symbol>[</symbol><local>m</local><symbol>:</symbol> <class><include>False</include>INTEGER_64</class><symbol>;</symbol> <local>rad</local><symbol>:</symbol> <class><location>../mathmodels/value_short.xml</location>VALUE</class><symbol>]</symbol><symbol>;</symbol> <local>init_pid</local><symbol>:</symbol> <class><include>False</include>STRING_8</class><symbol>)</symbol>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Attributes</comment>
+
+	<anchor>f_cid</anchor><feature><location>../tracker/new_container_short.xml#f_cid</location>cid</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+
+	<anchor>f_pid</anchor><feature><location>../tracker/new_container_short.xml#f_pid</location>pid</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+
+	<anchor>f_material</anchor><feature><location>../tracker/new_container_short.xml#f_material</location>material</feature><symbol>:</symbol> <class><include>False</include>INTEGER_64</class>
+
+	<anchor>f_rad</anchor><feature><location>../tracker/new_container_short.xml#f_rad</location>rad</feature><symbol>:</symbol> <class><location>../mathmodels/value_short.xml</location>VALUE</class>
+	
+<keyword>feature</keyword> 
+
+	<anchor>f_execute</anchor><feature><location>../tracker/new_container_short.xml#f_execute</location>execute</feature>
+
+	<anchor>f_undo</anchor><feature><location>../tracker/new_container_short.xml#f_undo</location>undo</feature>
+
+	<anchor>f_redo</anchor><feature><location>../tracker/new_container_short.xml#f_redo</location>redo</feature>
+	
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../tracker/new_container_short.xml</location>NEW_CONTAINER</class></system>
+

@@ -1,0 +1,22 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../implementation_gtk/ev_g_input_stream_chart.xml</location>EV_G_INPUT_STREAM</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>implementation_gtk</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> 
+		<string>&quot;Wrapper class for GInputStream</string>
+		<string><location>http://developer.gnome.org/gio/unstable/GInputStream.html</location>http://developer.gnome.org/gio/unstable/GInputStream.html</string><string>&quot;</string>
+	<indexing_tag>create</indexing_tag><symbol>:</symbol> <feature><location>../implementation_gtk/ev_g_input_stream.xml#f_new_from_data</location>new_from_data</feature>
+
+<keyword>Ancestors</keyword>
+	<class><include>False</include>DISPOSABLE</class><char>*</char>
+
+<keyword>Queries</keyword>
+	<feature><location>../implementation_gtk/ev_g_input_stream.xml#f_is_closed</location>is_closed</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../implementation_gtk/ev_g_input_stream.xml#f_item</location>item</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+
+<keyword>Commands</keyword>
+	<feature><location>../implementation_gtk/ev_g_input_stream.xml#f_dispose</location>dispose</feature>
+
+</system>

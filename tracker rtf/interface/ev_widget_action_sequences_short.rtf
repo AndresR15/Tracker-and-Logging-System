@@ -1,0 +1,102 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "Action sequences for EV_WIDGET."{\line}
+{\tab}{\cf1 legal}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 status}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 keywords}{\cf1 :} "event, action, sequence"{\line}
+{\tab}{\cf1 date}{\cf1 :} "Generated!"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "Generated!"{\line}
+{\line}
+{\b\cf6 deferred} {\b\cf6 class} {\b\cf6 interface}{\line}
+{\tab}{\cf4 EV_WIDGET_ACTION_SEQUENCES}{\line}
+{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Event handling}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 file_drop_actions}{\cf1 :} {\cf4 EV_LITE_ACTION_SEQUENCE} {\cf1 [}{\cf4 LIST} {\cf1 [}{\cf4 STRING_32}{\cf1 ]}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Actions to be performed when an OS file drop is performed on }{\cf5 Current}{\cf3 .}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 pointer_motion_actions}{\cf1 :} {\cf4 EV_POINTER_MOTION_ACTION_SEQUENCE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Actions to be performed when screen pointer moves.}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 pointer_button_press_actions}{\cf1 :} {\cf4 EV_POINTER_BUTTON_ACTION_SEQUENCE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Actions to be performed when screen pointer button is pressed.}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 pointer_double_press_actions}{\cf1 :} {\cf4 EV_POINTER_BUTTON_ACTION_SEQUENCE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Actions to be performed when screen pointer is double clicked.}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 pointer_button_release_actions}{\cf1 :} {\cf4 EV_POINTER_BUTTON_ACTION_SEQUENCE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Actions to be performed when screen pointer button is released.}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 pointer_enter_actions}{\cf1 :} {\cf4 EV_NOTIFY_ACTION_SEQUENCE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Actions to be performed when screen pointer enters widget.}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 pointer_leave_actions}{\cf1 :} {\cf4 EV_NOTIFY_ACTION_SEQUENCE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Actions to be performed when screen pointer leaves widget.}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 mouse_wheel_actions}{\cf1 :} {\cf4 EV_INTEGER_ACTION_SEQUENCE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Actions to be performed when mouse wheel is rotated.}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 key_press_actions}{\cf1 :} {\cf4 EV_KEY_ACTION_SEQUENCE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Actions to be performed when a keyboard key is pressed.}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 key_press_string_actions}{\cf1 :} {\cf4 EV_KEY_STRING_ACTION_SEQUENCE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Actions to be performed when a keyboard press generates a displayable character.}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 key_release_actions}{\cf1 :} {\cf4 EV_KEY_ACTION_SEQUENCE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Actions to be performed when a keyboard key is released.}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 focus_in_actions}{\cf1 :} {\cf4 EV_NOTIFY_ACTION_SEQUENCE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Actions to be performed when keyboard focus is gained.}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 focus_out_actions}{\cf1 :} {\cf4 EV_NOTIFY_ACTION_SEQUENCE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Actions to be performed when keyboard focus is lost.}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 resize_actions}{\cf1 :} {\cf4 EV_GEOMETRY_ACTION_SEQUENCE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Actions to be performed when size changes.}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\tab}{\line}
+{\b\cf6 note}{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 1984-2014, Eiffel Software and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"{\line}
+{\tab}{\cf1 source}{\cf1 :} "[{\line}
+{\tab}{\tab}Eiffel Software{\line}
+{\tab}{\tab}5949 Hollister Ave., Goleta, CA 93117 USA{\line}
+{\tab}{\tab}Telephone 805-685-1006, Fax 805-685-6869{\line}
+{\tab}{\tab}Website http://www.eiffel.com{\line}
+{\tab}{\tab}Customer support http://support.eiffel.com{\line}
+{\tab}]"{\line}
+{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 EV_WIDGET_ACTION_SEQUENCES}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

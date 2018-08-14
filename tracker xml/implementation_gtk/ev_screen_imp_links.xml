@@ -1,0 +1,38 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../implementation_gtk/ev_screen_imp_links.xml</location>EV_SCREEN_IMP</class>
+
+<keyword>Ancestors</keyword>
+	<class><location>../implementation_gtk/ev_drawable_imp_links.xml</location>EV_DRAWABLE_IMP</class><char>*</char>
+	<class><location>../implementation_gtk/ev_gtk_dependent_routines_links.xml</location>EV_GTK_DEPENDENT_ROUTINES</class>
+	<class><location>../implementation_interface/ev_screen_i_links.xml</location>EV_SCREEN_I</class><char>*</char>
+
+<keyword>Clients</keyword>
+	<class><location>../interface/ev_screen_links.xml</location>EV_SCREEN</class>
+	<class><location>../implementation_gtk/ev_screen_imp_links.xml</location>EV_SCREEN_IMP</class>
+
+<keyword>Suppliers</keyword>
+	<class><include>False</include>BOOLEAN</class>
+	<class><location>../implementation_gtk/ev_application_imp_links.xml</location>EV_APPLICATION_IMP</class>
+	<class><location>../interface/ev_coordinate_links.xml</location>EV_COORDINATE</class>
+	<class><location>../interface/ev_environment_links.xml</location>EV_ENVIRONMENT</class>
+	<class><location>../implementation_interface/ev_environment_i_links.xml</location>EV_ENVIRONMENT_I</class><char>*</char>
+	<class><location>../implementation_gtk/ev_gtk_callback_marshal_links.xml</location>EV_GTK_CALLBACK_MARSHAL</class>
+	<class><location>../implementation_gtk/ev_gtk_enums_links.xml</location>EV_GTK_ENUMS</class>
+	<class><location>../implementation_gtk/ev_gtk_key_conversion_links.xml</location>EV_GTK_KEY_CONVERSION</class>
+	<class><location>../interface/ev_key_links.xml</location>EV_KEY</class>
+	<class><location>../interface/ev_rectangle_links.xml</location>EV_RECTANGLE</class>
+	<class><location>../implementation_gtk/ev_screen_imp_links.xml</location>EV_SCREEN_IMP</class>
+	<class><location>../interface/ev_stock_colors_links.xml</location>EV_STOCK_COLORS</class>
+	<class><location>../implementation_gtk/ev_widget_imp_links.xml</location>EV_WIDGET_IMP</class><char>*</char>
+	<class><location>../interface/ev_window_links.xml</location>EV_WINDOW</class>
+	<class><location>../implementation_gtk/ev_window_imp_links.xml</location>EV_WINDOW_IMP</class>
+	<class><location>../implementation_gtk/gtk_links.xml</location>GTK</class>
+	<class><location>../implementation_gtk/gtk2_links.xml</location>GTK2</class>
+	<class><include>False</include>INTEGER_16</class>
+	<class><include>False</include>INTEGER_32</class>
+	<class><include>False</include>NATURAL_32</class>
+	<class><include>False</include>POINTER</class>
+	<class><include>False</include>TYPED_POINTER</class> <symbol>[</symbol><generic>G</generic><symbol>]</symbol>
+
+</system>

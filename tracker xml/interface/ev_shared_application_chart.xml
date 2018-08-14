@@ -1,0 +1,18 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../interface/ev_shared_application_chart.xml</location>EV_SHARED_APPLICATION</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>interface</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Access to the vision2 application if created.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;EV_APPLICATION, application, once, access&quot;</string>
+
+<keyword>Ancestors</keyword>
+	<class><include>False</include>ANY</class>
+
+<keyword>Queries</keyword>
+	<feature><location>../interface/ev_shared_application.xml#f_ev_application</location>ev_application</feature><symbol>:</symbol> <class><location>../interface/ev_application_chart.xml</location>EV_APPLICATION</class>
+	<feature><location>../interface/ev_shared_application.xml#f_ev_separate_application</location>ev_separate_application</feature><symbol>:</symbol> <keyword>separate</keyword> <class><location>../interface/ev_application_chart.xml</location>EV_APPLICATION</class>
+	<feature><location>../interface/ev_shared_application.xml#f_shared_environment</location>Shared_environment</feature><symbol>:</symbol> <class><location>../interface/ev_environment_chart.xml</location>EV_ENVIRONMENT</class>
+
+</system>

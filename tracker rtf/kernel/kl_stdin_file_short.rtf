@@ -1,0 +1,103 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "Standard input files containing extended ASCII characters (8-bit code between 0 and 255). The line separtor of the underlying file system is automatically converted to %%N when read from the satndard input file. However {\cf5 read_line} and {\cf5 read_new_line} are able to recognize '%%N', '%%R%%N' and '%%R' as line separators."{\line}
+{\tab}{\cf1 library}{\cf1 :} "Gobo Eiffel Kernel Library"{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 2001-2016, Eric Bezault and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "MIT License"{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2017-04-11 11:34:55 -0700 (Tue, 11 Apr 2017) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 100137 $"{\line}
+{\line}
+{\b\cf6 class} {\b\cf6 interface}{\line}
+{\tab}{\cf4 KL_STDIN_FILE}{\line}
+{\line}
+{\b\cf6 create} {\line}
+{\tab}{\cf5 make}{\line}
+{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Name}{\cf1 :} {\cf4 STRING_8} {\cf1 =} "stdin"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Name of input stream}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 last_character}{\cf1 :} {\cf4 CHARACTER_8}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Last character read}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 last_string}{\cf1 :} {\cf4 STRING_8}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Last string read}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Note: this query always return the same object.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Therefore a clone should be used if the result}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  is to be kept beyond the next call to this feature.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  However }{\cf5 last_string}{\cf3  is not shared between file objects.)}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Eol}{\cf1 :} {\cf4 STRING_8} {\cf1 =} "%N"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Line separator}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status report}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Is_open_read}{\cf1 :} {\cf4 BOOLEAN} {\cf1 =} {\b\cf6 True}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is standard input file opened in read mode?}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 end_of_file}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Has the end of file been reached?}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Input}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 read_character}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Read the next character in standard input file.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Make the result available in }{\cf5 last_character}{\cf3 .}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 unread_character} {\cf1 (}{\cf5 a_character}{\cf1 :} {\cf4 CHARACTER_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Put }{\cf5 a_character}{\cf3  back in input file.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  This character will be read first by the next}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  call to a read routine.}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 read_string} {\cf1 (}{\cf5 nb}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Read at most }{\cf5 nb}{\cf3  characters from standard input file.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Make the characters that have actually been read}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  available in }{\cf5 last_string}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Note that even if at least }{\cf5 nb}{\cf3  characters are available}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  in standard input file, there is no guarantee that they}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  will all be read.)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 read_line}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Read characters from standard input file until a line separator}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  or end of file is reached. Make the characters that have}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  been read available in }{\cf5 last_string}{\cf3  and discard the line}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  separator characters from the standard input file.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Line separators recognized by current standard input}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  file are: '%N', '%R%N and '%R'.}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 read_new_line}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Read a line separator from standard input file.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Make the characters making up the recognized}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  line separator available in }{\cf5 last_string}{\cf3 ,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  or make }{\cf5 last_string}{\cf3  empty and leave the}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  standard input file unchanged if no line}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  separator was found.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Line separators recognized by current standard}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  input file are: '%N', '%R%N and '%R'.}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 read_to_string} {\cf1 (}{\cf5 a_string}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 pos}{\cf1 ,} {\cf5 nb}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Fill }{\cf5 a_string}{\cf3 , starting at position }{\cf5 pos}{\cf3  with at}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  most }{\cf5 nb}{\cf3  characters read from standard input file.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Return the number of characters actually read.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Note that even if at least }{\cf5 nb}{\cf3  characters are available}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  in standard input file, there is no guarantee that they}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  will all be read.)}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 read_to_buffer} {\cf1 (}{\cf5 a_buffer}{\cf1 :} {\cf4 KI_BUFFER} {\cf1 [}{\cf4 CHARACTER_8}{\cf1 ]}{\cf1 ;} {\cf5 pos}{\cf1 ,} {\cf5 nb}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Fill }{\cf5 a_buffer}{\cf3 , starting at position }{\cf5 pos}{\cf3 , with}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  at most }{\cf5 nb}{\cf3  characters read from standard input file.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Return the number of characters actually read.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Note that even if at least }{\cf5 nb}{\cf3  characters are available}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  in standard input file, there is no guarantee that they}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  will all be read.)}{\line}
+}{\tab}{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 KL_STDIN_FILE}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

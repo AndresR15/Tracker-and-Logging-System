@@ -1,0 +1,41 @@
+<system>
+<keyword>deferred</keyword> <keyword>class</keyword>
+	<class><location>../interface/ev_primitive_links.xml</location>EV_PRIMITIVE</class>
+
+<keyword>Ancestors</keyword>
+	<class><location>../interface/ev_tab_controlable_links.xml</location>EV_TAB_CONTROLABLE</class><char>*</char>
+	<class><location>../interface/ev_tooltipable_links.xml</location>EV_TOOLTIPABLE</class><char>*</char>
+	<class><location>../interface/ev_widget_links.xml</location>EV_WIDGET</class><char>*</char>
+
+<keyword>Descendants</keyword>
+	<class><location>../interface/ev_button_links.xml</location>EV_BUTTON</class>
+	<class><location>../interface/ev_drawing_area_links.xml</location>EV_DRAWING_AREA</class>
+	<class><location>../interface/ev_gauge_links.xml</location>EV_GAUGE</class><char>*</char>
+	<class><location>../interface/ev_label_links.xml</location>EV_LABEL</class>
+	<class><location>../interface/ev_list_item_list_links.xml</location>EV_LIST_ITEM_LIST</class><char>*</char>
+	<class><location>../interface/ev_multi_column_list_links.xml</location>EV_MULTI_COLUMN_LIST</class>
+	<class><location>../interface/ev_pixmap_links.xml</location>EV_PIXMAP</class>
+	<class><location>../interface/ev_separator_links.xml</location>EV_SEPARATOR</class><char>*</char>
+	<class><location>../interface/ev_text_component_links.xml</location>EV_TEXT_COMPONENT</class><char>*</char>
+	<class><location>../interface/ev_tool_bar_links.xml</location>EV_TOOL_BAR</class>
+	<class><location>../interface/ev_tree_links.xml</location>EV_TREE</class>
+
+<keyword>Clients</keyword>
+	<class><location>../interface/ev_button_links.xml</location>EV_BUTTON</class>
+	<class><location>../interface/ev_drawing_area_links.xml</location>EV_DRAWING_AREA</class>
+	<class><location>../interface/ev_gauge_links.xml</location>EV_GAUGE</class><char>*</char>
+	<class><location>../interface/ev_label_links.xml</location>EV_LABEL</class>
+	<class><location>../interface/ev_list_item_list_links.xml</location>EV_LIST_ITEM_LIST</class><char>*</char>
+	<class><location>../interface/ev_multi_column_list_links.xml</location>EV_MULTI_COLUMN_LIST</class>
+	<class><location>../interface/ev_primitive_links.xml</location>EV_PRIMITIVE</class><char>*</char>
+	<class><location>../interface/ev_text_component_links.xml</location>EV_TEXT_COMPONENT</class><char>*</char>
+	<class><location>../interface/ev_tool_bar_links.xml</location>EV_TOOL_BAR</class>
+	<class><location>../interface/ev_tree_links.xml</location>EV_TREE</class>
+
+<keyword>Suppliers</keyword>
+	<class><include>False</include>BOOLEAN</class>
+	<class><location>../interface/ev_primitive_links.xml</location>EV_PRIMITIVE</class><char>*</char>
+	<class><location>../interface/ev_tooltipable_links.xml</location>EV_TOOLTIPABLE</class><char>*</char>
+	<class><location>../interface/ev_widget_links.xml</location>EV_WIDGET</class><char>*</char>
+
+</system>

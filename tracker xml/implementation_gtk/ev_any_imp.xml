@@ -1,0 +1,242 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Base class for GTK implementation (_IMP) classes. %NHandles interaction between Eiffel objects and GTK objects %NSee important notes on memory management at end of class&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;implementation, gtk, any, base&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2017-05-03 08:56:14 -0700 (Wed, 03 May 2017) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 100317 $&quot;</string>
+
+<keyword>deferred</keyword> <keyword>class</keyword> 
+	<class><location>../implementation_gtk/ev_any_imp.xml</location>EV_ANY_IMP</class>
+
+<keyword>inherit</keyword>
+	<class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class>
+		<keyword>export</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines.xml</location>EV_GTK_DEPENDENT_INTERMEDIARY_ROUTINES</class><symbol>,</symbol> <class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <feature><location>../implementation_interface/ev_any_i.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>end</keyword>
+
+	<class><include>False</include>IDENTIFIED</class>
+		<keyword>undefine</keyword>
+			<feature><include>False</include>is_equal</feature><symbol>,</symbol>
+			<feature><include>False</include>copy</feature>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_gtk/ev_any_imp.xml#f_dispose</location>dispose</feature>
+		<keyword>end</keyword>
+
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_c_object</anchor><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> C pointer to an object conforming to GtkWidget.</comment>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_set_c_object</anchor><feature><location>../implementation_gtk/ev_any_imp.xml#f_set_c_object</location>set_c_object</feature> <symbol>(</symbol><local>a_c_object</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>a_c_object</quoted><comment> to </comment><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><comment>.</comment>
+			<comment>--</comment><comment> Set up Eiffel GC / GTK cooperation.</comment>
+		<keyword>require</keyword>
+			<tag>a_c_object_not_null</tag><symbol>:</symbol> <local>a_c_object</local> <symbol>/=</symbol> <feature><include>False</include>default_pointer</feature>
+		<keyword>local</keyword>
+			<local>l_c_object</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_any_imp.xml#f_needs_event_box</location>needs_event_box</feature> <keyword>then</keyword>
+				<local>l_c_object</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_event_box_new</location>gtk_event_box_new</feature>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_container_add</location>gtk_container_add</feature> <symbol>(</symbol><local>l_c_object</local><symbol>,</symbol> <local>a_c_object</local><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_widget_show</location>gtk_widget_show</feature> <symbol>(</symbol><local>a_c_object</local><symbol>)</symbol>
+			<keyword>else</keyword>
+				<local>l_c_object</local> <symbol>:=</symbol> <local>a_c_object</local>
+			<keyword>end</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_object_ref</location>object_ref</feature> <symbol>(</symbol><local>l_c_object</local><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_object_sink</location>gtk_object_sink</feature> <symbol>(</symbol><local>l_c_object</local><symbol>)</symbol>
+			<keyword>debug</keyword> <symbol>(</symbol>&quot;ev_gtk_creation&quot;<symbol>)</symbol>
+				<feature><include>False</include>print</feature><symbol> </symbol><symbol>(</symbol><feature><include>False</include>generator</feature> <symbol>+</symbol> &quot; created%N&quot;<symbol>)</symbol>
+			<keyword>end</keyword>
+			<keyword>if</keyword> <feature><include>False</include>internal_id</feature> <symbol>=</symbol> <number>0</number> <keyword>then</keyword>
+				<feature><include>False</include>internal_id</feature> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_eif_current_object_id</location>eif_current_object_id</feature>
+			<keyword>end</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/ev_gtk_callback_marshal.xml</location>EV_GTK_CALLBACK_MARSHAL</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_callback_marshal.xml#f_set_eif_oid_in_c_object</location>set_eif_oid_in_c_object</feature> <symbol>(</symbol><local>l_c_object</local><symbol>,</symbol> <feature><include>False</include>internal_id</feature><symbol>,</symbol> <symbol>$</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object_dispose</location>c_object_dispose</feature><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature> <symbol>:=</symbol> <local>l_c_object</local>
+		<keyword>end</keyword>
+
+	<anchor>f_eif_object_from_c</anchor><keyword>frozen</keyword> <feature><location>../implementation_gtk/ev_any_imp.xml#f_eif_object_from_c</location>eif_object_from_c</feature> <symbol>(</symbol><local>a_c_object</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>)</symbol><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_any_imp.xml</location>EV_ANY_IMP</class>
+			<comment>--</comment><comment> Retrieve the EV_ANY_IMP stored in </comment><quoted>a_c_object</quoted><comment>.</comment>
+		<keyword>external</keyword>
+			&quot;C inline use %&quot;ev_any_imp.h%&quot;&quot;
+		<keyword>alias</keyword>
+			&quot;c_ev_any_imp_get_eif_reference_from_object_id ($a_c_object)&quot;
+		<keyword>end</keyword>
+
+	<anchor>f_gtk_is_object</anchor><keyword>frozen</keyword> <feature><location>../implementation_gtk/ev_any_imp.xml#f_gtk_is_object</location>gtk_is_object</feature> <symbol>(</symbol><local>a_c_object</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+		<keyword>external</keyword>
+			&quot;C inline use &lt;ev_gtk.h&gt;&quot;
+		<keyword>alias</keyword>
+			&quot;GTK_IS_OBJECT ($a_c_object)&quot;
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_any.xml</location>EV_ANY</class><symbol>,</symbol> <class><location>../implementation_gtk/ev_any_imp.xml</location>EV_ANY_IMP</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_destroy</anchor><feature><location>../implementation_gtk/ev_any_imp.xml#f_destroy</location>destroy</feature>
+			<comment>--</comment><comment> Destroy </comment><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><comment>.</comment>
+			<comment>--</comment><comment> Render </comment><quoted>Current</quoted><comment> unusable.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_interface/ev_any_i.xml#f_set_is_destroyed</location>set_is_destroyed</feature><symbol> </symbol><symbol>(</symbol><keyword>True</keyword><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>,</symbol> <class><location>../implementation_gtk/ev_application_imp.xml</location>EV_APPLICATION_IMP</class><symbol>}</symbol> <comment>--</comment><comment> Event handling</comment>
+
+	<anchor>f_signal_connect_true</anchor><feature><location>../implementation_gtk/ev_any_imp.xml#f_signal_connect_true</location>signal_connect_true</feature> <symbol>(</symbol><local>a_signal_name</local><symbol>:</symbol> <class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class><symbol>;</symbol> <local>an_agent</local><symbol>:</symbol> <class><include>False</include>PROCEDURE</class><symbol>)</symbol>
+			<comment>--</comment><comment> Connect </comment><quoted>an_agent</quoted><comment> to </comment><quoted>a_signal_name</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>a_signal_name_not_void</tag><symbol>:</symbol> <local>a_signal_name</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>an_agent_not_void</tag><symbol>:</symbol> <local>an_agent</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>local</keyword>
+			<local>a_connection_id</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+		<keyword>do</keyword>
+			<local>a_connection_id</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/ev_gtk_callback_marshal.xml</location>EV_GTK_CALLBACK_MARSHAL</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_callback_marshal.xml#f_c_signal_connect_true</location>c_signal_connect_true</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>,</symbol> <local>a_signal_name</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_item</location>item</feature><symbol>,</symbol> <local>an_agent</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_real_signal_connect</anchor><feature><location>../implementation_gtk/ev_any_imp.xml#f_real_signal_connect</location>real_signal_connect</feature> <symbol>(</symbol><local>a_c_object</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>;</symbol> <local>a_signal_name</local><symbol>:</symbol> <class><include>False</include>STRING_8</class><symbol>;</symbol> <local>an_agent</local><symbol>:</symbol> <class><include>False</include>PROCEDURE</class><symbol>;</symbol> <local>translate</local><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>FUNCTION</class> <symbol>[</symbol><class><include>False</include>INTEGER_32</class><symbol>,</symbol> <class><include>False</include>POINTER</class><symbol>,</symbol> <class><include>False</include>TUPLE</class><symbol>]</symbol><symbol>)</symbol>
+			<comment>--</comment><comment> Connect </comment><quoted>an_agent</quoted><comment> to </comment><quoted>a_signal_name</quoted><comment> of </comment><quoted>a_c_object</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>a_c_object_not_void</tag><symbol>:</symbol> <local>a_c_object</local> <symbol>/=</symbol> <feature><include>False</include>default_pointer</feature>
+			<tag>a_signal_name_not_void</tag><symbol>:</symbol> <local>a_signal_name</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>a_signal_name_not_empty</tag><symbol>:</symbol> <keyword>not</keyword> <local>a_signal_name</local><dot>.</dot><feature><include>False</include>is_empty</feature>
+			<tag>an_agent_not_void</tag><symbol>:</symbol> <local>an_agent</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>local</keyword>
+			<local>l_app_imp</local><symbol>:</symbol> <class><location>../implementation_gtk/ev_application_imp.xml</location>EV_APPLICATION_IMP</class>
+		<keyword>do</keyword>
+			<local>l_app_imp</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature>
+			<local>l_app_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_gtk_marshal</location>gtk_marshal</feature><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_callback_marshal.xml#f_signal_connect</location>signal_connect</feature><symbol> </symbol><symbol>(</symbol><local>a_c_object</local><symbol>,</symbol> <keyword>create</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_set_with_eiffel_string</location>set_with_eiffel_string</feature><symbol> </symbol><symbol>(</symbol><local>a_signal_name</local><symbol>)</symbol><symbol>,</symbol> <local>an_agent</local><symbol>,</symbol> <local>translate</local><symbol>,</symbol> <keyword>False</keyword><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_real_signal_connect_after</anchor><feature><location>../implementation_gtk/ev_any_imp.xml#f_real_signal_connect_after</location>real_signal_connect_after</feature> <symbol>(</symbol><local>a_c_object</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>;</symbol> <local>a_signal_name</local><symbol>:</symbol> <class><include>False</include>STRING_8</class><symbol>;</symbol> <local>an_agent</local><symbol>:</symbol> <class><include>False</include>PROCEDURE</class><symbol>;</symbol> <local>translate</local><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>FUNCTION</class> <symbol>[</symbol><class><include>False</include>INTEGER_32</class><symbol>,</symbol> <class><include>False</include>POINTER</class><symbol>,</symbol> <class><include>False</include>TUPLE</class><symbol>]</symbol><symbol>)</symbol>
+			<comment>--</comment><comment> Connect </comment><quoted>an_agent</quoted><comment> to </comment><quoted>a_signal_name</quoted><comment> of </comment><quoted>a_c_object</quoted><comment>.</comment>
+			<comment>--</comment><comment> 'an_agent' called after default gtk signal handler for </comment><quoted>a_signal_name</quoted>
+		<keyword>require</keyword>
+			<tag>a_c_object_not_void</tag><symbol>:</symbol> <local>a_c_object</local> <symbol>/=</symbol> <feature><include>False</include>default_pointer</feature>
+			<tag>a_signal_name_not_void</tag><symbol>:</symbol> <local>a_signal_name</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>a_signal_name_not_empty</tag><symbol>:</symbol> <keyword>not</keyword> <local>a_signal_name</local><dot>.</dot><feature><include>False</include>is_empty</feature>
+			<tag>an_agent_not_void</tag><symbol>:</symbol> <local>an_agent</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>local</keyword>
+			<local>l_app_imp</local><symbol>:</symbol> <class><location>../implementation_gtk/ev_application_imp.xml</location>EV_APPLICATION_IMP</class>
+		<keyword>do</keyword>
+			<local>l_app_imp</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature>
+			<local>l_app_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_gtk_marshal</location>gtk_marshal</feature><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_callback_marshal.xml#f_signal_connect</location>signal_connect</feature><symbol> </symbol><symbol>(</symbol><local>a_c_object</local><symbol>,</symbol> <local>l_app_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_c_string_from_eiffel_string</location>c_string_from_eiffel_string</feature><symbol> </symbol><symbol>(</symbol><local>a_signal_name</local><symbol>)</symbol><symbol>,</symbol> <local>an_agent</local><symbol>,</symbol> <local>translate</local><symbol>,</symbol> <keyword>True</keyword><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_last_signal_connection_id</anchor><feature><location>../implementation_gtk/ev_any_imp.xml#f_last_signal_connection_id</location>last_signal_connection_id</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> GTK signal connection id of the most recent </comment><quoted>signal_connect</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_gtk_marshal</location>gtk_marshal</feature><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_callback_marshal.xml#f_last_signal_connection_id</location>last_signal_connection_id</feature>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_needs_event_box</anchor><feature><location>../implementation_gtk/ev_any_imp.xml#f_needs_event_box</location>needs_event_box</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Does </comment><quoted>event_widget</quoted><comment> need an event box to receive events?</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <keyword>False</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_dispose</anchor><feature><location>../implementation_gtk/ev_any_imp.xml#f_dispose</location>dispose</feature>
+			<comment>--</comment><comment> Called by the Eiffel GC when </comment><quoted>Current</quoted><comment> is destroyed.</comment>
+			<comment>--</comment><comment> Destroy </comment><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><comment>.</comment>
+		<keyword>local</keyword>
+			<local>l_c_object</local><symbol>,</symbol> <local>l_null</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>do</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/ev_gtk_callback_marshal.xml</location>EV_GTK_CALLBACK_MARSHAL</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_callback_marshal.xml#f_c_ev_gtk_callback_marshal_set_is_enabled</location>c_ev_gtk_callback_marshal_set_is_enabled</feature> <symbol>(</symbol><keyword>False</keyword><symbol>)</symbol>
+			<local>l_c_object</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature>
+			<keyword>if</keyword> <local>l_c_object</local> <symbol>/=</symbol> <local>l_null</local> <keyword>then</keyword>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_signal_disconnect_by_data</location>signal_disconnect_by_data</feature> <symbol>(</symbol><local>l_c_object</local><symbol>,</symbol> <feature><include>False</include>internal_id</feature><symbol>)</symbol>
+				<keyword>if</keyword> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_is_window</location>gtk_is_window</feature> <symbol>(</symbol><local>l_c_object</local><symbol>)</symbol> <keyword>then</keyword>
+					<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_object_destroy</location>object_destroy</feature> <symbol>(</symbol><local>l_c_object</local><symbol>)</symbol>
+				<keyword>end</keyword>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_object_unref</location>object_unref</feature> <symbol>(</symbol><local>l_c_object</local><symbol>)</symbol>
+			<keyword>end</keyword>
+			<keyword><location>file#f_feature</location>Precursor</keyword> <symbol>{</symbol><class><include>False</include>IDENTIFIED</class><symbol>}</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/ev_gtk_callback_marshal.xml</location>EV_GTK_CALLBACK_MARSHAL</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_callback_marshal.xml#f_c_ev_gtk_callback_marshal_set_is_enabled</location>c_ev_gtk_callback_marshal_set_is_enabled</feature> <symbol>(</symbol><keyword>True</keyword><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_c_object_dispose</anchor><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object_dispose</location>c_object_dispose</feature>
+			<comment>--</comment><comment> Called when </comment><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><comment> is destroyed.</comment>
+			<comment>--</comment><comment> Only called if </comment><quoted>Current</quoted><comment> is referenced from </comment><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><comment>.</comment>
+			<comment>--</comment><comment> Render </comment><quoted>Current</quoted><comment> unusable.</comment>
+		<keyword>local</keyword>
+			<local>l_null</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>do</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/ev_gtk_callback_marshal.xml</location>EV_GTK_CALLBACK_MARSHAL</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_callback_marshal.xml#f_c_ev_gtk_callback_marshal_set_is_enabled</location>c_ev_gtk_callback_marshal_set_is_enabled</feature> <symbol>(</symbol><keyword>False</keyword><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_object_unref</location>object_unref</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature> <symbol>:=</symbol> <local>l_null</local>
+			<feature><location>../implementation_interface/ev_any_i.xml#f_set_is_destroyed</location>set_is_destroyed</feature><symbol> </symbol><symbol>(</symbol><keyword>True</keyword><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/ev_gtk_callback_marshal.xml</location>EV_GTK_CALLBACK_MARSHAL</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_callback_marshal.xml#f_c_ev_gtk_callback_marshal_set_is_enabled</location>c_ev_gtk_callback_marshal_set_is_enabled</feature> <symbol>(</symbol><keyword>True</keyword><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>is_destroyed_set</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_any_i.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>c_object_detached</tag><symbol>:</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature> <symbol>=</symbol> <feature><include>False</include>default_pointer</feature>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines.xml</location>EV_GTK_DEPENDENT_INTERMEDIARY_ROUTINES</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_process_gdk_event</anchor><feature><location>../implementation_gtk/ev_any_imp.xml#f_process_gdk_event</location>process_gdk_event</feature> <symbol>(</symbol><local>n_args</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>args</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>)</symbol>
+			<comment>--</comment><comment> Process any incoming gdk event.</comment>
+		<keyword>do</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>,</symbol> <class><location>../implementation_gtk/ev_intermediary_routines.xml</location>EV_INTERMEDIARY_ROUTINES</class><symbol>}</symbol> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_visual_widget</anchor><feature><location>../implementation_gtk/ev_any_imp.xml#f_visual_widget</location>visual_widget</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Pointer to the widget viewed by user.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_any_imp.xml#f_needs_event_box</location>needs_event_box</feature> <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_bin_struct_child</location>gtk_bin_struct_child</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>)</symbol>
+			<keyword>else</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_eif_current_object_id</anchor><feature><location>../implementation_gtk/ev_any_imp.xml#f_eif_current_object_id</location>eif_current_object_id</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+		<keyword>obsolete</keyword> &quot;Use `eif_object_id (Current)' instead. [2017-05-31]&quot;
+			<comment>--</comment><comment> New identifier for Current</comment>
+		<keyword>external</keyword>
+			&quot;built_in&quot;
+		<keyword>ensure</keyword>
+			<tag>eif_current_object_id</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>&gt;</symbol> <number>0</number>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_intermediary_routines.xml</location>EV_INTERMEDIARY_ROUTINES</class><symbol>,</symbol> <class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>,</symbol> <class><location>../implementation_gtk/ev_stock_pixmaps_imp.xml</location>EV_STOCK_PIXMAPS_IMP</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_app_implementation</anchor><feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature><symbol>:</symbol> <class><location>../implementation_gtk/ev_application_imp.xml</location>EV_APPLICATION_IMP</class>
+		<keyword>local</keyword>
+			<local>env</local><symbol>:</symbol> <class><location>../interface/ev_environment.xml</location>EV_ENVIRONMENT</class>
+			<local>l_app_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_application_imp.xml</location>EV_APPLICATION_IMP</class>
+		<keyword>once</keyword>
+			<keyword>create</keyword> <local>env</local>
+			<local>l_app_imp</local> <symbol>?=</symbol> <local>env</local><dot>.</dot><feature><location>../interface/ev_environment.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_environment_i.xml#f_application_i</location>application_i</feature>
+			<keyword>check</keyword>
+					<local>l_app_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <local>l_app_imp</local>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Measurement</comment>
+
+	<anchor>f_null</anchor><feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>external</keyword>
+			&quot;C [macro &lt;stdio.h&gt;]&quot;
+		<keyword>alias</keyword>
+			&quot;NULL&quot;
+		<keyword>end</keyword>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2013, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_gtk/ev_any_imp.xml</location>EV_ANY_IMP</class></system>
+

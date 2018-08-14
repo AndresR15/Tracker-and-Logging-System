@@ -1,0 +1,330 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "Standard input files containing extended ASCII characters (8-bit code between 0 and 255). The line separtor of the underlying file system is automatically converted to %%N when read from the satndard input file. However {\cf5 read_line} and {\cf5 read_new_line} are able to recognize '%%N', '%%R%%N' and '%%R' as line separators."{\line}
+{\tab}{\cf1 library}{\cf1 :} "Gobo Eiffel Kernel Library"{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 2001-2016, Eric Bezault and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "MIT License"{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2017-04-11 11:34:55 -0700 (Tue, 11 Apr 2017) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 100137 $"{\line}
+{\line}
+{\b\cf6 class} {\line}
+{\tab}{\cf4 KL_STDIN_FILE}{\line}
+{\line}
+{\b\cf6 inherit}{\line}
+{\tab}{\cf4 KI_TEXT_INPUT_STREAM}{\line}
+{\tab}{\tab}{\b\cf6 rename}{\line}
+{\tab}{\tab}{\tab}{\cf5 end_of_input} {\b\cf6 as} {\cf5 end_of_file}{\line}
+{\tab}{\tab}{\b\cf6 redefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 read_to_string}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 read_to_buffer}{\line}
+{\tab}{\tab}{\b\cf6 end}{\line}
+{\line}
+{\tab}{\cf4 KL_IMPORTED_STRING_ROUTINES}{\line}
+{\tab}{\tab}{\b\cf6 export}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}NONE{\cf1 \}} {\b\cf6 all}{\line}
+{\tab}{\tab}{\b\cf6 end}{\line}
+{\line}
+{\tab}{\cf4 STRING_HANDLER}{\line}
+{\tab}{\tab}{\b\cf6 export}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}NONE{\cf1 \}} {\b\cf6 all}{\line}
+{\tab}{\tab}{\b\cf6 end}{\line}
+{\line}
+{\b\cf6 create} {\line}
+{\tab}{\cf5 make}{\line}
+{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Initialization}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create a new standard input file.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 last_string}{\b\cf1 .}{\cf5 make_empty}{\line}
+{\tab}{\tab}{\tab}{\cf5 end_of_file} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 name_set}{\cf1 :} {\cf5 Name}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}"stdin"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_open_read}{\cf1 :} {\cf5 Is_open_read}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_end_of_file}{\cf1 :} {\b\cf6 not} {\cf5 end_of_file}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Name}{\cf1 :} {\cf4 STRING_8} {\cf1 =} "stdin"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Name of input stream}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 last_character}{\cf1 :} {\cf4 CHARACTER_8}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Last character read}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 last_string}{\cf1 :} {\cf4 STRING_8}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Last string read}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Note: this query always return the same object.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Therefore a clone should be used if the result}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  is to be kept beyond the next call to this feature.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  However }{\cf5 last_string}{\cf3  is not shared between file objects.)}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Eol}{\cf1 :} {\cf4 STRING_8} {\cf1 =} "%N"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Line separator}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status report}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Is_open_read}{\cf1 :} {\cf4 BOOLEAN} {\cf1 =} {\b\cf6 True}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is standard input file opened in read mode?}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 end_of_file}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Has the end of file been reached?}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Input}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 read_character}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Read the next character in standard input file.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Make the result available in }{\cf5 last_character}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_character_buffer}{\cf1 :} {\b\cf6 like} {\cf5 character_buffer}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_character_buffer} {\cf1 :=} {\cf5 character_buffer}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_character_buffer} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 last_character} {\cf1 :=} {\cf5 l_character_buffer}{\b\cf1 .}{\cf5 item}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 character_buffer} {\cf1 :=} {\cf5 l_character_buffer}{\b\cf1 .}{\cf5 right}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 Console}{\b\cf1 .}{\cf5 end_of_file} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 end_of_file} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 Console}{\b\cf1 .}{\cf5 read_character}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 last_character} {\cf1 :=} {\cf5 Console}{\b\cf1 .}{\cf5 last_character}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 end_of_file} {\cf1 :=} {\cf5 Console}{\b\cf1 .}{\cf5 end_of_file}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 unread_character} {\cf1 (}{\cf5 a_character}{\cf1 :} {\cf4 CHARACTER_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Put }{\cf5 a_character}{\cf3  back in input file.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  This character will be read first by the next}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  call to a read routine.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_cell}{\cf1 :} {\b\cf6 like} {\cf5 character_buffer}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_character_buffer}{\cf1 :} {\b\cf6 like} {\cf5 character_buffer}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 a_cell}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 a_character}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_character_buffer} {\cf1 :=} {\cf5 character_buffer}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_character_buffer} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 a_cell}{\b\cf1 .}{\cf5 put_right}{\cf1  }{\cf1 (}{\cf5 l_character_buffer}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 character_buffer} {\cf1 :=} {\cf5 a_cell}{\line}
+{\tab}{\tab}{\tab}{\cf5 last_character} {\cf1 :=} {\cf5 a_character}{\line}
+{\tab}{\tab}{\tab}{\cf5 end_of_file} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 read_string} {\cf1 (}{\cf5 nb}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Read at most }{\cf5 nb}{\cf3  characters from standard input file.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Make the characters that have actually been read}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  available in }{\cf5 last_string}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Note that even if at least }{\cf5 nb}{\cf3  characters are available}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  in standard input file, there is no guarantee that they}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  will all be read.)}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 s}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 last_string}{\b\cf1 .}{\cf5 capacity} {\cf1 <} {\cf5 nb} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 last_string}{\b\cf1 .}{\cf5 resize}{\cf1  }{\cf1 (}{\cf5 nb}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 character_buffer} {\cf1 =} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 Console}{\b\cf1 .}{\cf5 end_of_file} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 last_string}{\b\cf1 .}{\cf5 set_count}{\cf1  }{\cf1 (}{\cf5 nb}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 Console}{\b\cf1 .}{\cf5 read_stream}{\cf1  }{\cf1 (}{\cf5 nb}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 s} {\cf1 :=} {\cf5 Console}{\b\cf1 .}{\cf5 last_string}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 s}{\b\cf1 .}{\cf5 is_empty} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 last_string}{\b\cf1 .}{\cf5 subcopy}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 ,} 1{\cf1 ,} {\cf5 s}{\b\cf1 .}{\cf5 count}{\cf1 ,} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 s}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 last_string}{\b\cf1 .}{\cf5 reset_hash_codes}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 last_string}{\b\cf1 .}{\cf5 set_count}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 last_string}{\b\cf1 .}{\cf5 set_count}{\cf1  }{\cf1 (}0{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 last_string}{\b\cf1 .}{\cf5 set_count}{\cf1  }{\cf1 (}{\cf5 nb}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 read_to_string}{\cf1  }{\cf1 (}{\cf5 last_string}{\cf1 ,} 1{\cf1 ,} {\cf5 nb}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 last_string}{\b\cf1 .}{\cf5 set_count}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 end_of_file} {\cf1 :=} {\cf1 (}{\cf5 last_string}{\b\cf1 .}{\cf5 count} {\cf1 =} 0{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 read_line}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Read characters from standard input file until a line separator}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  or end of file is reached. Make the characters that have}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  been read available in }{\cf5 last_string}{\cf3  and discard the line}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  separator characters from the standard input file.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Line separators recognized by current standard input}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  file are: '%N', '%R%N and '%R'.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 done}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf5 c}{\cf1 :} {\cf4 CHARACTER_8}{\line}
+{\tab}{\tab}{\tab}{\cf5 is_eof}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf5 has_carriage}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 String_}{\b\cf1 .}{\cf5 wipe_out}{\cf1  }{\cf1 (}{\cf5 last_string}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 is_eof} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 done}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 read_character}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 end_of_file} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 done} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 is_eof} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 c} {\cf1 :=} {\cf5 last_character}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 inspect} {\cf5 c}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} '%N' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 done} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} '%R' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 has_carriage} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 has_carriage} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 unread_character}{\cf1  }{\cf1 (}{\cf5 c}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 done} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 last_string}{\b\cf1 .}{\cf5 append_character}{\cf1  }{\cf1 (}{\cf5 c}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 end_of_file} {\cf1 :=} {\cf5 is_eof}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 read_new_line}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Read a line separator from standard input file.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Make the characters making up the recognized}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  line separator available in }{\cf5 last_string}{\cf3 ,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  or make }{\cf5 last_string}{\cf3  empty and leave the}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  standard input file unchanged if no line}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  separator was found.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Line separators recognized by current standard}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  input file are: '%N', '%R%N and '%R'.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 String_}{\b\cf1 .}{\cf5 wipe_out}{\cf1  }{\cf1 (}{\cf5 last_string}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 read_character}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 end_of_file} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 inspect} {\cf5 last_character}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} '%N' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 last_string}{\b\cf1 .}{\cf5 append_character}{\cf1  }{\cf1 (}'%N'{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} '%R' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 last_string}{\b\cf1 .}{\cf5 append_character}{\cf1  }{\cf1 (}'%R'{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 read_character}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 end_of_file} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 last_character} {\cf1 =} '%N' {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 last_string}{\b\cf1 .}{\cf5 append_character}{\cf1  }{\cf1 (}'%N'{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 unread_character}{\cf1  }{\cf1 (}{\cf5 last_character}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 unread_character}{\cf1  }{\cf1 (}{\cf5 last_character}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 end_of_file} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 read_to_string} {\cf1 (}{\cf5 a_string}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 pos}{\cf1 ,} {\cf5 nb}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Fill }{\cf5 a_string}{\cf3 , starting at position }{\cf5 pos}{\cf3  with at}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  most }{\cf5 nb}{\cf3  characters read from standard input file.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Return the number of characters actually read.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Note that even if at least }{\cf5 nb}{\cf3  characters are available}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  in standard input file, there is no guarantee that they}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  will all be read.)}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 i}{\cf1 ,} {\cf5 j}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 k}{\cf1 ,} {\cf5 nb2}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 s}{\cf1 ,} {\cf5 tmp_string}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_buff}{\cf1 :} {\b\cf6 like} {\cf5 character_buffer}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 j} {\cf1 :=} {\cf5 pos}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 a_buff} {\cf1 :=} {\cf5 character_buffer}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 =} {\cf5 nb} {\b\cf6 or} {\cf5 a_buff} {\cf1 =} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 i} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 a_string}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 a_buff}{\b\cf1 .}{\cf5 item}{\cf1 ,} {\cf5 j}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 a_buff} {\cf1 :=} {\cf5 a_buff}{\b\cf1 .}{\cf5 right}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 j} {\cf1 :=} {\cf5 j} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 character_buffer} {\cf1 :=} {\cf5 a_buff}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 i} {\cf1 <} {\cf5 nb} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 Console}{\b\cf1 .}{\cf5 end_of_file} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 Any_}{\b\cf1 .}{\cf5 same_types}{\cf1  }{\cf1 (}{\cf5 a_string}{\cf1 ,} {\cf5 Dummy_string}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 Console}{\b\cf1 .}{\cf5 read_stream}{\cf1  }{\cf1 (}{\cf5 nb} {\cf1 -} {\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 s} {\cf1 :=} {\cf5 Console}{\b\cf1 .}{\cf5 last_string}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 s}{\b\cf1 .}{\cf5 is_empty} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 a_string}{\b\cf1 .}{\cf5 subcopy}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 ,} 1{\cf1 ,} {\cf5 s}{\b\cf1 .}{\cf5 count}{\cf1 ,} {\cf5 j}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 a_string}{\b\cf1 .}{\cf5 reset_hash_codes}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 i} {\cf1 +} {\cf5 s}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 nb2} {\cf1 :=} {\cf5 nb} {\cf1 -} {\cf5 i}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 tmp_string}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 nb2}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 tmp_string}{\b\cf1 .}{\cf5 set_count}{\cf1  }{\cf1 (}{\cf5 nb2}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 Console}{\b\cf1 .}{\cf5 read_stream}{\cf1  }{\cf1 (}{\cf5 nb2}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 s} {\cf1 :=} {\cf5 Console}{\b\cf1 .}{\cf5 last_string}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 s}{\b\cf1 .}{\cf5 is_empty} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 tmp_string}{\b\cf1 .}{\cf5 subcopy}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 ,} 1{\cf1 ,} {\cf5 s}{\b\cf1 .}{\cf5 count}{\cf1 ,} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 tmp_string}{\b\cf1 .}{\cf5 reset_hash_codes}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 nb2} {\cf1 :=} {\cf5 s}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 k} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 k} {\cf1 >} {\cf5 nb2}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 a_string}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 tmp_string}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 k}{\cf1 )}{\cf1 ,} {\cf5 j}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 j} {\cf1 :=} {\cf5 j} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 k} {\cf1 :=} {\cf5 k} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 i} {\cf1 +} {\cf5 nb2}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 i}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 end_of_file} {\cf1 :=} {\cf5 Console}{\b\cf1 .}{\cf5 end_of_file}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 i}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 read_to_buffer} {\cf1 (}{\cf5 a_buffer}{\cf1 :} {\cf4 KI_BUFFER} {\cf1 [}{\cf4 CHARACTER_8}{\cf1 ]}{\cf1 ;} {\cf5 pos}{\cf1 ,} {\cf5 nb}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Fill }{\cf5 a_buffer}{\cf3 , starting at position }{\cf5 pos}{\cf3 , with}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  at most }{\cf5 nb}{\cf3  characters read from standard input file.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Return the number of characters actually read.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Note that even if at least }{\cf5 nb}{\cf3  characters are available}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  in standard input file, there is no guarantee that they}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  will all be read.)}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf1 \{}{\cf4 KL_CHARACTER_BUFFER}{\cf1 \}} {\cf5 a_buffer} {\b\cf6 as} char_buffer {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 char_buffer}{\b\cf1 .}{\cf5 fill_from_stream}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 ,} {\cf5 pos}{\cf1 ,} {\cf5 nb}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 Precursor}{\cf1  }{\cf1 (}{\cf5 a_buffer}{\cf1 ,} {\cf5 pos}{\cf1 ,} {\cf5 nb}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 character_buffer}{\cf1 :} {\b\cf6 detachable} {\cf4 KL_LINKABLE} {\cf1 [}{\cf4 CHARACTER_8}{\cf1 ]}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Unread characters}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Dummy_string}{\cf1 :} {\cf4 STRING_8} {\cf1 =} ""}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Dummy string}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Console}{\cf1 :} {\cf4 PLAIN_TEXT_FILE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Console object}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 Io}{\b\cf1 .}{\cf5 Input}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 console_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 KL_STDIN_FILE}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

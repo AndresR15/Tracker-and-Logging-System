@@ -1,0 +1,44 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../interface/ev_notebook_tab_chart.xml</location>EV_NOTEBOOK_TAB</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>interface</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> 
+		<string>&quot;Objects that represent a tab associated with a notebook item. These objects may</string>
+		<string>not be created directly but instead returned from a notebook via </string><string>item_tab</string><string>.</string>
+		<string>If </string><string>widget</string><string> is subsequently removed from </string><string>notebook</string><string>, </string><string>Current</string><string> is automatically</string>
+		<string>destroyed and is no longer usuable.&quot;</string>
+	<indexing_tag>create</indexing_tag><symbol>:</symbol> <feature><location>../interface/ev_notebook_tab.xml#f_make_with_widgets</location>make_with_widgets</feature>
+
+<keyword>Ancestors</keyword>
+	<class><location>../interface/ev_any_chart.xml</location>EV_ANY</class><char>*</char>
+	<class><location>../interface/ev_pixmapable_chart.xml</location>EV_PIXMAPABLE</class><char>*</char>
+	<class><location>../interface/ev_selectable_chart.xml</location>EV_SELECTABLE</class><char>*</char>
+	<class><location>../interface/ev_textable_chart.xml</location>EV_TEXTABLE</class><char>*</char>
+
+<keyword>Queries</keyword>
+	<feature><location>../interface/ev_any.xml#f_data</location>data</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>ANY</class>
+	<feature><location>../interface/ev_notebook_tab.xml#f_is_destroyed</location>is_destroyed</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_selectable.xml#f_is_selectable</location>is_selectable</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_selectable.xml#f_is_selected</location>is_selected</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_notebook_tab.xml#f_notebook</location>notebook</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_notebook_chart.xml</location>EV_NOTEBOOK</class>
+	<feature><location>../interface/ev_pixmapable.xml#f_pixmap</location>pixmap</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_pixmap_chart.xml</location>EV_PIXMAP</class>
+	<feature><location>../interface/ev_textable.xml#f_text</location>text</feature><symbol>:</symbol> <class><include>False</include>STRING_32</class>
+	<feature><location>../interface/ev_notebook_tab.xml#f_widget</location>widget</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_widget_chart.xml</location>EV_WIDGET</class>
+
+<keyword>Commands</keyword>
+	<feature><location>../interface/ev_any.xml#f_copy</location>copy</feature> <symbol>(</symbol><local>other</local><symbol>:</symbol> <symbol>[</symbol><keyword>attached</keyword> <keyword>like</keyword> <keyword>Current</keyword><symbol>]</symbol> <keyword>attached</keyword> <class><location>../interface/ev_notebook_tab_chart.xml</location>EV_NOTEBOOK_TAB</class><symbol>)</symbol>
+	<feature><location>../interface/ev_any.xml#f_destroy</location>destroy</feature>
+	<feature><location>../interface/ev_selectable.xml#f_enable_select</location>enable_select</feature>
+	<feature><location>../interface/ev_pixmapable.xml#f_remove_pixmap</location>remove_pixmap</feature>
+	<feature><location>../interface/ev_textable.xml#f_remove_text</location>remove_text</feature>
+	<feature><location>../interface/ev_any.xml#f_set_data</location>set_data</feature> <symbol>(</symbol><local>some_data</local><symbol>:</symbol> <symbol>[</symbol><keyword>like</keyword> <feature><location>../interface/ev_any.xml#f_data</location>data</feature><symbol>]</symbol> <keyword>detachable</keyword> <class><include>False</include>ANY</class><symbol>)</symbol>
+	<feature><location>../interface/ev_pixmapable.xml#f_set_pixmap</location>set_pixmap</feature> <symbol>(</symbol><local>a_pixmap</local><symbol>:</symbol> <class><location>../interface/ev_pixmap_chart.xml</location>EV_PIXMAP</class><symbol>)</symbol>
+	<feature><location>../interface/ev_textable.xml#f_set_text</location>set_text</feature> <symbol>(</symbol><local>a_text</local><symbol>:</symbol> <keyword>separate</keyword> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol>
+
+<keyword>Constraints</keyword>
+	<tag>notebook not void</tag>
+	<tag>widget not void</tag>
+
+</system>

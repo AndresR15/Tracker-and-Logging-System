@@ -1,0 +1,123 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Vision radio menu item. GTK+ implementation.&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2011-10-19 18:32:48 -0700 (Wed, 19 Oct 2011) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 87534 $&quot;</string>
+
+<keyword>class</keyword> 
+	<class><location>../implementation_gtk/ev_radio_menu_item_imp.xml</location>EV_RADIO_MENU_ITEM_IMP</class>
+
+<keyword>inherit</keyword>
+	<class><location>../implementation_interface/ev_radio_menu_item_i.xml</location>EV_RADIO_MENU_ITEM_I</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_gtk/ev_radio_menu_item_imp.xml#f_interface</location>interface</feature>
+		<keyword>end</keyword>
+
+	<class><location>../implementation_gtk/ev_menu_item_imp.xml</location>EV_MENU_ITEM_IMP</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_gtk/ev_radio_menu_item_imp.xml#f_allow_on_activate</location>allow_on_activate</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_radio_menu_item_imp.xml#f_interface</location>interface</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_radio_menu_item_imp.xml#f_make</location>make</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_radio_menu_item_imp.xml#f_initialize_menu_item</location>initialize_menu_item</feature>
+		<keyword>end</keyword>
+
+	<class><location>../implementation_gtk/ev_radio_peer_imp.xml</location>EV_RADIO_PEER_IMP</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_gtk/ev_radio_menu_item_imp.xml#f_interface</location>interface</feature>
+		<keyword>end</keyword>
+
+<keyword>create</keyword> 
+	<feature><location>../implementation_gtk/ev_radio_menu_item_imp.xml#f_make</location>make</feature>
+
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Initialization</comment>
+
+	<anchor>f_make</anchor><feature><location>../implementation_gtk/ev_radio_menu_item_imp.xml#f_make</location>make</feature>
+			<comment>--</comment><comment> Creation routine and initialization for </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword><location>../implementation_gtk/ev_menu_item_imp.xml#f_make</location>Precursor</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_menu_item_imp.xml</location>EV_MENU_ITEM_IMP</class><symbol>}</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_check_menu_item_set_show_toggle</location>gtk_check_menu_item_set_show_toggle</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_menu_item_imp.xml#f_menu_item</location>menu_item</feature><symbol>,</symbol> <keyword>True</keyword><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_radio_menu_item_imp.xml#f_enable_select</location>enable_select</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_initialize_menu_item</anchor><feature><location>../implementation_gtk/ev_radio_menu_item_imp.xml#f_initialize_menu_item</location>initialize_menu_item</feature>
+			<comment>--</comment><comment> Create and initialize gtk menu object.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_any_imp.xml#f_set_c_object</location>set_c_object</feature><symbol> </symbol><symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_radio_menu_item_new</location>gtk_radio_menu_item_new</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_null</location>null</feature><symbol>)</symbol><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status report</comment>
+
+	<anchor>f_is_selected</anchor><feature><location>../implementation_gtk/ev_radio_menu_item_imp.xml#f_is_selected</location>is_selected</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is this menu item checked?</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_check_menu_item_struct_active</location>gtk_check_menu_item_struct_active</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_menu_item_imp.xml#f_menu_item</location>menu_item</feature><symbol>)</symbol><dot>.</dot><feature><include>False</include>to_boolean</feature>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status setting</comment>
+
+	<anchor>f_enable_select</anchor><feature><location>../implementation_gtk/ev_radio_menu_item_imp.xml#f_enable_select</location>enable_select</feature>
+			<comment>--</comment><comment> Select this menu item.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <keyword>not</keyword> <feature><location>../implementation_gtk/ev_radio_menu_item_imp.xml#f_is_selected</location>is_selected</feature> <keyword>then</keyword>
+				<feature><location>../implementation_gtk/ev_radio_menu_item_imp.xml#f_ignore_select_actions</location>ignore_select_actions</feature> <symbol>:=</symbol> <keyword>True</keyword>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_check_menu_item_set_active</location>gtk_check_menu_item_set_active</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_menu_item_imp.xml#f_menu_item</location>menu_item</feature><symbol>,</symbol> <keyword>True</keyword><symbol>)</symbol>
+				<feature><location>../implementation_gtk/ev_radio_menu_item_imp.xml#f_ignore_select_actions</location>ignore_select_actions</feature> <symbol>:=</symbol> <keyword>False</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_disable_select</anchor><feature><location>../implementation_gtk/ev_radio_menu_item_imp.xml#f_disable_select</location>disable_select</feature>
+			<comment>--</comment><comment> Used to deselect is without firing actions.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_radio_menu_item_imp.xml#f_is_selected</location>is_selected</feature> <keyword>then</keyword>
+				<feature><location>../implementation_gtk/ev_radio_menu_item_imp.xml#f_ignore_select_actions</location>ignore_select_actions</feature> <symbol>:=</symbol> <keyword>True</keyword>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_check_menu_item_set_active</location>gtk_check_menu_item_set_active</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_menu_item_imp.xml#f_menu_item</location>menu_item</feature><symbol>,</symbol> <keyword>False</keyword><symbol>)</symbol>
+				<feature><location>../implementation_gtk/ev_radio_menu_item_imp.xml#f_ignore_select_actions</location>ignore_select_actions</feature> <symbol>:=</symbol> <keyword>False</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_ignore_select_actions</anchor><feature><location>../implementation_gtk/ev_radio_menu_item_imp.xml#f_ignore_select_actions</location>ignore_select_actions</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Should select_actions be called.</comment>
+
+	<anchor>f_allow_on_activate</anchor><feature><location>../implementation_gtk/ev_radio_menu_item_imp.xml#f_allow_on_activate</location>allow_on_activate</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is the activate signal allowed to be propagated?</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <keyword>not</keyword> <feature><location>../implementation_gtk/ev_radio_menu_item_imp.xml#f_ignore_select_actions</location>ignore_select_actions</feature> <keyword>and then</keyword> <feature><location>../implementation_gtk/ev_radio_menu_item_imp.xml#f_is_selected</location>is_selected</feature> <keyword>and then</keyword> <feature><location>../implementation_gtk/ev_item_imp.xml#f_parent_imp</location>parent_imp</feature> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_set_radio_group</anchor><feature><location>../implementation_gtk/ev_radio_menu_item_imp.xml#f_set_radio_group</location>set_radio_group</feature> <symbol>(</symbol><local>a_gslist</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>)</symbol>
+			<comment>--</comment><comment> Make current a member of </comment><quoted>a_gslist</quoted><comment> radio group.</comment>
+		<keyword>do</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_radio_menu_item_set_group</location>gtk_radio_menu_item_set_group</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_menu_item_imp.xml#f_menu_item</location>menu_item</feature><symbol>,</symbol> <local>a_gslist</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_radio_group</anchor><feature><location>../implementation_gtk/ev_radio_menu_item_imp.xml#f_radio_group</location>radio_group</feature><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<comment>--</comment><comment> Reference to front of radio group. *GSList.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_radio_menu_item_group</location>gtk_radio_menu_item_group</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_menu_item_imp.xml#f_menu_item</location>menu_item</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_any.xml</location>EV_ANY</class><symbol>,</symbol> <class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_interface</anchor><feature><location>../implementation_gtk/ev_radio_menu_item_imp.xml#f_interface</location>interface</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_radio_menu_item.xml</location>EV_RADIO_MENU_ITEM</class>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2006, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>356 Storke Road, Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_gtk/ev_radio_menu_item_imp.xml</location>EV_RADIO_MENU_ITEM_IMP</class></system>
+

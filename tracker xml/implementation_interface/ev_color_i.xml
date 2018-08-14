@@ -1,0 +1,269 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Vision color. Implementation interface.%NSee ev_color.e&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;color, pixel, rgb, 8, 16, 24&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2017-03-27 10:23:22 -0700 (Mon, 27 Mar 2017) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 100056 $&quot;</string>
+
+<keyword>deferred</keyword> <keyword>class</keyword> 
+	<class><location>../implementation_interface/ev_color_i.xml</location>EV_COLOR_I</class>
+
+<keyword>inherit</keyword>
+	<class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class>
+		<keyword>export</keyword>
+			<symbol>{</symbol><class><include>False</include>ANY</class><symbol>}</symbol> <feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_interface/ev_color_i.xml#f_interface</location>interface</feature>
+		<keyword>end</keyword>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Initialization</comment>
+
+	<anchor>f_old_make</anchor><feature><location>../implementation_interface/ev_color_i.xml#f_old_make</location>old_make</feature> <symbol>(</symbol><local>an_interface</local><symbol>:</symbol> <keyword>attached</keyword> <keyword>like</keyword> <feature><location>../implementation_interface/ev_color_i.xml#f_interface</location>interface</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Create zero intinsity color.</comment>
+		<keyword>deferred</keyword>
+		<keyword>ensure then</keyword>
+			<tag>default_name_assigned</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_color_i.xml#f_name</location>name</feature><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_interface/ev_color_i.xml#f_default_name</location>Default_name</feature><symbol>)</symbol>
+			<tag>red_zero</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_color_i.xml#f_red</location>red</feature> <symbol>=</symbol> <number>0</number><dot>.</dot><feature><include>False</include>to_real</feature>
+			<tag>green_zero</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_color_i.xml#f_green</location>green</feature> <symbol>=</symbol> <number>0</number><dot>.</dot><feature><include>False</include>to_real</feature>
+			<tag>blue_zero</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_color_i.xml#f_blue</location>blue</feature> <symbol>=</symbol> <number>0</number><dot>.</dot><feature><include>False</include>to_real</feature>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_color.xml</location>EV_COLOR</class><symbol>}</symbol> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_red</anchor><feature><location>../implementation_interface/ev_color_i.xml#f_red</location>red</feature><symbol>:</symbol> <class><include>False</include>REAL_32</class>
+			<comment>--</comment><comment> Intensity of red component.</comment>
+			<comment>--</comment><comment> Range: </comment><comment>[0,1]</comment>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>within_range</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>&gt;=</symbol> <number>0</number><dot>.</dot><feature><include>False</include>to_real</feature> <keyword>and</keyword> <keyword>Result</keyword> <symbol>&lt;=</symbol> <number>1</number><dot>.</dot><feature><include>False</include>to_real</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_green</anchor><feature><location>../implementation_interface/ev_color_i.xml#f_green</location>green</feature><symbol>:</symbol> <class><include>False</include>REAL_32</class>
+			<comment>--</comment><comment> Intensity of green component.</comment>
+			<comment>--</comment><comment> Range: </comment><comment>[0,1]</comment>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>within_range</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>&gt;=</symbol> <number>0</number><dot>.</dot><feature><include>False</include>to_real</feature> <keyword>and</keyword> <keyword>Result</keyword> <symbol>&lt;=</symbol> <number>1</number><dot>.</dot><feature><include>False</include>to_real</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_blue</anchor><feature><location>../implementation_interface/ev_color_i.xml#f_blue</location>blue</feature><symbol>:</symbol> <class><include>False</include>REAL_32</class>
+			<comment>--</comment><comment> Intensity of blue component.</comment>
+			<comment>--</comment><comment> Range: </comment><comment>[0,1]</comment>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>within_range</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>&gt;=</symbol> <number>0</number><dot>.</dot><feature><include>False</include>to_real</feature> <keyword>and</keyword> <keyword>Result</keyword> <symbol>&lt;=</symbol> <number>1</number><dot>.</dot><feature><include>False</include>to_real</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_name</anchor><feature><location>../implementation_interface/ev_color_i.xml#f_name</location>name</feature><symbol>:</symbol> <class><include>False</include>STRING_32</class>
+			<comment>--</comment><comment> A textual description.</comment>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_color.xml</location>EV_COLOR</class><symbol>}</symbol> <comment>--</comment><comment> Element change</comment>
+
+	<anchor>f_set_red</anchor><feature><location>../implementation_interface/ev_color_i.xml#f_set_red</location>set_red</feature> <symbol>(</symbol><local>a_red</local><symbol>:</symbol> <class><include>False</include>REAL_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>a_red</quoted><comment> to </comment><feature><location>../implementation_interface/ev_color_i.xml#f_red</location>red</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>within_range</tag><symbol>:</symbol> <local>a_red</local> <symbol>&gt;=</symbol> <number>0</number><dot>.</dot><feature><include>False</include>to_real</feature> <keyword>and</keyword> <local>a_red</local> <symbol>&lt;=</symbol> <number>1</number><dot>.</dot><feature><include>False</include>to_real</feature>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>red_assigned</tag><symbol>:</symbol> <symbol>(</symbol><feature><location>../implementation_interface/ev_color_i.xml#f_red</location>red</feature> <symbol>-</symbol> <local>a_red</local><symbol>)</symbol><dot>.</dot><feature><include>False</include>abs</feature> <symbol>&lt;=</symbol> <feature><location>../implementation_interface/ev_color_i.xml#f_delta</location>delta</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_set_green</anchor><feature><location>../implementation_interface/ev_color_i.xml#f_set_green</location>set_green</feature> <symbol>(</symbol><local>a_green</local><symbol>:</symbol> <class><include>False</include>REAL_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>a_green</quoted><comment> to </comment><feature><location>../implementation_interface/ev_color_i.xml#f_green</location>green</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>within_range</tag><symbol>:</symbol> <local>a_green</local> <symbol>&gt;=</symbol> <number>0</number><dot>.</dot><feature><include>False</include>to_real</feature> <keyword>and</keyword> <local>a_green</local> <symbol>&lt;=</symbol> <number>1</number><dot>.</dot><feature><include>False</include>to_real</feature>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>green_assigned</tag><symbol>:</symbol> <symbol>(</symbol><feature><location>../implementation_interface/ev_color_i.xml#f_green</location>green</feature> <symbol>-</symbol> <local>a_green</local><symbol>)</symbol><dot>.</dot><feature><include>False</include>abs</feature> <symbol>&lt;=</symbol> <feature><location>../implementation_interface/ev_color_i.xml#f_delta</location>delta</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_set_blue</anchor><feature><location>../implementation_interface/ev_color_i.xml#f_set_blue</location>set_blue</feature> <symbol>(</symbol><local>a_blue</local><symbol>:</symbol> <class><include>False</include>REAL_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>a_blue</quoted><comment> to </comment><feature><location>../implementation_interface/ev_color_i.xml#f_blue</location>blue</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>blue_within_range</tag><symbol>:</symbol> <local>a_blue</local> <symbol>&gt;=</symbol> <number>0</number><dot>.</dot><feature><include>False</include>to_real</feature> <keyword>and</keyword> <local>a_blue</local> <symbol>&lt;=</symbol> <number>1</number><dot>.</dot><feature><include>False</include>to_real</feature>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>blue_assigned</tag><symbol>:</symbol> <symbol>(</symbol><feature><location>../implementation_interface/ev_color_i.xml#f_blue</location>blue</feature> <symbol>-</symbol> <local>a_blue</local><symbol>)</symbol><dot>.</dot><feature><include>False</include>abs</feature> <symbol>&lt;=</symbol> <feature><location>../implementation_interface/ev_color_i.xml#f_delta</location>delta</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_set_name</anchor><feature><location>../implementation_interface/ev_color_i.xml#f_set_name</location>set_name</feature> <symbol>(</symbol><local>a_name</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>a_name</quoted><comment> to </comment><feature><location>../implementation_interface/ev_color_i.xml#f_name</location>name</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>name_not_void</tag><symbol>:</symbol> <local>a_name</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>name_assigned</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_color_i.xml#f_name</location>name</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>and then</keyword> <feature><location>../implementation_interface/ev_color_i.xml#f_name</location>name</feature><dot>.</dot><feature><include>False</include>same_string_general</feature><symbol> </symbol><symbol>(</symbol><local>a_name</local><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_color.xml</location>EV_COLOR</class><symbol>}</symbol> <comment>--</comment><comment> Conversion</comment>
+
+	<anchor>f_rgb_24_bit</anchor><feature><location>../implementation_interface/ev_color_i.xml#f_rgb_24_bit</location>rgb_24_bit</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> </comment><feature><location>../implementation_interface/ev_color_i.xml#f_red</location>red</feature><comment>, </comment><feature><location>../implementation_interface/ev_color_i.xml#f_green</location>green</feature><comment> and </comment><feature><location>../implementation_interface/ev_color_i.xml#f_blue</location>blue</feature><comment> intensities packed into 24 bits</comment>
+			<comment>--</comment><comment> with 8 bits per colour and blue in the least significant 8 bits.</comment>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>within_range</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>&gt;=</symbol> <number>0</number> <keyword>and</keyword> <keyword>Result</keyword> <symbol>&lt;=</symbol> <symbol>{</symbol><class><location>../interface/ev_color.xml</location>EV_COLOR</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_color.xml#f_max_24_bit</location>max_24_bit</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_set_rgb_with_24_bit</anchor><feature><location>../implementation_interface/ev_color_i.xml#f_set_rgb_with_24_bit</location>set_rgb_with_24_bit</feature> <symbol>(</symbol><local>a_24_bit_rgb</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set intensities from </comment><quoted>a_24_bit_rgb</quoted><comment> value</comment>
+			<comment>--</comment><comment> with blue in the least significant 8 bits.</comment>
+		<keyword>require</keyword>
+			<tag>within_range</tag><symbol>:</symbol> <local>a_24_bit_rgb</local> <symbol>&gt;=</symbol> <number>0</number> <keyword>and</keyword> <local>a_24_bit_rgb</local> <symbol>&lt;=</symbol> <symbol>{</symbol><class><location>../interface/ev_color.xml</location>EV_COLOR</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_color.xml#f_max_24_bit</location>max_24_bit</feature>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>rgb_assigned</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_color_i.xml#f_rgb_24_bit</location>rgb_24_bit</feature> <symbol>=</symbol> <local>a_24_bit_rgb</local>
+		<keyword>end</keyword>
+
+	<anchor>f_red_8_bit</anchor><feature><location>../implementation_interface/ev_color_i.xml#f_red_8_bit</location>red_8_bit</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Intensity of </comment><feature><location>../implementation_interface/ev_color_i.xml#f_red</location>red</feature><comment> component</comment>
+			<comment>--</comment><comment> as an 8 bit unsigned integer.</comment>
+			<comment>--</comment><comment> Range </comment><comment>[0,255]</comment>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>within_range</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>&gt;=</symbol> <number>0</number> <keyword>and</keyword> <keyword>Result</keyword> <symbol>&lt;=</symbol> <symbol>{</symbol><class><location>../interface/ev_color.xml</location>EV_COLOR</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_color.xml#f_max_8_bit</location>max_8_bit</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_green_8_bit</anchor><feature><location>../implementation_interface/ev_color_i.xml#f_green_8_bit</location>green_8_bit</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Intensity of </comment><feature><location>../implementation_interface/ev_color_i.xml#f_green</location>green</feature><comment> component</comment>
+			<comment>--</comment><comment> as an 8 bit unsigned integer.</comment>
+			<comment>--</comment><comment> Range </comment><comment>[0,255]</comment>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>within_range</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>&gt;=</symbol> <number>0</number> <keyword>and</keyword> <keyword>Result</keyword> <symbol>&lt;=</symbol> <symbol>{</symbol><class><location>../interface/ev_color.xml</location>EV_COLOR</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_color.xml#f_max_8_bit</location>max_8_bit</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_blue_8_bit</anchor><feature><location>../implementation_interface/ev_color_i.xml#f_blue_8_bit</location>blue_8_bit</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Intensity of </comment><feature><location>../implementation_interface/ev_color_i.xml#f_blue</location>blue</feature><comment> component</comment>
+			<comment>--</comment><comment> as an 8 bit unsigned integer.</comment>
+			<comment>--</comment><comment> Range </comment><comment>[0,255]</comment>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>within_range</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>&gt;=</symbol> <number>0</number> <keyword>and</keyword> <keyword>Result</keyword> <symbol>&lt;=</symbol> <symbol>{</symbol><class><location>../interface/ev_color.xml</location>EV_COLOR</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_color.xml#f_max_8_bit</location>max_8_bit</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_set_red_with_8_bit</anchor><feature><location>../implementation_interface/ev_color_i.xml#f_set_red_with_8_bit</location>set_red_with_8_bit</feature> <symbol>(</symbol><local>an_8_bit_red</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><feature><location>../implementation_interface/ev_color_i.xml#f_red</location>red</feature><comment> from </comment><quoted>an_8_bit_red</quoted><comment> intinsity.</comment>
+		<keyword>require</keyword>
+			<tag>within_range</tag><symbol>:</symbol> <local>an_8_bit_red</local> <symbol>&gt;=</symbol> <number>0</number> <keyword>and</keyword> <local>an_8_bit_red</local> <symbol>&lt;=</symbol> <symbol>{</symbol><class><location>../interface/ev_color.xml</location>EV_COLOR</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_color.xml#f_max_8_bit</location>max_8_bit</feature>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>red_assigned</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_color_i.xml#f_red_8_bit</location>red_8_bit</feature> <symbol>=</symbol> <local>an_8_bit_red</local>
+		<keyword>end</keyword>
+
+	<anchor>f_set_green_with_8_bit</anchor><feature><location>../implementation_interface/ev_color_i.xml#f_set_green_with_8_bit</location>set_green_with_8_bit</feature> <symbol>(</symbol><local>an_8_bit_green</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><feature><location>../implementation_interface/ev_color_i.xml#f_green</location>green</feature><comment> from </comment><quoted>an_8_bit_green</quoted><comment> intinsity.</comment>
+		<keyword>require</keyword>
+			<tag>within_range</tag><symbol>:</symbol> <local>an_8_bit_green</local> <symbol>&gt;=</symbol> <number>0</number> <keyword>and</keyword> <local>an_8_bit_green</local> <symbol>&lt;=</symbol> <symbol>{</symbol><class><location>../interface/ev_color.xml</location>EV_COLOR</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_color.xml#f_max_8_bit</location>max_8_bit</feature>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>green_assigned</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_color_i.xml#f_green_8_bit</location>green_8_bit</feature> <symbol>=</symbol> <local>an_8_bit_green</local>
+		<keyword>end</keyword>
+
+	<anchor>f_set_blue_with_8_bit</anchor><feature><location>../implementation_interface/ev_color_i.xml#f_set_blue_with_8_bit</location>set_blue_with_8_bit</feature> <symbol>(</symbol><local>an_8_bit_blue</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><feature><location>../implementation_interface/ev_color_i.xml#f_blue</location>blue</feature><comment> from </comment><quoted>an_8_bit_blue</quoted><comment> intinsity.</comment>
+		<keyword>require</keyword>
+			<tag>within_range</tag><symbol>:</symbol> <local>an_8_bit_blue</local> <symbol>&gt;=</symbol> <number>0</number> <keyword>and</keyword> <local>an_8_bit_blue</local> <symbol>&lt;=</symbol> <symbol>{</symbol><class><location>../interface/ev_color.xml</location>EV_COLOR</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_color.xml#f_max_8_bit</location>max_8_bit</feature>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>blue_assigned</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_color_i.xml#f_blue_8_bit</location>blue_8_bit</feature> <symbol>=</symbol> <local>an_8_bit_blue</local>
+		<keyword>end</keyword>
+
+	<anchor>f_red_16_bit</anchor><feature><location>../implementation_interface/ev_color_i.xml#f_red_16_bit</location>red_16_bit</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Intensity of red component</comment>
+			<comment>--</comment><comment> as a 16 bit unsigned integer.</comment>
+			<comment>--</comment><comment> Range </comment><comment>[0,65535]</comment>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>within_range</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>&gt;=</symbol> <number>0</number> <keyword>and</keyword> <keyword>Result</keyword> <symbol>&lt;=</symbol> <symbol>{</symbol><class><location>../interface/ev_color.xml</location>EV_COLOR</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_color.xml#f_max_16_bit</location>max_16_bit</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_green_16_bit</anchor><feature><location>../implementation_interface/ev_color_i.xml#f_green_16_bit</location>green_16_bit</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Intensity of green component</comment>
+			<comment>--</comment><comment> as a 16 bit unsigned integer.</comment>
+			<comment>--</comment><comment> Range </comment><comment>[0,65535]</comment>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>within_range</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>&gt;=</symbol> <number>0</number> <keyword>and</keyword> <keyword>Result</keyword> <symbol>&lt;=</symbol> <symbol>{</symbol><class><location>../interface/ev_color.xml</location>EV_COLOR</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_color.xml#f_max_16_bit</location>max_16_bit</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_blue_16_bit</anchor><feature><location>../implementation_interface/ev_color_i.xml#f_blue_16_bit</location>blue_16_bit</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Intensity of blue component</comment>
+			<comment>--</comment><comment> as a 16 bit unsigned integer.</comment>
+			<comment>--</comment><comment> Range </comment><comment>[0,65535]</comment>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>within_range</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>&gt;=</symbol> <number>0</number> <keyword>and</keyword> <keyword>Result</keyword> <symbol>&lt;=</symbol> <symbol>{</symbol><class><location>../interface/ev_color.xml</location>EV_COLOR</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_color.xml#f_max_16_bit</location>max_16_bit</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_set_red_with_16_bit</anchor><feature><location>../implementation_interface/ev_color_i.xml#f_set_red_with_16_bit</location>set_red_with_16_bit</feature> <symbol>(</symbol><local>a_16_bit_red</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><feature><location>../implementation_interface/ev_color_i.xml#f_red</location>red</feature><comment> from </comment><quoted>a_8_bit_red</quoted><comment> intinsity.</comment>
+		<keyword>require</keyword>
+			<tag>within_range</tag><symbol>:</symbol> <local>a_16_bit_red</local> <symbol>&gt;=</symbol> <number>0</number> <keyword>and</keyword> <local>a_16_bit_red</local> <symbol>&lt;=</symbol> <symbol>{</symbol><class><location>../interface/ev_color.xml</location>EV_COLOR</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_color.xml#f_max_16_bit</location>max_16_bit</feature>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>red_assigned</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_color_i.xml#f_red_16_bit</location>red_16_bit</feature> <symbol>=</symbol> <local>a_16_bit_red</local>
+		<keyword>end</keyword>
+
+	<anchor>f_set_green_with_16_bit</anchor><feature><location>../implementation_interface/ev_color_i.xml#f_set_green_with_16_bit</location>set_green_with_16_bit</feature> <symbol>(</symbol><local>a_16_bit_green</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><feature><location>../implementation_interface/ev_color_i.xml#f_green</location>green</feature><comment> from </comment><quoted>a_16_bit_green</quoted><comment> intinsity.</comment>
+		<keyword>require</keyword>
+			<tag>within_range</tag><symbol>:</symbol> <local>a_16_bit_green</local> <symbol>&gt;=</symbol> <number>0</number> <keyword>and</keyword> <local>a_16_bit_green</local> <symbol>&lt;=</symbol> <symbol>{</symbol><class><location>../interface/ev_color.xml</location>EV_COLOR</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_color.xml#f_max_16_bit</location>max_16_bit</feature>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>green_assigned</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_color_i.xml#f_green_16_bit</location>green_16_bit</feature> <symbol>=</symbol> <local>a_16_bit_green</local>
+		<keyword>end</keyword>
+
+	<anchor>f_set_blue_with_16_bit</anchor><feature><location>../implementation_interface/ev_color_i.xml#f_set_blue_with_16_bit</location>set_blue_with_16_bit</feature> <symbol>(</symbol><local>a_16_bit_blue</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><feature><location>../implementation_interface/ev_color_i.xml#f_blue</location>blue</feature><comment> from </comment><quoted>a_16_bit_blue</quoted><comment> intinsity.</comment>
+		<keyword>require</keyword>
+			<tag>within_range</tag><symbol>:</symbol> <local>a_16_bit_blue</local> <symbol>&gt;=</symbol> <number>0</number> <keyword>and</keyword> <local>a_16_bit_blue</local> <symbol>&lt;=</symbol> <symbol>{</symbol><class><location>../interface/ev_color.xml</location>EV_COLOR</class><symbol>}</symbol><dot>.</dot><feature><location>../interface/ev_color.xml#f_max_16_bit</location>max_16_bit</feature>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>blue_assigned</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_color_i.xml#f_blue_16_bit</location>blue_16_bit</feature> <symbol>=</symbol> <local>a_16_bit_blue</local>
+		<keyword>end</keyword>
+
+	<anchor>f_set_with_other</anchor><feature><location>../implementation_interface/ev_color_i.xml#f_set_with_other</location>set_with_other</feature> <symbol>(</symbol><local>other</local><symbol>:</symbol> <class><location>../interface/ev_color.xml</location>EV_COLOR</class><symbol>)</symbol>
+			<comment>--</comment><comment> Take on the appearance of </comment><quoted>other</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_interface/ev_color_i.xml#f_set_red</location>set_red</feature><symbol> </symbol><symbol>(</symbol><local>other</local><dot>.</dot><feature><location>../interface/ev_color.xml#f_red</location>red</feature><symbol>)</symbol>
+			<feature><location>../implementation_interface/ev_color_i.xml#f_set_green</location>set_green</feature><symbol> </symbol><symbol>(</symbol><local>other</local><dot>.</dot><feature><location>../interface/ev_color.xml#f_green</location>green</feature><symbol>)</symbol>
+			<feature><location>../implementation_interface/ev_color_i.xml#f_set_blue</location>set_blue</feature><symbol> </symbol><symbol>(</symbol><local>other</local><dot>.</dot><feature><location>../interface/ev_color.xml#f_blue</location>blue</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_default_name</anchor><feature><location>../implementation_interface/ev_color_i.xml#f_default_name</location>Default_name</feature><symbol>:</symbol> <class><include>False</include>STRING_32</class> <symbol>=</symbol> &quot;noname&quot;
+			<comment>--</comment><comment> To be used as </comment><feature><location>../implementation_interface/ev_color_i.xml#f_name</location>name</feature><comment> when none is supplied.</comment>
+
+	<anchor>f_interface</anchor><feature><location>../implementation_interface/ev_color_i.xml#f_interface</location>interface</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_color.xml</location>EV_COLOR</class>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_delta</anchor><feature><location>../implementation_interface/ev_color_i.xml#f_delta</location>delta</feature><symbol>:</symbol> <class><include>False</include>REAL_32</class>
+			<comment>--</comment><comment> Amount by which two intensities can differ but still be</comment>
+			<comment>--</comment><comment> considered equal by </comment><feature><include>False</include>is_equal</feature><comment>.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2017, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_interface/ev_color_i.xml</location>EV_COLOR_I</class></system>
+

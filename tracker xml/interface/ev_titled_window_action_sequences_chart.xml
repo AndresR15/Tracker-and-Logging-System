@@ -1,0 +1,18 @@
+<system>
+<keyword>deferred</keyword> <keyword>class</keyword>
+	<class><location>../interface/ev_titled_window_action_sequences_chart.xml</location>EV_TITLED_WINDOW_ACTION_SEQUENCES</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>interface</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Action sequences for EV_WINDOW.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;event, action, sequence&quot;</string>
+
+<keyword>Ancestors</keyword>
+	<class><location>../interface/ev_action_sequences_chart.xml</location>EV_ACTION_SEQUENCES</class><char>*</char>
+
+<keyword>Action sequences</keyword>
+	<feature><location>../interface/ev_titled_window_action_sequences.xml#f_maximize_actions</location>maximize_actions</feature><symbol>:</symbol> <class><location>../interface/ev_notify_action_sequence_chart.xml</location>EV_NOTIFY_ACTION_SEQUENCE</class>
+	<feature><location>../interface/ev_titled_window_action_sequences.xml#f_minimize_actions</location>minimize_actions</feature><symbol>:</symbol> <class><location>../interface/ev_notify_action_sequence_chart.xml</location>EV_NOTIFY_ACTION_SEQUENCE</class>
+	<feature><location>../interface/ev_titled_window_action_sequences.xml#f_restore_actions</location>restore_actions</feature><symbol>:</symbol> <class><location>../interface/ev_notify_action_sequence_chart.xml</location>EV_NOTIFY_ACTION_SEQUENCE</class>
+
+</system>

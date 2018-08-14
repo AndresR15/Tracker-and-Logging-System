@@ -1,0 +1,31 @@
+<system>
+<keyword>deferred</keyword> <keyword>class</keyword>
+	<class><location>../interface/ev_drawable_links.xml</location>EV_DRAWABLE</class>
+
+<keyword>Ancestors</keyword>
+	<class><location>../interface/ev_colorizable_links.xml</location>EV_COLORIZABLE</class><char>*</char>
+	<class><location>../interface/ev_drawable_constants_links.xml</location>EV_DRAWABLE_CONSTANTS</class>
+	<class><location>../interface/ev_fontable_links.xml</location>EV_FONTABLE</class><char>*</char>
+
+<keyword>Descendants</keyword>
+	<class><location>../interface/ev_bitmap_links.xml</location>EV_BITMAP</class>
+	<class><location>../interface/ev_drawing_area_links.xml</location>EV_DRAWING_AREA</class>
+	<class><location>../interface/ev_pixmap_links.xml</location>EV_PIXMAP</class>
+	<class><location>../interface/ev_screen_links.xml</location>EV_SCREEN</class>
+
+<keyword>Clients</keyword>
+	<class><location>../interface/ev_drawable_links.xml</location>EV_DRAWABLE</class><char>*</char>
+	<class><location>../implementation_interface/ev_drawable_i_links.xml</location>EV_DRAWABLE_I</class><char>*</char>
+	<class><location>../interface/ev_drawing_area_links.xml</location>EV_DRAWING_AREA</class>
+	<class><location>../interface/ev_pixmap_links.xml</location>EV_PIXMAP</class>
+
+<keyword>Suppliers</keyword>
+	<class><include>False</include>ARRAY</class> <symbol>[</symbol><generic>G</generic><symbol>]</symbol>
+	<class><include>False</include>BOOLEAN</class>
+	<class><location>../interface/ev_colorizable_links.xml</location>EV_COLORIZABLE</class><char>*</char>
+	<class><location>../interface/ev_drawable_links.xml</location>EV_DRAWABLE</class><char>*</char>
+	<class><location>../implementation_interface/ev_drawable_i_links.xml</location>EV_DRAWABLE_I</class><char>*</char>
+	<class><location>../interface/ev_rectangle_links.xml</location>EV_RECTANGLE</class>
+	<class><include>False</include>INTEGER_32</class>
+
+</system>

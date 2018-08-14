@@ -1,0 +1,154 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Vision widget, implementation interface.%NSee bridge pattern notes in ev_any.e&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;widget, component, control&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2015-12-17 05:34:17 -0800 (Thu, 17 Dec 2015) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 98279 $&quot;</string>
+
+<keyword>deferred</keyword> <keyword>class</keyword> <keyword>interface</keyword>
+	<class><location>../implementation_interface/ev_widget_i_short.xml</location>EV_WIDGET_I</class>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Basic operations</comment>
+
+	<anchor>f_refresh_now</anchor><feature><location>../implementation_interface/ev_widget_i_short.xml#f_refresh_now</location>refresh_now</feature>
+			<comment>--</comment><comment> Force an immediate redraw of </comment><quoted>Current</quoted><comment>.</comment>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_parent</anchor><feature><location>../implementation_interface/ev_widget_i_short.xml#f_parent</location>parent</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_container_short.xml</location>EV_CONTAINER</class>
+			<comment>--</comment><comment> Container widget that contains </comment><quoted>Current</quoted><comment>.</comment>
+			<comment>--</comment><comment> (Void if </comment><quoted>Current</quoted><comment> is not in a container)</comment>
+
+	<anchor>f_pointer_position</anchor><feature><location>../implementation_interface/ev_widget_i_short.xml#f_pointer_position</location>pointer_position</feature><symbol>:</symbol> <class><location>../interface/ev_coordinate_short.xml</location>EV_COORDINATE</class>
+			<comment>--</comment><comment> Position of the screen pointer relative to </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_pointer_style</anchor><feature><location>../implementation_interface/ev_widget_i_short.xml#f_pointer_style</location>pointer_style</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_pointer_style_short.xml</location>EV_POINTER_STYLE</class>
+			<comment>--</comment><comment> Cursor displayed when screen pointer is over current widget.</comment>
+			<comment>--</comment><comment> Void if none has been set using </comment><quoted>set_pointer_position</quoted><comment>.</comment>
+
+	<anchor>f_internal_pointer_style</anchor><feature><location>../implementation_interface/ev_widget_i_short.xml#f_internal_pointer_style</location>internal_pointer_style</feature><symbol>:</symbol> <class><location>../interface/ev_pointer_style_short.xml</location>EV_POINTER_STYLE</class>
+			<comment>--</comment><comment> Cursor displayed when screen pointer is over current widget,</comment>
+			<comment>--</comment><comment> as seen from interface.</comment>
+
+	<anchor>f_actual_drop_target_agent</anchor><feature><location>../implementation_interface/ev_widget_i_short.xml#f_actual_drop_target_agent</location>actual_drop_target_agent</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>FUNCTION</class> <symbol>[</symbol><class><include>False</include>INTEGER_32</class><symbol>,</symbol> <class><include>False</include>INTEGER_32</class><symbol>,</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_abstract_pick_and_dropable_short.xml</location>EV_ABSTRACT_PICK_AND_DROPABLE</class><symbol>]</symbol>
+			<comment>--</comment><comment> Overrides default drop target on a certain position.</comment>
+			<comment>--</comment><comment> If </comment><quoted>Void</quoted><comment>, will use the default drop target.</comment>
+			<comment>--</comment><comment> Always void if </comment><quoted>Current</quoted><comment> is not a widget.</comment>
+
+	<anchor>f_real_target</anchor><feature><location>../implementation_interface/ev_widget_i_short.xml#f_real_target</location>real_target</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_dockable_target_short.xml</location>EV_DOCKABLE_TARGET</class>
+			<comment>--</comment><comment> </comment><quoted>Result</quoted><comment> is target used during a dockable transport if</comment>
+			<comment>--</comment><comment> mouse pointer is above </comment><quoted>Current</quoted><comment>.</comment>
+
+	<anchor>f_default_key_processing_handler</anchor><feature><location>../implementation_interface/ev_widget_i_short.xml#f_default_key_processing_handler</location>default_key_processing_handler</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>PREDICATE</class> <symbol>[</symbol><class><location>../interface/ev_key_short.xml</location>EV_KEY</class><symbol>]</symbol>
+			<comment>--</comment><comment> Agent used to determine whether the default key processing should occur for </comment><quoted>Current</quoted><comment>.</comment>
+			<comment>--</comment><comment> If agent returns </comment><quoted>True</quoted><comment> then default key processing continues as normal, False prevents</comment>
+			<comment>--</comment><comment> default key processing from occurring.</comment>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status Report</comment>
+
+	<anchor>f_is_show_requested</anchor><feature><location>../implementation_interface/ev_widget_i_short.xml#f_is_show_requested</location>is_show_requested</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Will </comment><quoted>Current</quoted><comment> be displayed when its parent is?</comment>
+			<comment>--</comment><comment> See also </comment><feature><location>../implementation_interface/ev_widget_i_short.xml#f_is_displayed</location>is_displayed</feature><comment>.</comment>
+
+	<anchor>f_is_displayed</anchor><feature><location>../implementation_interface/ev_widget_i_short.xml#f_is_displayed</location>is_displayed</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is </comment><quoted>Current</quoted><comment> visible on the screen?</comment>
+			<comment>--</comment><comment> False if </comment><quoted>Current</quoted><comment> is entirely obscured by another window.</comment>
+
+	<anchor>f_has_focus</anchor><feature><location>../implementation_interface/ev_widget_i_short.xml#f_has_focus</location>has_focus</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Does widget have the keyboard focus?</comment>
+
+	<anchor>f_has_capture</anchor><feature><location>../implementation_interface/ev_widget_i_short.xml#f_has_capture</location>has_capture</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Does widget have capture?</comment>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status setting</comment>
+
+	<anchor>f_hide</anchor><feature><location>../implementation_interface/ev_widget_i_short.xml#f_hide</location>hide</feature>
+			<comment>--</comment><comment> Request that </comment><quoted>Current</quoted><comment> not be displayed when its parent is.</comment>
+
+	<anchor>f_show</anchor><feature><location>../implementation_interface/ev_widget_i_short.xml#f_show</location>show</feature>
+			<comment>--</comment><comment> Request that </comment><quoted>Current</quoted><comment> be displayed when its parent is.</comment>
+
+	<anchor>f_set_focus</anchor><feature><location>../implementation_interface/ev_widget_i_short.xml#f_set_focus</location>set_focus</feature>
+			<comment>--</comment><comment> Grab keyboard focus.</comment>
+
+	<anchor>f_set_actual_drop_target_agent</anchor><feature><location>../implementation_interface/ev_widget_i_short.xml#f_set_actual_drop_target_agent</location>set_actual_drop_target_agent</feature> <symbol>(</symbol><local>an_agent</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../implementation_interface/ev_widget_i_short.xml#f_actual_drop_target_agent</location>actual_drop_target_agent</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>an_agent</quoted><comment> to </comment><feature><location>../implementation_interface/ev_widget_i_short.xml#f_actual_drop_target_agent</location>actual_drop_target_agent</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>an_agent_not_void</tag><symbol>:</symbol> <local>an_agent</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>ensure</keyword>
+			<tag>assigned</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_widget_i_short.xml#f_actual_drop_target_agent</location>actual_drop_target_agent</feature> <symbol>=</symbol> <local>an_agent</local>
+
+	<anchor>f_set_real_target</anchor><feature><location>../implementation_interface/ev_widget_i_short.xml#f_set_real_target</location>set_real_target</feature> <symbol>(</symbol><local>a_target</local><symbol>:</symbol> <class><location>../interface/ev_dockable_target_short.xml</location>EV_DOCKABLE_TARGET</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>a_target</quoted><comment> to </comment><feature><location>../implementation_interface/ev_widget_i_short.xml#f_real_target</location>real_target</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>target_not_void</tag><symbol>:</symbol> <local>a_target</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>ensure</keyword>
+			<tag>assigned</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_widget_i_short.xml#f_real_target</location>real_target</feature> <symbol>=</symbol> <local>a_target</local>
+
+	<anchor>f_remove_real_target</anchor><feature><location>../implementation_interface/ev_widget_i_short.xml#f_remove_real_target</location>remove_real_target</feature>
+			<comment>--</comment><comment> Ensure </comment><feature><location>../implementation_interface/ev_widget_i_short.xml#f_real_target</location>real_target</feature><comment> is </comment><quoted>Void</quoted><comment>.</comment>
+		<keyword>ensure</keyword>
+			<tag>real_target_void</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_widget_i_short.xml#f_real_target</location>real_target</feature> <symbol>=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_set_default_key_processing_handler</anchor><feature><location>../implementation_interface/ev_widget_i_short.xml#f_set_default_key_processing_handler</location>set_default_key_processing_handler</feature> <symbol>(</symbol><local>a_handler</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../implementation_interface/ev_widget_i_short.xml#f_default_key_processing_handler</location>default_key_processing_handler</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><feature><location>../implementation_interface/ev_widget_i_short.xml#f_default_key_processing_handler</location>default_key_processing_handler</feature><comment> to </comment><quoted>a_handler</quoted><comment>.</comment>
+
+	<anchor>f_remove_default_key_processing_handler</anchor><feature><location>../implementation_interface/ev_widget_i_short.xml#f_remove_default_key_processing_handler</location>remove_default_key_processing_handler</feature>
+			<comment>--</comment><comment> Ensure </comment><feature><location>../implementation_interface/ev_widget_i_short.xml#f_default_key_processing_handler</location>default_key_processing_handler</feature><comment> is Void.</comment>
+		<keyword>ensure</keyword>
+			<tag>default_key_processing_handler_removed</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_widget_i_short.xml#f_default_key_processing_handler</location>default_key_processing_handler</feature> <symbol>=</symbol> <keyword>Void</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Element change</comment>
+
+	<anchor>f_set_minimum_width</anchor><feature><location>../implementation_interface/ev_widget_i_short.xml#f_set_minimum_width</location>set_minimum_width</feature> <symbol>(</symbol><local>a_minimum_width</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set the minimum horizontal size to </comment><quoted>a_minimum_width</quoted><comment> in pixels.</comment>
+		<keyword>require</keyword>
+			<tag>a_minimum_width_positive</tag><symbol>:</symbol> <local>a_minimum_width</local> <symbol>&gt;=</symbol> <number>0</number>
+		<keyword>ensure</keyword>
+			<tag>minimum_width_assigned</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_any_i_short.xml#f_is_usable</location>is_usable</feature> <keyword>implies</keyword> <symbol>(</symbol><symbol>(</symbol><local>a_minimum_width</local> <symbol>&gt;</symbol> <number>0</number> <keyword>implies</keyword> <feature><location>../implementation_interface/ev_any_i_short.xml#f_attached_interface</location>attached_interface</feature><dot>.</dot><feature><location>../interface/ev_positioned_short.xml#f_minimum_width</location>minimum_width</feature> <symbol>=</symbol> <local>a_minimum_width</local><symbol>)</symbol> <keyword>or</keyword> <symbol>(</symbol><local>a_minimum_width</local> <symbol>=</symbol> <number>0</number> <keyword>implies</keyword> <symbol>(</symbol><feature><location>../implementation_interface/ev_any_i_short.xml#f_attached_interface</location>attached_interface</feature><dot>.</dot><feature><location>../interface/ev_positioned_short.xml#f_minimum_width</location>minimum_width</feature> <symbol>&lt;=</symbol> <number>1</number><symbol>)</symbol><symbol>)</symbol><symbol>)</symbol>
+
+	<anchor>f_set_minimum_height</anchor><feature><location>../implementation_interface/ev_widget_i_short.xml#f_set_minimum_height</location>set_minimum_height</feature> <symbol>(</symbol><local>a_minimum_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set the minimum vertical size to </comment><quoted>a_minimum_height</quoted><comment> in pixels.</comment>
+		<keyword>require</keyword>
+			<tag>a_minimum_height_positive</tag><symbol>:</symbol> <local>a_minimum_height</local> <symbol>&gt;=</symbol> <number>0</number>
+		<keyword>ensure</keyword>
+			<tag>minimum_height_assigned</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_any_i_short.xml#f_is_usable</location>is_usable</feature> <keyword>implies</keyword> <symbol>(</symbol><symbol>(</symbol><local>a_minimum_height</local> <symbol>&gt;</symbol> <number>0</number> <keyword>implies</keyword> <feature><location>../implementation_interface/ev_any_i_short.xml#f_attached_interface</location>attached_interface</feature><dot>.</dot><feature><location>../interface/ev_positioned_short.xml#f_minimum_height</location>minimum_height</feature> <symbol>=</symbol> <local>a_minimum_height</local><symbol>)</symbol> <keyword>or</keyword> <symbol>(</symbol><local>a_minimum_height</local> <symbol>=</symbol> <number>0</number> <keyword>implies</keyword> <symbol>(</symbol><feature><location>../implementation_interface/ev_any_i_short.xml#f_attached_interface</location>attached_interface</feature><dot>.</dot><feature><location>../interface/ev_positioned_short.xml#f_minimum_height</location>minimum_height</feature> <symbol>&lt;=</symbol> <number>1</number><symbol>)</symbol><symbol>)</symbol><symbol>)</symbol>
+
+	<anchor>f_set_minimum_size</anchor><feature><location>../implementation_interface/ev_widget_i_short.xml#f_set_minimum_size</location>set_minimum_size</feature> <symbol>(</symbol><local>a_minimum_width</local><symbol>,</symbol> <local>a_minimum_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set the minimum horizontal size to </comment><quoted>a_minimum_width</quoted><comment> in pixels.</comment>
+			<comment>--</comment><comment> Set the minimum vertical size to </comment><quoted>a_minimum_height</quoted><comment> in pixels.</comment>
+		<keyword>require</keyword>
+			<tag>a_minimum_width_positive</tag><symbol>:</symbol> <local>a_minimum_width</local> <symbol>&gt;=</symbol> <number>0</number>
+			<tag>a_minimum_height_positive</tag><symbol>:</symbol> <local>a_minimum_height</local> <symbol>&gt;=</symbol> <number>0</number>
+		<keyword>ensure</keyword>
+			<tag>minimum_width_assigned</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_any_i_short.xml#f_is_usable</location>is_usable</feature> <keyword>implies</keyword> <symbol>(</symbol><symbol>(</symbol><local>a_minimum_width</local> <symbol>&gt;</symbol> <number>0</number> <keyword>implies</keyword> <feature><location>../implementation_interface/ev_any_i_short.xml#f_attached_interface</location>attached_interface</feature><dot>.</dot><feature><location>../interface/ev_positioned_short.xml#f_minimum_width</location>minimum_width</feature> <symbol>=</symbol> <local>a_minimum_width</local><symbol>)</symbol> <keyword>or</keyword> <symbol>(</symbol><local>a_minimum_width</local> <symbol>=</symbol> <number>0</number> <keyword>implies</keyword> <symbol>(</symbol><feature><location>../implementation_interface/ev_any_i_short.xml#f_attached_interface</location>attached_interface</feature><dot>.</dot><feature><location>../interface/ev_positioned_short.xml#f_minimum_width</location>minimum_width</feature> <symbol>&lt;=</symbol> <number>1</number><symbol>)</symbol><symbol>)</symbol><symbol>)</symbol>
+			<tag>minimum_height_assigned</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_any_i_short.xml#f_is_usable</location>is_usable</feature> <keyword>implies</keyword> <symbol>(</symbol><symbol>(</symbol><local>a_minimum_height</local> <symbol>&gt;</symbol> <number>0</number> <keyword>implies</keyword> <feature><location>../implementation_interface/ev_any_i_short.xml#f_attached_interface</location>attached_interface</feature><dot>.</dot><feature><location>../interface/ev_positioned_short.xml#f_minimum_height</location>minimum_height</feature> <symbol>=</symbol> <local>a_minimum_height</local><symbol>)</symbol> <keyword>or</keyword> <symbol>(</symbol><local>a_minimum_height</local> <symbol>=</symbol> <number>0</number> <keyword>implies</keyword> <symbol>(</symbol><feature><location>../implementation_interface/ev_any_i_short.xml#f_attached_interface</location>attached_interface</feature><dot>.</dot><feature><location>../interface/ev_positioned_short.xml#f_minimum_height</location>minimum_height</feature> <symbol>&lt;=</symbol> <number>1</number><symbol>)</symbol><symbol>)</symbol><symbol>)</symbol>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Measurement</comment>
+
+	<anchor>f_screen_x</anchor><feature><location>../implementation_interface/ev_widget_i_short.xml#f_screen_x</location>screen_x</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Horizontal offset relative to screen.</comment>
+
+	<anchor>f_screen_y</anchor><feature><location>../implementation_interface/ev_widget_i_short.xml#f_screen_y</location>screen_y</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Vertical offset relative to screen.</comment>
+	
+<keyword>invariant</keyword>
+	<tag>is_displayed_implies_show_requested</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_any_i_short.xml#f_is_usable</location>is_usable</feature> <keyword>and</keyword> <feature><location>../implementation_interface/ev_widget_i_short.xml#f_is_displayed</location>is_displayed</feature> <keyword>implies</keyword> <feature><location>../implementation_interface/ev_widget_i_short.xml#f_is_show_requested</location>is_show_requested</feature>
+
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2006, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>356 Storke Road, Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_interface/ev_widget_i_short.xml</location>EV_WIDGET_I</class></system>
+

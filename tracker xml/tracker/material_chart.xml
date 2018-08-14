@@ -1,0 +1,15 @@
+<system>
+<keyword>expanded</keyword> <keyword>class</keyword>
+	<class><location>../tracker/material_chart.xml</location>MATERIAL</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>tracker</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Summary description for </string><symbol>{</symbol><class><location>../tracker/material_chart.xml</location>MATERIAL</class><symbol>}</symbol><string>.&quot;</string>
+
+<keyword>Ancestors</keyword>
+	<class><include>False</include>ANY</class>
+
+<keyword>Queries</keyword>
+	<feature><location>../tracker/material.xml#f_int_to_material_string</location>int_to_material_string</feature> <symbol>(</symbol><local>int</local><symbol>:</symbol> <class><include>False</include>INTEGER_64</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+
+</system>

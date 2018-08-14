@@ -1,0 +1,203 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "Implementation interface for EV_PIXEL_BUFFER."{\line}
+{\tab}{\cf1 legal}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 status}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 keywords}{\cf1 :} "drawable, primitives, figures, buffer, bitmap, picture"{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2017-05-03 08:56:14 -0700 (Wed, 03 May 2017) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 100317 $"{\line}
+{\line}
+{\b\cf6 deferred} {\b\cf6 class} {\line}
+{\tab}{\cf4 EV_PIXEL_BUFFER_I}{\line}
+{\line}
+{\b\cf6 inherit}{\line}
+{\tab}{\cf4 EV_ANY_I}{\line}
+{\tab}{\tab}{\b\cf6 redefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 interface}{\line}
+{\tab}{\tab}{\b\cf6 end}{\line}
+{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Initialization}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make_with_size} {\cf1 (}{\cf5 a_width}{\cf1 ,} {\cf5 a_height}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Make Current with size.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 width_valid}{\cf1 :} {\cf5 a_width} {\cf1 >} 0{\line}
+{\tab}{\tab}{\tab}{\cf1 height_valid}{\cf1 :} {\cf5 a_height} {\cf1 >} 0{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make_with_pixmap} {\cf1 (}{\cf5 a_pixmap}{\cf1 :} {\cf4 EV_PIXMAP}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create with }{\cf5 a_pixmap}{\cf3 's image data.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_void}{\cf1 :} {\cf5 a_pixmap} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Command}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_with_named_path} {\cf1 (}{\cf5 a_file_name}{\cf1 :} {\cf4 PATH}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Load pixel data from }{\cf5 a_file_name}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_file_name_valid}{\cf1 :} {\cf5 a_file_name} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\b\cf6 not} {\cf5 a_file_name}{\b\cf1 .}{\cf5 is_empty}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_with_pointer} {\cf1 (}{\cf5 a_pointer}{\cf1 :} {\cf4 POINTER}{\cf1 ;} {\cf5 a_size}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Load pixel data from }{\cf5 a_pointer}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 a_size}{\cf3 : size in bytes}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 save_to_named_path} {\cf1 (}{\cf5 a_file_name}{\cf1 :} {\cf4 PATH}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Save pixel data to file }{\cf5 a_file_name}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_file_name_valid}{\cf1 :} {\cf5 a_file_name} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\b\cf6 not} {\cf5 a_file_name}{\b\cf1 .}{\cf5 is_empty}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 save_to_pointer}{\cf1 :} {\b\cf6 detachable} {\cf4 MANAGED_POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Save pixel data to }{\cf5 a_pointer}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 stretched} {\cf1 (}{\cf5 a_width}{\cf1 ,} {\cf5 a_height}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 EV_PIXEL_BUFFER}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Stretched copy of }{\cf5 Current}{\cf3  of dimension }{\cf5 a_width}{\cf3  x }{\cf5 a_height}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_width_positive}{\cf1 :} {\cf5 a_width} {\cf1 >} 0{\line}
+{\tab}{\tab}{\tab}{\cf1 a_height_positive}{\cf1 :} {\cf5 a_height} {\cf1 >} 0{\line}
+{\tab}{\tab}{\tab}{\cf1 not_locked}{\cf1 :} {\b\cf6 not} {\cf5 is_locked}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_width_set}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 width} {\cf1 =} {\cf5 a_width}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_height_set}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 height} {\cf1 =} {\cf5 a_height}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 sub_pixmap} {\cf1 (}{\cf5 a_rect}{\cf1 :} {\cf4 EV_RECTANGLE}{\cf1 )}{\cf1 :} {\cf4 EV_PIXMAP}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create a new sub pixmap from Current.}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 sub_pixel_buffer} {\cf1 (}{\cf5 a_rect}{\cf1 :} {\cf4 EV_RECTANGLE}{\cf1 )}{\cf1 :} {\cf4 EV_PIXEL_BUFFER}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create a new sub pixel buffer object.}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 draw_pixel_buffer_with_x_y} {\cf1 (}{\cf5 a_x}{\cf1 ,} {\cf5 a_y}{\cf1 :} {\cf4 INTEGER_32}{\cf1 ;} {\cf5 a_pixel_buffer}{\cf1 :} {\cf4 EV_PIXEL_BUFFER}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Draw }{\cf5 a_pixel_buffer}{\cf3  at }{\cf5 a_x}{\cf3 , }{\cf5 a_y}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 draw_text} {\cf1 (}{\cf5 a_text}{\cf1 :} {\cf4 READABLE_STRING_GENERAL}{\cf1 ;} {\cf5 a_font}{\cf1 :} {\cf4 EV_FONT}{\cf1 ;} {\cf5 a_point}{\cf1 :} {\cf4 EV_COORDINATE}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Draw }{\cf5 a_text}{\cf3  with }{\cf5 a_font}{\cf3  at }{\cf5 a_rect}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 lock}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Lock buffer for pixel iteration.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 is_locked} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 unlock}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Unlock buffer from pixel iteration.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 is_locked} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_PIXEL_BUFFER_PIXEL}{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 get_pixel} {\cf1 (}{\cf5 a_x}{\cf1 ,} {\cf5 a_y}{\cf1 :} {\cf4 NATURAL_32}{\cf1 )}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Get the platform dependent pixel value at }{\cf5 a_x}{\cf3 , }{\cf5 a_y}{\cf3  (zero based for speed)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_x_valid}{\cf1 :} {\cf5 a_x} {\cf1 <} {\cf5 width}{\b\cf1 .}{\cf5 as_natural_32}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_y_valid}{\cf1 :} {\cf5 a_y} {\cf1 <=} {\cf5 height}{\b\cf1 .}{\cf5 as_natural_32}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_pixel} {\cf1 (}{\cf5 a_x}{\cf1 ,} {\cf5 a_y}{\cf1 ,} {\cf5 rgba}{\cf1 :} {\cf4 NATURAL_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set the platform dependent pixel value at }{\cf5 a_x}{\cf3 , }{\cf5 a_y}{\cf3  (zero based for speed) to }{\cf5 rgba}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_x_valid}{\cf1 :} {\cf5 a_x} {\cf1 <} {\cf5 width}{\b\cf1 .}{\cf5 as_natural_32}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_y_valid}{\cf1 :} {\cf5 a_y} {\cf1 <=} {\cf5 height}{\b\cf1 .}{\cf5 as_natural_32}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 pixel_set}{\cf1 :} {\cf5 get_pixel}{\cf1  }{\cf1 (}{\cf5 a_x}{\cf1 ,} {\cf5 a_y}{\cf1 )} {\cf1 =} {\cf5 rgba}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Query}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_locked}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is buffer locked for pixel iteration?}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 pixel_iterator}{\cf1 :} {\cf4 EV_PIXEL_BUFFER_ITERATOR}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Return a pixel buffer iterator.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 pixel_iterator_internal} {\cf1 =} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 pixel_iterator_internal}{\b\cf1 .}{\cf5 make_for_pixel_buffer}{\cf1  }{\cf1 (}{\cf5 attached_interface}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 pixel_iterator_internal}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 width}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Width}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 height}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Height}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 area}{\cf1 :} {\cf4 EV_RECTANGLE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Dimension of Current as an instance of EV_RECTANGLE.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}0{\cf1 ,} 0{\cf1 ,} {\cf5 width}{\cf1 ,} {\cf5 height}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 x} {\cf1 =} 0 {\b\cf6 and} {\b\cf6 Result}{\b\cf1 .}{\cf5 y} {\cf1 =} 0 {\b\cf6 and} {\b\cf6 Result}{\b\cf1 .}{\cf5 width} {\cf1 =} {\cf5 width} {\b\cf6 and} {\b\cf6 Result}{\b\cf1 .}{\cf5 height} {\cf1 =} {\cf5 height}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_ANY}{\cf1 ,} {\cf4 EV_ANY_I}{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 interface}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_PIXEL_BUFFER}{\line}
+{\tab}{\tab}{\b\cf6 note}{\line}
+{\tab}{\tab}{\tab}option: stable{\line}
+{\tab}{\tab}{\b\cf6 attribute}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 pixel_iterator_internal}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_PIXEL_BUFFER_ITERATOR}{\line}
+{\tab}{\tab}{\b\cf6 note}{\line}
+{\tab}{\tab}{\tab}option: stable{\line}
+{\tab}{\tab}{\b\cf6 attribute}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Obsolete}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 draw_pixel_buffer} {\cf1 (}{\cf5 a_pixel_buffer}{\cf1 :} {\cf4 EV_PIXEL_BUFFER}{\cf1 ;} {\cf5 a_rect}{\cf1 :} {\cf4 EV_RECTANGLE}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 obsolete} "Use draw_pixel_buffer_with_x_y instead [2017-05-31]"{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Draw }{\cf5 a_pixel_buffer}{\cf3  at }{\cf5 a_rect}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 deferred}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 note}{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 1984-2016, Eiffel Software and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"{\line}
+{\tab}{\cf1 source}{\cf1 :} "[{\line}
+{\tab}{\tab}Eiffel Software{\line}
+{\tab}{\tab}5949 Hollister Ave., Goleta, CA 93117 USA{\line}
+{\tab}{\tab}Telephone 805-685-1006, Fax 805-685-6869{\line}
+{\tab}{\tab}Website http://www.eiffel.com{\line}
+{\tab}{\tab}Customer support http://support.eiffel.com{\line}
+{\tab}]"{\line}
+{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 EV_PIXEL_BUFFER_I}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

@@ -1,0 +1,956 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "[{\line}
+{\tab}{\tab}			Representation of a typeface.{\line}
+{\tab}{\tab}			Appearance is specified in terms of font family, height, shape and{\line}
+{\tab}{\tab}			weight. The local system font closest to the specification will be{\line}
+{\tab}{\tab}			displayed. A specific font name may optionally be specified. See set_preferred_face"{\line}
+{\tab}{\tab}{\line}
+{\tab}{\tab}			There are two available queries for a font height, {\cf5 height} and {\cf5 height_in_points}.{\line}
+{\tab}{\tab}			Changing one, changes the other accordingly. {\cf5 height} is given in pixels while{\line}
+{\tab}{\tab}			{\cf5 height_in_points} is in points or 1/72 of an inch. Using {\cf5 height_in_points} ensures{\line}
+{\tab}{\tab}			that on different screen resolutions Current has the same physical size, although{\line}
+{\tab}{\tab}			the pixel height may differ to achieve this.{\line}
+{\tab}]"{\line}
+{\tab}{\cf1 legal}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 status}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 keywords}{\cf1 :} "character, face, height, family, weight, shape, bold, italic"{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2011-10-13 11:36:42 -0700 (Thu, 13 Oct 2011) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 87465 $"{\line}
+{\line}
+{\b\cf6 class} {\line}
+{\tab}{\cf4 EV_FONT}{\line}
+{\line}
+{\b\cf6 create} {\line}
+{\tab}{\cf5 default_create}{\cf1 ,}{\line}
+{\tab}{\cf5 make_with_values}{\line}
+{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Initialization}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make_with_values} {\cf1 (}{\cf5 a_family}{\cf1 ,} {\cf5 a_weight}{\cf1 ,} {\cf5 a_shape}{\cf1 ,} {\cf5 a_height}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create with }{\cf5 a_family}{\cf3 , }{\cf5 a_weight}{\cf3 , }{\cf5 a_shape}{\cf3  and }{\cf5 a_height}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_family_valid}{\cf1 :} {\cf5 valid_family}{\cf1  }{\cf1 (}{\cf5 a_family}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_weight_valid}{\cf1 :} {\cf5 valid_weight}{\cf1  }{\cf1 (}{\cf5 a_weight}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_shape_valid}{\cf1 :} {\cf5 valid_shape}{\cf1  }{\cf1 (}{\cf5 a_shape}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_height_bigger_than_zero}{\cf1 :} {\cf5 a_height} {\cf1 >} 0{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 default_create}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 set_values}{\cf1  }{\cf1 (}{\cf5 a_family}{\cf1 ,} {\cf5 a_weight}{\cf1 ,} {\cf5 a_shape}{\cf1 ,} {\cf5 a_height}{\cf1 ,} {\cf5 preferred_families}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_family_set}{\cf1 :} {\cf5 family} {\cf1 =} {\cf5 a_family}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_weight_set}{\cf1 :} {\cf5 weight} {\cf1 =} {\cf5 a_weight}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_shape_set}{\cf1 :} {\cf5 shape} {\cf1 =} {\cf5 a_shape}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_height_set}{\cf1 :} {\cf5 height} {\cf1 =} {\cf5 a_height}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_ANY_HANDLER}{\cf1 \}} {\cf3 --}{\cf3  Initialization}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 default_create}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Standard creation procedure.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from } {\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 True}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 create_interface_objects}{\line}
+{\tab}{\tab}{\tab}{\cf5 create_implementation}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 not_already_called}{\cf1 :} {\b\cf6 not} {\cf5 implementation}{\b\cf1 .}{\cf5 get_state_flag}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 EV_ANY_I}{\cf1 \}}{\b\cf1 .}{\cf5 interface_default_create_called_flag}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 set_state_flag}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 EV_ANY_I}{\cf1 \}}{\b\cf1 .}{\cf5 interface_default_create_called_flag}{\cf1 ,} {\b\cf6 True}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 assign_interface}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 initialize}{\line}
+{\tab}{\tab}{\b\cf6 ensure then} {\cf3 --} {\cf3 from }{\cf4 EV_ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_coupled}{\cf1 :} {\cf5 implementation} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_initialized}{\cf1 :} {\cf5 is_initialized}{\line}
+{\tab}{\tab}{\tab}{\cf1 default_create_called}{\cf1 :} {\cf5 default_create_called}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_in_default_state}{\cf1 :} {\cf5 is_in_default_state}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 char_set}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Charset of the font.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Only meaningful on windows.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 implementation}{\b\cf1 .}{\cf5 char_set}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 bridge_ok}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf5 implementation}{\b\cf1 .}{\cf5 char_set}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 data}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Arbitrary user data may be stored here.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_ANY}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 family}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Font category. Can be any of the Family_* constants}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  defined in EV_FONT_CONSTANTS.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Default: Family_sans}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 implementation}{\b\cf1 .}{\cf5 family}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 bridge_ok}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf5 implementation}{\b\cf1 .}{\cf5 family}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 generating_type}{\cf1 :} {\cf4 TYPE} {\cf1 [}{\b\cf6 detachable} {\cf4 EV_FONT}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Type of current object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (type of which it is a direct instance)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 generating_type_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 generator}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Name of current object's generating class}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (base class of the type of which it is a direct instance)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 generator_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 generator_not_empty}{\cf1 :} {\b\cf6 not} {\b\cf6 Result}{\b\cf1 .}{\cf5 is_empty}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 height}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Preferred font height in pixels.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Default: 8}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 implementation}{\b\cf1 .}{\cf5 height}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 bridge_ok}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf5 implementation}{\b\cf1 .}{\cf5 height}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 height_in_points}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Preferred font height in points.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 implementation}{\b\cf1 .}{\cf5 height_in_points}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 bridge_ok}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf5 implementation}{\b\cf1 .}{\cf5 height_in_points}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 line_height}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Preferred text editor line height in pixels for }{\cf5 Current}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 implementation}{\b\cf1 .}{\cf5 line_height}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 bridge_ok}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf5 implementation}{\b\cf1 .}{\cf5 line_height}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 preferred_families}{\cf1 :} {\cf4 EV_ACTIVE_LIST} {\cf1 [}{\cf4 STRING_32}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Preferred families. The first one in the list}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  will be tried first. If it does not exists on}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  the system, the second will be tried, etc.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Overrides }{\cf5 family}{\cf3  if found on current system.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 implementation}{\b\cf1 .}{\cf5 preferred_families}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 bridge_ok}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf5 implementation}{\b\cf1 .}{\cf5 preferred_families}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 shape}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Preferred font slant. Can be any of the Shape_*}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  constants defined in EV_FONT_CONSTANTS.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Default: Shape_regular}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 implementation}{\b\cf1 .}{\cf5 shape}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 bridge_ok}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf5 implementation}{\b\cf1 .}{\cf5 shape}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 weight}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Preferred font thickness. Can be any of the Weight_*}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  constants defined in EV_FONT_CONSTANTS.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Default: Weight_regular}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 implementation}{\b\cf1 .}{\cf5 weight}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 bridge_ok}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf5 implementation}{\b\cf1 .}{\cf5 weight}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Comparison}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 deep_equal} {\cf1 (}{\cf5 a}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 ;} {\cf5 b}{\cf1 :} {\b\cf6 like} arg #1{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are }{\cf5 a}{\cf3  and }{\cf5 b}{\cf3  either both void}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  or attached to isomorphic object structures?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a} {\cf1 =} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 =} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 is_deep_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 shallow_implies_deep}{\cf1 :} {\cf5 standard_equal}{\cf1  }{\cf1 (}{\cf5 a}{\cf1 ,} {\cf5 b}{\cf1 )} {\b\cf6 implies} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\cf1 both_or_none_void}{\cf1 :} {\cf1 (}{\cf5 a} {\cf1 =} {\b\cf6 Void}{\cf1 )} {\b\cf6 implies} {\cf1 (}{\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf5 b} {\cf1 =} {\b\cf6 Void}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 same_type}{\cf1 :} {\cf1 (}{\b\cf6 Result} {\b\cf6 and} {\cf1 (}{\cf5 a} {\cf1 /=} {\b\cf6 Void}{\cf1 )}{\cf1 )} {\b\cf6 implies} {\cf1 (}{\cf5 b} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 same_type}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 symmetric}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 deep_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 ,} {\cf5 a}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 equal} {\cf1 (}{\cf5 a}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 ;} {\cf5 b}{\cf1 :} {\b\cf6 like} arg #1{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are }{\cf5 a}{\cf3  and }{\cf5 b}{\cf3  either both void or attached}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to objects considered equal?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a} {\cf1 =} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 =} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf5 a} {\cf1 =} {\b\cf6 Void} {\b\cf6 and} {\cf5 b} {\cf1 =} {\b\cf6 Void}{\cf1 )} {\b\cf6 or else} {\cf1 (}{\cf1 (}{\cf5 a} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and} {\cf5 b} {\cf1 /=} {\b\cf6 Void}{\cf1 )} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 is_deep_equal} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 EV_FONT}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are }{\cf5 Current}{\cf3  and }{\cf5 other}{\cf3  attached to isomorphic object structures?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 shallow_implies_deep}{\cf1 :} {\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )} {\b\cf6 implies} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\cf1 same_type}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 same_type}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 symmetric}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 other}{\b\cf1 .}{\cf5 is_deep_equal}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 standard_equal} {\cf1 (}{\cf5 a}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 ;} {\cf5 b}{\cf1 :} {\b\cf6 like} arg #1{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are }{\cf5 a}{\cf3  and }{\cf5 b}{\cf3  either both void or attached to}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  field-by-field identical objects of the same type?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Always uses default object comparison criterion.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a} {\cf1 =} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 =} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf5 a} {\cf1 =} {\b\cf6 Void} {\b\cf6 and} {\cf5 b} {\cf1 =} {\b\cf6 Void}{\cf1 )} {\b\cf6 or else} {\cf1 (}{\cf1 (}{\cf5 a} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and} {\cf5 b} {\cf1 /=} {\b\cf6 Void}{\cf1 )} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 standard_is_equal} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 EV_FONT}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 other}{\cf3  attached to an object of the same type}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  as current object, and field-by-field identical to it?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 same_type}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 same_type}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 symmetric}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 other}{\b\cf1 .}{\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status report}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 ascent}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Vertical distance from the origin of the drawing}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  operation to the top of the drawn character.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 implementation}{\b\cf1 .}{\cf5 ascent}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 bridge_ok}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf5 implementation}{\b\cf1 .}{\cf5 ascent}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 conforms_to} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 ANY}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does type of current object conform to type}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of }{\cf5 other}{\cf3  (as per Eiffel: The Language, chapter 13)?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 descent}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Vertical distance from the origin of the drawing}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  operation to the bottom of the drawn character.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 implementation}{\b\cf1 .}{\cf5 descent}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 bridge_ok}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf5 implementation}{\b\cf1 .}{\cf5 descent}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 horizontal_resolution}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Horizontal resolution of screen for which the font is designed.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Measured in dots per inch. If return value is zero, the}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  resolution is not known.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 implementation}{\b\cf1 .}{\cf5 horizontal_resolution}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 bridge_ok}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf5 implementation}{\b\cf1 .}{\cf5 horizontal_resolution}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_proportional}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Can characters in the font have different widths?}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 implementation}{\b\cf1 .}{\cf5 is_proportional}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 bridge_ok}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf5 implementation}{\b\cf1 .}{\cf5 is_proportional}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 maximum_width}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Width of the biggest character in the font.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 implementation}{\b\cf1 .}{\cf5 maximum_width}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 bridge_ok}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf5 implementation}{\b\cf1 .}{\cf5 maximum_width}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 minimum_width}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Width of the smallest character in the font.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 implementation}{\b\cf1 .}{\cf5 minimum_width}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 bridge_ok}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf5 implementation}{\b\cf1 .}{\cf5 minimum_width}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 name}{\cf1 :} {\cf4 STRING_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Face name chosen by toolkit.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 implementation}{\b\cf1 .}{\cf5 name}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 bridge_ok}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 implementation}{\b\cf1 .}{\cf5 name}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 same_type} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 ANY}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is type of current object identical to type of }{\cf5 other}{\cf3 ?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf5 conforms_to}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )} {\b\cf6 and} {\cf5 other}{\b\cf1 .}{\cf5 conforms_to}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 string_size} {\cf1 (}{\cf5 a_string}{\cf1 :} {\cf4 READABLE_STRING_GENERAL}{\cf1 )}{\cf1 :} {\cf4 TUPLE} {\cf1 [}{\cf5 width}{\cf1 :} {\cf4 INTEGER_32}{\cf1 ;} {\cf5 height}{\cf1 :} {\cf4 INTEGER_32}{\cf1 ;} {\cf5 left_offset}{\cf1 :} {\cf4 INTEGER_32}{\cf1 ;} {\cf5 right_offset}{\cf1 :} {\cf4 INTEGER_32}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  [width, height, left_offset, right_offset] in pixels of }{\cf5 a_string}{\cf3  in the current font,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  taking into account line breaks ('%N').}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 width}{\cf3  and }{\cf5 height}{\cf3  correspond to the rectange used to bound }{\cf5 a_string}{\cf3 , and}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  should be used when placing strings next to each as part of a text.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  On some fonts, characters may extend outside of the bounds given by }{\cf5 width}{\cf3  and }{\cf5 height}{\cf3 ,}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  for example certain italic letters may overhang other letters. Use }{\cf5 left_offset}{\cf3  and}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 right_offset}{\cf3  to determine if there is any overhang for }{\cf5 a_string}{\cf3 . a negative }{\cf5 left_offset}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  indicates overhang to the left, while a positive }{\cf5 right_offset}{\cf3  indicates an overhang to the right.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  To determine the complete bounding rectangle for }{\cf5 a_string}{\cf3  add negative }{\cf5 left_offset}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  and positive }{\cf5 right_offset}{\cf3  to }{\cf5 width}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 implementation}{\b\cf1 .}{\cf5 string_size}{\cf1  }{\cf1 (}{\cf5 a_string}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 bridge_ok}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 width} {\cf1 =} {\cf5 implementation}{\b\cf1 .}{\cf5 string_size}{\cf1  }{\cf1 (}{\cf5 a_string}{\cf1 )}{\b\cf1 .}{\cf5 width} {\b\cf6 and} {\b\cf6 Result}{\b\cf1 .}{\cf5 height} {\cf1 =} {\cf5 implementation}{\b\cf1 .}{\cf5 string_size}{\cf1  }{\cf1 (}{\cf5 a_string}{\cf1 )}{\b\cf1 .}{\cf5 height}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 string_width} {\cf1 (}{\cf5 a_string}{\cf1 :} {\cf4 READABLE_STRING_GENERAL}{\cf1 )}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Width in pixels of }{\cf5 a_string}{\cf3  in the current font.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_string_not_void}{\cf1 :} {\cf5 a_string} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 implementation}{\b\cf1 .}{\cf5 string_width}{\cf1  }{\cf1 (}{\cf5 a_string}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 bridge_ok}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf5 implementation}{\b\cf1 .}{\cf5 string_width}{\cf1  }{\cf1 (}{\cf5 a_string}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 positive}{\cf1 :} {\b\cf6 Result} {\cf1 >=} 0{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 vertical_resolution}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Vertical resolution of screen for which the font is designed.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Measured in dots per inch. If return value is zero, the}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  resolution is not known.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 implementation}{\b\cf1 .}{\cf5 vertical_resolution}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 bridge_ok}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf5 implementation}{\b\cf1 .}{\cf5 vertical_resolution}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 width}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Character width of current fixed-width font.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  If font is proportional, returns the average width.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 implementation}{\b\cf1 .}{\cf5 width}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 bridge_ok}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf5 implementation}{\b\cf1 .}{\cf5 width}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Element change}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_data} {\cf1 (}{\cf5 some_data}{\cf1 :} {\b\cf6 like} {\cf5 data}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Assign }{\cf5 some_data}{\cf3  to }{\cf5 data}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 EV_ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 data} {\cf1 :=} {\cf5 some_data}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 EV_ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 data_assigned}{\cf1 :} {\cf5 data} {\cf1 =} {\cf5 some_data}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_family} {\cf1 (}{\cf5 a_family}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Assign  }{\cf5 a_family}{\cf3  to }{\cf5 family}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_family_valid}{\cf1 :} {\cf5 valid_family}{\cf1  }{\cf1 (}{\cf5 a_family}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 set_family}{\cf1  }{\cf1 (}{\cf5 a_family}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 family_assigned}{\cf1 :} {\cf5 family} {\cf1 =} {\cf5 a_family}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_height} {\cf1 (}{\cf5 a_height}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 a_height}{\cf3  to }{\cf5 height}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 height_in_points}{\cf3  changes accordingly based on screen resolution.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_height_bigger_than_zero}{\cf1 :} {\cf5 a_height} {\cf1 >} 0{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 set_height}{\cf1  }{\cf1 (}{\cf5 a_height}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 height_assigned}{\cf1 :} {\cf5 height} {\cf1 =} {\cf5 a_height}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_height_in_points} {\cf1 (}{\cf5 a_height}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 height_in_points}{\cf3  to }{\cf5 a_height}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 height}{\cf3  changes accordingly based on screen resolution.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_height_bigger_than_zero}{\cf1 :} {\cf5 a_height} {\cf1 >} 0{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 set_height_in_points}{\cf1  }{\cf1 (}{\cf5 a_height}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 height_assigned}{\cf1 :} {\cf5 height_in_points} {\cf1 =} {\cf5 a_height}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_shape} {\cf1 (}{\cf5 a_shape}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 a_shape}{\cf3  to }{\cf5 shape}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_shape_valid}{\cf1 :} {\cf5 valid_shape}{\cf1  }{\cf1 (}{\cf5 a_shape}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 set_shape}{\cf1  }{\cf1 (}{\cf5 a_shape}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 shape_assigned}{\cf1 :} {\cf5 shape} {\cf1 =} {\cf5 a_shape}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_weight} {\cf1 (}{\cf5 a_weight}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 a_weight}{\cf3  to }{\cf5 weight}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_destroyed}{\cf1 :} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\tab}{\cf1 a_weight_valid}{\cf1 :} {\cf5 valid_weight}{\cf1  }{\cf1 (}{\cf5 a_weight}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 set_weight}{\cf1  }{\cf1 (}{\cf5 a_weight}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 weight_assigned}{\cf1 :} {\cf5 weight} {\cf1 =} {\cf5 a_weight}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Duplication}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 clone} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 )}{\cf1 :} {\b\cf6 like} {\cf5 other}{\line}
+{\tab}{\tab}{\b\cf6 obsolete} "Use `twin' instead. [2017-05-31]"{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Void if }{\cf5 other}{\cf3  is void; otherwise new object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  equal to }{\cf5 other}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  For non-void }{\cf5 other}{\cf3 , }{\cf5 clone}{\cf3  calls }{\cf5 copy}{\cf3 ;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to change copying/cloning semantics, redefine }{\cf5 copy}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 other} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 other}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 equal}{\cf1 :} {\b\cf6 Result} {\cf1 ~} {\cf5 other}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 deep_clone} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 )}{\cf1 :} {\b\cf6 like} {\cf5 other}{\line}
+{\tab}{\tab}{\b\cf6 obsolete} "Use `deep_twin' instead. [2017-05-31]"{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Void if }{\cf5 other}{\cf3  is void: otherwise, new object structure}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  recursively duplicated from the one attached to }{\cf5 other}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 other} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 other}{\b\cf1 .}{\cf5 deep_twin}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 deep_equal}{\cf1 :} {\cf5 deep_equal}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 ,} {\b\cf6 Result}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 deep_copy} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 EV_FONT}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Effect equivalent to that of:}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3 		}{\cf5 copy}{\cf3  (}{\cf5 other}{\cf3  . }{\cf5 deep_twin}{\cf3 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 copy}{\cf1  }{\cf1 (}{\cf5 other}{\b\cf1 .}{\cf5 deep_twin}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 deep_equal}{\cf1 :} {\cf5 deep_equal}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 ,} {\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 deep_twin}{\cf1 :} {\b\cf6 attached} {\cf4 EV_FONT}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New object structure recursively duplicated from Current.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 deep_twin_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 deep_equal}{\cf1 :} {\cf5 deep_equal}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 ,} {\b\cf6 Result}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 standard_clone} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 )}{\cf1 :} {\b\cf6 like} {\cf5 other}{\line}
+{\tab}{\tab}{\b\cf6 obsolete} "Use `standard_twin' instead. [2017-05-31]"{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Void if }{\cf5 other}{\cf3  is void; otherwise new object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  field-by-field identical to }{\cf5 other}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Always uses default copying semantics.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 other} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 other}{\b\cf1 .}{\cf5 standard_twin}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 equal}{\cf1 :} {\cf5 standard_equal}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 ,} {\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 standard_copy} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 EV_FONT}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Copy every field of }{\cf5 other}{\cf3  onto corresponding field}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of current object.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 type_identity}{\cf1 :} {\cf5 same_type}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_standard_equal}{\cf1 :} {\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 standard_twin}{\cf1 :} {\b\cf6 attached} {\cf4 EV_FONT}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New object field-by-field identical to }{\cf5 other}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Always uses default copying semantics.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 standard_twin_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 equal}{\cf1 :} {\cf5 standard_equal}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 ,} {\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 twin}{\cf1 :} {\b\cf6 attached} {\cf4 EV_FONT}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New object equal to }{\cf5 Current}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 twin}{\cf3  calls }{\cf5 copy}{\cf3 ; to change copying/twinning semantics, redefine }{\cf5 copy}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 twin_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_equal}{\cf1 :} {\b\cf6 Result} {\cf1 ~} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Basic operations}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 as_attached}{\cf1 :} {\b\cf6 attached} {\cf4 EV_FONT}{\line}
+{\tab}{\tab}{\b\cf6 obsolete} "Remove calls to this feature. [2017-05-31]"{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Attached version of Current.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Can be used during transitional period to convert}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  non-void-safe classes to void-safe ones.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 copy} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 like} {\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Update }{\cf5 Current}{\cf3  with all attributes of }{\cf5 other}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 type_identity}{\cf1 :} {\cf5 same_type}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 implementation} {\cf1 =} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 default_create}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 copy_font}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_equal}{\cf1 :} {\b\cf6 Current} {\cf1 ~} {\cf5 other}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 default}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_FONT}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Default value of object's type}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 default_pointer}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Default value of type }{\cf5 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Avoid the need to write }{\cf5 p}{\cf3 .}{\cf5 default}{\cf3  for}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  some }{\cf5 p}{\cf3  of type }{\cf5 POINTER}{\cf3 .)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 default_rescue}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Process exception for routines with no Rescue clause.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Default: do nothing.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 do_nothing}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Execute a null action.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_equal} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 like} {\b\cf6 Current}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does }{\cf5 other}{\cf3  have same appearance?}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 family} {\cf1 =} {\cf5 other}{\b\cf1 .}{\cf5 family} {\b\cf6 and then} {\cf5 weight} {\cf1 =} {\cf5 other}{\b\cf1 .}{\cf5 weight} {\b\cf6 and then} {\cf5 shape} {\cf1 =} {\cf5 other}{\b\cf1 .}{\cf5 shape} {\b\cf6 and then} {\cf5 height_in_points} {\cf1 =} {\cf5 other}{\b\cf1 .}{\cf5 height_in_points}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 symmetric}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 other} {\cf1 ~} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\tab}{\cf1 consistent}{\cf1 :} {\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )} {\b\cf6 implies} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_ANY}{\cf1 ,} {\cf4 EV_ANY_I}{\cf1 ,} {\cf4 EV_ANY_HANDLER}{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 implementation}{\cf1 :} {\cf4 EV_FONT_I}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Responsible for interaction with native graphics}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  toolkit.}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 create_implementation}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create implementation of drawing area.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf1 \{}{\cf4 EV_FONT_IMP}{\cf1 \}} {\cf5 implementation}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 EV_ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 implementation_created}{\cf1 :} {\b\cf6 attached} {\cf5 implementation}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 create_interface_objects}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create objects to be used by }{\cf5 Current}{\cf3  in }{\cf5 initialize}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Implemented by descendants to create attached objects}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  in order to adhere to void-safety due to the implementation bridge pattern.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Environment_i}{\cf1 :} {\cf4 EV_ENVIRONMENT_I}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Once access to Environment Implementation Object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf1 \{}{\cf4 EV_ENVIRONMENT_IMP}{\cf1 \}} {\b\cf6 Result}{\b\cf1 .}{\cf5 make}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_ANY}{\cf1 ,} {\cf4 EV_ANY_I}{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 replace_implementation} {\cf1 (}{\cf5 new_implementation}{\cf1 :} {\b\cf6 like} {\cf5 implementation}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Replace }{\cf5 implementation}{\cf3  with }{\cf5 new_implementation}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  The caller has complete responsibility for releasing any}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  resources held by the old }{\cf5 implementation}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 EV_ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 implementation_not_void}{\cf1 :} {\cf5 implementation} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 new_implementation_not_void}{\cf1 :} {\cf5 new_implementation} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 temp}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 temp} {\cf1 :=} {\cf1 \{}{\cf4 ISE_RUNTIME}{\cf1 \}}{\b\cf1 .}{\cf5 check_assert} {\cf1 (}{\b\cf6 False}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 disable_initialized}{\line}
+{\tab}{\tab}{\tab}{\cf5 new_implementation}{\b\cf1 .}{\cf5 set_interface}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation} {\cf1 :=} {\cf5 new_implementation}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 enable_initialized}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 set_state_flag}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 EV_ANY_I}{\cf1 \}}{\b\cf1 .}{\cf5 interface_default_create_called_flag}{\cf1 ,} {\b\cf6 True}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 set_state_flag}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 EV_ANY_I}{\cf1 \}}{\b\cf1 .}{\cf5 interface_is_initialized_flag}{\cf1 ,} {\b\cf6 True}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 temp} {\cf1 :=} {\cf1 \{}{\cf4 ISE_RUNTIME}{\cf1 \}}{\b\cf1 .}{\cf5 check_assert} {\cf1 (}{\cf5 temp}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_ANY}{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 initialize}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Mark }{\cf5 Current}{\cf3  as initialized.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  This must be called during the creation procedure}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to satisfy the }{\cf5 is_initialized}{\cf3  invariant.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Descendants may redefine initialize to perform}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  additional setup tasks.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 EV_ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_already_initialized}{\cf1 :} {\b\cf6 not} {\cf5 is_initialized}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 set_state_flag}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 EV_ANY_I}{\cf1 \}}{\b\cf1 .}{\cf5 interface_is_initialized_flag}{\cf1 ,} {\b\cf6 True}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 EV_ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_initialized}{\cf1 :} {\cf5 is_initialized}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Command}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 destroy}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Destroy underlying native toolkit object.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Render }{\cf5 Current}{\cf3  unusable.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 implementation}{\b\cf1 .}{\cf5 safe_destroy}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 EV_ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_destroyed}{\cf1 :} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Constants}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Family_modern}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 5}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_FONT_CONSTANTS}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Family_roman}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 2}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_FONT_CONSTANTS}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Family_sans}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 3}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_FONT_CONSTANTS}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Family_screen}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 1}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_FONT_CONSTANTS}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Family_typewriter}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 4}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_FONT_CONSTANTS}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Shape_italic}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 11}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_FONT_CONSTANTS}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Shape_regular}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 10}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_FONT_CONSTANTS}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Weight_black}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 9}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_FONT_CONSTANTS}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Weight_bold}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_FONT_CONSTANTS}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Weight_regular}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 7}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_FONT_CONSTANTS}{\cf3 )}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Weight_thin}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 6}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_FONT_CONSTANTS}{\cf3 )}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Contract support}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_in_default_state}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 Current}{\cf3  in its default state.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 Precursor} {\cf1 \{}{\cf4 EV_ANY}{\cf1 \}} {\b\cf6 and then} {\cf5 preferred_families} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\cf5 preferred_families}{\b\cf1 .}{\cf5 is_empty}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_ANY}{\cf1 \}} {\cf3 --}{\cf3  Contract support}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 action_sequence_call_counter}{\cf1 :} {\cf4 NATURAL_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Call counter for }{\cf5 \{EV_LITE_ACTION_SEQUENCE\}.call}{\cf3 , used to determine}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  if calls have been made as a result of a routine executing.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 Environment_i}{\b\cf1 .}{\cf5 application_i}{\b\cf1 .}{\cf5 action_sequence_call_counter}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 default_create_called}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Has }{\cf5 default_create}{\cf3  been called on }{\cf5 Current}{\cf3 ?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 implementation}{\b\cf1 .}{\cf5 get_state_flag}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 EV_ANY_I}{\cf1 \}}{\b\cf1 .}{\cf5 interface_default_create_called_flag}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_initialized}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Has }{\cf5 Current}{\cf3  been initialized properly?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 implementation}{\b\cf1 .}{\cf5 get_state_flag}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 EV_ANY_I}{\cf1 \}}{\b\cf1 .}{\cf5 interface_is_initialized_flag}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_usable}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 Current}{\cf3  usable?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 default_create_called} {\b\cf6 and then} {\b\cf6 not} {\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Contract support}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 valid_family} {\cf1 (}{\cf5 a_family}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 a_family}{\cf3  a valid family value.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_FONT_CONSTANTS}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 a_family} {\cf1 =} {\cf5 Family_screen} {\b\cf6 or else} {\cf5 a_family} {\cf1 =} {\cf5 Family_roman} {\b\cf6 or else} {\cf5 a_family} {\cf1 =} {\cf5 Family_sans} {\b\cf6 or else} {\cf5 a_family} {\cf1 =} {\cf5 Family_typewriter} {\b\cf6 or else} {\cf5 a_family} {\cf1 =} {\cf5 Family_modern}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 valid_shape} {\cf1 (}{\cf5 a_shape}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 a_shape}{\cf3  a valid shape value.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_FONT_CONSTANTS}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 a_shape} {\cf1 =} {\cf5 Shape_regular} {\b\cf6 or else} {\cf5 a_shape} {\cf1 =} {\cf5 Shape_italic}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 valid_weight} {\cf1 (}{\cf5 a_weight}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 a_weight}{\cf3  a valid weight value.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_FONT_CONSTANTS}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 a_weight} {\cf1 =} {\cf5 Weight_thin} {\b\cf6 or else} {\cf5 a_weight} {\cf1 =} {\cf5 Weight_regular} {\b\cf6 or else} {\cf5 a_weight} {\cf1 =} {\cf5 Weight_bold} {\b\cf6 or else} {\cf5 a_weight} {\cf1 =} {\cf5 Weight_black}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Output}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Io}{\cf1 :} {\cf4 STD_FILES}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Handle to standard file setup}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 set_output_default}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 io_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 out}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New string containing terse printable representation}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of current object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 tagged_out}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 out_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 print} {\cf1 (}{\cf5 o}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Write terse external representation of }{\cf5 o}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  on standard output.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 o} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 Io}{\b\cf1 .}{\cf5 put_string}{\cf1  }{\cf1 (}{\cf5 o}{\b\cf1 .}{\cf5 out}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 tagged_out}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New string containing terse printable representation}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of current object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 tagged_out_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Platform}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Operating_environment}{\cf1 :} {\cf4 OPERATING_ENVIRONMENT}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Objects available from the operating system}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 operating_environment_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Retrieval}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 internal_correct_mismatch}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Called from runtime to perform a proper dynamic dispatch on }{\cf5 correct_mismatch}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  from MISMATCH_CORRECTOR.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_msg}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_exc}{\cf1 :} {\cf4 EXCEPTIONS}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf1 \{}{\cf4 MISMATCH_CORRECTOR}{\cf1 \}} {\b\cf6 Current} {\b\cf6 as} l_corrector {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_corrector}{\b\cf1 .}{\cf5 correct_mismatch}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 l_msg}{\b\cf1 .}{\cf5 make_from_string}{\cf1  }{\cf1 (}"Mismatch: "{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 l_exc}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_msg}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 generating_type}{\b\cf1 .}{\cf5 name}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_exc}{\b\cf1 .}{\cf5 raise_retrieval_exception}{\cf1  }{\cf1 (}{\cf5 l_msg}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status Report}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_destroyed}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 Current}{\cf3  no longer usable?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 EV_ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 implementation}{\b\cf1 .}{\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 EV_ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 bridge_ok}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf5 implementation}{\b\cf1 .}{\cf5 is_destroyed}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 invariant}{\line}
+{\tab}{\cf1 family_valid}{\cf1 :} {\cf5 is_initialized} {\b\cf6 implies} {\cf5 valid_family}{\cf1  }{\cf1 (}{\cf5 family}{\cf1 )}{\line}
+{\tab}{\cf1 weight_valid}{\cf1 :} {\cf5 is_initialized} {\b\cf6 implies} {\cf5 valid_weight}{\cf1  }{\cf1 (}{\cf5 weight}{\cf1 )}{\line}
+{\tab}{\cf1 shape_valid}{\cf1 :} {\cf5 is_initialized} {\b\cf6 implies} {\cf5 valid_shape}{\cf1  }{\cf1 (}{\cf5 shape}{\cf1 )}{\line}
+{\tab}{\cf1 height_positive}{\cf1 :} {\cf5 is_initialized} {\b\cf6 implies} {\cf5 height} {\cf1 >} 0{\line}
+{\tab}{\cf1 height_in_points_positive}{\cf1 :} {\cf5 is_initialized} {\b\cf6 implies} {\cf5 height_in_points} {\cf1 >} 0{\line}
+{\tab}{\cf1 ascent_not_negative}{\cf1 :} {\cf5 is_initialized} {\b\cf6 implies} {\cf5 ascent} {\cf1 >=} 0{\line}
+{\tab}{\cf1 descent_not_negative}{\cf1 :} {\cf5 is_initialized} {\b\cf6 implies} {\cf5 descent} {\cf1 >=} 0{\line}
+{\tab}{\cf1 width_of_empty_string_equals_zero}{\cf1 :} {\cf5 is_initialized} {\b\cf6 implies} {\cf5 string_width}{\cf1  }{\cf1 (}""{\cf1 )} {\cf1 =} 0{\line}
+{\tab}{\cf1 horizontal_resolution_non_negative}{\cf1 :} {\cf5 is_initialized} {\b\cf6 implies} {\cf5 horizontal_resolution} {\cf1 >=} 0{\line}
+{\tab}{\cf1 vertical_resolution_non_negative}{\cf1 :} {\cf5 is_initialized} {\b\cf6 implies} {\cf5 vertical_resolution} {\cf1 >=} 0{\line}
+{\line}
+{\tab}{\tab}{\cf3 --} {\cf3 from }{\cf4 EV_ANY}{\line}
+{\tab}{\cf1 is_initialized}{\cf1 :} {\cf5 is_initialized}{\line}
+{\tab}{\cf1 default_create_called}{\cf1 :} {\cf5 default_create_called}{\line}
+{\tab}{\cf1 is_coupled}{\cf1 :} {\cf5 default_create_called} {\b\cf6 implies} {\cf1 (}{\cf5 implementation}{\b\cf1 .}{\cf5 interface} {\cf1 =} {\b\cf6 Current} {\b\cf6 or} {\cf1 (}{\b\cf6 attached} {\cf1 \{}{\cf4 EV_ENVIRONMENT}{\cf1 \}} {\b\cf6 Current} {\b\cf6 and then} {\b\cf6 attached} {\cf5 implementation}{\b\cf1 .}{\cf5 interface}{\cf1 )}{\cf1 )}{\line}
+{\line}
+{\tab}{\tab}{\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\cf1 reflexive_equality}{\cf1 :} {\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\cf1 reflexive_conformance}{\cf1 :} {\cf5 conforms_to}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\line}
+{\line}
+{\b\cf6 note}{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 1984-2006, Eiffel Software and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"{\line}
+{\tab}{\cf1 source}{\cf1 :} "[{\line}
+{\tab}{\tab}Eiffel Software{\line}
+{\tab}{\tab}356 Storke Road, Goleta, CA 93117 USA{\line}
+{\tab}{\tab}Telephone 805-685-1006, Fax 805-685-6869{\line}
+{\tab}{\tab}Website http://www.eiffel.com{\line}
+{\tab}{\tab}Customer support http://support.eiffel.com{\line}
+{\tab}]"{\line}
+{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 EV_FONT}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

@@ -1,0 +1,148 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "EiffelVision color selection dialog."{\line}
+{\tab}{\cf1 legal}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 status}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2017-03-27 13:31:29 -0700 (Mon, 27 Mar 2017) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 100058 $"{\line}
+{\line}
+{\b\cf6 class} {\line}
+{\tab}{\cf4 EV_COLOR_DIALOG_IMP}{\line}
+{\line}
+{\b\cf6 inherit}{\line}
+{\tab}{\cf4 EV_COLOR_DIALOG_I}{\line}
+{\tab}{\tab}{\b\cf6 redefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 interface}{\line}
+{\tab}{\tab}{\b\cf6 end}{\line}
+{\line}
+{\tab}{\cf4 EV_STANDARD_DIALOG_IMP}{\line}
+{\tab}{\tab}{\b\cf6 redefine}{\line}
+{\tab}{\tab}{\tab}{\cf5 interface}{\cf1 ,}{\line}
+{\tab}{\tab}{\tab}{\cf5 make}{\line}
+{\tab}{\tab}{\b\cf6 end}{\line}
+{\line}
+{\b\cf6 create} {\line}
+{\tab}{\cf5 make}{\line}
+{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Initialization}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 old_make} {\cf1 (}{\cf5 an_interface}{\cf1 :} {\b\cf6 attached} {\b\cf6 like} {\cf5 interface}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create a directory selection dialog with }{\cf5 par}{\cf3  as}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  parent.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 assign_interface}{\cf1  }{\cf1 (}{\cf5 an_interface}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Connect action sequences to button signals.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_cs}{\cf1 :} {\cf4 EV_GTK_C_STRING}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 a_cs} {\cf1 :=} {\b\cf6 create} {\cf1 \{}{\b\cf6 attached} {\cf4 EV_GTK_C_STRING}{\cf1 \}}{\b\cf1 .}{\cf5 set_with_eiffel_string}{\cf1  }{\cf1 (}"Color selection dialog"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_c_object}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_color_selection_dialog_new} {\cf1 (}{\cf5 a_cs}{\b\cf1 .}{\cf5 item}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_widget_hide} {\cf1 (}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_color_selection_dialog_struct_help_button} {\cf1 (}{\cf5 c_object}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 Precursor} {\cf1 \{}{\cf4 EV_STANDARD_DIALOG_IMP}{\cf1 \}}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_is_initialized}{\cf1  }{\cf1 (}{\b\cf6 False}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 real_signal_connect}{\cf1  }{\cf1 (}{\cf5 gtk_color_selection_dialog_struct_ok_button}{\cf1  }{\cf1 (}{\cf5 c_object}{\cf1 )}{\cf1 ,} "clicked"{\cf1 ,} {\b\cf6 agent} {\cf5 App_implementation}{\b\cf1 .}{\cf5 gtk_marshal}{\b\cf1 .}{\cf5 color_dialog_on_ok_intermediary}{\cf1  }{\cf1 (}{\cf5 c_object}{\cf1 )}{\cf1 ,} {\b\cf6 Void}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 real_signal_connect}{\cf1  }{\cf1 (}{\cf5 gtk_color_selection_dialog_struct_cancel_button}{\cf1  }{\cf1 (}{\cf5 c_object}{\cf1 )}{\cf1 ,} "clicked"{\cf1 ,} {\b\cf6 agent} {\cf5 App_implementation}{\b\cf1 .}{\cf5 gtk_marshal}{\b\cf1 .}{\cf5 color_dialog_on_cancel_intermediary}{\cf1  }{\cf1 (}{\cf5 c_object}{\cf1 )}{\cf1 ,} {\b\cf6 Void}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 enable_closeable}{\line}
+{\tab}{\tab}{\tab}{\cf5 forbid_resize}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_is_initialized}{\cf1  }{\cf1 (}{\b\cf6 True}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 color}{\cf1 :} {\cf4 EV_COLOR}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Currently selected color.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 color_struct}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\cf5 user_clicked_ok} {\b\cf6 and then} {\b\cf6 attached} {\cf5 internal_set_color} {\b\cf6 as} l_internal_set_color {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 l_internal_set_color}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 color_struct} {\cf1 :=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 c_gdk_color_struct_allocate}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_color_selection_get_current_color} {\cf1 (}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_color_selection_dialog_struct_color_selection} {\cf1 (}{\cf5 c_object}{\cf1 )}{\cf1 ,} {\cf5 color_struct}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make_with_8_bit_rgb}{\cf1  }{\cf1 (}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_color_struct_red} {\cf1 (}{\cf5 color_struct}{\cf1 )} {\cf1 //} 256{\cf1 ,} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_color_struct_green} {\cf1 (}{\cf5 color_struct}{\cf1 )} {\cf1 //} 256{\cf1 ,} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_color_struct_blue} {\cf1 (}{\cf5 color_struct}{\cf1 )} {\cf1 //} 256{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 color_struct}{\b\cf1 .}{\cf5 memory_free}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Element change}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_color} {\cf1 (}{\cf5 a_color}{\cf1 :} {\cf4 EV_COLOR}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 color}{\cf3  to }{\cf5 a_color}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 color_struct}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 internal_set_color} {\cf1 :=} {\cf5 a_color}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\cf5 color_struct} {\cf1 :=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 c_gdk_color_struct_allocate}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 set_gdk_color_struct_red} {\cf1 (}{\cf5 color_struct}{\cf1 ,} {\cf5 a_color}{\b\cf1 .}{\cf5 red_16_bit}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 set_gdk_color_struct_green} {\cf1 (}{\cf5 color_struct}{\cf1 ,} {\cf5 a_color}{\b\cf1 .}{\cf5 green_16_bit}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 set_gdk_color_struct_blue} {\cf1 (}{\cf5 color_struct}{\cf1 ,} {\cf5 a_color}{\b\cf1 .}{\cf5 blue_16_bit}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_color_selection_set_current_color} {\cf1 (}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gtk_color_selection_dialog_struct_color_selection} {\cf1 (}{\cf5 c_object}{\cf1 )}{\cf1 ,} {\cf5 color_struct}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 color_struct}{\b\cf1 .}{\cf5 memory_free}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 internal_set_color}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_COLOR}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Color explicitly set with }{\cf5 set_color}{\cf3 .}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Externals}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 gtk_color_selection_dialog_struct_colorsel} {\cf1 (}{\cf5 a_c_struct}{\cf1 :} {\cf4 POINTER}{\cf1 )}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [struct <ev_gtk.h>] (GtkColorSelectionDialog): EIF_POINTER"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"colorsel"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 gtk_color_selection_dialog_struct_ok_button} {\cf1 (}{\cf5 a_c_struct}{\cf1 :} {\cf4 POINTER}{\cf1 )}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [struct <ev_gtk.h>] (GtkColorSelectionDialog): EIF_POINTER"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"ok_button"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 gtk_color_selection_dialog_struct_cancel_button} {\cf1 (}{\cf5 a_c_struct}{\cf1 :} {\cf4 POINTER}{\cf1 )}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [struct <ev_gtk.h>] (GtkColorSelectionDialog): EIF_POINTER"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"cancel_button"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 gtk_color_selection_dialog_struct_help_button} {\cf1 (}{\cf5 a_c_struct}{\cf1 :} {\cf4 POINTER}{\cf1 )}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"C [struct <ev_gtk.h>] (GtkColorSelectionDialog): EIF_POINTER"{\line}
+{\tab}{\tab}{\b\cf6 alias}{\line}
+{\tab}{\tab}{\tab}"help_button"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_ANY}{\cf1 ,} {\cf4 EV_ANY_I}{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 interface}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_COLOR_DIALOG}{\line}
+{\tab}{\tab}{\b\cf6 note}{\line}
+{\tab}{\tab}{\tab}option: stable{\line}
+{\tab}{\tab}{\b\cf6 attribute}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 note}{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 1984-2017, Eiffel Software and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"{\line}
+{\tab}{\cf1 source}{\cf1 :} "[{\line}
+{\tab}{\tab}Eiffel Software{\line}
+{\tab}{\tab}5949 Hollister Ave., Goleta, CA 93117 USA{\line}
+{\tab}{\tab}Telephone 805-685-1006, Fax 805-685-6869{\line}
+{\tab}{\tab}Website http://www.eiffel.com{\line}
+{\tab}{\tab}Customer support http://support.eiffel.com{\line}
+{\tab}]"{\line}
+{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 EV_COLOR_DIALOG_IMP}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

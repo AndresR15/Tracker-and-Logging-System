@@ -1,0 +1,606 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Objects that represent the implementation interface for rich text widgets.</string>
+	<string>]</string><string>&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2014-04-17 15:19:54 -0700 (Thu, 17 Apr 2014) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 94888 $&quot;</string>
+
+<keyword>deferred</keyword> <keyword>class</keyword> 
+	<class><location>../implementation_interface/ev_rich_text_i.xml</location>EV_RICH_TEXT_I</class>
+
+<keyword>inherit</keyword>
+	<class><location>../implementation_interface/ev_text_i.xml</location>EV_TEXT_I</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_interface/ev_rich_text_i.xml#f_interface</location>interface</feature>
+		<keyword>end</keyword>
+
+	<class><location>../implementation_interface/ev_rich_text_action_sequences_i.xml</location>EV_RICH_TEXT_ACTION_SEQUENCES_I</class>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Status report</comment>
+
+	<anchor>f_character_format</anchor><feature><location>../implementation_interface/ev_rich_text_i.xml#f_character_format</location>character_format</feature> <symbol>(</symbol><local>caret_index</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><location>../interface/ev_character_format.xml</location>EV_CHARACTER_FORMAT</class>
+			<comment>--</comment><comment> </comment><quoted>Result</quoted><comment> is character format at caret position </comment><quoted>caret_index</quoted>
+		<keyword>require</keyword>
+			<tag>valid_character_index</tag><symbol>:</symbol> <local>caret_index</local> <symbol>&gt;=</symbol> <number>1</number> <keyword>and</keyword> <local>caret_index</local> <symbol>&lt;=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_text_length</location>text_length</feature> <symbol>+</symbol> <number>1</number>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>text_not_changed</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><keyword>old</keyword> <feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature><symbol>)</symbol>
+			<tag>caret_not_moved</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature>
+			<tag>selection_not_changed</tag><symbol>:</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <keyword>and</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <keyword>implies</keyword> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature> <keyword>and</keyword> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_selected_character_format</anchor><feature><location>../implementation_interface/ev_rich_text_i.xml#f_selected_character_format</location>selected_character_format</feature><symbol>:</symbol> <class><location>../interface/ev_character_format.xml</location>EV_CHARACTER_FORMAT</class>
+			<comment>--</comment><comment> </comment><quoted>Result</quoted><comment> is character format of current selection.</comment>
+			<comment>--</comment><comment> If more than one format is contained in the selection, </comment><quoted>Result</quoted>
+			<comment>--</comment><comment> is the first of these formats.</comment>
+		<keyword>require</keyword>
+			<tag>has_selection</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>text_not_changed</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><keyword>old</keyword> <feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature><symbol>)</symbol>
+			<tag>caret_not_moved</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature>
+			<tag>selection_not_changed</tag><symbol>:</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <keyword>and</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <keyword>implies</keyword> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature> <keyword>and</keyword> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_paragraph_format</anchor><feature><location>../implementation_interface/ev_rich_text_i.xml#f_paragraph_format</location>paragraph_format</feature> <symbol>(</symbol><local>caret_index</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><location>../interface/ev_paragraph_format.xml</location>EV_PARAGRAPH_FORMAT</class>
+			<comment>--</comment><comment> </comment><quoted>Result</quoted><comment> is paragraph_format at caret position </comment><quoted>caret_index</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>valid_character_index</tag><symbol>:</symbol> <local>caret_index</local> <symbol>&gt;=</symbol> <number>1</number> <keyword>and</keyword> <local>caret_index</local> <symbol>&lt;=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_text_length</location>text_length</feature> <symbol>+</symbol> <number>1</number>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>text_not_changed</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><keyword>old</keyword> <feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature><symbol>)</symbol>
+			<tag>caret_not_moved</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature>
+			<tag>selection_not_changed</tag><symbol>:</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <keyword>and</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <keyword>implies</keyword> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature> <keyword>and</keyword> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_selected_paragraph_format</anchor><feature><location>../implementation_interface/ev_rich_text_i.xml#f_selected_paragraph_format</location>selected_paragraph_format</feature><symbol>:</symbol> <class><location>../interface/ev_paragraph_format.xml</location>EV_PARAGRAPH_FORMAT</class>
+			<comment>--</comment><comment> </comment><quoted>Result</quoted><comment> is paragraph format of current selection.</comment>
+			<comment>--</comment><comment> If more than one format is contained in the selection, </comment><quoted>Result</quoted>
+			<comment>--</comment><comment> is the first of these formats.</comment>
+		<keyword>require</keyword>
+			<tag>has_selection</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>text_not_changed</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><keyword>old</keyword> <feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature><symbol>)</symbol>
+			<tag>caret_not_moved</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature>
+			<tag>selection_not_changed</tag><symbol>:</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <keyword>and</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <keyword>implies</keyword> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature> <keyword>and</keyword> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_character_format_contiguous</anchor><feature><location>../implementation_interface/ev_rich_text_i.xml#f_character_format_contiguous</location>character_format_contiguous</feature> <symbol>(</symbol><local>start_index</local><symbol>,</symbol> <local>end_index</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is formatting from caret position </comment><quoted>start_index</quoted><comment> to </comment><quoted>end_index</quoted><comment> contiguous?</comment>
+		<keyword>require</keyword>
+			<tag>valid_character_index</tag><symbol>:</symbol> <local>start_index</local> <symbol>&gt;=</symbol> <number>1</number> <keyword>and</keyword> <local>end_index</local> <symbol>&lt;=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_text_length</location>text_length</feature> <symbol>+</symbol> <number>1</number> <keyword>and</keyword> <local>start_index</local> <symbol>&lt;=</symbol> <local>end_index</local>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>text_not_changed</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><keyword>old</keyword> <feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature><symbol>)</symbol>
+			<tag>caret_not_moved</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature>
+			<tag>selection_not_changed</tag><symbol>:</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <keyword>and</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <keyword>implies</keyword> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature> <keyword>and</keyword> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_paragraph_format_contiguous</anchor><feature><location>../implementation_interface/ev_rich_text_i.xml#f_paragraph_format_contiguous</location>paragraph_format_contiguous</feature> <symbol>(</symbol><local>start_position</local><symbol>,</symbol> <local>end_position</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is paragraph formatting from caret_position </comment><quoted>start_position</quoted><comment> to </comment><quoted>end_position</quoted><comment> contiguous?</comment>
+		<keyword>require</keyword>
+			<tag>valid_character_index</tag><symbol>:</symbol> <local>start_position</local> <symbol>&gt;=</symbol> <number>1</number> <keyword>and</keyword> <local>end_position</local> <symbol>&lt;=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_text_length</location>text_length</feature> <symbol>+</symbol> <number>1</number> <keyword>and</keyword> <local>start_position</local> <symbol>&lt;=</symbol> <local>end_position</local>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>text_not_changed</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><keyword>old</keyword> <feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature><symbol>)</symbol>
+			<tag>caret_not_moved</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature>
+			<tag>selection_not_changed</tag><symbol>:</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <keyword>and</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <keyword>implies</keyword> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature> <keyword>and</keyword> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_character_format_range_information</anchor><feature><location>../implementation_interface/ev_rich_text_i.xml#f_character_format_range_information</location>character_format_range_information</feature> <symbol>(</symbol><local>start_index</local><symbol>,</symbol> <local>end_index</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><location>../interface/ev_character_format_range_information.xml</location>EV_CHARACTER_FORMAT_RANGE_INFORMATION</class>
+			<comment>--</comment><comment> Formatting range information from caret position </comment><quoted>start_index</quoted><comment> to </comment><quoted>end_index</quoted><comment>.</comment>
+			<comment>--</comment><comment> All attributes in </comment><quoted>Result</quoted><comment> are set to </comment><quoted>True</quoted><comment> if they remain consitent from </comment><quoted>start_index</quoted><comment> to</comment>
+			<comment>--</comment><quoted>end_index</quoted><comment> and </comment><quoted>False</quoted><comment> otherwise.</comment>
+			<comment>--</comment><comment> </comment><quoted>Result</quoted><comment> is a snapshot of </comment><quoted>Current</quoted><comment>, and does not remain consistent as the contents</comment>
+			<comment>--</comment><comment> are subsequently changed.</comment>
+		<keyword>require</keyword>
+			<tag>valid_character_index</tag><symbol>:</symbol> <local>start_index</local> <symbol>&gt;=</symbol> <number>1</number> <keyword>and</keyword> <local>end_index</local> <symbol>&lt;=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_text_length</location>text_length</feature> <symbol>+</symbol> <number>1</number> <keyword>and</keyword> <local>start_index</local> <symbol>&lt;=</symbol> <local>end_index</local>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>text_not_changed</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><keyword>old</keyword> <feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature><symbol>)</symbol>
+			<tag>caret_not_moved</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature>
+			<tag>selection_not_changed</tag><symbol>:</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <keyword>and</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <keyword>implies</keyword> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature> <keyword>and</keyword> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_paragraph_format_range_information</anchor><feature><location>../implementation_interface/ev_rich_text_i.xml#f_paragraph_format_range_information</location>paragraph_format_range_information</feature> <symbol>(</symbol><local>start_position</local><symbol>,</symbol> <local>end_position</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><location>../interface/ev_paragraph_format_range_information.xml</location>EV_PARAGRAPH_FORMAT_RANGE_INFORMATION</class>
+			<comment>--</comment><comment> Formatting range information from caret position </comment><quoted>start_position</quoted><comment> to </comment><quoted>end_position</quoted><comment>.</comment>
+			<comment>--</comment><comment> All attributes in </comment><quoted>Result</quoted><comment> are set to </comment><quoted>True</quoted><comment> if they remain consitent from </comment><quoted>start_position</quoted><comment> to</comment>
+			<comment>--</comment><quoted>end_position</quoted><comment> and </comment><quoted>False</quoted><comment> otherwise.</comment>
+			<comment>--</comment><comment> </comment><quoted>Result</quoted><comment> is a snapshot of </comment><quoted>Current</quoted><comment>, and does not remain consistent as the contents</comment>
+			<comment>--</comment><comment> are subsequently changed.</comment>
+		<keyword>require</keyword>
+			<tag>valid_character_index</tag><symbol>:</symbol> <local>start_position</local> <symbol>&gt;=</symbol> <number>1</number> <keyword>and</keyword> <local>end_position</local> <symbol>&lt;=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_text_length</location>text_length</feature> <symbol>+</symbol> <number>1</number> <keyword>and</keyword> <local>start_position</local> <symbol>&lt;=</symbol> <local>end_position</local>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>text_not_changed</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><keyword>old</keyword> <feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature><symbol>)</symbol>
+			<tag>caret_not_moved</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature>
+			<tag>selection_not_changed</tag><symbol>:</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <keyword>and</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <keyword>implies</keyword> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature> <keyword>and</keyword> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_buffer_locked_in_format_mode</anchor><feature><location>../implementation_interface/ev_rich_text_i.xml#f_buffer_locked_in_format_mode</location>buffer_locked_in_format_mode</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is buffered formatting underway?</comment>
+
+	<anchor>f_buffer_locked_in_append_mode</anchor><feature><location>../implementation_interface/ev_rich_text_i.xml#f_buffer_locked_in_append_mode</location>buffer_locked_in_append_mode</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is buffered appending underway?</comment>
+
+	<anchor>f_index_from_position</anchor><feature><location>../implementation_interface/ev_rich_text_i.xml#f_index_from_position</location>index_from_position</feature> <symbol>(</symbol><local>an_x_position</local><symbol>,</symbol> <local>a_y_position</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Index of character closest to position </comment><feature><location>../implementation_interface/ev_positioned_i.xml#f_x_position</location>x_position</feature><comment>, </comment><feature><location>../implementation_interface/ev_positioned_i.xml#f_y_position</location>y_position</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>position_valid</tag><symbol>:</symbol> <local>an_x_position</local> <symbol>&gt;=</symbol> <number>0</number> <keyword>and</keyword> <local>an_x_position</local> <symbol>&lt;=</symbol> <feature><location>../implementation_interface/ev_positioned_i.xml#f_width</location>width</feature> <keyword>and</keyword> <local>a_y_position</local> <symbol>&gt;=</symbol> <number>0</number> <keyword>and</keyword> <local>a_y_position</local> <symbol>&lt;=</symbol> <feature><location>../implementation_interface/ev_positioned_i.xml#f_height</location>height</feature>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>index_valid</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>&gt;=</symbol> <number>1</number> <keyword>and</keyword> <keyword>Result</keyword> <symbol>&lt;=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_text_length</location>text_length</feature>
+			<tag>text_not_changed</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><keyword>old</keyword> <feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature><symbol>)</symbol>
+			<tag>caret_not_moved</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature>
+			<tag>selection_not_changed</tag><symbol>:</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <keyword>and</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <keyword>implies</keyword> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature> <keyword>and</keyword> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_position_from_index</anchor><feature><location>../implementation_interface/ev_rich_text_i.xml#f_position_from_index</location>position_from_index</feature> <symbol>(</symbol><local>an_index</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><location>../interface/ev_coordinate.xml</location>EV_COORDINATE</class>
+			<comment>--</comment><comment> Position of character at index </comment><quoted>an_index</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>index_valid</tag><symbol>:</symbol> <local>an_index</local> <symbol>&gt;=</symbol> <number>1</number> <keyword>and</keyword> <local>an_index</local> <symbol>&lt;=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_text_length</location>text_length</feature>
+			<tag>character_displayed</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_rich_text_i.xml#f_character_displayed</location>character_displayed</feature><symbol> </symbol><symbol>(</symbol><local>an_index</local><symbol>)</symbol>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>position_valid</tag><symbol>:</symbol> <keyword>Result</keyword><dot>.</dot><feature><location>../interface/ev_coordinate.xml#f_x</location>x</feature> <symbol>&gt;=</symbol> <number>0</number> <keyword>and</keyword> <keyword>Result</keyword><dot>.</dot><feature><location>../interface/ev_coordinate.xml#f_x</location>x</feature> <symbol>&lt;=</symbol> <feature><location>../implementation_interface/ev_positioned_i.xml#f_width</location>width</feature> <keyword>and</keyword> <keyword>Result</keyword><dot>.</dot><feature><location>../interface/ev_coordinate.xml#f_y</location>y</feature> <symbol>&gt;=</symbol> <number>0</number> <keyword>and</keyword> <keyword>Result</keyword><dot>.</dot><feature><location>../interface/ev_coordinate.xml#f_y</location>y</feature> <symbol>&lt;=</symbol> <feature><location>../implementation_interface/ev_positioned_i.xml#f_height</location>height</feature>
+			<tag>text_not_changed</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><keyword>old</keyword> <feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature><symbol>)</symbol>
+			<tag>caret_not_moved</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature>
+			<tag>selection_not_changed</tag><symbol>:</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <keyword>and</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <keyword>implies</keyword> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature> <keyword>and</keyword> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_character_displayed</anchor><feature><location>../implementation_interface/ev_rich_text_i.xml#f_character_displayed</location>character_displayed</feature> <symbol>(</symbol><local>an_index</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is character </comment><quoted>an_index</quoted><comment> currently visible in </comment><quoted>Current</quoted><comment>?</comment>
+		<keyword>require</keyword>
+			<tag>index_valid</tag><symbol>:</symbol> <local>an_index</local> <symbol>&gt;=</symbol> <number>1</number> <keyword>and</keyword> <local>an_index</local> <symbol>&lt;=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_text_length</location>text_length</feature>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>text_not_changed</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><keyword>old</keyword> <feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature><symbol>)</symbol>
+			<tag>caret_not_moved</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature>
+			<tag>selection_not_changed</tag><symbol>:</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <keyword>and</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <keyword>implies</keyword> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature> <keyword>and</keyword> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_tab_positions</anchor><feature><location>../implementation_interface/ev_rich_text_i.xml#f_tab_positions</location>tab_positions</feature><symbol>:</symbol> <class><location>../interface/ev_active_list.xml</location>EV_ACTIVE_LIST</class> <symbol>[</symbol><class><include>False</include>INTEGER_32</class><symbol>]</symbol>
+			<comment>--</comment><comment> Width of each tab position in pixels, from left to right.</comment>
+			<comment>--</comment><comment> All tab positions not included use </comment><feature><location>../implementation_interface/ev_rich_text_i.xml#f_tab_width</location>tab_width</feature><comment>.</comment>
+
+	<anchor>f_tab_width</anchor><feature><location>../implementation_interface/ev_rich_text_i.xml#f_tab_width</location>tab_width</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Default width in pixels of each tab in </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>result_positive</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>&gt;</symbol> <number>0</number>
+			<tag>text_not_changed</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><keyword>old</keyword> <feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature><symbol>)</symbol>
+			<tag>caret_not_moved</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature>
+			<tag>selection_not_changed</tag><symbol>:</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <keyword>and</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <keyword>implies</keyword> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature> <keyword>and</keyword> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_any.xml</location>EV_ANY</class><symbol>,</symbol> <class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>,</symbol> <class><location>../implementation_interface/ev_rich_text_buffering_structures_i.xml</location>EV_RICH_TEXT_BUFFERING_STRUCTURES_I</class><symbol>}</symbol> <comment>--</comment><comment> Status setting</comment>
+
+	<anchor>f_set_current_format</anchor><feature><location>../implementation_interface/ev_rich_text_i.xml#f_set_current_format</location>set_current_format</feature> <symbol>(</symbol><local>format</local><symbol>:</symbol> <class><location>../interface/ev_character_format.xml</location>EV_CHARACTER_FORMAT</class><symbol>)</symbol>
+			<comment>--</comment><comment> apply </comment><quoted>format</quoted><comment> to current caret position, applicable</comment>
+			<comment>--</comment><comment> to next typed characters.</comment>
+		<keyword>require</keyword>
+			<tag>format_not_void</tag><symbol>:</symbol> <local>format</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>text_not_changed</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><keyword>old</keyword> <feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature><symbol>)</symbol>
+			<tag>caret_not_moved</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature>
+			<tag>selection_not_changed</tag><symbol>:</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <keyword>and</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <keyword>implies</keyword> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature> <keyword>and</keyword> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_format_region</anchor><feature><location>../implementation_interface/ev_rich_text_i.xml#f_format_region</location>format_region</feature> <symbol>(</symbol><local>start_position</local><symbol>,</symbol> <local>end_position</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>format</local><symbol>:</symbol> <class><location>../interface/ev_character_format.xml</location>EV_CHARACTER_FORMAT</class><symbol>)</symbol>
+			<comment>--</comment><comment> Apply </comment><quoted>format</quoted><comment> to all characters between the caret positions </comment><quoted>start_position</quoted><comment> and </comment><quoted>end_position</quoted><comment>.</comment>
+			<comment>--</comment><comment> Formatting is applied immediately.</comment>
+		<keyword>require</keyword>
+			<tag>valid_positions</tag><symbol>:</symbol> <local>start_position</local> <symbol>&lt;</symbol> <local>end_position</local> <keyword>and</keyword> <local>start_position</local> <symbol>&gt;=</symbol> <number>1</number> <keyword>and</keyword> <local>end_position</local> <symbol>&lt;=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_text_length</location>text_length</feature> <symbol>+</symbol> <number>1</number>
+			<tag>format_not_void</tag><symbol>:</symbol> <local>format</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>text_not_changed</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><keyword>old</keyword> <feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature><symbol>)</symbol>
+			<tag>caret_not_moved</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature>
+			<tag>selection_not_changed</tag><symbol>:</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <keyword>and</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <keyword>implies</keyword> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature> <keyword>and</keyword> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_format_paragraph</anchor><feature><location>../implementation_interface/ev_rich_text_i.xml#f_format_paragraph</location>format_paragraph</feature> <symbol>(</symbol><local>start_position</local><symbol>,</symbol> <local>end_position</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>format</local><symbol>:</symbol> <class><location>../interface/ev_paragraph_format.xml</location>EV_PARAGRAPH_FORMAT</class><symbol>)</symbol>
+			<comment>--</comment><comment> Apply paragraph formatting </comment><quoted>format</quoted><comment> to caret positions </comment><quoted>start_position</quoted><comment>, </comment><quoted>end_position</quoted><comment> inclusive.</comment>
+			<comment>--</comment><comment> Formatting applies to complete lines as separated by new line characters that </comment><quoted>start_position</quoted><comment> and</comment>
+			<comment>--</comment><comment> </comment><quoted>end_position</quoted><comment> fall on.</comment>
+		<keyword>require</keyword>
+			<tag>valid_positions</tag><symbol>:</symbol> <local>start_position</local> <symbol>&lt;=</symbol> <local>end_position</local> <keyword>and</keyword> <local>start_position</local> <symbol>&gt;=</symbol> <number>1</number> <keyword>and</keyword> <local>end_position</local> <symbol>&lt;=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_text_length</location>text_length</feature> <symbol>+</symbol> <number>1</number>
+			<tag>format_not_void</tag><symbol>:</symbol> <local>format</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>text_not_changed</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><keyword>old</keyword> <feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature><symbol>)</symbol>
+			<tag>caret_not_moved</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature>
+			<tag>selection_not_changed</tag><symbol>:</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <keyword>and</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <keyword>implies</keyword> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature> <keyword>and</keyword> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_modify_region</anchor><feature><location>../implementation_interface/ev_rich_text_i.xml#f_modify_region</location>modify_region</feature> <symbol>(</symbol><local>start_position</local><symbol>,</symbol> <local>end_position</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>format</local><symbol>:</symbol> <class><location>../interface/ev_character_format.xml</location>EV_CHARACTER_FORMAT</class><symbol>;</symbol> <local>applicable_attributes</local><symbol>:</symbol> <class><location>../interface/ev_character_format_range_information.xml</location>EV_CHARACTER_FORMAT_RANGE_INFORMATION</class><symbol>)</symbol>
+			<comment>--</comment><comment> Modify formatting from </comment><quoted>start_position</quoted><comment> to </comment><quoted>end_position</quoted><comment> applying all attributes of </comment><quoted>format</quoted><comment> that are set to</comment>
+			<comment>--</comment><comment> </comment><quoted>True</quoted><comment> within </comment><quoted>applicable_attributes</quoted><comment>, ignoring others.</comment>
+		<keyword>require</keyword>
+			<tag>applicable_attributes_not_void</tag><symbol>:</symbol> <local>applicable_attributes</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>valid_positions</tag><symbol>:</symbol> <local>start_position</local> <symbol>&lt;</symbol> <local>end_position</local> <keyword>and</keyword> <local>start_position</local> <symbol>&gt;=</symbol> <number>1</number> <keyword>and</keyword> <local>end_position</local> <symbol>&lt;=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_text_length</location>text_length</feature> <symbol>+</symbol> <number>1</number>
+			<tag>format_not_void</tag><symbol>:</symbol> <local>format</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>text_not_changed</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><keyword>old</keyword> <feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature><symbol>)</symbol>
+			<tag>caret_not_moved</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature>
+			<tag>selection_not_changed</tag><symbol>:</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <keyword>and</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <keyword>implies</keyword> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature> <keyword>and</keyword> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_modify_paragraph</anchor><feature><location>../implementation_interface/ev_rich_text_i.xml#f_modify_paragraph</location>modify_paragraph</feature> <symbol>(</symbol><local>start_position</local><symbol>,</symbol> <local>end_position</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>format</local><symbol>:</symbol> <class><location>../interface/ev_paragraph_format.xml</location>EV_PARAGRAPH_FORMAT</class><symbol>;</symbol> <local>applicable_attributes</local><symbol>:</symbol> <class><location>../interface/ev_paragraph_format_range_information.xml</location>EV_PARAGRAPH_FORMAT_RANGE_INFORMATION</class><symbol>)</symbol>
+			<comment>--</comment><comment> Modify paragraph formatting </comment><quoted>format</quoted><comment> from caret positions </comment><quoted>start_position</quoted><comment> to </comment><quoted>end_position</quoted><comment> inclusive.</comment>
+			<comment>--</comment><comment> Formatting applies to complete lines as separated by new line characters that </comment><quoted>start_position</quoted><comment> and</comment>
+			<comment>--</comment><comment> </comment><quoted>end_position</quoted><comment> fall on. All attributes of </comment><quoted>format</quoted><comment> that are set to </comment><quoted>True</quoted><comment> within </comment><quoted>applicable_attributes</quoted><comment> are applied.</comment>
+		<keyword>require</keyword>
+			<tag>applicable_attributes_not_void</tag><symbol>:</symbol> <local>applicable_attributes</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>valid_positions</tag><symbol>:</symbol> <local>start_position</local> <symbol>&lt;=</symbol> <local>end_position</local> <keyword>and</keyword> <local>start_position</local> <symbol>&gt;=</symbol> <number>1</number> <keyword>and</keyword> <local>end_position</local> <symbol>&lt;=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_text_length</location>text_length</feature> <symbol>+</symbol> <number>1</number>
+			<tag>format_not_void</tag><symbol>:</symbol> <local>format</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>text_not_changed</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><keyword>old</keyword> <feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature><symbol>)</symbol>
+			<tag>caret_not_moved</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature>
+			<tag>selection_not_changed</tag><symbol>:</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <keyword>and</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <keyword>implies</keyword> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature> <keyword>and</keyword> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_buffered_format</anchor><feature><location>../implementation_interface/ev_rich_text_i.xml#f_buffered_format</location>buffered_format</feature> <symbol>(</symbol><local>start_position</local><symbol>,</symbol> <local>end_position</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>format</local><symbol>:</symbol> <class><location>../interface/ev_character_format.xml</location>EV_CHARACTER_FORMAT</class><symbol>)</symbol>
+			<comment>--</comment><comment> Apply a character format </comment><quoted>format</quoted><comment> from caret positions </comment><quoted>start_position</quoted><comment> to </comment><quoted>end_position</quoted><comment> to</comment>
+			<comment>--</comment><comment> format buffer. Call </comment><feature><location>../implementation_interface/ev_rich_text_i.xml#f_flush_buffer</location>flush_buffer</feature><comment> to apply buffered contents to </comment><quoted>Current</quoted><comment>.</comment>
+			<comment>--</comment><comment> </comment><quoted>format</quoted><comment> is not cloned internally and when buffer is flushed, its reference is</comment>
+			<comment>--</comment><comment> used. Therefore, you must not modify </comment><quoted>format</quoted><comment> externally after passing to</comment>
+			<comment>--</comment><comment> this procedure, otherwise all buffered appends that referenced the same </comment><quoted>format</quoted><comment> object</comment>
+			<comment>--</comment><comment> will use its current value.</comment>
+		<keyword>require</keyword>
+			<tag>valid_positions</tag><symbol>:</symbol> <local>start_position</local> <symbol>&lt;=</symbol> <local>end_position</local> <keyword>and</keyword> <local>start_position</local> <symbol>&gt;=</symbol> <number>1</number> <keyword>and</keyword> <local>end_position</local> <symbol>&lt;=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_text_length</location>text_length</feature> <symbol>+</symbol> <number>1</number>
+			<tag>format_not_void</tag><symbol>:</symbol> <local>format</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>text_not_changed</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><keyword>old</keyword> <feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature><symbol>)</symbol>
+			<tag>buffer_locked_for_format</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_rich_text_i.xml#f_buffer_locked_in_format_mode</location>buffer_locked_in_format_mode</feature>
+			<tag>caret_not_moved</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature>
+			<tag>selection_not_changed</tag><symbol>:</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <keyword>and</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <keyword>implies</keyword> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature> <keyword>and</keyword> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_buffered_append</anchor><feature><location>../implementation_interface/ev_rich_text_i.xml#f_buffered_append</location>buffered_append</feature> <symbol>(</symbol><local>a_text</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>;</symbol> <local>format</local><symbol>:</symbol> <class><location>../interface/ev_character_format.xml</location>EV_CHARACTER_FORMAT</class><symbol>)</symbol>
+			<comment>--</comment><comment> Append </comment><quoted>a_text</quoted><comment> with format </comment><quoted>format</quoted><comment> to append buffer.</comment>
+			<comment>--</comment><comment> To render buffer to </comment><quoted>Current</quoted><comment>, call </comment><feature><location>../implementation_interface/ev_rich_text_i.xml#f_flush_buffer</location>flush_buffer</feature><comment> which replaces current content,</comment>
+			<comment>--</comment><comment> or </comment><feature><location>../implementation_interface/ev_rich_text_i.xml#f_flush_buffer_to</location>flush_buffer_to</feature><comment> which inserts the formatted text.</comment>
+			<comment>--</comment><comment> </comment><quoted>format</quoted><comment> is not cloned internally and when buffer is flushed, its reference is</comment>
+			<comment>--</comment><comment> used. Therefore, you must not modify </comment><quoted>format</quoted><comment> externally after passing to</comment>
+			<comment>--</comment><comment> this procedure, otherwise all buffered appends that referenced the same </comment><quoted>format</quoted><comment> object</comment>
+			<comment>--</comment><comment> will use its current value.</comment>
+		<keyword>require</keyword>
+			<tag>a_text_not_void</tag><symbol>:</symbol> <local>a_text</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>format_not_void</tag><symbol>:</symbol> <local>format</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>buffer_not_locked_for_format</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../implementation_interface/ev_rich_text_i.xml#f_buffer_locked_in_format_mode</location>buffer_locked_in_format_mode</feature>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>text_not_changed</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><keyword>old</keyword> <feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature><symbol>)</symbol>
+			<tag>buffer_locked_for_append</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_rich_text_i.xml#f_buffer_locked_in_append_mode</location>buffer_locked_in_append_mode</feature>
+			<tag>caret_not_moved</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature>
+			<tag>selection_not_changed</tag><symbol>:</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <keyword>and</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <keyword>implies</keyword> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature> <keyword>and</keyword> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_flush_buffer</anchor><feature><location>../implementation_interface/ev_rich_text_i.xml#f_flush_buffer</location>flush_buffer</feature>
+			<comment>--</comment><comment> Flush contents of buffer.</comment>
+			<comment>--</comment><comment> If </comment><quoted>buffer_locked_for_append</quoted><comment> then replace contents of </comment><quoted>Current</quoted><comment> with buffer contents.</comment>
+			<comment>--</comment><comment> If </comment><quoted>buffer_locked_for_format</quoted><comment> then apply buffered formatting to contents of </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>buffer_not_locked</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../implementation_interface/ev_rich_text_i.xml#f_buffer_locked_in_append_mode</location>buffer_locked_in_append_mode</feature> <keyword>and</keyword> <keyword>not</keyword> <feature><location>../implementation_interface/ev_rich_text_i.xml#f_buffer_locked_in_format_mode</location>buffer_locked_in_format_mode</feature>
+			<tag>caret_consistent</tag><symbol>:</symbol> <symbol>(</symbol><keyword>old</keyword> <feature><location>../implementation_interface/ev_rich_text_i.xml#f_buffer_locked_in_append_mode</location>buffer_locked_in_append_mode</feature> <keyword>implies</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature> <symbol>=</symbol> <number>1</number><symbol>)</symbol> <keyword>or</keyword> <keyword>old</keyword> <feature><location>../implementation_interface/ev_rich_text_i.xml#f_buffer_locked_in_format_mode</location>buffer_locked_in_format_mode</feature> <keyword>implies</keyword> <symbol>(</symbol><feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature><symbol>)</symbol>
+			<tag>unselected</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_flush_buffer_to</anchor><feature><location>../implementation_interface/ev_rich_text_i.xml#f_flush_buffer_to</location>flush_buffer_to</feature> <symbol>(</symbol><local>start_position</local><symbol>,</symbol> <local>end_position</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Replace contents of current from caret position </comment><quoted>start_position</quoted><comment> to </comment><quoted>end_position</quoted><comment> with</comment>
+			<comment>--</comment><comment> contents of buffer, since it was last flushed. If </comment><quoted>start_position</quoted><comment> and </comment><quoted>end_position</quoted>
+			<comment>--</comment><comment> are equal, insert the contents of the buffer at caret position </comment><quoted>start_position</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>buffer_locked_for_append</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_rich_text_i.xml#f_buffer_locked_in_append_mode</location>buffer_locked_in_append_mode</feature>
+				<local>start_position</local> <symbol>&gt;=</symbol> <number>1</number> <keyword>and</keyword> <local>end_position</local> <symbol>&lt;=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_text_length</location>text_length</feature> <symbol>+</symbol> <number>1</number> <keyword>and</keyword> <local>start_position</local> <symbol>&lt;=</symbol> <local>end_position</local>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>buffer_locked_for_append</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../implementation_interface/ev_rich_text_i.xml#f_buffer_locked_in_append_mode</location>buffer_locked_in_append_mode</feature>
+			<tag>caret_consistent</tag><symbol>:</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature> <symbol>&lt;=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_text_length</location>text_length</feature> <symbol>+</symbol> <number>1</number> <keyword>implies</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature>
+			<tag>unselected</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_set_tab_width</anchor><feature><location>../implementation_interface/ev_rich_text_i.xml#f_set_tab_width</location>set_tab_width</feature> <symbol>(</symbol><local>a_width</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>a_width</quoted><comment> in pixels to </comment><feature><location>../implementation_interface/ev_rich_text_i.xml#f_tab_width</location>tab_width</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>width_positive</tag><symbol>:</symbol> <local>a_width</local> <symbol>&gt;</symbol> <number>0</number>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>tab_width_set</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_rich_text_i.xml#f_tab_width</location>tab_width</feature> <symbol>=</symbol> <local>a_width</local>
+			<tag>text_not_changed</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><keyword>old</keyword> <feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature><symbol>)</symbol>
+			<tag>caret_not_moved</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature>
+			<tag>selection_not_changed</tag><symbol>:</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <keyword>and</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <keyword>implies</keyword> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature> <keyword>and</keyword> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_save_to_named_path</anchor><feature><location>../implementation_interface/ev_rich_text_i.xml#f_save_to_named_path</location>save_to_named_path</feature> <symbol>(</symbol><local>a_filename</local><symbol>:</symbol> <class><include>False</include>PATH</class><symbol>)</symbol>
+			<comment>--</comment><comment> Save </comment><feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature><comment> and formatting of </comment><quoted>Current</quoted><comment> to file </comment><quoted>a_filename</quoted><comment> in RTF format.</comment>
+		<keyword>require</keyword>
+			<tag>filename_not_void</tag><symbol>:</symbol> <local>a_filename</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>local</keyword>
+			<local>l_text_length</local><symbol>,</symbol> <local>current_lower_line_index</local><symbol>,</symbol> <local>last_counter</local><symbol>,</symbol> <local>last_paragraph_change</local><symbol>,</symbol> <local>current_paragraph_index</local><symbol>,</symbol> <local>counter</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<local>l_text</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature>
+			<local>current_format</local><symbol>:</symbol> <class><location>../implementation_interface/ev_character_format_i.xml</location>EV_CHARACTER_FORMAT_I</class>
+			<local>buffer</local><symbol>:</symbol> <class><location>../implementation_interface/ev_rich_text_buffering_structures_i.xml</location>EV_RICH_TEXT_BUFFERING_STRUCTURES_I</class>
+			<local>text_file</local><symbol>:</symbol> <class><include>False</include>RAW_FILE</class>
+			<local>paragraph_indexes</local><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><class><include>False</include>INTEGER_32</class><symbol>]</symbol>
+			<local>paragraph_formats</local><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><class><include>False</include>STRING_32</class><symbol>]</symbol>
+			<local>paragraphs_exhausted</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<local>last_load_value</local><symbol>,</symbol> <local>current_load_value</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+		<keyword>do</keyword>
+			<keyword>create</keyword> <local>buffer</local><dot>.</dot><feature><location>../implementation_interface/ev_rich_text_buffering_structures_i.xml#f_set_rich_text</location>set_rich_text</feature><symbol> </symbol><symbol>(</symbol><keyword>Current</keyword><symbol>)</symbol>
+			<local>l_text</local> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature>
+			<local>l_text_length</local> <symbol>:=</symbol> <local>l_text</local><dot>.</dot><feature><include>False</include>count</feature>
+			<feature><location>../implementation_interface/ev_rich_text_i.xml#f_initialize_for_saving</location>initialize_for_saving</feature>
+			<local>buffer</local><dot>.</dot><feature><location>../implementation_interface/ev_rich_text_buffering_structures_i.xml#f_generate_paragraph_information</location>generate_paragraph_information</feature><symbol> </symbol><symbol>(</symbol><local>l_text</local><symbol>)</symbol>
+			<local>paragraph_indexes</local> <symbol>:=</symbol> <local>buffer</local><dot>.</dot><feature><location>../implementation_interface/ev_rich_text_buffering_structures_i.xml#f_paragraph_start_indexes</location>paragraph_start_indexes</feature>
+			<local>paragraph_formats</local> <symbol>:=</symbol> <local>buffer</local><dot>.</dot><feature><location>../implementation_interface/ev_rich_text_buffering_structures_i.xml#f_paragraph_formats</location>paragraph_formats</feature>
+			<keyword>check</keyword>
+					<local>paragraph_formats</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<keyword>check</keyword>
+					<local>paragraph_indexes</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<local>current_lower_line_index</local> <symbol>:=</symbol> <number>1</number>
+			<local>last_paragraph_change</local> <symbol>:=</symbol> <number>1</number>
+			<local>buffer</local><dot>.</dot><feature><location>../implementation_interface/ev_rich_text_buffering_structures_i.xml#f_internal_text</location>internal_text</feature><dot>.</dot><feature><include>False</include>append</feature><symbol> </symbol><symbol>(</symbol><local>paragraph_formats</local><dot>.</dot><feature><include>False</include>i_th</feature><symbol> </symbol><symbol>(</symbol><local>current_lower_line_index</local><symbol>)</symbol><symbol>)</symbol>
+			<keyword>if</keyword> <local>paragraph_formats</local><dot>.</dot><feature><include>False</include>count</feature> <symbol>=</symbol> <number>1</number> <keyword>then</keyword>
+				<local>paragraphs_exhausted</local> <symbol>:=</symbol> <keyword>True</keyword>
+			<keyword>end</keyword>
+			<local>current_lower_line_index</local> <symbol>:=</symbol> <local>current_lower_line_index</local> <symbol>+</symbol> <number>1</number>
+			<keyword>from</keyword>
+				<local>counter</local> <symbol>:=</symbol> <number>1</number>
+				<local>last_counter</local> <symbol>:=</symbol> <number>1</number>
+			<keyword>until</keyword>
+				<local>counter</local> <symbol>&gt;=</symbol> <local>l_text_length</local>
+			<keyword>loop</keyword>
+				<local>current_format</local> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_rich_text_i.xml#f_internal_character_format</location>internal_character_format</feature><symbol> </symbol><symbol>(</symbol><local>counter</local> <symbol>+</symbol> <number>1</number><symbol>)</symbol>
+				<local>counter</local> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_rich_text_i.xml#f_next_change_of_character</location>next_change_of_character</feature><symbol> </symbol><symbol>(</symbol><local>counter</local><symbol>,</symbol> <local>l_text_length</local> <symbol>+</symbol> <number>1</number><symbol>)</symbol>
+				<keyword>if</keyword> <local>counter</local> <symbol>&gt;</symbol> <local>current_paragraph_index</local> <keyword>and</keyword> <keyword>not</keyword> <local>paragraphs_exhausted</local> <keyword>then</keyword>
+					<local>current_paragraph_index</local> <symbol>:=</symbol> <local>paragraph_indexes</local><dot>.</dot><feature><include>False</include>i_th</feature><symbol> </symbol><symbol>(</symbol><local>current_lower_line_index</local><symbol>)</symbol>
+					<keyword>if</keyword> <local>current_paragraph_index</local> <symbol>/=</symbol> <local>last_counter</local> <keyword>then</keyword>
+						<local>buffer</local><dot>.</dot><feature><location>../implementation_interface/ev_rich_text_buffering_structures_i.xml#f_append_text_for_rtf</location>append_text_for_rtf</feature><symbol> </symbol><symbol>(</symbol><local>l_text</local><dot>.</dot><feature><include>False</include>substring</feature><symbol> </symbol><symbol>(</symbol><local>last_counter</local><symbol>,</symbol> <local>current_paragraph_index</local> <symbol>-</symbol> <number>1</number><symbol>)</symbol><symbol>,</symbol> <local>current_format</local><symbol>)</symbol>
+						<local>last_counter</local> <symbol>:=</symbol> <local>current_paragraph_index</local>
+					<keyword>end</keyword>
+					<keyword>from</keyword>
+					<keyword>until</keyword>
+						<local>current_lower_line_index</local> <symbol>+</symbol> <number>1</number> <symbol>&gt;</symbol> <local>paragraph_formats</local><dot>.</dot><feature><include>False</include>count</feature> <keyword>or else</keyword> <local>paragraph_indexes</local><dot>.</dot><feature><include>False</include>i_th</feature><symbol> </symbol><symbol>(</symbol><local>current_lower_line_index</local><symbol>)</symbol> <symbol>&gt;=</symbol> <local>counter</local>
+					<keyword>loop</keyword>
+						<local>buffer</local><dot>.</dot><feature><location>../implementation_interface/ev_rich_text_buffering_structures_i.xml#f_internal_text</location>internal_text</feature><dot>.</dot><feature><include>False</include>append</feature><symbol> </symbol><symbol>(</symbol><local>paragraph_formats</local><dot>.</dot><feature><include>False</include>i_th</feature><symbol> </symbol><symbol>(</symbol><local>current_lower_line_index</local><symbol>)</symbol><symbol>)</symbol>
+						<local>current_lower_line_index</local> <symbol>:=</symbol> <local>current_lower_line_index</local> <symbol>+</symbol> <number>1</number>
+						<local>current_paragraph_index</local> <symbol>:=</symbol> <local>paragraph_indexes</local><dot>.</dot><feature><include>False</include>i_th</feature><symbol> </symbol><symbol>(</symbol><local>current_lower_line_index</local><symbol>)</symbol><dot>.</dot><feature><include>False</include>min</feature><symbol> </symbol><symbol>(</symbol><local>counter</local><symbol>)</symbol>
+						<local>buffer</local><dot>.</dot><feature><location>../implementation_interface/ev_rich_text_buffering_structures_i.xml#f_append_text_for_rtf</location>append_text_for_rtf</feature><symbol> </symbol><symbol>(</symbol><local>l_text</local><dot>.</dot><feature><include>False</include>substring</feature><symbol> </symbol><symbol>(</symbol><local>paragraph_indexes</local><dot>.</dot><feature><include>False</include>i_th</feature><symbol> </symbol><symbol>(</symbol><local>current_lower_line_index</local> <symbol>-</symbol> <number>1</number><symbol>)</symbol><symbol>,</symbol> <local>current_paragraph_index</local> <symbol>-</symbol> <number>1</number><symbol>)</symbol><symbol>,</symbol> <local>current_format</local><symbol>)</symbol>
+						<local>last_counter</local> <symbol>:=</symbol> <local>current_paragraph_index</local>
+					<keyword>end</keyword>
+					<keyword>if</keyword> <local>counter</local> <symbol>&gt;</symbol> <local>paragraph_indexes</local><dot>.</dot><feature><include>False</include>i_th</feature><symbol> </symbol><symbol>(</symbol><local>current_lower_line_index</local><symbol>)</symbol> <keyword>then</keyword>
+						<local>current_lower_line_index</local> <symbol>:=</symbol> <local>current_lower_line_index</local> <symbol>+</symbol> <number>1</number>
+					<keyword>end</keyword>
+					<keyword>if</keyword> <local>current_lower_line_index</local> <symbol>&gt;</symbol> <local>paragraph_indexes</local><dot>.</dot><feature><include>False</include>count</feature> <keyword>then</keyword>
+						<local>paragraphs_exhausted</local> <symbol>:=</symbol> <keyword>True</keyword>
+						<local>buffer</local><dot>.</dot><feature><location>../implementation_interface/ev_rich_text_buffering_structures_i.xml#f_internal_text</location>internal_text</feature><dot>.</dot><feature><include>False</include>append</feature><symbol> </symbol><symbol>(</symbol><local>paragraph_formats</local><dot>.</dot><feature><include>False</include>i_th</feature><symbol> </symbol><symbol>(</symbol><local>paragraph_formats</local><dot>.</dot><feature><include>False</include>count</feature><symbol>)</symbol><symbol>)</symbol>
+						<keyword>if</keyword> <local>last_counter</local> <symbol>&lt;</symbol> <local>counter</local> <keyword>then</keyword>
+							<local>buffer</local><dot>.</dot><feature><location>../implementation_interface/ev_rich_text_buffering_structures_i.xml#f_append_text_for_rtf</location>append_text_for_rtf</feature><symbol> </symbol><symbol>(</symbol><local>l_text</local><dot>.</dot><feature><include>False</include>substring</feature><symbol> </symbol><symbol>(</symbol><local>last_counter</local><symbol>,</symbol> <local>counter</local> <symbol>-</symbol> <number>1</number><symbol>)</symbol><symbol>,</symbol> <local>current_format</local><symbol>)</symbol>
+							<local>last_counter</local> <symbol>:=</symbol> <local>counter</local>
+						<keyword>end</keyword>
+					<keyword>end</keyword>
+				<keyword>else</keyword>
+					<local>buffer</local><dot>.</dot><feature><location>../implementation_interface/ev_rich_text_buffering_structures_i.xml#f_append_text_for_rtf</location>append_text_for_rtf</feature><symbol> </symbol><symbol>(</symbol><local>l_text</local><dot>.</dot><feature><include>False</include>substring</feature><symbol> </symbol><symbol>(</symbol><local>last_counter</local><symbol>,</symbol> <symbol>(</symbol><local>counter</local> <symbol>-</symbol> <number>1</number><symbol>)</symbol><dot>.</dot><feature><include>False</include>min</feature><symbol> </symbol><symbol>(</symbol><local>l_text</local><dot>.</dot><feature><include>False</include>count</feature><symbol>)</symbol><symbol>)</symbol><symbol>,</symbol> <local>current_format</local><symbol>)</symbol>
+					<local>last_counter</local> <symbol>:=</symbol> <local>counter</local>
+				<keyword>end</keyword>
+				<keyword>if</keyword> <feature><location>../implementation_interface/ev_rich_text_action_sequences_i.xml#f_file_access_actions_internal</location>file_access_actions_internal</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+					<local>current_load_value</local> <symbol>:=</symbol> <symbol>(</symbol><local>counter</local> <symbol>*</symbol> <number>100</number><symbol>)</symbol> <symbol>//</symbol> <symbol>(</symbol><local>l_text_length</local> <symbol>+</symbol> <number>1</number><symbol>)</symbol>
+					<keyword>if</keyword> <local>current_load_value</local> <symbol>/=</symbol> <local>last_load_value</local> <keyword>then</keyword>
+						<local>last_load_value</local> <symbol>:=</symbol> <local>current_load_value</local>
+						<feature><location>../implementation_interface/ev_rich_text_action_sequences_i.xml#f_file_access_actions_internal</location>file_access_actions_internal</feature><dot>.</dot><feature><location>../interface/ev_lite_action_sequence.xml#f_call</location>call</feature><symbol> </symbol><symbol>(</symbol><symbol>[</symbol><local>current_load_value</local><symbol>]</symbol><symbol>)</symbol>
+					<keyword>end</keyword>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+			<keyword>check</keyword>
+				<tag>counter_set_to_length_plus_one</tag><symbol>:</symbol> <local>counter</local> <symbol>=</symbol> <local>l_text_length</local> <symbol>+</symbol> <number>1</number>
+			<keyword>end</keyword>
+			<local>buffer</local><dot>.</dot><feature><location>../implementation_interface/ev_rich_text_buffering_structures_i.xml#f_generate_complete_rtf_from_buffering</location>generate_complete_rtf_from_buffering</feature>
+			<feature><location>../implementation_interface/ev_rich_text_i.xml#f_complete_saving</location>complete_saving</feature>
+			<keyword>create</keyword> <local>text_file</local><dot>.</dot><feature><include>False</include>make_with_path</feature><symbol> </symbol><symbol>(</symbol><local>a_filename</local><symbol>)</symbol>
+			<local>text_file</local><dot>.</dot><feature><include>False</include>open_write</feature>
+			<local>text_file</local><dot>.</dot><feature><include>False</include>put_string</feature><symbol> </symbol><symbol>(</symbol><local>buffer</local><dot>.</dot><feature><location>../implementation_interface/ev_rich_text_buffering_structures_i.xml#f_internal_text</location>internal_text</feature><dot>.</dot><feature><include>False</include>as_string_8</feature><symbol>)</symbol>
+			<local>text_file</local><dot>.</dot><feature><include>False</include>close</feature>
+		<keyword>ensure</keyword>
+			<tag>text_not_changed</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><keyword>old</keyword> <feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature><symbol>)</symbol>
+			<tag>caret_not_moved</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature>
+			<tag>selection_not_changed</tag><symbol>:</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <keyword>and</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <keyword>implies</keyword> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature> <keyword>and</keyword> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_set_with_named_path</anchor><feature><location>../implementation_interface/ev_rich_text_i.xml#f_set_with_named_path</location>set_with_named_path</feature> <symbol>(</symbol><local>a_filename</local><symbol>:</symbol> <class><include>False</include>PATH</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature><comment> and formatting of </comment><quoted>Current</quoted><comment> from file </comment><quoted>a_filename</quoted><comment> in RTF format.</comment>
+		<keyword>require</keyword>
+			<tag>filename_not_void</tag><symbol>:</symbol> <local>a_filename</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>local</keyword>
+			<local>text_file</local><symbol>:</symbol> <class><include>False</include>RAW_FILE</class>
+			<local>l_text</local><symbol>:</symbol> <keyword>detachable</keyword> <class><include>False</include>STRING_8</class>
+			<local>buffer</local><symbol>:</symbol> <class><location>../implementation_interface/ev_rich_text_buffering_structures_i.xml</location>EV_RICH_TEXT_BUFFERING_STRUCTURES_I</class>
+		<keyword>do</keyword>
+			<feature><location>../implementation_interface/ev_rich_text_i.xml#f_initialize_for_loading</location>initialize_for_loading</feature>
+			<keyword>create</keyword> <local>text_file</local><dot>.</dot><feature><include>False</include>make_with_path</feature><symbol> </symbol><symbol>(</symbol><local>a_filename</local><symbol>)</symbol>
+			<local>text_file</local><dot>.</dot><feature><include>False</include>open_read</feature>
+			<local>text_file</local><dot>.</dot><feature><include>False</include>read_stream</feature><symbol> </symbol><symbol>(</symbol><local>text_file</local><dot>.</dot><feature><include>False</include>count</feature><symbol>)</symbol>
+			<local>l_text</local> <symbol>:=</symbol> <local>text_file</local><dot>.</dot><feature><include>False</include>last_string</feature>
+			<keyword>check</keyword>
+					<local>l_text</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>end</keyword>
+			<local>text_file</local><dot>.</dot><feature><include>False</include>close</feature>
+			<keyword>create</keyword> <local>buffer</local><dot>.</dot><feature><location>../implementation_interface/ev_rich_text_buffering_structures_i.xml#f_set_rich_text</location>set_rich_text</feature><symbol> </symbol><symbol>(</symbol><keyword>Current</keyword><symbol>)</symbol>
+			<local>buffer</local><dot>.</dot><feature><location>../implementation_interface/ev_rich_text_buffering_structures_i.xml#f_set_with_rtf</location>set_with_rtf</feature><symbol> </symbol><symbol>(</symbol><local>l_text</local><symbol>)</symbol>
+			<feature><location>../implementation_interface/ev_rich_text_i.xml#f_last_load_successful</location>last_load_successful</feature> <symbol>:=</symbol> <local>buffer</local><dot>.</dot><feature><location>../implementation_interface/ev_rich_text_buffering_structures_i.xml#f_last_load_successful</location>last_load_successful</feature>
+			<feature><location>../implementation_interface/ev_rich_text_i.xml#f_complete_loading</location>complete_loading</feature>
+			<feature><location>../implementation_interface/ev_text_component_i.xml#f_set_caret_position</location>set_caret_position</feature><symbol> </symbol><symbol>(</symbol><number>1</number><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>caret_reset_if_successful</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_rich_text_i.xml#f_last_load_successful</location>last_load_successful</feature> <keyword>implies</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature> <symbol>=</symbol> <number>1</number>
+			<tag>unselected_if_successful</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_rich_text_i.xml#f_last_load_successful</location>last_load_successful</feature> <keyword>implies</keyword> <keyword>not</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature>
+			<tag>text_not_changed_if_failed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../implementation_interface/ev_rich_text_i.xml#f_last_load_successful</location>last_load_successful</feature> <keyword>implies</keyword> <keyword>old</keyword> <feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_interface/ev_textable_i.xml#f_text</location>text</feature><symbol>)</symbol>
+			<tag>caret_not_moved_if_failed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../implementation_interface/ev_rich_text_i.xml#f_last_load_successful</location>last_load_successful</feature> <keyword>implies</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature> <symbol>=</symbol> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_caret_position</location>caret_position</feature>
+			<tag>selection_not_changed_if_failed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../implementation_interface/ev_rich_text_i.xml#f_last_load_successful</location>last_load_successful</feature> <keyword>implies</keyword> <symbol>(</symbol><keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <keyword>and</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_has_selection</location>has_selection</feature> <keyword>implies</keyword> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_start_selection</location>start_selection</feature> <keyword>and</keyword> <keyword>old</keyword> <feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature> <symbol>=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_end_selection</location>end_selection</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_last_load_successful</anchor><feature><location>../implementation_interface/ev_rich_text_i.xml#f_last_load_successful</location>last_load_successful</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Did last call to </comment><quoted>set_with_named_file</quoted><comment> complete succesfully?</comment>
+			<comment>--</comment><comment> If an invalid RTF file is passed, </comment><quoted>Result</quoted><comment> is </comment><quoted>False</quoted><comment>.</comment>
+			<comment>--</comment><comment> </comment><quoted>Result</quoted><comment> is undefined if </comment><quoted>set_with_named_file</quoted><comment> not called.</comment>
+
+	<anchor>f_next_change_of_character</anchor><feature><location>../implementation_interface/ev_rich_text_i.xml#f_next_change_of_character</location>next_change_of_character</feature> <symbol>(</symbol><local>current_pos</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>maximum_caret_pos</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> </comment><quoted>Result</quoted><comment> is caret position at next change of character from </comment><quoted>current_pos</quoted><comment>,</comment>
+			<comment>--</comment><comment> checking maximum caret position </comment><quoted>maximum_caret_pos</quoted><comment>. By passing </comment><quoted>maximum_caret_pos</quoted><comment> as</comment>
+			<comment>--</comment><comment> an argument, it prevents querying from the rich text constantly as it can be</comment>
+			<comment>--</comment><comment> precomputed instead.</comment>
+		<keyword>require</keyword>
+			<tag>valid_position</tag><symbol>:</symbol> <local>current_pos</local> <symbol>&lt;</symbol> <local>maximum_caret_pos</local>
+			<tag>maximum_pos_valid</tag><symbol>:</symbol> <local>maximum_caret_pos</local> <symbol>&lt;=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_text_length</location>text_length</feature> <symbol>+</symbol> <number>1</number>
+		<keyword>local</keyword>
+			<local>counter</local><symbol>,</symbol> <local>last_false_pos</local><symbol>,</symbol> <local>current_step</local><symbol>,</symbol> <local>value_finder</local><symbol>,</symbol> <local>last_contiguous_position</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+		<keyword>do</keyword>
+			<local>counter</local> <symbol>:=</symbol> <local>current_pos</local>
+			<keyword>from</keyword>
+				<local>current_step</local> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_rich_text_i.xml#f_default_step</location>Default_step</feature>
+				<local>value_finder</local> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_rich_text_i.xml#f_default_step</location>Default_step</feature>
+				<local>last_false_pos</local> <symbol>:=</symbol> <number>0</number>
+			<keyword>until</keyword>
+				<symbol>(</symbol><local>last_contiguous_position</local> <symbol>-</symbol> <local>last_false_pos</local><symbol>)</symbol><dot>.</dot><feature><include>False</include>abs</feature> <symbol>=</symbol> <number>1</number> <keyword>or</keyword> <local>counter</local> <symbol>=</symbol> <local>maximum_caret_pos</local>
+			<keyword>loop</keyword>
+				<keyword>if</keyword> <local>counter</local> <symbol>+</symbol> <local>current_step</local> <symbol>&lt;=</symbol> <local>maximum_caret_pos</local> <keyword>and then</keyword> <feature><location>../implementation_interface/ev_rich_text_i.xml#f_internal_character_format_contiguous</location>internal_character_format_contiguous</feature><symbol> </symbol><symbol>(</symbol><local>counter</local><symbol>,</symbol> <local>counter</local> <symbol>+</symbol> <local>current_step</local><symbol>)</symbol> <keyword>then</keyword>
+					<local>last_contiguous_position</local> <symbol>:=</symbol> <local>current_step</local>
+					<keyword>if</keyword> <local>value_finder</local> <symbol>=</symbol> <feature><location>../implementation_interface/ev_rich_text_i.xml#f_default_step</location>Default_step</feature> <keyword>then</keyword>
+						<local>counter</local> <symbol>:=</symbol> <symbol>(</symbol><local>counter</local> <symbol>+</symbol> <feature><location>../implementation_interface/ev_rich_text_i.xml#f_default_step</location>Default_step</feature> <symbol>-</symbol> <number>1</number><symbol>)</symbol><dot>.</dot><feature><include>False</include>min</feature><symbol> </symbol><symbol>(</symbol><local>maximum_caret_pos</local><symbol>)</symbol>
+						<local>current_step</local> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_rich_text_i.xml#f_default_step</location>Default_step</feature>
+					<keyword>else</keyword>
+						<local>value_finder</local> <symbol>:=</symbol> <local>value_finder</local> <symbol>//</symbol> <number>2</number>
+						<local>current_step</local> <symbol>:=</symbol> <local>current_step</local> <symbol>+</symbol> <local>value_finder</local>
+					<keyword>end</keyword>
+				<keyword>else</keyword>
+					<local>last_false_pos</local> <symbol>:=</symbol> <local>current_step</local>
+					<local>value_finder</local> <symbol>:=</symbol> <local>value_finder</local> <symbol>//</symbol> <number>2</number>
+					<local>current_step</local> <symbol>:=</symbol> <local>current_step</local> <symbol>-</symbol> <local>value_finder</local>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <symbol>(</symbol><local>counter</local> <symbol>+</symbol> <local>last_contiguous_position</local><symbol>)</symbol><dot>.</dot><feature><include>False</include>min</feature><symbol> </symbol><symbol>(</symbol><local>maximum_caret_pos</local><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>result_valid</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>&lt;=</symbol> <local>maximum_caret_pos</local>
+		<keyword>end</keyword>
+
+	<anchor>f_default_step</anchor><feature><location>../implementation_interface/ev_rich_text_i.xml#f_default_step</location>Default_step</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class> <symbol>=</symbol> <number>8</number>
+			<comment>--</comment><comment> Default step used when buffering into RTF.</comment>
+
+	<anchor>f_internal_character_format_contiguous</anchor><feature><location>../implementation_interface/ev_rich_text_i.xml#f_internal_character_format_contiguous</location>internal_character_format_contiguous</feature> <symbol>(</symbol><local>start_index</local><symbol>,</symbol> <local>end_index</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is formatting from caret position </comment><quoted>start_index</quoted><comment> to </comment><quoted>end_index</quoted><comment> contiguous?</comment>
+			<comment>--</comment><comment> Internal version which permits optimizations as caret position and selection</comment>
+			<comment>--</comment><comment> does not need to be restored.</comment>
+		<keyword>require</keyword>
+			<tag>valid_character_index</tag><symbol>:</symbol> <local>start_index</local> <symbol>&gt;=</symbol> <number>1</number> <keyword>and</keyword> <local>end_index</local> <symbol>&lt;=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_text_length</location>text_length</feature> <symbol>+</symbol> <number>1</number> <keyword>and</keyword> <local>start_index</local> <symbol>&lt;=</symbol> <local>end_index</local>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_internal_character_format</anchor><feature><location>../implementation_interface/ev_rich_text_i.xml#f_internal_character_format</location>internal_character_format</feature> <symbol>(</symbol><local>pos</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><location>../implementation_interface/ev_character_format_i.xml</location>EV_CHARACTER_FORMAT_I</class>
+			<comment>--</comment><comment> </comment><quoted>Result</quoted><comment> is character format at position </comment><quoted>pos</quoted><comment>. On some platforms</comment>
+			<comment>--</comment><comment> this may be optimized to take the selected character format and therefore</comment>
+			<comment>--</comment><comment> should only be used by </comment><feature><location>../implementation_interface/ev_rich_text_i.xml#f_next_change_of_character</location>next_change_of_character</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>valid_character_index</tag><symbol>:</symbol> <local>pos</local> <symbol>&gt;=</symbol> <number>1</number> <keyword>and</keyword> <local>pos</local> <symbol>&lt;=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_text_length</location>text_length</feature> <symbol>+</symbol> <number>1</number>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_internal_paragraph_format_contiguous</anchor><feature><location>../implementation_interface/ev_rich_text_i.xml#f_internal_paragraph_format_contiguous</location>internal_paragraph_format_contiguous</feature> <symbol>(</symbol><local>start_position</local><symbol>,</symbol> <local>end_position</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is paragraph formatting from caret_position </comment><quoted>start_position</quoted><comment> to </comment><quoted>end_position</quoted><comment> contiguous?</comment>
+		<keyword>require</keyword>
+			<tag>valid_character_index</tag><symbol>:</symbol> <local>start_position</local> <symbol>&gt;=</symbol> <number>1</number> <keyword>and</keyword> <local>end_position</local> <symbol>&lt;=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_text_length</location>text_length</feature> <symbol>+</symbol> <number>1</number> <keyword>and</keyword> <local>start_position</local> <symbol>&lt;=</symbol> <local>end_position</local>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_internal_paragraph_format</anchor><feature><location>../implementation_interface/ev_rich_text_i.xml#f_internal_paragraph_format</location>internal_paragraph_format</feature> <symbol>(</symbol><local>caret_index</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><location>../interface/ev_paragraph_format.xml</location>EV_PARAGRAPH_FORMAT</class>
+			<comment>--</comment><comment> </comment><quoted>Result</quoted><comment> is paragraph_format at caret position </comment><quoted>caret_index</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>valid_character_index</tag><symbol>:</symbol> <local>caret_index</local> <symbol>&gt;=</symbol> <number>1</number> <keyword>and</keyword> <local>caret_index</local> <symbol>&lt;=</symbol> <feature><location>../implementation_interface/ev_text_component_i.xml#f_text_length</location>text_length</feature> <symbol>+</symbol> <number>1</number>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_initialize_for_saving</anchor><feature><location>../implementation_interface/ev_rich_text_i.xml#f_initialize_for_saving</location>initialize_for_saving</feature>
+			<comment>--</comment><comment> Initialize </comment><quoted>Current</quoted><comment> for save operations, by performing</comment>
+			<comment>--</comment><comment> optimizations that prevent the control from slowing down due to</comment>
+			<comment>--</comment><comment> unecessary optimizations.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_complete_saving</anchor><feature><location>../implementation_interface/ev_rich_text_i.xml#f_complete_saving</location>complete_saving</feature>
+			<comment>--</comment><comment> Restore </comment><quoted>Current</quoted><comment> back to its default state before last call</comment>
+			<comment>--</comment><comment> to </comment><feature><location>../implementation_interface/ev_rich_text_i.xml#f_initialize_for_saving</location>initialize_for_saving</feature><comment>.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_initialize_for_loading</anchor><feature><location>../implementation_interface/ev_rich_text_i.xml#f_initialize_for_loading</location>initialize_for_loading</feature>
+			<comment>--</comment><comment> Initialize </comment><quoted>Current</quoted><comment> for load operations, by performing</comment>
+			<comment>--</comment><comment> optimizations that prevent the control from slowing down due to</comment>
+			<comment>--</comment><comment> unecessary optimizations.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_complete_loading</anchor><feature><location>../implementation_interface/ev_rich_text_i.xml#f_complete_loading</location>complete_loading</feature>
+			<comment>--</comment><comment> Restore </comment><quoted>Current</quoted><comment> back to its default state before last call</comment>
+			<comment>--</comment><comment> to </comment><feature><location>../implementation_interface/ev_rich_text_i.xml#f_initialize_for_loading</location>initialize_for_loading</feature><comment>.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_font_char_set</anchor><feature><location>../implementation_interface/ev_rich_text_i.xml#f_font_char_set</location>font_char_set</feature> <symbol>(</symbol><local>a_font</local><symbol>:</symbol> <class><location>../interface/ev_font.xml</location>EV_FONT</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> </comment><quoted>Result</quoted><comment> is char set of font </comment><quoted>a_font</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>a_font_not_void</tag><symbol>:</symbol> <local>a_font</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>&gt;=</symbol> <number>0</number>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_update_tab_positions</anchor><feature><location>../implementation_interface/ev_rich_text_i.xml#f_update_tab_positions</location>update_tab_positions</feature> <symbol>(</symbol><local>value</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Update tab widths based on contents of </comment><feature><location>../implementation_interface/ev_rich_text_i.xml#f_tab_positions</location>tab_positions</feature><comment>.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_any.xml</location>EV_ANY</class><symbol>,</symbol> <class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_interface</anchor><feature><location>../implementation_interface/ev_rich_text_i.xml#f_interface</location>interface</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_rich_text.xml</location>EV_RICH_TEXT</class>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2013, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_interface/ev_rich_text_i.xml</location>EV_RICH_TEXT_I</class></system>
+

@@ -1,0 +1,209 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "Gtk Implementation for EV_REGION"{\line}
+{\tab}{\cf1 author}{\cf1 :} ""{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2013-05-30 14:33:11 -0700 (Thu, 30 May 2013) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 92653 $"{\line}
+{\line}
+{\b\cf6 class} {\line}
+{\tab}{\cf4 EV_REGION_IMP}{\line}
+{\line}
+{\b\cf6 inherit}{\line}
+{\tab}{\cf4 EV_REGION_I}{\line}
+{\line}
+{\tab}{\cf4 DISPOSABLE}{\line}
+{\line}
+{\b\cf6 create} {\line}
+{\tab}{\cf5 make}{\line}
+{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Initialization}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 old_make} {\cf1 (}{\cf5 an_interface}{\cf1 :} {\cf4 EV_REGION}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Creation method.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 assign_interface}{\cf1  }{\cf1 (}{\cf5 an_interface}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Initialize }{\cf5 Current}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 gdk_region} {\cf1 :=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_region_new}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_is_initialized}{\cf1  }{\cf1 (}{\b\cf6 True}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Element Change}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_rectangle} {\cf1 (}{\cf5 a_rectangle}{\cf1 :} {\cf4 EV_RECTANGLE}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set region to area a_rectangle.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 rectangle_struct}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 rectangle_struct} {\cf1 :=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 c_gdk_rectangle_struct_allocate}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 set_gdk_rectangle_struct_x} {\cf1 (}{\cf5 rectangle_struct}{\cf1 ,} {\cf5 a_rectangle}{\b\cf1 .}{\cf5 x}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 set_gdk_rectangle_struct_y} {\cf1 (}{\cf5 rectangle_struct}{\cf1 ,} {\cf5 a_rectangle}{\b\cf1 .}{\cf5 y}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 set_gdk_rectangle_struct_width} {\cf1 (}{\cf5 rectangle_struct}{\cf1 ,} {\cf5 a_rectangle}{\b\cf1 .}{\cf5 width}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 set_gdk_rectangle_struct_height} {\cf1 (}{\cf5 rectangle_struct}{\cf1 ,} {\cf5 a_rectangle}{\b\cf1 .}{\cf5 height}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 dispose}{\line}
+{\tab}{\tab}{\tab}{\cf5 gdk_region} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_region_rectangle} {\cf1 (}{\cf5 rectangle_struct}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 rectangle_struct}{\b\cf1 .}{\cf5 memory_free}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 offset} {\cf1 (}{\cf5 a_horizontal_offset}{\cf1 ,} {\cf5 a_vertical_offset}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Move }{\cf5 Current}{\cf3  a }{\cf5 a_horizontal_offset}{\cf3  horizontally and }{\cf5 a_vertical_offset}{\cf3  vertically.}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_region_offset} {\cf1 (}{\cf5 gdk_region}{\cf1 ,} {\cf5 a_horizontal_offset}{\cf1 ,} {\cf5 a_vertical_offset}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 intersect} {\cf1 (}{\cf5 a_region}{\cf1 :} {\cf4 EV_REGION}{\cf1 )}{\cf1 :} {\cf4 EV_REGION}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Intersect }{\cf5 a_region}{\cf3  with }{\cf5 Current}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_result_imp}{\cf1 ,} {\cf5 l_region_imp}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_REGION_IMP}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 attached_interface}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_result_imp} {\cf1 ?=} {\b\cf6 Result}{\b\cf1 .}{\cf5 implementation}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_result_imp} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_region_imp} {\cf1 ?=} {\cf5 a_region}{\b\cf1 .}{\cf5 implementation}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_region_imp} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_region_intersect} {\cf1 (}{\cf5 l_result_imp}{\b\cf1 .}{\cf5 gdk_region}{\cf1 ,} {\cf5 l_region_imp}{\b\cf1 .}{\cf5 gdk_region}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 union} {\cf1 (}{\cf5 a_region}{\cf1 :} {\cf4 EV_REGION}{\cf1 )}{\cf1 :} {\cf4 EV_REGION}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create a union }{\cf5 a_region}{\cf3  with }{\cf5 Current}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_result_imp}{\cf1 ,} {\cf5 l_region_imp}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_REGION_IMP}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 attached_interface}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_result_imp} {\cf1 ?=} {\b\cf6 Result}{\b\cf1 .}{\cf5 implementation}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_result_imp} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_region_imp} {\cf1 ?=} {\cf5 a_region}{\b\cf1 .}{\cf5 implementation}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_region_imp} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_region_union} {\cf1 (}{\cf5 l_result_imp}{\b\cf1 .}{\cf5 gdk_region}{\cf1 ,} {\cf5 l_region_imp}{\b\cf1 .}{\cf5 gdk_region}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 subtract} {\cf1 (}{\cf5 a_region}{\cf1 :} {\cf4 EV_REGION}{\cf1 )}{\cf1 :} {\cf4 EV_REGION}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Subtract }{\cf5 a_region}{\cf3  from }{\cf5 Current}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_result_imp}{\cf1 ,} {\cf5 l_region_imp}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_REGION_IMP}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 attached_interface}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_result_imp} {\cf1 ?=} {\b\cf6 Result}{\b\cf1 .}{\cf5 implementation}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_result_imp} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_region_imp} {\cf1 ?=} {\cf5 a_region}{\b\cf1 .}{\cf5 implementation}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_region_imp} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_region_subtract} {\cf1 (}{\cf5 l_result_imp}{\b\cf1 .}{\cf5 gdk_region}{\cf1 ,} {\cf5 l_region_imp}{\b\cf1 .}{\cf5 gdk_region}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 exclusive_or} {\cf1 (}{\cf5 a_region}{\cf1 :} {\cf4 EV_REGION}{\cf1 )}{\cf1 :} {\cf4 EV_REGION}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Exclusive or }{\cf5 a_region}{\cf3  with }{\cf5 Current}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_result_imp}{\cf1 ,} {\cf5 l_region_imp}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_REGION_IMP}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 attached_interface}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_result_imp} {\cf1 ?=} {\b\cf6 Result}{\b\cf1 .}{\cf5 implementation}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_result_imp} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_region_imp} {\cf1 ?=} {\cf5 a_region}{\b\cf1 .}{\cf5 implementation}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_region_imp} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_region_xor} {\cf1 (}{\cf5 l_result_imp}{\b\cf1 .}{\cf5 gdk_region}{\cf1 ,} {\cf5 l_region_imp}{\b\cf1 .}{\cf5 gdk_region}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Duplication}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 copy_region} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 EV_REGION}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Update }{\cf5 Current}{\cf3  to be the same as }{\cf5 other}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_region_imp}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_REGION_IMP}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 dispose}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_region_imp} {\cf1 ?=} {\cf5 other}{\b\cf1 .}{\cf5 implementation}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_region_imp} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 gdk_region} {\cf1 :=} {\cf1 \{}{\cf4 GTK2}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_region_copy} {\cf1 (}{\cf5 l_region_imp}{\b\cf1 .}{\cf5 gdk_region}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}{\cf4 EV_DRAWABLE_IMP}{\cf1 ,} {\cf4 EV_REGION_IMP}{\cf1 \}} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 gdk_region}{\cf1 :} {\cf4 POINTER}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Pointer to the GdkRegion object.}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_region_equal} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 EV_REGION}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does }{\cf5 other}{\cf3  have the same appearance as }{\cf5 Current}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_region_imp}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_REGION_IMP}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 other} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_region_imp} {\cf1 ?=} {\cf5 other}{\b\cf1 .}{\cf5 implementation}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 check}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_region_imp} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_region_equal} {\cf1 (}{\cf5 gdk_region}{\cf1 ,} {\cf5 l_region_imp}{\b\cf1 .}{\cf5 gdk_region}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 destroy}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Destroy }{\cf5 Current}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_is_in_destroy}{\cf1  }{\cf1 (}{\b\cf6 True}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 dispose}{\line}
+{\tab}{\tab}{\tab}{\cf5 set_is_destroyed}{\cf1  }{\cf1 (}{\b\cf6 True}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 dispose}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Clean up }{\cf5 Current}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 gdk_region} {\cf1 /=} {\cf5 default_pointer} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf1 \{}{\cf4 GTK}{\cf1 \}}{\b\cf1 .}{\cf5 gdk_region_destroy} {\cf1 (}{\cf5 gdk_region}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 gdk_region} {\cf1 :=} {\cf5 default_pointer}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 note}{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 1984-2013, Eiffel Software and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"{\line}
+{\tab}{\cf1 source}{\cf1 :} "[{\line}
+{\tab}{\tab}Eiffel Software{\line}
+{\tab}{\tab}5949 Hollister Ave., Goleta, CA 93117 USA{\line}
+{\tab}{\tab}Telephone 805-685-1006, Fax 805-685-6869{\line}
+{\tab}{\tab}Website http://www.eiffel.com{\line}
+{\tab}{\tab}Customer support http://support.eiffel.com{\line}
+{\tab}]"{\line}
+{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 EV_REGION_IMP}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

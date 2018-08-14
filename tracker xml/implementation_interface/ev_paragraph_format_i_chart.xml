@@ -1,0 +1,27 @@
+<system>
+<keyword>deferred</keyword> <keyword>class</keyword>
+	<class><location>../implementation_interface/ev_paragraph_format_i_chart.xml</location>EV_PARAGRAPH_FORMAT_I</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>implementation_interface</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Implementation interface for objects that represent paragraph formatting information.&quot;</string>
+
+<keyword>Ancestors</keyword>
+	<class><location>../implementation_interface/ev_any_i_chart.xml</location>EV_ANY_I</class><char>*</char>
+
+<keyword>Queries</keyword>
+	<feature><location>../implementation_interface/ev_paragraph_format_i.xml#f_alignment</location>alignment</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_interface/ev_paragraph_format_i.xml#f_bottom_spacing</location>bottom_spacing</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_interface/ev_any_i.xml#f_is_destroyed</location>is_destroyed</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../implementation_interface/ev_paragraph_format_i.xml#f_left_margin</location>left_margin</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_interface/ev_paragraph_format_i.xml#f_right_margin</location>right_margin</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_interface/ev_paragraph_format_i.xml#f_top_spacing</location>top_spacing</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+
+<keyword>Commands</keyword>
+	<feature><location>../implementation_interface/ev_paragraph_format_i.xml#f_set_alignment</location>set_alignment</feature> <symbol>(</symbol><local>an_alignment</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_interface/ev_paragraph_format_i.xml#f_set_bottom_spacing</location>set_bottom_spacing</feature> <symbol>(</symbol><local>a_spacing</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_interface/ev_paragraph_format_i.xml#f_set_left_margin</location>set_left_margin</feature> <symbol>(</symbol><local>a_margin</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_interface/ev_paragraph_format_i.xml#f_set_right_margin</location>set_right_margin</feature> <symbol>(</symbol><local>a_margin</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_interface/ev_paragraph_format_i.xml#f_set_top_spacing</location>set_top_spacing</feature> <symbol>(</symbol><local>a_spacing</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+
+</system>

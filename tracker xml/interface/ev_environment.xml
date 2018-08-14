@@ -1,0 +1,171 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Facilities for inspecting global environment information.&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;environment, application, global, system&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2017-05-03 08:56:14 -0700 (Wed, 03 May 2017) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 100317 $&quot;</string>
+
+<keyword>class</keyword> 
+	<class><location>../interface/ev_environment.xml</location>EV_ENVIRONMENT</class>
+
+<keyword>inherit</keyword>
+	<class><location>../interface/ev_any.xml</location>EV_ANY</class>
+		<keyword>redefine</keyword>
+			<feature><location>../interface/ev_environment.xml#f_implementation</location>implementation</feature>
+		<keyword>end</keyword>
+
+<keyword>create</keyword> 
+	<feature><location>../interface/ev_any.xml#f_default_create</location>default_create</feature>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_application</anchor><feature><location>../interface/ev_environment.xml#f_application</location>application</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_application.xml</location>EV_APPLICATION</class>
+			<comment>--</comment><comment> Single application object for system.</comment>
+		<keyword>require</keyword>
+			<tag>same_processor_as_application</tag><symbol>:</symbol> <feature><location>../interface/ev_environment.xml#f_is_application_processor</location>is_application_processor</feature>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_environment.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_environment_i.xml#f_application</location>application</feature>
+		<keyword>ensure</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_environment.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_environment_i.xml#f_application</location>application</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_separate_application</anchor><feature><location>../interface/ev_environment.xml#f_separate_application</location>separate_application</feature><symbol>:</symbol> <keyword>detachable</keyword> <keyword>separate</keyword> <class><location>../interface/ev_application.xml</location>EV_APPLICATION</class>
+			<comment>--</comment><comment> Single application object for system.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_environment.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_environment_i.xml#f_separate_application</location>separate_application</feature>
+		<keyword>ensure</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_environment.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_environment_i.xml#f_separate_application</location>separate_application</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_supported_image_formats</anchor><feature><location>../interface/ev_environment.xml#f_supported_image_formats</location>supported_image_formats</feature><symbol>:</symbol> <class><include>False</include>LINEAR</class> <symbol>[</symbol><class><include>False</include>STRING_32</class><symbol>]</symbol>
+			<comment>--</comment><comment> </comment><quoted>Result</quoted><comment> contains all supported image formats</comment>
+			<comment>--</comment><comment> on current platform, as a three letter uppercase</comment>
+			<comment>--</comment><comment> extension. e.g. PNG, BMP, ICO.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_environment.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_environment_i.xml#f_supported_image_formats</location>supported_image_formats</feature>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+			<tag>object_comparison_set</tag><symbol>:</symbol> <keyword>Result</keyword><dot>.</dot><feature><include>False</include>object_comparison</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_font_families</anchor><feature><location>../interface/ev_environment.xml#f_font_families</location>font_families</feature><symbol>:</symbol> <class><include>False</include>LINEAR</class> <symbol>[</symbol><class><include>False</include>STRING_32</class><symbol>]</symbol>
+			<comment>--</comment><comment> All fonts families available on current platform.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_environment.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_environment_i.xml#f_font_families</location>font_families</feature>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_font_families_8</anchor><feature><location>../interface/ev_environment.xml#f_font_families_8</location>font_families_8</feature><symbol>:</symbol> <class><include>False</include>LINEAR</class> <symbol>[</symbol><class><include>False</include>STRING_8</class><symbol>]</symbol>
+		<keyword>obsolete</keyword> &quot;Use `font_families' instead. [2017-05-31]&quot;
+			<comment>--</comment><comment> All fonts families available on current platform.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>local</keyword>
+			<local>l_list</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../interface/ev_environment.xml#f_font_families</location>font_families</feature>
+			<local>l_family</local><symbol>:</symbol> <class><include>False</include>STRING_32</class>
+			<local>l_result</local><symbol>:</symbol> <class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><class><include>False</include>STRING_8</class><symbol>]</symbol>
+		<keyword>do</keyword>
+			<local>l_list</local> <symbol>:=</symbol> <feature><location>../interface/ev_environment.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_environment_i.xml#f_font_families</location>font_families</feature>
+			<keyword>create</keyword> <local>l_result</local><dot>.</dot><feature><include>False</include>make</feature><symbol> </symbol><symbol>(</symbol><number>50</number><symbol>)</symbol>
+			<keyword>from</keyword>
+				<local>l_list</local><dot>.</dot><feature><include>False</include>start</feature>
+			<keyword>until</keyword>
+				<local>l_list</local><dot>.</dot><feature><include>False</include>after</feature>
+			<keyword>loop</keyword>
+				<local>l_family</local> <symbol>:=</symbol> <local>l_list</local><dot>.</dot><feature><include>False</include>item</feature>
+				<keyword>if</keyword> <local>l_family</local><dot>.</dot><feature><include>False</include>is_valid_as_string_8</feature> <keyword>then</keyword>
+					<local>l_result</local><dot>.</dot><feature><include>False</include>extend</feature><symbol> </symbol><symbol>(</symbol><local>l_family</local><dot>.</dot><feature><include>False</include>to_string_8</feature><symbol>)</symbol>
+				<keyword>end</keyword>
+				<local>l_list</local><dot>.</dot><feature><include>False</include>forth</feature>
+			<keyword>end</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <local>l_result</local>
+		<keyword>ensure</keyword>
+			<tag>result_not_void</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_mouse_wheel_scroll_lines</anchor><feature><location>../interface/ev_environment.xml#f_mouse_wheel_scroll_lines</location>mouse_wheel_scroll_lines</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Default number of lines to scroll in response to</comment>
+			<comment>--</comment><comment> a mouse wheel scroll event.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_environment.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_environment_i.xml#f_mouse_wheel_scroll_lines</location>mouse_wheel_scroll_lines</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_default_pointer_style_width</anchor><feature><location>../interface/ev_environment.xml#f_default_pointer_style_width</location>default_pointer_style_width</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Default pointer style width.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_environment.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_environment_i.xml#f_default_pointer_style_width</location>default_pointer_style_width</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_default_pointer_style_height</anchor><feature><location>../interface/ev_environment.xml#f_default_pointer_style_height</location>default_pointer_style_height</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Default pointer style height.</comment>
+		<keyword>require</keyword>
+			<tag>not_destoryed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_environment.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_environment_i.xml#f_default_pointer_style_height</location>default_pointer_style_height</feature>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status report</comment>
+
+	<anchor>f_has_printer</anchor><feature><location>../interface/ev_environment.xml#f_has_printer</location>has_printer</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is a default printer available?</comment>
+			<comment>--</comment><comment> </comment><quoted>Result</quoted><comment> is </comment><quoted>True</quoted><comment> if at least one printer is installed.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_environment.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_environment_i.xml#f_has_printer</location>has_printer</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_is_application_processor</anchor><feature><location>../interface/ev_environment.xml#f_is_application_processor</location>is_application_processor</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is current processor running on the same processor as </comment><feature><location>../interface/ev_environment.xml#f_application</location>application</feature><comment>?</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../interface/ev_environment.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_environment_i.xml#f_is_application_processor</location>is_application_processor</feature>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_any.xml</location>EV_ANY</class><symbol>,</symbol> <class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>,</symbol> <class><location>../implementation_interface/ev_shared_transport_i.xml</location>EV_SHARED_TRANSPORT_I</class><symbol>,</symbol> <class><location>../interface/ev_any_handler.xml</location>EV_ANY_HANDLER</class><symbol>,</symbol> <class><location>../interface/ev_abstract_pick_and_dropable.xml</location>EV_ABSTRACT_PICK_AND_DROPABLE</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_implementation</anchor><feature><location>../interface/ev_environment.xml#f_implementation</location>implementation</feature><symbol>:</symbol> <class><location>../implementation_interface/ev_environment_i.xml</location>EV_ENVIRONMENT_I</class>
+			<comment>--</comment><comment> Responsible for interaction with native graphics toolkit.</comment>
+	
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_create_interface_objects</anchor><feature><location>../interface/ev_environment.xml#f_create_interface_objects</location>create_interface_objects</feature>
+			<comment>--</comment><comment> Create objects to be used by </comment><quoted>Current</quoted><comment> in </comment><feature><location>../interface/ev_any.xml#f_initialize</location>initialize</feature>
+			<comment>--</comment><comment> Implemented by descendants to create attached objects</comment>
+			<comment>--</comment><comment> in order to adhere to void-safety due to the implementation bridge pattern.</comment>
+		<keyword>do</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_create_implementation</anchor><feature><location>../interface/ev_environment.xml#f_create_implementation</location>create_implementation</feature>
+			<comment>--</comment><comment> See </comment><quoted>{EV_ANY}.create_implementation</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<feature><location>../interface/ev_environment.xml#f_implementation</location>implementation</feature> <symbol>:=</symbol> <feature><location>../interface/ev_any.xml#f_environment_i</location>Environment_i</feature>
+			<feature><location>../interface/ev_environment.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_any_i.xml#f_set_is_initialized</location>set_is_initialized</feature><symbol> </symbol><symbol>(</symbol><keyword>False</keyword><symbol>)</symbol>
+			<feature><location>../interface/ev_environment.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_any_i.xml#f_set_state_flag</location>set_state_flag</feature><symbol> </symbol><symbol>(</symbol><symbol>{</symbol><class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_interface/ev_any_i.xml#f_interface_is_initialized_flag</location>interface_is_initialized_flag</feature><symbol>,</symbol> <keyword>False</keyword><symbol>)</symbol>
+			<feature><location>../interface/ev_environment.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_any_i.xml#f_set_state_flag</location>set_state_flag</feature><symbol> </symbol><symbol>(</symbol><symbol>{</symbol><class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_interface/ev_any_i.xml#f_interface_default_create_called_flag</location>interface_default_create_called_flag</feature><symbol>,</symbol> <keyword>False</keyword><symbol>)</symbol>
+			<feature><location>../interface/ev_environment.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_any_i.xml#f_set_state_flag</location>set_state_flag</feature><symbol> </symbol><symbol>(</symbol><symbol>{</symbol><class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_interface/ev_any_i.xml#f_base_make_called_flag</location>base_make_called_flag</feature><symbol>,</symbol> <keyword>False</keyword><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2015, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../interface/ev_environment.xml</location>EV_ENVIRONMENT</class></system>
+

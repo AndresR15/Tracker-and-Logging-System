@@ -1,0 +1,73 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../implementation_interface/rtf_format_i_chart.xml</location>RTF_FORMAT_I</class>
+
+<keyword>General</keyword>
+	<indexing_tag>cluster</indexing_tag><symbol>:</symbol> <cluster><include>False</include>implementation_interface</cluster>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Objects that hold the current formatting applied while loading a RTF file.&quot;</string>
+
+<keyword>Ancestors</keyword>
+	<class><location>../interface/ev_paragraph_constants_chart.xml</location>EV_PARAGRAPH_CONSTANTS</class>
+
+<keyword>Queries</keyword>
+	<feature><location>../implementation_interface/rtf_format_i.xml#f_alignment</location>alignment</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_paragraph_constants.xml#f_alignment_center</location>Alignment_center</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_paragraph_constants.xml#f_alignment</location>Alignment_constant</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_paragraph_constants.xml#f_alignment_justified</location>Alignment_justified</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_paragraph_constants.xml#f_alignment_left</location>Alignment_left</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_paragraph_constants.xml#f_alignment_right</location>Alignment_right</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_interface/rtf_format_i.xml#f_boolean_out</location>boolean_out</feature> <symbol>(</symbol><local>a_boolean</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+	<feature><location>../implementation_interface/rtf_format_i.xml#f_bottom_spacing</location>bottom_spacing</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_paragraph_constants.xml#f_bottom_spacing</location>Bottom_spacing_constant</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_interface/rtf_format_i.xml#f_character_format</location>character_format</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_interface/rtf_format_i.xml#f_character_format_out</location>character_format_out</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+	<feature><location>../implementation_interface/rtf_format_i.xml#f_color_set</location>color_set</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../implementation_interface/rtf_format_i.xml#f_false_constant</location>False_constant</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+	<feature><location>../implementation_interface/rtf_format_i.xml#f_font_height</location>font_height</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_interface/rtf_format_i.xml#f_highlight_color</location>highlight_color</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_interface/rtf_format_i.xml#f_highlight_set</location>highlight_set</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../implementation_interface/rtf_format_i.xml#f_is_bold</location>is_bold</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../implementation_interface/rtf_format_i.xml#f_is_italic</location>is_italic</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../implementation_interface/rtf_format_i.xml#f_is_striked_out</location>is_striked_out</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../implementation_interface/rtf_format_i.xml#f_is_underlined</location>is_underlined</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../implementation_interface/rtf_format_i.xml#f_left_margin</location>left_margin</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_paragraph_constants.xml#f_left_margin</location>Left_margin_constant</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_interface/rtf_format_i.xml#f_paragraph_format_out</location>paragraph_format_out</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+	<feature><location>../implementation_interface/rtf_format_i.xml#f_right_margin</location>right_margin</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_paragraph_constants.xml#f_right_margin</location>Right_margin_constant</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_interface/rtf_format_i.xml#f_text_color</location>text_color</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_interface/rtf_format_i.xml#f_top_spacing</location>top_spacing</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../interface/ev_paragraph_constants.xml#f_top_spacing</location>Top_spacing_constant</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+	<feature><location>../implementation_interface/rtf_format_i.xml#f_true_constant</location>True_constant</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+	<feature><location>../interface/ev_paragraph_constants.xml#f_valid_alignment</location>valid_alignment</feature> <symbol>(</symbol><local>an_alignment</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../interface/ev_paragraph_constants.xml#f_valid_paragraph_flag</location>valid_paragraph_flag</feature> <symbol>(</symbol><local>a_flag</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+	<feature><location>../implementation_interface/rtf_format_i.xml#f_vertical_offset</location>vertical_offset</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+
+<keyword>Commands</keyword>
+	<feature><location>../implementation_interface/rtf_format_i.xml#f_reset_paragraph</location>reset_paragraph</feature>
+	<feature><location>../implementation_interface/rtf_format_i.xml#f_set_alignment</location>set_alignment</feature> <symbol>(</symbol><local>an_alignment</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_interface/rtf_format_i.xml#f_set_bold</location>set_bold</feature> <symbol>(</symbol><local>a_is_bold</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class><symbol>)</symbol>
+	<feature><location>../implementation_interface/rtf_format_i.xml#f_set_bottom_spacing</location>set_bottom_spacing</feature> <symbol>(</symbol><local>a_bottom_spacing</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_interface/rtf_format_i.xml#f_set_character_format</location>set_character_format</feature> <symbol>(</symbol><local>a_character_format</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_interface/rtf_format_i.xml#f_set_font_height</location>set_font_height</feature> <symbol>(</symbol><local>a_font_height</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_interface/rtf_format_i.xml#f_set_highlight_color</location>set_highlight_color</feature> <symbol>(</symbol><local>a_highlight_color</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_interface/rtf_format_i.xml#f_set_italic</location>set_italic</feature> <symbol>(</symbol><local>an_is_italic</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class><symbol>)</symbol>
+	<feature><location>../implementation_interface/rtf_format_i.xml#f_set_left_margin</location>set_left_margin</feature> <symbol>(</symbol><local>a_left_margin</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_interface/rtf_format_i.xml#f_set_right_margin</location>set_right_margin</feature> <symbol>(</symbol><local>a_right_margin</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_interface/rtf_format_i.xml#f_set_striked_out</location>set_striked_out</feature> <symbol>(</symbol><local>an_is_striked_out</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class><symbol>)</symbol>
+	<feature><location>../implementation_interface/rtf_format_i.xml#f_set_text_color</location>set_text_color</feature> <symbol>(</symbol><local>a_text_color</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_interface/rtf_format_i.xml#f_set_top_spacing</location>set_top_spacing</feature> <symbol>(</symbol><local>a_top_spacing</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+	<feature><location>../implementation_interface/rtf_format_i.xml#f_set_underlined</location>set_underlined</feature> <symbol>(</symbol><local>an_is_underlined</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class><symbol>)</symbol>
+	<feature><location>../implementation_interface/rtf_format_i.xml#f_set_vertical_offset</location>set_vertical_offset</feature> <symbol>(</symbol><local>an_offset</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+
+<keyword>Constraints</keyword>
+	<tag>character format non negative</tag>
+	<tag>font height non negative</tag>
+	<tag>text color non negative</tag>
+	<tag>highlight color non negative</tag>
+	<tag>left margin non negative</tag>
+	<tag>right margin non negative</tag>
+	<tag>top spacing non negative</tag>
+	<tag>bottom spacing non negative</tag>
+
+</system>

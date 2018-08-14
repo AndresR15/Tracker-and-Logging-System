@@ -1,0 +1,258 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "Absolute temporal values composed of a date and a time"{\line}
+{\tab}{\cf1 legal}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 status}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2017-03-29 05:26:46 -0700 (Wed, 29 Mar 2017) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 100065 $"{\line}
+{\tab}{\cf1 access}{\cf1 :} date{\cf1 ,} time{\line}
+{\tab}{\cf1 eis}{\cf1 :} "name=Obtaining a DATE from a DATE_TIME and vice versa"{\cf1 ,} "src=$(ISE_DOC_UUID)/195849fc-1a9c-d734-2d2b-acae78133886#Obtaining_a_DATE_from_a_DATE_TIME_and_vice_versa"{\cf1 ,} "tag=EiffelTime"{\line}
+{\tab}{\cf1 eis}{\cf1 :} "name=DATE / TIME to STRING Conversion"{\cf1 ,} "src=$(ISE_DOC_UUID)/88972ba4-694b-8558-b0c8-87b1fc40afc4"{\cf1 ,} "tag=EiffelTime"{\line}
+{\line}
+{\b\cf6 class} {\b\cf6 interface}{\line}
+{\tab}{\cf4 DATE_TIME}{\line}
+{\line}
+{\b\cf6 create} {\line}
+{\tab}{\cf5 make}{\cf1 ,}{\line}
+{\tab}{\cf5 make_fine}{\cf1 ,}{\line}
+{\tab}{\cf5 make_by_date_time}{\cf1 ,}{\line}
+{\tab}{\cf5 make_by_date}{\cf1 ,}{\line}
+{\tab}{\cf5 make_now}{\cf1 ,}{\line}
+{\tab}{\cf5 make_now_utc}{\cf1 ,}{\line}
+{\tab}{\cf5 make_from_epoch}{\cf1 ,}{\line}
+{\tab}{\cf5 make_from_string}{\cf1 ,}{\line}
+{\tab}{\cf5 make_from_string_with_base}{\cf1 ,}{\line}
+{\tab}{\cf5 make_from_string_default}{\cf1 ,}{\line}
+{\tab}{\cf5 make_from_string_default_with_base}{\line}
+{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Initialization}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make} {\cf1 (}{\cf5 y}{\cf1 ,} {\cf5 mo}{\cf1 ,} {\cf5 d}{\cf1 ,} {\cf5 h}{\cf1 ,} {\cf5 mi}{\cf1 ,} {\cf5 s}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 year}{\cf3 , }{\cf5 month}{\cf3  }{\cf5 day}{\cf3  to }{\cf5 y}{\cf3 , }{\cf5 mo}{\cf3 , }{\cf5 d}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 hour}{\cf3 , }{\cf5 minute}{\cf3 , }{\cf5 second}{\cf3  to }{\cf5 h}{\cf3 , }{\cf5 mi}{\cf3 , }{\cf5 s}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 correct_date_time}{\cf1 :} {\cf5 is_correct_date_time}{\cf1  }{\cf1 (}{\cf5 y}{\cf1 ,} {\cf5 mo}{\cf1 ,} {\cf5 d}{\cf1 ,} {\cf5 h}{\cf1 ,} {\cf5 mi}{\cf1 ,} {\cf5 s}{\b\cf1 .}{\cf5 to_double}{\cf1 ,} {\b\cf6 False}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 year_set}{\cf1 :} {\cf5 year} {\cf1 =} {\cf5 y}{\line}
+{\tab}{\tab}{\tab}{\cf1 month_set}{\cf1 :} {\cf5 month} {\cf1 =} {\cf5 mo}{\line}
+{\tab}{\tab}{\tab}{\cf1 day_set}{\cf1 :} {\cf5 day} {\cf1 =} {\cf5 d}{\line}
+{\tab}{\tab}{\tab}{\cf1 hour_set}{\cf1 :} {\cf5 hour} {\cf1 =} {\cf5 h}{\line}
+{\tab}{\tab}{\tab}{\cf1 minute_set}{\cf1 :} {\cf5 minute} {\cf1 =} {\cf5 mi}{\line}
+{\tab}{\tab}{\tab}{\cf1 second_set}{\cf1 :} {\cf5 second} {\cf1 =} {\cf5 s}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 make_fine} {\cf1 (}{\cf5 y}{\cf1 ,} {\cf5 mo}{\cf1 ,} {\cf5 d}{\cf1 ,} {\cf5 h}{\cf1 ,} {\cf5 mi}{\cf1 :} {\cf4 INTEGER_32}{\cf1 ;} {\cf5 s}{\cf1 :} {\cf4 REAL_64}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 year}{\cf3 , }{\cf5 month}{\cf3  }{\cf5 day}{\cf3  to }{\cf5 y}{\cf3 , }{\cf5 mo}{\cf3 , }{\cf5 d}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 hour}{\cf3 , }{\cf5 minute}{\cf3 , }{\cf5 second}{\cf3  to }{\cf5 h}{\cf3 , }{\cf5 m}{\cf3 , }{\cf5 s}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 correct_date_time}{\cf1 :} {\cf5 is_correct_date_time}{\cf1  }{\cf1 (}{\cf5 y}{\cf1 ,} {\cf5 mo}{\cf1 ,} {\cf5 d}{\cf1 ,} {\cf5 h}{\cf1 ,} {\cf5 mi}{\cf1 ,} {\cf5 s}{\cf1 ,} {\b\cf6 False}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 year_set}{\cf1 :} {\cf5 year} {\cf1 =} {\cf5 y}{\line}
+{\tab}{\tab}{\tab}{\cf1 month_set}{\cf1 :} {\cf5 month} {\cf1 =} {\cf5 mo}{\line}
+{\tab}{\tab}{\tab}{\cf1 day_set}{\cf1 :} {\cf5 day} {\cf1 =} {\cf5 d}{\line}
+{\tab}{\tab}{\tab}{\cf1 hour_set}{\cf1 :} {\cf5 hour} {\cf1 =} {\cf5 h}{\line}
+{\tab}{\tab}{\tab}{\cf1 minute_set}{\cf1 :} {\cf5 minute} {\cf1 =} {\cf5 mi}{\line}
+{\tab}{\tab}{\tab}{\cf1 second_set}{\cf1 :} {\cf5 fine_second} {\cf1 =} {\cf5 s}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 make_by_date_time} {\cf1 (}{\cf5 d}{\cf1 :} {\cf4 DATE}{\cf1 ;} {\cf5 t}{\cf1 :} {\cf4 TIME}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 date}{\cf3  to }{\cf5 d}{\cf3  and }{\cf5 time}{\cf3  to }{\cf5 t}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 d_exists}{\cf1 :} {\cf5 d} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 t_exists}{\cf1 :} {\cf5 t} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 date_set}{\cf1 :} {\cf5 date} {\cf1 =} {\cf5 d}{\line}
+{\tab}{\tab}{\tab}{\cf1 time_set}{\cf1 :} {\cf5 time} {\cf1 =} {\cf5 t}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 make_by_date} {\cf1 (}{\cf5 d}{\cf1 :} {\cf4 DATE}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 date}{\cf3  to }{\cf5 d}{\cf3  and }{\cf5 time}{\cf3  to origin of time.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 d_exists}{\cf1 :} {\cf5 d} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 date_set}{\cf1 :} {\cf5 date} {\cf1 =} {\cf5 d}{\line}
+{\tab}{\tab}{\tab}{\cf1 time_set}{\cf1 :} {\cf5 time}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 time}{\b\cf1 .}{\cf5 Origin}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 make_now}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Get the date and the time from the system.}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 make_now_utc}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Get the date and the time from the system.}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 make_from_string_default} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Initialize from a "standard" string of form}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 default_format_string}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (For 2-digit year specifications, the current century is used as}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  base century.)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_exists}{\cf1 :} {\cf5 s} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 date_time_valid}{\cf1 :} {\cf5 date_time_valid}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 ,} {\cf5 default_format_string}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 make_from_string_default_with_base} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 base}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Initialize from a "standard" string of form}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 default_format_string}{\cf3  with base century }{\cf5 base}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_exists}{\cf1 :} {\cf5 s} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 base_valid}{\cf1 :} {\cf5 base} {\cf1 >} 0 {\b\cf6 and} {\cf1 (}{\cf5 base} {\cf1 \\\\} 100 {\cf1 =} 0{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 date_time_valid}{\cf1 :} {\cf5 date_time_valid_with_base}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 ,} {\cf5 default_format_string}{\cf1 ,} {\cf5 base}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 make_from_string} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 code}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Initialize from a "standard" string of form}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 code}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (For 2-digit year specifications, the current century is used as}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  base century.)}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_exists}{\cf1 :} {\cf5 s} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 c_exists}{\cf1 :} {\cf5 code} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 date_time_valid}{\cf1 :} {\cf5 date_time_valid}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 ,} {\cf5 code}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 make_from_string_with_base} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 code}{\cf1 :} {\cf4 STRING_8}{\cf1 ;} {\cf5 base}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Initialize from a "standard" string of form}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 code}{\cf3  with base century }{\cf5 base}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_exists}{\cf1 :} {\cf5 s} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 c_exists}{\cf1 :} {\cf5 code} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 base_valid}{\cf1 :} {\cf5 base} {\cf1 >} 0 {\b\cf6 and} {\cf1 (}{\cf5 base} {\cf1 \\\\} 100 {\cf1 =} 0{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 date_time_valid}{\cf1 :} {\cf5 date_time_valid_with_base}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 ,} {\cf5 code}{\cf1 ,} {\cf5 base}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 make_from_epoch} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create a new date time from the number of}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  seconds since epoch (1 Jan 1970 at 00:00:00).}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 date}{\cf1 :} {\cf4 DATE}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Date of the current object}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 time}{\cf1 :} {\cf4 TIME}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Time of the current object}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Origin}{\cf1 :} {\cf4 DATE_TIME}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Origin date with origin time}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 date_duration}{\cf1 :} {\cf4 DATE_DURATION}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Definite duration between origin of date and current date}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 days}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of days elapsed since }{\cf5 Origin}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 time_duration}{\cf1 :} {\cf4 TIME_DURATION}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Duration elapsed from midnight of the current date}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 seconds}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Number of seconds elapsed from midnight of the current date}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Comparison}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_less} {\b\cf6 alias} {\cf1 "}{\cf1 <}{\cf1 "} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 like} {\b\cf6 Current}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is the current object before }{\cf5 other}{\cf3 ?}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_equal} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 like} {\b\cf6 Current}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is the current object equal to }{\cf5 other}{\cf3 ?}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Measurement}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 duration}{\cf1 :} {\cf4 DATE_TIME_DURATION}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Definite duration elapsed from }{\cf5 Origin}{\line}
+{\tab}{\tab}{\b\cf6 ensure then}{\line}
+{\tab}{\tab}{\tab}{\cf1 definite_result}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 definite}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Element Change}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_date} {\cf1 (}{\cf5 d}{\cf1 :} {\cf4 DATE}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 date}{\cf3  to }{\cf5 d}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 d_exists}{\cf1 :} {\cf5 d} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 date_set}{\cf1 :} {\cf5 date} {\cf1 =} {\cf5 d}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 set_time} {\cf1 (}{\cf5 t}{\cf1 :} {\cf4 TIME}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set }{\cf5 time}{\cf3  to }{\cf5 t}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 t_exists}{\cf1 :} {\cf5 t} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 time_set}{\cf1 :} {\cf5 time} {\cf1 =} {\cf5 t}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 copy} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 like} {\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  set }{\cf5 date}{\cf3  and }{\cf5 time}{\cf3  with the }{\cf5 other}{\cf3  attributes.}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Basic operations}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 plus} {\b\cf6 alias} {\cf1 "}{\cf1 +}{\cf1 "} {\cf1 (}{\cf5 d}{\cf1 :} {\cf4 DATE_TIME_DURATION}{\cf1 )}{\cf1 :} {\b\cf6 like} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Sum the current object with }{\cf5 d}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 d_not_void}{\cf1 :} {\cf5 d} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 result_exists}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 add} {\cf1 (}{\cf5 dtd}{\cf1 :} {\cf4 DATE_TIME_DURATION}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Adds }{\cf5 dtd}{\cf3  to current duration}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 dtd_not_void}{\cf1 :} {\cf5 dtd} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 relative_duration} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 like} {\b\cf6 Current}{\cf1 )}{\cf1 :} {\cf4 DATE_TIME_DURATION}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Duration from }{\cf5 other}{\cf3  to current date}{\line}
+{\tab}{\tab}{\b\cf6 ensure then}{\line}
+{\tab}{\tab}{\tab}{\cf1 origin_set}{\cf1 :} {\cf5 equal}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 ,} {\b\cf6 Result}{\b\cf1 .}{\cf5 origin_date_time}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 definite_duration} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 like} {\b\cf6 Current}{\cf1 )}{\cf1 :} {\cf4 DATE_TIME_DURATION}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Duration from }{\cf5 other}{\cf3  to the current date, converted to a}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  definite duration}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_exists}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 definite_result}{\cf1 :} {\b\cf6 Result}{\b\cf1 .}{\cf5 definite}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 day_add} {\cf1 (}{\cf5 d}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Add }{\cf5 d}{\cf3  days to the current date.}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 days_set}{\cf1 :} {\cf5 days} {\cf1 =} {\b\cf6 old} {\cf5 days} {\cf1 +} {\cf5 d}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 hour_add} {\cf1 (}{\cf5 h}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Add }{\cf5 h}{\cf3  hours to the current time.}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 minute_add} {\cf1 (}{\cf5 m}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Add }{\cf5 m}{\cf3  minutes to the current time.}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 second_add} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Add }{\cf5 s}{\cf3  seconds to the current time.}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 fine_second_add} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 REAL_64}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Add }{\cf5 s}{\cf3  seconds to the current object.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  if }{\cf5 s}{\cf3  has decimals, }{\cf5 fractional_second}{\cf3  from }{\cf5 time}{\cf3  is modified.}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Output}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 debug_output}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Printable representation of the current object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  With "standard" form: }{\cf5 default_format_string}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 DATE_TIME}{\cf3  as synonym of }{\cf5 out}{\cf3 .}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 out}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Printable representation of the current object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  With "standard" form: }{\cf5 default_format_string}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 DATE_TIME}{\cf3  as synonym of }{\cf5 debug_output}{\cf3 .}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 formatted_out} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Printable representation of the current object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  With "standard" form: }{\cf5 s}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_exists}{\cf1 :} {\cf5 s} {\cf1 /=} {\b\cf6 Void}{\line}
+}{\tab}{\line}
+{\b\cf6 note}{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 1984-2017, Eiffel Software and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"{\line}
+{\tab}{\cf1 source}{\cf1 :} "[{\line}
+{\tab}{\tab}Eiffel Software{\line}
+{\tab}{\tab}5949 Hollister Ave., Goleta, CA 93117 USA{\line}
+{\tab}{\tab}Telephone 805-685-1006, Fax 805-685-6869{\line}
+{\tab}{\tab}Website http://www.eiffel.com{\line}
+{\tab}{\tab}Customer support http://support.eiffel.com{\line}
+{\tab}]"{\line}
+{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 DATE_TIME}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

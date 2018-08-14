@@ -1,0 +1,64 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Summary description for </string><symbol>{</symbol><class><location>../tracker/phase_short.xml</location>PHASE</class><symbol>}</symbol><string>.&quot;</string>
+	<indexing_tag>author</indexing_tag><symbol>:</symbol> <string>&quot;&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date$&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision$&quot;</string>
+
+<keyword>class</keyword> <keyword>interface</keyword>
+	<class><location>../tracker/phase_short.xml</location>PHASE</class>
+
+<keyword>create</keyword> 
+	<feature><location>../tracker/phase_short.xml#f_make</location>make</feature>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Queries</comment>
+
+	<anchor>f_get_pid</anchor><feature><location>../tracker/phase_short.xml#f_get_pid</location>get_pid</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+
+	<anchor>f_get_name</anchor><feature><location>../tracker/phase_short.xml#f_get_name</location>get_name</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+
+	<anchor>f_get_capacity</anchor><feature><location>../tracker/phase_short.xml#f_get_capacity</location>get_capacity</feature><symbol>:</symbol> <class><include>False</include>INTEGER_64</class>
+
+	<anchor>f_get_mats</anchor><feature><location>../tracker/phase_short.xml#f_get_mats</location>get_mats</feature><symbol>:</symbol> <class><include>False</include>ARRAY</class> <symbol>[</symbol><class><include>False</include>INTEGER_64</class><symbol>]</symbol>
+
+	<anchor>f_get_set_mats</anchor><feature><location>../tracker/phase_short.xml#f_get_set_mats</location>get_set_mats</feature><symbol>:</symbol> <class><include>False</include>ARRAYED_SET</class> <symbol>[</symbol><class><include>False</include>INTEGER_64</class><symbol>]</symbol>
+
+	<anchor>f_get_containers</anchor><feature><location>../tracker/phase_short.xml#f_get_containers</location>get_containers</feature><symbol>:</symbol> <class><include>False</include>STRING_TABLE</class> <symbol>[</symbol><class><location>../tracker/phase_container_short.xml</location>PHASE_CONTAINER</class><symbol>]</symbol>
+
+	<anchor>f_container_exists</anchor><feature><location>../tracker/phase_short.xml#f_container_exists</location>container_exists</feature> <symbol>(</symbol><local>cid</local><symbol>:</symbol> <class><include>False</include>STRING_8</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> checks whether a container exists within a phase</comment>
+
+	<anchor>f_materials_out</anchor><feature><location>../tracker/phase_short.xml#f_materials_out</location>materials_out</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+			<comment>--</comment><comment>outputs the expected materials array</comment>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Commands</comment>
+
+	<anchor>f_add_container</anchor><feature><location>../tracker/phase_short.xml#f_add_container</location>add_container</feature> <symbol>(</symbol><local>cont</local><symbol>:</symbol> <class><location>../tracker/phase_container_short.xml</location>PHASE_CONTAINER</class><symbol>)</symbol>
+
+	<anchor>f_remove_container</anchor><feature><location>../tracker/phase_short.xml#f_remove_container</location>remove_container</feature> <symbol>(</symbol><local>cid</local><symbol>:</symbol> <class><include>False</include>STRING_8</class><symbol>)</symbol>
+		<keyword>require</keyword>
+			<tag>container_in_phase</tag><symbol>:</symbol> <feature><location>../tracker/phase_short.xml#f_get_containers</location>get_containers</feature><dot>.</dot><feature><include>False</include>has_key</feature><symbol> </symbol><symbol>(</symbol><local>cid</local><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>container_removed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../tracker/phase_short.xml#f_containers</location>containers</feature><dot>.</dot><feature><include>False</include>has_key</feature><symbol> </symbol><symbol>(</symbol><local>cid</local><symbol>)</symbol>
+
+	<anchor>f_material_array_to_set</anchor><feature><location>../tracker/phase_short.xml#f_material_array_to_set</location>material_array_to_set</feature><symbol>:</symbol> <class><include>False</include>ARRAYED_SET</class> <symbol>[</symbol><class><include>False</include>INTEGER_64</class><symbol>]</symbol>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> compare</comment>
+
+	<anchor>f_is_less</anchor><feature><location>../tracker/phase_short.xml#f_is_less</location>is_less</feature> <keyword>alias</keyword> <symbol>&quot;</symbol><symbol><location>../tracker/phase_short.xml#f_is_less</location>&lt;</symbol><symbol>&quot;</symbol> <symbol>(</symbol><local>other</local><symbol>:</symbol> <class><location>../tracker/phase_short.xml</location>PHASE</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is current object less than </comment><quoted>other</quoted><comment>?</comment>
+		<keyword>require else</keyword>
+			<tag>distinct_pid</tag><symbol>:</symbol> <keyword>not</keyword> <symbol>(</symbol><feature><location>../tracker/phase_short.xml#f_get_pid</location>get_pid</feature> <symbol>~</symbol> <local>other</local><dot>.</dot><feature><location>../tracker/phase_short.xml#f_get_pid</location>get_pid</feature><symbol>)</symbol>
+
+	<anchor>f_is_equal</anchor><feature><location>../tracker/phase_short.xml#f_is_equal</location>is_equal</feature> <symbol>(</symbol><local>other</local><symbol>:</symbol> <class><location>../tracker/phase_short.xml</location>PHASE</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is </comment><quoted>other</quoted><comment> attached to an object of the same type</comment>
+			<comment>--</comment><comment> as current object and identical to it?</comment>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Output</comment>
+
+	<anchor>f_out</anchor><feature><location>../tracker/phase_short.xml#f_out</location>out</feature><symbol>:</symbol> <class><include>False</include>STRING_8</class>
+			<comment>--</comment><comment> New string containing terse printable representation</comment>
+			<comment>--</comment><comment> of current object</comment>
+	
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../tracker/phase_short.xml</location>PHASE</class></system>
+

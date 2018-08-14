@@ -1,0 +1,144 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Base class for widgets that display </string><feature><location>../interface/ev_gauge_short.xml#f_value</location>value</feature><string> within a </string><feature><location>../interface/ev_gauge_short.xml#f_value_range</location>value_range</feature><string>.</string>
+		<string>See EV_RANGE, EV_SCROLL_BAR, EV_SPIN_BUTTON and EV_PROGRESS_BAR.</string>
+	<string>]</string><string>&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;value, step, increment, range&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2016-09-27 08:50:48 -0700 (Tue, 27 Sep 2016) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 99192 $&quot;</string>
+
+<keyword>deferred</keyword> <keyword>class</keyword> <keyword>interface</keyword>
+	<class><location>../interface/ev_gauge_short.xml</location>EV_GAUGE</class>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_value</anchor><feature><location>../interface/ev_gauge_short.xml#f_value</location>value</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Current position within </comment><feature><location>../interface/ev_gauge_short.xml#f_value_range</location>value_range</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>ensure</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_gauge_short.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_gauge_i_short.xml#f_value</location>value</feature>
+
+	<anchor>f_step</anchor><feature><location>../interface/ev_gauge_short.xml#f_step</location>step</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Size of change made by </comment><feature><location>../interface/ev_gauge_short.xml#f_step_forward</location>step_forward</feature><comment> or </comment><feature><location>../interface/ev_gauge_short.xml#f_step_backward</location>step_backward</feature><comment>.</comment>
+			<comment>--</comment><comment> Default: 1</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>ensure</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_gauge_short.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_gauge_i_short.xml#f_step</location>step</feature>
+
+	<anchor>f_leap</anchor><feature><location>../interface/ev_gauge_short.xml#f_leap</location>leap</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Size of change made by </comment><feature><location>../interface/ev_gauge_short.xml#f_leap_forward</location>leap_forward</feature><comment> or </comment><feature><location>../interface/ev_gauge_short.xml#f_leap_backward</location>leap_backward</feature><comment>.</comment>
+			<comment>--</comment><comment> Default: 10</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>ensure</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_gauge_short.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_gauge_i_short.xml#f_leap</location>leap</feature>
+
+	<anchor>f_value_range</anchor><feature><location>../interface/ev_gauge_short.xml#f_value_range</location>value_range</feature><symbol>:</symbol> <class><include>False</include>INTEGER_INTERVAL</class>
+			<comment>--</comment><comment> Range of </comment><feature><location>../interface/ev_gauge_short.xml#f_value</location>value</feature><comment>.</comment>
+			<comment>--</comment><comment> Default: 0 |..| 100</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>ensure</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>and then</keyword> <keyword>Result</keyword><dot>.</dot><feature><include>False</include>is_equal</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_gauge_short.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_gauge_i_short.xml#f_value_range</location>value_range</feature><symbol>)</symbol>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status report</comment>
+
+	<anchor>f_proportion</anchor><feature><location>../interface/ev_gauge_short.xml#f_proportion</location>proportion</feature><symbol>:</symbol> <class><include>False</include>REAL_32</class>
+			<comment>--</comment><comment> Relative position of </comment><feature><location>../interface/ev_gauge_short.xml#f_value</location>value</feature><comment> in </comment><feature><location>../interface/ev_gauge_short.xml#f_value_range</location>value_range</feature><comment>.</comment>
+			<comment>--</comment><comment> Range: [0, 1]. Default: 0.0</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>ensure</keyword>
+			<tag>bridge_ok</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>=</symbol> <feature><location>../interface/ev_gauge_short.xml#f_implementation</location>implementation</feature><dot>.</dot><feature><location>../implementation_interface/ev_gauge_i_short.xml#f_proportion</location>proportion</feature>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status setting</comment>
+
+	<anchor>f_step_forward</anchor><feature><location>../interface/ev_gauge_short.xml#f_step_forward</location>step_forward</feature>
+			<comment>--</comment><comment> Increment </comment><feature><location>../interface/ev_gauge_short.xml#f_value</location>value</feature><comment> by </comment><feature><location>../interface/ev_gauge_short.xml#f_step</location>step</feature><comment> if within </comment><feature><location>../interface/ev_gauge_short.xml#f_value_range</location>value_range</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>ensure</keyword>
+			<tag>incremented</tag><symbol>:</symbol> <feature><location>../interface/ev_gauge_short.xml#f_value</location>value</feature> <symbol>=</symbol> <feature><location>../interface/ev_gauge_short.xml#f_value_range</location>value_range</feature><dot>.</dot><feature><include>False</include>upper</feature><dot>.</dot><feature><include>False</include>min</feature><symbol> </symbol><symbol>(</symbol><keyword>old</keyword> <feature><location>../interface/ev_gauge_short.xml#f_value</location>value</feature> <symbol>+</symbol> <feature><location>../interface/ev_gauge_short.xml#f_step</location>step</feature><symbol>)</symbol>
+
+	<anchor>f_step_backward</anchor><feature><location>../interface/ev_gauge_short.xml#f_step_backward</location>step_backward</feature>
+			<comment>--</comment><comment> Decrement </comment><feature><location>../interface/ev_gauge_short.xml#f_value</location>value</feature><comment> by </comment><feature><location>../interface/ev_gauge_short.xml#f_step</location>step</feature><comment> if within </comment><feature><location>../interface/ev_gauge_short.xml#f_value_range</location>value_range</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>ensure</keyword>
+			<tag>decremented</tag><symbol>:</symbol> <feature><location>../interface/ev_gauge_short.xml#f_value</location>value</feature> <symbol>=</symbol> <feature><location>../interface/ev_gauge_short.xml#f_value_range</location>value_range</feature><dot>.</dot><feature><include>False</include>lower</feature><dot>.</dot><feature><include>False</include>max</feature><symbol> </symbol><symbol>(</symbol><keyword>old</keyword> <feature><location>../interface/ev_gauge_short.xml#f_value</location>value</feature> <symbol>-</symbol> <feature><location>../interface/ev_gauge_short.xml#f_step</location>step</feature><symbol>)</symbol>
+
+	<anchor>f_leap_forward</anchor><feature><location>../interface/ev_gauge_short.xml#f_leap_forward</location>leap_forward</feature>
+			<comment>--</comment><comment> Increment </comment><feature><location>../interface/ev_gauge_short.xml#f_value</location>value</feature><comment> by </comment><feature><location>../interface/ev_gauge_short.xml#f_leap</location>leap</feature><comment> if within </comment><feature><location>../interface/ev_gauge_short.xml#f_value_range</location>value_range</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>ensure</keyword>
+			<tag>incremented</tag><symbol>:</symbol> <feature><location>../interface/ev_gauge_short.xml#f_value</location>value</feature> <symbol>=</symbol> <feature><location>../interface/ev_gauge_short.xml#f_value_range</location>value_range</feature><dot>.</dot><feature><include>False</include>upper</feature><dot>.</dot><feature><include>False</include>min</feature><symbol> </symbol><symbol>(</symbol><keyword>old</keyword> <feature><location>../interface/ev_gauge_short.xml#f_value</location>value</feature> <symbol>+</symbol> <feature><location>../interface/ev_gauge_short.xml#f_leap</location>leap</feature><symbol>)</symbol>
+
+	<anchor>f_leap_backward</anchor><feature><location>../interface/ev_gauge_short.xml#f_leap_backward</location>leap_backward</feature>
+			<comment>--</comment><comment> Decrement </comment><feature><location>../interface/ev_gauge_short.xml#f_value</location>value</feature><comment> by </comment><feature><location>../interface/ev_gauge_short.xml#f_leap</location>leap</feature><comment> if within </comment><feature><location>../interface/ev_gauge_short.xml#f_value_range</location>value_range</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+		<keyword>ensure</keyword>
+			<tag>decremented</tag><symbol>:</symbol> <feature><location>../interface/ev_gauge_short.xml#f_value</location>value</feature> <symbol>=</symbol> <feature><location>../interface/ev_gauge_short.xml#f_value_range</location>value_range</feature><dot>.</dot><feature><include>False</include>lower</feature><dot>.</dot><feature><include>False</include>max</feature><symbol> </symbol><symbol>(</symbol><keyword>old</keyword> <feature><location>../interface/ev_gauge_short.xml#f_value</location>value</feature> <symbol>-</symbol> <feature><location>../interface/ev_gauge_short.xml#f_leap</location>leap</feature><symbol>)</symbol>
+
+	<anchor>f_set_proportion</anchor><feature><location>../interface/ev_gauge_short.xml#f_set_proportion</location>set_proportion</feature> <symbol>(</symbol><local>a_proportion</local><symbol>:</symbol> <class><include>False</include>REAL_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Move </comment><feature><location>../interface/ev_gauge_short.xml#f_value</location>value</feature><comment> to </comment><quoted>a_proportion</quoted><comment> within </comment><feature><location>../interface/ev_gauge_short.xml#f_value_range</location>value_range</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>a_proportion_within_range</tag><symbol>:</symbol> <local>a_proportion</local> <symbol>&gt;=</symbol> <number>0</number><dot>.</dot><feature><include>False</include>to_real</feature> <keyword>and</keyword> <local>a_proportion</local> <symbol>&lt;=</symbol> <number>1</number><dot>.</dot><feature><include>False</include>to_real</feature>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Element change</comment>
+
+	<anchor>f_set_value</anchor><feature><location>../interface/ev_gauge_short.xml#f_set_value</location>set_value</feature> <symbol>(</symbol><local>a_value</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>a_value</quoted><comment> to </comment><feature><location>../interface/ev_gauge_short.xml#f_value</location>value</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>value_in_range</tag><symbol>:</symbol> <feature><location>../interface/ev_gauge_short.xml#f_value_range</location>value_range</feature><dot>.</dot><feature><include>False</include>has</feature><symbol> </symbol><symbol>(</symbol><local>a_value</local><symbol>)</symbol>
+		<keyword>ensure</keyword>
+			<tag>a_value_assigned</tag><symbol>:</symbol> <feature><location>../interface/ev_gauge_short.xml#f_value</location>value</feature> <symbol>=</symbol> <local>a_value</local>
+
+	<anchor>f_set_step</anchor><feature><location>../interface/ev_gauge_short.xml#f_set_step</location>set_step</feature> <symbol>(</symbol><local>a_step</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>a_step</quoted><comment> to </comment><feature><location>../interface/ev_gauge_short.xml#f_step</location>step</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>a_step_positive</tag><symbol>:</symbol> <local>a_step</local> <symbol>&gt;</symbol> <number>0</number>
+		<keyword>ensure</keyword>
+			<tag>a_step_assigned</tag><symbol>:</symbol> <feature><location>../interface/ev_gauge_short.xml#f_step</location>step</feature> <symbol>=</symbol> <local>a_step</local>
+
+	<anchor>f_set_leap</anchor><feature><location>../interface/ev_gauge_short.xml#f_set_leap</location>set_leap</feature> <symbol>(</symbol><local>a_leap</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>a_leap</quoted><comment> to </comment><feature><location>../interface/ev_gauge_short.xml#f_leap</location>leap</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>not_destroyed</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+			<tag>a_leap_positive</tag><symbol>:</symbol> <local>a_leap</local> <symbol>&gt;</symbol> <number>0</number>
+		<keyword>ensure</keyword>
+			<tag>a_leap_assigned</tag><symbol>:</symbol> <feature><location>../interface/ev_gauge_short.xml#f_leap</location>leap</feature> <symbol>=</symbol> <local>a_leap</local>
+	
+<keyword>invariant</keyword>
+	<tag>range_not_void</tag><symbol>:</symbol> <feature><location>../interface/ev_any_short.xml#f_is_usable</location>is_usable</feature> <keyword>implies</keyword> <feature><location>../interface/ev_gauge_short.xml#f_value_range</location>value_range</feature> <symbol>/=</symbol> <keyword>Void</keyword>
+	<tag>range_not_empty</tag><symbol>:</symbol> <feature><location>../interface/ev_any_short.xml#f_is_usable</location>is_usable</feature> <keyword>implies</keyword> <keyword>not</keyword> <feature><location>../interface/ev_gauge_short.xml#f_value_range</location>value_range</feature><dot>.</dot><feature><include>False</include>is_empty</feature>
+	<tag>value_in_range</tag><symbol>:</symbol> <feature><location>../interface/ev_any_short.xml#f_is_usable</location>is_usable</feature> <keyword>implies</keyword> <feature><location>../interface/ev_gauge_short.xml#f_value_range</location>value_range</feature><dot>.</dot><feature><include>False</include>has</feature><symbol> </symbol><symbol>(</symbol><feature><location>../interface/ev_gauge_short.xml#f_value</location>value</feature><symbol>)</symbol>
+	<tag>step_positive</tag><symbol>:</symbol> <feature><location>../interface/ev_any_short.xml#f_is_usable</location>is_usable</feature> <keyword>implies</keyword> <feature><location>../interface/ev_gauge_short.xml#f_step</location>step</feature> <symbol>&gt;</symbol> <number>0</number>
+	<tag>leap_positive</tag><symbol>:</symbol> <feature><location>../interface/ev_any_short.xml#f_is_usable</location>is_usable</feature> <keyword>implies</keyword> <feature><location>../interface/ev_gauge_short.xml#f_leap</location>leap</feature> <symbol>&gt;</symbol> <number>0</number>
+	<tag>change_actions_not_void</tag><symbol>:</symbol> <feature><location>../interface/ev_any_short.xml#f_is_usable</location>is_usable</feature> <keyword>implies</keyword> <feature><location>../interface/ev_gauge_action_sequences_short.xml#f_change_actions</location>change_actions</feature> <symbol>/=</symbol> <keyword>Void</keyword>
+	<tag>proportion_within_range</tag><symbol>:</symbol> <feature><location>../interface/ev_any_short.xml#f_is_usable</location>is_usable</feature> <keyword>implies</keyword> <feature><location>../interface/ev_gauge_short.xml#f_proportion</location>proportion</feature> <symbol>&gt;=</symbol> <number>0.0</number> <keyword>and</keyword> <feature><location>../interface/ev_gauge_short.xml#f_proportion</location>proportion</feature> <symbol>&lt;=</symbol> <number>1.0</number>
+	<tag>proportion_definition</tag><symbol>:</symbol> <feature><location>../interface/ev_any_short.xml#f_is_usable</location>is_usable</feature> <keyword>implies</keyword> <symbol>(</symbol><feature><location>../interface/ev_gauge_short.xml#f_value_range</location>value_range</feature><dot>.</dot><feature><include>False</include>upper</feature> <symbol>=</symbol> <feature><location>../interface/ev_gauge_short.xml#f_value_range</location>value_range</feature><dot>.</dot><feature><include>False</include>lower</feature> <keyword>implies</keyword> <feature><location>../interface/ev_gauge_short.xml#f_proportion</location>proportion</feature> <symbol>=</symbol> <number>0.0</number><symbol>)</symbol>
+	<tag>proportion_correct_value</tag><symbol>:</symbol> <symbol>(</symbol><feature><location>../interface/ev_any_short.xml#f_is_usable</location>is_usable</feature> <keyword>and</keyword> <feature><location>../interface/ev_gauge_short.xml#f_value_range</location>value_range</feature><dot>.</dot><feature><include>False</include>upper</feature> <symbol>/=</symbol> <feature><location>../interface/ev_gauge_short.xml#f_value_range</location>value_range</feature><dot>.</dot><feature><include>False</include>lower</feature><symbol>)</symbol> <keyword>implies</keyword> <symbol>(</symbol><symbol>(</symbol><feature><location>../interface/ev_gauge_short.xml#f_value</location>value</feature> <symbol>-</symbol> <feature><location>../interface/ev_gauge_short.xml#f_value_range</location>value_range</feature><dot>.</dot><feature><include>False</include>lower</feature><symbol>)</symbol> <symbol>/</symbol> <symbol>(</symbol><feature><location>../interface/ev_gauge_short.xml#f_value_range</location>value_range</feature><dot>.</dot><feature><include>False</include>upper</feature> <symbol>-</symbol> <feature><location>../interface/ev_gauge_short.xml#f_value_range</location>value_range</feature><dot>.</dot><feature><include>False</include>lower</feature><symbol>)</symbol><symbol>)</symbol><dot>.</dot><feature><include>False</include>abs</feature> <symbol>-</symbol> <feature><location>../interface/ev_gauge_short.xml#f_proportion</location>proportion</feature><dot>.</dot><feature><include>False</include>to_double</feature> <symbol>&lt;</symbol> <feature><location>../interface/ev_gauge_short.xml#f_delta</location>delta</feature><dot>.</dot><feature><include>False</include>to_double</feature>
+
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2014, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../interface/ev_gauge_short.xml</location>EV_GAUGE</class></system>
+

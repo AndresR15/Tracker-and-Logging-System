@@ -1,0 +1,552 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "[{\line}
+{\tab}{\tab}Objects that provide access to constants for RTF documents and formatting.{\line}
+{\tab}]"{\line}
+{\tab}{\cf1 legal}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 status}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2013-01-25 16:40:46 -0800 (Fri, 25 Jan 2013) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 90880 $"{\line}
+{\line}
+{\b\cf6 class} {\line}
+{\tab}{\cf4 EV_RICH_TEXT_CONSTANTS_I}{\line}
+{\line}
+{\b\cf6 create} {\line}
+{\tab}{\cf5 default_create}{\line}
+{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Initialization}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 default_create}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Process instances of classes with no creation clause.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Default: do nothing.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Access}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Color_table_start}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "\{\\colortbl ;"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  RTF string denoting start of color table.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Default_font}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "\\cf1\\highlight2\\f0\\fs"}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Font_table_start}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "\{\\rtf1\\ansi\\ansicpg1252\\uc1\\deff0\\deflang1033\{\\fonttbl"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  RTF string denoting start of font table.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 generating_type}{\cf1 :} {\cf4 TYPE} {\cf1 [}{\b\cf6 detachable} {\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Type of current object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (type of which it is a direct instance)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 generating_type_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 generator}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Name of current object's generating class}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (base class of the type of which it is a direct instance)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 generator_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 generator_not_empty}{\cf1 :} {\b\cf6 not} {\b\cf6 Result}{\b\cf1 .}{\cf5 is_empty}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_backslash}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "\\\\"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting RTF backslash.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_blue}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "blue"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting blue component of a RTF color.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_bold_string}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "b"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting bold in RTF.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_charset}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "fcharset"}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_close_brace}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "\\\}"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting RTF close brace.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_close_brace_character}{\cf1 :} {\cf4 CHARACTER_8} {\cf1 =} '\}'}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_color_string}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "cf"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting color in RTF.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_colortbl}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "colortbl"}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_control_character}{\cf1 :} {\cf4 CHARACTER_8} {\cf1 =} '\\'}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_family_modern}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "fmodern"}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_family_modern_int}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 5}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_family_nill}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "fnill"}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_family_nill_int}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 6}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_family_roman}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "froman"}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_family_roman_int}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 2}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_family_script}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "fscript"}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_family_script_int}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 4}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_family_swiss}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "fswiss"}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_family_swiss_int}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 3}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_family_tech}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "ftech"}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_family_tech_int}{\cf1 :} {\cf4 INTEGER_32} {\cf1 =} 1}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_font_charset}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "fcharset"}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_font_size_string}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "fs"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting font size in RTF.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_font_string}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "f"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting font index in RTF.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_fonttable}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "fonttbl"}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_green}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "green"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting green component of a RTF color.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_highlight_string}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "highlight"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting highlighting color in RFT.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_info}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "info"}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_italic_string}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "i"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting italic in RTF.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_new_paragraph}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "pard"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting start of standard paragraph.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_newline}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "par"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting RTF newline.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_open_brace}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "\\\{"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting RTF open brace.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_open_brace_character}{\cf1 :} {\cf4 CHARACTER_8} {\cf1 =} '\{'}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_paragraph_center_aligned}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "qc"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting start of center aligned paragraph.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_paragraph_justified}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "qj"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting start of justified paragraph.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_paragraph_left_aligned}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "ql"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting start of left aligned paragraph.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_paragraph_left_indent}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "li"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting left indent of paragraph.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_paragraph_right_aligned}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "qr"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting start of right aligned paragraph.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_paragraph_right_indent}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "ri"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting right indent of paragraph.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_paragraph_space_after}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "sa"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting space after paragraph.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_paragraph_space_before}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "sb"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting space before paragraph.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_red}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "red"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting red component of a RTF color.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_strikeout_string}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "strike"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting striked out in RTF.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_stylesheet}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "stylesheet"}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_underline_none_string}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "ulnone"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting end of underlined in RTF.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_underline_string}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "ul"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting underlined in RTF.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_unicode_character}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "\\u"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting starting of a Unicode character.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_unicode_string}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "u"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting underlined in RTF.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_user_props}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "*"}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Rtf_vertical_offset}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "up"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting start of vertical offset in RTF.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Space_string}{\cf1 :} {\cf4 STRING_32} {\cf1 =} " "}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  String denoting empty space.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 View_text}{\cf1 :} {\cf4 STRING_32} {\cf1 =} "\\viewkind4\\uc1\\pard"}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  A STRING constant representing the view type of the RTF document.}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Comparison}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 deep_equal} {\cf1 (}{\cf5 a}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 ;} {\cf5 b}{\cf1 :} {\b\cf6 like} arg #1{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are }{\cf5 a}{\cf3  and }{\cf5 b}{\cf3  either both void}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  or attached to isomorphic object structures?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a} {\cf1 =} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 =} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 is_deep_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 shallow_implies_deep}{\cf1 :} {\cf5 standard_equal}{\cf1  }{\cf1 (}{\cf5 a}{\cf1 ,} {\cf5 b}{\cf1 )} {\b\cf6 implies} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\cf1 both_or_none_void}{\cf1 :} {\cf1 (}{\cf5 a} {\cf1 =} {\b\cf6 Void}{\cf1 )} {\b\cf6 implies} {\cf1 (}{\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf5 b} {\cf1 =} {\b\cf6 Void}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 same_type}{\cf1 :} {\cf1 (}{\b\cf6 Result} {\b\cf6 and} {\cf1 (}{\cf5 a} {\cf1 /=} {\b\cf6 Void}{\cf1 )}{\cf1 )} {\b\cf6 implies} {\cf1 (}{\cf5 b} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 same_type}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 symmetric}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 deep_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 ,} {\cf5 a}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 equal} {\cf1 (}{\cf5 a}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 ;} {\cf5 b}{\cf1 :} {\b\cf6 like} arg #1{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are }{\cf5 a}{\cf3  and }{\cf5 b}{\cf3  either both void or attached}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to objects considered equal?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a} {\cf1 =} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 =} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf5 a} {\cf1 =} {\b\cf6 Void} {\b\cf6 and} {\cf5 b} {\cf1 =} {\b\cf6 Void}{\cf1 )} {\b\cf6 or else} {\cf1 (}{\cf1 (}{\cf5 a} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and} {\cf5 b} {\cf1 /=} {\b\cf6 Void}{\cf1 )} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 is_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 is_deep_equal} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are }{\cf5 Current}{\cf3  and }{\cf5 other}{\cf3  attached to isomorphic object structures?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 shallow_implies_deep}{\cf1 :} {\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )} {\b\cf6 implies} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\cf1 same_type}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 same_type}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 symmetric}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 other}{\b\cf1 .}{\cf5 is_deep_equal}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_equal} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 other}{\cf3  attached to an object considered}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  equal to current object?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 symmetric}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 other} {\cf1 ~} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\tab}{\cf1 consistent}{\cf1 :} {\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )} {\b\cf6 implies} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 standard_equal} {\cf1 (}{\cf5 a}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 ;} {\cf5 b}{\cf1 :} {\b\cf6 like} arg #1{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Are }{\cf5 a}{\cf3  and }{\cf5 b}{\cf3  either both void or attached to}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  field-by-field identical objects of the same type?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Always uses default object comparison criterion.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 a} {\cf1 =} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 =} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 b} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf5 a} {\cf1 =} {\b\cf6 Void} {\b\cf6 and} {\cf5 b} {\cf1 =} {\b\cf6 Void}{\cf1 )} {\b\cf6 or else} {\cf1 (}{\cf1 (}{\cf5 a} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and} {\cf5 b} {\cf1 /=} {\b\cf6 Void}{\cf1 )} {\b\cf6 and then} {\cf5 a}{\b\cf1 .}{\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\cf5 b}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 standard_is_equal} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is }{\cf5 other}{\cf3  attached to an object of the same type}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  as current object, and field-by-field identical to it?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 same_type}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 same_type}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 symmetric}{\cf1 :} {\b\cf6 Result} {\b\cf6 implies} {\cf5 other}{\b\cf1 .}{\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status report}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 conforms_to} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 ANY}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does type of current object conform to type}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of }{\cf5 other}{\cf3  (as per Eiffel: The Language, chapter 13)?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 same_type} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 ANY}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is type of current object identical to type of }{\cf5 other}{\cf3 ?}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 definition}{\cf1 :} {\b\cf6 Result} {\cf1 =} {\cf1 (}{\cf5 conforms_to}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )} {\b\cf6 and} {\cf5 other}{\b\cf1 .}{\cf5 conforms_to}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Duplication}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 clone} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 )}{\cf1 :} {\b\cf6 like} {\cf5 other}{\line}
+{\tab}{\tab}{\b\cf6 obsolete} "Use `twin' instead. [2017-05-31]"{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Void if }{\cf5 other}{\cf3  is void; otherwise new object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  equal to }{\cf5 other}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  For non-void }{\cf5 other}{\cf3 , }{\cf5 clone}{\cf3  calls }{\cf5 copy}{\cf3 ;}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to change copying/cloning semantics, redefine }{\cf5 copy}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 other} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 other}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 equal}{\cf1 :} {\b\cf6 Result} {\cf1 ~} {\cf5 other}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 copy} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Update current object using fields of object attached}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  to }{\cf5 other}{\cf3 , so as to yield equal objects.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 type_identity}{\cf1 :} {\cf5 same_type}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_equal}{\cf1 :} {\b\cf6 Current} {\cf1 ~} {\cf5 other}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 deep_clone} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 )}{\cf1 :} {\b\cf6 like} {\cf5 other}{\line}
+{\tab}{\tab}{\b\cf6 obsolete} "Use `deep_twin' instead. [2017-05-31]"{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Void if }{\cf5 other}{\cf3  is void: otherwise, new object structure}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  recursively duplicated from the one attached to }{\cf5 other}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 other} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 other}{\b\cf1 .}{\cf5 deep_twin}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 deep_equal}{\cf1 :} {\cf5 deep_equal}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 ,} {\b\cf6 Result}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 deep_copy} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Effect equivalent to that of:}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3 		}{\cf5 copy}{\cf3  (}{\cf5 other}{\cf3  . }{\cf5 deep_twin}{\cf3 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 copy}{\cf1  }{\cf1 (}{\cf5 other}{\b\cf1 .}{\cf5 deep_twin}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 deep_equal}{\cf1 :} {\cf5 deep_equal}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 ,} {\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 deep_twin}{\cf1 :} {\b\cf6 attached} {\cf4 EV_RICH_TEXT_CONSTANTS_I}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New object structure recursively duplicated from Current.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 deep_twin_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 deep_equal}{\cf1 :} {\cf5 deep_equal}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 ,} {\b\cf6 Result}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 standard_clone} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 )}{\cf1 :} {\b\cf6 like} {\cf5 other}{\line}
+{\tab}{\tab}{\b\cf6 obsolete} "Use `standard_twin' instead. [2017-05-31]"{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Void if }{\cf5 other}{\cf3  is void; otherwise new object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  field-by-field identical to }{\cf5 other}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Always uses default copying semantics.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 other} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 other}{\b\cf1 .}{\cf5 standard_twin}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 equal}{\cf1 :} {\cf5 standard_equal}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 ,} {\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 standard_copy} {\cf1 (}{\cf5 other}{\cf1 :} {\b\cf6 attached} {\cf4 EV_RICH_TEXT_CONSTANTS_I}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Copy every field of }{\cf5 other}{\cf3  onto corresponding field}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of current object.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 require} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 other_not_void}{\cf1 :} {\cf5 other} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 type_identity}{\cf1 :} {\cf5 same_type}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_standard_equal}{\cf1 :} {\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\cf5 other}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 standard_twin}{\cf1 :} {\b\cf6 attached} {\cf4 EV_RICH_TEXT_CONSTANTS_I}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New object field-by-field identical to }{\cf5 other}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Always uses default copying semantics.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 standard_twin_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 equal}{\cf1 :} {\cf5 standard_equal}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 ,} {\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 twin}{\cf1 :} {\b\cf6 attached} {\cf4 EV_RICH_TEXT_CONSTANTS_I}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New object equal to }{\cf5 Current}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  }{\cf5 twin}{\cf3  calls }{\cf5 copy}{\cf3 ; to change copying/twinning semantics, redefine }{\cf5 copy}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 twin_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_equal}{\cf1 :} {\b\cf6 Result} {\cf1 ~} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Basic operations}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 as_attached}{\cf1 :} {\b\cf6 attached} {\cf4 EV_RICH_TEXT_CONSTANTS_I}{\line}
+{\tab}{\tab}{\b\cf6 obsolete} "Remove calls to this feature. [2017-05-31]"{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Attached version of Current.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Can be used during transitional period to convert}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  non-void-safe classes to void-safe ones.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Current}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 default}{\cf1 :} {\b\cf6 detachable} {\cf4 EV_RICH_TEXT_CONSTANTS_I}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Default value of object's type}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 default_pointer}{\cf1 :} {\cf4 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Default value of type }{\cf5 POINTER}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Avoid the need to write }{\cf5 p}{\cf3 .}{\cf5 default}{\cf3  for}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  some }{\cf5 p}{\cf3  of type }{\cf5 POINTER}{\cf3 .)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 default_rescue}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Process exception for routines with no Rescue clause.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  (Default: do nothing.)}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 do_nothing}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Execute a null action.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Output}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Io}{\cf1 :} {\cf4 STD_FILES}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Handle to standard file setup}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 set_output_default}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 io_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 out}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New string containing terse printable representation}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of current object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 tagged_out}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 out_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 print} {\cf1 (}{\cf5 o}{\cf1 :} {\b\cf6 detachable} {\cf4 ANY}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Write terse external representation of }{\cf5 o}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  on standard output.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 o} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 Io}{\b\cf1 .}{\cf5 put_string}{\cf1  }{\cf1 (}{\cf5 o}{\b\cf1 .}{\cf5 out}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 tagged_out}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  New string containing terse printable representation}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  of current object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 external}{\line}
+{\tab}{\tab}{\tab}"built_in"{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 tagged_out_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Platform}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 Operating_environment}{\cf1 :} {\cf4 OPERATING_ENVIRONMENT}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Objects available from the operating system}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 once}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\b\cf6 ensure} {\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\tab}{\tab}{\cf1 operating_environment_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Retrieval}{\line}
+{\line}
+{\tab}{\cf5 {\b\cf6 frozen} {\cf5 internal_correct_mismatch}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Called from runtime to perform a proper dynamic dispatch on }{\cf5 correct_mismatch}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  from MISMATCH_CORRECTOR.}{\line}
+{\tab}{\tab}{\tab}{\cf3 --} {\cf3 (from }{\cf4 ANY}{\cf3 )}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_msg}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_exc}{\cf1 :} {\cf4 EXCEPTIONS}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 attached} {\cf1 \{}{\cf4 MISMATCH_CORRECTOR}{\cf1 \}} {\b\cf6 Current} {\b\cf6 as} l_corrector {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_corrector}{\b\cf1 .}{\cf5 correct_mismatch}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 l_msg}{\b\cf1 .}{\cf5 make_from_string}{\cf1  }{\cf1 (}"Mismatch: "{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 l_exc}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_msg}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 generating_type}{\b\cf1 .}{\cf5 name}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_exc}{\b\cf1 .}{\cf5 raise_retrieval_exception}{\cf1  }{\cf1 (}{\cf5 l_msg}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 invariant}{\line}
+{\tab}{\tab}{\cf3 --} {\cf3 from }{\cf4 ANY}{\line}
+{\tab}{\cf1 reflexive_equality}{\cf1 :} {\cf5 standard_is_equal}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\line}
+{\tab}{\cf1 reflexive_conformance}{\cf1 :} {\cf5 conforms_to}{\cf1  }{\cf1 (}{\b\cf6 Current}{\cf1 )}{\line}
+{\line}
+{\b\cf6 note}{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 1984-2006, Eiffel Software and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"{\line}
+{\tab}{\cf1 source}{\cf1 :} "[{\line}
+{\tab}{\tab}Eiffel Software{\line}
+{\tab}{\tab}356 Storke Road, Goleta, CA 93117 USA{\line}
+{\tab}{\tab}Telephone 805-685-1006, Fax 805-685-6869{\line}
+{\tab}{\tab}Website http://www.eiffel.com{\line}
+{\tab}{\tab}Customer support http://support.eiffel.com{\line}
+{\tab}]"{\line}
+{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 EV_RICH_TEXT_CONSTANTS_I}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

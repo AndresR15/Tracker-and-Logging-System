@@ -1,0 +1,15 @@
+<system>
+<keyword>deferred</keyword> <keyword>class</keyword>
+	<class><location>../implementation_interface/ev_menu_bar_i_links.xml</location>EV_MENU_BAR_I</class>
+
+<keyword>Ancestors</keyword>
+	<class><location>../implementation_interface/ev_menu_item_list_i_links.xml</location>EV_MENU_ITEM_LIST_I</class><char>*</char>
+	<class><location>../implementation_interface/ev_positioned_i_links.xml</location>EV_POSITIONED_I</class><char>*</char>
+
+<keyword>Descendants</keyword>
+	<class><location>../implementation_gtk/ev_menu_bar_imp_links.xml</location>EV_MENU_BAR_IMP</class>
+
+<keyword>Clients</keyword>
+	<class><location>../interface/ev_menu_bar_links.xml</location>EV_MENU_BAR</class>
+
+</system>

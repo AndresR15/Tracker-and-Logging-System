@@ -1,0 +1,23 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../tracker/error_links.xml</location>ERROR</class>
+
+<keyword>Ancestors</keyword>
+	<class><location>../tracker/command_links.xml</location>COMMAND</class><char>*</char>
+
+<keyword>Clients</keyword>
+	<class><location>../tracker/error_links.xml</location>ERROR</class>
+	<class><location>../tracker/etf_move_container_links.xml</location>ETF_MOVE_CONTAINER</class>
+	<class><location>../tracker/etf_new_container_links.xml</location>ETF_NEW_CONTAINER</class>
+	<class><location>../tracker/etf_new_phase_links.xml</location>ETF_NEW_PHASE</class>
+	<class><location>../tracker/etf_new_tracker_links.xml</location>ETF_NEW_TRACKER</class>
+	<class><location>../tracker/etf_remove_container_links.xml</location>ETF_REMOVE_CONTAINER</class>
+	<class><location>../tracker/etf_remove_phase_links.xml</location>ETF_REMOVE_PHASE</class>
+	<class><location>../tracker/tracker_links.xml</location>TRACKER</class>
+
+<keyword>Suppliers</keyword>
+	<class><location>../tracker/error_links.xml</location>ERROR</class>
+	<class><location>../tracker/tracker_links.xml</location>TRACKER</class>
+	<class><location>../tracker/tracker_access_links.xml</location>TRACKER_ACCESS</class>
+
+</system>

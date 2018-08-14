@@ -1,0 +1,22 @@
+<system>
+<keyword>deferred</keyword> <keyword>class</keyword>
+	<class><location>../implementation_gtk/ev_pnd_deferred_item_parent_links.xml</location>EV_PND_DEFERRED_ITEM_PARENT</class>
+
+<keyword>Ancestors</keyword>
+	<class><include>False</include>ANY</class>
+
+<keyword>Descendants</keyword>
+	<class><location>../implementation_gtk/ev_list_item_list_imp_links.xml</location>EV_LIST_ITEM_LIST_IMP</class><char>*</char>
+	<class><location>../implementation_gtk/ev_multi_column_list_imp_links.xml</location>EV_MULTI_COLUMN_LIST_IMP</class>
+	<class><location>../implementation_gtk/ev_tool_bar_imp_links.xml</location>EV_TOOL_BAR_IMP</class>
+	<class><location>../implementation_gtk/ev_tree_imp_links.xml</location>EV_TREE_IMP</class>
+
+<keyword>Clients</keyword>
+	<class><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines_links.xml</location>EV_GTK_DEPENDENT_INTERMEDIARY_ROUTINES</class>
+	<class><location>../implementation_gtk/ev_pick_and_dropable_imp_links.xml</location>EV_PICK_AND_DROPABLE_IMP</class><char>*</char>
+	<class><location>../implementation_gtk/ev_pnd_deferred_item_parent_links.xml</location>EV_PND_DEFERRED_ITEM_PARENT</class><char>*</char>
+
+<keyword>Suppliers</keyword>
+	<class><location>../implementation_gtk/ev_pnd_deferred_item_parent_links.xml</location>EV_PND_DEFERRED_ITEM_PARENT</class><char>*</char>
+
+</system>

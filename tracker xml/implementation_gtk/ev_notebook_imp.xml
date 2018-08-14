@@ -1,0 +1,395 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Vision notebook. GTK implementation.&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2017-03-27 13:31:29 -0700 (Mon, 27 Mar 2017) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 100058 $&quot;</string>
+
+<keyword>class</keyword> 
+	<class><location>../implementation_gtk/ev_notebook_imp.xml</location>EV_NOTEBOOK_IMP</class>
+
+<keyword>inherit</keyword>
+	<class><location>../implementation_interface/ev_notebook_i.xml</location>EV_NOTEBOOK_I</class>
+		<keyword>undefine</keyword>
+			<feature><location>../implementation_gtk/ev_container_imp.xml#f_propagate_foreground_color</location>propagate_foreground_color</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_container_imp.xml#f_propagate_background_color</location>propagate_background_color</feature>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_gtk/ev_notebook_imp.xml#f_interface</location>interface</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_notebook_imp.xml#f_replace</location>replace</feature>
+		<keyword>end</keyword>
+
+	<class><location>../implementation_gtk/ev_widget_list_imp.xml</location>EV_WIDGET_LIST_IMP</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_gtk/ev_notebook_imp.xml#f_interface</location>interface</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_notebook_imp.xml#f_replace</location>replace</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_notebook_imp.xml#f_make</location>make</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_notebook_imp.xml#f_remove_i_th</location>remove_i_th</feature><symbol>,</symbol>
+			<feature><location>../implementation_gtk/ev_notebook_imp.xml#f_needs_event_box</location>needs_event_box</feature>
+		<keyword>end</keyword>
+
+	<class><location>../implementation_gtk/ev_fontable_imp.xml</location>EV_FONTABLE_IMP</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_gtk/ev_notebook_imp.xml#f_interface</location>interface</feature>
+		<keyword>end</keyword>
+
+<keyword>create</keyword> 
+	<feature><location>../implementation_gtk/ev_notebook_imp.xml#f_make</location>make</feature>
+
+<keyword>feature</keyword> <symbol>{</symbol>NONE<symbol>}</symbol> <comment>--</comment><comment> Initialization</comment>
+
+	<anchor>f_needs_event_box</anchor><feature><location>../implementation_gtk/ev_notebook_imp.xml#f_needs_event_box</location>needs_event_box</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Does </comment><quoted>a_widget</quoted><comment> need an event box?</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <keyword>True</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_old_make</anchor><feature><location>../implementation_gtk/ev_notebook_imp.xml#f_old_make</location>old_make</feature> <symbol>(</symbol><local>an_interface</local><symbol>:</symbol> <keyword>attached</keyword> <keyword>like</keyword> <feature><location>../implementation_gtk/ev_notebook_imp.xml#f_interface</location>interface</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Create a fixed widget.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_interface/ev_any_i.xml#f_assign_interface</location>assign_interface</feature><symbol> </symbol><symbol>(</symbol><local>an_interface</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_make</anchor><feature><location>../implementation_gtk/ev_notebook_imp.xml#f_make</location>make</feature>
+			<comment>--</comment><comment> Initialize the notebook.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_any_imp.xml#f_set_c_object</location>set_c_object</feature><symbol> </symbol><symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_notebook_new</location>gtk_notebook_new</feature><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_notebook_set_show_border</location>gtk_notebook_set_show_border</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_visual_widget</location>visual_widget</feature><symbol>,</symbol> <keyword>True</keyword><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_notebook_set_scrollable</location>gtk_notebook_set_scrollable</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_visual_widget</location>visual_widget</feature><symbol>,</symbol> <keyword>True</keyword><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_any_imp.xml#f_real_signal_connect</location>real_signal_connect</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_visual_widget</location>visual_widget</feature><symbol>,</symbol> &quot;switch-page&quot;<symbol>,</symbol> <keyword>agent</keyword> <feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_gtk_marshal</location>gtk_marshal</feature><dot>.</dot><feature><location>../implementation_gtk/ev_intermediary_routines.xml#f_on_notebook_page_switch_intermediary</location>on_notebook_page_switch_intermediary</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>,</symbol> <symbol>?</symbol><symbol>)</symbol><symbol>,</symbol> <keyword>agent</keyword> <feature><location>../implementation_gtk/ev_any_imp.xml#f_app_implementation</location>App_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_gtk_marshal</location>gtk_marshal</feature><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_dependent_intermediary_routines.xml#f_page_switch_translate</location>page_switch_translate</feature><symbol>)</symbol>
+			<keyword><location>../implementation_gtk/ev_widget_list_imp.xml#f_make</location>Precursor</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_widget_list_imp.xml</location>EV_WIDGET_LIST_IMP</class><symbol>}</symbol>
+			<feature><location>../implementation_gtk/ev_notebook_imp.xml#f_selected_item_index_internal</location>selected_item_index_internal</feature> <symbol>:=</symbol> <number>0</number>
+			<feature><location>../implementation_interface/ev_item_pixmap_scaler_i.xml#f_initialize_pixmaps</location>initialize_pixmaps</feature>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_pointed_tab_index</anchor><feature><location>../implementation_gtk/ev_notebook_imp.xml#f_pointed_tab_index</location>pointed_tab_index</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> index of tab currently under mouse pointer, or 0 if none.</comment>
+		<keyword>local</keyword>
+			<local>i</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<local>gdkwin</local><symbol>,</symbol> <local>mouse_ptr_wid</local><symbol>,</symbol> <local>tab_label</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>a_wid</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_widget_imp.xml</location>EV_WIDGET_IMP</class>
+		<keyword>do</keyword>
+			<keyword>from</keyword>
+				<local>i</local> <symbol>:=</symbol> <number>1</number>
+				<local>gdkwin</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_window_at_pointer</location>gdk_window_at_pointer</feature> <symbol>(</symbol><feature><include>False</include>default_pointer</feature><symbol>,</symbol> <feature><include>False</include>default_pointer</feature><symbol>)</symbol>
+				<keyword>if</keyword> <local>gdkwin</local> <symbol>/=</symbol> <feature><include>False</include>default_pointer</feature> <keyword>then</keyword>
+					<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gdk_window_get_user_data</location>gdk_window_get_user_data</feature> <symbol>(</symbol><local>gdkwin</local><symbol>,</symbol> <symbol>$</symbol><local>mouse_ptr_wid</local><dot>.</dot><feature><include>False</include>to_pointer</feature><symbol>)</symbol>
+					<local>a_wid</local> <symbol>?=</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_eif_object_from_c</location>eif_object_from_c</feature><symbol> </symbol><symbol>(</symbol><local>mouse_ptr_wid</local><symbol>)</symbol>
+				<keyword>end</keyword>
+			<keyword>until</keyword>
+				<keyword>Result</keyword> <symbol>&gt;</symbol> <number>0</number> <keyword>or else</keyword> <local>i</local> <symbol>&gt;</symbol> <feature><location>../implementation_gtk/ev_dynamic_list_imp.xml#f_count</location>count</feature> <keyword>or else</keyword> <local>mouse_ptr_wid</local> <symbol>=</symbol> <feature><include>False</include>default_pointer</feature>
+			<keyword>loop</keyword>
+				<local>a_wid</local> <symbol>?=</symbol> <feature><location>../implementation_gtk/ev_dynamic_list_imp.xml#f_i_th</location>i_th</feature><symbol> </symbol><symbol>(</symbol><local>i</local><symbol>)</symbol><dot>.</dot><feature><location>../interface/ev_widget.xml#f_implementation</location>implementation</feature>
+				<keyword>check</keyword>
+						<local>a_wid</local> <symbol>/=</symbol> <keyword>Void</keyword>
+				<keyword>then</keyword>
+				<keyword>end</keyword>
+				<local>tab_label</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_notebook_get_tab_label</location>gtk_notebook_get_tab_label</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_visual_widget</location>visual_widget</feature><symbol>,</symbol> <local>a_wid</local><dot>.</dot><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>)</symbol>
+				<keyword>if</keyword> <local>mouse_ptr_wid</local> <symbol>=</symbol> <local>tab_label</local> <keyword>or else</keyword> <local>mouse_ptr_wid</local> <symbol>=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_widget_struct_parent</location>gtk_widget_struct_parent</feature> <symbol>(</symbol><local>mouse_ptr_wid</local><symbol>)</symbol> <keyword>then</keyword>
+					<keyword>Result</keyword> <symbol>:=</symbol> <local>i</local>
+				<keyword>end</keyword>
+				<local>i</local> <symbol>:=</symbol> <local>i</local> <symbol>+</symbol> <number>1</number>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_pixmaps_size_changed</anchor><feature><location>../implementation_gtk/ev_notebook_imp.xml#f_pixmaps_size_changed</location>pixmaps_size_changed</feature>
+			<comment>--</comment><comment> The size of the displayed pixmaps has just</comment>
+			<comment>--</comment><comment> changed.</comment>
+		<keyword>do</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_notebook.xml</location>EV_NOTEBOOK</class><symbol>,</symbol> <class><location>../implementation_gtk/ev_notebook_tab_imp.xml</location>EV_NOTEBOOK_TAB_IMP</class><symbol>}</symbol> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_item_tab</anchor><feature><location>../implementation_gtk/ev_notebook_imp.xml#f_item_tab</location>item_tab</feature> <symbol>(</symbol><local>an_item</local><symbol>:</symbol> <class><location>../interface/ev_widget.xml</location>EV_WIDGET</class><symbol>)</symbol><symbol>:</symbol> <class><location>../interface/ev_notebook_tab.xml</location>EV_NOTEBOOK_TAB</class>
+			<comment>--</comment><comment> Tab associated with </comment><quoted>an_item</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword>create</keyword> <keyword>Result</keyword><dot>.</dot><feature><location>../interface/ev_notebook_tab.xml#f_make_with_widgets</location>make_with_widgets</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature><symbol>,</symbol> <local>an_item</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_item_text</anchor><feature><location>../implementation_gtk/ev_notebook_imp.xml#f_item_text</location>item_text</feature> <symbol>(</symbol><local>an_item</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_item</location>item</feature><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>STRING_32</class>
+			<comment>--</comment><comment> Label of </comment><quoted>an_item</quoted><comment>.</comment>
+		<keyword>local</keyword>
+			<local>item_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_widget_imp.xml</location>EV_WIDGET_IMP</class>
+			<local>a_event_box</local><symbol>,</symbol> <local>a_hbox</local><symbol>,</symbol> <local>a_list</local><symbol>,</symbol> <local>a_label</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>a_cs</local><symbol>:</symbol> <class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class>
+		<keyword>do</keyword>
+			<local>item_imp</local> <symbol>?=</symbol> <local>an_item</local><dot>.</dot><feature><location>../interface/ev_widget.xml#f_implementation</location>implementation</feature>
+			<keyword>check</keyword>
+					<local>item_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<local>a_event_box</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_notebook_get_tab_label</location>gtk_notebook_get_tab_label</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_visual_widget</location>visual_widget</feature><symbol>,</symbol> <local>item_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>)</symbol>
+			<keyword>if</keyword> <local>a_event_box</local> <symbol>/=</symbol> <feature><include>False</include>default_pointer</feature> <keyword>then</keyword>
+				<local>a_hbox</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_bin_struct_child</location>gtk_bin_struct_child</feature> <symbol>(</symbol><local>a_event_box</local><symbol>)</symbol>
+				<local>a_list</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_container_children</location>gtk_container_children</feature> <symbol>(</symbol><local>a_hbox</local><symbol>)</symbol>
+				<local>a_label</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_g_list_nth_data</location>g_list_nth_data</feature> <symbol>(</symbol><local>a_list</local><symbol>,</symbol> <number>1</number><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_g_list_free</location>g_list_free</feature> <symbol>(</symbol><local>a_list</local><symbol>)</symbol>
+			<keyword>end</keyword>
+			<keyword>if</keyword> <local>a_label</local> <symbol>/=</symbol> <feature><include>False</include>default_pointer</feature> <keyword>then</keyword>
+				<keyword>create</keyword> <local>a_cs</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_share_from_pointer</location>share_from_pointer</feature><symbol> </symbol><symbol>(</symbol><symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_label_struct_label</location>gtk_label_struct_label</feature> <symbol>(</symbol><local>a_label</local><symbol>)</symbol><symbol>)</symbol>
+				<keyword>Result</keyword> <symbol>:=</symbol> <local>a_cs</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_string</location>string</feature>
+			<keyword>else</keyword>
+				<keyword>create</keyword> <keyword>Result</keyword><dot>.</dot><feature><include>False</include>make_empty</feature>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_item_pixmap</anchor><feature><location>../implementation_gtk/ev_notebook_imp.xml#f_item_pixmap</location>item_pixmap</feature> <symbol>(</symbol><local>an_item</local><symbol>:</symbol> <keyword>attached</keyword> <keyword>like</keyword> <feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_item</location>item</feature><symbol>)</symbol><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_pixmap.xml</location>EV_PIXMAP</class>
+			<comment>--</comment><comment> Pixmap of </comment><quoted>an_item</quoted><comment>.</comment>
+		<keyword>local</keyword>
+			<local>item_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_widget_imp.xml</location>EV_WIDGET_IMP</class>
+			<local>a_event_box</local><symbol>,</symbol> <local>a_hbox</local><symbol>,</symbol> <local>a_list</local><symbol>,</symbol> <local>a_image</local><symbol>,</symbol> <local>a_pixbuf</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>pix_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_pixmap_imp.xml</location>EV_PIXMAP_IMP</class>
+		<keyword>do</keyword>
+			<local>item_imp</local> <symbol>?=</symbol> <local>an_item</local><dot>.</dot><feature><location>../interface/ev_widget.xml#f_implementation</location>implementation</feature>
+			<keyword>check</keyword>
+					<local>item_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<local>a_event_box</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_notebook_get_tab_label</location>gtk_notebook_get_tab_label</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_visual_widget</location>visual_widget</feature><symbol>,</symbol> <local>item_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>)</symbol>
+			<keyword>if</keyword> <local>a_event_box</local> <symbol>/=</symbol> <feature><include>False</include>default_pointer</feature> <keyword>then</keyword>
+				<local>a_hbox</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_bin_struct_child</location>gtk_bin_struct_child</feature> <symbol>(</symbol><local>a_event_box</local><symbol>)</symbol>
+				<local>a_list</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_container_children</location>gtk_container_children</feature> <symbol>(</symbol><local>a_hbox</local><symbol>)</symbol>
+				<local>a_image</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_g_list_nth_data</location>g_list_nth_data</feature> <symbol>(</symbol><local>a_list</local><symbol>,</symbol> <number>0</number><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_g_list_free</location>g_list_free</feature> <symbol>(</symbol><local>a_list</local><symbol>)</symbol>
+				<local>a_pixbuf</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_image_get_pixbuf</location>gtk_image_get_pixbuf</feature> <symbol>(</symbol><local>a_image</local><symbol>)</symbol>
+				<keyword>if</keyword> <local>a_pixbuf</local> <symbol>/=</symbol> <feature><include>False</include>default_pointer</feature> <keyword>then</keyword>
+					<keyword>create</keyword> <keyword>Result</keyword>
+					<local>pix_imp</local> <symbol>?=</symbol> <keyword>Result</keyword><dot>.</dot><feature><location>../interface/ev_pixmap.xml#f_implementation</location>implementation</feature>
+					<keyword>check</keyword>
+							<local>pix_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+					<keyword>then</keyword>
+					<keyword>end</keyword>
+					<local>pix_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_pixmap_imp.xml#f_set_pixmap_from_pixbuf</location>set_pixmap_from_pixbuf</feature><symbol> </symbol><symbol>(</symbol><local>a_pixbuf</local><symbol>)</symbol>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status report</comment>
+
+	<anchor>f_selected_item</anchor><feature><location>../implementation_gtk/ev_notebook_imp.xml#f_selected_item</location>selected_item</feature><symbol>:</symbol> <keyword>detachable</keyword> <keyword>like</keyword> <feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_item</location>item</feature>
+			<comment>--</comment><comment> Page displayed topmost.</comment>
+		<keyword>local</keyword>
+			<local>p</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>pn</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_dynamic_list_imp.xml#f_count</location>count</feature> <symbol>&gt;</symbol> <number>0</number> <keyword>then</keyword>
+				<local>pn</local> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_notebook_imp.xml#f_selected_item_index_internal</location>selected_item_index_internal</feature> <symbol>-</symbol> <number>1</number>
+				<local>p</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_notebook_get_nth_page</location>gtk_notebook_get_nth_page</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_visual_widget</location>visual_widget</feature><symbol>,</symbol> <local>pn</local><symbol>)</symbol>
+				<keyword>if</keyword> <keyword>attached</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_widget_i.xml</location>EV_WIDGET_I</class><symbol>}</symbol> <feature><location>../implementation_gtk/ev_any_imp.xml#f_eif_object_from_c</location>eif_object_from_c</feature><symbol> </symbol><symbol>(</symbol><local>p</local><symbol>)</symbol> <keyword>as</keyword> imp <keyword>then</keyword>
+					<keyword>Result</keyword> <symbol>:=</symbol> <local>imp</local><dot>.</dot><feature><location>../implementation_interface/ev_widget_i.xml#f_interface</location>interface</feature>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_selected_item_index</anchor><feature><location>../implementation_gtk/ev_notebook_imp.xml#f_selected_item_index</location>selected_item_index</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Page index of selected item</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_dynamic_list_imp.xml#f_count</location>count</feature> <symbol>&gt;</symbol> <number>0</number> <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_notebook_imp.xml#f_selected_item_index_internal</location>selected_item_index_internal</feature>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_tab_position</anchor><feature><location>../implementation_gtk/ev_notebook_imp.xml#f_tab_position</location>tab_position</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Position of tabs.</comment>
+		<keyword>local</keyword>
+			<local>gtk_pos</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+		<keyword>do</keyword>
+			<local>gtk_pos</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_notebook_struct_tab_pos</location>gtk_notebook_struct_tab_pos</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_visual_widget</location>visual_widget</feature><symbol>)</symbol>
+			<keyword>inspect</keyword> <local>gtk_pos</local>
+			<keyword>when</keyword> <number>0</number> <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature><dot>.</dot><feature><location>../interface/ev_notebook.xml#f_tab_left</location>Tab_left</feature>
+			<keyword>when</keyword> <number>1</number> <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature><dot>.</dot><feature><location>../interface/ev_notebook.xml#f_tab_right</location>Tab_right</feature>
+			<keyword>when</keyword> <number>2</number> <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature><dot>.</dot><feature><location>../interface/ev_notebook.xml#f_tab_top</location>Tab_top</feature>
+			<keyword>when</keyword> <number>3</number> <keyword>then</keyword>
+				<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature><dot>.</dot><feature><location>../interface/ev_notebook.xml#f_tab_bottom</location>Tab_bottom</feature>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_notebook.xml</location>EV_NOTEBOOK</class><symbol>}</symbol> <comment>--</comment><comment> Status setting</comment>
+
+	<anchor>f_set_tab_position</anchor><feature><location>../implementation_gtk/ev_notebook_imp.xml#f_set_tab_position</location>set_tab_position</feature> <symbol>(</symbol><local>a_tab_position</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Display tabs at </comment><quoted>a_position</quoted><comment>.</comment>
+		<keyword>local</keyword>
+			<local>gtk_pos</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <local>a_tab_position</local> <symbol>=</symbol> <feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature><dot>.</dot><feature><location>../interface/ev_notebook.xml#f_tab_left</location>Tab_left</feature> <keyword>then</keyword>
+				<local>gtk_pos</local> <symbol>:=</symbol> <number>0</number>
+			<keyword>elseif</keyword> <local>a_tab_position</local> <symbol>=</symbol> <feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature><dot>.</dot><feature><location>../interface/ev_notebook.xml#f_tab_right</location>Tab_right</feature> <keyword>then</keyword>
+				<local>gtk_pos</local> <symbol>:=</symbol> <number>1</number>
+			<keyword>elseif</keyword> <local>a_tab_position</local> <symbol>=</symbol> <feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature><dot>.</dot><feature><location>../interface/ev_notebook.xml#f_tab_top</location>Tab_top</feature> <keyword>then</keyword>
+				<local>gtk_pos</local> <symbol>:=</symbol> <number>2</number>
+			<keyword>elseif</keyword> <local>a_tab_position</local> <symbol>=</symbol> <feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature><dot>.</dot><feature><location>../interface/ev_notebook.xml#f_tab_bottom</location>Tab_bottom</feature> <keyword>then</keyword>
+				<local>gtk_pos</local> <symbol>:=</symbol> <number>3</number>
+			<keyword>end</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_notebook_set_tab_pos</location>gtk_notebook_set_tab_pos</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_visual_widget</location>visual_widget</feature><symbol>,</symbol> <local>gtk_pos</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_select_item</anchor><feature><location>../implementation_gtk/ev_notebook_imp.xml#f_select_item</location>select_item</feature> <symbol>(</symbol><local>an_item</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_item</location>item</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Display </comment><quoted>an_item</quoted><comment> above all others.</comment>
+		<keyword>local</keyword>
+			<local>item_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_widget_imp.xml</location>EV_WIDGET_IMP</class>
+		<keyword>do</keyword>
+			<local>item_imp</local> <symbol>?=</symbol> <local>an_item</local><dot>.</dot><feature><location>../interface/ev_widget.xml#f_implementation</location>implementation</feature>
+			<keyword>check</keyword>
+				<tag>an_item_has_implementation</tag><symbol>:</symbol> <local>item_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_notebook_set_page</location>gtk_notebook_set_page</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_visual_widget</location>visual_widget</feature><symbol>,</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_notebook_page_num</location>gtk_notebook_page_num</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_visual_widget</location>visual_widget</feature><symbol>,</symbol> <local>item_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>)</symbol><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Element change</comment>
+
+	<anchor>f_remove_i_th</anchor><feature><location>../implementation_gtk/ev_notebook_imp.xml#f_remove_i_th</location>remove_i_th</feature> <symbol>(</symbol><local>i</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Remove item at </comment><quoted>i</quoted><comment>-th position.</comment>
+		<keyword>do</keyword>
+			<keyword><location>../implementation_gtk/ev_widget_list_imp.xml#f_remove_i_th</location>Precursor</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_widget_list_imp.xml</location>EV_WIDGET_LIST_IMP</class><symbol>}</symbol><symbol> </symbol><symbol>(</symbol><local>i</local><symbol>)</symbol>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_dynamic_list_imp.xml#f_count</location>count</feature> <symbol>&gt;</symbol> <number>0</number> <keyword>then</keyword>
+				<feature><location>../implementation_gtk/ev_notebook_imp.xml#f_selected_item_index_internal</location>selected_item_index_internal</feature> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_notebook_get_current_page</location>gtk_notebook_get_current_page</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_visual_widget</location>visual_widget</feature><symbol>)</symbol> <symbol>+</symbol> <number>1</number>
+			<keyword>else</keyword>
+				<feature><location>../implementation_gtk/ev_notebook_imp.xml#f_selected_item_index_internal</location>selected_item_index_internal</feature> <symbol>:=</symbol> <number>0</number>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_replace</anchor><feature><location>../implementation_gtk/ev_notebook_imp.xml#f_replace</location>replace</feature> <symbol>(</symbol><local>v</local><symbol>:</symbol> <keyword>attached</keyword> <keyword>like</keyword> <feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_item</location>item</feature><symbol>)</symbol>
+			<comment>--</comment><comment> Replace current item by </comment><quoted>v</quoted><comment>.</comment>
+		<keyword>local</keyword>
+			<local>i</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+		<keyword>do</keyword>
+			<local>i</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_notebook_get_current_page</location>gtk_notebook_get_current_page</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_visual_widget</location>visual_widget</feature><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_notebook_imp.xml#f_remove_i_th</location>remove_i_th</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_index</location>index</feature><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_widget_list_imp.xml#f_insert_i_th</location>insert_i_th</feature><symbol> </symbol><symbol>(</symbol><local>v</local><symbol>,</symbol> <feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_index</location>index</feature><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_notebook_set_page</location>gtk_notebook_set_page</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_visual_widget</location>visual_widget</feature><symbol>,</symbol> <local>i</local><symbol>)</symbol>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_notebook.xml</location>EV_NOTEBOOK</class><symbol>,</symbol> <class><location>../implementation_gtk/ev_notebook_tab_imp.xml</location>EV_NOTEBOOK_TAB_IMP</class><symbol>}</symbol> <comment>--</comment><comment> Element change</comment>
+
+	<anchor>f_ensure_tab_label</anchor><feature><location>../implementation_gtk/ev_notebook_imp.xml#f_ensure_tab_label</location>ensure_tab_label</feature> <symbol>(</symbol><local>tab_widget</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>)</symbol>
+			<comment>--</comment><comment> Ensure the is a tab label widget for </comment><quoted>tab_widget</quoted><comment>.</comment>
+		<keyword>local</keyword>
+			<local>a_event_box</local><symbol>,</symbol> <local>a_hbox</local><symbol>,</symbol> <local>a_image</local><symbol>,</symbol> <local>a_label</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_notebook_get_tab_label</location>gtk_notebook_get_tab_label</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_visual_widget</location>visual_widget</feature><symbol>,</symbol> <local>tab_widget</local><symbol>)</symbol> <symbol>=</symbol> <feature><include>False</include>default_pointer</feature> <keyword>then</keyword>
+				<local>a_event_box</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_event_box_new</location>gtk_event_box_new</feature>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_event_box_set_visible_window</location>gtk_event_box_set_visible_window</feature> <symbol>(</symbol><local>a_event_box</local><symbol>,</symbol> <keyword>False</keyword><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_widget_show</location>gtk_widget_show</feature> <symbol>(</symbol><local>a_event_box</local><symbol>)</symbol>
+				<local>a_hbox</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_hbox_new</location>gtk_hbox_new</feature> <symbol>(</symbol><keyword>False</keyword><symbol>,</symbol> <feature><location>../implementation_gtk/ev_notebook_imp.xml#f_default_tab_label_spacing</location>Default_tab_label_spacing</feature><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_container_add</location>gtk_container_add</feature> <symbol>(</symbol><local>a_event_box</local><symbol>,</symbol> <local>a_hbox</local><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_widget_show</location>gtk_widget_show</feature> <symbol>(</symbol><local>a_hbox</local><symbol>)</symbol>
+				<local>a_image</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_image_new</location>gtk_image_new</feature>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_widget_show</location>gtk_widget_show</feature> <symbol>(</symbol><local>a_image</local><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_container_add</location>gtk_container_add</feature> <symbol>(</symbol><local>a_hbox</local><symbol>,</symbol> <local>a_image</local><symbol>)</symbol>
+				<local>a_label</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_label_new</location>gtk_label_new</feature> <symbol>(</symbol><feature><include>False</include>default_pointer</feature><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_widget_show</location>gtk_widget_show</feature> <symbol>(</symbol><local>a_label</local><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_container_add</location>gtk_container_add</feature> <symbol>(</symbol><local>a_hbox</local><symbol>,</symbol> <local>a_label</local><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_notebook_set_tab_label</location>gtk_notebook_set_tab_label</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_visual_widget</location>visual_widget</feature><symbol>,</symbol> <local>tab_widget</local><symbol>,</symbol> <local>a_event_box</local><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_default_tab_label_spacing</anchor><feature><location>../implementation_gtk/ev_notebook_imp.xml#f_default_tab_label_spacing</location>Default_tab_label_spacing</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class> <symbol>=</symbol> <number>2</number>
+			<comment>--</comment><comment> Space between pixmap and text in the tab label.</comment>
+
+	<anchor>f_set_item_text</anchor><feature><location>../implementation_gtk/ev_notebook_imp.xml#f_set_item_text</location>set_item_text</feature> <symbol>(</symbol><local>an_item</local><symbol>:</symbol> <keyword>like</keyword> <feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_item</location>item</feature><symbol>;</symbol> <local>a_text</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>a_text</quoted><comment> to the label for </comment><quoted>an_item</quoted><comment>.</comment>
+		<keyword>local</keyword>
+			<local>item_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_widget_imp.xml</location>EV_WIDGET_IMP</class>
+			<local>a_cs</local><symbol>:</symbol> <class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class>
+			<local>a_event_box</local><symbol>,</symbol> <local>a_hbox</local><symbol>,</symbol> <local>a_list</local><symbol>,</symbol> <local>a_label</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+		<keyword>do</keyword>
+			<local>item_imp</local> <symbol>?=</symbol> <local>an_item</local><dot>.</dot><feature><location>../interface/ev_widget.xml#f_implementation</location>implementation</feature>
+			<keyword>check</keyword>
+					<local>item_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<local>a_cs</local> <symbol>:=</symbol> <keyword>create</keyword> <symbol>{</symbol><keyword>attached</keyword> <class><location>../implementation_gtk/ev_gtk_c_string.xml</location>EV_GTK_C_STRING</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_set_with_eiffel_string</location>set_with_eiffel_string</feature><symbol> </symbol><symbol>(</symbol><local>a_text</local><symbol>)</symbol>
+			<feature><location>../implementation_gtk/ev_notebook_imp.xml#f_ensure_tab_label</location>ensure_tab_label</feature><symbol> </symbol><symbol>(</symbol><local>item_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>)</symbol>
+			<local>a_event_box</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_notebook_get_tab_label</location>gtk_notebook_get_tab_label</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_visual_widget</location>visual_widget</feature><symbol>,</symbol> <local>item_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>)</symbol>
+			<local>a_hbox</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_bin_struct_child</location>gtk_bin_struct_child</feature> <symbol>(</symbol><local>a_event_box</local><symbol>)</symbol>
+			<local>a_list</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_container_children</location>gtk_container_children</feature> <symbol>(</symbol><local>a_hbox</local><symbol>)</symbol>
+			<local>a_label</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_g_list_nth_data</location>g_list_nth_data</feature> <symbol>(</symbol><local>a_list</local><symbol>,</symbol> <number>1</number><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_label_set_text</location>gtk_label_set_text</feature> <symbol>(</symbol><local>a_label</local><symbol>,</symbol> <local>a_cs</local><dot>.</dot><feature><location>../implementation_gtk/ev_gtk_c_string.xml#f_item</location>item</feature><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_g_list_free</location>g_list_free</feature> <symbol>(</symbol><local>a_list</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_set_item_pixmap</anchor><feature><location>../implementation_gtk/ev_notebook_imp.xml#f_set_item_pixmap</location>set_item_pixmap</feature> <symbol>(</symbol><local>an_item</local><symbol>:</symbol> <keyword>attached</keyword> <keyword>like</keyword> <feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_item</location>item</feature><symbol>;</symbol> <local>a_pixmap</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_pixmap.xml</location>EV_PIXMAP</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>a_pixmap</quoted><comment> to the tab for </comment><quoted>an_item</quoted><comment>.</comment>
+		<keyword>local</keyword>
+			<local>item_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_widget_imp.xml</location>EV_WIDGET_IMP</class>
+			<local>a_event_box</local><symbol>,</symbol> <local>a_hbox</local><symbol>,</symbol> <local>a_image</local><symbol>,</symbol> <local>a_list</local><symbol>,</symbol> <local>a_pixbuf</local><symbol>:</symbol> <class><include>False</include>POINTER</class>
+			<local>a_pix_imp</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../implementation_gtk/ev_pixmap_imp.xml</location>EV_PIXMAP_IMP</class>
+		<keyword>do</keyword>
+			<local>item_imp</local> <symbol>?=</symbol> <local>an_item</local><dot>.</dot><feature><location>../interface/ev_widget.xml#f_implementation</location>implementation</feature>
+			<keyword>check</keyword>
+					<local>item_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+			<keyword>then</keyword>
+			<keyword>end</keyword>
+			<feature><location>../implementation_gtk/ev_notebook_imp.xml#f_ensure_tab_label</location>ensure_tab_label</feature><symbol> </symbol><symbol>(</symbol><local>item_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>)</symbol>
+			<local>a_event_box</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_notebook_get_tab_label</location>gtk_notebook_get_tab_label</feature> <symbol>(</symbol><feature><location>../implementation_gtk/ev_any_imp.xml#f_visual_widget</location>visual_widget</feature><symbol>,</symbol> <local>item_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_any_imp.xml#f_c_object</location>c_object</feature><symbol>)</symbol>
+			<local>a_hbox</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_bin_struct_child</location>gtk_bin_struct_child</feature> <symbol>(</symbol><local>a_event_box</local><symbol>)</symbol>
+			<local>a_list</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_container_children</location>gtk_container_children</feature> <symbol>(</symbol><local>a_hbox</local><symbol>)</symbol>
+			<local>a_image</local> <symbol>:=</symbol> <symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_g_list_nth_data</location>g_list_nth_data</feature> <symbol>(</symbol><local>a_list</local><symbol>,</symbol> <number>0</number><symbol>)</symbol>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_g_list_free</location>g_list_free</feature> <symbol>(</symbol><local>a_list</local><symbol>)</symbol>
+			<keyword>if</keyword> <local>a_pixmap</local> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>then</keyword>
+				<local>a_pix_imp</local> <symbol>?=</symbol> <local>a_pixmap</local><dot>.</dot><feature><location>../interface/ev_pixmap.xml#f_implementation</location>implementation</feature>
+				<keyword>check</keyword>
+						<local>a_pix_imp</local> <symbol>/=</symbol> <keyword>Void</keyword>
+				<keyword>then</keyword>
+				<keyword>end</keyword>
+				<local>a_pixbuf</local> <symbol>:=</symbol> <local>a_pix_imp</local><dot>.</dot><feature><location>../implementation_gtk/ev_drawable_imp.xml#f_pixbuf_from_drawable_with_size</location>pixbuf_from_drawable_with_size</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_interface/ev_item_pixmap_scaler_i.xml#f_pixmaps_width</location>pixmaps_width</feature><symbol>,</symbol> <feature><location>../implementation_interface/ev_item_pixmap_scaler_i.xml#f_pixmaps_height</location>pixmaps_height</feature><symbol>)</symbol>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_image_set_from_pixbuf</location>gtk_image_set_from_pixbuf</feature> <symbol>(</symbol><local>a_image</local><symbol>,</symbol> <local>a_pixbuf</local><symbol>)</symbol>
+			<keyword>else</keyword>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk2.xml</location>GTK2</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk2.xml#f_gtk_image_set_from_pixbuf</location>gtk_image_set_from_pixbuf</feature> <symbol>(</symbol><local>a_image</local><symbol>,</symbol> <feature><include>False</include>default_pointer</feature><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_intermediary_routines.xml</location>EV_INTERMEDIARY_ROUTINES</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_page_switch</anchor><feature><location>../implementation_gtk/ev_notebook_imp.xml#f_page_switch</location>page_switch</feature> <symbol>(</symbol><local>a_page</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Called when the page is switched.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <keyword>not</keyword> <feature><location>../implementation_interface/ev_any_i.xml#f_is_destroyed</location>is_destroyed</feature> <keyword>then</keyword>
+				<feature><location>../implementation_gtk/ev_notebook_imp.xml#f_selected_item_index_internal</location>selected_item_index_internal</feature> <symbol>:=</symbol> <local>a_page</local> <symbol>+</symbol> <number>1</number>
+				<keyword>if</keyword> <feature><location>../implementation_interface/ev_notebook_action_sequences_i.xml#f_selection_actions_internal</location>selection_actions_internal</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>and</keyword> <feature><location>../implementation_gtk/ev_dynamic_list_imp.xml#f_count</location>count</feature> <symbol>&gt;</symbol> <number>0</number> <keyword>then</keyword>
+					<feature><location>../implementation_interface/ev_notebook_action_sequences_i.xml#f_selection_actions_internal</location>selection_actions_internal</feature><dot>.</dot><feature><location>../interface/ev_lite_action_sequence.xml#f_call</location>call</feature><symbol> </symbol><symbol>(</symbol><keyword>Void</keyword><symbol>)</symbol>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_selected_item_index_internal</anchor><feature><location>../implementation_gtk/ev_notebook_imp.xml#f_selected_item_index_internal</location>selected_item_index_internal</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Index </comment><feature><location>../implementation_gtk/ev_notebook_imp.xml#f_selected_item</location>selected_item</feature>
+
+	<anchor>f_gtk_insert_i_th</anchor><feature><location>../implementation_gtk/ev_notebook_imp.xml#f_gtk_insert_i_th</location>gtk_insert_i_th</feature> <symbol>(</symbol><local>a_container</local><symbol>,</symbol> <local>a_child</local><symbol>:</symbol> <class><include>False</include>POINTER</class><symbol>;</symbol> <local>a_position</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Move </comment><quoted>a_child</quoted><comment> to </comment><quoted>a_position</quoted><comment> in </comment><quoted>a_container</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_container_add</location>gtk_container_add</feature> <symbol>(</symbol><local>a_container</local><symbol>,</symbol> <local>a_child</local><symbol>)</symbol>
+			<keyword>if</keyword> <local>a_position</local> <symbol>&lt;</symbol> <feature><location>../implementation_gtk/ev_dynamic_list_imp.xml#f_count</location>count</feature> <keyword>then</keyword>
+				<symbol>{</symbol><class><location>../implementation_gtk/gtk.xml</location>GTK</class><symbol>}</symbol><dot>.</dot><feature><location>../implementation_gtk/gtk.xml#f_gtk_notebook_reorder_child</location>gtk_notebook_reorder_child</feature> <symbol>(</symbol><local>a_container</local><symbol>,</symbol> <local>a_child</local><symbol>,</symbol> <local>a_position</local><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>,</symbol> <class><location>../interface/ev_any.xml</location>EV_ANY</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_interface</anchor><feature><location>../implementation_gtk/ev_notebook_imp.xml#f_interface</location>interface</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_notebook.xml</location>EV_NOTEBOOK</class>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2017, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_gtk/ev_notebook_imp.xml</location>EV_NOTEBOOK_IMP</class></system>
+

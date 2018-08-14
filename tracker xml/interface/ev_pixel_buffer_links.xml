@@ -1,0 +1,30 @@
+<system>
+<keyword>class</keyword>
+	<class><location>../interface/ev_pixel_buffer_links.xml</location>EV_PIXEL_BUFFER</class>
+
+<keyword>Ancestors</keyword>
+	<class><location>../interface/ev_any_links.xml</location>EV_ANY</class><char>*</char>
+
+<keyword>Clients</keyword>
+	<class><location>../implementation_interface/ev_drawable_i_links.xml</location>EV_DRAWABLE_I</class><char>*</char>
+	<class><location>../implementation_gtk/ev_drawable_imp_links.xml</location>EV_DRAWABLE_IMP</class><char>*</char>
+	<class><location>../interface/ev_pixel_buffer_links.xml</location>EV_PIXEL_BUFFER</class>
+	<class><location>../implementation_interface/ev_pixel_buffer_i_links.xml</location>EV_PIXEL_BUFFER_I</class><char>*</char>
+	<class><location>../implementation_gtk/ev_pixel_buffer_imp_links.xml</location>EV_PIXEL_BUFFER_IMP</class>
+	<class><location>../interface/ev_pixel_buffer_iterator_links.xml</location>EV_PIXEL_BUFFER_ITERATOR</class>
+	<class><location>../implementation_gtk/ev_pixmap_imp_links.xml</location>EV_PIXMAP_IMP</class>
+	<class><location>../implementation_gtk/ev_pointer_style_imp_links.xml</location>EV_POINTER_STYLE_IMP</class>
+	<class><location>../interface/ev_screen_links.xml</location>EV_SCREEN</class>
+	<class><location>../implementation_gtk/ev_stock_pixmaps_imp_links.xml</location>EV_STOCK_PIXMAPS_IMP</class>
+
+<keyword>Suppliers</keyword>
+	<class><include>False</include>BOOLEAN</class>
+	<class><location>../interface/ev_pixel_buffer_links.xml</location>EV_PIXEL_BUFFER</class>
+	<class><location>../implementation_gtk/ev_pixel_buffer_imp_links.xml</location>EV_PIXEL_BUFFER_IMP</class>
+	<class><location>../interface/ev_pixmap_links.xml</location>EV_PIXMAP</class>
+	<class><location>../interface/ev_rectangle_links.xml</location>EV_RECTANGLE</class>
+	<class><include>False</include>INTEGER_32</class>
+	<class><include>False</include>PATH</class>
+	<class><include>False</include>READABLE_STRING_GENERAL</class><char>*</char>
+
+</system>

@@ -1,0 +1,103 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;EiffelVision file selection dialog, implementation interface.&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2012-12-09 08:17:19 -0800 (Sun, 09 Dec 2012) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 90130 $&quot;</string>
+
+<keyword>deferred</keyword> <keyword>class</keyword> 
+	<class><location>../implementation_interface/ev_file_dialog_i.xml</location>EV_FILE_DIALOG_I</class>
+
+<keyword>inherit</keyword>
+	<class><location>../implementation_interface/ev_standard_dialog_i.xml</location>EV_STANDARD_DIALOG_I</class>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_full_file_path</anchor><feature><location>../implementation_interface/ev_file_dialog_i.xml#f_full_file_path</location>full_file_path</feature><symbol>:</symbol> <class><include>False</include>PATH</class>
+			<comment>--</comment><comment> Full path of currently selected file including path.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_filter</anchor><feature><location>../implementation_interface/ev_file_dialog_i.xml#f_filter</location>filter</feature><symbol>:</symbol> <class><include>False</include>STRING_32</class>
+			<comment>--</comment><comment> Filter currently applied to file list.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_filters</anchor><feature><location>../implementation_interface/ev_file_dialog_i.xml#f_filters</location>filters</feature><symbol>:</symbol> <class><include>False</include>ARRAYED_LIST</class> <symbol>[</symbol><class><include>False</include>TUPLE</class> <symbol>[</symbol><local>filter</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>;</symbol> <local>text</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>]</symbol><symbol>]</symbol>
+			<comment>--</comment><comment> All filters currently applied to file list.</comment>
+			<comment>--</comment><comment> First element represents the filter e.g &quot;*.txt&quot;.</comment>
+			<comment>--</comment><comment> Second element represents the displayed text</comment>
+			<comment>--</comment><comment> e.g. &quot;Text files (*.txt)&quot;.</comment>
+
+	<anchor>f_start_path</anchor><feature><location>../implementation_interface/ev_file_dialog_i.xml#f_start_path</location>start_path</feature><symbol>:</symbol> <class><include>False</include>PATH</class>
+			<comment>--</comment><comment> Base directory where browsing will start.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status report</comment>
+
+	<anchor>f_selected_filter_index</anchor><feature><location>../implementation_interface/ev_file_dialog_i.xml#f_selected_filter_index</location>selected_filter_index</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> One based index of selected filter within </comment><feature><location>../implementation_interface/ev_file_dialog_i.xml#f_filters</location>filters</feature><comment>, or</comment>
+			<comment>--</comment><comment> zero if no filters set.</comment>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>result_zero_when_no_filters</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_file_dialog_i.xml#f_filters</location>filters</feature><dot>.</dot><feature><include>False</include>is_empty</feature> <keyword>implies</keyword> <keyword>Result</keyword> <symbol>=</symbol> <number>0</number>
+			<tag>valid_result_when_filters_set</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../implementation_interface/ev_file_dialog_i.xml#f_filters</location>filters</feature><dot>.</dot><feature><include>False</include>is_empty</feature> <keyword>implies</keyword> <keyword>Result</keyword> <symbol>&gt;=</symbol> <number>1</number> <keyword>and</keyword> <keyword>Result</keyword> <symbol>&lt;=</symbol> <feature><location>../implementation_interface/ev_file_dialog_i.xml#f_filters</location>filters</feature><dot>.</dot><feature><include>False</include>count</feature>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Element change</comment>
+
+	<anchor>f_set_filter</anchor><feature><location>../implementation_interface/ev_file_dialog_i.xml#f_set_filter</location>set_filter</feature> <symbol>(</symbol><local>a_filter</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><quoted>a_filter</quoted><comment> as new filter.</comment>
+		<keyword>require</keyword>
+			<tag>a_filter_not_void</tag><symbol>:</symbol> <local>a_filter</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>assigned</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_file_dialog_i.xml#f_filter</location>filter</feature><dot>.</dot><feature><include>False</include>same_string_general</feature><symbol> </symbol><symbol>(</symbol><local>a_filter</local><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_set_full_file_path</anchor><feature><location>../implementation_interface/ev_file_dialog_i.xml#f_set_full_file_path</location>set_full_file_path</feature> <symbol>(</symbol><local>a_path</local><symbol>:</symbol> <class><include>False</include>PATH</class><symbol>)</symbol>
+			<comment>--</comment><comment> Make </comment><quoted>a_path</quoted><comment> the selected file.</comment>
+		<keyword>require</keyword>
+			<tag>a_path_not_void</tag><symbol>:</symbol> <local>a_path</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_set_start_path</anchor><feature><location>../implementation_interface/ev_file_dialog_i.xml#f_set_start_path</location>set_start_path</feature> <symbol>(</symbol><local>a_path</local><symbol>:</symbol> <class><include>False</include>PATH</class><symbol>)</symbol>
+			<comment>--</comment><comment> Make </comment><quoted>a_path</quoted><comment> the base directory.</comment>
+		<keyword>require</keyword>
+			<tag>a_path_not_void</tag><symbol>:</symbol> <local>a_path</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>assigned</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_file_dialog_i.xml#f_start_path</location>start_path</feature> <symbol>~</symbol> <local>a_path</local>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_file_dialog.xml</location>EV_FILE_DIALOG</class><symbol>}</symbol> <comment>--</comment><comment> Contract support</comment>
+
+	<anchor>f_valid_file_name</anchor><feature><location>../implementation_interface/ev_file_dialog_i.xml#f_valid_file_name</location>valid_file_name</feature> <symbol>(</symbol><local>a_name</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is </comment><quoted>a_name</quoted><comment> a valid file_name on the current platform?</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_valid_file_title</anchor><feature><location>../implementation_interface/ev_file_dialog_i.xml#f_valid_file_title</location>valid_file_title</feature> <symbol>(</symbol><local>a_title</local><symbol>:</symbol> <class><include>False</include>READABLE_STRING_GENERAL</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is </comment><quoted>a_title</quoted><comment> a valid file title on the current platform?</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+	
+<keyword>invariant</keyword>
+	<tag>filters_not_void</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_file_dialog_i.xml#f_filters</location>filters</feature> <symbol>/=</symbol> <keyword>Void</keyword>
+
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2012, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_interface/ev_file_dialog_i.xml</location>EV_FILE_DIALOG_I</class></system>
+

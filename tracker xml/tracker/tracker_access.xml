@@ -1,0 +1,23 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Singleton access to the default business model.&quot;</string>
+	<indexing_tag>author</indexing_tag><symbol>:</symbol> <string>&quot;Andres Rojas and Victor Vavan&quot;</string>
+
+<keyword>expanded</keyword> <keyword>class</keyword> 
+	<class><location>../tracker/tracker_access.xml</location>TRACKER_ACCESS</class>
+
+<keyword>create</keyword> 
+	<feature><include>False</include>default_create</feature>
+
+<keyword>feature</keyword> 
+
+	<anchor>f_m</anchor><feature><location>../tracker/tracker_access.xml#f_m</location>M</feature><symbol>:</symbol> <class><location>../tracker/tracker.xml</location>TRACKER</class>
+		<keyword>once</keyword>
+			<keyword>create</keyword> <keyword>Result</keyword><dot>.</dot><feature><location>../tracker/tracker.xml#f_make</location>make</feature>
+		<keyword>end</keyword>
+	
+<keyword>invariant</keyword>
+		<feature><location>../tracker/tracker_access.xml#f_m</location>M</feature> <symbol>=</symbol> <feature><location>../tracker/tracker_access.xml#f_m</location>M</feature>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../tracker/tracker_access.xml</location>TRACKER_ACCESS</class></system>
+

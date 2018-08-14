@@ -1,0 +1,181 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;EiffelVision box, implementation interface.&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>keywords</indexing_tag><symbol>:</symbol> <string>&quot;container, box&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2012-05-02 22:50:26 -0700 (Wed, 02 May 2012) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 88680 $&quot;</string>
+
+<keyword>deferred</keyword> <keyword>class</keyword> 
+	<class><location>../implementation_interface/ev_box_i.xml</location>EV_BOX_I</class>
+
+<keyword>inherit</keyword>
+	<class><location>../implementation_interface/ev_widget_list_i.xml</location>EV_WIDGET_LIST_I</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_interface/ev_box_i.xml#f_interface</location>interface</feature>
+		<keyword>end</keyword>
+
+	<class><location>../implementation_interface/ev_dockable_target_i.xml</location>EV_DOCKABLE_TARGET_I</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_interface/ev_box_i.xml#f_interface</location>interface</feature>
+		<keyword>end</keyword>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Constants</comment>
+
+	<anchor>f_default_homogeneous</anchor><feature><location>../implementation_interface/ev_box_i.xml#f_default_homogeneous</location>Default_homogeneous</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class> <symbol>=</symbol> <keyword>False</keyword>
+
+	<anchor>f_default_spacing</anchor><feature><location>../implementation_interface/ev_box_i.xml#f_default_spacing</location>Default_spacing</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class> <symbol>=</symbol> <number>0</number>
+
+	<anchor>f_default_border_width</anchor><feature><location>../implementation_interface/ev_box_i.xml#f_default_border_width</location>Default_border_width</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class> <symbol>=</symbol> <number>0</number>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_is_homogeneous</anchor><feature><location>../implementation_interface/ev_box_i.xml#f_is_homogeneous</location>is_homogeneous</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Are all children restriced to be the same size.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_border_width</anchor><feature><location>../implementation_interface/ev_box_i.xml#f_border_width</location>border_width</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Width of border around container in pixels.</comment>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>positive_result</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>&gt;=</symbol> <number>0</number>
+		<keyword>end</keyword>
+
+	<anchor>f_padding</anchor><feature><location>../implementation_interface/ev_box_i.xml#f_padding</location>padding</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Space between children in pixels.</comment>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>positive</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>&gt;=</symbol> <number>0</number>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_any.xml</location>EV_ANY</class><symbol>,</symbol> <class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Status report</comment>
+
+	<anchor>f_is_item_expanded</anchor><feature><location>../implementation_interface/ev_box_i.xml#f_is_item_expanded</location>is_item_expanded</feature> <symbol>(</symbol><local>child</local><symbol>:</symbol> <class><location>../interface/ev_widget.xml</location>EV_WIDGET</class><symbol>)</symbol><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is </comment><quoted>child</quoted><comment> expanded to occupy available spare space.</comment>
+		<keyword>require</keyword>
+			<tag>has_child</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_has</location>has</feature><symbol> </symbol><symbol>(</symbol><local>child</local><symbol>)</symbol>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_any.xml</location>EV_ANY</class><symbol>,</symbol> <class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Status settings</comment>
+
+	<anchor>f_set_homogeneous</anchor><feature><location>../implementation_interface/ev_box_i.xml#f_set_homogeneous</location>set_homogeneous</feature> <symbol>(</symbol><local>flag</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set whether every child is the same size.</comment>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>homogeneous_set</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_box_i.xml#f_is_homogeneous</location>is_homogeneous</feature> <symbol>=</symbol> <local>flag</local>
+		<keyword>end</keyword>
+
+	<anchor>f_set_border_width</anchor><feature><location>../implementation_interface/ev_box_i.xml#f_set_border_width</location>set_border_width</feature> <symbol>(</symbol><local>value</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>value</quoted><comment> to </comment><feature><location>../implementation_interface/ev_box_i.xml#f_border_width</location>border_width</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>positive_value</tag><symbol>:</symbol> <local>value</local> <symbol>&gt;=</symbol> <number>0</number>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>border_assigned</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_box_i.xml#f_border_width</location>border_width</feature> <symbol>=</symbol> <local>value</local>
+		<keyword>end</keyword>
+
+	<anchor>f_set_padding</anchor><feature><location>../implementation_interface/ev_box_i.xml#f_set_padding</location>set_padding</feature> <symbol>(</symbol><local>value</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>value</quoted><comment> to </comment><feature><location>../implementation_interface/ev_box_i.xml#f_padding</location>padding</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>positive_value</tag><symbol>:</symbol> <local>value</local> <symbol>&gt;=</symbol> <number>0</number>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_set_child_expandable</anchor><feature><location>../implementation_interface/ev_box_i.xml#f_set_child_expandable</location>set_child_expandable</feature> <symbol>(</symbol><local>child</local><symbol>:</symbol> <class><location>../interface/ev_widget.xml</location>EV_WIDGET</class><symbol>;</symbol> <local>flag</local><symbol>:</symbol> <class><include>False</include>BOOLEAN</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set whether </comment><quoted>child</quoted><comment> expands to fill avalible spare space.</comment>
+		<keyword>require</keyword>
+			<tag>has_child</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_has</location>has</feature><symbol> </symbol><symbol>(</symbol><local>child</local><symbol>)</symbol>
+		<keyword>deferred</keyword>
+		<keyword>ensure</keyword>
+			<tag>flag_assigned</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_box_i.xml#f_is_item_expanded</location>is_item_expanded</feature><symbol> </symbol><symbol>(</symbol><local>child</local><symbol>)</symbol> <symbol>=</symbol> <local>flag</local>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_dockable_source_i.xml</location>EV_DOCKABLE_SOURCE_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_pointer_offset</anchor><feature><location>../implementation_interface/ev_box_i.xml#f_pointer_offset</location>pointer_offset</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Offset of mouse pointer coordinate matching orientation, into </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_docking_dimension_of_current_item</anchor><feature><location>../implementation_interface/ev_box_i.xml#f_docking_dimension_of_current_item</location>docking_dimension_of_current_item</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Dimension of </comment><quoted>interface.item</quoted><comment> matching orientation of </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_docking_dimension_of_current</anchor><feature><location>../implementation_interface/ev_box_i.xml#f_docking_dimension_of_current</location>docking_dimension_of_current</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Dimension of </comment><quoted>Current</quoted><comment> matching orientation of </comment><quoted>Current</quoted>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_insertion_position</anchor><feature><location>../implementation_interface/ev_box_i.xml#f_insertion_position</location>insertion_position</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> </comment><quoted>Result</quoted><comment> is insertion position in </comment><quoted>Current</quoted><comment> based on</comment>
+			<comment>--</comment><comment> Current screen pointer.</comment>
+		<keyword>local</keyword>
+			<local>curs</local><symbol>:</symbol> <class><include>False</include>CURSOR</class>
+			<local>offset</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<local>current_position</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<local>last_position</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<local>temp1</local><symbol>,</symbol> <local>temp2</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>:=</symbol> <number>-1</number>
+			<local>curs</local> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_cursor</location>cursor</feature>
+			<local>offset</local> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_box_i.xml#f_pointer_offset</location>pointer_offset</feature>
+			<keyword>if</keyword> <local>offset</local> <symbol>&gt;=</symbol> <number>0</number> <keyword>and</keyword> <local>offset</local> <symbol>&lt;=</symbol> <feature><location>../implementation_interface/ev_box_i.xml#f_docking_dimension_of_current</location>docking_dimension_of_current</feature> <keyword>then</keyword>
+				<keyword>if</keyword> <local>offset</local> <symbol>&gt;=</symbol> <feature><location>../implementation_interface/ev_box_i.xml#f_docking_dimension_of_current</location>docking_dimension_of_current</feature> <symbol>-</symbol> <feature><location>../implementation_interface/ev_box_i.xml#f_border_width</location>border_width</feature> <keyword>or</keyword> <feature><location>../implementation_interface/ev_container_i.xml#f_count</location>count</feature> <symbol>=</symbol> <number>0</number> <keyword>or</keyword> <symbol>(</symbol><feature><location>../implementation_interface/ev_container_i.xml#f_count</location>count</feature> <symbol>=</symbol> <number>1</number> <keyword>and then</keyword> <feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_i_th</location>i_th</feature><symbol> </symbol><symbol>(</symbol><number>1</number><symbol>)</symbol> <symbol>=</symbol> <feature><location>../implementation_interface/ev_shared_transport_i.xml#f_insert_label</location>Insert_label</feature><symbol>)</symbol> <keyword>then</keyword>
+					<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_container_i.xml#f_count</location>count</feature> <symbol>+</symbol> <number>1</number>
+				<keyword>elseif</keyword> <local>offset</local> <symbol>&lt;</symbol> <feature><location>../implementation_interface/ev_box_i.xml#f_border_width</location>border_width</feature> <keyword>then</keyword>
+					<keyword>Result</keyword> <symbol>:=</symbol> <number>1</number>
+				<keyword>else</keyword>
+					<keyword>from</keyword>
+						<feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_start</location>start</feature>
+						<local>last_position</local> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_box_i.xml#f_border_width</location>border_width</feature>
+					<keyword>until</keyword>
+						<keyword>Result</keyword> <symbol>/=</symbol> <number>-1</number>
+					<keyword>loop</keyword>
+						<local>current_position</local> <symbol>:=</symbol> <local>current_position</local> <symbol>+</symbol> <feature><location>../implementation_interface/ev_box_i.xml#f_docking_dimension_of_current_item</location>docking_dimension_of_current_item</feature>
+						<keyword>if</keyword> <feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_index</location>index</feature> <symbol>=</symbol> <number>1</number> <keyword>then</keyword>
+							<local>current_position</local> <symbol>:=</symbol> <local>current_position</local> <symbol>+</symbol> <feature><location>../implementation_interface/ev_box_i.xml#f_border_width</location>border_width</feature>
+						<keyword>else</keyword>
+							<local>current_position</local> <symbol>:=</symbol> <local>current_position</local> <symbol>+</symbol> <feature><location>../implementation_interface/ev_box_i.xml#f_padding</location>padding</feature>
+						<keyword>end</keyword>
+						<keyword>if</keyword> <local>offset</local> <symbol>&gt;=</symbol> <local>last_position</local> <keyword>and then</keyword> <local>offset</local> <symbol>&lt;=</symbol> <local>current_position</local> <keyword>then</keyword>
+							<local>temp1</local> <symbol>:=</symbol> <symbol>(</symbol><local>current_position</local> <symbol>-</symbol> <local>last_position</local><symbol>)</symbol> <symbol>//</symbol> <number>2</number>
+							<local>temp2</local> <symbol>:=</symbol> <local>last_position</local> <symbol>+</symbol> <local>temp1</local> <symbol>+</symbol> <symbol>(</symbol><feature><location>../implementation_interface/ev_box_i.xml#f_padding</location>padding</feature> <symbol>//</symbol> <number>2</number><symbol>)</symbol>
+							<keyword>if</keyword> <local>offset</local> <symbol>&gt;</symbol> <local>temp2</local> <keyword>then</keyword>
+								<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_index</location>index</feature> <symbol>+</symbol> <number>1</number>
+							<keyword>else</keyword>
+								<keyword>Result</keyword> <symbol>:=</symbol> <feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_index</location>index</feature>
+							<keyword>end</keyword>
+						<keyword>end</keyword>
+						<local>last_position</local> <symbol>:=</symbol> <local>current_position</local>
+						<feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_forth</location>forth</feature>
+					<keyword>end</keyword>
+					<feature><location>../implementation_interface/ev_dynamic_list_i.xml#f_go_to</location>go_to</feature><symbol> </symbol><symbol>(</symbol><local>curs</local><symbol>)</symbol>
+				<keyword>end</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_any.xml</location>EV_ANY</class><symbol>,</symbol> <class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_interface</anchor><feature><location>../implementation_interface/ev_box_i.xml#f_interface</location>interface</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_box.xml</location>EV_BOX</class>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2012, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_interface/ev_box_i.xml</location>EV_BOX_I</class></system>
+

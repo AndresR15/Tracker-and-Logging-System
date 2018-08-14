@@ -1,0 +1,40 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Base class for items for use with EV_TOOL_BAR.</string>
+	<string>]</string><string>&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2013-05-20 16:15:17 -0700 (Mon, 20 May 2013) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 92557 $&quot;</string>
+
+<keyword>deferred</keyword> <keyword>class</keyword> 
+	<class><location>../interface/ev_tool_bar_item.xml</location>EV_TOOL_BAR_ITEM</class>
+
+<keyword>inherit</keyword>
+	<class><location>../interface/ev_item.xml</location>EV_ITEM</class>
+		<keyword>redefine</keyword>
+			<feature><location>../interface/ev_tool_bar_item.xml#f_parent</location>parent</feature>
+		<keyword>end</keyword>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_parent</anchor><feature><location>../interface/ev_tool_bar_item.xml#f_parent</location>parent</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_tool_bar.xml</location>EV_TOOL_BAR</class>
+			<comment>--</comment><comment> Contains </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>do</keyword>
+			<keyword>Result</keyword> <symbol>?=</symbol> <keyword><location>../interface/ev_item.xml#f_parent</location>Precursor</keyword> <symbol>{</symbol><class><location>../interface/ev_item.xml</location>EV_ITEM</class><symbol>}</symbol>
+		<keyword>end</keyword>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2006, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>356 Storke Road, Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../interface/ev_tool_bar_item.xml</location>EV_TOOL_BAR_ITEM</class></system>
+

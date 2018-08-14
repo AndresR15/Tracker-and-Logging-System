@@ -1,0 +1,628 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "DATE/TIME to STRING conversion"{\line}
+{\tab}{\cf1 legal}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 status}{\cf1 :} "See notice at end of class."{\line}
+{\tab}{\cf1 date}{\cf1 :} "$Date: 2017-04-02 20:58:24 -0700 (Sun, 02 Apr 2017) $"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$Revision: 100092 $"{\line}
+{\line}
+{\b\cf6 class} {\line}
+{\tab}{\cf4 DATE_TIME_CODE_STRING}{\line}
+{\line}
+{\b\cf6 inherit}{\line}
+{\tab}{\cf4 FIND_SEPARATOR_FACILITY}{\line}
+{\line}
+{\b\cf6 create} {\line}
+{\tab}{\cf5 make}{\line}
+{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Creation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 make} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create code descriptors and hash-table from }{\cf5 s}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_exists}{\cf1 :} {\cf5 s} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 i}{\cf1 ,} {\cf5 pos1}{\cf1 ,} {\cf5 pos2}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 date_constants}{\cf1 :} {\cf4 DATE_CONSTANTS}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_substrgs}{\cf1 :} {\b\cf6 like} {\cf5 extracted_substrings}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_substrg}{\cf1 ,} {\cf5 l_substrg2}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 value}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}20{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 pos1} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 date_constants}{\line}
+{\tab}{\tab}{\tab}{\cf5 days} {\cf1 :=} {\cf5 date_constants}{\b\cf1 .}{\cf5 days_text}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\cf5 months} {\cf1 :=} {\cf5 date_constants}{\b\cf1 .}{\cf5 months_text}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 pos1} {\cf1 >=} {\cf5 s}{\b\cf1 .}{\cf5 count}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 pos2} {\cf1 :=} {\cf5 find_separator}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 ,} {\cf5 pos1}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_substrgs} {\cf1 :=} {\cf5 extracted_substrings}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 ,} {\cf5 pos1}{\cf1 ,} {\cf5 pos2}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 pos2} {\cf1 :=} {\cf5 abs}{\cf1  }{\cf1 (}{\cf5 pos2}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_substrg} {\cf1 :=} {\cf5 l_substrgs}{\b\cf1 .}{\cf5 substrg}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_substrg}{\b\cf1 .}{\cf5 to_lower}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_substrg}{\b\cf1 .}{\cf5 count} {\cf1 >} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 value}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\b\cf6 create}{\cf1  }{\cf1 \{}{\cf4 DATE_TIME_CODE}{\cf1 \}}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 l_substrg}{\cf1 )}{\cf1 ,} {\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 i} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_substrg2} {\cf1 :=} {\cf5 l_substrgs}{\b\cf1 .}{\cf5 substrg2}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_substrg2}{\b\cf1 .}{\cf5 count} {\cf1 >} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 value}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\b\cf6 create}{\cf1  }{\cf1 \{}{\cf4 DATE_TIME_CODE}{\cf1 \}}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 l_substrg2}{\cf1 )}{\cf1 ,} {\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 i} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 separators_used} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 pos1} {\cf1 :=} {\cf5 pos2} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 base_century} {\cf1 :=} {\cf1 (}{\b\cf6 create}{\cf1  }{\cf1 \{}{\cf4 C_DATE}{\cf1 \}}{\cf1 )}{\b\cf1 .}{\cf5 year_now} {\cf1 //} 100 {\cf1 *} -100{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 value_set}{\cf1 :} {\cf5 value} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 base_century_set}{\cf1 :} {\cf5 base_century} {\cf1 <} 0 {\b\cf6 and} {\cf1 (}{\cf5 base_century} {\cf1 \\\\} 100 {\cf1 =} 0{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Attributes}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 value}{\cf1 :} {\cf4 HASH_TABLE} {\cf1 [}{\cf4 DATE_TIME_CODE}{\cf1 ,} {\cf4 INTEGER_32}{\cf1 ]}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Hash-table representing the code string.}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 name}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Name of the code string.}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_item}{\cf1 :} {\b\cf6 detachable} {\cf4 DATE_TIME_CODE}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_item} {\cf1 :=} {\cf5 value}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_item} {\cf1 =} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 l_item}{\b\cf1 .}{\cf5 name}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append_character}{\cf1  }{\cf1 (}' '{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 i} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_item} {\cf1 :=} {\cf5 value}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 base_century}{\cf1 :} {\cf4 INTEGER_32}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Base century, used when interpreting 2-digit year}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  specifications.}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status report}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_date} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does }{\cf5 s}{\cf3  contain a DATE?}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 non_empty_string}{\cf1 :} {\cf5 s} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\b\cf6 not} {\cf5 s}{\b\cf1 .}{\cf5 is_empty}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 parser}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\b\cf1 .}{\cf5 is_date}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_time} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does }{\cf5 s}{\cf3  contain a TIME?}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 non_empty_string}{\cf1 :} {\cf5 s} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\b\cf6 not} {\cf5 s}{\b\cf1 .}{\cf5 is_empty}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 parser}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\b\cf1 .}{\cf5 is_time}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_date_time} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does }{\cf5 s}{\cf3  contain a DATE_TIME?}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 non_empty_string}{\cf1 :} {\cf5 s} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\b\cf6 not} {\cf5 s}{\b\cf1 .}{\cf5 is_empty}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 parser}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\b\cf1 .}{\cf5 is_date_time}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_value_valid} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does }{\cf5 s}{\cf3  contain a valid date or time as string representation?}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 non_empty_string}{\cf1 :} {\cf5 s} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\b\cf6 not} {\cf5 s}{\b\cf1 .}{\cf5 is_empty}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_parser}{\cf1 :} {\b\cf6 like} {\cf5 parser}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_parser} {\cf1 :=} {\cf5 parser}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 l_parser}{\b\cf1 .}{\cf5 is_date} {\b\cf6 or} {\cf5 l_parser}{\b\cf1 .}{\cf5 is_time} {\b\cf6 or} {\cf5 l_parser}{\b\cf1 .}{\cf5 is_date_time}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 separators_used}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does the code string contain any separators?}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Status setting}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 set_base_century} {\cf1 (}{\cf5 c}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Set base century to }{\cf5 c}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 base_valid}{\cf1 :} {\cf5 c} {\cf1 >} 0 {\b\cf6 and} {\cf1 (}{\cf5 c} {\cf1 \\\\} 100 {\cf1 =} 0{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 base_century} {\cf1 :=} {\cf5 c}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 base_century_set}{\cf1 :} {\cf5 base_century} {\cf1 =} {\cf5 c}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Interface}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 correspond} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Does the user string }{\cf5 s}{\cf3  correspond to the code string?}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_exists}{\cf1 :} {\cf5 s} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 pos1}{\cf1 ,} {\cf5 pos2}{\cf1 ,} {\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 code}{\cf1 :} {\b\cf6 detachable} {\cf4 DATE_TIME_CODE}{\line}
+{\tab}{\tab}{\tab}{\cf5 has_seps}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_substrgs}{\cf1 :} {\b\cf6 like} {\cf5 extracted_substrings}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_substrg}{\cf1 ,} {\cf5 l_substrg2}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 pos1} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 s}{\b\cf1 .}{\cf5 is_empty} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 has_seps} {\cf1 :=} {\cf5 has_separators}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 pos1} {\cf1 >} {\cf5 s}{\b\cf1 .}{\cf5 count} {\b\cf6 or} {\b\cf6 not} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 code} {\cf1 :=} {\cf5 value}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 code} {\cf1 =} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 False}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 has_seps} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 pos2} {\cf1 :=} {\cf5 find_separator}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 ,} {\cf5 pos1}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 pos2} {\cf1 :=} {\cf1 (}{\cf5 pos1} {\cf1 +} {\cf5 code}{\b\cf1 .}{\cf5 count_max} {\cf1 -} 1{\cf1 )} {\cf1 *} -1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_substrgs} {\cf1 :=} {\cf5 extracted_substrings}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 ,} {\cf5 pos1}{\cf1 ,} {\cf5 pos2}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 pos2} {\cf1 :=} {\cf5 abs}{\cf1  }{\cf1 (}{\cf5 pos2}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_substrg} {\cf1 :=} {\cf5 l_substrgs}{\b\cf1 .}{\cf5 substrg}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_substrg}{\b\cf1 .}{\cf5 count} {\cf1 >} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 l_substrg}{\b\cf1 .}{\cf5 count} {\cf1 <=} {\cf5 code}{\b\cf1 .}{\cf5 count_max} {\b\cf6 and} {\cf5 l_substrg}{\b\cf1 .}{\cf5 count} {\cf1 >=} {\cf5 code}{\b\cf1 .}{\cf5 count_min}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 code}{\b\cf1 .}{\cf5 is_numeric} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Result} {\b\cf6 and} {\cf5 l_substrg}{\b\cf1 .}{\cf5 is_integer}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 code}{\b\cf1 .}{\cf5 value_max} {\cf1 /=} -1 {\b\cf6 and} {\cf5 code}{\b\cf1 .}{\cf5 value_min} {\cf1 /=} -1 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Result} {\b\cf6 and} {\cf5 l_substrg}{\b\cf1 .}{\cf5 to_integer} {\cf1 <=} {\cf5 code}{\b\cf1 .}{\cf5 value_max} {\b\cf6 and} {\cf5 l_substrg}{\b\cf1 .}{\cf5 to_integer} {\cf1 >=} {\cf5 code}{\b\cf1 .}{\cf5 value_min}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 code}{\b\cf1 .}{\cf5 is_meridiem}{\cf1  }{\cf1 (}{\cf5 code}{\b\cf1 .}{\cf5 value}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Result} {\b\cf6 and} {\cf1 (}{\cf5 l_substrg}{\b\cf1 .}{\cf5 is_case_insensitive_equal}{\cf1  }{\cf1 (}"AM"{\cf1 )} {\b\cf6 or} {\cf5 l_substrg}{\b\cf1 .}{\cf5 is_case_insensitive_equal}{\cf1  }{\cf1 (}"PM"{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 code}{\b\cf1 .}{\cf5 is_day_text}{\cf1  }{\cf1 (}{\cf5 code}{\b\cf1 .}{\cf5 value}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Result} {\b\cf6 and} {\cf5 days}{\b\cf1 .}{\cf5 has}{\cf1  }{\cf1 (}{\cf5 l_substrg}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 code}{\b\cf1 .}{\cf5 is_month_text}{\cf1  }{\cf1 (}{\cf5 code}{\b\cf1 .}{\cf5 value}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Result} {\b\cf6 and} {\cf5 months}{\b\cf1 .}{\cf5 has}{\cf1  }{\cf1 (}{\cf5 l_substrg}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 i} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 has_seps} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 code} {\cf1 :=} {\cf5 value}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 i} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 code} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_substrg2} {\cf1 :=} {\cf5 l_substrgs}{\b\cf1 .}{\cf5 substrg2}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\b\cf6 Result} {\b\cf6 and} {\cf5 pos2} {\cf1 /=} {\cf5 s}{\b\cf1 .}{\cf5 count} {\b\cf6 and} {\cf5 l_substrg2}{\b\cf1 .}{\cf5 same_string}{\cf1  }{\cf1 (}{\cf5 code}{\b\cf1 .}{\cf5 value}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 pos1} {\cf1 :=} {\cf5 pos2} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 create_string} {\cf1 (}{\cf5 date_time}{\cf1 :} {\cf4 DATE_TIME}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create the output of }{\cf5 date_time}{\cf3  according to the code string.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 non_void}{\cf1 :} {\cf5 date_time} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 date}{\cf1 :} {\cf4 DATE}{\line}
+{\tab}{\tab}{\tab}{\cf5 time}{\cf1 :} {\cf4 TIME}{\line}
+{\tab}{\tab}{\tab}{\cf5 int}{\cf1 ,} {\cf5 i}{\cf1 ,} {\cf5 type}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_tmp}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_item}{\cf1 :} {\b\cf6 detachable} {\cf4 DATE_TIME_CODE}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 date} {\cf1 :=} {\cf5 date_time}{\b\cf1 .}{\cf5 date}{\line}
+{\tab}{\tab}{\tab}{\cf5 time} {\cf1 :=} {\cf5 date_time}{\b\cf1 .}{\cf5 time}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_item} {\cf1 :=} {\cf5 value}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_item} {\cf1 =} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 type} {\cf1 :=} {\cf5 l_item}{\b\cf1 .}{\cf5 type}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 inspect} {\cf5 type}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf1 \{}{\cf4 DATE_TIME_CODE}{\cf1 \}}{\b\cf1 .}{\cf5 day_numeric_type_code} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 date}{\b\cf1 .}{\cf5 day}{\b\cf1 .}{\cf5 out}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf1 \{}{\cf4 DATE_TIME_CODE}{\cf1 \}}{\b\cf1 .}{\cf5 day_numeric_on_2_digits_type_code} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 int} {\cf1 :=} {\cf5 date}{\b\cf1 .}{\cf5 day}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 int} {\cf1 <} 10 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}"0"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 int}{\b\cf1 .}{\cf5 out}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf1 \{}{\cf4 DATE_TIME_CODE}{\cf1 \}}{\b\cf1 .}{\cf5 day_text_type_code} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 int} {\cf1 :=} {\cf5 date}{\b\cf1 .}{\cf5 day_of_the_week}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 days}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 int}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf1 \{}{\cf4 DATE_TIME_CODE}{\cf1 \}}{\b\cf1 .}{\cf5 year_on_4_digits_type_code} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_tmp} {\cf1 :=} {\cf5 date}{\b\cf1 .}{\cf5 year}{\b\cf1 .}{\cf5 out}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_tmp}{\b\cf1 .}{\cf5 count} {\cf1 =} 4 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 l_tmp}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_tmp}{\b\cf1 .}{\cf5 count} {\cf1 =} 1 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}"000"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 l_tmp}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 l_tmp}{\b\cf1 .}{\cf5 count} {\cf1 =} 2 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}"00"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 l_tmp}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 l_tmp}{\b\cf1 .}{\cf5 count} {\cf1 =} 3 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}"0"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 l_tmp}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf1 \{}{\cf4 DATE_TIME_CODE}{\cf1 \}}{\b\cf1 .}{\cf5 year_on_2_digits_type_code} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_tmp} {\cf1 :=} {\cf5 date}{\b\cf1 .}{\cf5 year}{\b\cf1 .}{\cf5 out}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_tmp}{\b\cf1 .}{\cf5 count} {\cf1 >} 2 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_tmp}{\b\cf1 .}{\cf5 keep_tail}{\cf1  }{\cf1 (}2{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 elseif} {\cf5 l_tmp}{\b\cf1 .}{\cf5 count} {\cf1 =} 1 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append_character}{\cf1  }{\cf1 (}'0'{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 l_tmp}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf1 \{}{\cf4 DATE_TIME_CODE}{\cf1 \}}{\b\cf1 .}{\cf5 month_numeric_type_code} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 date}{\b\cf1 .}{\cf5 month}{\b\cf1 .}{\cf5 out}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf1 \{}{\cf4 DATE_TIME_CODE}{\cf1 \}}{\b\cf1 .}{\cf5 month_numeric_on_2_digits_type_code} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 int} {\cf1 :=} {\cf5 date}{\b\cf1 .}{\cf5 month}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 int} {\cf1 <} 10 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}"0"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 int}{\b\cf1 .}{\cf5 out}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf1 \{}{\cf4 DATE_TIME_CODE}{\cf1 \}}{\b\cf1 .}{\cf5 month_text_type_code} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 int} {\cf1 :=} {\cf5 date}{\b\cf1 .}{\cf5 month}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 months}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 int}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf1 \{}{\cf4 DATE_TIME_CODE}{\cf1 \}}{\b\cf1 .}{\cf5 hour_numeric_type_code} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 time}{\b\cf1 .}{\cf5 hour}{\b\cf1 .}{\cf5 out}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf1 \{}{\cf4 DATE_TIME_CODE}{\cf1 \}}{\b\cf1 .}{\cf5 hour_numeric_on_2_digits_type_code} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 int} {\cf1 :=} {\cf5 time}{\b\cf1 .}{\cf5 hour}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 int} {\cf1 <} 10 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}"0"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 int}{\b\cf1 .}{\cf5 out}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf1 \{}{\cf4 DATE_TIME_CODE}{\cf1 \}}{\b\cf1 .}{\cf5 hour_12_clock_scale_type_code}{\cf1 ,} {\cf1 \{}{\cf4 DATE_TIME_CODE}{\cf1 \}}{\b\cf1 .}{\cf5 hour_12_clock_scale_on_2_digits_type_code} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 int} {\cf1 :=} {\cf5 time}{\b\cf1 .}{\cf5 hour}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 int} {\cf1 <} 12 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 int} {\cf1 =} 0 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 int} {\cf1 :=} 12{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 int} {\cf1 /=} 12 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 int} {\cf1 :=} {\cf5 int} {\cf1 -} 12{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 type} {\cf1 =} {\cf1 \{}{\cf4 DATE_TIME_CODE}{\cf1 \}}{\b\cf1 .}{\cf5 hour_12_clock_scale_on_2_digits_type_code}{\b\cf1 .}{\cf5 to_integer_32} {\b\cf6 and then} {\cf5 int} {\cf1 <} 10 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}"0"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 int}{\b\cf1 .}{\cf5 out}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf1 \{}{\cf4 DATE_TIME_CODE}{\cf1 \}}{\b\cf1 .}{\cf5 minute_numeric_type_code} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 time}{\b\cf1 .}{\cf5 minute}{\b\cf1 .}{\cf5 out}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf1 \{}{\cf4 DATE_TIME_CODE}{\cf1 \}}{\b\cf1 .}{\cf5 minute_numeric_on_2_digits_type_code} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 int} {\cf1 :=} {\cf5 time}{\b\cf1 .}{\cf5 minute}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 int} {\cf1 <} 10 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}"0"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 int}{\b\cf1 .}{\cf5 out}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf1 \{}{\cf4 DATE_TIME_CODE}{\cf1 \}}{\b\cf1 .}{\cf5 second_numeric_type_code} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 time}{\b\cf1 .}{\cf5 second}{\b\cf1 .}{\cf5 out}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf1 \{}{\cf4 DATE_TIME_CODE}{\cf1 \}}{\b\cf1 .}{\cf5 second_numeric_on_2_digits_type_code} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 int} {\cf1 :=} {\cf5 time}{\b\cf1 .}{\cf5 second}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 int} {\cf1 <} 10 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}"0"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 int}{\b\cf1 .}{\cf5 out}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf1 \{}{\cf4 DATE_TIME_CODE}{\cf1 \}}{\b\cf1 .}{\cf5 fractional_second_numeric_type_code} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 int} {\cf1 :=} {\cf1 (}{\cf5 time}{\b\cf1 .}{\cf5 fractional_second} {\cf1 *} 10 {\cf1 ^} {\cf5 l_item}{\b\cf1 .}{\cf5 count_max}{\b\cf1 .}{\cf5 to_double}{\cf1 )}{\b\cf1 .}{\cf5 rounded}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 l_tmp} {\cf1 :=} {\cf5 int}{\b\cf1 .}{\cf5 out}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_tmp}{\b\cf1 .}{\cf5 count} {\cf1 <} {\cf5 l_item}{\b\cf1 .}{\cf5 count_max} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\b\cf6 create}{\cf1  }{\cf1 \{}{\cf4 STRING_8}{\cf1 \}}{\b\cf1 .}{\cf5 make_filled}{\cf1  }{\cf1 (}'0'{\cf1 ,} {\cf5 l_item}{\b\cf1 .}{\cf5 count_max} {\cf1 -} {\cf5 l_tmp}{\b\cf1 .}{\cf5 count}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 l_tmp}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf1 \{}{\cf4 DATE_TIME_CODE}{\cf1 \}}{\b\cf1 .}{\cf5 meridiem_type_code} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 int} {\cf1 :=} {\cf5 time}{\b\cf1 .}{\cf5 hour}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 int} {\cf1 <} 12 {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}"AM"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}"PM"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}{\cf5 l_item}{\b\cf1 .}{\cf5 value}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 i} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 l_item} {\cf1 :=} {\cf5 value}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 string_exists}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 string_correspond}{\cf1 :} {\cf5 correspond}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 create_date_string} {\cf1 (}{\cf5 date}{\cf1 :} {\cf4 DATE}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create the output of }{\cf5 date}{\cf3  according to the code string.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 date_exists}{\cf1 :} {\cf5 date} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 create_string}{\cf1  }{\cf1 (}{\b\cf6 create}{\cf1  }{\cf1 \{}{\cf4 DATE_TIME}{\cf1 \}}{\b\cf1 .}{\cf5 make_by_date}{\cf1  }{\cf1 (}{\cf5 date}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 string_exists}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 string_correspond}{\cf1 :} {\cf5 correspond}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 create_time_string} {\cf1 (}{\cf5 time}{\cf1 :} {\cf4 TIME}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create the output of }{\cf5 time}{\cf3  according to the code string.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 time_exists}{\cf1 :} {\cf5 time} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 date_time}{\cf1 :} {\cf4 DATE_TIME}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 date_time}{\b\cf1 .}{\cf5 make_fine}{\cf1  }{\cf1 (}1{\cf1 ,} 1{\cf1 ,} 1{\cf1 ,} {\cf5 time}{\b\cf1 .}{\cf5 hour}{\cf1 ,} {\cf5 time}{\b\cf1 .}{\cf5 minute}{\cf1 ,} {\cf5 time}{\b\cf1 .}{\cf5 fine_second}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 create_string}{\cf1  }{\cf1 (}{\cf5 date_time}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 string_exists}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 string_correspond}{\cf1 :} {\cf5 correspond}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 create_date_time} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 DATE_TIME}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create DATE_TIME according to }{\cf5 s}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_exist}{\cf1 :} {\cf5 s} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_precise}{\cf1 :} {\cf5 precise}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_correspond}{\cf1 :} {\cf5 correspond}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf1 valid}{\cf1 :} {\cf5 is_value_valid}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_parser}{\cf1 :} {\b\cf6 like} {\cf5 parser}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_day_text}{\cf1 :} {\b\cf6 detachable} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 right_day_text} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_parser} {\cf1 :=} {\cf5 parser}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make_fine}{\cf1  }{\cf1 (}{\cf5 l_parser}{\b\cf1 .}{\cf5 year}{\cf1 ,} {\cf5 l_parser}{\b\cf1 .}{\cf5 month}{\cf1 ,} {\cf5 l_parser}{\b\cf1 .}{\cf5 day}{\cf1 ,} {\cf5 l_parser}{\b\cf1 .}{\cf5 hour}{\cf1 ,} {\cf5 l_parser}{\b\cf1 .}{\cf5 minute}{\cf1 ,} {\cf5 l_parser}{\b\cf1 .}{\cf5 fine_second}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf5 l_day_text} {\cf1 :=} {\cf5 l_parser}{\b\cf1 .}{\cf5 day_text}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 l_day_text} {\cf1 /=} {\b\cf6 Void} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 right_day_text} {\cf1 :=} {\cf5 l_day_text}{\b\cf1 .}{\cf5 same_string}{\cf1  }{\cf1 (}{\cf5 days}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\b\cf6 Result}{\b\cf1 .}{\cf5 date}{\b\cf1 .}{\cf5 day_of_the_week}{\cf1 )}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 date_time_exists}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 day_text_equal_day}{\cf1 :} {\cf5 right_day_text}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 create_date} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 DATE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create a DATE according to the format in }{\cf5 s}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_exists}{\cf1 :} {\cf5 s} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_precise}{\cf1 :} {\cf5 precise_date}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_correspond}{\cf1 :} {\cf5 correspond}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 tmp_code}{\cf1 :} {\cf4 DATE_TIME_CODE}{\line}
+{\tab}{\tab}{\tab}{\cf5 tmp_ht}{\cf1 :} {\cf4 HASH_TABLE} {\cf1 [}{\cf4 DATE_TIME_CODE}{\cf1 ,} {\cf4 INTEGER_32}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 tmp_ht} {\cf1 :=} {\cf5 value}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 value}{\b\cf1 .}{\cf5 count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 has_separators}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 tmp_code}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}" "{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 value}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 tmp_code}{\cf1 ,} {\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 tmp_code}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}"hh"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 value}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 tmp_code}{\cf1 ,} {\cf5 i} {\cf1 +} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 tmp_code}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}":"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 value}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 tmp_code}{\cf1 ,} {\cf5 i} {\cf1 +} 2{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 tmp_code}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}"mi"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 value}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 tmp_code}{\cf1 ,} {\cf5 i} {\cf1 +} 3{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 tmp_code}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}":"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 value}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 tmp_code}{\cf1 ,} {\cf5 i} {\cf1 +} 4{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 tmp_code}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}"ss"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 value}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 tmp_code}{\cf1 ,} {\cf5 i} {\cf1 +} 5{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 s}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}" 0:0:0"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 create_date_time}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\b\cf1 .}{\cf5 date}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 s}{\b\cf1 .}{\cf5 replace_substring_all}{\cf1  }{\cf1 (}" 0:0:0"{\cf1 ,} ""{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 tmp_code}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}"[0]hh"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 value}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 tmp_code}{\cf1 ,} {\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 tmp_code}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}"[0]mi"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 value}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 tmp_code}{\cf1 ,} {\cf5 i} {\cf1 +} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 tmp_code}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}"[0]ss"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 value}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 tmp_code}{\cf1 ,} {\cf5 i} {\cf1 +} 2{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 s}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}"000000"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 create_date_time}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\b\cf1 .}{\cf5 date}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 s}{\b\cf1 .}{\cf5 remove_tail}{\cf1  }{\cf1 (}6{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 value} {\cf1 :=} {\cf5 tmp_ht}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 date_exists}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 day_text_equal_day}{\cf1 :} {\cf5 right_day_text}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 create_time} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 TIME}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Create a TIME according to the format in }{\cf5 s}{\cf3 .}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_exists}{\cf1 :} {\cf5 s} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 is_precise}{\cf1 :} {\cf5 precise_time}{\line}
+{\tab}{\tab}{\tab}{\cf1 s_correspond}{\cf1 :} {\cf5 correspond}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 tmp_code}{\cf1 :} {\cf4 DATE_TIME_CODE}{\line}
+{\tab}{\tab}{\tab}{\cf5 tmp_ht}{\cf1 :} {\cf4 HASH_TABLE} {\cf1 [}{\cf4 DATE_TIME_CODE}{\cf1 ,} {\cf4 INTEGER_32}{\cf1 ]}{\line}
+{\tab}{\tab}{\tab}{\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\cf5 tmp_ht} {\cf1 :=} {\cf5 value}{\b\cf1 .}{\cf5 twin}{\line}
+{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 value}{\b\cf1 .}{\cf5 count} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 has_separators}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 tmp_code}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}" "{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 value}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 tmp_code}{\cf1 ,} {\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 tmp_code}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}"dd"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 value}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 tmp_code}{\cf1 ,} {\cf5 i} {\cf1 +} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 tmp_code}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}"/"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 value}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 tmp_code}{\cf1 ,} {\cf5 i} {\cf1 +} 2{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 tmp_code}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}"mm"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 value}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 tmp_code}{\cf1 ,} {\cf5 i} {\cf1 +} 3{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 tmp_code}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}"/"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 value}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 tmp_code}{\cf1 ,} {\cf5 i} {\cf1 +} 4{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 tmp_code}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}"yy"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 value}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 tmp_code}{\cf1 ,} {\cf5 i} {\cf1 +} 5{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 s}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}" 1/1/01"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 create_date_time}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\b\cf1 .}{\cf5 time}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 s}{\b\cf1 .}{\cf5 replace_substring_all}{\cf1  }{\cf1 (}" 1/1/01"{\cf1 ,} ""{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 tmp_code}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}"[0]dd"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 value}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 tmp_code}{\cf1 ,} {\cf5 i}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 tmp_code}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}"[0]mm"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 value}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 tmp_code}{\cf1 ,} {\cf5 i} {\cf1 +} 1{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\cf5 tmp_code}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}"yy"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 value}{\b\cf1 .}{\cf5 put}{\cf1  }{\cf1 (}{\cf5 tmp_code}{\cf1 ,} {\cf5 i} {\cf1 +} 2{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 s}{\b\cf1 .}{\cf5 append}{\cf1  }{\cf1 (}"010101"{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 create_date_time}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\b\cf1 .}{\cf5 time}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 s}{\b\cf1 .}{\cf5 remove_tail}{\cf1  }{\cf1 (}6{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\cf5 value} {\cf1 :=} {\cf5 tmp_ht}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 time_exists}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\tab}{\cf1 time_correspond}{\cf1 :} {\cf5 create_time_string}{\cf1  }{\cf1 (}{\b\cf6 Result}{\cf1 )}{\b\cf1 .}{\cf5 same_string}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 precise}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is the code string enough precise to create}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  nn instance of type DATE_TIME?}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_void}{\cf1 :} {\cf5 value} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 precise_date} {\b\cf6 and} {\cf5 precise_time}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 precise_date}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is the code string enough precise to create}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  nn instance of type DATE?}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_void}{\cf1 :} {\cf5 value} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 i}{\cf1 ,} {\cf5 type}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 has_day}{\cf1 ,} {\cf5 has_month}{\cf1 ,} {\cf5 has_year}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 not} {\b\cf6 attached} {\cf5 value}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )} {\b\cf6 as} l_item{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 type} {\cf1 :=} {\cf5 l_item}{\b\cf1 .}{\cf5 type}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 separators_used} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 inspect} {\cf5 type}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf1 \{}{\cf4 DATE_TIME_CODE}{\cf1 \}}{\b\cf1 .}{\cf5 day_numeric_type_code}{\cf1 ,} {\cf1 \{}{\cf4 DATE_TIME_CODE}{\cf1 \}}{\b\cf1 .}{\cf5 day_numeric_on_2_digits_type_code} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 has_day} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf1 \{}{\cf4 DATE_TIME_CODE}{\cf1 \}}{\b\cf1 .}{\cf5 year_on_4_digits_type_code}{\cf1 ,} {\cf1 \{}{\cf4 DATE_TIME_CODE}{\cf1 \}}{\b\cf1 .}{\cf5 year_on_2_digits_type_code} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 has_year} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf1 \{}{\cf4 DATE_TIME_CODE}{\cf1 \}}{\b\cf1 .}{\cf5 month_numeric_type_code}{\cf1 ,} {\cf1 \{}{\cf4 DATE_TIME_CODE}{\cf1 \}}{\b\cf1 .}{\cf5 month_numeric_on_2_digits_type_code}{\cf1 ,} {\cf1 \{}{\cf4 DATE_TIME_CODE}{\cf1 \}}{\b\cf1 .}{\cf5 month_text_type_code} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 has_month} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 inspect} {\cf5 type}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf1 \{}{\cf4 DATE_TIME_CODE}{\cf1 \}}{\b\cf1 .}{\cf5 day_numeric_on_2_digits_type_code} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 has_day} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf1 \{}{\cf4 DATE_TIME_CODE}{\cf1 \}}{\b\cf1 .}{\cf5 year_on_4_digits_type_code}{\cf1 ,} {\cf1 \{}{\cf4 DATE_TIME_CODE}{\cf1 \}}{\b\cf1 .}{\cf5 year_on_2_digits_type_code} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 has_year} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf1 \{}{\cf4 DATE_TIME_CODE}{\cf1 \}}{\b\cf1 .}{\cf5 month_numeric_on_2_digits_type_code} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 has_month} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 i} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 has_day} {\b\cf6 and} {\cf5 has_month} {\b\cf6 and} {\cf5 has_year}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 precise_time}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is the code string enough precise to create}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  an instance of type TIME?}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 not_void}{\cf1 :} {\cf5 value} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 local}{\line}
+{\tab}{\tab}{\tab}{\cf5 i}{\cf1 ,} {\cf5 type}{\cf1 :} {\cf4 INTEGER_32}{\line}
+{\tab}{\tab}{\tab}{\cf5 has_hour_12}{\cf1 ,} {\cf5 has_hour_24}{\cf1 ,} {\cf5 has_minute}{\cf1 ,} {\cf5 has_second}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 from}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 until}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 not} {\b\cf6 attached} {\cf5 value}{\b\cf1 .}{\cf5 item}{\cf1  }{\cf1 (}{\cf5 i}{\cf1 )} {\b\cf6 as} l_item{\line}
+{\tab}{\tab}{\tab}{\b\cf6 loop}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 type} {\cf1 :=} {\cf5 l_item}{\b\cf1 .}{\cf5 type}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 if} {\cf5 separators_used} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 inspect} {\cf5 type}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf1 \{}{\cf4 DATE_TIME_CODE}{\cf1 \}}{\b\cf1 .}{\cf5 hour_numeric_type_code}{\cf1 ,} {\cf1 \{}{\cf4 DATE_TIME_CODE}{\cf1 \}}{\b\cf1 .}{\cf5 hour_numeric_on_2_digits_type_code} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 has_hour_24} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf1 \{}{\cf4 DATE_TIME_CODE}{\cf1 \}}{\b\cf1 .}{\cf5 minute_numeric_type_code}{\cf1 ,} {\cf1 \{}{\cf4 DATE_TIME_CODE}{\cf1 \}}{\b\cf1 .}{\cf5 minute_numeric_on_2_digits_type_code} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 has_minute} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf1 \{}{\cf4 DATE_TIME_CODE}{\cf1 \}}{\b\cf1 .}{\cf5 second_numeric_type_code}{\cf1 ,} {\cf1 \{}{\cf4 DATE_TIME_CODE}{\cf1 \}}{\b\cf1 .}{\cf5 second_numeric_on_2_digits_type_code} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 has_second} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf1 \{}{\cf4 DATE_TIME_CODE}{\cf1 \}}{\b\cf1 .}{\cf5 hour_12_clock_scale_type_code}{\cf1 ,} {\cf1 \{}{\cf4 DATE_TIME_CODE}{\cf1 \}}{\b\cf1 .}{\cf5 hour_12_clock_scale_on_2_digits_type_code} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 has_hour_12} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 inspect} {\cf5 type}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf1 \{}{\cf4 DATE_TIME_CODE}{\cf1 \}}{\b\cf1 .}{\cf5 hour_numeric_on_2_digits_type_code} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 has_hour_24} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf1 \{}{\cf4 DATE_TIME_CODE}{\cf1 \}}{\b\cf1 .}{\cf5 minute_numeric_on_2_digits_type_code} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 has_minute} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf1 \{}{\cf4 DATE_TIME_CODE}{\cf1 \}}{\b\cf1 .}{\cf5 second_numeric_on_2_digits_type_code} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 has_second} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 when} {\cf1 \{}{\cf4 DATE_TIME_CODE}{\cf1 \}}{\b\cf1 .}{\cf5 hour_12_clock_scale_on_2_digits_type_code} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\tab}{\cf5 has_hour_12} {\cf1 :=} {\b\cf6 True}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 else}{\line}
+{\tab}{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 i} {\cf1 :=} {\cf5 i} {\cf1 +} 1{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf1 (}{\cf5 has_hour_24} {\b\cf6 or} {\cf5 has_hour_12}{\cf1 )} {\b\cf6 and} {\cf5 has_minute} {\b\cf6 and} {\cf5 has_second}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\tab}{\line}
+{\b\cf6 feature} {\cf1 \{}NONE{\cf1 \}} {\cf3 --}{\cf3  Implementation}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 days}{\cf1 :} {\cf4 ARRAY} {\cf1 [}{\cf4 STRING_8}{\cf1 ]}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 months}{\cf1 :} {\cf4 ARRAY} {\cf1 [}{\cf4 STRING_8}{\cf1 ]}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 right_day_text}{\cf1 :} {\cf4 BOOLEAN}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Is the name of the day the right one?}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 parser} {\cf1 (}{\cf5 s}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\cf1 :} {\cf4 DATE_TIME_PARSER}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Parser from }{\cf5 s}{\cf3 .}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Build a new one if necessary.}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 non_empty_string}{\cf1 :} {\cf5 s} {\cf1 /=} {\b\cf6 Void} {\b\cf6 and then} {\b\cf6 not} {\cf5 s}{\b\cf1 .}{\cf5 is_empty}{\line}
+{\tab}{\tab}{\b\cf6 do}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 :=} {\cf5 internal_parser}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 if} {\b\cf6 not} {\b\cf6 attached} {\b\cf6 Result} {\b\cf6 or else} {\b\cf6 not} {\cf5 equal}{\cf1  }{\cf1 (}{\b\cf6 Result}{\b\cf1 .}{\cf5 source_string}{\cf1 ,} {\cf5 s}{\cf1 )} {\b\cf6 then}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 create} {\b\cf6 Result}{\b\cf1 .}{\cf5 make}{\cf1  }{\cf1 (}{\cf5 value}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 set_day_array}{\cf1  }{\cf1 (}{\cf5 days}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 set_month_array}{\cf1  }{\cf1 (}{\cf5 months}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 set_base_century}{\cf1  }{\cf1 (}{\cf5 base_century}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 set_source_string}{\cf1  }{\cf1 (}{\cf5 s}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result}{\b\cf1 .}{\cf5 parse}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 internal_parser} {\cf1 :=} {\b\cf6 Result}{\line}
+{\tab}{\tab}{\tab}{\b\cf6 end}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\cf1 parser_not_void}{\cf1 :} {\b\cf6 Result} {\cf1 /=} {\b\cf6 Void}{\line}
+{\tab}{\tab}{\b\cf6 end}}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 internal_parser}{\cf1 :} {\b\cf6 detachable} {\cf4 DATE_TIME_PARSER}}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Cached instance of date-time string parser}{\line}
+{\tab}{\line}
+{\b\cf6 note}{\line}
+{\tab}{\cf1 copyright}{\cf1 :} "Copyright (c) 1984-2017, Eiffel Software and others"{\line}
+{\tab}{\cf1 license}{\cf1 :} "Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"{\line}
+{\tab}{\cf1 source}{\cf1 :} "[{\line}
+{\tab}{\tab}Eiffel Software{\line}
+{\tab}{\tab}5949 Hollister Ave., Goleta, CA 93117 USA{\line}
+{\tab}{\tab}Telephone 805-685-1006, Fax 805-685-6869{\line}
+{\tab}{\tab}Website http://www.eiffel.com{\line}
+{\tab}{\tab}Customer support http://support.eiffel.com{\line}
+{\tab}]"{\line}
+{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 DATE_TIME_CODE_STRING}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

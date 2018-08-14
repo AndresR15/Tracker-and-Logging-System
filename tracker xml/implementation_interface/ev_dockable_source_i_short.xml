@@ -1,0 +1,179 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Implementation interface for dockable source.&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2015-06-25 15:41:43 -0700 (Thu, 25 Jun 2015) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 97568 $&quot;</string>
+
+<keyword>deferred</keyword> <keyword>class</keyword> <keyword>interface</keyword>
+	<class><location>../implementation_interface/ev_dockable_source_i_short.xml</location>EV_DOCKABLE_SOURCE_I</class>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Access</comment>
+
+	<anchor>f_original_parent_position</anchor><feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_original_parent_position</location>original_parent_position</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class>
+			<comment>--</comment><comment> Original position in parent. Required</comment>
+			<comment>--</comment><comment> to restore widget later.</comment>
+
+	<anchor>f_is_dock_executing</anchor><feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_is_dock_executing</location>is_dock_executing</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is </comment><quoted>Current</quoted><comment> in the process of a dockable transport?</comment>
+
+	<anchor>f_real_source</anchor><feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_real_source</location>real_source</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_dockable_source_short.xml</location>EV_DOCKABLE_SOURCE</class>
+			<comment>--</comment><comment> </comment><quoted>Result</quoted><comment> is EV_DOCKABLE_SOURCE which should be</comment>
+			<comment>--</comment><comment> dragged when docking begins on </comment><quoted>Current</quoted><comment>.</comment>
+
+	<anchor>f_is_dockable</anchor><feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_is_dockable</location>is_dockable</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is </comment><quoted>Current</quoted><comment> dockable?</comment>
+
+	<anchor>f_not_external_docking_enabled</anchor><feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_not_external_docking_enabled</location>not_external_docking_enabled</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Attribute used for </comment><quoted>is_externally_dockable</quoted><comment>. We must implement</comment>
+			<comment>--</comment><comment> </comment><quoted>is_externally_dockable</quoted><comment> this way as we have no easy solution to</comment>
+			<comment>--</comment><comment> assign </comment><quoted>True</quoted><comment> to </comment><quoted>is_externally_dockable</quoted><comment>.</comment>
+
+	<anchor>f_is_external_docking_enabled</anchor><feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_is_external_docking_enabled</location>is_external_docking_enabled</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Is </comment><quoted>Current</quoted><comment> able to be docked into an EV_DOCKABLE_DIALOG</comment>
+			<comment>--</comment><comment> When there is no valid EV_DRAGABLE_TARGET upon completion</comment>
+			<comment>--</comment><comment> of the transport?</comment>
+
+	<anchor>f_not_is_external_docking_relative</anchor><feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_not_is_external_docking_relative</location>not_is_external_docking_relative</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Will dockable dialog displayed when </comment><quoted>Current</quoted><comment> is docked externally</comment>
+			<comment>--</comment><comment> be displayed relative to parent window of </comment><quoted>Current</quoted><comment>?</comment>
+			<comment>--</comment><comment> Otherwise displayed as a standard window.</comment>
+			<comment>--</comment><comment> Internal reversed value of </comment><feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_is_external_docking_relative</location>is_external_docking_relative</feature><comment> as we cannot</comment>
+			<comment>--</comment><comment> easily initialize a BOOLE to True in this case.</comment>
+
+	<anchor>f_is_external_docking_relative</anchor><feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_is_external_docking_relative</location>is_external_docking_relative</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+			<comment>--</comment><comment> Will dockable dialog displayed when </comment><quoted>Current</quoted><comment> is docked externally</comment>
+			<comment>--</comment><comment> be displayed relative to parent window of </comment><quoted>Current</quoted><comment>?</comment>
+			<comment>--</comment><comment> Otherwise displayed as a standard window.</comment>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status report</comment>
+
+	<anchor>f_get_next_target</anchor><feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_get_next_target</location>get_next_target</feature> <symbol>(</symbol><local>a_widget</local><symbol>:</symbol> <class><location>../interface/ev_widget_short.xml</location>EV_WIDGET</class><symbol>)</symbol><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_dockable_target_short.xml</location>EV_DOCKABLE_TARGET</class>
+			<comment>--</comment><comment> </comment><quoted>Result</quoted><comment> is next dockable target that is </comment><feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_is_dockable</location>is_dockable</feature><comment> found by</comment>
+			<comment>--</comment><comment> recursively seraching up the parenting structure from </comment><quoted>current_target</quoted><comment>.</comment>
+			<comment>--</comment><comment> </comment><quoted>Result</quoted><comment> will be </comment><quoted>Void</quoted><comment> if none.</comment>
+		<keyword>require</keyword>
+			<tag>a_widget_not_void</tag><symbol>:</symbol> <local>a_widget</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>ensure</keyword>
+			<tag>result_is_dockable</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>implies</keyword> <keyword>Result</keyword><dot>.</dot><feature><location>../interface/ev_dockable_target_short.xml#f_is_docking_enabled</location>is_docking_enabled</feature>
+
+	<anchor>f_closest_dockable_target</anchor><feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_closest_dockable_target</location>closest_dockable_target</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_dockable_target_short.xml</location>EV_DOCKABLE_TARGET</class>
+			<comment>--</comment><comment> </comment><quoted>Result</quoted><comment> is first dockable target that </comment><feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_is_dockable</location>is_dockable</feature><comment> found by recursively</comment>
+			<comment>--</comment><comment> searching up through the parenting structure from the widget</comment>
+			<comment>--</comment><comment> currently underneath the pointer position.</comment>
+			<comment>--</comment><comment> </comment><quoted>Result</quoted><comment> will be </comment><quoted>Void</quoted><comment> if a dockable target is not found.</comment>
+		<keyword>ensure</keyword>
+			<tag>result_is_dockable</tag><symbol>:</symbol> <keyword>Result</keyword> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>implies</keyword> <keyword>Result</keyword><dot>.</dot><feature><location>../interface/ev_dockable_target_short.xml#f_is_docking_enabled</location>is_docking_enabled</feature>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Status setting</comment>
+
+	<anchor>f_enable_dockable</anchor><feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_enable_dockable</location>enable_dockable</feature>
+			<comment>--</comment><comment> Allow </comment><quoted>Current</quoted><comment> to be dockable</comment>
+		<keyword>ensure</keyword>
+			<tag>is_dockable</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_is_dockable</location>is_dockable</feature>
+
+	<anchor>f_internal_enable_dockable</anchor><feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_internal_enable_dockable</location>internal_enable_dockable</feature>
+			<comment>--</comment><comment> Platform specific implementation of </comment><feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_enable_dockable</location>enable_dockable</feature><comment>.</comment>
+
+	<anchor>f_disable_dockable</anchor><feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_disable_dockable</location>disable_dockable</feature>
+			<comment>--</comment><comment> Ensure </comment><quoted>Current</quoted><comment> is not dockable</comment>
+		<keyword>ensure</keyword>
+			<tag>not_is_dockable</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_is_dockable</location>is_dockable</feature>
+
+	<anchor>f_internal_disable_dockable</anchor><feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_internal_disable_dockable</location>internal_disable_dockable</feature>
+			<comment>--</comment><comment> Platform specific implementation of </comment><feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_disable_dockable</location>disable_dockable</feature><comment>.</comment>
+
+	<anchor>f_set_real_source</anchor><feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_set_real_source</location>set_real_source</feature> <symbol>(</symbol><local>dockable_source</local><symbol>:</symbol> <class><location>../interface/ev_dockable_source_short.xml</location>EV_DOCKABLE_SOURCE</class><symbol>)</symbol>
+			<comment>--</comment><comment> Set </comment><quoted>dockable_source</quoted><comment> to be the widget moved when a</comment>
+			<comment>--</comment><comment> drag begins on </comment><quoted>Current</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>is_dockable</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_is_dockable</location>is_dockable</feature>
+			<tag>dockable_source_not_void</tag><symbol>:</symbol> <local>dockable_source</local> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>ensure</keyword>
+			<tag>real_source_assigned</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_real_source</location>real_source</feature> <symbol>=</symbol> <local>dockable_source</local>
+
+	<anchor>f_remove_real_source</anchor><feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_remove_real_source</location>remove_real_source</feature>
+			<comment>--</comment><comment> Ensure </comment><feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_real_source</location>real_source</feature><comment> is </comment><quoted>Void</quoted><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>is_dockable</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_is_dockable</location>is_dockable</feature>
+		<keyword>ensure</keyword>
+			<tag>real_source_void</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_real_source</location>real_source</feature> <symbol>=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_enable_external_docking</anchor><feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_enable_external_docking</location>enable_external_docking</feature>
+			<comment>--</comment><comment> Allow </comment><quoted>Current</quoted><comment> to be docked into an EV_DOCKABLE_DIALOG</comment>
+			<comment>--</comment><comment> When there is no valid EV_DRAGABLE_TARGET upon completion</comment>
+			<comment>--</comment><comment> of the transport?</comment>
+		<keyword>require</keyword>
+			<tag>is_dockable</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_is_dockable</location>is_dockable</feature>
+		<keyword>ensure</keyword>
+			<tag>is_externally_dockable</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_is_external_docking_enabled</location>is_external_docking_enabled</feature>
+
+	<anchor>f_disable_external_docking</anchor><feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_disable_external_docking</location>disable_external_docking</feature>
+			<comment>--</comment><comment> Forbid </comment><quoted>Current</quoted><comment> to be docked into an EV_DOCKABLE_DIALOG</comment>
+			<comment>--</comment><comment> When there is no valid EV_DRAGABLE_TARGET upon completion</comment>
+			<comment>--</comment><comment> of the transport?</comment>
+		<keyword>require</keyword>
+			<tag>is_dockable</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_is_dockable</location>is_dockable</feature>
+		<keyword>ensure</keyword>
+			<tag>not_externally_dockable</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_is_external_docking_enabled</location>is_external_docking_enabled</feature>
+
+	<anchor>f_enable_external_docking_relative</anchor><feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_enable_external_docking_relative</location>enable_external_docking_relative</feature>
+			<comment>--</comment><comment> Assign </comment><quoted>True</quoted><comment> to </comment><feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_is_external_docking_relative</location>is_external_docking_relative</feature><comment>, ensuring that</comment>
+			<comment>--</comment><comment> a dockable dialog displayed when </comment><quoted>Current</quoted><comment> is docked externally</comment>
+			<comment>--</comment><comment> is displayed relative to the top level window.</comment>
+		<keyword>require</keyword>
+			<tag>external_docking_enabled</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_is_external_docking_enabled</location>is_external_docking_enabled</feature>
+		<keyword>ensure</keyword>
+			<tag>external_docking_not_relative</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_is_external_docking_relative</location>is_external_docking_relative</feature>
+
+	<anchor>f_disable_external_docking_relative</anchor><feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_disable_external_docking_relative</location>disable_external_docking_relative</feature>
+			<comment>--</comment><comment> Assign </comment><quoted>False</quoted><comment> to </comment><feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_is_external_docking_relative</location>is_external_docking_relative</feature><comment>, ensuring that</comment>
+			<comment>--</comment><comment> a dockable dialog displayed when </comment><quoted>Current</quoted><comment> is docked externally</comment>
+			<comment>--</comment><comment> is displayed as a standard window.</comment>
+		<keyword>require</keyword>
+			<tag>external_docking_enabled</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_is_external_docking_enabled</location>is_external_docking_enabled</feature>
+		<keyword>ensure</keyword>
+			<tag>external_docking_not_relative</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_is_external_docking_relative</location>is_external_docking_relative</feature>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Basic operations</comment>
+
+	<anchor>f_complete_dock</anchor><feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_complete_dock</location>complete_dock</feature>
+			<comment>--</comment><comment> Complete a dock from </comment><feature><location>../implementation_interface/ev_shared_transport_i_short.xml#f_source_being_docked</location>source_being_docked</feature><comment>.</comment>
+		<keyword>require</keyword>
+			<tag>source_being_docked</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_shared_transport_i_short.xml#f_source_being_docked</location>source_being_docked</feature> <symbol>/=</symbol> <keyword>Void</keyword>
+		<keyword>ensure</keyword>
+			<tag>not_dock_executing</tag><symbol>:</symbol> <keyword>not</keyword> <feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_is_dock_executing</location>is_dock_executing</feature>
+			<tag>insert_separator_not_parented</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_shared_transport_i_short.xml#f_insert_sep</location>Insert_sep</feature><dot>.</dot><feature><location>../interface/ev_tool_bar_item_short.xml#f_parent</location>parent</feature> <symbol>=</symbol> <keyword>Void</keyword>
+			<tag>insert_label_not_parented</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_shared_transport_i_short.xml#f_insert_label</location>Insert_label</feature><dot>.</dot><feature><location>../interface/ev_widget_short.xml#f_parent</location>parent</feature> <symbol>=</symbol> <keyword>Void</keyword>
+
+	<anchor>f_close_dockable_dialog</anchor><feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_close_dockable_dialog</location>close_dockable_dialog</feature> <symbol>(</symbol><local>dockable_dialog</local><symbol>:</symbol> <class><location>../interface/ev_dockable_dialog_short.xml</location>EV_DOCKABLE_DIALOG</class><symbol>)</symbol>
+			<comment>--</comment><comment> Close request received by </comment><quoted>dockable_dialog</quoted><comment> so</comment>
+			<comment>--</comment><comment> restore widget contained back to its original position</comment>
+			<comment>--</comment><comment> in its old parent if possible.</comment>
+			<comment>--</comment><comment> We must fire </comment><quoted>dock_ended</quoted><comment> actions.</comment>
+		<keyword>ensure</keyword>
+			<tag>dockable_dialog_destroyed</tag><symbol>:</symbol> <local>dockable_dialog</local><dot>.</dot><feature><location>../interface/ev_any_short.xml#f_is_destroyed</location>is_destroyed</feature>
+	
+<keyword>feature</keyword> <comment>--</comment><comment> Inapplicable</comment>
+
+	<anchor>f_drag_cursor</anchor><feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_drag_cursor</location>Drag_cursor</feature><symbol>:</symbol> <class><location>../interface/ev_pointer_style_short.xml</location>EV_POINTER_STYLE</class>
+			<comment>--</comment><comment> Cursor used when </comment><quoted>Current</quoted><comment> is being transported.</comment>
+	
+<keyword>invariant</keyword>
+	<tag>widget_or_item_source</tag><symbol>:</symbol> <keyword>not</keyword> <symbol>(</symbol><feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_widget_source_being_docked</location>widget_source_being_docked</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>and</keyword> <feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_item_source_being_docked</location>item_source_being_docked</feature> <symbol>/=</symbol> <keyword>Void</keyword><symbol>)</symbol>
+	<tag>dock_executing</tag><symbol>:</symbol> <feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_is_dock_executing</location>is_dock_executing</feature> <keyword>implies</keyword> <feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_widget_source_being_docked</location>widget_source_being_docked</feature> <symbol>/=</symbol> <keyword>Void</keyword> <keyword>or</keyword> <feature><location>../implementation_interface/ev_dockable_source_i_short.xml#f_item_source_being_docked</location>item_source_being_docked</feature> <symbol>/=</symbol> <keyword>Void</keyword>
+
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2015, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_interface/ev_dockable_source_i_short.xml</location>EV_DOCKABLE_SOURCE_I</class></system>
+

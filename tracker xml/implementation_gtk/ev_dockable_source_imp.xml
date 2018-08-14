@@ -1,0 +1,165 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;Gtk implementation of dockable source.&quot;</string>
+	<indexing_tag>legal</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>status</indexing_tag><symbol>:</symbol> <string>&quot;See notice at end of class.&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date: 2014-05-20 22:31:22 -0700 (Tue, 20 May 2014) $&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision: 95138 $&quot;</string>
+
+<keyword>deferred</keyword> <keyword>class</keyword> 
+	<class><location>../implementation_gtk/ev_dockable_source_imp.xml</location>EV_DOCKABLE_SOURCE_IMP</class>
+
+<keyword>inherit</keyword>
+	<class><location>../implementation_interface/ev_dockable_source_i.xml</location>EV_DOCKABLE_SOURCE_I</class>
+		<keyword>redefine</keyword>
+			<feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_interface</location>interface</feature>
+		<keyword>end</keyword>
+
+<keyword>feature</keyword> <comment>--</comment><comment> Status setting</comment>
+
+	<anchor>f_start_dragable_filter</anchor><feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_start_dragable_filter</location>start_dragable_filter</feature> <symbol>(</symbol><local>a_type</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>a_button</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_x_tilt</local><symbol>,</symbol> <local>a_y_tilt</local><symbol>,</symbol> <local>a_pressure</local><symbol>:</symbol> <class><include>False</include>REAL_64</class><symbol>;</symbol> <local>a_screen_x</local><symbol>,</symbol> <local>a_screen_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Filter out duplicate events.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <keyword>not</keyword> <feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_awaiting_movement</location>awaiting_movement</feature> <keyword>then</keyword>
+				<feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_orig_cursor</location>orig_cursor</feature> <symbol>:=</symbol> <feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_pointer_style</location>pointer_style</feature>
+				<feature><location>../implementation_interface/ev_shared_transport_i.xml#f_original_x_offset</location>original_x_offset</feature> <symbol>:=</symbol> <local>a_x</local><dot>.</dot><feature><include>False</include>to_integer_16</feature>
+				<feature><location>../implementation_interface/ev_shared_transport_i.xml#f_original_y_offset</location>original_y_offset</feature> <symbol>:=</symbol> <local>a_y</local><dot>.</dot><feature><include>False</include>to_integer_16</feature>
+				<feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_original_screen_x</location>original_screen_x</feature> <symbol>:=</symbol> <local>a_screen_x</local><dot>.</dot><feature><include>False</include>to_integer_16</feature>
+				<feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_original_screen_y</location>original_screen_y</feature> <symbol>:=</symbol> <local>a_screen_y</local><dot>.</dot><feature><include>False</include>to_integer_16</feature>
+				<feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_awaiting_movement</location>awaiting_movement</feature> <symbol>:=</symbol> <keyword>True</keyword>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_awaiting_movement</anchor><feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_awaiting_movement</location>awaiting_movement</feature><symbol>:</symbol> <class><include>False</include>BOOLEAN</class>
+
+	<anchor>f_original_screen_x</anchor><feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_original_screen_x</location>original_screen_x</feature><symbol>:</symbol> <class><include>False</include>INTEGER_16</class>
+
+	<anchor>f_original_screen_y</anchor><feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_original_screen_y</location>original_screen_y</feature><symbol>:</symbol> <class><include>False</include>INTEGER_16</class>
+
+	<anchor>f_dragable_motion</anchor><feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_dragable_motion</location>dragable_motion</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_x_tilt</local><symbol>,</symbol> <local>a_y_tilt</local><symbol>,</symbol> <local>a_pressure</local><symbol>:</symbol> <class><include>False</include>REAL_64</class><symbol>;</symbol> <local>a_screen_x</local><symbol>,</symbol> <local>a_screen_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> If in drag/pick and drop then update.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_awaiting_movement</location>awaiting_movement</feature> <keyword>then</keyword>
+				<keyword>if</keyword> <symbol>(</symbol><feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_original_screen_x</location>original_screen_x</feature><dot>.</dot><feature><include>False</include>to_integer_32</feature> <symbol>-</symbol> <local>a_screen_x</local><symbol>)</symbol><dot>.</dot><feature><include>False</include>abs</feature> <symbol>&gt;</symbol> <feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_drag_and_drop_starting_movement</location>Drag_and_drop_starting_movement</feature> <keyword>or</keyword> <symbol>(</symbol><feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_original_screen_y</location>original_screen_y</feature><dot>.</dot><feature><include>False</include>to_integer_32</feature> <symbol>-</symbol> <local>a_screen_y</local><symbol>)</symbol><dot>.</dot><feature><include>False</include>abs</feature> <symbol>&gt;</symbol> <feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_drag_and_drop_starting_movement</location>Drag_and_drop_starting_movement</feature> <keyword>then</keyword>
+					<feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_awaiting_movement</location>awaiting_movement</feature> <symbol>:=</symbol> <keyword>False</keyword>
+					<feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_start_dragable</location>start_dragable</feature><symbol> </symbol><symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <number>1</number><symbol>,</symbol> <local>a_x_tilt</local><symbol>,</symbol> <local>a_y_tilt</local><symbol>,</symbol> <local>a_pressure</local><symbol>,</symbol> <local>a_screen_x</local><symbol>,</symbol> <local>a_screen_y</local><symbol>)</symbol>
+					<feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_real_start_dragging</location>real_start_dragging</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_interface/ev_shared_transport_i.xml#f_original_x_offset</location>original_x_offset</feature><dot>.</dot><feature><include>False</include>to_integer_32</feature><symbol>,</symbol> <feature><location>../implementation_interface/ev_shared_transport_i.xml#f_original_y_offset</location>original_y_offset</feature><dot>.</dot><feature><include>False</include>to_integer_32</feature><symbol>,</symbol> <number>1</number><symbol>,</symbol> <number>0.0</number><symbol>,</symbol> <number>0.0</number><symbol>,</symbol> <number>0.0</number><symbol>,</symbol> <local>a_screen_x</local> <symbol>+</symbol> <symbol>(</symbol><feature><location>../implementation_interface/ev_shared_transport_i.xml#f_original_x_offset</location>original_x_offset</feature><dot>.</dot><feature><include>False</include>to_integer_32</feature> <symbol>-</symbol> <local>a_x</local><symbol>)</symbol><symbol>,</symbol> <local>a_screen_y</local> <symbol>+</symbol> <symbol>(</symbol><feature><location>../implementation_interface/ev_shared_transport_i.xml#f_original_y_offset</location>original_y_offset</feature><dot>.</dot><feature><include>False</include>to_integer_32</feature> <symbol>-</symbol> <local>a_y</local><symbol>)</symbol><symbol>)</symbol>
+				<keyword>end</keyword>
+			<keyword>else</keyword>
+				<feature><location>../implementation_interface/ev_dockable_source_i.xml#f_execute_dragging</location>execute_dragging</feature><symbol> </symbol><symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <number>0</number><dot>.</dot><feature><include>False</include>to_double</feature><symbol>,</symbol> <number>0</number><dot>.</dot><feature><include>False</include>to_double</feature><symbol>,</symbol> <number>0.5</number><symbol>,</symbol> <local>a_screen_x</local><symbol>,</symbol> <local>a_screen_y</local><symbol>)</symbol>
+			<keyword>end</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_gtk/ev_pick_and_dropable_imp.xml</location>EV_PICK_AND_DROPABLE_IMP</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_internal_enable_dockable</anchor><feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_internal_enable_dockable</location>internal_enable_dockable</feature>
+			<comment>--</comment><comment> Activate drag mechanism.</comment>
+		<keyword>do</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_internal_disable_dockable</anchor><feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_internal_disable_dockable</location>internal_disable_dockable</feature>
+			<comment>--</comment><comment> Deactivate drag mechanism</comment>
+		<keyword>do</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_drag_and_drop_starting_movement</anchor><feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_drag_and_drop_starting_movement</location>Drag_and_drop_starting_movement</feature><symbol>:</symbol> <class><include>False</include>INTEGER_32</class> <symbol>=</symbol> <number>3</number>
+
+	<anchor>f_start_dragable</anchor><feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_start_dragable</location>start_dragable</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>a_button</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_x_tilt</local><symbol>,</symbol> <local>a_y_tilt</local><symbol>,</symbol> <local>a_pressure</local><symbol>:</symbol> <class><include>False</include>REAL_64</class><symbol>;</symbol> <local>a_screen_x</local><symbol>,</symbol> <local>a_screen_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Initialize the pick/drag and drop mechanism.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_enable_capture</location>enable_capture</feature>
+			<feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_app_implementation</location>app_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_docking_source</location>docking_source</feature> <symbol>:=</symbol> <keyword>Current</keyword>
+			<feature><location>../implementation_interface/ev_dockable_source_i.xml#f_initialize_transport</location>initialize_transport</feature><symbol> </symbol><symbol>(</symbol><local>a_screen_x</local><symbol>,</symbol> <local>a_screen_y</local><symbol>,</symbol> <feature><location>../implementation_interface/ev_any_i.xml#f_attached_interface</location>attached_interface</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_real_start_dragging</anchor><feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_real_start_dragging</location>real_start_dragging</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>a_button</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_x_tilt</local><symbol>,</symbol> <local>a_y_tilt</local><symbol>,</symbol> <local>a_pressure</local><symbol>:</symbol> <class><include>False</include>REAL_64</class><symbol>;</symbol> <local>a_screen_x</local><symbol>,</symbol> <local>a_screen_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Actually start the pick/drag and drop mechanism.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_set_pointer_style</location>set_pointer_style</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_interface/ev_dockable_source_i.xml#f_drag_cursor</location>Drag_cursor</feature><symbol>)</symbol>
+		<keyword>end</keyword>
+
+	<anchor>f_orig_cursor</anchor><feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_orig_cursor</location>orig_cursor</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_pointer_style.xml</location>EV_POINTER_STYLE</class>
+
+	<anchor>f_end_dragable</anchor><feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_end_dragable</location>end_dragable</feature> <symbol>(</symbol><local>a_x</local><symbol>,</symbol> <local>a_y</local><symbol>,</symbol> <local>a_button</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>;</symbol> <local>a_x_tilt</local><symbol>,</symbol> <local>a_y_tilt</local><symbol>,</symbol> <local>a_pressure</local><symbol>:</symbol> <class><include>False</include>REAL_64</class><symbol>;</symbol> <local>a_screen_x</local><symbol>,</symbol> <local>a_screen_y</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Terminate the pick and drop mechanism.</comment>
+		<keyword>do</keyword>
+			<keyword>if</keyword> <feature><location>../implementation_interface/ev_dockable_source_i.xml#f_is_dock_executing</location>is_dock_executing</feature> <keyword>then</keyword>
+				<keyword>if</keyword> <keyword>attached</keyword> <feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_orig_cursor</location>orig_cursor</feature> <keyword>as</keyword> l_orig_cursor <keyword>then</keyword>
+					<feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_internal_set_pointer_style</location>internal_set_pointer_style</feature><symbol> </symbol><symbol>(</symbol><local>l_orig_cursor</local><symbol>)</symbol>
+				<keyword>else</keyword>
+					<feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_internal_set_pointer_style</location>internal_set_pointer_style</feature><symbol> </symbol><symbol>(</symbol><feature><location>../implementation_interface/ev_shared_transport_i.xml#f_default_pixmaps</location>Default_pixmaps</feature><dot>.</dot><feature><location>../interface/ev_stock_pixmaps.xml#f_standard_cursor</location>Standard_cursor</feature><symbol>)</symbol>
+				<keyword>end</keyword>
+				<feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_disable_capture</location>disable_capture</feature>
+				<feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_app_implementation</location>app_implementation</feature><dot>.</dot><feature><location>../implementation_gtk/ev_application_imp.xml#f_docking_source</location>docking_source</feature> <symbol>:=</symbol> <keyword>Void</keyword>
+				<feature><location>../implementation_interface/ev_dockable_source_i.xml#f_complete_dock</location>complete_dock</feature>
+			<keyword>end</keyword>
+			<feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_reset_drag_data</location>reset_drag_data</feature>
+		<keyword>end</keyword>
+
+	<anchor>f_reset_drag_data</anchor><feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_reset_drag_data</location>reset_drag_data</feature>
+			<comment>--</comment><comment> Reset initial drag data.</comment>
+		<keyword>do</keyword>
+			<feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_awaiting_movement</location>awaiting_movement</feature> <symbol>:=</symbol> <keyword>False</keyword>
+			<feature><location>../implementation_interface/ev_shared_transport_i.xml#f_original_x_offset</location>original_x_offset</feature> <symbol>:=</symbol> <number>-1</number>
+			<feature><location>../implementation_interface/ev_shared_transport_i.xml#f_original_y_offset</location>original_y_offset</feature> <symbol>:=</symbol> <number>-1</number>
+			<feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_original_screen_x</location>original_screen_x</feature> <symbol>:=</symbol> <number>-1</number>
+			<feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_original_screen_y</location>original_screen_y</feature> <symbol>:=</symbol> <number>-1</number>
+			<feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_orig_cursor</location>orig_cursor</feature> <symbol>:=</symbol> <keyword>Void</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_enable_capture</anchor><feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_enable_capture</location>enable_capture</feature>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_disable_capture</anchor><feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_disable_capture</location>disable_capture</feature>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_set_pointer_style</anchor><feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_set_pointer_style</location>set_pointer_style</feature> <symbol>(</symbol><local>a_cursor</local><symbol>:</symbol> <class><location>../interface/ev_pointer_style.xml</location>EV_POINTER_STYLE</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>a_cursor</quoted><comment> to </comment><feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_pointer_style</location>pointer_style</feature>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_internal_set_pointer_style</anchor><feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_internal_set_pointer_style</location>internal_set_pointer_style</feature> <symbol>(</symbol><local>a_cursor</local><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_pointer_style.xml</location>EV_POINTER_STYLE</class><symbol>)</symbol>
+			<comment>--</comment><comment> Assign </comment><quoted>a_cursor</quoted><comment> to </comment><feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_pointer_style</location>pointer_style</feature>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_update_buttons</anchor><feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_update_buttons</location>update_buttons</feature> <symbol>(</symbol><local>a_parent</local><symbol>:</symbol> <class><location>../interface/ev_tool_bar.xml</location>EV_TOOL_BAR</class><symbol>;</symbol> <local>start_index</local><symbol>,</symbol> <local>end_index</local><symbol>:</symbol> <class><include>False</include>INTEGER_32</class><symbol>)</symbol>
+			<comment>--</comment><comment> Ensure that buttons from </comment><quoted>start_index</quoted><comment> to </comment><quoted>end_index</quoted><comment> in </comment><quoted>a_parent</quoted><comment> are</comment>
+			<comment>--</comment><comment> refreshed. This is called at the end of  a dockable transport from a tool bar button</comment>
+			<comment>--</comment><comment> as on some platforms, they end up in an invalid state, and need refreshing.</comment>
+		<keyword>do</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_app_implementation</anchor><feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_app_implementation</location>app_implementation</feature><symbol>:</symbol> <class><location>../implementation_gtk/ev_application_imp.xml</location>EV_APPLICATION_IMP</class>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+
+	<anchor>f_pointer_style</anchor><feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_pointer_style</location>pointer_style</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_pointer_style.xml</location>EV_POINTER_STYLE</class>
+		<keyword>deferred</keyword>
+		<keyword>end</keyword>
+	
+<keyword>feature</keyword> <symbol>{</symbol><class><location>../interface/ev_any.xml</location>EV_ANY</class><symbol>,</symbol> <class><location>../implementation_interface/ev_any_i.xml</location>EV_ANY_I</class><symbol>}</symbol> <comment>--</comment><comment> Implementation</comment>
+
+	<anchor>f_interface</anchor><feature><location>../implementation_gtk/ev_dockable_source_imp.xml#f_interface</location>interface</feature><symbol>:</symbol> <keyword>detachable</keyword> <class><location>../interface/ev_dockable_source.xml</location>EV_DOCKABLE_SOURCE</class>
+		<keyword>note</keyword>
+			option: stable
+		<keyword>attribute</keyword>
+		<keyword>end</keyword>
+	
+<keyword>note</keyword>
+	<indexing_tag>copyright</indexing_tag><symbol>:</symbol> <string>&quot;Copyright (c) 1984-2014, Eiffel Software and others&quot;</string>
+	<indexing_tag>license</indexing_tag><symbol>:</symbol> <string>&quot;Eiffel Forum License v2 (see </string><string><location>http://www.eiffel.com/licensing/forum.txt</location>http://www.eiffel.com/licensing/forum.txt</string><string>)&quot;</string>
+	<indexing_tag>source</indexing_tag><symbol>:</symbol> <string>&quot;</string><string>[</string>
+		<string>Eiffel Software</string>
+		<string>5949 Hollister Ave., Goleta, CA 93117 USA</string>
+		<string>Telephone 805-685-1006, Fax 805-685-6869</string>
+		<string>Website </string><string><location>http://www.eiffel.com</location>http://www.eiffel.com</string>
+		<string>Customer support </string><string><location>http://support.eiffel.com</location>http://support.eiffel.com</string>
+	<string>]</string><string>&quot;</string>
+
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../implementation_gtk/ev_dockable_source_imp.xml</location>EV_DOCKABLE_SOURCE_IMP</class></system>
+

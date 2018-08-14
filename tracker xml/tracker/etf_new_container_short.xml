@@ -1,0 +1,21 @@
+<system>
+<keyword>note</keyword>
+	<indexing_tag>description</indexing_tag><symbol>:</symbol> <string>&quot;&quot;</string>
+	<indexing_tag>author</indexing_tag><symbol>:</symbol> <string>&quot;&quot;</string>
+	<indexing_tag>date</indexing_tag><symbol>:</symbol> <string>&quot;$Date$&quot;</string>
+	<indexing_tag>revision</indexing_tag><symbol>:</symbol> <string>&quot;$Revision$&quot;</string>
+
+<keyword>class</keyword> <keyword>interface</keyword>
+	<class><location>../tracker/etf_new_container_short.xml</location>ETF_NEW_CONTAINER</class>
+
+<keyword>create</keyword> 
+	<feature><include>False</include>make</feature>
+
+<keyword>feature</keyword> <comment>--</comment><comment> command</comment>
+
+	<anchor>f_new_container</anchor><feature><location>../tracker/etf_new_container_short.xml#f_new_container</location>new_container</feature> <symbol>(</symbol><local>cid</local><symbol>:</symbol> <class><include>False</include>STRING_8</class><symbol>;</symbol> <local>c</local><symbol>:</symbol> <class><include>False</include>TUPLE</class> <symbol>[</symbol><local>material</local><symbol>:</symbol> <class><include>False</include>INTEGER_64</class><symbol>;</symbol> <local>radioactivity</local><symbol>:</symbol> <class><location>../mathmodels/value_short.xml</location>VALUE</class><symbol>]</symbol><symbol>;</symbol> <local>pid</local><symbol>:</symbol> <class><include>False</include>STRING_8</class><symbol>)</symbol>
+		<keyword>require else</keyword>
+				<feature><include>False</include>new_container_precond</feature><symbol> </symbol><symbol>(</symbol><local>cid</local><symbol>,</symbol> <local>c</local><symbol>,</symbol> <local>pid</local><symbol>)</symbol>
+	
+<keyword>end</keyword> <comment>--</comment> <comment>class </comment><class><location>../tracker/etf_new_container_short.xml</location>ETF_NEW_CONTAINER</class></system>
+

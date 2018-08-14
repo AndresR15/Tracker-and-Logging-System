@@ -1,0 +1,167 @@
+{\rtf1\ansi\ansicpg1252\deflang1033{\fonttbl{\f0\fscript\fcharset0 Courier;}}{\colortbl ;\red0\green0\blue0;\red255\green255\blue255;\red128\green0\blue0;\red0\green0\blue255;\red0\green128\blue0;\red0\green0\blue128;}
+{\cf3\f0\fs16 {\tab}{\tab}{\tab}-- Automatic generation produced by ISE Eiffel --
+{\line}
+{{\b\cf6 note}{\line}
+{\tab}{\cf1 description}{\cf1 :} "[{\line}
+{\tab}{\tab}Perform arithmetic (+, -, *, /) on real numbers of arbitrary precision.{\line}
+{\tab}{\tab}In the case of division, the default precision is 35 digits after{\line}
+{\tab}{\tab}the decimal point. This can be changed via {\cf5 set_division_precision}.{\line}
+{\tab}{\tab}The queries {\cf5 is_integer}, {\cf5 is_natural} and {\cf5 is_natural1} may be used to{\line}
+{\tab}{\tab}check that the value is an integer or natural number. {\line}
+{\tab}{\tab}{\cf5 out} provides a string represesentation rounded to two decimal places, and {\line}
+{\tab}{\tab}{\cf5 precise_out} is a string representation of the precise value. The corresponding{\line}
+{\tab}{\tab}C# class was the inspiration for this class.{\line}
+{\tab}]"{\line}
+{\tab}{\cf1 author}{\cf1 :} "Vlad Gerchikov for the Software Engineering Lab at sel@cse.yorku.ca"{\line}
+{\tab}{\cf1 date}{\cf1 :} "$April 15, 2008$"{\line}
+{\tab}{\cf1 revision}{\cf1 :} "$1.0$"{\line}
+{\line}
+{\b\cf6 expanded} {\b\cf6 class} {\b\cf6 interface}{\line}
+{\tab}{\cf4 VALUE}{\line}
+{\line}
+{\b\cf6 create} {\line}
+{\tab}{\cf5 make_from_string}{\cf1 ,}{\line}
+{\tab}{\cf5 make}{\cf1 ,}{\line}
+{\tab}{\cf5 make_from_int}{\cf1 ,}{\line}
+{\tab}{\cf5 default_create}{\line}
+{\line}
+{\b\cf6 convert}{\line}
+{\tab}{\cf5 make_from_string} {\cf1 (}{\cf1 \{}{\cf4 STRING_8}{\cf1 \}}{\cf1 )}{\cf1 ,}{\line}
+{\tab}{\cf5 as_double}{\cf1 :} {\cf1 \{}{\cf4 REAL_64}{\cf1 \}}{\line}
+{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  comparison}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 is_equal} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 VALUE}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  check whether other is equal to current or not}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_less} {\b\cf6 alias} {\cf1 "}{\cf1 <}{\cf1 "} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 VALUE}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  whether current is less than other}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  operations}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 plus} {\b\cf6 alias} {\cf1 "}{\cf1 +}{\cf1 "} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 VALUE}{\cf1 )}{\cf1 :} {\cf4 VALUE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  adds current to other and returns a new object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 VALUE}{\cf3  as synonym of }{\cf5 add}{\cf3 .}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 add} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 VALUE}{\cf1 )}{\cf1 :} {\cf4 VALUE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  adds current to other and returns a new object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 VALUE}{\cf3  as synonym of }{\cf5 plus}{\cf3 .}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 minus} {\b\cf6 alias} {\cf1 "}{\cf1 -}{\cf1 "} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 VALUE}{\cf1 )}{\cf1 :} {\cf4 VALUE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  subtracts other from current and returns a new object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 VALUE}{\cf3  as synonym of }{\cf5 subtract}{\cf3 .}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 subtract} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 VALUE}{\cf1 )}{\cf1 :} {\cf4 VALUE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  subtracts other from current and returns a new object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 VALUE}{\cf3  as synonym of }{\cf5 minus}{\cf3 .}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 product} {\b\cf6 alias} {\cf1 "}{\cf1 *}{\cf1 "} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 VALUE}{\cf1 )}{\cf1 :} {\cf4 VALUE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  multiplies current by other and returns a new object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 VALUE}{\cf3  as synonym of }{\cf5 multiply}{\cf3 .}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 multiply} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 VALUE}{\cf1 )}{\cf1 :} {\cf4 VALUE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  multiplies current by other and returns a new object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 VALUE}{\cf3  as synonym of }{\cf5 product}{\cf3 .}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 quotient} {\b\cf6 alias} {\cf1 "}{\cf1 /}{\cf1 "} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 VALUE}{\cf1 )}{\cf1 :} {\cf4 VALUE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  divides current by other and returns a new object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 VALUE}{\cf3  as synonym of }{\cf5 divide}{\cf3 .}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 divide} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 VALUE}{\cf1 )}{\cf1 :} {\cf4 VALUE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  divides current by other and returns a new object}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  Was declared in }{\cf4 VALUE}{\cf3  as synonym of }{\cf5 quotient}{\cf3 .}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 opposite} {\b\cf6 alias} {\cf1 "}{\cf1 -}{\cf1 "}{\cf1 :} {\cf4 VALUE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  unary minus}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 identity} {\b\cf6 alias} {\cf1 "}{\cf1 +}{\cf1 "}{\cf1 :} {\cf4 VALUE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  unary plus}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 zero}{\cf1 :} {\cf4 VALUE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  neutral element for "+" and "-"}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 one}{\cf1 :} {\cf4 VALUE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  neutral element for "*" and "/"}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 divisible} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 VALUE}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  may current object be divided by }{\cf5 other}{\cf3 ?}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 exponentiable} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 NUMERIC}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  may current object be elevated to the power }{\cf5 other}{\cf3 ?}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_natural}{\cf1 :} {\cf4 BOOLEAN}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_natural1}{\cf1 :} {\cf4 BOOLEAN}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_integer}{\cf1 :} {\cf4 BOOLEAN}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 set_division_precision} {\cf1 (}{\cf5 i}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  sets divisionDecimalPrecision_ to 'i'}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\cf1 greater_than_zero}{\cf1 :} {\cf5 i} {\cf1 >} 0{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  Conversion}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 as_double}{\cf1 :} {\cf4 REAL_64}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  represent as a DOUBLE}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  printing}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 precise_out}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  what is the string representation of VALUE_IMP}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 out}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  return a representation of the number rounded to two decimal places}{\line}
+}{\tab}{\line}
+{\b\cf6 feature} {\cf3 --}{\cf3  rounding}{\line}
+{\line}
+{\tab}{\cf5 {\cf5 round_to} {\cf1 (}{\cf5 digits}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 VALUE}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  rounds the current VALUE_IMP to 'digits'}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  symmetric rounding as in Excel }{\cf3 http://support.microsoft.com/kb/196652}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  -2.6 is rounded to -3}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 digits} {\cf1 >=} 0{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 precise_out_to} {\cf1 (}{\cf5 digits}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\cf1 :} {\cf4 STRING_8}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  returns the precise string representation to 'digits'}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 digits} {\cf1 >=} 0{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 round} {\cf1 (}{\cf5 digits}{\cf1 :} {\cf4 INTEGER_32}{\cf1 )}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  rounds this instance to the specified number of digits}{\line}
+{\tab}{\tab}{\b\cf6 require}{\line}
+{\tab}{\tab}{\tab}{\tab}{\cf5 digits} {\cf1 >=} 0{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 negate}{\line}
+{\tab}{\tab}{\tab}{\cf3 --}{\cf3  negates the number}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 Epsilon_singleton}{\cf1 :} {\cf4 VALUE_SINGLETON}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 set_epsilon} {\cf1 (}{\cf5 v}{\cf1 :} {\cf4 STRING_8}{\cf1 )}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_imprecise_equal} {\b\cf6 alias} {\cf1 "}{\cf1 |~}{\cf1 "} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 VALUE}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_imprecise_equal_negation} {\b\cf6 alias} {\cf1 "}{\cf1 |/~}{\cf1 "} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 VALUE}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_imprecise_less} {\b\cf6 alias} {\cf1 "}{\cf1 |<}{\cf1 "} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 VALUE}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_imprecise_less_equal} {\b\cf6 alias} {\cf1 "}{\cf1 |<~}{\cf1 "} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 VALUE}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_imprecise_greater} {\b\cf6 alias} {\cf1 "}{\cf1 |>}{\cf1 "} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 VALUE}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 is_imprecise_greater_equal} {\b\cf6 alias} {\cf1 "}{\cf1 |>~}{\cf1 "} {\cf1 (}{\cf5 other}{\cf1 :} {\cf4 VALUE}{\cf1 )}{\cf1 :} {\cf4 BOOLEAN}{\line}
+}{\line}
+{\tab}{\cf5 {\cf5 absolute}{\cf1 :} {\cf4 VALUE}{\line}
+{\tab}{\tab}{\b\cf6 ensure}{\line}
+{\tab}{\tab}{\tab}{\tab}{\b\cf6 Result} {\cf1 >=} {\b\cf6 Result}{\b\cf1 .}{\cf5 zero}{\line}
+}{\tab}{\line}
+{\b\cf6 invariant}{\line}
+{\tab}{\tab}{\cf5 divisiondecimalprecision_} {\cf1 >} 0{\line}
+{\line}
+{\b\cf6 end} {\cf3 --} {\cf3 class }{\cf4 VALUE}}
+{\line}
+{\cf3 {\tab}{\tab}{\tab}-- Generated by ISE Eiffel --}
+{\line}
+{\cf3{\tab}{\tab}{\tab}-- For more details: http://www.eiffel.com --}
+}}
+{\line}

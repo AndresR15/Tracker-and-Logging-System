@@ -15,7 +15,7 @@ inherit
 create {TRACKER_ACCESS}
 	make
 
-feature {NONE} -- Initialization
+feature {ES_TEST} -- Initialization
 
 	make
 			-- Initialization for `Current'.
@@ -67,7 +67,9 @@ feature -- model operations
 
 	new_phase (pid: STRING; phase_name: STRING; capacity: INTEGER_64; expected_materials: ARRAY [INTEGER_64])
 		require
+			tracker_not_active: not is_active
 			valid_pid: valid_string (pid)
+			pid_not_in_system: not get_phases.has (pid)
 			valid_phase_name: valid_string (phase_name)
 			positive_capacity: capacity > 0.0
 			expected_materials_non_empty: expected_materials.count > 0
@@ -78,22 +80,35 @@ feature -- model operations
 			phases.extend (new_p, pid)
 			sorted_phases.extend (new_p)
 			set_error (msg.ok)
+		ensure
+			phase_added_to_tracker: get_phases.has (pid)
+			-- phase_added_to_sorted_phases
 		end
 
 	new_tracker (max_p_rad, max_c_rad: VALUE)
 		require
 			positive_values: max_p_rad >= 0.0 and then max_c_rad >= 0.0
+			max_container_rad_less_than_max_phase_rad: max_p_rad >= max_c_rad
 			tracker_not_active: not is_active
 		do
-			set_error (msg.ok)
+--			set_error (msg.ok)
 			max_phase_rad := max_p_rad
 			max_cont_rad := max_c_rad
 			set_error (msg.ok)
+		ensure
+			max_radiation_updated: max_phase_rad = max_p_rad and max_cont_rad = max_c_rad
 		end
 
 	new_container (cid: STRING; cont_spec: TUPLE [m: INTEGER_64; rad: VALUE]; pid: STRING)
 		require
+			valid_cid: valid_string (cid)
+			phase_exists: get_phases.has (pid)
+			phase_not_full: under_capacity (pid)
+			rad_within_threshold: cont_spec.rad <= get_max_cont_rad
 			cont_not_in_use: not cid_exists (cid)
+			phase_max_rad_not_exceaded: not cont_gt_max_phase_rad (cont_spec.rad, pid)
+			phase_expects_matterial: phase_expects_mat (cont_spec.m, pid)
+
 		local
 			cont: PHASE_CONTAINER
 		do
@@ -103,12 +118,17 @@ feature -- model operations
 				sorted_conts.extend (cont)
 				set_error (msg.ok)
 			end
+		ensure
+			phase_attached: attached get_phases [pid] as p
+			contaner_added_to_phase: p.get_containers.has (cid)
+			-- container added to sorted container
 		end
 
 	remove_phase (phase_id: STRING)
 			-- removes a phase from the tracker
-			--	require
-			--		phase_exists: get_phases.has (phase_id)
+		require
+			phase_exists: get_phases.has (phase_id)
+			tracker_not_active: not is_active
 		do
 			if attached phases [phase_id] as p then
 				sorted_phases.prune_all (p)
@@ -117,12 +137,13 @@ feature -- model operations
 			set_error (msg.ok)
 		ensure
 			phase_removed: not (phases.has_key (phase_id))
+			-- reomved fro sorted phases
 		end
 
 	remove_container (cid: STRING)
 			-- removes a container from the tracker
 		require
-			container_exists:
+			container_exists: cid_exists(cid)
 		local
 			cur_phase: PHASE
 			cur_cont: PHASE_CONTAINER
@@ -134,10 +155,20 @@ feature -- model operations
 				p.remove_container (cid)
 			end
 			set_error (msg.ok)
+		ensure
+			cid_in_phase_attached: attached  old get_phase_containing_cid (cid) as pc
+			phase_not_containng_container: not pc.get_containers.has(cid)
+
 		end
 
 	move_container (cid: STRING; pid1: STRING; pid2: STRING)
 			-- moves a container from a source phase to a target phase
+		require
+			container_exists: cid_exists(cid)
+			phase1_exists: get_phases.has(pid1)
+			phase2_exists: get_phases.has(pid2)
+			phases_are_destinct: not (pid1 = pid2)
+
 		local
 			temp_cont: PHASE_CONTAINER
 		do
@@ -278,8 +309,6 @@ feature -- error checks
 			end
 		end
 
-feature -- error checks
-
 	cid_exists (cid: STRING): BOOLEAN
 		do
 			Result := False
@@ -289,6 +318,38 @@ feature -- error checks
 				Result := Result or else (p.item.get_containers.has (cid))
 			end
 		end
+
+	max_cur_rad_over_all_phases: VALUE
+		local
+			zero: VALUE
+		do
+			Create zero.make_from_int (0)
+			Result := zero
+			across
+				phases as p
+			loop
+				if Result < p.item.get_current_rad then
+					Result := p.item.get_current_rad
+				end
+			end
+		end
+
+	max_cont_rad_over_all_containers: VALUE
+		local
+			zero: VALUE
+		do
+			Create zero.make_from_int (0)
+			Result := zero
+			across
+				sorted_conts as c
+			loop
+				if Result < c.item.get_rad then
+					Result := c.item.get_rad
+				end
+			end
+		end
+
+
 
 feature -- queries
 
@@ -357,4 +418,8 @@ feature -- misc
 			make
 		end
 
+invariant
+	no_phase_over_max_phase_rad: max_cur_rad_over_all_phases < max_phase_rad
+	no_conts_over_max_cont_rad: max_cont_rad_over_all_containers < max_cont_rad
+	
 end

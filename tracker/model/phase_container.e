@@ -72,8 +72,11 @@ feature -- Access
 feature -- setters
 
 	set_pid (n_pid: STRING)
+		-- sets the containers current location (specefied by it's phase_id) to n_pid
 		do
 			current_pid := n_pid
+		ensure
+			current_pid = n_pid
 		end
 
 feature -- Comparable

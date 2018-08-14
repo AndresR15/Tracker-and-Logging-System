@@ -93,6 +93,11 @@ feature -- Queries
 			Result := containers
 		end
 
+	get_current_rad: VALUE
+		do
+			Result := current_rad
+		end
+
 	container_exists (cid: STRING): BOOLEAN
 			-- checks whether a container exists within a phase
 		do
@@ -125,9 +130,14 @@ feature -- Queries
 feature -- Commands
 
 	add_container (cont: PHASE_CONTAINER)
+		require
+			capacity_not_exceded: get_capacity >= get_containers.count+1
 		do
 			get_containers.extend (cont, cont.get_id)
 			current_rad := current_rad + cont.get_rad
+		ensure
+			container_in_phase: get_containers.has (cont.get_id)
+			radiation_increased: current_rad = old current_rad + cont.get_rad
 		end
 
 	remove_container (cid: STRING)
@@ -140,6 +150,7 @@ feature -- Commands
 			containers.remove (cid)
 		ensure
 			container_removed: not containers.has_key (cid)
+--			radiation_decreased: current_rad = old current_rad
 		end
 
 	material_array_to_set: ARRAYED_SET [INTEGER_64]
@@ -189,4 +200,6 @@ feature -- Output
 			Result.append (current_rad.out + ",{" + materials_out + "}")
 		end
 
+invariant
+	capacity_not_exceeded: capacity >= containers.count
 end

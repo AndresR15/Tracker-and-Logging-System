@@ -63,7 +63,7 @@ feature {TRACKER} -- model attributes
 
 	msg: MESSAGES_ACCESS
 
-feature -- model operations
+feature {COMMAND, ES_TEST} -- model operations
 
 	new_phase (pid: STRING; phase_name: STRING; capacity: INTEGER_64; expected_materials: ARRAY [INTEGER_64])
 		require
@@ -198,8 +198,6 @@ feature -- setters
 		end
 
 	set_cursor_state (cur_state: INTEGER)
-			--		require
-			--			cursor_state_not_over: cur_state <= get_state
 		do
 			cursor_state := cur_state
 		end
@@ -253,7 +251,7 @@ feature -- error checks
 	under_capacity (pid: STRING): BOOLEAN
 			-- can the phase handle another container?
 		require
-			get_phases.has (pid)
+			phase_exists: get_phases.has (pid)
 		do
 			if attached get_phases.at (pid) as p and attached get_phases.at (pid) as gp then
 				Result := (p.get_containers.count) < (gp.get_capacity)

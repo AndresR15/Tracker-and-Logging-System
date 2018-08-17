@@ -63,7 +63,7 @@ feature {TRACKER} -- model attributes
 
 	msg: MESSAGES_ACCESS
 
-feature {COMMAND, ES_TEST}-- model operations
+feature {COMMAND, ES_TEST} -- model operations
 
 	new_phase (pid: STRING; phase_name: STRING; capacity: INTEGER_64; expected_materials: ARRAY [INTEGER_64])
 		require
@@ -198,8 +198,7 @@ feature -- setters
 		end
 
 	set_cursor_state (cur_state: INTEGER)
-			--		require
-			--			cursor_state_not_over: cur_state <= get_state
+
 		do
 			cursor_state := cur_state
 		end

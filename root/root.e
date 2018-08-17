@@ -41,7 +41,7 @@ feature -- Attributes
 	switch: INTEGER
 			-- Running mode of ETF application.
 		do
-			Result := 1
+			Result := 2
 
 		end
 

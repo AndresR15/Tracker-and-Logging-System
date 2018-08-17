@@ -82,7 +82,6 @@ feature -- model operations
 			set_error (msg.ok)
 		ensure
 			phase_added_to_tracker: get_phases.has (pid)
-			-- phase_added_to_sorted_phases
 		end
 
 	new_tracker (max_p_rad, max_c_rad: VALUE)
@@ -91,7 +90,6 @@ feature -- model operations
 			max_container_rad_less_than_max_phase_rad: max_p_rad >= max_c_rad
 			tracker_not_active: not is_active
 		do
---			set_error (msg.ok)
 			max_phase_rad := max_p_rad
 			max_cont_rad := max_c_rad
 			set_error (msg.ok)
@@ -118,10 +116,6 @@ feature -- model operations
 				sorted_conts.extend (cont)
 				set_error (msg.ok)
 			end
-		ensure
---			phase_attached: attached get_phases [pid] as p
---			contaner_added_to_phase: p.get_containers.has (cid)
-			-- container added to sorted container
 		end
 
 	remove_phase (phase_id: STRING)
@@ -155,10 +149,6 @@ feature -- model operations
 				p.remove_container (cid)
 			end
 			set_error (msg.ok)
-		ensure
---			cid_in_phase_attached: attached  old get_phase_containing_cid (cid) as pc
---			phase_not_containng_container: not pc.get_containers.has(cid)
-
 		end
 
 	move_container (cid: STRING; pid1: STRING; pid2: STRING)
@@ -181,8 +171,6 @@ feature -- model operations
 			set_error (msg.ok)
 		ensure
 			container_exists: cid_exists (cid)
---			cid_in_phase_attached: attached get_phase_containing_cid (cid) as pc
---			cont_is_in_target_phase: pc.get_pid ~ pid2
 		end
 
 	store_error (new_msg: STRING)

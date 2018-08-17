@@ -32,9 +32,9 @@ feature
 			model := model_access.m
 			check attached model as m then
 				m.new_tracker (m.get_max_phase_rad, m.get_max_cont_rad)
-				m.new_phase ("pid1", "packing", 2, <<1>>)
-				m.remove_phase ("pid1")
-				Result := m.get_phases.is_empty
+				m.new_phase ("pid2", "packing", 2, <<1>>)
+				m.remove_phase ("pid2")
+				Result := not m.get_phases.has ("pid2")
 			end
 			check Result end
 		end

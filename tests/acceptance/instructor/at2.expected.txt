@@ -1,0 +1,57 @@
+  state 0 ok
+  max_phase_radiation: 0.00, max_container_radiation: 0.00
+  phases: pid->name:capacity,count,radiation
+  containers: cid->pid->material,radioactivity
+->new_tracker(39,10)
+  state 1 ok
+  max_phase_radiation: 39.00, max_container_radiation: 10.00
+  phases: pid->name:capacity,count,radiation
+  containers: cid->pid->material,radioactivity
+->new_tracker(-1,10)
+  state 2 e2: max phase radiation must be non-negative value
+->new_tracker(50,-1)
+  state 3 e3: max container radiation must be non-negative value
+->new_tracker(1,1.1)
+  state 4 e4: max container must not be more than max phase radiation
+->new_tracker(0,1)
+  state 5 e4: max container must not be more than max phase radiation
+->new_phase("pid3","compacting",2,<<glass, metal, plastic>>)
+  state 6 ok
+  max_phase_radiation: 39.00, max_container_radiation: 10.00
+  phases: pid->name:capacity,count,radiation
+    pid3->compacting:2,0,0.00,{glass,metal,plastic}
+  containers: cid->pid->material,radioactivity
+->new_phase("pid2","assay",3,<<glass, metal, plastic, liquid>>)
+  state 7 ok
+  max_phase_radiation: 39.00, max_container_radiation: 10.00
+  phases: pid->name:capacity,count,radiation
+    pid2->assay:3,0,0.00,{glass,metal,plastic,liquid}
+    pid3->compacting:2,0,0.00,{glass,metal,plastic}
+  containers: cid->pid->material,radioactivity
+->new_phase("","assay",3,<<glass, metal, plastic, liquid>>)
+  state 8 e5: identifiers/names must start with A-Z, a-z or 0..9
+->new_phase("pid2","assay",3,<<glass, metal, plastic, liquid>>)
+  state 9 e6: phase identifier already exists
+->new_phase("pid9","",3,<<glass, metal, plastic, liquid>>)
+  state 10 e5: identifiers/names must start with A-Z, a-z or 0..9
+->new_phase("pid9","junk",0,<<glass, metal, plastic, liquid>>)
+  state 11 e7: phase capacity must be a positive integer
+->new_phase("pid9","junk",1,<<>>)
+  state 12 e8: there must be at least one expected material for this phase
+->new_phase("pid1","unpacking",4,<<glass, metal, plastic, liquid>>)
+  state 13 ok
+  max_phase_radiation: 39.00, max_container_radiation: 10.00
+  phases: pid->name:capacity,count,radiation
+    pid1->unpacking:4,0,0.00,{glass,metal,plastic,liquid}
+    pid2->assay:3,0,0.00,{glass,metal,plastic,liquid}
+    pid3->compacting:2,0,0.00,{glass,metal,plastic}
+  containers: cid->pid->material,radioactivity
+->new_phase("pid4","storage",7,<<glass, metal, plastic, liquid>>)
+  state 14 ok
+  max_phase_radiation: 39.00, max_container_radiation: 10.00
+  phases: pid->name:capacity,count,radiation
+    pid1->unpacking:4,0,0.00,{glass,metal,plastic,liquid}
+    pid2->assay:3,0,0.00,{glass,metal,plastic,liquid}
+    pid3->compacting:2,0,0.00,{glass,metal,plastic}
+    pid4->storage:7,0,0.00,{glass,metal,plastic,liquid}
+  containers: cid->pid->material,radioactivity

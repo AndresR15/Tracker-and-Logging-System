@@ -127,7 +127,7 @@ feature -- Queries
 			end
 		end
 
-feature -- Commands
+feature {TRACKER}-- Commands
 
 	add_container (cont: PHASE_CONTAINER)
 		require
